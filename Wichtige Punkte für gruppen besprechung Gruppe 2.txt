@@ -1,0 +1,42 @@
+								Join Gruppe 2 20.02.2024
+
+0) Join Desgin wählen Dunkel oder Hell?
+
+1) Index html = Login Seite (von dort aus zum Regestrieren oder bei erfolgreichem login zur Summary Seite)
+
+2) Unter der Variable users sind die einzelnen user mit dementpsrechend Kontakten und Tasks gespeichert und zwar NICHT local sondern im backend!!!
+
+3) index.html, register.html, login.html, summary.html, board.html, add_task.html, contacts.html, privacy_policy.html, legal_notice.html
+
+4) Header und Footer (menüleiste) als template
+
+5) Responisve von 320px bis 4000px!!!
+
+6) Projekt auf git erstellen und alle Gruppen Mitglieder einladen
+
+7) Canban auch neues Projekt und alle Gruppen Mitglieder einladen
+
+8) Window rezise mit JavaScript oder nur media querys in CSS für Contacts Mobile and Desktop?
+
+9) Seiten aufteilen Summary + Header + Footer + Privcy Police + legal notice / board / add_task / contacts
+
+10) Darauf achten, dass task form verwendet wird ohne Label !!!
+
+11) Darauf achten, das die erstellten tasks und contacts jeweils eine eindeutige ID bekommen
+
+12) Wenn man eingeloggt ist und einer der Seiten neu lädt dann sollte das local gespeichert werden
+
+13) Kommentare NUR mit JSNode !!! Nichts sonst im Code Kommentieren bei der Abgabe!
+
+14) Bilder für Kontakte oder nicht??? Keine Bilder dafür input colorcode value
+
+15) Scrollbalken (hoch runter) ändern und nur da wo erforderlich kein Scrollbalken (rechts links)!
+
+16) Discord Server
+
+17) Mobile und Desktop versuchen nur mit Media querrys zu lösen. Ansonsten mit JavaScript.
+
+
+https://us02web.zoom.us/j/85244694219?pwd=OGxNMFlTREdOUlNWVHN4c2paY3BIZz09
+Meeting-ID: 852 4469 4219
+Kenncode: 032125
