@@ -4,12 +4,6 @@
     box-sizing: border-box;
   }
 
-.card {
-    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%);
-    margin-bottom: 16px;
-    padding: 8px;
-}
-
 ul, ol {
     list-style: none;
   }
