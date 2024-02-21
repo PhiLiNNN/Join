@@ -1,7 +1,7 @@
-
 function init() {
     includeHTML();
 }
+
 
 async function includeHTML() {
     let include = document.querySelectorAll('[w3-include-html]');
@@ -16,3 +16,4 @@ async function includeHTML() {
         }
     }
 }
+
