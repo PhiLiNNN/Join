@@ -17,22 +17,33 @@
 
 <body onload="init()">
 
-  <div>
-    <h1>Login</h1>
-  </div>
+  <div> <h1>Login</h1> </div>
   
-  <div>
-    <a href="register_user.html">Sign In</a>
-  </div>
-
   <form onsubmit="login(); return false;">
     <input type="email" name="loginUserEMail" id="login-user-e-mail-id" placeholder="E Mail" required minlength="2">
     <input type="password" name="loginUserPassword" id="login-user-password-id" placeholder="Password" required minlength="2">
     <button>Login</button>
   </form>
-
-  <div id="msgBox">
-
+  <div id="msgBox"></div>
+  <div id="sign-up-popup-id" class="sign-up-popup-bg d-none">
+    <div class="sign-up-popup">
+      <form class="sign-up-form-style" onsubmit="return addUser(event)">
+        <h1>Sign Up</h1>
+        <input type="text" name="addUserName" id="add-user-name-id" placeholder="Name" required minlength="2">
+        <input type="email" name="addUserEMail" id="add-user-e-mail-id" placeholder="E Mail" required minlength="2">
+        <input type="password" name="addUserPassword" id="add-user-password-id" placeholder="Password" required minlength="2">
+        <input type="password" name="addUserPasswordConfirmation" id="add-user-password-confirmation-id" placeholder="Password confirmation" required minlength="2">
+        <div class="accept-policy-box" onclick="validateCheckBoxClicked()">
+            <input type="checkbox" name="acceptPolicy" id="privacy-check-ID" value="acceptPolicy" id="privacy-check-id"/>
+            <span class="accept-policy">I accept the Privacy policy</span>
+            <div id="privacy-error-message" class="error-message-register-checkbox" style="display: none;">Please accept the Privacy policy to proceed with registration.</div>
+        </div>
+        <button type="submit">Sign up</button>
+      </form>
+    </div>
+  </div>
+  <div>
+    <button onclick="signUp()">Sign up</button>
   </div>
 
 </body>

@@ -1,10 +1,11 @@
-const STORAGE_TOKEN = "JE8COTEM5YPGTTDSPWOO02FS2X8RG2C05Z8ESTXU"; // Das ist unser TOKEN für Join Gruppe 2
+const STORAGE_TOKEN = "VORXWOHN4ATC5QT3Z5TB4EP1VRUAGMHB44HR2ZKT"; // Das ist unser TOKEN für Join Gruppe 2
 const STORAGE_URL = "https://remote-storage.developerakademie.org/item";
 
 let users = [];
 
 function init() {
     includeHTML();
+
 }
 
 
@@ -23,23 +24,24 @@ async function includeHTML() {
 }
 
 async function addUser(event) {
-    let checkBox = document.getElementById("privacy-check-ID");
+    const checkBox = document.getElementById("privacy-check-ID");
     let errorMessage = document.getElementById("privacy-error-message");
     if (!checkBox.checked) {
         errorMessage.style.display = "block";
         event.preventDefault(); // Verhindert das Standardverhalten des Formulars
         return false;
     }
-    let userName = document.getElementById("add-user-name-id").value;
-    let userEMail = document.getElementById("add-user-e-mail-id").value;
-    let userPassword = document.getElementById("add-user-password-id").value;
-    let userPasswordConfirm = document.getElementById("add-user-password-confirmation-id").value;
-    let newUser = {userName, userEMail, userPassword, userPasswordConfirm};    
+    const userName = document.getElementById("add-user-name-id").value;
+    const userEMail = document.getElementById("add-user-e-mail-id").value;
+    const userPassword = document.getElementById("add-user-password-id").value;
+    const userPasswordConfirm = document.getElementById("add-user-password-confirmation-id").value;
+    let newUser = {userName, userEMail, userPassword, userPasswordConfirm};  
+    console.log(newUser);  
     try {        
-        await setItem("users", newUser);
+        await setItem("users", JSON.stringify(newUser));
         console.log("Benutzerdaten erfolgreich an das Backend gesendet");
         users.push(newUser);
-        window.location.assign("../index.html");
+        signUpPopup.classList.toggle('d-none');
     } catch (error) {
         console.error("Fehler beim Senden der Benutzerdaten an das Backend:", error);        
     }
@@ -65,20 +67,9 @@ function validateCheckBoxClicked() {
  * @returns Promise: resolved or rejected.
  */
 async function setItem(key, value) {
-    try {
-        const payload = { key, value, token: STORAGE_TOKEN };
-        const response = await fetch(STORAGE_URL, {
-        method: "POST",
-        body: JSON.stringify(payload),
-    });
-    if (!response.ok) {
-        throw new Error("Network response was not ok");
-    }
-    return await response.json();
-    } catch (error) {
-        console.error("Error during setItem:", error);
-        throw error;
-    }
+    const payload = { key, value, token: STORAGE_TOKEN };
+    return fetch(STORAGE_URL, { method: 'POST', body: JSON.stringify(payload)})
+    .then(res => res.json());
 }
 
 /**
@@ -87,17 +78,7 @@ async function setItem(key, value) {
  */
 async function getItem(key) {
     const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
-    try {
-      const res = await fetch(url);
-      if (res.ok) {
-        return res.json();
-      } else {
-        return res.status;
-      }
-    } catch (error) {
-      console.error("Fehler beim Abrufen der Daten:", error);
-      return error;
-    }
+    return fetch(url).then(res => res.json());
 }
 
 async function fetchUsersFromBackend() {
@@ -138,4 +119,10 @@ function loginNotification() {
     } else {
         // display none
     }
+}
+
+
+function signUp()  {
+    let signUpPopup = document.getElementById('sign-up-popup-id');
+    signUpPopup.classList.toggle('d-none');
 }
