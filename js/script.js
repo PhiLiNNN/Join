@@ -30,35 +30,31 @@ async function addUser(event) {
         event.preventDefault(); // Verhindert das Standardverhalten des Formulars
         return false;
     }
-    let userName = document.getElementById("user-name-id");
-    let userEMail = document.getElementById("user-e-mail-id");
-    let userPassword = document.getElementById("user-password-id");
-    let userPasswordConfirm = document.getElementById("user-password-confirmation-id");
-    users.push({userName: userName.value, userEMail: userEMail.value, userPassword: userPassword.value, userPasswordConfirm: userPasswordConfirm.value});
-    // Hier backend speicherung hinzufügen
-    console.log(users, "User erfolgreich erstellt");
-    
-    // Daten an das Backend senden
-    try {
-        await setItem("users", users);
+    let userName = document.getElementById("add-user-name-id").value;
+    let userEMail = document.getElementById("add-user-e-mail-id").value;
+    let userPassword = document.getElementById("add-user-password-id").value;
+    let userPasswordConfirm = document.getElementById("add-user-password-confirmation-id").value;
+    let newUser = {userName, userEMail, userPassword, userPasswordConfirm};    
+    try {        
+        await setItem("users", newUser);
         console.log("Benutzerdaten erfolgreich an das Backend gesendet");
-        // Umleitung auf die Startseite
+        users.push(newUser);
         window.location.assign("../index.html");
     } catch (error) {
-        console.error("Fehler beim Senden der Benutzerdaten an das Backend:", error);
-        // Hier könntest du entsprechend reagieren, wenn das Senden der Benutzerdaten fehlschlägt
+        console.error("Fehler beim Senden der Benutzerdaten an das Backend:", error);        
     }
+    console.log("async function addUser(event) users" , users);
 }
 
 function validateCheckBoxClicked() {
     let checkBox = document.getElementById("privacy-check-ID");
-            let errorMessage = document.getElementById("privacy-error-message");
-            if (!checkBox.checked) {
-                errorMessage.style.display = "block";                
-            } else {
-                errorMessage.style.display = "none";
-                return true;
-            }
+    let errorMessage = document.getElementById("privacy-error-message");
+    if (!checkBox.checked) {
+        errorMessage.style.display = "block";                
+    } else {
+        errorMessage.style.display = "none";
+        return true;
+    }
 }
 
 /**
@@ -83,4 +79,63 @@ async function setItem(key, value) {
       console.error("Error during setItem:", error);
       throw error;
     }
-  }
+}
+
+/**
+ * Get request to backend.
+ * @param {lokal storage key} key
+ */
+async function getItem(key) {
+    const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
+    try {
+      const res = await fetch(url);
+      if (res.ok) {
+        return res.json();
+      } else {
+        return res.status;
+      }
+    } catch (error) {
+      console.error("Fehler beim Abrufen der Daten:", error);
+      return error;
+    }
+}
+
+async function fetchUsersFromBackend() {
+    try {
+        const usersData = await getItem("users");
+        console.log("Benutzerdaten erfolgreich vom Backend abgerufen:", usersData);
+        return usersData; // Gib die Benutzerdaten zurück
+    } catch (error) {
+        console.error("Fehler beim Abrufen der Benutzerdaten vom Backend:", error);
+        throw error;
+    }
+}
+
+async function login() {
+    try {
+        const usersData = await fetchUsersFromBackend(); // Benutzerdaten aus dem Backend abrufen
+        let eMail = document.getElementById(`login-user-e-mail-id`).value;
+        let password = document.getElementById(`login-user-password-id`).value;
+        let users = JSON.parse(usersData.data.value); // Konvertiere den Benutzerdaten-String in ein Array
+        let user = users.find(user => user.userEMail === eMail && user.userPassword === password); // Überprüfung der E-Mail und des Passworts
+        if(user) {
+            console.log(`User gefunden`);
+            window.location.assign("summary.html"); // Weiterleitung bei erfolgreichem Login
+        } else {
+            console.log(`User nicht gefunden`);
+            loginNotification();
+        }
+    } catch (error) {
+        console.error("Fehler beim Login:", error);        
+    }
+}
+
+function loginNotification() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const msg = urlParams.get(`msg`);
+    if(msg) {
+        msgBox.innerHTML = msg;
+    } else {
+        // display none
+    }
+}
