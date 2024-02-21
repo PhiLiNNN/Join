@@ -106,10 +106,6 @@ async function getItem(key) {
     return fetch(url).then(res => res.json()).then(res => res.data.value);
 }
 
-async function register() {
-    
-}
-
 
 function checkPasswordMatch(inputs) {
     if (inputs[2] !== inputs[3]) {
@@ -140,4 +136,26 @@ function closeSignUp() {
 }
 
 
+async function login() {
+    let userEmail = document.getElementById("login-user-e-mail-id").value;
+    let userPassword = document.getElementById("login-user-password-id").value;
+    try {        
+        for (let i = 0; i < users.length; i++) {
+            const user = users[i];            
+            if (user.userEMail === userEmail) {                
+                if (user.userPassword === userPassword) {
+                    window.location.assign("../summary.html");
+                    console.log("Login erfolgreich!");
+                    return;
+                } else {
+                    console.log("Falsches Passwort!");
+                    return;
+                }
+            }
+        }        
+        console.log("Benutzer nicht gefunden!");
+    } catch (error) {
+        console.error("Fehler beim Login:", error);
+    }
+}
 
