@@ -3,48 +3,11 @@ body {
     box-sizing: border-box;
 }
 
-.accept-policy-box {
-    
-}
-
-.accept-policy {
-    
-}
-
-.error-message-register-checkbox {
-    color: red;
-    font-size: 1em;
-}
-  
-.sign-up-popup-bg{
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.sign-up-popup {
-    background: gray;
-}
-
-.sign-up-form-style {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    padding: 32px;
-}
-
-.sign-up-form-style input {
-    border-radius: 20px;
-    border: none;
-    padding: 8px 16px;
-}
-
-.d-none {
-    display: none;
+* {
+    padding: 0px;
+    margin:0px;
+    box-sizing: border-box;
+    font-family: 'Roboto';
+    list-style: none;
+    text-decoration: none;
 }

@@ -1,0 +1,151 @@
+.logo {
+    position: absolute;
+    top: 37px;
+    left: 38px;
+}
+.logo img {
+    width: 64px;
+    height: 78px;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 80vh;
+    width: 100%;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 205px;
+    padding-block: 32px;
+    max-width: 800px
+}
+
+.form-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.content h1 {
+    font-weight: 700;
+    font-size: 47px;
+    line-height: 56.4px;
+}
+
+.line {
+    margin-top: 16px;
+    background-color: #29ABE2;
+    height: 3px;
+    width: 88px;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+}
+
+.login-fields-container {
+    width: 100%;
+
+}
+
+.login-input { 
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid  rgb(214, 214, 214);
+    height: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 21px;
+ 
+
+}
+
+
+.login-input:focus-within {
+    border-color: #29ABE2; 
+    
+}
+.login-fields-gap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 32px;
+    margin: 32px 0 40px 0;
+    
+}
+
+.login-input input {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24px;
+    width: 95%;
+    border: none;
+    outline: none;
+   
+}
+
+.login-email {
+    width: 20px;
+    height: 16px;
+}
+
+.login-lock {
+    width: 24px;
+    height: 24px;
+}
+
+
+
+
+.error-message-register-checkbox {
+    color: red;
+    font-size: 1em;
+}
+  
+.sign-up-popup-bg{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sign-up-popup {
+    background: gray;
+}
+
+.sign-up-form-style {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 32px;
+}
+
+.sign-up-form-style input {
+    border-radius: 20px;
+    border: none;
+    padding: 8px 16px;
+}
+
+.d-none {
+    display: none;
+}
