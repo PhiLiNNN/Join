@@ -15,7 +15,7 @@ async function includeHTML() {
         let file = element.getAttribute("w3-include-html");
         let resp = await fetch(file);
         if(resp.ok) {
-             include[i].innerHTML = await resp.text();
+            include[i].innerHTML = await resp.text();
         } else {
             include[i].innerHTML = 'Page not found';
         }
@@ -52,13 +52,13 @@ async function addUser(event) {
 
 function validateCheckBoxClicked() {
     let checkBox = document.getElementById("privacy-check-ID");
-            let errorMessage = document.getElementById("privacy-error-message");
-            if (!checkBox.checked) {
-                errorMessage.style.display = "block";                
-            } else {
-                errorMessage.style.display = "none";
-                return true;
-            }
+    let errorMessage = document.getElementById("privacy-error-message");
+    if (!checkBox.checked) {
+        errorMessage.style.display = "block";                
+    } else {
+        errorMessage.style.display = "none";
+        return true;
+    }
 }
 
 /**
@@ -70,17 +70,17 @@ function validateCheckBoxClicked() {
  */
 async function setItem(key, value) {
     try {
-      const payload = { key, value, token: STORAGE_TOKEN };
-      const response = await fetch(STORAGE_URL, {
+        const payload = { key, value, token: STORAGE_TOKEN };
+        const response = await fetch(STORAGE_URL, {
         method: "POST",
         body: JSON.stringify(payload),
-      });
-      if (!response.ok) {
+    });
+    if (!response.ok) {
         throw new Error("Network response was not ok");
-      }
-      return await response.json();
+    }
+    return await response.json();
     } catch (error) {
-      console.error("Error during setItem:", error);
-      throw error;
+        console.error("Error during setItem:", error);
+        throw error;
     }
   }
