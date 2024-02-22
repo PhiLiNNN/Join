@@ -1,5 +1,6 @@
 const STORAGE_TOKEN = "VORXWOHN4ATC5QT3Z5TB4EP1VRUAGMHB44HR2ZKT"; // Das ist unser TOKEN für Join Gruppe 2
 const STORAGE_URL = "https://remote-storage.developerakademie.org/item";
+let checkboxConfirmed = false;
 let users = [];
 
 
@@ -152,6 +153,15 @@ function login() {
 
 function toggleRememberMeCheckbox() {
     const loginUserEmail = document.getElementById("uncheckbox-id");
+    console.log(checkboxConfirmed)
+    if (!checkboxConfirmed) {
+        loginUserEmail.src  ='./assets/img/checkbox_confirmed.png';
+        checkboxConfirmed = true;
+    }
+    else {
+        loginUserEmail.src  ='./assets/img/checkbox.png';
+        checkboxConfirmed = false;
+    }
    
 }
 
