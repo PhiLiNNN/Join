@@ -1,0 +1,122 @@
+.addContactButtonContainerMobile {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center; 
+    cursor: pointer;  
+    margin-right: 1em;
+    margin-bottom: 8em;
+    height: 30vh;
+}
+
+.addContactImageMobile {
+    width: 352px;
+}
+
+.addContactContainerHeaderMobile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 50vh;
+    background-color: var(--light-grey);
+}
+
+.addContactCloseXContainerMobile {
+    position: fixed;
+    top: 1em;
+    right: 2em;
+}
+
+.addContactCloseXButtonMobile {
+    width: 32px;
+    height: 32px;
+    border-radius: 56px;
+    border: 0;
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+    background-color: var(--light-grey);
+}
+
+.addContactBlockHeaderMobile {
+    display: block;
+}
+
+.addContactH1Mobile {
+    color: white;
+    font-size: 3rem;
+}
+
+.addContactTextMobile {
+    color: white;
+}
+
+.addContactBlueStrokedMobile {
+    margin-right: 7em;
+}
+
+.addContactBlankUserImgMobile {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.addContactContainerFooterMobile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 50vh;
+    background-color: white;
+    gap: 20px;
+}
+
+.addContactInputNameMobile {
+    border: 1px solid #d1d1d1;
+    border-radius: 5px;
+    background-image: url("../assets/img/contacts/addContactUserNameImg.svg");
+    background-size: 30px auto;
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-position-y: 5px;
+    width: 364px;
+    height: 41px;
+    position: relative;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.addContactInputMailAddresssMobile {
+    border: 1px solid #d1d1d1;
+    border-radius: 5px;
+    background-image: url("../assets/img/contacts/addContactMailIcon.svg");
+    background-size: 30px auto;
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-position-y: 5px;
+    width: 364px;
+    height: 41px;
+    position: relative;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.addContactInputPhoneMobile {
+    border: 1px solid #d1d1d1;
+    border-radius: 5px;
+    background-image: url("../assets/img/contacts/addContactPhoneIcon.svg");
+    background-size: 30px auto;
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-position-y: 5px;
+    width: 364px;
+    height: 41px;
+    position: relative;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.createContactButtonImg {
+    height: 51px;
+}

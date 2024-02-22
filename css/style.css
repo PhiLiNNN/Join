@@ -1,3 +1,19 @@
+:root {
+    --lighter-grey: #d1d1d1;
+    --light-grey: #2a3647;
+    --light-blue: #29abe2;
+    --dark-blue: #091931;
+    --organe: #ff3d00;
+    --yellow: #ffa800;
+    --pink: #fc71ff;
+    --mint-green: #1fd7c1;
+    --white-grey: #f6f7f8;
+    --white-text: #fff;
+    --wrong-input: #ff001f;
+    --font-gray: #a8a8a8;
+    --font-popUp: #cdcdcd;
+}
+
 body {
     margin: 0;
     box-sizing: border-box;
