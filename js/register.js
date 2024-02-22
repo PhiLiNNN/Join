@@ -137,13 +137,13 @@ function closeSignUp() {
 
 
 async function login() {
-    let userEmail = document.getElementById("login-user-e-mail-id").value;
-    let userPassword = document.getElementById("login-user-password-id").value;
+    let loginUserEmail = document.getElementById("login-user-e-mail-id").value;
+    let loginUserPassword = document.getElementById("login-user-password-id").value;
     try {        
         for (let i = 0; i < users.length; i++) {
             const user = users[i];            
-            if (user.userEMail === userEmail) {                
-                if (user.userPassword === userPassword) {
+            if (user.userEMail === loginUserEmail) {                
+                if (user.userPassword === loginUserPassword) {
                     window.location.assign("../summary.html");
                     console.log("Login erfolgreich!");
                     return;
