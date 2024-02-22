@@ -63,9 +63,11 @@ body {
     align-items: center;
     padding: 12px 21px;
 }
+
 .login-input-error { 
     border: 1px solid #971010;
 }
+
 input::placeholder {
     color: #d1d1d1; 
 }

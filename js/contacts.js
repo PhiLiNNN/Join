@@ -35,6 +35,7 @@ function showHeaderAndFooter() {
     menuTemplate.style.display = "flex";
 }
 
+
 function redirectToContacts() {
     window.location.assign("../contacts.html");
 }
