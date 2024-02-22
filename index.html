@@ -26,28 +26,28 @@
         <h1>Log in</h1>
         <div  class="line"></div>
        </div>
-      <form class="login-container" onsubmit="login(); return false">
+      <div class="login-container">
         <div class="login-fields-container">
           <div class="login-fields-gap">
-            <div class="login-input">
+            <div id="login-user-e-mail-border-id" class="login-input">
               <input type="email" name="loginUserEMail" id="login-user-e-mail-id" placeholder="E Mail" required autocomplete="on">
               <img class="login-email" src="./assets/img/mail.png" alt="">
             </div>
-            <div class="login-input">
+            <div id="login-user-password-border-id" class="login-input">
               <input type="password" name="loginUserPassword" id="login-user-password-id" placeholder="Password" required minlength="2" autocomplete="current-password">
               <img class="login-lock" src="./assets/img/lock.png" alt="">
             </div>
           </div>
-          <div>
-            <input type="checkbox" name="loginCheckbox" id="checkbox-id"/>
+          <div class="remember-me-checkbox-container">
+            <img id="uncheckbox-id" src="./assets/img/checkbox.png" alt="remember me checkbox" onclick="toggleRememberMeCheckbox()">
             <span>Remember me</span>
           </div>
         </div>
-        <div>
-          <button name="registerBtn" id="register-btn-id">Login</button>
-          <button>Guest Log in</button>
+        <div class="login-btns">
+          <button class="filled-btn" name="registerBtn" id="register-btn-id" onclick="login()">Log in</button>
+          <button class="white-btn">Guest Log in</button>
         </div>
-      </form>
+      </div>
       <div id="sign-up-popup-id" class="sign-up-popup-bg d-none"></div>
       <div>
         <span>Not a Join user?</span>

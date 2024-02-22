@@ -12,24 +12,24 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
+    padding-inline: 16px;
 }
 
 .content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 80vh;
     width: 100%;
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
-    box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+    box-shadow: 0 0 14px #2a364739;
     margin-top: 205px;
-    padding-block: 32px;
-    max-width: 800px
+    margin-bottom: 32px;
+    padding: 32px 16px;
+    max-width: 800px;
 }
 
 .form-header {
+    
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -61,24 +61,20 @@
 
 }
 
-.login-input { 
-    width: 100%;
-    border-radius: 10px;
-    border: 1px solid  rgb(214, 214, 214);
-    height: 48px;
+
+
+
+.login-btns {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    padding: 12px 21px;
- 
-
+    gap: 10px;
 }
 
 
-.login-input:focus-within {
-    border-color: #29ABE2; 
-    
-}
+
+
 .login-fields-gap {
     display: flex;
     flex-direction: column;
@@ -109,8 +105,15 @@
     height: 24px;
 }
 
-
-
+.remember-me-checkbox-container {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    margin-left: 20px;
+}
+.remember-me-checkbox-container img {
+    margin-right: 8px;
+}
 
 .error-message-register-checkbox {
     color: red;

@@ -136,26 +136,23 @@ function closeSignUp() {
 }
 
 
-async function login() {
-    let loginUserEmail = document.getElementById("login-user-e-mail-id").value;
-    let loginUserPassword = document.getElementById("login-user-password-id").value;
-    try {        
-        for (let i = 0; i < users.length; i++) {
-            const user = users[i];            
-            if (user.userEMail === loginUserEmail) {                
-                if (user.userPassword === loginUserPassword) {
-                    window.location.assign("../summary.html");
-                    console.log("Login erfolgreich!");
-                    return;
-                } else {
-                    console.log("Falsches Passwort!");
-                    return;
-                }
-            }
-        }        
-        console.log("Benutzer nicht gefunden!");
-    } catch (error) {
-        console.error("Fehler beim Login:", error);
+function login() {
+    const loginUserEmail = document.getElementById("login-user-e-mail-id").value;
+    const loginUserPassword = document.getElementById("login-user-password-id").value;
+    const emailBorder = document.getElementById("login-user-e-mail-border-id");
+    const passwordBorder = document.getElementById("login-user-password-border-id");
+    const foundUser = users.find(user => user.userEMail === loginUserEmail);
+    emailBorder.classList.toggle('login-input-error', !foundUser);
+    passwordBorder.classList.toggle('login-input-error', !foundUser || foundUser.userPassword !== loginUserPassword);
+    if (foundUser && foundUser.userPassword === loginUserPassword) {
+        window.location.assign("../summary.html");
     }
 }
+
+function toggleRememberMeCheckbox() {
+    const loginUserEmail = document.getElementById("uncheckbox-id");
+   
+}
+
+
 

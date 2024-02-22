@@ -18,7 +18,7 @@
     align-items: center;
     flex-direction: column;
     height: 50vh;
-    background-color: var(--light-grey);
+    background-color: var(--mockup-color);
 }
 
 .addContactCloseXContainerMobile {
@@ -35,7 +35,7 @@
     color: white;
     font-weight: bold;
     font-size: 24px;
-    background-color: var(--light-grey);
+    background-color: var(--mockup-color);
 }
 
 .addContactBlockHeaderMobile {
