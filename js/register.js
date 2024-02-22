@@ -153,16 +153,10 @@ function login() {
 
 function toggleRememberMeCheckbox() {
     const loginUserEmail = document.getElementById("uncheckbox-id");
-    console.log(checkboxConfirmed)
-    if (!checkboxConfirmed) {
-        loginUserEmail.src  ='./assets/img/checkbox_confirmed.png';
-        checkboxConfirmed = true;
-    }
-    else {
-        loginUserEmail.src  ='./assets/img/checkbox.png';
-        checkboxConfirmed = false;
-    }
-   
+    checkboxConfirmed = !checkboxConfirmed;
+    loginUserEmail.src = checkboxConfirmed
+        ? './assets/img/checkbox_confirmed.png'
+        : './assets/img/checkbox.png';
 }
 
 

@@ -22,11 +22,11 @@
   </div>
   <div class="container">
     <div class="content">
-      <div class="form-header"> 
-        <h1>Log in</h1>
-        <div  class="line"></div>
-       </div>
       <div class="login-container">
+        <div class="form-header"> 
+          <h1>Log in</h1>
+          <div  class="line"></div>
+         </div>
         <div class="login-fields-container">
           <div class="login-fields-gap">
             <div id="login-user-e-mail-border-id" class="login-input">
@@ -43,21 +43,21 @@
             <span>Remember me</span>
           </div>
         </div>
-        <div class="login-btns">
+        <div class="login-btns-container">
           <button class="filled-btn" name="registerBtn" id="register-btn-id" onclick="login()">Log in</button>
           <button class="white-btn">Guest Log in</button>
         </div>
       </div>
       <div id="sign-up-popup-id" class="sign-up-popup-bg d-none"></div>
-      <div>
+      <div class="signup-container">
         <span>Not a Join user?</span>
-        <button onclick="signUp()">Sign up</button>
+        <button  class="filled-btn width-small" onclick="signUp()">Sign up</button>
       </div>
-      <div>
+      <div class="legal-information-container">
         <a>Privacy Policy</a>
         <a>Legal notice</a>        
       </div>
-      <div>
+      <div  style="position: absolute;">
         <a href="contacts.html">Contacts</a>
       </div>
     </div>

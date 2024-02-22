@@ -1,3 +1,9 @@
+:root {
+    --mockup-color: #2a3647;
+    --mockup-highlight: #29ABE2;
+    --placeholder-color: #d1d1d1;
+}
+
 body {
     margin: 0;
     box-sizing: border-box;
@@ -14,13 +20,12 @@ body {
 
 ::-webkit-scrollbar {
     width: 20px;
- 
-  }
+}
   
 ::-webkit-scrollbar-track {
     background-color: transparent;
- 
-  }
+}
+
 ::-webkit-scrollbar-thumb {
     background-color: var(--mockup-color);
     border-radius: 20px;
@@ -36,8 +41,7 @@ body {
 .filled-btn, 
 .white-btn {
     border-radius: 8px;
-    padding: 4px 0;
-    width: 180px;
+    padding: 15px 16px;
     height: 51px;
     cursor: pointer;
     font-size: 16px;
@@ -46,21 +50,26 @@ body {
     transition: all 200ms ease-in-out;
 }
 
+.width-small {
+    width: 104px !important;
+    padding: 15px 16px;
+}
+
 .filled-btn {
     background-color: var(--mockup-color);
     color: white;
+    width: 180px;
 }
 
 .white-btn {
+    width: 180px;
     color: var(--mockup-color);
 }
-
 
 .filled-btn:hover:enabled {
     background-color: var(--mockup-highlight);
     border: 2px solid var(--mockup-highlight);
     box-shadow: 0 6px 5px rgba(0, 0, 0, 0.18);
-    
 }
 
 .white-btn:hover {
@@ -73,7 +82,7 @@ body {
 .login-input { 
     width: 100%;
     border-radius: 10px;
-    border: 1px solid #d1d1d1;
+    border: 1px solid var(--placeholder-color);
     height: 48px;
     display: flex;
     justify-content: space-between;
@@ -86,11 +95,10 @@ body {
 }
 
 input::placeholder {
-    color: #d1d1d1; 
+    color: var(--placeholder-color); 
 }
 
 .login-input:focus-within {
     border-color: var(--mockup-highlight); 
-    
 }
 

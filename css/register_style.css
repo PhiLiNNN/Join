@@ -20,16 +20,14 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    border-radius: 30px;
-    box-shadow: 0 0 14px #2a364739;
+   
     margin-top: 205px;
     margin-bottom: 32px;
-    padding: 32px 16px;
+    
     max-width: 800px;
 }
 
 .form-header {
-    
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -50,6 +48,9 @@
 }
 
 .login-container {
+    padding: 32px 16px;
+    border-radius: 30px;
+    box-shadow: 0 0 14px #2a364739;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -62,17 +63,14 @@
 }
 
 
-
-
-.login-btns {
+.login-btns-container {
+    margin-top: 32px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 10px;
 }
-
-
 
 
 .login-fields-gap {
@@ -87,7 +85,6 @@
 
 .login-input input {
     font-size: 18px;
-    font-weight: 400;
     line-height: 24px;
     width: 95%;
     border: none;
@@ -110,6 +107,7 @@
     align-items: center;
     justify-content: start;
     margin-left: 20px;
+    height: 24px;
 }
 
 .remember-me-checkbox-container img {
@@ -150,6 +148,35 @@
     padding: 8px 16px;
 }
 
+.signup-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 35px;
+    margin-top: 57.5px;
+}
+
+.signup-container span {
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.legal-information-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin-top: 32px;
+
+}
+
 .d-none {
     display: none;
+}
+
+.legal-information-container a {
+    line-height: 19.2px;
+    color: #a8a8a8; 
 }
