@@ -1,6 +1,7 @@
 const STORAGE_TOKEN = "VORXWOHN4ATC5QT3Z5TB4EP1VRUAGMHB44HR2ZKT"; // Das ist unser TOKEN für Join Gruppe 2
 const STORAGE_URL = "https://remote-storage.developerakademie.org/item";
-let checkboxConfirmed = false;
+let rmCheckboxConfirmed = false;
+let ppCheckboxConfirmed = false;
 let users = [];
 let currentUser = null;
 
@@ -126,6 +127,8 @@ function toggleVisibility(elementId, show = true) {
 
 function signUp() {
     toggleVisibility('sign-up-popup-id', true);
+    toggleVisibility('signup-container-id', false);
+    toggleVisibility('login-id', false);
     let signUpPopupElement = document.getElementById('sign-up-popup-id');
     signUpPopupElement.innerHTML += templateSignUpPopup();
 }
@@ -133,6 +136,9 @@ function signUp() {
 
 function closeSignUp() {
     toggleVisibility('sign-up-popup-id', false);
+    toggleVisibility('signup-container-id', true);
+    toggleVisibility('login-id', true);
+    ppCheckboxConfirmed = false;
     let signUpPopupElement = document.getElementById('sign-up-popup-id');
     signUpPopupElement.innerHTML = ""; 
 }
@@ -166,12 +172,25 @@ function saveCurrentUser(foundUser) {
 }
 
 
-function toggleRememberMeCheckbox() {
-    const loginUserEmail = document.getElementById("uncheckbox-id");
-    checkboxConfirmed = !checkboxConfirmed;
-    loginUserEmail.src = checkboxConfirmed
-        ? './assets/img/checkbox_confirmed.png'
-        : './assets/img/checkbox.png';
+function toggleRememberMeCheckbox(event) {
+    
+    const loginCheckbox = document.getElementById("uncheckbox-id");
+    const ppCheckbox = document.getElementById("privacy-checkbox-id");
+    ppCheckboxConfirmed = !ppCheckboxConfirmed;
+    if (event.target.id === 'uncheckbox-id') {
+        rmCheckboxConfirmed = !rmCheckboxConfirmed;
+        console.log('rmCheckboxConfirmed',rmCheckboxConfirmed)
+        loginCheckbox.src = rmCheckboxConfirmed
+            ? './assets/img/checkbox_confirmed.svg'
+            : './assets/img/checkbox.svg';
+        ppCheckboxConfirmed = false;
+    } else if (event.target.id === 'privacy-checkbox-id') {
+        
+        console.log('ppCheckboxConfirmed',ppCheckboxConfirmed)
+        ppCheckbox.src = ppCheckboxConfirmed
+            ? './assets/img/checkbox_confirmed.svg'
+            : './assets/img/checkbox.svg'; 
+    }
 }
 
 
