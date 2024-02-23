@@ -93,12 +93,15 @@
    
 }
 
+
+
 .login-email {
     width: 20px;
     height: 16px;
 }
 
-.login-lock {
+.login-lock,
+.login-name {
     width: 24px;
     height: 24px;
 }

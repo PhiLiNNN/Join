@@ -9,7 +9,7 @@ function templateSignUpPopup() {
         <div class="login-fields-gap">
         <div id="login-user-name-border-id" class="login-input">
             <input type="name" name="name" id="login-user-name-id" placeholder="Name" required autocomplete="off">
-            <img class="login-email" src="./assets/img/person.png" alt="login image">
+            <img class="login-name" src="./assets/img/person.png" alt="login image">
           </div>
           <div id="login-user-e-mail-border-id" class="login-input">
             <input type="email" name="loginUserEMail" id="login-user-e-mail-id" placeholder="Email" required autocomplete="on">
