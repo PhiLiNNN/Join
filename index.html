@@ -22,6 +22,9 @@
     <img src="./assets/img/logo.png" alt="join Logo">
   </div>
   <div class="container">
+    <div id="success-msg-id" class="success-msg-popup d-none">
+        <span>You signed up successfully</span>
+    </div>
     <div class="content">
       <div id="sign-up-popup-id" class="signin-container d-none"></div>
       <div id="login-id" class="login-container">
@@ -35,13 +38,14 @@
               <input type="email" name="loginUserEMail" id="login-user-e-mail-id" placeholder="E Mail" required autocomplete="on">
               <img class="login-email" src="./assets/img/mail.png" alt="">
               <span id="invalid-email-id" class="err-msg d-none">No user found with this email.</span>
-              <span id="empty-email-id" class="err-msg d-none">Enter a valid email (e.g., user@example.com)!</span>
+              <span id="empty-email-id" class="err-msg d-none">This field is required!</span>
+              <span id="this-is-no-email-id" class="err-msg d-none">Enter a valid email (e.g., user@example.com)!</span>
             </div>
             
             <div id="login-user-password-border-id" class="login-input">
               <input type="password" name="loginUserPassword" id="login-user-password-id" placeholder="Password" required minlength="2" autocomplete="current-password">
               <img class="login-lock" src="./assets/img/lock.png" alt="">
-              <span id="empty-password-id" class="err-msg d-none">This Field is required!</span>
+              <span id="empty-password-id" class="err-msg d-none">This field is required!</span>
               <span id="invalid-password-id" class="err-msg d-none">Wrong password Ups! Try again.</span>
             </div>
           </div>

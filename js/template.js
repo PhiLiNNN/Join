@@ -8,19 +8,19 @@ function templateSignUpPopup() {
       <div class="login-fields-container">
         <div class="login-fields-gap">
         <div id="login-user-name-border-id" class="login-input">
-            <input type="name" name="name" id="login-user-name-id" placeholder="Name" required autocomplete="off">
+            <input type="name" name="name" id="add-user-name-id" placeholder="Name" required autocomplete="off">
             <img class="login-name" src="./assets/img/person.png" alt="login image">
           </div>
           <div id="login-user-e-mail-border-id" class="login-input">
-            <input type="email" name="loginUserEMail" id="login-user-e-mail-id" placeholder="Email" required autocomplete="on">
+            <input type="email" name="loginUserEMail" id="add-user-e-mail-id" placeholder="Email" required autocomplete="on">
             <img class="login-email" src="./assets/img/mail.png" alt="">
           </div>
           <div id="login-user-password-border-id" class="login-input">
-            <input type="password" name="loginUserPassword" id="login-user-password-id" placeholder="Password" required minlength="2" autocomplete="new-password">
+            <input type="password" name="loginUserPassword" id="add-user-password-id" placeholder="Password" required minlength="2" autocomplete="new-password">
             <img class="login-lock" src="./assets/img/lock.png" alt="">
           </div>
           <div id="login-user-password-confirm-border-id" class="login-input">
-            <input type="password" name="confirmPassword" id="login-user-confirm-password-id" placeholder="Confirm Password" required minlength="2" autocomplete="new-password">
+            <input type="password" name="confirmPassword" id="add-user-confirm-password-id" placeholder="Confirm Password" required minlength="2" autocomplete="new-password">
             <img class="login-lock" src="./assets/img/lock.png" alt="">
           </div>
         </div>
@@ -29,7 +29,7 @@ function templateSignUpPopup() {
             <img id="privacy-checkbox-id" src="./assets/img/checkbox.svg" alt="privacy checkbox" onclick="toggleRememberMeCheckbox(event)">
             <p>I accept the <a href="#">Privacy Policy</a></p>
           </div>
-          <button class="filled-btn width-small">Sign in</button>
+          <button class="filled-btn width-small" onclick="addUser()">Sign in</button>
         </div>
       </div>
     `;
