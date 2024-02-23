@@ -191,7 +191,7 @@
     align-items: center;
     flex-direction: column;
     height: 50vh;
-    background-color: var(--placeholder-color);
+    background-color: var(--mockup-color);
 }
 
 .openContactCloseXContainer {
