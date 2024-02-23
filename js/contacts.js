@@ -1,5 +1,6 @@
 function contactsInit() {
   renderContacts();
+  renderAddContactButtonMobile();
 }
 
 function renderContacts() {
@@ -63,6 +64,16 @@ function renderContactsByFirstLetter(content, contactsByFirstLetter) {
   for (const letter in contactsByFirstLetter) {
     content.appendChild(contactsByFirstLetter[letter]);
   }
+}
+
+
+function renderAddContactButtonMobile() {
+  let addContactButtonMobile = document.getElementById(`contacts-content-id`);
+  addContactButtonMobile.innerHTML += `
+    <div>
+      <img class="createContactButtonImg" src="../assets/img/contacts/addContactButtonMobile.svg" alt="createContactButton" onclick="createContactMobile()"></img>
+    </div>
+    `
 }
 
 
