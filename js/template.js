@@ -35,7 +35,7 @@ function addContactFormMobileHTML() {
           <img class="addContactBlankUserImgMobile" src="../assets/img/contacts/addContactBlankUserImg.svg" alt="addContactBlankUserImg">
         </div>
       </div>
-      <form id="add-contact-form-mobile-id" onsubmit="createContactMobile()">
+      <form id="add-contact-form-mobile-id" onsubmit="createContactMobile(); return false;">
         <div class="addContactContainerFooterMobile">
           <input class="addContactInputNameMobile" name="addContactInputNameMobile" id="add-contact-input-name-mobile-id" type="text" required placeholder="Name">
           <input class="addContactInputMailAddresssMobile" name="addContactInputMailAddresssMobile" id="add-contact-input-mail-addresss-mobile-id" type="text" required placeholder="E Mail">

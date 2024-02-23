@@ -2,6 +2,7 @@ const STORAGE_TOKEN = "VORXWOHN4ATC5QT3Z5TB4EP1VRUAGMHB44HR2ZKT"; // Das ist uns
 const STORAGE_URL = "https://remote-storage.developerakademie.org/item";
 let checkboxConfirmed = false;
 let users = [];
+let currentUser = null;
 
 
 async function init() {
@@ -146,8 +147,22 @@ function login() {
     emailBorder.classList.toggle('login-input-error', !foundUser);
     passwordBorder.classList.toggle('login-input-error', !foundUser || foundUser.userPassword !== loginUserPassword);
     if (foundUser && foundUser.userPassword === loginUserPassword) {
+        saveCurrentUser(foundUser);
+        localStorage.setItem('users', JSON.stringify(users)); // Speichert die "users" lokal ab um später dort Kontakte zu speichern
+        console.log("Found user:", foundUser); // Überprüfen, ob ein Benutzer gefunden wurde
         window.location.assign("../summary.html");
+    }    
+}
+
+
+function saveCurrentUser(foundUser) {
+    if (!foundUser) {
+        console.error("Cannot save null user.");
+        return;
     }
+    currentUser = foundUser; // Setzen Sie den aktuellen Benutzer
+    localStorage.setItem('currentUser', JSON.stringify(currentUser));  // Speichert den "currentUser" lokal ab
+    console.log("Saved currentUser:", currentUser); // Überprüfen, ob currentUser erfolgreich gespeichert wurde
 }
 
 
