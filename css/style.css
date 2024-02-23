@@ -2,6 +2,9 @@
     --mockup-color: #2a3647;
     --mockup-highlight: #29ABE2;
     --placeholder-color: #d1d1d1;
+    --white-color: #ffffff;
+    --black-color: #000000;
+    --hyper-link-color: #007cee;
 }
 
 body {
