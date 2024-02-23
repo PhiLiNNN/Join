@@ -2,7 +2,6 @@ function contactsInit() {
     renderContacts();
 }
 
-
 function renderContacts() {
   const content = document.getElementById("contacts-content-id");
   content.innerHTML = "";
@@ -38,7 +37,6 @@ function createLetterAndContactsContainer(firstLetter) {
   return container;
 }
 
-
 function createOneContactContainer(oneContact) {
   const container = document.createElement('div');
   container.classList.add('oneContactContainer');
@@ -69,7 +67,6 @@ function renderContactsByFirstLetter(content, contactsByFirstLetter) {
 
 
 function renderSingleMemberToHTMLMobile(member, colorCode, textColor) {
-  const iconRightStep = 10;
   return `
     <div class="openContactUserImgMobile" style="background-color: ${colorCode}; color: ${textColor};">
       ${getFirstLettersOfName(member.name)}
@@ -119,35 +116,13 @@ function getRandomColorHex() {
 function addContactScreenMobile() {
     const content = document.getElementById("contacts-content-id");
     content.innerHTML = addContactFormMobileHTML();
-    // hideHeaderAndFooter();
+  
 }
 
 
-/**
-  * Hide header and footer for edit contact and create contact screen on mobile view
-  */
-/*function hideHeaderAndFooter() {
-    const mobileHeader = document.querySelector(".mobileHeader"); 
-    const menuTemplate = document.querySelector(".menuTemplate");
-    mobileHeader.style.display = "none";
-    menuTemplate.style.display = "none";
-  }
-*/
-
-
-/**
-  * Show header and footer screen on mobile view
-  */
- /**
-function showHeaderAndFooter() {
-    const mobileHeader = document.querySelector(".mobileHeader");
-    const menuTemplate = document.querySelector(".menuTemplate");
-    mobileHeader.style.display = "flex";
-    menuTemplate.style.display = "flex";
-}
-*/
 
 
 function redirectToContacts() {
     window.location.assign("../contacts.html");
 }
+

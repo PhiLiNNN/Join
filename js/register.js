@@ -119,10 +119,6 @@ function checkPasswordMatch(inputs) {
 }
 
 
-function toggleVisibility(elementId, show = true) {
-    const element = document.getElementById(elementId);
-    show ? element.classList.remove('d-none') : element.classList.add('d-none');
-}
 
 
 function signUp() {
@@ -145,35 +141,62 @@ function closeSignUp() {
 
 
 function login() {
+    if (!loginValidationCheck()) {
+        return;
+    }
+
+    window.location.assign("../summary.html");
+}
+
+function loginValidationCheck() {
     const loginUserEmail = document.getElementById("login-user-e-mail-id").value;
     const loginUserPassword = document.getElementById("login-user-password-id").value;
-    const emailBorder = document.getElementById("login-user-e-mail-border-id");
-    const passwordBorder = document.getElementById("login-user-password-border-id");
     const foundUser = users.find(user => user.userEMail === loginUserEmail);
-    emailBorder.classList.toggle('login-input-error', !foundUser);
-    passwordBorder.classList.toggle('login-input-error', !foundUser || foundUser.userPassword !== loginUserPassword);
-    if (foundUser && foundUser.userPassword === loginUserPassword) {
-        saveCurrentUser(foundUser);
-        localStorage.setItem('users', JSON.stringify(users)); // Speichert die "users" lokal ab um später dort Kontakte zu speichern
-        console.log("Found user:", foundUser); // Überprüfen, ob ein Benutzer gefunden wurde
-        window.location.assign("../summary.html");
-    }    
+    toggleErrorBorderVisibility('login-user-e-mail-border-id', loginUserEmail === '');
+    toggleVisibility('empty-email-id', loginUserEmail === '');
+    if (loginUserEmail === '' || !foundUser) {
+        toggleVisibility('invalid-email-id', loginUserEmail !== '');
+        toggleVisibility('invalid-password-id', false);
+        toggleVisibility('empty-password-id', false);
+        toggleErrorBorderVisibility('login-user-password-border-id', false);
+    } else {
+        toggleVisibility('invalid-email-id', false);
+        toggleErrorBorderVisibility('login-user-password-border-id', loginUserPassword === '');
+        toggleVisibility('empty-password-id', loginUserPassword === '');
+        if (loginUserPassword === '' || foundUser.userPassword !== loginUserPassword) {
+            toggleVisibility('invalid-password-id', loginUserPassword !== '');
+        } else {
+            toggleVisibility('invalid-password-id', false);
+            toggleErrorBorderVisibility('login-user-password-border-id', false);
+            saveCurrentUser();
+            return true;
+        }
+    }
+    return false;
+}
+
+function toggleErrorBorderVisibility(elementId, show = true) {
+    const element = document.getElementById(elementId);
+    element.classList.toggle('login-input-error', show);
+}
+
+function toggleVisibility(elementId, show = true) {
+    const element = document.getElementById(elementId);
+    element.classList.toggle('d-none', !show);
 }
 
 
-function saveCurrentUser(foundUser) {
-    if (!foundUser) {
-        console.error("Cannot save null user.");
-        return;
-    }
-    currentUser = foundUser; // Setzen Sie den aktuellen Benutzer
-    localStorage.setItem('currentUser', JSON.stringify(currentUser));  // Speichert den "currentUser" lokal ab
-    console.log("Saved currentUser:", currentUser); // Überprüfen, ob currentUser erfolgreich gespeichert wurde
+
+
+function saveCurrentUser() {
+    localStorage.setItem('users', JSON.stringify(users)); // Speichert die "users" lokal ab um später dort Kontakte zu speichern
+    // currentUser = foundUser; // Setzen Sie den aktuellen Benutzer
+    // localStorage.setItem('currentUser', JSON.stringify(currentUser));  // Speichert den "currentUser" lokal ab
+    // console.log("Saved currentUser:", currentUser); // Überprüfen, ob currentUser erfolgreich gespeichert wurde
 }
 
 
 function toggleRememberMeCheckbox(event) {
-    
     const loginCheckbox = document.getElementById("uncheckbox-id");
     const ppCheckbox = document.getElementById("privacy-checkbox-id");
     ppCheckboxConfirmed = !ppCheckboxConfirmed;
@@ -185,13 +208,9 @@ function toggleRememberMeCheckbox(event) {
             : './assets/img/checkbox.svg';
         ppCheckboxConfirmed = false;
     } else if (event.target.id === 'privacy-checkbox-id') {
-        
         console.log('ppCheckboxConfirmed',ppCheckboxConfirmed)
         ppCheckbox.src = ppCheckboxConfirmed
             ? './assets/img/checkbox_confirmed.svg'
             : './assets/img/checkbox.svg'; 
     }
 }
-
-
-
