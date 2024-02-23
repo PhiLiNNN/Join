@@ -67,7 +67,6 @@ function renderContactsByFirstLetter(content, contactsByFirstLetter) {
 
 
 function renderSingleMemberToHTMLMobile(oneContact, colorCode, textColor) {
-  const iconRightStep = 10;
   return `
     <div class="openContactUserImgMobile" style="background-color: ${colorCode}; color: ${textColor};">
       ${getFirstLettersOfName(oneContact.name)}
