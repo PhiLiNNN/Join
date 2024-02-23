@@ -11,6 +11,8 @@ function createContactMobile() {
         console.error("Logged in user not found.");
         return;
     }    
+    newContact.id = generateUniqueID(usersArray);
+    console.log("function createContactMobile()" , newContact);   
     addContactToUser(usersArray, userIndex, newContact);
 }
 
@@ -63,4 +65,18 @@ function getUsers() {
     const storedUsers = localStorage.getItem('users');
     const users = storedUsers ? JSON.parse(storedUsers) : [];
     return users;
+}
+
+
+function generateUniqueID(usersArray) {
+    let id;
+    do {
+        id = generateRandomID();
+    } while (usersArray.some(user => user.contacts && user.contacts.some(contact => contact.id === id)));
+    return id;
+}
+
+
+function generateRandomID() {    
+    return Math.random().toString(36).substring(2, 11);
 }
