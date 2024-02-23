@@ -1,5 +1,6 @@
-function contactsInit() {  
-    renderContacts();
+function contactsInit() {
+  renderContacts();
+  renderAddContactButtonMobile();
 }
 
 function renderContacts() {
@@ -66,6 +67,16 @@ function renderContactsByFirstLetter(content, contactsByFirstLetter) {
 }
 
 
+function renderAddContactButtonMobile() {
+  let addContactButtonMobile = document.getElementById(`contacts-content-id`);
+  addContactButtonMobile.innerHTML += `
+    <div>
+      <img class="addContactButtonImgMobile" src="../assets/img/contacts/addContactButtonMobile.svg" alt="createContactButton" onclick="addContactScreenMobile()"></img>
+    </div>
+    `
+}
+
+
 function renderSingleMemberToHTMLMobile(oneContact, colorCode, textColor) {
   return `
     <div class="openContactUserImgMobile" style="background-color: ${colorCode}; color: ${textColor};">
@@ -118,8 +129,6 @@ function addContactScreenMobile() {
     content.innerHTML = addContactFormMobileHTML();
   
 }
-
-
 
 
 function redirectToContacts() {

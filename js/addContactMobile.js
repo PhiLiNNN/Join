@@ -11,8 +11,7 @@ function createContactMobile() {
         console.error("Logged in user not found.");
         return;
     }    
-    newContact.id = generateUniqueID(usersArray);
-    console.log("function createContactMobile()" , newContact);   
+    newContact.id = generateUniqueID(usersArray);       
     addContactToUser(usersArray, userIndex, newContact);
 }
 
@@ -42,12 +41,6 @@ function addContactToUser(usersArray, userIndex, newContact) {
     }
     usersArray[userIndex].contacts.push(newContact); 
     setItem("users", JSON.stringify(usersArray))
-    .then(() => {
-        console.log("Contact added successfully.");
-    })
-    .catch(error => {
-        console.error("Error adding contact:", error);
-    });
 }
 
 
@@ -55,8 +48,7 @@ function getLoggedInUser() {
     const storedUser = localStorage.getItem('currentUser');
     if (storedUser) {
         currentUser = JSON.parse(storedUser);
-    }
-    console.log("getLoggedInUser()", currentUser);
+    }    
     return currentUser;
 }
 
