@@ -132,17 +132,16 @@
 .letter-column {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-right: 10px;
 }
 
 .contact-first-letter {
     margin: 0;
+    margin-left: 40px;
 }
 
 .oneContactContainer {
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
     margin-bottom: 1em;
     cursor: pointer;
@@ -150,14 +149,13 @@
 
 .contact-info-container {
     display: flex;    
-    flex: 1;
-    margin-left: 3em;
+    flex: 1;    
     cursor: pointer;
     padding: 15px 24px 15px 24px;
 }
 
-.oneContactContainerH2Desktop {
-    color: var(--placeholder-color);
+.oneContactContainerH2Mobile {
+    color: var(--black-color);
     font-size: 20px;
     font-weight: 400;
 }

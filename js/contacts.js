@@ -52,7 +52,7 @@ function createOneContactContainer(oneContact) {
         ${iconHtml}
       </div>
       <div>
-        <h2 class="oneContactContainerH2Desktop">${oneContact.name}</h2>
+        <h2 class="oneContactContainerH2Mobile">${oneContact.name}</h2>
         <a class="oneContactContainerAElement">${oneContact.email}</a>
       </div>
     </div>
