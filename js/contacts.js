@@ -1,4 +1,4 @@
-function contactsInit() {
+function contactsInit() {  
     renderContacts();
 }
 

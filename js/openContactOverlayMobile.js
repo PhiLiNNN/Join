@@ -33,7 +33,7 @@ function createEditContactHTML(selectedContact, colorCode, textColor) {
     return /*html*/ `
       <div class="openContactContainerHeader">
         <div class="openContactCloseXContainer">
-          <button class="addContactCloseXButtonMobile" onclick="closeContactOverlay()">X</button>
+          <button class="addContactCloseXButtonMobile" onclick="contactsInit()">X</button>
         </div>
         <div class="openContactBlockHeader">
           <p class="openContactH1">Edit contact</p>
