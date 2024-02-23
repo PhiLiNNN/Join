@@ -132,7 +132,7 @@
 }
 
 .error-message-register-checkbox {
-    color: #ff3333;
+    color: var(--err-msg-color);
     font-size: 1em;
 }
   
@@ -201,6 +201,14 @@
     height: 20.74px;
     width: 21.33px;
     cursor: pointer;
+}
+
+.err-msg  {
+    position: absolute;
+    top: 55px;
+    left: 0;
+    color: var(--err-msg-color);
+    font-size: 12px;
 }
 
 .d-none {

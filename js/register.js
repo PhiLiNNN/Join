@@ -208,6 +208,7 @@ function toggleRememberMeCheckbox(event) {
             : './assets/img/checkbox.svg';
         ppCheckboxConfirmed = false;
     } else if (event.target.id === 'privacy-checkbox-id') {
+        
         console.log('ppCheckboxConfirmed',ppCheckboxConfirmed)
         ppCheckbox.src = ppCheckboxConfirmed
             ? './assets/img/checkbox_confirmed.svg'
