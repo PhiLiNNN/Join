@@ -42,7 +42,7 @@ function createLetterAndContactsContainer(firstLetter) {
 function createOneContactContainer(oneContact) {
   const container = document.createElement('div');
   container.classList.add('oneContactContainer');
-  // container.setAttribute('onclick', `openContactScreenMobile(${oneContact.id})`);
+  container.setAttribute('onclick', `showContactOverlay(${oneContact.id})`);
   const randomColor = getRandomColorHex();
   const textColor = isColorLight(randomColor) ? 'white' : 'black';
   const iconHtml = renderSingleMemberToHTMLMobile(oneContact, randomColor, textColor);  
@@ -68,11 +68,11 @@ function renderContactsByFirstLetter(content, contactsByFirstLetter) {
 }
 
 
-function renderSingleMemberToHTMLMobile(member, colorCode, textColor) {
+function renderSingleMemberToHTMLMobile(oneContact, colorCode, textColor) {
   const iconRightStep = 10;
   return `
     <div class="openContactUserImgMobile" style="background-color: ${colorCode}; color: ${textColor};">
-      ${getFirstLettersOfName(member.name)}
+      ${getFirstLettersOfName(oneContact.name)}
     </div>
   `;
 }
