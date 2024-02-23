@@ -121,6 +121,13 @@
     height: 51px;
 }
 
+.addContactButtonImgMobile {
+    height: 51px;
+    position: absolute;
+    bottom: 100px;
+    right: 20px;
+}
+
 .letterAndContactsContainer {
     display: flex;
     align-items: center;
