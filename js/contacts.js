@@ -1,5 +1,7 @@
-function contactsInit() {  
-    renderContacts();
+function contactsInit() {
+  const content = document.getElementById("contacts-content-id");
+  content.innerHTML = ""; 
+  renderContacts();
 }
 
 function renderContacts() {
