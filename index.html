@@ -22,7 +22,8 @@
   </div>
   <div class="container">
     <div class="content">
-      <div class="login-container">
+      <div id="sign-up-popup-id" class="signin-container d-none"></div>
+      <div id="login-id" class="login-container">
         <div class="form-header"> 
           <h1>Log in</h1>
           <div  class="line"></div>
@@ -39,7 +40,7 @@
             </div>
           </div>
           <div class="remember-me-checkbox-container">
-            <img id="uncheckbox-id" src="./assets/img/checkbox.png" alt="remember me checkbox" onclick="toggleRememberMeCheckbox()">
+            <img id="uncheckbox-id" src="./assets/img/checkbox.svg" alt="remember me checkbox" onclick="toggleRememberMeCheckbox(event)">
             <span>Remember me</span>
           </div>
         </div>
@@ -48,16 +49,15 @@
           <button class="white-btn">Guest Log in</button>
         </div>
       </div>
-      <div id="sign-up-popup-id" class="sign-up-popup-bg d-none"></div>
-      <div class="signup-container">
+      <div id="signup-container-id" class="signup-container">
         <span>Not a Join user?</span>
-        <button  class="filled-btn width-small" onclick="signUp()">Sign up</button>
+        <button class="filled-btn width-small" onclick="signUp()">Sign up</button>
       </div>
       <div class="legal-information-container">
-        <a>Privacy Policy</a>
-        <a>Legal notice</a>        
+        <a href="#">Privacy Policy</a>
+        <a href="#">Legal notice</a>        
       </div>
-      <div  style="position: absolute;">
+      <div style="position: absolute;">
         <a href="contacts.html">Contacts</a>
       </div>
     </div>

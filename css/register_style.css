@@ -28,6 +28,7 @@
 }
 
 .form-header {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -47,23 +48,23 @@
     width: 88px;
 }
 
-.login-container {
+.login-container,
+.signin-container {
     padding: 32px 16px;
     border-radius: 30px;
     box-shadow: 0 0 14px #2a364739;
     display: flex;
     flex-direction: column;
     width: 100%;
-
 }
 
 .login-fields-container {
     width: 100%;
-
 }
 
 
-.login-btns-container {
+.login-btns-container,
+.signin-flex-container {
     margin-top: 32px;
     display: flex;
     flex-direction: column;
@@ -102,7 +103,8 @@
     height: 24px;
 }
 
-.remember-me-checkbox-container {
+.remember-me-checkbox-container,
+.pp-checkbox-container {
     display: flex;
     align-items: center;
     justify-content: start;
@@ -110,8 +112,20 @@
     height: 24px;
 }
 
+.pp-checkbox-container {
+    gap: 8px;
+}
+
+.pp-checkbox-container a {
+    color: var(--mockup-highlight);
+}
+
 .remember-me-checkbox-container img {
     margin-right: 8px;
+}
+.remember-me-checkbox-container img,
+.pp-checkbox-container img  {
+    cursor: pointer;
 }
 
 .error-message-register-checkbox {
@@ -121,7 +135,6 @@
   
 .sign-up-popup-bg{
     position: absolute;
-    top: 0;
     bottom: 0;
     left: 0;
     right: 0;
@@ -172,11 +185,21 @@
 
 }
 
-.d-none {
-    display: none;
-}
 
 .legal-information-container a {
     line-height: 19.2px;
     color: #a8a8a8; 
+}
+
+.back-arrow {
+    position: absolute;
+    top: 13.63px;
+    left: 29.33px;
+    height: 20.74px;
+    width: 21.33px;
+    cursor: pointer;
+}
+
+.d-none {
+    display: none;
 }

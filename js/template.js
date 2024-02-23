@@ -1,23 +1,75 @@
 function templateSignUpPopup() {
     return /*html*/`
-        <div class="sign-up-popup">
-            <form class="sign-up-form-style" onsubmit="addUser(); return false ">
-                <button onclick="closeSignUp()">X</button>
-                <h1>Sign Up</h1>
-                <input type="text" name="addUserName" id="add-user-name-id" placeholder="Name" required minlength="2">
-                <input type="email" name="addUserEMail" id="add-user-e-mail-id" placeholder="E Mail" required minlength="2">
-                <input type="password" name="addUserPassword" id="add-user-password-id" placeholder="Password" required minlength="2">
-                <input type="password" name="addUserPasswordConfirmation" id="add-user-password-confirmation-id" placeholder="Password confirmation" required minlength="2">
-                <div class="accept-policy-box" onclick="validateCheckBoxClicked()">
-                    <input  id="privacy-check-id" type="checkbox" name="acceptPolicy" value="acceptPolicy"/>
-                    <span class="accept-policy ">I accept the Privacy policy</span>
-                    <div id="privacy-error-message-id" class="error-message-register-checkbox d-none">Please accept the Privacy policy to proceed with registration.</div>
-                </div>
-                <button type="submit">Sign up</button>
-            </form>
+      <div class="form-header"> 
+        <img class="back-arrow" src="./assets/img/back_arrow.png" alt="backwards button" onclick="closeSignUp()">
+        <h1>Sign up</h1>
+        <div  class="line"></div>
         </div>
+      <div class="login-fields-container">
+        <div class="login-fields-gap">
+        <div id="login-user-name-border-id" class="login-input">
+            <input type="name" name="name" id="login-user-name-id" placeholder="Name" required autocomplete="off">
+            <img class="login-email" src="./assets/img/person.png" alt="login image">
+          </div>
+          <div id="login-user-e-mail-border-id" class="login-input">
+            <input type="email" name="loginUserEMail" id="login-user-e-mail-id" placeholder="Email" required autocomplete="on">
+            <img class="login-email" src="./assets/img/mail.png" alt="">
+          </div>
+          <div id="login-user-password-border-id" class="login-input">
+            <input type="password" name="loginUserPassword" id="login-user-password-id" placeholder="Password" required minlength="2" autocomplete="new-password">
+            <img class="login-lock" src="./assets/img/lock.png" alt="">
+          </div>
+          <div id="login-user-password-confirm-border-id" class="login-input">
+            <input type="password" name="confirmPassword" id="login-user-confirm-password-id" placeholder="Confirm Password" required minlength="2" autocomplete="new-password">
+            <img class="login-lock" src="./assets/img/lock.png" alt="">
+          </div>
+        </div>
+        <div class="signin-flex-container">
+          <div class="pp-checkbox-container">
+            <img id="privacy-checkbox-id" src="./assets/img/checkbox.svg" alt="privacy checkbox" onclick="toggleRememberMeCheckbox(event)">
+            <p>I accept the <a href="#">Privacy Policy</a></p>
+          </div>
+          <button class="filled-btn width-small">Sign in</button>
+        </div>
+      </div>
     `;
 }
+
+/** <div class="login-container">
+        <div class="form-header"> 
+          <h1>Sign up</h1>
+          <div  class="line"></div>
+         </div>
+        <div class="login-fields-container">
+          <div class="login-fields-gap">
+          <div id="login-user-name-border-id" class="login-input">
+              <input type="name" name="name" id="login-user-name-id" placeholder="Name" required autocomplete="off">
+              <img class="login-email" src="./assets/img/person.png" alt="">
+            </div>
+            <div id="login-user-e-mail-border-id" class="login-input">
+              <input type="email" name="loginUserEMail" id="login-user-e-mail-id" placeholder="Email" required autocomplete="on">
+              <img class="login-email" src="./assets/img/mail.png" alt="">
+            </div>
+            <div id="login-user-password-border-id" class="login-input">
+              <input type="password" name="loginUserPassword" id="login-user-password-id" placeholder="Password" required minlength="2" autocomplete="new-password">
+              <img class="login-lock" src="./assets/img/lock.png" alt="">
+            </div>
+            <div id="login-user-password-confirm-border-id" class="password-confirm-input">
+              <input type="password" name="confirmPassword" id="login-user-confirm-password-id" placeholder="Confirm  Password" required minlength="2" autocomplete="new-password">
+              <img class="login-lock" src="./assets/img/lock.png" alt="">
+            </div>
+          </div>
+          <div class="remember-me-checkbox-container">
+            <img id="privacy-checkbox-id" src="./assets/img/checkbox.png" alt="privacy checkbox" onclick="toggleRememberMeCheckbox()">
+            <p>I accept the <span> Privacy Policy <span/></p>
+          </div>
+        </div>
+        <div class="login-btns-container">
+          <button class="filled-btn">Sign in</button>
+        </div>
+      </div>
+*/
+
 
 
 function addContactFormMobileHTML() {
@@ -37,9 +89,9 @@ function addContactFormMobileHTML() {
       </div>
       <form id="add-contact-form-mobile-id" onsubmit="createContactMobile()">
         <div class="addContactContainerFooterMobile">
-          <input class="addContactInputNameMobile" name="addContactInputNameMobile" id="add-contact-input-name-mobile-id" type="text" required placeholder="Name">
-          <input class="addContactInputMailAddresssMobile" name="addContactInputMailAddresssMobile" id="add-contact-input-mail-addresss-mobile-id" type="text" required placeholder="E Mail">
-          <input class="addContactInputPhoneMobile" name="addContactInputPhoneMobile" id="add-contact-input-phone-mobile-id" type="text" required placeholder="Phone">
+          <input class="addContactInputNameMobile" name="addContactInputNameMobile" id="addContactInputNameMobileID" type="text" required placeholder="Name">
+          <input class="addContactInputMailAddresssMobile" name="addContactInputMailAddresssMobile" id="addContactInputMailAddresssMobileID" type="text" required placeholder="E Mail">
+          <input class="addContactInputPhoneMobile" name="addContactInputPhoneMobile" id="addContactInputPhoneMobileID" type="text" required placeholder="Phone">
           <img class="createContactButtonImg" src="../assets/img/contacts/createContactButton.svg" alt="createContactButton" onclick="createContactMobile()">
         </div>
       </form>
