@@ -71,7 +71,7 @@ function renderAddContactButtonMobile() {
   let addContactButtonMobile = document.getElementById(`contacts-content-id`);
   addContactButtonMobile.innerHTML += `
     <div>
-      <img class="createContactButtonImg" src="../assets/img/contacts/addContactButtonMobile.svg" alt="createContactButton" onclick="createContactMobile()"></img>
+      <img class="createContactButtonImg" src="../assets/img/contacts/addContactButtonMobile.svg" alt="createContactButton" onclick="addContactScreenMobile()"></img>
     </div>
     `
 }
@@ -129,8 +129,6 @@ function addContactScreenMobile() {
     content.innerHTML = addContactFormMobileHTML();
   
 }
-
-
 
 
 function redirectToContacts() {
