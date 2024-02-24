@@ -7,21 +7,39 @@ function templateSignUpPopup() {
         </div>
       <div class="login-fields-container">
         <div class="login-fields-gap">
-        <div id="login-user-name-border-id" class="login-input">
-            <input type="name" name="name" id="add-user-name-id" placeholder="Name" required autocomplete="off">
+        <div id="add-user-name-border-id" class="login-input">
+            <input type="name" name="name" id="add-name-id" placeholder="Name" required autocomplete="off">
+            <span class="tooltip">i
+              <div class="tooltiptext">Valid inputs:
+                <ul>
+                  <li>First name only</li>
+                  <li>First name Last name (with space)</li>
+                  <li>Double name (e.g., Lisa-Marie)</li>
+                </ul>
+              </div>
+            </span>
             <img class="login-name" src="./assets/img/person.png" alt="login image">
+            <span id="empty-add-name-id" class="err-msg d-none">This field is required!</span>
+            <span id="invalid-add-name-id" class="err-msg d-none">Name must be at least 2 letters.</span>
+            <span id="no-special-chars-id" class="err-msg d-none">No special characters are allowed.</span>
           </div>
-          <div id="login-user-e-mail-border-id" class="login-input">
-            <input type="email" name="loginUserEMail" id="add-user-e-mail-id" placeholder="Email" required autocomplete="on">
+          <div id="add-user-e-mail-border-id" class="login-input">
+            <input type="email" name="loginUserEMail" id="add-email-id" placeholder="Email" required autocomplete="on">
             <img class="login-email" src="./assets/img/mail.png" alt="">
+            <span id="empty-add-email-id" class="err-msg d-none">This field is required!</span>
+            <span id="invalid-add-email-id" class="err-msg d-none">Enter a valid email (e.g., user@example.com)!</span>
           </div>
-          <div id="login-user-password-border-id" class="login-input">
-            <input type="password" name="loginUserPassword" id="add-user-password-id" placeholder="Password" required minlength="2" autocomplete="new-password">
+          <div id="add-user-password-border-id" class="login-input">
+            <input type="password" name="loginUserPassword" id="add-pw-id" placeholder="Password" required minlength="2" autocomplete="new-password">
             <img class="login-lock" src="./assets/img/lock.png" alt="">
+            <span id="empty-add-pw-id" class="err-msg d-none">This field is required!</span>
+            <span id="invalid-add-pw-id" class="err-msg d-none">Password: 6+ chars, 1 uppercase, 1 special char required.</span>
           </div>
-          <div id="login-user-password-confirm-border-id" class="login-input">
-            <input type="password" name="confirmPassword" id="add-user-confirm-password-id" placeholder="Confirm Password" required minlength="2" autocomplete="new-password">
+          <div id="add-user-password-confirm-border-id" class="login-input">
+            <input type="password" name="confirmPassword" id="add-confirm-pw-id" placeholder="Confirm Password" required minlength="2" autocomplete="new-password">
             <img class="login-lock" src="./assets/img/lock.png" alt="">
+            <span id="empty-confirm-pw-id" class="err-msg d-none">This field is required!</span>
+            <span id="invalid-confirm-pw-id" class="err-msg d-none">Ups! Your password don't match.</span>
           </div>
         </div>
         <div class="signin-flex-container">
@@ -34,41 +52,6 @@ function templateSignUpPopup() {
       </div>
     `;
 }
-
-/** <div class="login-container">
-        <div class="form-header"> 
-          <h1>Sign up</h1>
-          <div  class="line"></div>
-         </div>
-        <div class="login-fields-container">
-          <div class="login-fields-gap">
-          <div id="login-user-name-border-id" class="login-input">
-              <input type="name" name="name" id="login-user-name-id" placeholder="Name" required autocomplete="off">
-              <img class="login-email" src="./assets/img/person.png" alt="">
-            </div>
-            <div id="login-user-e-mail-border-id" class="login-input">
-              <input type="email" name="loginUserEMail" id="login-user-e-mail-id" placeholder="Email" required autocomplete="on">
-              <img class="login-email" src="./assets/img/mail.png" alt="">
-            </div>
-            <div id="login-user-password-border-id" class="login-input">
-              <input type="password" name="loginUserPassword" id="login-user-password-id" placeholder="Password" required minlength="2" autocomplete="new-password">
-              <img class="login-lock" src="./assets/img/lock.png" alt="">
-            </div>
-            <div id="login-user-password-confirm-border-id" class="password-confirm-input">
-              <input type="password" name="confirmPassword" id="login-user-confirm-password-id" placeholder="Confirm  Password" required minlength="2" autocomplete="new-password">
-              <img class="login-lock" src="./assets/img/lock.png" alt="">
-            </div>
-          </div>
-          <div class="remember-me-checkbox-container">
-            <img id="privacy-checkbox-id" src="./assets/img/checkbox.png" alt="privacy checkbox" onclick="toggleRememberMeCheckbox()">
-            <p>I accept the <span> Privacy Policy <span/></p>
-          </div>
-        </div>
-        <div class="login-btns-container">
-          <button class="filled-btn">Sign in</button>
-        </div>
-      </div>
-*/
 
 
 function addContactFormMobileHTML() {

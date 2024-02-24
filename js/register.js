@@ -20,6 +20,34 @@ async function loadUsers(){
     }
 }
 
+
+
+
+
+function handlerFieldValidationLogin(boolArr) {
+    toggleVisibility('empty-add-name-id', boolArr[0]);
+    toggleVisibility('invalid-add-name-id', boolArr[1]);
+    toggleVisibility('no-special-chars-id', boolArr[2]);
+    toggleVisibility('empty-add-email-id', boolArr[2]);
+    toggleVisibility('invalid-add-email-id', boolArr[2]);
+    toggleVisibility('empty-add-pw-id', boolArr[4]);
+    toggleVisibility('invalid-add-pw-id', boolArr[3]);
+    toggleVisibility('empty-confirm-pw-id', boolArr[3]);
+    toggleVisibility('invalid-confirm-pw-id', boolArr[3]);
+    toggleErrorBorderVisibility('register-name-border-id', boolArr[5])
+    toggleErrorBorderVisibility('register-email-border-id', boolArr[5])
+    toggleErrorBorderVisibility('register-pw-border-id', boolArr[6])
+    toggleErrorBorderVisibility('register-confirm-pw-border-id', boolArr[6])
+    return !boolArr.some(Boolean);
+}
+
+function registerValidationCheck() {
+    const name = document.getElementById("add-name-id").value;
+    const email = document.getElementById("add-email-id").value;
+    const password = document.getElementById("add-pw-id").value;
+    const confirmPassword = document.getElementById("add-confirm-pw-id").value;
+}
+
 // work in progress
 async function addUser() {             
     const inputs = getUserInputs();
@@ -35,6 +63,14 @@ async function addUser() {
     // } catch (error) {
     //     handleError(error);
     // }
+    toggleSuccessesMsg();
+}
+
+
+
+
+
+function toggleSuccessesMsg() {
     const successMsg =  document.getElementById('success-msg-id');
     successMsg.classList.toggle('d-none')
     window.setTimeout(() => {
@@ -50,19 +86,19 @@ async function addUserToBackend(userName, userEMail, userPassword, userPasswordC
 }
 
 function getUserInputs() {
-    const userName = document.getElementById("add-user-name-id").value;
-    const userEMail = document.getElementById("add-user-e-mail-id").value;
-    const userPassword = document.getElementById("add-user-password-id").value;
-    const userPasswordConfirm = document.getElementById("add-user-confirm-password-id").value;
+    const userName = document.getElementById("add-name-id").value;
+    const userEMail = document.getElementById("add-email-id").value;
+    const userPassword = document.getElementById("add-pw-id").value;
+    const userPasswordConfirm = document.getElementById("add-confirm-pw-id").value;
     return [userName, userEMail, userPassword, userPasswordConfirm];
 }
 
 
 function resetUserInputs() {
-    document.getElementById("add-user-name-id").value = "";
-    document.getElementById("add-user-e-mail-id").value = "";
-    document.getElementById("add-user-password-id").value = "";
-    document.getElementById("add-user-password-confirmation-id").value = "";
+    document.getElementById("add-name-id").value = "";
+    document.getElementById("add-email-id").value = "";
+    document.getElementById("add-pw-id").value = "";
+    document.getElementById("add-confirm-pw-id").value = "";
 }
 
 
@@ -143,14 +179,14 @@ function login() {
         window.location.assign("../summary.html");
 }
 
-function handlerFieldValidation(boolArr) {
+function handlerFieldValidationLogin(boolArr) {
     toggleVisibility('empty-email-id', boolArr[0]);
     toggleVisibility('this-is-no-email-id', boolArr[1]);
     toggleVisibility('invalid-email-id', boolArr[2]);
     toggleVisibility('invalid-password-id', boolArr[3]);
     toggleVisibility('empty-password-id', boolArr[4]);
-    toggleErrorBorderVisibility('login-user-e-mail-border-id', boolArr[5])
-    toggleErrorBorderVisibility('login-user-password-border-id', boolArr[6])
+    toggleErrorBorderVisibility('login-email-border-id', boolArr[5])
+    toggleErrorBorderVisibility('login-pw-border-id', boolArr[6])
     return !boolArr.some(Boolean);
 }
 
@@ -159,23 +195,23 @@ function loginValidationCheck() {
     const loginUserPassword = document.getElementById("login-user-password-id").value;
     const foundUser = users.find(user => user.userEMail === loginUserEmail)
     if (loginUserEmail === '' && loginUserPassword === '')
-        return handlerFieldValidation([true, false, false, false, true, true, true]);
+        return handlerFieldValidationLogin([true, false, false, false, true, true, true]);
     else if (loginUserEmail === '' && loginUserPassword !== '') 
-        return handlerFieldValidation ([true, false, false, false, false, true, false]);
+        return handlerFieldValidationLogin ([true, false, false, false, false, true, false]);
     else if (loginUserEmail !== '' && loginUserPassword === '') 
         if (!validateEmail(loginUserEmail))
-            return handlerFieldValidation([false, true, false, false, true, true, true]);   
+            return handlerFieldValidationLogin([false, true, false, false, true, true, true]);   
         else 
-            return handlerFieldValidation([false, false, false, false, true, false, true]);
+            return handlerFieldValidationLogin([false, false, false, false, true, false, true]);
     else if (loginUserEmail !== '' && loginUserPassword !== '') 
         if (!validateEmail(loginUserEmail)) 
-            return handlerFieldValidation([false, true, false, false, false, true, false]);  
+            return handlerFieldValidationLogin([false, true, false, false, false, true, false]);  
         else if (validateEmail(loginUserEmail) && !foundUser) 
-            return handlerFieldValidation([false, false, true, false, false, true, false]);  
+            return handlerFieldValidationLogin([false, false, true, false, false, true, false]);  
         else if (foundUser.userPassword !== loginUserPassword) 
-            return handlerFieldValidation([false, false, false, true, false, false, true]);  
+            return handlerFieldValidationLogin([false, false, false, true, false, false, true]);  
         else
-            return handlerFieldValidation([false, false, false, false, false, false, false]); 
+            return handlerFieldValidationLogin([false, false, false, false, false, false, false]); 
 }
 
 function validateEmail(email) {
@@ -186,6 +222,7 @@ function toggleErrorBorderVisibility(elementId, show = true) {
     const element = document.getElementById(elementId);
     show ? element.classList.add('error-border') : element.classList.remove('error-border');
 }
+
 function toggleVisibility(elementId, show = true) {
     const element = document.getElementById(elementId);
     show ? element.classList.remove('d-none') : element.classList.add('d-none');

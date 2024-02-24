@@ -93,6 +93,56 @@
     outline: none;
 }
 
+.info-icon {
+    border: 2px solid var(--mockup-color);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    margin-right: 2px;
+    line-height: 18px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--mockup-color);
+    border-radius: 50%;
+    text-align: center;
+    margin-right: 4px;
+  }
+  
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 260px;
+    background-color: var(--mockup-color);
+    color: #fff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 8px;
+    position: absolute;
+    z-index: 1;
+    bottom: 120%;
+    right: 50%;
+    margin-left: -60px; 
+}
+.tooltiptext ul {
+    list-style: circle inside;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+
+
+
+
+
 
 .login-email {
     width: 20px;

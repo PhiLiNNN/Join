@@ -10,14 +10,14 @@
   <!--style.css integration</!-->
   <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="./css/register_style.css">
- 
+
   <!--script.js integration</!-->
   <script src="./js/register.js"></script>
   <script src="./js/login.js"></script>
   <script src="./js/template.js"></script>
 </head>
 
-<body onload="init()" >
+<body onload="init()">
   <div class="logo">
     <img src="./assets/img/logo.png" alt="join Logo">
   </div>
@@ -34,7 +34,7 @@
          </div>
         <div class="login-fields-container">
           <div class="login-fields-gap">
-            <div id="login-user-e-mail-border-id" class="login-input">
+            <div id="login-email-border-id" class="login-input">
               <input type="email" name="loginUserEMail" id="login-user-e-mail-id" placeholder="E Mail" required autocomplete="on">
               <img class="login-email" src="./assets/img/mail.png" alt="">
               <span id="invalid-email-id" class="err-msg d-none">No user found with this email.</span>
@@ -42,7 +42,7 @@
               <span id="this-is-no-email-id" class="err-msg d-none">Enter a valid email (e.g., user@example.com)!</span>
             </div>
             
-            <div id="login-user-password-border-id" class="login-input">
+            <div id="login-pw-border-id" class="login-input">
               <input type="password" name="loginUserPassword" id="login-user-password-id" placeholder="Password" required minlength="2" autocomplete="current-password">
               <img class="login-lock" src="./assets/img/lock.png" alt="">
               <span id="empty-password-id" class="err-msg d-none">This field is required!</span>
@@ -69,7 +69,6 @@
       </div>      
     </div>
   </div>
-
 
 </body>
 
