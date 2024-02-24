@@ -41,7 +41,7 @@ function createLetterAndContactsContainer(firstLetter) {
 function createOneContactContainer(oneContact) {
   const container = document.createElement('div');
   container.classList.add('oneContactContainer');
-  container.setAttribute('onclick', `showContactOverlay(${oneContact.id})`);
+  container.setAttribute('onclick', `openContactScreenMobile(${oneContact.id})`);
   const randomColor = getRandomColorHex();
   const textColor = isColorLight(randomColor) ? 'white' : 'black';
   const iconHtml = renderSingleMemberToHTMLMobile(oneContact, randomColor, textColor);  

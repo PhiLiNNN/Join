@@ -187,11 +187,10 @@
 
 .openContactContainerHeader {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 50vh;
-    background-color: var(--mockup-color);
+    background-color: var(--white-grey);
+    height: 20vh;
+    padding-top: 2em;
+    margin-left: 1em;
 }
 
 .openContactCloseXContainer {
@@ -212,12 +211,13 @@
 }
 
 .openContactBlockHeader {
-    display: block;
+    display: flex;
 }
 
 .openContactH1 {
-    color: var(--white-color);
+    color: var(--black-color);  
     font-size: 3rem;
+    font-weight: bold;
 }
 
 .openContactBlueStroked {
@@ -290,3 +290,130 @@
     outline: none;
     border-color: var(--mockup-highlight);
 }
+
+.openContactText {
+    color: black;
+}
+
+.addContactBlueStroked {
+    margin-right: 7em;
+}
+
+.arrorLeftContainer {
+    position: absolute;
+    top: 105h;
+    right: 5vw;
+}
+
+.openContactContainerFooter {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: var(--white-color);
+    gap: 2em;
+    background-color: var(--white-grey);
+}
+
+.openContactUserImageAndNameContainer {
+    display: flex;
+    align-items: center;
+    margin-left: 1em;
+}
+
+.openContactH2 {
+    font-size: 1.5em;
+    margin-left: 0.5em;
+}
+
+.openContactInformation {
+    font-size: 1em;
+    font-weight: bold;
+    margin-left: 1em;
+}
+
+.openContactEmail {
+    font-weight: 900;
+    margin-left: 1em;
+}
+
+.openContactEmailLink {
+    color: var(--hyper-link-color);
+    margin-left: 1em;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.openContactPhoneText {
+    font-weight: 900;
+    margin-left: 1em;
+}
+
+.openContactPhoneNumber {
+    margin-left: 1em;
+}
+
+.dropdown-container {
+    position: fixed;
+    display: none;
+    overflow-x: hidden;
+    bottom: 5rem;
+    right: 0.5rem;
+}
+
+.dropdown-triggerContainer {
+    display: flex;
+    flex-direction: row-reverse;   
+}
+
+.dropdown-trigger {
+    cursor: pointer;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    margin-right: 1.5em;
+    margin-top: 16em;
+}
+
+.dropdown-menu {
+    /* position: absolute; */
+    display: none;
+    right: -300px;
+    top: 5em;
+    border-radius: 15px;
+    background-color: var(--white-color);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    animation: slide-in-menu 0.3s ease forwards;
+    overflow-x: hidden;
+}
+
+@keyframes slide-in-menu {
+    from {
+      right: -300px;
+      display: block;
+    }
+    to {
+      right: 1em;
+    }
+}
+
+.dropdown-option {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.dropdown-option:hover {
+    cursor: pointer;
+    background-color: var(--light-blue);
+}
+
+#contactOptionsDropdownContainer {    
+    display: inline-block;
+}
+
+
+
+
+
+
+
+
