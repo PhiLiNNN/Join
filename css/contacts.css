@@ -300,7 +300,7 @@
     flex-direction: column;    
     gap: 2em;
     background-color: var(--white-grey);
-    height: 100vh;
+    height: 80vh;
 }
 
 .openContactUserImageAndNameContainer {
