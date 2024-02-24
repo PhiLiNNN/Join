@@ -375,6 +375,11 @@
     overflow-x: hidden;
 }
 
+.dropdown-menu.slide-in {
+    display: block;
+    animation: slide-in-menu 0.3s ease forwards;
+}
+
 @keyframes slide-in-menu {
     from {
       right: -300px;

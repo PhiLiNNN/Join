@@ -154,6 +154,7 @@ function handleDropdownOptionClick(action) {
  */
 function toggleDropdownMenu() {
   const dropdownMenu = document.getElementById("contactOptionsDropdown");
+  dropdownMenu.classList.add("slide-in"); // Füge eine Klasse hinzu, um die Animation zu starten
   dropdownMenu.style.display = (dropdownMenu.style.display === "block") ? "none" : "block";
 }
 
