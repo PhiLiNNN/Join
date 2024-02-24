@@ -231,16 +231,6 @@
     transform: translate(-50%, -50%);
 }
 
-.openContactContainerFooter {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 50vh;
-    background-color: white;
-    gap: 20px;
-}
-
 .openContactInputNameMobile {
     border: 1px solid var(--placeholder-color);
     border-radius: 5px;
@@ -306,12 +296,11 @@
 }
 
 .openContactContainerFooter {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    background-color: var(--white-color);
+    display: flex;    
+    flex-direction: column;    
     gap: 2em;
     background-color: var(--white-grey);
+    height: 100vh;
 }
 
 .openContactUserImageAndNameContainer {
