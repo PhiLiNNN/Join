@@ -1,6 +1,5 @@
 function openContactScreenMobile(contactId) {
-  const selectedContact = findSelectedContact(contactId);
-  console.log('selectedContact',selectedContact)
+  const selectedContact = findSelectedContact(contactId);  
   if (!selectedContact) {
       handleContactNotFound();
       return;
