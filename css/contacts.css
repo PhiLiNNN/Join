@@ -356,6 +356,7 @@
 }
 
 .dropdown-menu {
+    display: none;
     position: absolute;
     left: 100%; /* Startposition außerhalb des Bildschirms */
     top: 5em;
@@ -368,7 +369,7 @@
 
 .dropdown-menu.slide-in {
     display: block;
-    animation: slide-in-menu 0.3s ease forwards;
+    
 }
 
 @keyframes slide-in-menu {

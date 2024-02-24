@@ -155,8 +155,11 @@ function handleDropdownOptionClick(action) {
  */
 function toggleDropdownMenu() {
   const dropdownMenu = document.getElementById("contactOptionsDropdown");
-  dropdownMenu.classList.toggle("slide-in"); // Füge oder entferne die Klasse, um die Animation auszulösen
-  dropdownMenu.style.display = (dropdownMenu.style.display === "block") ? "none" : "block";
+  if (dropdownMenu.classList.contains("slide-in")) {
+      dropdownMenu.classList.remove("slide-in");
+  } else {
+      dropdownMenu.classList.add("slide-in");
+  }
 }
 
 
