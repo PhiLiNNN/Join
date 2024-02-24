@@ -31,20 +31,20 @@ function findSelectedContact(contactId) {
   
 function createEditContactHTML(selectedContact, colorCode, textColor) {
     return /*html*/ `
-      <div class="openContactContainerHeader">
-        <div class="openContactCloseXContainer">
+      <div class="editContactContainerHeader">
+        <div class="addContactCloseXContainer">
           <button class="addContactCloseXButtonMobile" onclick="contactsInit(); closeContactOverlay()">X</button>
         </div>
-        <div class="openContactBlockHeader">
-          <p class="openContactH1">Edit contact</p>
-          <img class="openContactBlueStroked" src="../assets/img/contacts/addContactBlueStroked.svg" alt="">          
+        <div class="addContactBlockHeader">
+          <p class="addContactH1">Edit contact</p>
+          <img class="addContactBlueStroked" src="../assets/img/contacts/addContactBlueStroked.svg" alt="">          
         </div>
       </div>
-      <div class="openContactUserImg">        
+      <div class="addContactBlankUserImg">        
         ${renderSingleMemberToHTMLMobile(selectedContact, colorCode, textColor)}
       </div>
       <form id="editcontactFormMobileID" onsubmit="updateContactMobile(${selectedContact.id})">
-        <div class="openContactContainerFooter">
+        <div class="addContactContainerFooter">
           <input class="openContactInputNameMobile" name="editContactInputNameMobile" id="editContactInputNameMobileID" type="text" required pattern="[A-Za-z]+" placeholder="Name" value="${selectedContact.name}">
           <input class="openContactInputMailAddresssMobile" name="editContactInputMailAddresssMobile" id="editContactInputMailAddresssMobileID" type="email" required placeholder="E Mail" value="${selectedContact.email}">
           <input class="openContactInputPhoneMobile" name="editContactInputPhoneMobile" id="editContactInputPhoneMobileID" type="tel" required pattern="[0-9]{1,}" placeholder="Phone" value="${selectedContact.phone}">

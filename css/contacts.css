@@ -199,17 +199,6 @@
     right: 2em;
 }
 
-.addContactCloseXButtonMobile {
-    width: 32px;
-    height: 32px;
-    border-radius: 56px;
-    border: 0;
-    color: var(--white-color);
-    font-weight: bold;
-    font-size: 24px;
-    background-color: var(--mockup-color);
-}
-
 .openContactBlockHeader {
     display: flex;
 }
@@ -413,3 +402,78 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+.editContactContainerHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 50vh;
+    background-color: var(--mockup-color);
+}
+
+.editContactCloseXContainer {
+    display: flex;
+    justify-content: right;
+}
+
+.EditContactUserImg {    
+    height: 32px;
+    width: 32px;    
+}
+
+.addContactCloseXContainer {
+    position: fixed;
+    top: 1em;
+    right: 2em;
+}
+
+.addContactCloseXButtonMobile {
+    width: 32px;
+    height: 32px;
+    border-radius: 56px;
+    border: 0;
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+    background-color: var(--light-grey);
+}
+
+.addContactCloseXButtonMobile:active {
+    color: var(--light-blue);
+}
+
+.addContactBlockHeader {
+    display: block;
+}
+
+.addContactH1 {
+    color: white;
+    font-size: 3rem;
+}
+
+.addContactBlankUserImg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.addContactContainerFooter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 50vh;
+    background-color: white;
+    gap: 20px;
+}
