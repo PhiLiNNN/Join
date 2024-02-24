@@ -4,11 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./css/footer.css">
+    <link rel="stylesheet" href="./css/header.css">
     <script src="script.js" ></script>
+
     <title>Document</title>
 
 </head>
-<body onload="init()">
+<body onload="init(); includeHTML()">
+
+    <div w3-include-html="./assets/templates/header.html"></div>
     <div>
 <<<<<<< HEAD:add_tast.html
         <h1>Add Task</h1>
@@ -20,5 +25,6 @@
 
 >>>>>>> 1d8006ab337626cf686dd98844b4b40f8391c763:add_task.html
     <div w3-include-html="./templates/test.html"></div>
+    <div w3-include-html="./assets/templates/footer.html"></div>
 </body>
 </html>

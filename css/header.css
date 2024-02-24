@@ -1,0 +1,36 @@
+header {
+    width: 100vw;
+    height: 180px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+}
+
+.header-gap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    padding-top: 45px;
+    padding-left: 36px;
+    padding-bottom: 45px;
+    padding-right: 36px;
+
+}
+  
+   
+.header-logo {
+    width: 72px;
+}
+
+.header-profil {
+    width: 90px;
+    height: 90px;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 50px;
+    
+}
