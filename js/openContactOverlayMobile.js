@@ -1,5 +1,6 @@
 function openContactScreenMobile(contactId) {
   const selectedContact = findSelectedContact(contactId);
+  console.log('selectedContact',selectedContact)
   if (!selectedContact) {
       handleContactNotFound();
       return;
@@ -13,6 +14,7 @@ function openContactScreenMobile(contactId) {
 
 function findSelectedContact(contactId) {
   const loggedInUser = getLoggedInUser();
+  
   if (!loggedInUser) {
     console.error("No logged in user found.");
     return null;
