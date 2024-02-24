@@ -1,3 +1,5 @@
+let selectedContactGlobal = [];
+
 function showContactOverlay(contactId) {
     let content = document.getElementById(`contacts-content-id`);
     content.innerHTML = "";
@@ -31,32 +33,33 @@ function findSelectedContact(contactId) {
   
   
 function createEditContactHTML(selectedContact, colorCode, textColor) {
-    return /*html*/ `
-      <div class="editContactContainerHeader">
-        <div class="addContactCloseXContainer">
-          <button class="addContactCloseXButtonMobile" onclick="contactsInit(); closeContactOverlay()">X</button>
-        </div>
-        <div class="addContactBlockHeader">
-          <p class="addContactH1">Edit contact</p>
-          <img class="addContactBlueStroked" src="../assets/img/contacts/addContactBlueStroked.svg" alt="">          
+  const { name, email, phone } = selectedContact;  // Extrahiere Name, E-Mail und Telefonnummer aus selectedContact  
+  return /*html*/ `
+    <div class="editContactContainerHeader">
+      <div class="addContactCloseXContainer">
+        <button class="addContactCloseXButtonMobile" onclick="contactsInit(); closeContactOverlay()">X</button>
+      </div>
+      <div class="addContactBlockHeader">
+        <p class="addContactH1">Edit contact</p>
+        <img class="addContactBlueStroked" src="../assets/img/contacts/addContactBlueStroked.svg" alt="">          
+      </div>
+    </div>
+    <div class="addContactBlankUserImg">        
+      ${renderSingleMemberToHTMLMobile(selectedContact, colorCode, textColor)}
+    </div>
+    <form id="editcontactFormMobileID" onsubmit="updateContactMobile(${selectedContact.id})">
+      <div class="addContactContainerFooter">
+        <input class="openContactInputNameMobile" name="editContactInputNameMobile" id="editContactInputNameMobileID" type="text" required pattern="[A-Za-z]+" placeholder="Name" value="${name}">
+        <input class="openContactInputMailAddresssMobile" name="editContactInputMailAddresssMobile" id="editContactInputMailAddresssMobileID" type="email" required placeholder="E Mail" value="${email}">
+        <input class="openContactInputPhoneMobile" name="editContactInputPhoneMobile" id="editContactInputPhoneMobileID" type="tel" required pattern="[0-9]{1,}" placeholder="Phone" value="${phone}">
+        <div>
+          <img class="createContactButtonImg" src="../assets/img/contacts/editContactDeleteButtonImg.svg" alt="" onclick="deleteContact(${JSON.stringify(selectedContact)})">
+          <img class="createContactButtonImg" src="../assets/img/contacts/editContactSaveButtonImg.svg" alt="" onclick="updateContactMobile(${JSON.stringify(selectedContact)})">
         </div>
       </div>
-      <div class="addContactBlankUserImg">        
-        ${renderSingleMemberToHTMLMobile(selectedContact, colorCode, textColor)}
-      </div>
-      <form id="editcontactFormMobileID" onsubmit="updateContactMobile(${selectedContact.id})">
-        <div class="addContactContainerFooter">
-          <input class="openContactInputNameMobile" name="editContactInputNameMobile" id="editContactInputNameMobileID" type="text" required pattern="[A-Za-z]+" placeholder="Name" value="${selectedContact.name}">
-          <input class="openContactInputMailAddresssMobile" name="editContactInputMailAddresssMobile" id="editContactInputMailAddresssMobileID" type="email" required placeholder="E Mail" value="${selectedContact.email}">
-          <input class="openContactInputPhoneMobile" name="editContactInputPhoneMobile" id="editContactInputPhoneMobileID" type="tel" required pattern="[0-9]{1,}" placeholder="Phone" value="${selectedContact.phone}">
-          <div>
-            <img class="createContactButtonImg" src="../assets/img/contacts/editContactDeleteButtonImg.svg" alt="" onclick="deleteContact(${selectedContact.id})">
-            <img class="createContactButtonImg" src="../assets/img/contacts/editContactSaveButtonImg.svg" alt="" onclick="updateContactMobile(${selectedContact.id})">
-          </div>
-        </div>
-      </form>
-    `;
-  }
+    </form>
+  `;
+}
   
   
 function handleContactNotFound() {

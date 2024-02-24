@@ -467,3 +467,55 @@
     background-color: white;
     gap: 20px;
 }
+
+.modal-content-mobile {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
+
+.modal-content-mobile button {
+    margin: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+  
+.cancelContactMobileDeleteButton {
+    cursor: pointer;
+    border: 1px solid;
+    border-radius: 8%;
+    box-shadow: 0 4px 8px rgb(255, 255, 255, );   
+    padding: 15px 24px 15px 24px;
+    color: var(--light-grey);
+    background-color: white;
+    font-size: 21px;
+    font-weight: 400;
+    border-color: var(--light-grey);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+}
+  
+.cancelContactMobileDeleteButton:hover {
+    border: 1px solid;
+    border-color: var(--light-blue);
+    color: var(--light-blue);
+    transform: scale(0.95);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    border: 1px solid;
+}
+  
+.removeContactConfirmationTextMobile {
+    color: black;
+    font-size: 5vw;
+    font-weight: 400;
+}
+  
+.cancelContactDesktopDeleteButtonConfirmationContainerMobile {
+    margin-top: 1.5rem;
+}

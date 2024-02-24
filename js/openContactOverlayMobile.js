@@ -28,6 +28,7 @@ function handleContactNotFound() {
 
 
 function createContactScreenHTML(selectedContact) {
+  console.log("function createContactScreenHTML(selectedContact)" , selectedContact);
   return `
     <div class="openContactContainerHeader">                            
         <div class="openContactBlockHeader">
@@ -64,7 +65,7 @@ function createContactScreenHTML(selectedContact) {
             <div class="dropdown-option" data-value="edit" onclick="showContactOverlay(${selectedContact.id})">
                 <img src="../assets/img/contacts/editContactsDropDownIcon.svg" alt="Edit Contact">
             </div>            
-            <div class="dropdown-option" data-value="delete" onclick="deleteContactMobile(${selectedContact.id})">
+            <div class="dropdown-option" data-value="delete" onclick="deleteContact(${selectedContact.id})">
                 <img src="../assets/img/contacts/DeleteContactDropwDownIcon.svg" alt="Delete Contact">
             </div>
         </div>
