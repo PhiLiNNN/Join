@@ -1,6 +1,7 @@
 function contactsInit() {
   renderContacts();
   renderAddContactButtonMobile();
+  setTimeout(showHeaderAndFooter, 500);
 }
 
 
@@ -14,7 +15,7 @@ function renderContacts() {
     const firstLetter = oneContact.name.charAt(0).toUpperCase();
     updateContactsByFirstLetter(contactsByFirstLetter, firstLetter, oneContact);
   });
-  renderContactsByFirstLetter(content, contactsByFirstLetter);
+  renderContactsByFirstLetter(content, contactsByFirstLetter);  
 }
 
 
@@ -126,9 +127,9 @@ function getRandomColorHex() {
 
 
 function addContactScreenMobile() {
-    const content = document.getElementById("contacts-content-id");
-    content.innerHTML = addContactFormMobileHTML();
-  
+  const content = document.getElementById("contacts-content-id");
+  content.innerHTML = addContactFormMobileHTML();
+  hideHeaderAndFooter();
 }
 
 
@@ -136,3 +137,24 @@ function redirectToContacts() {
     window.location.assign("../contacts.html");
 }
 
+
+/**
+  * Hide header and footer for edit contact and create contact screen on mobile view
+  */
+function hideHeaderAndFooter() {
+  const mobileHeader = document.querySelector(".header-gap"); 
+  const menuTemplate = document.querySelector(".footerCLass");
+  mobileHeader.style.display = "none";
+  menuTemplate.style.display = "none";
+}
+
+
+/**
+  * Show header and footer screen on mobile view
+  */
+function showHeaderAndFooter() {
+  const mobileHeader = document.querySelector(".header-gap");
+  const menuTemplate = document.querySelector(".footerCLass");
+  mobileHeader.style.display = "flex";
+  menuTemplate.style.display = "block";
+}

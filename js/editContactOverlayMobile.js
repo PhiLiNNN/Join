@@ -13,6 +13,7 @@ function showContactOverlay(contactId) {
     const editContactHTML = createEditContactHTML(selectedContact, randomColor, textColor);
     overlay.innerHTML = editContactHTML;  
     document.body.appendChild(overlay);
+    hideHeaderAndFooter();
 }
   
   

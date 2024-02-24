@@ -12,7 +12,7 @@ function createContactMobile() {
         return;
     }    
     newContact.id = generateUniqueID(usersArray);       
-    addContactToUser(usersArray, userIndex, newContact);
+    addContactToUser(usersArray, userIndex, newContact);    
 }
 
 

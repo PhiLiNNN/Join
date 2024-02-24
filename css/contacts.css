@@ -134,6 +134,7 @@
     margin: 10px;
     border-bottom: 2px solid var(--placeholder-color);
     padding-bottom: 10px;
+    margin-top: 120px;
 }
 
 .letter-column {
@@ -191,6 +192,7 @@
     height: 20vh;
     padding-top: 2em;
     margin-left: 1em;
+    margin-top: 80px;
 }
 
 .openContactCloseXContainer {
@@ -334,13 +336,14 @@
     position: fixed;
     display: none;
     overflow-x: hidden;
-    bottom: 5rem;
+    bottom: 6rem;
     right: 0.5rem;
 }
 
 .dropdown-triggerContainer {
     display: flex;
-    flex-direction: row-reverse;   
+    flex-direction: row-reverse;
+    margin-right: 30px; 
 }
 
 .dropdown-trigger {
@@ -353,29 +356,28 @@
 }
 
 .dropdown-menu {
-    /* position: absolute; */
     display: none;
-    right: -300px;
+    position: absolute;
+    left: 100%; /* Startposition außerhalb des Bildschirms */
     top: 5em;
     border-radius: 15px;
     background-color: var(--white-color);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    animation: slide-in-menu 0.3s ease forwards;
     overflow-x: hidden;
+    animation: slide-in-menu 0.3s ease forwards;
 }
 
 .dropdown-menu.slide-in {
     display: block;
-    animation: slide-in-menu 0.3s ease forwards;
+    
 }
 
 @keyframes slide-in-menu {
     from {
-      right: -300px;
-      display: block;
+        left: 100%; /* Startposition außerhalb des Bildschirms */
     }
     to {
-      right: 1em;
+        left: 0; /* Endposition am linken Rand */
     }
 }
 

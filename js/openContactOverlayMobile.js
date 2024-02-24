@@ -1,6 +1,5 @@
 function openContactScreenMobile(contactId) {
-  const selectedContact = findSelectedContact(contactId);
-  console.log('selectedContact',selectedContact)
+  const selectedContact = findSelectedContact(contactId);  
   if (!selectedContact) {
       handleContactNotFound();
       return;
@@ -156,8 +155,11 @@ function handleDropdownOptionClick(action) {
  */
 function toggleDropdownMenu() {
   const dropdownMenu = document.getElementById("contactOptionsDropdown");
-  dropdownMenu.classList.add("slide-in"); // Füge eine Klasse hinzu, um die Animation zu starten
-  dropdownMenu.style.display = (dropdownMenu.style.display === "block") ? "none" : "block";
+  if (dropdownMenu.classList.contains("slide-in")) {
+      dropdownMenu.classList.remove("slide-in");
+  } else {
+      dropdownMenu.classList.add("slide-in");
+  }
 }
 
 
