@@ -399,19 +399,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 .editContactContainerHeader {
     display: flex;
     justify-content: center;
@@ -419,6 +406,7 @@
     flex-direction: column;
     height: 50vh;
     background-color: var(--mockup-color);
+    
 }
 
 .editContactCloseXContainer {
