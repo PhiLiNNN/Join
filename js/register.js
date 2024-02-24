@@ -20,30 +20,40 @@ async function loadUsers(){
     }
 }
 
-
-async function addUser() { 
+// work in progress
+async function addUser() {             
     const inputs = getUserInputs();
-    if (!validateCheckBoxClicked()) {
-        return;
-    }
-    if (!checkPasswordMatch(inputs)) {
-        return;
-    }
-    try {
-        await addUserToBackend(...inputs);
-        handleSuccess();
-        resetUserInputs();
-    } catch (error) {
-        handleError(error);
-    }
+    // if (!validateCheckBoxClicked()) {
+    //     return;
+    // }
+    // if (!checkPasswordMatch(inputs)) {
+    //     return;
+    // }
+    // try {
+    //     await addUserToBackend(...inputs);
+    //     resetUserInputs();
+    // } catch (error) {
+    //     handleError(error);
+    // }
+    const successMsg =  document.getElementById('success-msg-id');
+    successMsg.classList.toggle('d-none')
+    window.setTimeout(() => {
+        successMsg.classList.toggle('d-none');
+    }, 800);
+    closeSignUp();
 }
 
+async function addUserToBackend(userName, userEMail, userPassword, userPasswordConfirm) {
+    let newUser = { userName, userEMail, userPassword, userPasswordConfirm };
+    users.push(newUser);
+    await setItem("users", JSON.stringify(users));
+}
 
 function getUserInputs() {
     const userName = document.getElementById("add-user-name-id").value;
     const userEMail = document.getElementById("add-user-e-mail-id").value;
     const userPassword = document.getElementById("add-user-password-id").value;
-    const userPasswordConfirm = document.getElementById("add-user-password-confirmation-id").value;
+    const userPasswordConfirm = document.getElementById("add-user-confirm-password-id").value;
     return [userName, userEMail, userPassword, userPasswordConfirm];
 }
 
@@ -55,18 +65,6 @@ function resetUserInputs() {
     document.getElementById("add-user-password-confirmation-id").value = "";
 }
 
-
-async function addUserToBackend(userName, userEMail, userPassword, userPasswordConfirm) {
-    let newUser = { userName, userEMail, userPassword, userPasswordConfirm };
-    users.push(newUser);
-    await setItem("users", JSON.stringify(users));
-}
-
-
-function handleSuccess() {
-    toggleVisibility('sign-up-popup-id', false);
-    console.log("User data sent successfully to the backend");
-}
 
 
 function handleError(error) {
@@ -141,48 +139,56 @@ function closeSignUp() {
 
 
 function login() {
-    if (!loginValidationCheck()) {
-        return;
-    }
+    if(loginValidationCheck()) 
+        window.location.assign("../summary.html");
+}
 
-    window.location.assign("../summary.html");
+function handlerFieldValidation(boolArr) {
+    toggleVisibility('empty-email-id', boolArr[0]);
+    toggleVisibility('this-is-no-email-id', boolArr[1]);
+    toggleVisibility('invalid-email-id', boolArr[2]);
+    toggleVisibility('invalid-password-id', boolArr[3]);
+    toggleVisibility('empty-password-id', boolArr[4]);
+    toggleErrorBorderVisibility('login-user-e-mail-border-id', boolArr[5])
+    toggleErrorBorderVisibility('login-user-password-border-id', boolArr[6])
+    return !boolArr.some(Boolean);
 }
 
 function loginValidationCheck() {
     const loginUserEmail = document.getElementById("login-user-e-mail-id").value;
     const loginUserPassword = document.getElementById("login-user-password-id").value;
-    const foundUser = users.find(user => user.userEMail === loginUserEmail);
-    toggleErrorBorderVisibility('login-user-e-mail-border-id', loginUserEmail === '');
-    toggleVisibility('empty-email-id', loginUserEmail === '');
-    if (loginUserEmail === '' || !foundUser) {
-        toggleVisibility('invalid-email-id', loginUserEmail !== '');
-        toggleVisibility('invalid-password-id', false);
-        toggleVisibility('empty-password-id', false);
-        toggleErrorBorderVisibility('login-user-password-border-id', false);
-    } else {
-        toggleVisibility('invalid-email-id', false);
-        toggleErrorBorderVisibility('login-user-password-border-id', loginUserPassword === '');
-        toggleVisibility('empty-password-id', loginUserPassword === '');
-        if (loginUserPassword === '' || foundUser.userPassword !== loginUserPassword) {
-            toggleVisibility('invalid-password-id', loginUserPassword !== '');
-        } else {
-            toggleVisibility('invalid-password-id', false);
-            toggleErrorBorderVisibility('login-user-password-border-id', false);
-            saveCurrentUser();
-            return true;
-        }
-    }
-    return false;
+    const foundUser = users.find(user => user.userEMail === loginUserEmail)
+    if (loginUserEmail === '' && loginUserPassword === '')
+        return handlerFieldValidation([true, false, false, false, true, true, true]);
+    else if (loginUserEmail === '' && loginUserPassword !== '') 
+        return handlerFieldValidation ([true, false, false, false, false, true, false]);
+    else if (loginUserEmail !== '' && loginUserPassword === '') 
+        if (!validateEmail(loginUserEmail))
+            return handlerFieldValidation([false, true, false, false, true, true, true]);   
+        else 
+            return handlerFieldValidation([false, false, false, false, true, false, true]);
+    else if (loginUserEmail !== '' && loginUserPassword !== '') 
+        if (!validateEmail(loginUserEmail)) 
+            return handlerFieldValidation([false, true, false, false, false, true, false]);  
+        else if (validateEmail(loginUserEmail) && !foundUser) 
+            return handlerFieldValidation([false, false, true, false, false, true, false]);  
+        else if (foundUser.userPassword !== loginUserPassword) 
+            return handlerFieldValidation([false, false, false, true, false, false, true]);  
+        else
+            return handlerFieldValidation([false, false, false, false, false, false, false]); 
+}
+
+function validateEmail(email) {
+    return email !== '' && email.includes('@') && email.indexOf('@') !== 0 && email.split('@').pop() !== '';
 }
 
 function toggleErrorBorderVisibility(elementId, show = true) {
     const element = document.getElementById(elementId);
-    element.classList.toggle('login-input-error', show);
+    show ? element.classList.add('error-border') : element.classList.remove('error-border');
 }
-
 function toggleVisibility(elementId, show = true) {
     const element = document.getElementById(elementId);
-    element.classList.toggle('d-none', !show);
+    show ? element.classList.remove('d-none') : element.classList.add('d-none');
 }
 
 

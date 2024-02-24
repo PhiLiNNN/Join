@@ -9,6 +9,7 @@
 }
 
 .container{
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -90,9 +91,7 @@
     width: 95%;
     border: none;
     outline: none;
-   
 }
-
 
 
 .login-email {
@@ -209,6 +208,25 @@
     left: 0;
     color: var(--err-msg-color);
     font-size: 12px;
+}
+
+.success-msg-popup {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 2px;
+    background: var(--mockup-color);
+    height: 74px;
+    width: 326px;
+    border-radius: 20px;
+}
+
+.success-msg-popup span {
+    color: white;
+    font-size: 20px;
+    line-height: 24px;
+
 }
 
 .d-none {

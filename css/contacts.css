@@ -187,11 +187,10 @@
 
 .openContactContainerHeader {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 50vh;
-    background-color: var(--mockup-color);
+    background-color: var(--white-grey);
+    height: 20vh;
+    padding-top: 2em;
+    margin-left: 1em;
 }
 
 .openContactCloseXContainer {
@@ -200,24 +199,14 @@
     right: 2em;
 }
 
-.addContactCloseXButtonMobile {
-    width: 32px;
-    height: 32px;
-    border-radius: 56px;
-    border: 0;
-    color: var(--white-color);
-    font-weight: bold;
-    font-size: 24px;
-    background-color: var(--mockup-color);
-}
-
 .openContactBlockHeader {
-    display: block;
+    display: flex;
 }
 
 .openContactH1 {
-    color: var(--white-color);
+    color: var(--black-color);  
     font-size: 3rem;
+    font-weight: bold;
 }
 
 .openContactBlueStroked {
@@ -229,16 +218,6 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-}
-
-.openContactContainerFooter {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 50vh;
-    background-color: white;
-    gap: 20px;
 }
 
 .openContactInputNameMobile {
@@ -289,4 +268,212 @@
   .openContactInputPhoneMobile:focus {
     outline: none;
     border-color: var(--mockup-highlight);
+}
+
+.openContactText {
+    color: black;
+}
+
+.addContactBlueStroked {
+    margin-right: 7em;
+}
+
+.arrorLeftContainer {
+    position: absolute;
+    top: 105h;
+    right: 5vw;
+}
+
+.openContactContainerFooter {
+    display: flex;    
+    flex-direction: column;    
+    gap: 2em;
+    background-color: var(--white-grey);
+    height: 80vh;
+}
+
+.openContactUserImageAndNameContainer {
+    display: flex;
+    align-items: center;
+    margin-left: 1em;
+}
+
+.openContactH2 {
+    font-size: 1.5em;
+    margin-left: 0.5em;
+}
+
+.openContactInformation {
+    font-size: 1em;
+    font-weight: bold;
+    margin-left: 1em;
+}
+
+.openContactEmail {
+    font-weight: 900;
+    margin-left: 1em;
+}
+
+.openContactEmailLink {
+    color: var(--hyper-link-color);
+    margin-left: 1em;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.openContactPhoneText {
+    font-weight: 900;
+    margin-left: 1em;
+}
+
+.openContactPhoneNumber {
+    margin-left: 1em;
+}
+
+.dropdown-container {
+    position: fixed;
+    display: none;
+    overflow-x: hidden;
+    bottom: 5rem;
+    right: 0.5rem;
+}
+
+.dropdown-triggerContainer {
+    display: flex;
+    flex-direction: row-reverse;   
+}
+
+.dropdown-trigger {
+    cursor: pointer;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    margin-right: 1.5em;
+    margin-top: 16em;
+}
+
+.dropdown-menu {
+    /* position: absolute; */
+    display: none;
+    right: -300px;
+    top: 5em;
+    border-radius: 15px;
+    background-color: var(--white-color);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    animation: slide-in-menu 0.3s ease forwards;
+    overflow-x: hidden;
+}
+
+.dropdown-menu.slide-in {
+    display: block;
+    animation: slide-in-menu 0.3s ease forwards;
+}
+
+@keyframes slide-in-menu {
+    from {
+      right: -300px;
+      display: block;
+    }
+    to {
+      right: 1em;
+    }
+}
+
+.dropdown-option {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.dropdown-option:hover {
+    cursor: pointer;
+    background-color: var(--light-blue);
+}
+
+#contactOptionsDropdownContainer {    
+    display: inline-block;
+}
+
+.member-icon {
+    border-radius: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.editContactContainerHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 50vh;
+    background-color: var(--mockup-color);
+}
+
+.editContactCloseXContainer {
+    display: flex;
+    justify-content: right;
+}
+
+.EditContactUserImg {    
+    height: 32px;
+    width: 32px;    
+}
+
+.addContactCloseXContainer {
+    position: fixed;
+    top: 1em;
+    right: 2em;
+}
+
+.addContactCloseXButtonMobile {
+    width: 32px;
+    height: 32px;
+    border-radius: 56px;
+    border: 0;
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+    background-color: var(--light-grey);
+}
+
+.addContactCloseXButtonMobile:active {
+    color: var(--light-blue);
+}
+
+.addContactBlockHeader {
+    display: block;
+}
+
+.addContactH1 {
+    color: white;
+    font-size: 3rem;
+}
+
+.addContactBlankUserImg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.addContactContainerFooter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 50vh;
+    background-color: white;
+    gap: 20px;
 }
