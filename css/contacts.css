@@ -399,7 +399,9 @@
     display: inline-block;
 }
 
-
+.member-icon {
+    border-radius: 100%;
+}
 
 
 

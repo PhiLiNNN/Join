@@ -43,7 +43,8 @@ function createContactScreenHTML(selectedContact) {
         </div>                    
     </div>  
     <div class="openContactContainerFooter">
-        <div class="openContactUserImageAndNameContainer">            
+        <div class="openContactUserImageAndNameContainer">
+            ${singleMemberToHTML(selectedContact, 0)}           
             <h2 class="openContactH2">${selectedContact.name}</h2>
         </div>
         <p class="openContactInformation">Contact Information</p>
@@ -93,18 +94,6 @@ function contactsContentBackgroundColorWhiteGray() {
   const content = document.getElementById("contacts-content-id");
   content.style.backgroundColor = "var(--white-grey)";
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 function addDropdownMenuClickListener() {
@@ -188,15 +177,14 @@ function handleDocumentClick(dropdownContainer, addContactButtonContainerMobile,
 }
 
 
+function singleMemberToHTML(member) {
+  const colorCode = member.colorCode || getRandomColorHex(); // Falls kein Farbcode vorhanden ist, generieren wir einen zufälligen
+  const textColor = isColorLight(colorCode) ? "black" : "white"; // Textfarbe basierend auf der Helligkeit des Farbcodes festlegen
 
-
-
-
-
-
-
-
-
-
-
+  return `
+    <div class="openContactUserImgMobile" style="background-color: ${colorCode}; color: ${textColor};">
+      ${getFirstLettersOfName(member.name)}
+    </div>
+  `;
+}
 
