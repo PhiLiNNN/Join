@@ -1,7 +1,9 @@
 footer {
     height: 80px;
+    height: 80px;
     background-color: #2A3647;
     position: fixed;
+    bottom: 0px;
     bottom: 0px;
     left: 0;
     right: 0;
@@ -16,28 +18,46 @@ footer {
     align-items: center;
 }
 
+.footer-icon-box {
+    height: 76px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-icon-box {
+    height: 76px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .footer-complet {
     width: 100%;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    padding: 36px 4px;
+    padding: 2px 16px;
 }
 
 .footer-icon {
     height: 24px;
     width: 20.31px;
+    height: 24px;
+    width: 20.31px;
 }
 
 .footer-link {
-    width: 76px;
-    height: 76px;
+    height: 70px;
+    width: 80px;
     font-size: 14px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 10px;
+    gap: 4px;
     color: white;
 }
 
