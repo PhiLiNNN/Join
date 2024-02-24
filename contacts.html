@@ -8,6 +8,8 @@
     <!--style.css integration</!-->
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/contacts.css">
+    <link rel="stylesheet" href="./css/footer.css">
+    <link rel="stylesheet" href="./css/header.css">
 
     <!--script.js integration</!-->
     <script src="./js/template.js"></script>
@@ -19,7 +21,9 @@
     <script src="./js/editContactOverlayMobile.js"></script>
 </head>
 
-<body onload="contactsInit(); getLoggedInUser()">
+<body onload="contactsInit(); getLoggedInUser(); includeHTML()">
+
+    <div w3-include-html="./assets/templates/header.html"></div>
 
     <div id="contacts-content-id">
         <div> 
@@ -27,6 +31,7 @@
         </div>
     </div>
 
+    <div w3-include-html="./assets/templates/footer.html"></div>
     
 </body>
 

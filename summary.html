@@ -7,13 +7,17 @@
 
     <!--style.css integration</!-->
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/footer.css">
+    <link rel="stylesheet" href="./css/header.css">
 
     <!--script.js integration</!-->
     <script src="./js/register.js"></script>
     <script src="./js/template.js"></script>
 </head>
 
-<body>
+<body onload="includeHTML()">
+
+    <div w3-include-html="./assets/templates/header.html"></div>
     
    <div class="summary-secondery">
         <span>Good morning,</span>
@@ -64,6 +68,9 @@
     <div  style="position: absolute;">  <!-- Der Link ist nur kurzfristig hier, kommt nach der Menü Leiste wieder weg -->
         <a href="contacts.html">Contacts</a>
     </div>
+
+    <div w3-include-html="./assets/templates/footer.html"></div>
+
 </body>
 
 </html>

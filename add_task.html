@@ -4,16 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./css/footer.css">
+    <link rel="stylesheet" href="./css/header.css">
     <script src="script.js" ></script>
+
     <title>Document</title>
 
 </head>
-<body onload="init()">
+<body onload="init(); includeHTML()">
+
+    <div w3-include-html="./assets/templates/header.html"></div>
     <div>
      <h1>Add Task</h1>
     </div>
 
 
     <div w3-include-html="./templates/test.html"></div>
+    <div w3-include-html="./assets/templates/footer.html"></div>
 </body>
 </html>
