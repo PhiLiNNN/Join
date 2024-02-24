@@ -60,7 +60,7 @@ function createContactScreenHTML(selectedContact) {
           </div>
         </div>
         <div class="dropdown-menu" id="contactOptionsDropdown">
-            <div class="dropdown-option" data-value="edit" onclick="editContactScreen(${selectedContact.id})">
+            <div class="dropdown-option" data-value="edit" onclick="showContactOverlay(${selectedContact.id})">
                 <img src="../assets/img/contacts/editContactsDropDownIcon.svg" alt="Edit Contact">
             </div>            
             <div class="dropdown-option" data-value="delete" onclick="deleteContactMobile(${selectedContact.id})">
