@@ -3,6 +3,7 @@ function contactsInit() {
   renderAddContactButtonMobile();
 }
 
+
 function renderContacts() {
   const content = document.getElementById("contacts-content-id");
   content.innerHTML = "";
