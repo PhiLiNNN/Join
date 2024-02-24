@@ -94,7 +94,7 @@ body {
     padding: 12px 21px;
 }
 
-.login-input-error { 
+.error-border { 
     border: 1px solid var(--err-msg-color);
 }
 
