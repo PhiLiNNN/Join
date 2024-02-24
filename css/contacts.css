@@ -134,6 +134,7 @@
     margin: 10px;
     border-bottom: 2px solid var(--placeholder-color);
     padding-bottom: 10px;
+    margin-top: 120px;
 }
 
 .letter-column {
