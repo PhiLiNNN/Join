@@ -108,6 +108,7 @@
 .tooltip {
     position: relative;
     display: inline-block;
+    font-weight: 700;
     width: 20px;
     height: 20px;
     border: 2px solid var(--mockup-color);
@@ -118,18 +119,21 @@
   
 .tooltip .tooltiptext {
     visibility: hidden;
-    width: 260px;
+    width: 285px;
     background-color: var(--mockup-color);
     color: #fff;
     text-align: left;
-    border-radius: 6px;
-    padding: 8px;
+    border-radius: 20px 20px 0px 20px;
+    padding: 12px;
     position: absolute;
     z-index: 1;
     bottom: 120%;
     right: 50%;
     margin-left: -60px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
+
+
 .tooltiptext ul {
     list-style: circle inside;
 }
