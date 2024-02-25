@@ -31,13 +31,13 @@ function templateSignUpPopup() {
           </div>
           <div id="add-pw-border-id" class="login-input">
             <input type="password" name="loginUserPassword" id="add-pw-id" placeholder="Password" required minlength="2" autocomplete="new-password">
-            <img class="login-lock" src="./assets/img/lock.png" alt="">
+            <img id="register-lock-id" class="login-lock" src="./assets/img/lock.png" alt="">
             <span id="empty-add-pw-id" class="err-msg d-none">This field is required!</span>
             <span id="invalid-add-pw-id" class="err-msg d-none">6+ chars, 1 uppercase, 1 special char, 1 digit required.</span>
           </div>
           <div id="add-confirm-pw-border-id" class="login-input">
             <input type="password" name="confirmPassword" id="add-confirm-pw-id" placeholder="Confirm Password" required minlength="2" autocomplete="new-password">
-            <img class="login-lock" src="./assets/img/lock.png" alt="">
+            <img id="register-confirm-lock-id" class="login-lock" src="./assets/img/lock.png" alt="">
             <span id="empty-confirm-pw-id" class="err-msg d-none">This field is required!</span>
             <span id="invalid-confirm-pw-id" class="err-msg d-none">Ups! Your password don't match.</span>
           </div>

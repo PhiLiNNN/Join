@@ -8,6 +8,7 @@ let currentUser = null;
 
 async function init() {
     await loadUsers();
+    addPasswordVisibilityListener('login-pw-border-id', 'lock-id');
 }
 
 
@@ -42,6 +43,7 @@ function validateRegisterEmail(email, boolArr) {
         boolArr[4] = boolArr[10] = true;
 }
 
+
 function validatePassword(password, boolArr) {
     const hasUpperCase = /[A-Z]/.test(password);
     const hasSpecialChar = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/]/.test(password);
@@ -51,6 +53,7 @@ function validatePassword(password, boolArr) {
     else if (!hasUpperCase || !hasSpecialChar || !hasDigit || password.length < 6 )  
         boolArr[6] = boolArr[11] = true;
 }
+
 
 function validateConfirmPassword(password, confirmPassword, boolArr) {
     if (confirmPassword.trim() === "") 
@@ -131,6 +134,7 @@ async function addUserToBackend(userName, userEMail, userPassword, userPasswordC
     await setItem("users", JSON.stringify(users));
 }
 
+
 function getUserInputs() {
     const userName = document.getElementById("add-name-id").value;
     const userEMail = document.getElementById("add-email-id").value;
@@ -149,20 +153,20 @@ function resetRegisterInputs() {
     document.getElementById("add-confirm-pw-id").value = "";
 }
 
+
 function resetLoginInputs() {
     const boolArr = [false, false, false, false, false, false, false];
     handlerFieldValidationLogin(boolArr);
     document.getElementById("login-user-e-mail-id").value = "";
     document.getElementById("login-user-password-id").value = "";
+    const pwInput = document.getElementById('lock-id');
+    showImage(pwInput, './assets/img/lock.png');
 }
 
 
 function handleError(error) {
     console.error("Error sending user data to the backend:", error);
 }
-
-
-
 
 
 /**
@@ -205,6 +209,8 @@ function signUp() {
     toggleVisibility('login-id', false);
     let signUpPopupElement = document.getElementById('sign-up-popup-id');
     signUpPopupElement.innerHTML += templateSignUpPopup();
+    addPasswordVisibilityListener('add-pw-border-id', 'register-lock-id');
+    addPasswordVisibilityListener('add-confirm-pw-border-id', 'register-confirm-lock-id');
 }
 
 
@@ -258,6 +264,7 @@ function loginValidationCheck() {
         else if (foundUser.userPassword !== loginUserPassword) 
             boolArr[3] = boolArr[6] = true; 
     handlerFieldValidationLogin(boolArr);
+
     return !boolArr.some(Boolean);
 }
 
@@ -271,9 +278,6 @@ function toggleVisibility(elementId, show = true, className = 'd-none') {
     const element = document.getElementById(elementId);
     show ? element.classList.remove(className) : element.classList.add(className);
 }
-
-
-
 
 
 function saveCurrentUser() {
@@ -299,4 +303,32 @@ function toggleRememberMeCheckbox(event) {
             ? './assets/img/checkbox_confirmed.svg'
             : './assets/img/checkbox.svg'; 
     }
+}
+
+// login-pw-border-id
+function addPasswordVisibilityListener(elementId, inputId) {
+    const inputElement = document.getElementById(elementId);
+    inputElement.addEventListener("input", function(event) {
+        handleInputChange(event, inputId);
+    });
+}
+
+
+function handleInputChange(event, inputId) {
+    const lockImage = document.getElementById(inputId);
+    if (isPasswordNotEmpty(event.target.value)) 
+        showImage(lockImage, './assets/img/visibility_off.png');
+    else 
+        showImage(lockImage, './assets/img/lock.png');
+}
+
+
+function isPasswordNotEmpty(passwordInput) {
+    
+    return passwordInput.trim().length !== 0;
+}
+
+
+function showImage(lockImage, src) {
+    lockImage.src = src;
 }
