@@ -5,9 +5,17 @@ let ppCheckboxConfirmed = false;
 let users = [];
 let currentUser = null;
 
+let defaultContact = {
+    'userName':  'Martin Hoffmann',
+    'userEMail': 'martin@hoffmann.de',
+    'userPassword': 'test',
+    'userPasswordConfirm': 'test'
+}
+
 
 async function init() {
     await loadUsers();
+    await setItem("users", JSON.stringify(defaultContact));
     addPasswordVisibilityListener('login-pw-border-id', 'lock-id');
 }
 
@@ -246,7 +254,7 @@ function loginValidationCheck() {
     const loginUserPassword = document.getElementById("login-user-password-id").value;
     const foundUser = users.userEMail === loginUserEmail;
     const boolArr = [false, false, false, false, false, false, false];
-    console.log('foundUser',foundUser)
+
     if (loginUserEmail === '' && loginUserPassword === '')
         boolArr[0] = boolArr[4] = boolArr[5] = boolArr[6] = true;
     else if (loginUserEmail === '' && loginUserPassword !== '') 
