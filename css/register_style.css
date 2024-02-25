@@ -180,12 +180,7 @@
     cursor: pointer;
 }
 
-.error-message-register-checkbox {
-    color: var(--err-msg-color);
-    font-size: 1em;
-}
-  
-.sign-up-popup-bg{
+.sign-up-popup-bg {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -258,6 +253,10 @@
     left: 0;
     color: var(--err-msg-color);
     font-size: 12px;
+}
+
+.err-msg-color {
+    color: var(--err-msg-color);
 }
 
 .success-msg-popup {

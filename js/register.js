@@ -21,42 +21,90 @@ async function loadUsers(){
 }
 
 
+function validateName(name, boolArr) {
+    const specialCharRegex  = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/0123456789]/;
+    const checkForDoppleHyphen = name.split("-").length - 1;
+    if (name.trim() === "") 
+        boolArr[0] = boolArr[9] = true;
+    else if (specialCharRegex.test(name)) 
+        boolArr[2] = boolArr[9] = true;
+    else if (name.length < 2 && checkForDoppleHyphen === 0) 
+        boolArr[1] = boolArr[9] = true;
+    else if (checkForDoppleHyphen !== 0 && (!name.match(/[a-zA-Z]-[a-zA-Z]{2,}/) || name.indexOf('-') < 2 || name.split('-').pop() === '')) 
+        boolArr[1] = boolArr[9] = true;
+}
 
 
+function validateRegisterEmail(email, boolArr) {
+    if (email.trim() === "") 
+        boolArr[3] = boolArr[10] = true;
+    else if (!email.includes('@') || email.indexOf('@') === 0 || email.split('@').pop() === '') 
+        boolArr[4] = boolArr[10] = true;
+}
 
-function handlerFieldValidationLogin(boolArr) {
+function validatePassword(password, boolArr) {
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasSpecialChar = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/]/.test(password);
+    const hasDigit = /[0123456789]/.test(password);
+    if (password.trim() === "") 
+        boolArr[5] = boolArr[11] = true;
+    else if (!hasUpperCase || !hasSpecialChar || !hasDigit || password.length < 6 )  
+        boolArr[6] = boolArr[11] = true;
+}
+
+function validateConfirmPassword(password, confirmPassword, boolArr) {
+    if (confirmPassword.trim() === "") 
+        boolArr[7] = boolArr[12] = true;
+    else if (password !== confirmPassword  )  
+        boolArr[8] = boolArr[12] = true;
+}
+
+
+function validateCheckBoxClicked() {
+    toggleVisibility('pp-id', ppCheckboxConfirmed, 'err-msg-color');
+}
+
+
+function handlerFieldValidationRegister(boolArr) {
     toggleVisibility('empty-add-name-id', boolArr[0]);
     toggleVisibility('invalid-add-name-id', boolArr[1]);
     toggleVisibility('no-special-chars-id', boolArr[2]);
-    toggleVisibility('empty-add-email-id', boolArr[2]);
-    toggleVisibility('invalid-add-email-id', boolArr[2]);
-    toggleVisibility('empty-add-pw-id', boolArr[4]);
-    toggleVisibility('invalid-add-pw-id', boolArr[3]);
-    toggleVisibility('empty-confirm-pw-id', boolArr[3]);
-    toggleVisibility('invalid-confirm-pw-id', boolArr[3]);
-    toggleErrorBorderVisibility('register-name-border-id', boolArr[5])
-    toggleErrorBorderVisibility('register-email-border-id', boolArr[5])
-    toggleErrorBorderVisibility('register-pw-border-id', boolArr[6])
-    toggleErrorBorderVisibility('register-confirm-pw-border-id', boolArr[6])
+    toggleVisibility('empty-add-email-id', boolArr[3]);
+    toggleVisibility('invalid-add-email-id', boolArr[4]);
+    toggleVisibility('empty-add-pw-id', boolArr[5]);
+    toggleVisibility('invalid-add-pw-id', boolArr[6]);
+    toggleVisibility('empty-confirm-pw-id', boolArr[7]);
+    toggleVisibility('invalid-confirm-pw-id', boolArr[8]);
+    toggleVisibility('add-name-border-id', !boolArr[9],'error-border')
+    toggleVisibility('add-email-border-id', !boolArr[10],'error-border')
+    toggleVisibility('add-pw-border-id', !boolArr[11],'error-border')
+    toggleVisibility('add-confirm-pw-border-id', !boolArr[12],'error-border')
     return !boolArr.some(Boolean);
 }
+
 
 function registerValidationCheck() {
     const name = document.getElementById("add-name-id").value;
     const email = document.getElementById("add-email-id").value;
     const password = document.getElementById("add-pw-id").value;
     const confirmPassword = document.getElementById("add-confirm-pw-id").value;
+    const checkBox = document.getElementById('privacy-check-id');
+    const boolArr = [false, false, false, false, false, false, false, false, false, false, false, false, false];
+    validateName(name, boolArr);
+    validateRegisterEmail(email, boolArr);
+    validatePassword(password, boolArr);
+    validateConfirmPassword(password, confirmPassword, boolArr);
+    validateCheckBoxClicked(checkBox);
+    return handlerFieldValidationRegister(boolArr);
 }
+
 
 // work in progress
 async function addUser() {             
-    const inputs = getUserInputs();
-    // if (!validateCheckBoxClicked()) {
-    //     return;
-    // }
-    // if (!checkPasswordMatch(inputs)) {
-    //     return;
-    // }
+    // const inputs = getUserInputs();
+    if(!registerValidationCheck()){
+        return;
+    }
     // try {
     //     await addUserToBackend(...inputs);
     //     resetUserInputs();
@@ -64,10 +112,8 @@ async function addUser() {
     //     handleError(error);
     // }
     toggleSuccessesMsg();
+    closeSignUp();
 }
-
-
-
 
 
 function toggleSuccessesMsg() {
@@ -76,8 +122,8 @@ function toggleSuccessesMsg() {
     window.setTimeout(() => {
         successMsg.classList.toggle('d-none');
     }, 800);
-    closeSignUp();
 }
+
 
 async function addUserToBackend(userName, userEMail, userPassword, userPasswordConfirm) {
     let newUser = { userName, userEMail, userPassword, userPasswordConfirm };
@@ -94,13 +140,21 @@ function getUserInputs() {
 }
 
 
-function resetUserInputs() {
+function resetRegisterInputs() {
+    const boolArr = [false, false, false, false, false, false, false, false, false, false, false, false, false];
+    handlerFieldValidationLogin(boolArr);
     document.getElementById("add-name-id").value = "";
     document.getElementById("add-email-id").value = "";
     document.getElementById("add-pw-id").value = "";
     document.getElementById("add-confirm-pw-id").value = "";
 }
 
+function resetLoginInputs() {
+    const boolArr = [false, false, false, false, false, false, false];
+    handlerFieldValidationLogin(boolArr);
+    document.getElementById("login-user-e-mail-id").value = "";
+    document.getElementById("login-user-password-id").value = "";
+}
 
 
 function handleError(error) {
@@ -108,16 +162,7 @@ function handleError(error) {
 }
 
 
-function validateCheckBoxClicked() {
-    let checkBox = document.getElementById('privacy-check-id');
-    if (!checkBox.checked) {
-        toggleVisibility('privacy-error-message-id', true); 
-        return false;               
-    } else {
-         toggleVisibility('privacy-error-message-id', false);
-         return true;   
-    }
-}
+
 
 
 /**
@@ -153,9 +198,8 @@ function checkPasswordMatch(inputs) {
 }
 
 
-
-
 function signUp() {
+    resetLoginInputs();
     toggleVisibility('sign-up-popup-id', true);
     toggleVisibility('signup-container-id', false);
     toggleVisibility('login-id', false);
@@ -175,9 +219,11 @@ function closeSignUp() {
 
 
 function login() {
+    console.log(loginValidationCheck())
     if(loginValidationCheck()) 
         window.location.assign("../summary.html");
 }
+
 
 function handlerFieldValidationLogin(boolArr) {
     toggleVisibility('empty-email-id', boolArr[0]);
@@ -185,48 +231,47 @@ function handlerFieldValidationLogin(boolArr) {
     toggleVisibility('invalid-email-id', boolArr[2]);
     toggleVisibility('invalid-password-id', boolArr[3]);
     toggleVisibility('empty-password-id', boolArr[4]);
-    toggleErrorBorderVisibility('login-email-border-id', boolArr[5])
-    toggleErrorBorderVisibility('login-pw-border-id', boolArr[6])
-    return !boolArr.some(Boolean);
+    toggleVisibility('login-email-border-id', !boolArr[5],'error-border')
+    toggleVisibility('login-pw-border-id', !boolArr[6],'error-border' )
 }
+
 
 function loginValidationCheck() {
     const loginUserEmail = document.getElementById("login-user-e-mail-id").value;
     const loginUserPassword = document.getElementById("login-user-password-id").value;
     const foundUser = users.find(user => user.userEMail === loginUserEmail)
+    const boolArr = [false, false, false, false, false, false, false];
     if (loginUserEmail === '' && loginUserPassword === '')
-        return handlerFieldValidationLogin([true, false, false, false, true, true, true]);
+        boolArr[0] = boolArr[4] = boolArr[5] = boolArr[6] = true;
     else if (loginUserEmail === '' && loginUserPassword !== '') 
-        return handlerFieldValidationLogin ([true, false, false, false, false, true, false]);
+        boolArr[0] = boolArr[5] = true;
     else if (loginUserEmail !== '' && loginUserPassword === '') 
-        if (!validateEmail(loginUserEmail))
-            return handlerFieldValidationLogin([false, true, false, false, true, true, true]);   
+        if (!validateLoginEmail(loginUserEmail))
+            boolArr[1] = boolArr[4] = boolArr[5] = boolArr[6] = true;
         else 
-            return handlerFieldValidationLogin([false, false, false, false, true, false, true]);
+            boolArr[4] = boolArr[6] = true;
     else if (loginUserEmail !== '' && loginUserPassword !== '') 
-        if (!validateEmail(loginUserEmail)) 
-            return handlerFieldValidationLogin([false, true, false, false, false, true, false]);  
-        else if (validateEmail(loginUserEmail) && !foundUser) 
-            return handlerFieldValidationLogin([false, false, true, false, false, true, false]);  
+        if (!validateLoginEmail(loginUserEmail)) 
+            boolArr[1] = boolArr[5] = true; 
+        else if (validateLoginEmail(loginUserEmail) && !foundUser) 
+            boolArr[2] = boolArr[5] = true; 
         else if (foundUser.userPassword !== loginUserPassword) 
-            return handlerFieldValidationLogin([false, false, false, true, false, false, true]);  
-        else
-            return handlerFieldValidationLogin([false, false, false, false, false, false, false]); 
+            boolArr[3] = boolArr[6] = true; 
+    handlerFieldValidationLogin(boolArr);
+    return !boolArr.some(Boolean);
 }
 
-function validateEmail(email) {
+
+function validateLoginEmail(email) {
     return email !== '' && email.includes('@') && email.indexOf('@') !== 0 && email.split('@').pop() !== '';
 }
 
-function toggleErrorBorderVisibility(elementId, show = true) {
+
+function toggleVisibility(elementId, show = true, className = 'd-none') {
     const element = document.getElementById(elementId);
-    show ? element.classList.add('error-border') : element.classList.remove('error-border');
+    show ? element.classList.remove(className) : element.classList.add(className);
 }
 
-function toggleVisibility(elementId, show = true) {
-    const element = document.getElementById(elementId);
-    show ? element.classList.remove('d-none') : element.classList.add('d-none');
-}
 
 
 
@@ -245,14 +290,11 @@ function toggleRememberMeCheckbox(event) {
     ppCheckboxConfirmed = !ppCheckboxConfirmed;
     if (event.target.id === 'uncheckbox-id') {
         rmCheckboxConfirmed = !rmCheckboxConfirmed;
-        console.log('rmCheckboxConfirmed',rmCheckboxConfirmed)
         loginCheckbox.src = rmCheckboxConfirmed
             ? './assets/img/checkbox_confirmed.svg'
             : './assets/img/checkbox.svg';
         ppCheckboxConfirmed = false;
     } else if (event.target.id === 'privacy-checkbox-id') {
-        
-        console.log('ppCheckboxConfirmed',ppCheckboxConfirmed)
         ppCheckbox.src = ppCheckboxConfirmed
             ? './assets/img/checkbox_confirmed.svg'
             : './assets/img/checkbox.svg'; 

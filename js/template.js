@@ -7,7 +7,7 @@ function templateSignUpPopup() {
         </div>
       <div class="login-fields-container">
         <div class="login-fields-gap">
-        <div id="add-user-name-border-id" class="login-input">
+        <div id="add-name-border-id" class="login-input">
             <input type="name" name="name" id="add-name-id" placeholder="Name" required autocomplete="off">
             <span class="tooltip">i
               <div class="tooltiptext">Valid inputs:
@@ -23,19 +23,19 @@ function templateSignUpPopup() {
             <span id="invalid-add-name-id" class="err-msg d-none">Name must be at least 2 letters.</span>
             <span id="no-special-chars-id" class="err-msg d-none">No special characters are allowed.</span>
           </div>
-          <div id="add-user-e-mail-border-id" class="login-input">
+          <div id="add-email-border-id" class="login-input">
             <input type="email" name="loginUserEMail" id="add-email-id" placeholder="Email" required autocomplete="on">
             <img class="login-email" src="./assets/img/mail.png" alt="">
             <span id="empty-add-email-id" class="err-msg d-none">This field is required!</span>
             <span id="invalid-add-email-id" class="err-msg d-none">Enter a valid email (e.g., user@example.com)!</span>
           </div>
-          <div id="add-user-password-border-id" class="login-input">
+          <div id="add-pw-border-id" class="login-input">
             <input type="password" name="loginUserPassword" id="add-pw-id" placeholder="Password" required minlength="2" autocomplete="new-password">
             <img class="login-lock" src="./assets/img/lock.png" alt="">
             <span id="empty-add-pw-id" class="err-msg d-none">This field is required!</span>
-            <span id="invalid-add-pw-id" class="err-msg d-none">Password: 6+ chars, 1 uppercase, 1 special char required.</span>
+            <span id="invalid-add-pw-id" class="err-msg d-none">6+ chars, 1 uppercase, 1 special char, 1 digit required.</span>
           </div>
-          <div id="add-user-password-confirm-border-id" class="login-input">
+          <div id="add-confirm-pw-border-id" class="login-input">
             <input type="password" name="confirmPassword" id="add-confirm-pw-id" placeholder="Confirm Password" required minlength="2" autocomplete="new-password">
             <img class="login-lock" src="./assets/img/lock.png" alt="">
             <span id="empty-confirm-pw-id" class="err-msg d-none">This field is required!</span>
@@ -45,7 +45,7 @@ function templateSignUpPopup() {
         <div class="signin-flex-container">
           <div class="pp-checkbox-container">
             <img id="privacy-checkbox-id" src="./assets/img/checkbox.svg" alt="privacy checkbox" onclick="toggleRememberMeCheckbox(event)">
-            <p>I accept the <a href="#">Privacy Policy</a></p>
+            <p id="pp-id">I accept the <a href="#">Privacy Policy</a></p>
           </div>
           <button class="filled-btn width-small" onclick="addUser()">Sign in</button>
         </div>
