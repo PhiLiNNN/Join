@@ -1,4 +1,4 @@
-function createContactMobile() {    
+async function createContactMobile() {    
     const usersArray = getUsers();
     const loggedInUserEmail = getLoggedInUserEmail();
     if (!loggedInUserEmail) {
@@ -11,8 +11,8 @@ function createContactMobile() {
         console.error("Logged in user not found.");
         return;
     }    
-    newContact.id = generateUniqueID(usersArray);       
-    addContactToUser(usersArray, userIndex, newContact);    
+    newContact.id = generateUniqueID(usersArray);    
+    addContactToCurrentUser(newContact);
 }
 
 
@@ -35,12 +35,21 @@ function findUserIndex(usersArray, userEmail) {
 }
 
 
-function addContactToUser(usersArray, userIndex, newContact) {
-    if (!usersArray[userIndex].contacts) {
-        usersArray[userIndex].contacts = [];
+async function addContactToCurrentUser(newContact) {
+    const loggedInUserEmail = getLoggedInUserEmail();
+    const usersArray = getUsers();
+    const userIndex = findUserIndex(usersArray, loggedInUserEmail);
+    if (userIndex === -1) {
+        console.error("Logged in user not found.");
+        return;
     }
-    usersArray[userIndex].contacts.push(newContact); 
-    setItem("users", JSON.stringify(usersArray))
+    const currentUser = usersArray[userIndex];
+    currentUser.contacts.push(newContact);
+    usersArray.push(currentUser);
+    console.log("async function addContactToCurrentUser" , usersArray);
+    await setItem("users", usersArray);
+    console.log("addContactToCurrentUser(newContact)", newContact);
+    contactsInit();
 }
 
 
@@ -60,7 +69,7 @@ function getUsers() {
 }
 
 
-function generateUniqueID(usersArray) {
+function generateUniqueID(usersArray) {    
     let id;
     do {
         id = generateRandomID();

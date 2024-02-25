@@ -1,4 +1,5 @@
 function contactsInit() {
+  loadUsers();
   renderContacts();
   renderAddContactButtonMobile();
   setTimeout(showHeaderAndFooter, 500);
