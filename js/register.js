@@ -15,7 +15,7 @@ let defaultContact = {
 
 async function init() {
     await loadUsers();
-    await setItem("users", JSON.stringify(defaultContact));
+    // await setItem("users", JSON.stringify(defaultContact));
     addPasswordVisibilityListener('login-pw-border-id', 'lock-id');
 }
 

@@ -17,7 +17,6 @@ async function renderContacts() {
       updateContactsByFirstLetter(contactsByFirstLetter, firstLetter, oneContact);
   });
   renderContactsByFirstLetter(content, contactsByFirstLetter);
-
 }
 
 
@@ -41,6 +40,7 @@ function createLetterAndContactsContainer(firstLetter) {
   `;
   return container;
 }
+
 
 function createOneContactContainer(oneContact) {
   const container = document.createElement('div');
@@ -174,7 +174,6 @@ async function getLoggedInUserFromBackend() {
   }
   return null;
 }
-
 
 
 
