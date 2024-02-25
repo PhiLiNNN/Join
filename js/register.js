@@ -246,7 +246,9 @@ function loginValidationCheck() {
     const loginUserEmail = document.getElementById("login-user-e-mail-id").value;
     const loginUserPassword = document.getElementById("login-user-password-id").value;
     console.log(typeof users)
-    const foundUser = users.find(user => user.userEMail === loginUserEmail)
+    console.log('user.userEMail', users.userEMail)
+    console.log(typeof users)
+    const foundUser = (users && users.userEMail === loginUserEmail) ? users : null;
     const boolArr = [false, false, false, false, false, false, false];
     if (loginUserEmail === '' && loginUserPassword === '')
         boolArr[0] = boolArr[4] = boolArr[5] = boolArr[6] = true;
