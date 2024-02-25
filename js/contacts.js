@@ -6,17 +6,21 @@ function contactsInit() {
 }
 
 
-function renderContacts() {
+async function renderContacts() {
   const content = document.getElementById("contacts-content-id");
   content.innerHTML = "";
   const contactsByFirstLetter = {};  
-  const loggedInUser = getLoggedInUser();  
-  loggedInUser.contacts.sort((a, b) => a.name.localeCompare(b.name));  
-  loggedInUser.contacts.forEach((oneContact) => {
-    const firstLetter = oneContact.name.charAt(0).toUpperCase();
-    updateContactsByFirstLetter(contactsByFirstLetter, firstLetter, oneContact);
-  });
-  renderContactsByFirstLetter(content, contactsByFirstLetter);  
+  const loggedInUser = await getLoggedInUserFromBackend();  
+  if (loggedInUser) {
+      loggedInUser.contacts.sort((a, b) => a.name.localeCompare(b.name));
+      loggedInUser.contacts.forEach((oneContact) => {
+          const firstLetter = oneContact.name.charAt(0).toUpperCase();
+          updateContactsByFirstLetter(contactsByFirstLetter, firstLetter, oneContact);
+      });
+      renderContactsByFirstLetter(content, contactsByFirstLetter);
+  } else {
+      console.error('Logged in user not found or error occurred while fetching.');
+  }
 }
 
 
@@ -159,3 +163,21 @@ function showHeaderAndFooter() {
   mobileHeader.style.display = "flex";
   menuTemplate.style.display = "block";
 }
+
+async function getLoggedInUserFromBackend() {
+  try {
+      await loadUsers(); // Laden aller Benutzerdaten aus dem Backend
+      const storedUser = localStorage.getItem('currentUser');
+      if (storedUser) {
+          const userEmail = JSON.parse(storedUser).userEMail;
+          return users.find(user => user.userEMail === userEmail);
+      }
+  } catch (error) {
+      console.error('Error while fetching logged in user:', error);
+  }
+  return null;
+}
+
+
+
+
