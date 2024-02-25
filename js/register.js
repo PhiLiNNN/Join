@@ -245,6 +245,7 @@ function handlerFieldValidationLogin(boolArr) {
 function loginValidationCheck() {
     const loginUserEmail = document.getElementById("login-user-e-mail-id").value;
     const loginUserPassword = document.getElementById("login-user-password-id").value;
+    console.log(typeof users)
     const foundUser = users.find(user => user.userEMail === loginUserEmail)
     const boolArr = [false, false, false, false, false, false, false];
     if (loginUserEmail === '' && loginUserPassword === '')
