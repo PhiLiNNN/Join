@@ -11,16 +11,13 @@ async function renderContacts() {
   content.innerHTML = "";
   const contactsByFirstLetter = {};  
   const loggedInUser = await getLoggedInUserFromBackend();  
-  if (loggedInUser) {
-      loggedInUser.contacts.sort((a, b) => a.name.localeCompare(b.name));
-      loggedInUser.contacts.forEach((oneContact) => {
-          const firstLetter = oneContact.name.charAt(0).toUpperCase();
-          updateContactsByFirstLetter(contactsByFirstLetter, firstLetter, oneContact);
-      });
-      renderContactsByFirstLetter(content, contactsByFirstLetter);
-  } else {
-      console.error('Logged in user not found or error occurred while fetching.');
-  }
+  loggedInUser.contacts.sort((a, b) => a.name.localeCompare(b.name));
+  loggedInUser.contacts.forEach((oneContact) => {
+      const firstLetter = oneContact.name.charAt(0).toUpperCase();
+      updateContactsByFirstLetter(contactsByFirstLetter, firstLetter, oneContact);
+  });
+  renderContactsByFirstLetter(content, contactsByFirstLetter);
+
 }
 
 
@@ -168,9 +165,9 @@ async function getLoggedInUserFromBackend() {
   try {
       await loadUsers(); // Laden aller Benutzerdaten aus dem Backend
       const storedUser = localStorage.getItem('currentUser');
-      if (storedUser) {
-          const userEmail = JSON.parse(storedUser).userEMail;
-          return users.find(user => user.userEMail === userEmail);
+      const parsedStoredUser = JSON.parse(storedUser);
+      if (parsedStoredUser) {
+          return parsedStoredUser;
       }
   } catch (error) {
       console.error('Error while fetching logged in user:', error);

@@ -225,7 +225,6 @@ function closeSignUp() {
 
 
 function login() {
-    console.log(loginValidationCheck())
     if(loginValidationCheck()) 
         window.location.assign("../summary.html");
 }
@@ -245,11 +244,9 @@ function handlerFieldValidationLogin(boolArr) {
 function loginValidationCheck() {
     const loginUserEmail = document.getElementById("login-user-e-mail-id").value;
     const loginUserPassword = document.getElementById("login-user-password-id").value;
-    console.log(typeof users)
-    console.log('user.userEMail', users.userEMail)
-    console.log(typeof users)
-    const foundUser = (users && users.userEMail === loginUserEmail) ? users : null;
+    const foundUser = users.userEMail === loginUserEmail;
     const boolArr = [false, false, false, false, false, false, false];
+    console.log('foundUser',foundUser)
     if (loginUserEmail === '' && loginUserPassword === '')
         boolArr[0] = boolArr[4] = boolArr[5] = boolArr[6] = true;
     else if (loginUserEmail === '' && loginUserPassword !== '') 
@@ -264,7 +261,7 @@ function loginValidationCheck() {
             boolArr[1] = boolArr[5] = true; 
         else if (validateLoginEmail(loginUserEmail) && !foundUser) 
             boolArr[2] = boolArr[5] = true; 
-        else if (foundUser.userPassword !== loginUserPassword) 
+        else if (users.userPassword !== loginUserPassword) 
             boolArr[3] = boolArr[6] = true; 
     handlerFieldValidationLogin(boolArr);
 
@@ -308,7 +305,7 @@ function toggleRememberMeCheckbox(event) {
     }
 }
 
-// login-pw-border-id
+
 function addPasswordVisibilityListener(elementId, inputId) {
     const inputElement = document.getElementById(elementId);
     inputElement.addEventListener("input", function(event) {
@@ -327,10 +324,8 @@ function handleInputChange(event, inputId) {
 
 
 function isPasswordNotEmpty(passwordInput) {
-    
     return passwordInput.trim().length !== 0;
 }
-
 
 function showImage(lockImage, src) {
     lockImage.src = src;
