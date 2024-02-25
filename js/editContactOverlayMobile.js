@@ -1,5 +1,3 @@
-let selectedContactGlobal = [];
-
 function showContactOverlay(contactId) {
     let content = document.getElementById(`contacts-content-id`);
     content.innerHTML = "";

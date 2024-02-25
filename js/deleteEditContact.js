@@ -1,7 +1,6 @@
 function deleteContact(selectedContact) {
-    console.log("function deleteContact(selectedContact)" , selectedContact);
-    console.log("function deleteContact(selectedContactGlobal)" , selectedContactGlobal);
-    // if (!validateContact(selectedContact)) return;  
+    selectedContact = selectedContactGlobal;
+    console.log("findSelectedContact(contactId)" , contactId);
     showDeleteConfirmationModal(selectedContact);
 }
 

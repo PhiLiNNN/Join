@@ -1,3 +1,6 @@
+let selectedContactGlobal = [];
+
+
 function openContactScreenMobile(contactId) {
   const selectedContact = findSelectedContact(contactId);  
   if (!selectedContact) {
@@ -29,6 +32,8 @@ function handleContactNotFound() {
 
 function createContactScreenHTML(selectedContact) {
   console.log("function createContactScreenHTML(selectedContact)" , selectedContact);
+  selectedContactGlobal = selectedContact;
+  console.log("function createContactScreenHTML(selectedContactGlobal)" , selectedContactGlobal);
   return `
     <div class="openContactContainerHeader">                            
         <div class="openContactBlockHeader">
@@ -70,7 +75,7 @@ function createContactScreenHTML(selectedContact) {
             </div>
         </div>
     </div>
-  `;
+  `;  
 }
 
 
