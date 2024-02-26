@@ -25,6 +25,16 @@ function templateSignUpPopup() {
           </div>
           <div id="add-email-border-id" class="login-input">
             <input type="email" name="loginUserEMail" id="add-email-id" placeholder="Email" required autocomplete="on">
+            <span class="tooltip margin-right">i
+              <div class="tooltiptext tooltiptext-small">Valid inputs:
+                <ul>
+                  <li>At least one number</li>
+                  <li>At least one letter</li>
+                  <li>At least one special character</li>
+                  <li>6 or more characters</li>
+                </ul>
+              </div>
+            </span>
             <img class="login-email" src="./assets/img/mail.png" alt="">
             <span id="empty-add-email-id" class="err-msg d-none">This field is required!</span>
             <span id="invalid-add-email-id" class="err-msg d-none">Enter a valid email (e.g., user@example.com)!</span>
@@ -44,10 +54,10 @@ function templateSignUpPopup() {
         </div>
         <div class="signin-flex-container">
           <div class="pp-checkbox-container">
-            <img id="privacy-checkbox-id" src="./assets/img/checkbox.svg" alt="privacy checkbox" onclick="toggleRememberMeCheckbox(event)">
+            <img id="privacy-checkbox-id" src="./assets/img/checkbox.svg" alt="privacy checkbox" onclick="toggleCheckbox(event)">
             <p id="pp-id">I accept the <a href="#">Privacy Policy</a></p>
           </div>
-          <button class="filled-btn width-small" onclick="addUser()">Sign in</button>
+          <button class="filled-btn width-small" onclick="register()">Sign in</button>
         </div>
       </div>
     `;

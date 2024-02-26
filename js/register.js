@@ -1,32 +1,81 @@
-const STORAGE_TOKEN = "VORXWOHN4ATC5QT3Z5TB4EP1VRUAGMHB44HR2ZKT"; // Das ist unser TOKEN für Join Gruppe 2
+const STORAGE_TOKEN = "VORXWOHN4ATC5QT3Z5TB4EP1VRUAGMHB44HR2ZKT";
 const STORAGE_URL = "https://remote-storage.developerakademie.org/item";
 let rmCheckboxConfirmed = false;
 let ppCheckboxConfirmed = false;
-let users = [];
-let currentUser = null;
+let users = {};
+let newUserArray = [];
 
-let defaultContact = {
-    'userName':  'Martin Hoffmann',
-    'userEMail': 'martin@hoffmann.de',
-    'userPassword': 'test',
-    'userPasswordConfirm': 'test'
-}
-
-
+// test test
+// test@test.de
+// pw: tEst1!
 async function init() {
-    await loadUsers();
-    // await setItem("users", JSON.stringify(defaultContact));
+    users = await loadUsersFromBackend();
+    console.log(users)
+    // await setItem("users", JSON.stringify({}));
     addPasswordVisibilityListener('login-pw-border-id', 'lock-id');
 }
 
 
-async function loadUsers(){
+async function loadUsersFromBackend() {
     try {
-        users = JSON.parse(await getItem('users'));
-        console.log('hier',users)
-    } catch(e){
+        const result = await getItem('users');
+        return JSON.parse(result) || [];
+    } catch (e) {
         console.error('Loading error:', e);
+        return [];
     }
+}
+
+
+function register() {             
+    if (!(registerValidationCheck() && ppCheckboxConfirmed))
+        return;
+    addNewUser();
+    toggleSuccessesMsg();
+    closeSignUp();
+}
+
+
+async function addNewUser() {
+    const newUser = generateNewUserObject();
+    newUserArray.push(newUser); 
+    await addNewUserToBackend(newUser);
+    try {
+        await addNewUserToBackend(newUser);
+    } catch (error) {
+        console.error("Error sending user data to the backend:", error);
+    }
+}
+
+
+function generateNewUserObject() {
+    const userName = document.getElementById("add-name-id").value;
+    const userEMail = document.getElementById("add-email-id").value;
+    const userPassword = document.getElementById("add-pw-id").value;
+    const userPasswordConfirm = document.getElementById("add-confirm-pw-id").value;
+    return {
+        'userName': userName,
+        'userEMail': userEMail,
+        'userPassword': userPassword,
+        'userPasswordConfirm': userPasswordConfirm,
+        'contacts': [],
+        'tasks': [],
+        'assignedTo': []
+    };
+}
+
+
+async function addNewUserToBackend(user) {
+    let existingUsers = await loadUsersFromBackend();
+    existingUsers[user.userEMail] = user;
+    await setItem('users', JSON.stringify(existingUsers));
+}
+
+
+async function setItem(key, value) {
+    const payload = { key, value, token: STORAGE_TOKEN };
+    return fetch(STORAGE_URL, { method: 'POST', body: JSON.stringify(payload) })
+    .then(res => res.json());
 }
 
 
@@ -110,45 +159,12 @@ function registerValidationCheck() {
 }
 
 
-// work in progress
-async function addUser() {             
-    // const inputs = getUserInputs();
-    if(!registerValidationCheck()){
-        return;
-    }
-    // try {
-    //     await addUserToBackend(...inputs);
-    //     resetUserInputs();
-    // } catch (error) {
-    //     handleError(error);
-    // }
-    toggleSuccessesMsg();
-    closeSignUp();
-}
-
-
 function toggleSuccessesMsg() {
     const successMsg =  document.getElementById('success-msg-id');
     successMsg.classList.toggle('d-none')
     window.setTimeout(() => {
         successMsg.classList.toggle('d-none');
     }, 800);
-}
-
-
-async function addUserToBackend(userName, userEMail, userPassword, userPasswordConfirm) {
-    let newUser = { userName, userEMail, userPassword, userPasswordConfirm };
-    users.push(newUser);
-    await setItem("users", JSON.stringify(users));
-}
-
-
-function getUserInputs() {
-    const userName = document.getElementById("add-name-id").value;
-    const userEMail = document.getElementById("add-email-id").value;
-    const userPassword = document.getElementById("add-pw-id").value;
-    const userPasswordConfirm = document.getElementById("add-confirm-pw-id").value;
-    return [userName, userEMail, userPassword, userPasswordConfirm];
 }
 
 
@@ -169,11 +185,6 @@ function resetLoginInputs() {
     document.getElementById("login-user-password-id").value = "";
     const pwInput = document.getElementById('lock-id');
     showImage(pwInput, './assets/img/lock.png');
-}
-
-
-function handleError(error) {
-    console.error("Error sending user data to the backend:", error);
 }
 
 
@@ -288,15 +299,7 @@ function toggleVisibility(elementId, show = true, className = 'd-none') {
 }
 
 
-function saveCurrentUser() {
-    localStorage.setItem('users', JSON.stringify(users)); // Speichert die "users" lokal ab um später dort Kontakte zu speichern
-    // currentUser = foundUser; // Setzen Sie den aktuellen Benutzer
-    // localStorage.setItem('currentUser', JSON.stringify(currentUser));  // Speichert den "currentUser" lokal ab
-    // console.log("Saved currentUser:", currentUser); // Überprüfen, ob currentUser erfolgreich gespeichert wurde
-}
-
-
-function toggleRememberMeCheckbox(event) {
+function toggleCheckbox(event) {
     const loginCheckbox = document.getElementById("uncheckbox-id");
     const ppCheckbox = document.getElementById("privacy-checkbox-id");
     ppCheckboxConfirmed = !ppCheckboxConfirmed;
@@ -334,6 +337,7 @@ function handleInputChange(event, inputId) {
 function isPasswordNotEmpty(passwordInput) {
     return passwordInput.trim().length !== 0;
 }
+
 
 function showImage(lockImage, src) {
     lockImage.src = src;
