@@ -117,10 +117,6 @@
     margin-right: 4px;
 }
 
-.margin-right {
-    margin-right: 9px;
-}
-
 .tooltip .tooltiptext {
     visibility: hidden;
     width: 285px;
@@ -136,11 +132,6 @@
     margin-left: -60px; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
-
-.tooltiptext-small {
-    width: 248px !important;
-}  
-
 
 .tooltiptext ul {
     list-style: circle inside;
