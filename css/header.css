@@ -5,6 +5,7 @@ header {
     right: 0;
     z-index: 100;
     box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+    background-color: var(--white-color);
 }
 
 .header-gap {
@@ -12,7 +13,7 @@ header {
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
-    padding: 20px 16px;
+    padding: 20px 16px;    
 }
      
 .header-logo {

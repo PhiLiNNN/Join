@@ -2,11 +2,12 @@ function contactsInit() {
     renderContacts();
     renderAddContactButtonMobile();
     setTimeout(showHeaderAndFooter, 500);
+    document.body.style.overflow = 'auto';
 }
 
 
 async function renderContacts() {
-    const content = document.getElementById("contacts-content-id");
+    const content = document.getElementById("all-contacts-id");
     content.innerHTML = "";
     const contactsByFirstLetter = {};
     const loggedInUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -17,7 +18,7 @@ async function renderContacts() {
             updateContactsByFirstLetter(contactsByFirstLetter, firstLetter, oneContact);
         });      
         renderContactsByFirstLetter(content, contactsByFirstLetter);
-        registerContactClickHandlers(); // Hier wird der Event-Handler registriert
+        registerContactClickHandlers();
     } else {
         console.error('Error: User or contacts not found.');
     }
@@ -49,8 +50,7 @@ function createLetterAndContactsContainer(firstLetter) {
 function createOneContactContainer(oneContact) {
     const container = document.createElement('div');
     container.classList.add('oneContactContainer');
-    container.setAttribute('onclick', `showContactOverlayMobile('${oneContact.id}')`);
-    console.log("function createOneContactContainer(oneContact)" , oneContact.id);
+    container.setAttribute('onclick', `showContactOverlayMobile('${oneContact.id}')`);    
     const randomColor = getRandomColorHex();
     const textColor = isColorLight(randomColor) ? 'white' : 'black';
     const iconHtml = renderSingleMemberToHTMLMobile(oneContact, randomColor, textColor);  
@@ -86,15 +86,26 @@ function registerContactClickHandlers() {
   
   
 function renderAddContactButtonMobile() {
-    let addContactButtonMobile = document.getElementById(`contacts-content-id`);
+    let addContactButtonMobile = document.getElementById(`all-contacts-id`);
     addContactButtonMobile.innerHTML += `
       <div>
         <img class="addContactButtonImgMobile" src="../assets/img/contacts/addContactButtonMobile.svg" alt="createContactButton" onclick="addContactScreenMobile()"></img>
       </div>
       `
 }
-  
-  
+
+function hideAddContactButtonMobile() {
+    let addContactButtonMobile = document.querySelectorAll(`addContactButtonImgMobile`);    
+    addContactButtonMobile.classList.add('d-none');
+}
+
+
+function showAddContactButtonMobile() {
+    let addContactButtonMobile = document.querySelectorAll(`addContactButtonImgMobile`);    
+    addContactButtonMobile.classList.remove('d-none');
+}
+
+
 function renderSingleMemberToHTMLMobile(oneContact, colorCode, textColor) {
     return `
       <div class="openContactUserImgMobile" style="background-color: ${colorCode}; color: ${textColor};">
@@ -166,9 +177,10 @@ function showHeaderAndFooter() {
 // Add contact screen
 
 function addContactScreenMobile() {
-    const content = document.getElementById("contacts-content-id");
+    const content = document.getElementById("all-contacts-id");
     content.innerHTML = addContactFormMobileHTML();
     hideHeaderAndFooter();
+    hideAddContactButtonMobile();
 }
 
 
@@ -206,8 +218,7 @@ async function addContactToCurrentUser(newContact) {
     }
     currentUser.contacts.push(newContact);
     localStorage.setItem('currentUser', JSON.stringify(currentUser));
-    updateCurrentUserInBackend(currentUser)
-    console.log("New contact added to currentUser:", newContact);
+    updateCurrentUserInBackend(currentUser)    
     contactsInit();
 }
 
@@ -236,13 +247,11 @@ function generateRandomID() {
 async function updateCurrentUserInBackend(currentUser) {
     try {        
         const existingUsers = await loadUsersFromBackend();        
-        if (!(currentUser.userEMail in existingUsers)) {
-            console.log("User not found in backend.");
+        if (!(currentUser.userEMail in existingUsers)) {            
             return;
         }        
         existingUsers[currentUser.userEMail] = currentUser;        
-        await setItem('users', JSON.stringify(existingUsers));
-        console.log("CurrentUser updated in backend:", currentUser);
+        await setItem('users', JSON.stringify(existingUsers));        
     } catch (error) {
         console.error("Error updating current user in backend:", error);
     }
@@ -252,7 +261,7 @@ async function updateCurrentUserInBackend(currentUser) {
 // Open contact overlay mobile
 
 function showContactOverlayMobile(contactId) {
-    const content = document.getElementById('contacts-content-id');
+    const content = document.getElementById('all-contacts-id');
     content.innerHTML = "";
     const selectedContact = findSelectedContact(contactId);
     if (!selectedContact) {
@@ -327,19 +336,16 @@ function createContactOverlayContent(selectedContact) {
 
 
 function openOverlay(content) {
-    // Erstelle das Overlay-Element
     const overlay = document.createElement('div');
     overlay.classList.add('overlay');
-    // Füge den übergebenen Inhalt dem Overlay hinzu
     overlay.innerHTML = content;
-    // Füge das Overlay dem Dokument hinzu
-    document.getElementById('contacts-content-id').appendChild(overlay);
-    // Füge einen Event-Listener hinzu, um das Overlay zu schließen, wenn auf das Overlay geklickt wird
+    document.getElementById('all-contacts-id').appendChild(overlay);
     overlay.addEventListener('click', function(event) {
         if (event.target === overlay) {
             closeOverlay(overlay);
         }
     });
+    document.body.style.overflow = 'hidden';
 }
 
 
@@ -358,7 +364,7 @@ function setupContactScreen() {
 
 
 function triggerSlideInAnimation() {
-    const content = document.getElementById("contacts-content-id");
+    const content = document.getElementById("all-contacts-id");
     setTimeout(() => {
         content.classList.add("slideInContactsContentMobile");
     }, 10);
@@ -369,7 +375,7 @@ function triggerSlideInAnimation() {
 
 
 function contactsContentBackgroundColorWhiteGray() {
-    const content = document.getElementById("contacts-content-id");
+    const content = document.getElementById("all-contacts-id");
     content.style.backgroundColor = "var(--white-grey)";
 }
   

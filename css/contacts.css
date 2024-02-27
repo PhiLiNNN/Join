@@ -1,3 +1,13 @@
+.displayNone {
+    display: none;
+}
+
+.allContacts {
+    position: relative;
+    overflow-y: auto;
+    margin-top: 120px;
+}
+
 .addContactButtonContainerMobile {
     display: flex;
     justify-content: flex-end;
@@ -124,8 +134,8 @@
 .addContactButtonImgMobile {
     height: 51px;
     position: absolute;
-    bottom: 100px;
-    right: 20px;
+    bottom: 20px;
+    right: 20px;    
 }
 
 .letterAndContactsContainer {
@@ -133,8 +143,7 @@
     align-items: center;
     margin: 10px;
     border-bottom: 2px solid var(--placeholder-color);
-    padding-bottom: 10px;
-    margin-top: 120px;
+    padding-bottom: 10px;    
 }
 
 .letter-column {
@@ -519,3 +528,4 @@
 .cancelContactDesktopDeleteButtonConfirmationContainerMobile {
     margin-top: 1.5rem;
 }
+
