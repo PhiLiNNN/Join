@@ -3,6 +3,7 @@
 }
 
 .allContacts {
+    position: relative;
     overflow-y: auto;
 }
 
@@ -132,8 +133,8 @@
 .addContactButtonImgMobile {
     height: 51px;
     position: absolute;
-    bottom: 100px;
-    right: 20px;
+    bottom: 20px;
+    right: 20px;    
 }
 
 .letterAndContactsContainer {
