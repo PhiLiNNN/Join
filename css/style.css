@@ -1,3 +1,11 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('./webfonts/roboto/Roboto-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 :root {
     --mockup-color: #2a3647;
     --mockup-highlight: #29ABE2;
@@ -13,6 +21,7 @@ body {
     margin: 0;
     box-sizing: border-box;
 }
+
 
 * {
     padding: 0px;
