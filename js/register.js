@@ -264,8 +264,16 @@ function closeSignUp() {
 
 
 function login() {
-    if(loginValidationCheck()) 
-        window.location.assign("../summary.html");
+    if (loginValidationCheck()) {
+        const loggedInUser = loadCurrentUser();
+        if (loggedInUser) {
+            localStorage.setItem('currentUser', JSON.stringify(loggedInUser));
+            console.log('Logged in user:', loggedInUser);
+            window.location.assign("../summary.html");
+        } else {
+            console.error('Error: Unable to log in user.');
+        }
+    }
 }
 
 
@@ -401,4 +409,22 @@ function getPasswordInput(whichform) {
 
     const elementId = formMap[whichform];
     return document.getElementById(elementId);
+}
+
+
+function loadCurrentUser() {
+    const loginUserEmail = document.getElementById("login-user-e-mail-id").value;
+    const loginUserPassword = document.getElementById("login-user-password-id").value;
+    if (loginUserEmail in users) {
+        const user = users[loginUserEmail];
+        if (user.userPassword === loginUserPassword) {
+            return user;
+        } else {
+            console.error("Error: Incorrect password.");
+            return null;
+        }
+    } else {
+        console.error("Error: User not found.");
+        return null;
+    }
 }
