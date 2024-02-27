@@ -50,6 +50,7 @@ function createOneContactContainer(oneContact) {
     const container = document.createElement('div');
     container.classList.add('oneContactContainer');
     container.setAttribute('onclick', `showContactOverlayMobile('${oneContact.id}')`);
+    console.log("function createOneContactContainer(oneContact)" , oneContact.id);
     const randomColor = getRandomColorHex();
     const textColor = isColorLight(randomColor) ? 'white' : 'black';
     const iconHtml = renderSingleMemberToHTMLMobile(oneContact, randomColor, textColor);  
@@ -251,16 +252,14 @@ async function updateCurrentUserInBackend(currentUser) {
 // Open contact overlay mobile
 
 function showContactOverlayMobile(contactId) {
-    console.log("Contact clicked! ID:", contactId);
+    const content = document.getElementById('contacts-content-id');
+    content.innerHTML = "";
     const selectedContact = findSelectedContact(contactId);
     if (!selectedContact) {
         handleContactNotFound();
         return;
     }
-    // Erstellen des Overlay-Inhalts
     const overlayContent = createContactOverlayContent(selectedContact);
-    console.log("function showContactOverlayMobile(contactId)", overlayContent);
-    // Anzeigen des Overlays
     openOverlay(overlayContent);
 }
 
@@ -328,10 +327,19 @@ function createContactOverlayContent(selectedContact) {
 
 
 function openOverlay(content) {
-    console.log("function openOverlay(content)", content);
-    const overlay = document.querySelectorAll(".overlay");
+    // Erstelle das Overlay-Element
+    const overlay = document.createElement('div');
+    overlay.classList.add('overlay');
+    // Füge den übergebenen Inhalt dem Overlay hinzu
     overlay.innerHTML = content;
-    // overlay.style.display = "block";
+    // Füge das Overlay dem Dokument hinzu
+    document.body.appendChild(overlay);
+    // Füge einen Event-Listener hinzu, um das Overlay zu schließen, wenn auf das Overlay geklickt wird
+    overlay.addEventListener('click', function(event) {
+        if (event.target === overlay) {
+            closeOverlay(overlay);
+        }
+    });
 }
 
 
