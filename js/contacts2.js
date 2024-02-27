@@ -1,4 +1,4 @@
-function contactsInit() {  
+function contactsInit() {    
     renderContacts();
     renderAddContactButtonMobile();
     setTimeout(showHeaderAndFooter, 500);
@@ -333,7 +333,7 @@ function openOverlay(content) {
     // Füge den übergebenen Inhalt dem Overlay hinzu
     overlay.innerHTML = content;
     // Füge das Overlay dem Dokument hinzu
-    document.body.appendChild(overlay);
+    document.getElementById('contacts-content-id').appendChild(overlay);
     // Füge einen Event-Listener hinzu, um das Overlay zu schließen, wenn auf das Overlay geklickt wird
     overlay.addEventListener('click', function(event) {
         if (event.target === overlay) {
