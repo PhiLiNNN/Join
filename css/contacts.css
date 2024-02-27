@@ -1,3 +1,11 @@
+.contactsContent {
+    
+}
+
+.allContacts {
+    overflow-y: auto;
+}
+
 .addContactButtonContainerMobile {
     display: flex;
     justify-content: flex-end;
@@ -519,3 +527,4 @@
 .cancelContactDesktopDeleteButtonConfirmationContainerMobile {
     margin-top: 1.5rem;
 }
+
