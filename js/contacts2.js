@@ -8,19 +8,14 @@ function contactsInit() {
 async function renderContacts() {
     const content = document.getElementById("contacts-content-id");
     content.innerHTML = "";
-    const contactsByFirstLetter = {};  
-    // Laden des eingeloggten Benutzers aus dem localStorage
-    const loggedInUser = JSON.parse(localStorage.getItem('currentUser'));  
-    // Überprüfen, ob der Benutzer und die Kontakte vorhanden sind
-    if (loggedInUser && loggedInUser.contacts) {
-      // Sortieren der Kontakte nach dem Namen
-      loggedInUser.contacts.sort((a, b) => a.name.localeCompare(b.name));  
-      // Gruppieren der Kontakte nach dem ersten Buchstaben ihres Namens
+    const contactsByFirstLetter = {};
+    const loggedInUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (loggedInUser && loggedInUser.contacts) {      
+      loggedInUser.contacts.sort((a, b) => a.name.localeCompare(b.name));
       loggedInUser.contacts.forEach((oneContact) => {
           const firstLetter = oneContact.name.charAt(0).toUpperCase();
           updateContactsByFirstLetter(contactsByFirstLetter, firstLetter, oneContact);
-      });  
-      // Rendern der gruppierten Kontakte
+      });      
       renderContactsByFirstLetter(content, contactsByFirstLetter);
     } else {
       console.error('Error: User or contacts not found.');
@@ -200,6 +195,7 @@ async function addContactToCurrentUser(newContact) {
     }
     currentUser.contacts.push(newContact);
     localStorage.setItem('currentUser', JSON.stringify(currentUser));
+    updateCurrentUserInBackend(currentUser)
     console.log("New contact added to currentUser:", newContact);
     contactsInit();
 }
@@ -223,4 +219,20 @@ function generateUniqueID() {
 
 function generateRandomID() {    
     return Math.random().toString(36).substring(2, 11);
+}
+
+
+async function updateCurrentUserInBackend(currentUser) {
+    try {        
+        const existingUsers = await loadUsersFromBackend();        
+        if (!(currentUser.userEMail in existingUsers)) {
+            console.log("User not found in backend.");
+            return;
+        }        
+        existingUsers[currentUser.userEMail] = currentUser;        
+        await setItem('users', JSON.stringify(existingUsers));
+        console.log("CurrentUser updated in backend:", currentUser);
+    } catch (error) {
+        console.error("Error updating current user in backend:", error);
+    }
 }
