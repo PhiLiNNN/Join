@@ -86,7 +86,8 @@ body {
 }
 
 
-.input_global { 
+.input_global,
+.textarea-style { 
     position: relative;
     width: 100%;
     border-radius: 10px;
@@ -98,17 +99,25 @@ body {
     padding: 12px 21px;
 }
 
-.input_global input,
-.input_global textarea  {
+.input_global input {
     font-size: 18px;
     line-height: 24px;
     width: 95%;
-    border: none;
     outline: none;
+    border: none;
 }
 
-.resize-none {
+.textarea-style {
     resize: none;
+    outline: none;
+    font-size: 18px;
+    line-height: 24px;
+    height: 90px;
+    padding: 18px 21px;
+}
+
+.textarea-style:focus-within{
+    border-color: var(--mockup-highlight); 
 }
 
 .error-border { 
