@@ -1,4 +1,4 @@
-function showContactOverlay(contactId) {
+function showContactOverlayMobile(contactId) {
     let content = document.getElementById(`contacts-content-id`);
     content.innerHTML = "";
     const overlay = document.createElement("div");

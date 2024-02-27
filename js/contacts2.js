@@ -11,14 +11,15 @@ async function renderContacts() {
     const contactsByFirstLetter = {};
     const loggedInUser = JSON.parse(localStorage.getItem('currentUser'));
     if (loggedInUser && loggedInUser.contacts) {      
-      loggedInUser.contacts.sort((a, b) => a.name.localeCompare(b.name));
-      loggedInUser.contacts.forEach((oneContact) => {
-          const firstLetter = oneContact.name.charAt(0).toUpperCase();
-          updateContactsByFirstLetter(contactsByFirstLetter, firstLetter, oneContact);
-      });      
-      renderContactsByFirstLetter(content, contactsByFirstLetter);
+        loggedInUser.contacts.sort((a, b) => a.name.localeCompare(b.name));
+        loggedInUser.contacts.forEach((oneContact) => {
+            const firstLetter = oneContact.name.charAt(0).toUpperCase();
+            updateContactsByFirstLetter(contactsByFirstLetter, firstLetter, oneContact);
+        });      
+        renderContactsByFirstLetter(content, contactsByFirstLetter);
+        registerContactClickHandlers(); // Hier wird der Event-Handler registriert
     } else {
-      console.error('Error: User or contacts not found.');
+        console.error('Error: User or contacts not found.');
     }
 }
 
@@ -48,7 +49,7 @@ function createLetterAndContactsContainer(firstLetter) {
 function createOneContactContainer(oneContact) {
     const container = document.createElement('div');
     container.classList.add('oneContactContainer');
-    container.setAttribute('onclick', `openContactScreenMobile(${oneContact.id})`);
+    container.setAttribute('onclick', `showContactOverlayMobile('${oneContact.id}')`);
     const randomColor = getRandomColorHex();
     const textColor = isColorLight(randomColor) ? 'white' : 'black';
     const iconHtml = renderSingleMemberToHTMLMobile(oneContact, randomColor, textColor);  
@@ -71,6 +72,15 @@ function renderContactsByFirstLetter(content, contactsByFirstLetter) {
     for (const letter in contactsByFirstLetter) {
       content.appendChild(contactsByFirstLetter[letter]);
     }
+}
+
+
+function registerContactClickHandlers() {
+    const contactContainers = document.querySelectorAll('.oneContactContainer');
+    contactContainers.forEach(container => {
+        const contactId = container.getAttribute('data-contact-id');
+        container.addEventListener('click', () => showContactOverlayMobile(contactId));
+    });
 }
   
   
@@ -235,4 +245,214 @@ async function updateCurrentUserInBackend(currentUser) {
     } catch (error) {
         console.error("Error updating current user in backend:", error);
     }
+}
+
+
+// Open contact overlay mobile
+
+function showContactOverlayMobile(contactId) {
+    console.log("Contact clicked! ID:", contactId);
+    const selectedContact = findSelectedContact(contactId);
+    if (!selectedContact) {
+        handleContactNotFound();
+        return;
+    }
+    // Erstellen des Overlay-Inhalts
+    const overlayContent = createContactOverlayContent(selectedContact);
+    console.log("function showContactOverlayMobile(contactId)", overlayContent);
+    // Anzeigen des Overlays
+    openOverlay(overlayContent);
+}
+
+
+function findSelectedContact(contactId) {
+    const loggedInUser = getLoggedInUser();
+    
+    if (!loggedInUser) {
+      console.error("No logged in user found.");
+      return null;
+    }
+    return loggedInUser.contacts.find(contact => contact.id === contactId);
+}
+
+
+function handleContactNotFound() {
+    console.error("Selected contact not found in current user's contacts.");
+}
+
+
+function createContactOverlayContent(selectedContact) {
+    return `
+    <div class="openContactContainerHeader">                            
+        <div class="openContactBlockHeader">
+            <div>
+                <p class="openContactH1">Contacts</p>
+                <p class="openContactText">Better with a team!</p>                              
+                <img class="addContactBlueStroked" src="../assets/img/contacts/addContactBlueStroked.svg" alt="">                                                                        
+            </div>
+            <div class="arrorLeftContainer">
+                <div onclick="contactsInit()">
+                    <img src="../assets/img/contacts/arrow-left-line.svg" alt="">
+                </div>
+            </div>                                                                
+        </div>                    
+    </div>  
+    <div class="openContactContainerFooter">
+        <div class="openContactUserImageAndNameContainer" onclick="showContactOverlay(${selectedContact.id})">
+            ${singleMemberToHTML(selectedContact)}           
+            <h2 class="openContactH2">${selectedContact.name}</h2>
+        </div>
+        <p class="openContactInformation">Contact Information</p>
+        <p class="openContactEmail">Email</p>
+        <a class="openContactEmailLink" href="mailto:${selectedContact.email}">${selectedContact.email}</a>
+        <p class="openContactPhoneText">Phone</p>
+        <p class="openContactPhoneNumber">${selectedContact.phone}</p>        
+    </div>  
+    <div class="dropdown-container" id="contactOptionsDropdownContainer">
+        <div class="dropdown-triggerContainer">
+          <div class="dropdown-trigger" onclick="toggleDropdownMenu()">
+              <img id="menuContactOptionsButton" src="../assets/img/contacts/menuContactOptionsButtonImg.svg" alt="">
+          </div>
+        </div>
+        <div class="dropdown-menu" id="contactOptionsDropdown">
+            <div class="dropdown-option" data-value="edit" onclick="showContactOverlay(${selectedContact.id})">
+                <img src="../assets/img/contacts/editContactsDropDownIcon.svg" alt="Edit Contact">
+            </div>            
+            <div class="dropdown-option" data-value="delete" onclick="deleteContactMobile()">
+                <img src="../assets/img/contacts/DeleteContactDropwDownIcon.svg" alt="Delete Contact">
+            </div>
+        </div>
+    </div>
+  `;  
+}
+
+
+function openOverlay(content) {
+    console.log("function openOverlay(content)", content);
+    const overlay = document.querySelectorAll(".overlay");
+    overlay.innerHTML = content;
+    // overlay.style.display = "block";
+}
+
+
+function closeOverlay() {
+    const overlay = document.getElementById("overlay");
+    overlay.innerHTML = "";
+    overlay.style.display = "none";
+}
+
+
+function setupContactScreen() {    
+    // showHeaderAndFooter();
+    contactsContentBackgroundColorWhiteGray();
+    // addDropdownMenuClickListener();
+}
+
+
+function triggerSlideInAnimation() {
+    const content = document.getElementById("contacts-content-id");
+    setTimeout(() => {
+        content.classList.add("slideInContactsContentMobile");
+    }, 10);
+    setTimeout(() => {
+        content.classList.remove("slideInContactsContentMobile");
+    }, 2000);
+}
+
+
+function contactsContentBackgroundColorWhiteGray() {
+    const content = document.getElementById("contacts-content-id");
+    content.style.backgroundColor = "var(--white-grey)";
+}
+  
+  
+function addDropdownMenuClickListener() {
+    const dropdownTrigger = document.getElementById("menuContactOptionsButton");
+    if (!dropdownTrigger) {
+        console.error("Dropdown trigger not found");
+        return;
+    }
+    dropdownTrigger.addEventListener("click", function(event) {
+        const dropdownMenu = document.getElementById("contactOptionsDropdown");
+        if (!dropdownMenu) {
+            console.error("Dropdown menu not found");
+            return;
+        }
+        // Füge den Event-Listener für die Dropdown-Optionen hinzu
+        dropdownMenu.addEventListener("click", function(event) {
+            const target = event.target;
+            if (target.classList.contains("dropdown-option")) {
+                const action = target.getAttribute("data-value");
+                handleDropdownOptionClick(action);
+            }
+        });
+        // Sobald das Dropdown-Menü erstellt ist und der Button geklickt wurde, entferne den Event-Listener für den Button
+        dropdownTrigger.removeEventListener("click", addDropdownMenuClickListener);
+    });
+}
+
+
+/**
+ * Close all other drop down menus
+ */
+function closeAllDropdowns() {
+    const allDropdowns = document.querySelectorAll(".dropdown-menu");
+    allDropdowns.forEach((dropdown) => {
+        dropdown.style.display = "none";
+    });
+}
+  
+  
+  /**
+  * Handle click on drop down menu option
+  */
+function handleDropdownOptionClick(action) {
+    if (action === "edit") {
+      // handle edit action
+    } else if (action === "delete") {
+      // handle delete action
+    }
+    const dropdownMenu = document.getElementById("contactOptionsDropdown");
+    dropdownMenu.style.display = "none";
+}
+  
+  
+/**
+  * Handle drop down menu option clicked
+  */
+function toggleDropdownMenu() {
+    const dropdownMenu = document.getElementById("contactOptionsDropdown");
+    if (dropdownMenu.classList.contains("slide-in")) {
+        dropdownMenu.classList.remove("slide-in");
+    } else {
+        dropdownMenu.classList.add("slide-in");
+    }
+}
+  
+  
+/**
+  * Handle click on drop down menu option
+  * @param {string} dropdownContainer - Drop down div Container
+  * @param {string} addContactButtonContainerMobile - Render the contact button container mobile
+  * @param {string} handleDocumentClick - Remove or add the event listener for the drop down menu
+  */
+function handleDocumentClick(dropdownTrigger, dropdownMenu) {
+    return function (event) {
+        if (!dropdownTrigger.contains(event.target) && !dropdownMenu.contains(event.target)) {
+            dropdownMenu.style.display = "none";
+            document.removeEventListener("click", handleDocumentClick);
+        }
+    };
+}
+  
+  
+function singleMemberToHTML(member) {
+    const colorCode = member.colorCode || getRandomColorHex(); // Falls kein Farbcode vorhanden ist, generieren wir einen zufälligen
+    const textColor = isColorLight(colorCode) ? "black" : "white"; // Textfarbe basierend auf der Helligkeit des Farbcodes festlegen
+  
+    return `
+      <div class="openContactUserImgMobile" style="background-color: ${colorCode}; color: ${textColor};">
+        ${getFirstLettersOfName(member.name)}
+      </div>
+    `;
 }
