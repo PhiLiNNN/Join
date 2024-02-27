@@ -7,7 +7,7 @@ function templateSignUpPopup() {
         </div>
       <div class="login-fields-container">
         <div class="login-fields-gap">
-        <div id="add-name-border-id" class="login-input">
+        <div id="add-name-border-id" class="input_global">
             <input type="name" name="name" id="add-name-id" placeholder="Name" autocomplete="off">
             <span class="tooltip">i
               <div class="tooltiptext">Valid inputs:
@@ -23,14 +23,14 @@ function templateSignUpPopup() {
             <span id="invalid-add-name-id" class="err-msg d-none">Name must be at least 2 letters.</span>
             <span id="no-special-chars-id" class="err-msg d-none">No special characters are allowed.</span>
           </div>
-          <div id="add-email-border-id" class="login-input">
+          <div id="add-email-border-id" class="input_global">
             <input type="email" name="loginUserEMail" id="add-email-id" placeholder="Email" autocomplete="on">
             <img class="login-email" src="./assets/img/mail.png" alt="">
             <span id="empty-add-email-id" class="err-msg d-none">This field is required!</span>
             <span id="invalid-add-email-id" class="err-msg d-none">Enter a valid email (e.g., user@example.com)!</span>
             <span id="existing-add-email-id" class="err-msg d-none">This email address is already registered!</span>
           </div>
-          <div id="add-pw-border-id" class="login-input">
+          <div id="add-pw-border-id" class="input_global">
             <input type="password" name="loginUserPassword" id="add-pw-id" placeholder="Password" autocomplete="new-password">
             <span class="tooltip">i
               <div class="tooltiptext">Valid inputs:
@@ -48,7 +48,7 @@ function templateSignUpPopup() {
             <span id="empty-add-pw-id" class="err-msg d-none">This field is required!</span>
             <span id="invalid-add-pw-id" class="register-pw-visbility-id err-msg d-none">6+ chars, 1 uppercase, 1 special char, 1 digit required.</span>
           </div>
-          <div id="add-confirm-pw-border-id" class="login-input">
+          <div id="add-confirm-pw-border-id" class="input_global">
             <input type="password" name="confirmPassword" id="add-confirm-pw-id" placeholder="Confirm Password" autocomplete="new-password"> 
             <img id="register-confirm-lock-id" class="login-lock" src="./assets/img/lock.png" alt="">
             <img id="register-confirm-pw-visibility-id" class="visibility-img d-none" src="./assets/img/visibility.png" alt=""  onclick="togglePasswordVisibility(event, 'register-confirm-pw-visibility-off-id', 'confirmPw', -1)">

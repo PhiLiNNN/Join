@@ -58,6 +58,11 @@ body {
     width: 104px !important;
 }
 
+.width-big {
+    width: 104px !important;
+}
+
+
 .filled-btn {
     background-color: var(--mockup-color);
     color: white;
@@ -81,7 +86,7 @@ body {
 }
 
 
-.login-input { 
+.input_global { 
     position: relative;
     width: 100%;
     border-radius: 10px;
@@ -93,14 +98,28 @@ body {
     padding: 12px 21px;
 }
 
+.input_global input,
+.input_global textarea  {
+    font-size: 18px;
+    line-height: 24px;
+    width: 95%;
+    border: none;
+    outline: none;
+}
+
+.resize-none {
+    resize: none;
+}
+
 .error-border { 
     border: 1px solid var(--err-msg-color);
 }
 
-input::placeholder {
+input::placeholder,
+textarea::placeholder {
     color: var(--placeholder-color); 
 }
 
-.login-input:focus-within {
+.input_global:focus-within {
     border-color: var(--mockup-highlight); 
 }

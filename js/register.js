@@ -18,7 +18,11 @@ async function init() {
     users = await loadUsersFromBackend();
     console.log(users)
     // await setItem("users", JSON.stringify({}));
-    addPasswordVisibilityListener('login-pw-border-id', 'lock-id', 'login-pw-visibility-off-id', 'login-pw-visibility-id', pwVisibility);
+    addPasswordVisibilityListener('login-pw-border-id', 
+                                'lock-id', 
+                                'login-pw-visibility-off-id',
+                                'login-pw-visibility-id',
+                                pwVisibility);
 }
 
 async function loadUsersFromBackend() {
@@ -75,12 +79,6 @@ async function addNewUserToBackend(user) {
     existingUsers[user.userEMail] = user;
     await setItem('users', JSON.stringify(existingUsers));
     users = await loadUsersFromBackend();
-}
-
-async function setItem(key, value) {
-    const payload = { key, value, token: STORAGE_TOKEN };
-    return fetch(STORAGE_URL, { method: 'POST', body: JSON.stringify(payload) })
-    .then(res => res.json());
 }
 
 
@@ -269,6 +267,7 @@ function login() {
             localStorage.setItem('currentUser', JSON.stringify(loggedInUser));
             console.log('Logged in user:', loggedInUser);
             window.location.assign("../summary.html");
+           
         } else {
             console.error('Error: Unable to log in user.');
         }
