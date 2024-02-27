@@ -45,8 +45,8 @@
             <div id="login-pw-border-id" class="login-input">
               <input type="password" name="loginUserPassword" id="login-user-password-id" placeholder="Password"  autocomplete="current-password">
               <img id="lock-id" class="login-lock" src="./assets/img/lock.png" alt="">
-              <img id="login-pw-visibility-off-id" class="login-lock d-none" src="./assets/img/visibility_off.png" alt="" onclick="togglePwVisibility('login-user-password-id')">
-              <img id="login-pw-visibility-id" class="login-lock d-none" src="./assets/img/visibility.png" alt="" >
+              <img id="login-pw-visibility-off-id" class="login-lock d-none" src="./assets/img/visibility_off.png" alt="" onclick="togglePasswordVisibility(event, 'login-pw-visibility-id', 'password', 1)">
+              <img id="login-pw-visibility-id" class="d-none" src="./assets/img/visibility.png" alt="" onclick="togglePasswordVisibility(event, 'login-pw-visibility-off-id', 'password', -1)">
               <span id="empty-password-id" class="err-msg d-none">This field is required!</span>
               <span id="invalid-password-id" class="err-msg d-none">Wrong password Ups! Try again.</span>
             </div>

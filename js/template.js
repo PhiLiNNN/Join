@@ -40,19 +40,19 @@ function templateSignUpPopup() {
                   <li>At least one special character</li>
                   <li>6 or more characters</li>
                 </ul>
-              </div>
+              </div> 
             </span>
-            <img id="register-lock-id" class="login-lock" src="./assets/img/lock.png" alt="">
-            <img id="register-pw-visibility-id" class="login-lock d-none" src="./assets/img/visibility.png" alt="">
-            <img id="register-pw-visibility-off-id" class="login-lock d-none" src="./assets/img/visibility_off.png" alt=""  onclick="togglePwVisibility('add-pw-id')">
+            <img id="register-lock-id" class="login-lock" src="./assets/img/lock.png" alt=""> 
+            <img id="register-pw-visibility-id" class="visibility-img d-none" src="./assets/img/visibility.png" alt=""  onclick="togglePasswordVisibility(event, 'register-pw-visibility-off-id', 'registerPw', -1)">
+            <img id="register-pw-visibility-off-id" class="visibility-off-img d-none" src="./assets/img/visibility_off.png" alt="" onclick="togglePasswordVisibility(event, 'register-pw-visibility-id', 'registerPw', 1)">
             <span id="empty-add-pw-id" class="err-msg d-none">This field is required!</span>
             <span id="invalid-add-pw-id" class="register-pw-visbility-id err-msg d-none">6+ chars, 1 uppercase, 1 special char, 1 digit required.</span>
           </div>
           <div id="add-confirm-pw-border-id" class="login-input">
-            <input type="password" name="confirmPassword" id="add-confirm-pw-id" placeholder="Confirm Password" autocomplete="new-password">
+            <input type="password" name="confirmPassword" id="add-confirm-pw-id" placeholder="Confirm Password" autocomplete="new-password"> 
             <img id="register-confirm-lock-id" class="login-lock" src="./assets/img/lock.png" alt="">
-            <img id="register-confirm-pw-visibility-id" class="login-lock d-none" src="./assets/img/visibility.png" alt="">
-            <img id="register-confirm-pw-visibility-off-id" class="login-lock d-none" src="./assets/img/visibility_off.png" alt=""  onclick="togglePwVisibility('add-confirm-pw-id')">
+            <img id="register-confirm-pw-visibility-id" class="visibility-img d-none" src="./assets/img/visibility.png" alt=""  onclick="togglePasswordVisibility(event, 'register-confirm-pw-visibility-off-id', 'confirmPw', -1)">
+            <img id="register-confirm-pw-visibility-off-id" class="visibility-off-img d-none" src="./assets/img/visibility_off.png" alt=""  onclick="togglePasswordVisibility(event, 'register-confirm-pw-visibility-id', 'confirmPw', 1)">
             <span id="empty-confirm-pw-id" class="err-msg d-none">This field is required!</span>
             <span id="invalid-confirm-pw-id" class="err-msg d-none">Ups! Your password don't match.</span>
           </div>
