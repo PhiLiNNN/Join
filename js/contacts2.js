@@ -50,8 +50,7 @@ function createLetterAndContactsContainer(firstLetter) {
 function createOneContactContainer(oneContact) {
     const container = document.createElement('div');
     container.classList.add('oneContactContainer');
-    container.setAttribute('onclick', `showContactOverlayMobile('${oneContact.id}')`);
-    console.log("function createOneContactContainer(oneContact)" , oneContact.id);
+    container.setAttribute('onclick', `showContactOverlayMobile('${oneContact.id}')`);    
     const randomColor = getRandomColorHex();
     const textColor = isColorLight(randomColor) ? 'white' : 'black';
     const iconHtml = renderSingleMemberToHTMLMobile(oneContact, randomColor, textColor);  
@@ -219,8 +218,7 @@ async function addContactToCurrentUser(newContact) {
     }
     currentUser.contacts.push(newContact);
     localStorage.setItem('currentUser', JSON.stringify(currentUser));
-    updateCurrentUserInBackend(currentUser)
-    console.log("New contact added to currentUser:", newContact);
+    updateCurrentUserInBackend(currentUser)    
     contactsInit();
 }
 
@@ -249,13 +247,11 @@ function generateRandomID() {
 async function updateCurrentUserInBackend(currentUser) {
     try {        
         const existingUsers = await loadUsersFromBackend();        
-        if (!(currentUser.userEMail in existingUsers)) {
-            console.log("User not found in backend.");
+        if (!(currentUser.userEMail in existingUsers)) {            
             return;
         }        
         existingUsers[currentUser.userEMail] = currentUser;        
-        await setItem('users', JSON.stringify(existingUsers));
-        console.log("CurrentUser updated in backend:", currentUser);
+        await setItem('users', JSON.stringify(existingUsers));        
     } catch (error) {
         console.error("Error updating current user in backend:", error);
     }
