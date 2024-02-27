@@ -226,7 +226,6 @@ async function getItem(key) {
 
 
 function signUp() {
-    // console.log('signup',pwVisibilityOn)
     pwVisibility.pwVisibilityOn = false;
     resetLoginInputs();
     toggleVisibility('sign-up-popup-id', true);
@@ -357,48 +356,44 @@ function addPasswordVisibilityListener(elementId, lockImgId, visibilityOffImg, v
         toggleVisibility(lockImgId, !passwordNotEmpty);
         toggleVisibility(visibilityOffImg, passwordNotEmpty && !visibilityObj.pwVisibilityOn);
         toggleVisibility(visibilityOnImg, passwordNotEmpty && visibilityObj.pwVisibilityOn);
-        if (!passwordNotEmpty) {
+        if (!passwordNotEmpty) 
             visibilityObj.pwVisibilityOn = false;
-        }
-        console.log('listener pwVisibilityOn', visibilityObj.pwVisibilityOn);
     });
 }
-
-
 
 
 function isPasswordNotEmpty(passwordInput) {
     return passwordInput.trim().length !== 0;
 }
 
+
 function showImage(lockImage, src) {
     lockImage.src = src;
 }
 
+
 function togglePasswordVisibility(event, ImgId, whichform, value) {
     let visibilityOn, inputType;
-    
-    if ((whichform === 'password' || whichform === 'registerPw') && value === 1) {
+    if ((whichform === 'password' || whichform === 'registerPw') && value === 1) 
         visibilityOn = true;
-    } else if ((whichform === 'password' || whichform === 'registerPw') && value === -1) {
+    else if ((whichform === 'password' || whichform === 'registerPw') && value === -1) 
         visibilityOn = false;
-    } else if (whichform === 'confirmPw' && value === 1) {
+    else if (whichform === 'confirmPw' && value === 1) 
         visibilityOn = true;
-    } else if (whichform === 'confirmPw' && value === -1) {
+    else if (whichform === 'confirmPw' && value === -1) 
         visibilityOn = false;
-    }
-
     toggleVisibility(event.target.id, false);
     toggleVisibility(ImgId, true);
-
     inputType = visibilityOn ? 'text' : 'password';
     updatePasswordInput(whichform, inputType);
 }
+
 
 function updatePasswordInput(whichform, inputType) {
     const passwordInput = getPasswordInput(whichform);
     passwordInput.type = inputType;
 }
+
 
 function getPasswordInput(whichform) {
     const formMap = {
@@ -406,7 +401,6 @@ function getPasswordInput(whichform) {
         'registerPw': 'add-pw-id',
         'confirmPw': 'add-confirm-pw-id'
     };
-
     const elementId = formMap[whichform];
     return document.getElementById(elementId);
 }
