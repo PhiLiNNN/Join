@@ -169,3 +169,58 @@ function addContactScreenMobile() {
 function redirectToContacts() {
     window.location.assign("../contacts.html");
 }
+
+
+// Add new contact
+async function createContactMobile() {
+    const currentUser = getLoggedInUser();
+    if (!currentUser) {
+        console.error("No user logged in.");
+        return;
+    }    
+    const newContact = getNewContact();
+    newContact.id = generateUniqueID();    
+    addContactToCurrentUser(newContact);
+}
+
+
+function getNewContact() {
+    const contactName = document.getElementById("add-contact-input-name-mobile-id").value;
+    const contactEmail = document.getElementById("add-contact-input-mail-addresss-mobile-id").value;
+    const contactPhone = document.getElementById("add-contact-input-phone-mobile-id").value;
+    return { name: contactName, email: contactEmail, phone: contactPhone };
+}
+
+
+async function addContactToCurrentUser(newContact) {
+    const currentUser = getLoggedInUser();
+    if (!currentUser) {
+        console.error("Logged in user not found.");
+        return;
+    }
+    currentUser.contacts.push(newContact);
+    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+    console.log("New contact added to currentUser:", newContact);
+    contactsInit();
+}
+
+
+function getLoggedInUser() {
+    return JSON.parse(localStorage.getItem('currentUser'));
+}
+
+
+function generateUniqueID() {
+    let id;
+    const currentUser = getLoggedInUser();
+    const usersArray = currentUser ? [currentUser] : [];
+    do {
+        id = generateRandomID();
+    } while (usersArray.some(user => user.contacts && user.contacts.some(contact => contact.id === id)));
+    return id;
+}
+
+
+function generateRandomID() {    
+    return Math.random().toString(36).substring(2, 11);
+}
