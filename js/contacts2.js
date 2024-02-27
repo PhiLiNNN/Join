@@ -2,7 +2,7 @@ function contactsInit() {
     renderContacts();
     renderAddContactButtonMobile();
     setTimeout(showHeaderAndFooter, 500);
-    document.body.style.overflow = 'auto';    
+    document.body.style.overflow = 'auto';
 }
 
 
