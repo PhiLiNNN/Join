@@ -2,7 +2,7 @@ function contactsInit() {
     renderContacts();
     renderAddContactButtonMobile();
     setTimeout(showHeaderAndFooter, 500);
-    document.body.style.overflow = 'auto';
+    document.body.style.overflow = 'auto';    
 }
 
 
@@ -94,8 +94,19 @@ function renderAddContactButtonMobile() {
       </div>
       `
 }
-  
-  
+
+function hideAddContactButtonMobile() {
+    let addContactButtonMobile = document.querySelectorAll(`addContactButtonImgMobile`);    
+    addContactButtonMobile.classList.add('d-none');
+}
+
+
+function showAddContactButtonMobile() {
+    let addContactButtonMobile = document.querySelectorAll(`addContactButtonImgMobile`);    
+    addContactButtonMobile.classList.remove('d-none');
+}
+
+
 function renderSingleMemberToHTMLMobile(oneContact, colorCode, textColor) {
     return `
       <div class="openContactUserImgMobile" style="background-color: ${colorCode}; color: ${textColor};">
@@ -170,6 +181,7 @@ function addContactScreenMobile() {
     const content = document.getElementById("all-contacts-id");
     content.innerHTML = addContactFormMobileHTML();
     hideHeaderAndFooter();
+    hideAddContactButtonMobile();
 }
 
 
