@@ -1,7 +1,7 @@
 function contactsInit() {    
     renderContacts();
     renderAddContactButtonMobile();
-    setTimeout(showHeaderAndFooter, 500);
+    setTimeout(showHeaderAndFooter, 500);    
     document.body.style.overflow = 'auto';
 }
 
@@ -260,7 +260,7 @@ async function updateCurrentUserInBackend(currentUser) {
 
 // Open contact overlay mobile
 
-function showContactOverlayMobile(contactId) {
+function showContactOverlayMobile(contactId) {    
     const content = document.getElementById('all-contacts-id');
     content.innerHTML = "";
     const selectedContact = findSelectedContact(contactId);
@@ -269,7 +269,7 @@ function showContactOverlayMobile(contactId) {
         return;
     }
     const overlayContent = createContactOverlayContent(selectedContact);
-    openOverlay(overlayContent);
+    openOverlay(overlayContent);    
 }
 
 
@@ -345,7 +345,7 @@ function openOverlay(content) {
             closeOverlay(overlay);
         }
     });
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';    
 }
 
 
