@@ -373,7 +373,7 @@
 .dropdown-menu {
     display: none;
     position: absolute;
-    left: 100%; /* Startposition außerhalb des Bildschirms */
+    left: 100%;
     top: 5em;
     border-radius: 15px;
     background-color: var(--white-color);
@@ -383,8 +383,7 @@
 }
 
 .dropdown-menu.slide-in {
-    display: block;
-    
+    display: block;    
 }
 
 @keyframes slide-in-menu {

@@ -274,8 +274,7 @@ function showContactOverlayMobile(contactId) {
 
 
 function findSelectedContact(contactId) {
-    const loggedInUser = getLoggedInUser();
-    
+    const loggedInUser = getLoggedInUser();    
     if (!loggedInUser) {
       console.error("No logged in user found.");
       return null;
@@ -356,8 +355,7 @@ function closeOverlay() {
 }
 
 
-function setupContactScreen() {    
-    // showHeaderAndFooter();
+function setupContactScreen() {
     contactsContentBackgroundColorWhiteGray();
     addDropdownMenuClickListener();
 }
@@ -378,32 +376,38 @@ function contactsContentBackgroundColorWhiteGray() {
     const content = document.getElementById("all-contacts-id");
     content.style.backgroundColor = "var(--white-grey)";
 }
-  
-  
-function addDropdownMenuClickListener() {
+
+
+  /**
+   * Drop down menu click event listener
+   */
+  function addDropdownMenuClickListener() {
     const dropdownTrigger = document.getElementById("menuContactOptionsButton");
-    if (!dropdownTrigger) {
-        console.error("Dropdown trigger not found");
-        return;
-    }
-    dropdownTrigger.addEventListener("click", function(event) {
-        const dropdownMenu = document.getElementById("contactOptionsDropdown");
-        if (!dropdownMenu) {
-            console.error("Dropdown menu not found");
-            return;
-        }
-        // Füge den Event-Listener für die Dropdown-Optionen hinzu
-        dropdownMenu.addEventListener("click", function(event) {
-            const target = event.target;
-            if (target.classList.contains("dropdown-option")) {
-                const action = target.getAttribute("data-value");
-                handleDropdownOptionClick(action);
-            }
-        });
-        // Sobald das Dropdown-Menü erstellt ist und der Button geklickt wurde, entferne den Event-Listener für den Button
-        dropdownTrigger.removeEventListener("click", addDropdownMenuClickListener);
-        // Hinzufügen des Event Listeners, um das Dropdown-Menü zu schließen, wenn außerhalb davon geklickt wird
-        document.addEventListener("click", handleDocumentClick(dropdownTrigger, dropdownMenu));
+    const dropdownMenu = document.getElementById("contactOptionsDropdown");
+    if (!dropdownTrigger || !dropdownMenu) {
+      console.error("Dropdown trigger or menu not found");
+      return;
+    }  
+  /**
+   * Drop down menu click event listener
+   * @param {string} event - Add the drop down menu to the event listener
+   */
+    const handleDocumentClick = function (event) {
+      if (!dropdownTrigger.contains(event.target) && !dropdownMenu.contains(event.target)) {
+        dropdownMenu.style.display = "none";
+        document.removeEventListener("click", handleDocumentClick);
+      }
+    };
+    dropdownTrigger.addEventListener("click", function (event) {
+      const isDropdownVisible = (dropdownMenu.style.display === "block");    
+      if (!isDropdownVisible) { 
+        closeAllDropdowns();
+      }
+      dropdownMenu.style.display = isDropdownVisible ? "none" : "block";
+      if (!isDropdownVisible) {
+        document.addEventListener("click", handleDocumentClick);
+      }
+      event.stopPropagation();
     });
 }
 
@@ -414,15 +418,15 @@ function addDropdownMenuClickListener() {
 function closeAllDropdowns() {
     const allDropdowns = document.querySelectorAll(".dropdown-menu");
     allDropdowns.forEach((dropdown) => {
-        dropdown.style.display = "none";
+      dropdown.style.display = "none";
     });
 }
   
   
-  /**
+/**
   * Handle click on drop down menu option
   */
-  function handleDropdownOptionClick(action) {
+function handleDropdownOptionClick(action) {
     if (action === "edit") {
       // handle edit action
     } else if (action === "delete") {
@@ -431,7 +435,7 @@ function closeAllDropdowns() {
     const dropdownMenu = document.getElementById("contactOptionsDropdown");
     dropdownMenu.style.display = "none";
 }
-  
+ 
   
 /**
   * Handle drop down menu option clicked
@@ -440,8 +444,10 @@ function toggleDropdownMenu() {
     const dropdownMenu = document.getElementById("contactOptionsDropdown");
     if (dropdownMenu.classList.contains("slide-in")) {
         dropdownMenu.classList.remove("slide-in");
+        addDropdownMenuClickListener();
     } else {
         dropdownMenu.classList.add("slide-in");
+        closeAllDropdowns();
     }
 }
   
