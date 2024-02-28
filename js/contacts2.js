@@ -5,6 +5,7 @@ function contactsInit() {
     document.body.style.overflow = 'auto';
     const content = document.getElementById("all-contacts-id");
     content.style.paddingTop = '100px';
+    content.style.paddingBottom = '60px';
 }
 
 
@@ -327,7 +328,7 @@ function createContactOverlayContent(selectedContact) {
           </div>
         </div>
         <div class="dropdown-menu" id="contactOptionsDropdown">
-            <div class="dropdown-option" data-value="edit" onclick="showContactOverlay(${selectedContact.id})">
+            <div class="dropdown-option" data-value="edit" onclick="editContactOverlayMobile('${selectedContact.id}')">
                 <img src="../assets/img/contacts/editContactsDropDownIcon.svg" alt="Edit Contact">
             </div>            
             <div class="dropdown-option" data-value="delete" onclick="deleteContactMobile('${selectedContact.id}')">
@@ -493,4 +494,66 @@ function deleteContactMobile(contactId) {
   localStorage.setItem('currentUser', JSON.stringify(currentUser));
   updateCurrentUserInBackend(currentUser);
   contactsInit();
+}
+
+
+// Edit contact mobile
+
+function editContactOverlayMobile(contactId) {
+  console.log("function editContactOverlayMobile(contactId)" , contactId);
+  let content = document.getElementById('all-contacts-id');
+    content.innerHTML = "";
+    const overlay = document.createElement("div");
+    overlay.classList.add("overlay");  
+    const selectedContact = findSelectedContact(contactId);
+    if (!selectedContact) {
+      handleContactNotFound();
+      return;
+    }  
+    const randomColor = getRandomColorHex();
+    const textColor = isColorLight(randomColor) ? 'white' : 'black';
+    const editContactHTML = createEditContactHTML(selectedContact, randomColor, textColor);
+    overlay.innerHTML = editContactHTML;  
+    document.body.appendChild(overlay);
+    hideHeaderAndFooter();    
+    content.style.paddingTop = '0px';
+    content.style.paddingBottom = '0px';
+}
+
+
+function closeContactOverlay() {
+  const overlay = document.querySelector(".overlay");
+  if (overlay) {
+    overlay.remove();
+  }
+}
+
+
+function createEditContactHTML(selectedContact, colorCode, textColor) {
+  const { name, email, phone } = selectedContact;
+  return /*html*/ `
+    <div class="editContactContainerHeader">
+      <div class="addContactCloseXContainer">
+        <button class="addContactCloseXButtonMobile" onclick="contactsInit(); closeContactOverlay()">X</button>
+      </div>
+      <div class="addContactBlockHeader">
+        <p class="addContactH1">Edit contact</p>
+        <img class="addContactBlueStroked" src="../assets/img/contacts/addContactBlueStroked.svg" alt="">          
+      </div>
+    </div>
+    <div class="addContactBlankUserImg">        
+      ${renderSingleMemberToHTMLMobile(selectedContact, colorCode, textColor)}
+    </div>
+    <form id="editcontactFormMobileID" onsubmit="updateContactMobile(${selectedContact.id})">
+      <div class="addContactContainerFooter">
+        <input class="openContactInputNameMobile" name="editContactInputNameMobile" id="editContactInputNameMobileID" type="text" required pattern="[A-Za-z]+" placeholder="Name" value="${name}">
+        <input class="openContactInputMailAddresssMobile" name="editContactInputMailAddresssMobile" id="editContactInputMailAddresssMobileID" type="email" required placeholder="E Mail" value="${email}">
+        <input class="openContactInputPhoneMobile" name="editContactInputPhoneMobile" id="editContactInputPhoneMobileID" type="tel" required pattern="[0-9]{1,}" placeholder="Phone" value="${phone}">
+        <div>
+          <img class="createContactButtonImg" src="../assets/img/contacts/editContactDeleteButtonImg.svg" alt="" onclick="deleteContactMobile('${selectedContact.id}')">
+          <img class="createContactButtonImg" src="../assets/img/contacts/editContactSaveButtonImg.svg" alt="" onclick="updateContactMobile('${selectedContact.id}')">
+        </div>
+      </div>
+    </form>
+  `;
 }
