@@ -179,8 +179,7 @@ function showHeaderAndFooter() {
 function addContactScreenMobile() {
     const content = document.getElementById("all-contacts-id");
     content.innerHTML = addContactFormMobileHTML();
-    hideHeaderAndFooter();
-    // hideAddContactButtonMobile();
+    hideHeaderAndFooter();    
 }
 
 
@@ -327,7 +326,7 @@ function createContactOverlayContent(selectedContact) {
             <div class="dropdown-option" data-value="edit" onclick="showContactOverlay(${selectedContact.id})">
                 <img src="../assets/img/contacts/editContactsDropDownIcon.svg" alt="Edit Contact">
             </div>            
-            <div class="dropdown-option" data-value="delete" onclick="deleteContactMobile(${selectedContact.id})">
+            <div class="dropdown-option" data-value="delete" onclick="deleteContactMobile('${selectedContact.id}')">
                 <img src="../assets/img/contacts/DeleteContactDropwDownIcon.svg" alt="Delete Contact">
             </div>
         </div>
@@ -481,16 +480,13 @@ function deleteContactMobile(contactId) {
       console.error("Logged in user not found.");
       return;
   }
-  // Find the index of the contact with the given contactId
   const index = currentUser.contacts.findIndex(contact => contact.id === contactId);
   if (index === -1) {
       console.error("Contact not found.");
       return;
   }
-  // Remove the contact from the array
-  currentUser.contacts.splice(index, 1);
-  // Update the localStorage
+  currentUser.contacts.splice(index, 1);  
   localStorage.setItem('currentUser', JSON.stringify(currentUser));
-  // Render the updated contacts
+  updateCurrentUserInBackend(currentUser);
   contactsInit();
 }
