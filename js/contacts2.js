@@ -269,7 +269,8 @@ function showContactOverlayMobile(contactId) {
         return;
     }
     const overlayContent = createContactOverlayContent(selectedContact);
-    openOverlay(overlayContent);    
+    openOverlay(overlayContent);
+    setupContactScreen();    
 }
 
 
@@ -339,11 +340,6 @@ function openOverlay(content) {
     overlay.classList.add('overlay');
     overlay.innerHTML = content;
     document.getElementById('all-contacts-id').appendChild(overlay);
-    overlay.addEventListener('click', function(event) {
-        if (event.target === overlay) {
-            closeOverlay(overlay);
-        }
-    });
     document.body.style.overflow = 'hidden';    
 }
 
@@ -356,7 +352,7 @@ function closeOverlay() {
 
 
 function setupContactScreen() {
-    contactsContentBackgroundColorWhiteGray();
+    // contactsContentBackgroundColorWhiteGray();
     addDropdownMenuClickListener();
 }
 
@@ -397,17 +393,13 @@ function addDropdownMenuClickListener() {
         dropdownMenu.style.display = "none";
         document.removeEventListener("click", handleDocumentClick);
       }
-    };
-  
+    };  
     dropdownTrigger.addEventListener("click", function(event) {
-      const isDropdownVisible = (dropdownMenu.style.display === "block");
-  
+      const isDropdownVisible = (dropdownMenu.style.display === "block");  
       // Schließe alle anderen Dropdown-Menüs
-      closeAllDropdowns();
-  
+      closeAllDropdowns();  
       // Zeige oder verstecke das Dropdown-Menü
-      dropdownMenu.style.display = isDropdownVisible ? "none" : "block";
-  
+      dropdownMenu.style.display = isDropdownVisible ? "none" : "block";  
       // Füge einen Event-Listener hinzu, um zu überwachen, ob außerhalb des Dropdown-Menüs geklickt wurde
       if (!isDropdownVisible) {
         document.addEventListener("click", handleDocumentClick);
