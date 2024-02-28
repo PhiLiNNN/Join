@@ -306,7 +306,7 @@ function createContactOverlayContent(selectedContact) {
         </div>                    
     </div>  
     <div class="openContactContainerFooter">
-        <div class="openContactUserImageAndNameContainer" onclick="showContactOverlay(${selectedContact.id})">
+        <div class="openContactUserImageAndNameContainer">
             ${singleMemberToHTML(selectedContact)}           
             <h2 class="openContactH2">${selectedContact.name}</h2>
         </div>
@@ -359,7 +359,7 @@ function closeOverlay() {
 function setupContactScreen() {    
     // showHeaderAndFooter();
     contactsContentBackgroundColorWhiteGray();
-    // addDropdownMenuClickListener();
+    addDropdownMenuClickListener();
 }
 
 
@@ -402,6 +402,8 @@ function addDropdownMenuClickListener() {
         });
         // Sobald das Dropdown-Menü erstellt ist und der Button geklickt wurde, entferne den Event-Listener für den Button
         dropdownTrigger.removeEventListener("click", addDropdownMenuClickListener);
+        // Hinzufügen des Event Listeners, um das Dropdown-Menü zu schließen, wenn außerhalb davon geklickt wird
+        document.addEventListener("click", handleDocumentClick(dropdownTrigger, dropdownMenu));
     });
 }
 
@@ -420,7 +422,7 @@ function closeAllDropdowns() {
   /**
   * Handle click on drop down menu option
   */
-function handleDropdownOptionClick(action) {
+  function handleDropdownOptionClick(action) {
     if (action === "edit") {
       // handle edit action
     } else if (action === "delete") {
@@ -454,7 +456,7 @@ function handleDocumentClick(dropdownTrigger, dropdownMenu) {
     return function (event) {
         if (!dropdownTrigger.contains(event.target) && !dropdownMenu.contains(event.target)) {
             dropdownMenu.style.display = "none";
-            document.removeEventListener("click", handleDocumentClick);
+            document.removeEventListener("click", handleDocumentClick(dropdownTrigger, dropdownMenu)); // Hier den korrekten Event-Listener entfernen
         }
     };
 }
