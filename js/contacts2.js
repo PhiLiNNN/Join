@@ -179,7 +179,9 @@ function showHeaderAndFooter() {
 function addContactScreenMobile() {
     const content = document.getElementById("all-contacts-id");
     content.innerHTML = addContactFormMobileHTML();
-    hideHeaderAndFooter();    
+    content.style.paddingTop = '0px';
+    document.body.style.overflow = 'hidden';
+    hideHeaderAndFooter();
 }
 
 
