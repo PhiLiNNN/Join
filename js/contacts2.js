@@ -378,38 +378,46 @@ function contactsContentBackgroundColorWhiteGray() {
 }
 
 
-  /**
-   * Drop down menu click event listener
-   */
-  function addDropdownMenuClickListener() {
+/**
+ * Drop down menu click event listener
+ */
+function addDropdownMenuClickListener() {
     const dropdownTrigger = document.getElementById("menuContactOptionsButton");
     const dropdownMenu = document.getElementById("contactOptionsDropdown");
     if (!dropdownTrigger || !dropdownMenu) {
       console.error("Dropdown trigger or menu not found");
       return;
-    }  
-  /**
-   * Drop down menu click event listener
-   * @param {string} event - Add the drop down menu to the event listener
-   */
-    const handleDocumentClick = function (event) {
+    }
+  
+    /**
+     * Drop down menu click event listener
+     */
+    const handleDocumentClick = function(event) {
       if (!dropdownTrigger.contains(event.target) && !dropdownMenu.contains(event.target)) {
         dropdownMenu.style.display = "none";
         document.removeEventListener("click", handleDocumentClick);
       }
     };
-    dropdownTrigger.addEventListener("click", function (event) {
-      const isDropdownVisible = (dropdownMenu.style.display === "block");    
-      if (!isDropdownVisible) { 
-        closeAllDropdowns();
-      }
+  
+    dropdownTrigger.addEventListener("click", function(event) {
+      const isDropdownVisible = (dropdownMenu.style.display === "block");
+  
+      // Schließe alle anderen Dropdown-Menüs
+      closeAllDropdowns();
+  
+      // Zeige oder verstecke das Dropdown-Menü
       dropdownMenu.style.display = isDropdownVisible ? "none" : "block";
+  
+      // Füge einen Event-Listener hinzu, um zu überwachen, ob außerhalb des Dropdown-Menüs geklickt wurde
       if (!isDropdownVisible) {
         document.addEventListener("click", handleDocumentClick);
+      } else {
+        document.removeEventListener("click", handleDocumentClick); // Entferne den Event-Listener, wenn das Menü geschlossen wird
       }
-      event.stopPropagation();
+  
+      event.stopPropagation(); // Verhindere, dass der Klick auf den Button das Dropdown-Menü schließt
     });
-}
+  }
 
 
 /**
@@ -438,16 +446,17 @@ function handleDropdownOptionClick(action) {
  
   
 /**
-  * Handle drop down menu option clicked
-  */
+ * Toggle the dropdown menu visibility
+ */
 function toggleDropdownMenu() {
     const dropdownMenu = document.getElementById("contactOptionsDropdown");
     if (dropdownMenu.classList.contains("slide-in")) {
         dropdownMenu.classList.remove("slide-in");
-        addDropdownMenuClickListener();
+        addDropdownMenuClickListener(); // Event listener wieder hinzufügen
     } else {
         dropdownMenu.classList.add("slide-in");
         closeAllDropdowns();
+        // document.addEventListener("click", handleDocumentClick); // Event listener hinzufügen, um außerhalb des Dropdown-Menüs zu klicken
     }
 }
   
