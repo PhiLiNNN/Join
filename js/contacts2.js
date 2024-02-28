@@ -96,13 +96,13 @@ function renderAddContactButtonMobile() {
 
 function hideAddContactButtonMobile() {
     let addContactButtonMobile = document.querySelectorAll(`addContactButtonImgMobile`);    
-    addContactButtonMobile.classList.add('d-none');
+    addContactButtonMobile.classList.add('displayNone');
 }
 
 
 function showAddContactButtonMobile() {
     let addContactButtonMobile = document.querySelectorAll(`addContactButtonImgMobile`);    
-    addContactButtonMobile.classList.remove('d-none');
+    addContactButtonMobile.classList.remove('displayNone');
 }
 
 
@@ -180,7 +180,7 @@ function addContactScreenMobile() {
     const content = document.getElementById("all-contacts-id");
     content.innerHTML = addContactFormMobileHTML();
     hideHeaderAndFooter();
-    hideAddContactButtonMobile();
+    // hideAddContactButtonMobile();
 }
 
 
