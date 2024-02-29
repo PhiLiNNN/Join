@@ -132,3 +132,7 @@ textarea::placeholder {
 .input_global:focus-within {
     border-color: var(--mockup-highlight); 
 }
+
+.d-none {
+    display: none;
+}
