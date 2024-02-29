@@ -3,11 +3,13 @@
 function contactsInit() {    
     renderContacts();
     renderAddContactButtonMobile();
-    setTimeout(showHeaderAndFooter, 500);    
+    setTimeout(showHeaderAndFooter, 500);
+    // showHeaderAndFooter();  
     document.body.style.overflow = 'auto';
     const content = document.getElementById("all-contacts-id");
     content.style.paddingTop = '100px';
     content.style.paddingBottom = '60px';
+    // renderContactsDesktop();
 }
 
 
@@ -581,4 +583,218 @@ function updateContactMobile(contactId) {
   updateCurrentUserInBackend(currentUser);  
   closeContactOverlay();  
   contactsInit();
+}
+
+
+/*-------------------------------------------------------------------------------------------------------------------------------------------------*/
+/* Desktop view */
+
+
+/**
+ * Render function for contacts desktop view
+ */
+function renderContactsDesktop() {
+  const content = document.getElementById("contacts-content-id");
+  content.innerHTML = "";
+  renderAddContactButtonDesktop();
+  const contactsByFirstLetter = groupContactsByFirstLetter();
+  renderContactsByFirstLetter(content, contactsByFirstLetter);
+}
+
+
+/**
+ * Create add contact button for desktop view
+ */
+function renderAddContactButtonDesktop() {
+  const contentDesktop = document.getElementById("contacts-content-id");
+  const addContactButtonContainerDesktop = document.createElement("div");
+  addContactButtonContainerDesktop.classList.add("addContactButtonContainerDesktop");
+  addContactButtonContainerDesktop.innerHTML = /*html*/ `
+    <button class="addContactButtonDesktop" onclick="addContactShowOverlayDesktop()">Add new contact
+      <span><img class="addContactButtonDesktopImg" src="../assets/img/contact/addNewContactDesktopButtonImg.svg" alt=""></span></button>    
+    `;    
+  contentDesktop.appendChild(addContactButtonContainerDesktop);  
+  addContactButtonContainerDesktop.addEventListener("click", function () { 
+  });
+}
+
+
+/**
+ * Create letter div container for sorted contacts by first letter
+ */
+function groupContactsByFirstLetter() {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const contactsByFirstLetter = {};  
+  if (currentUser && currentUser.contacts) {
+    currentUser.contacts.sort((a, b) => a.name.localeCompare(b.name));    
+    currentUser.contacts.forEach((oneContact) => {
+      const firstLetter = oneContact.name.charAt(0).toUpperCase();      
+      if (!contactsByFirstLetter[firstLetter]) {
+        contactsByFirstLetter[firstLetter] = createLetterContainer(firstLetter);
+      }      
+      const oneContactContainer = createContactContainer(oneContact);
+      contactsByFirstLetter[firstLetter] += oneContactContainer;
+    });
+  }
+  return contactsByFirstLetter;
+}
+
+
+/**
+ * Generate HTML for the letters
+ * @param {string} firstLetter - This is the first letter from contact name
+ */
+function createLetterContainer(firstLetter) {
+  return /*html*/ `
+      <div class="letterAndContactsContainer">
+          <div class="letter-column">
+              <h2 class="contact-first-letter">${firstLetter}</h2>
+          </div>
+      </div>
+  `;
+}
+
+
+/**
+ * Generate HTML for each contact
+ * @param {string} oneContact - One contact data oneContact.id / oneContact color / oneContact.name / oneContact.email
+ */
+function createContactContainer(oneContact) {
+  return /*html*/ `
+      <div class="oneContactContainer" id="contact-${oneContact.id}" onclick="openContactScreenDesktop(${oneContact.id})" data-contact-id="${oneContact.id}">
+          <div>                
+              ${singleMemberToHTML(oneContact, 0)}
+          </div>
+          <div class="contact-info-container">
+              <h2 class="oneContactContainerH2Desktop">${oneContact.name}</h2>
+              <a class="oneContactContainerAElement">${oneContact.email}</a>
+          </div>
+      </div>
+  `;
+}
+
+
+/**
+ * Show clicked contact details for desktop view
+ * @param {string} contactId - This is the contact ID example "5"
+ */
+function openContactScreenDesktop(contactId) {
+  const content = document.getElementById("contacts-content-right-side-container-desktop-id");
+  const selectedContact = currentUser.contacts.find(contact => contact.id === contactId);
+  if (lastClickedContactId !== contactId) {
+    openContactsScreenDesktopChangeColorWhite(lastClickedContactId);
+    lastClickedContactId = contactId;
+    openContactsScreenDesktopChangeColorBlack(contactId);
+  }
+  openContactScreenDesktopHTML(content, selectedContact);
+  // showHeaderAndFooter();
+  hideHeaderAndFooter();
+  showContactsContentRightSideDesktop();
+  const contactContainer = document.getElementById("contactsContentRightSideContactDataContainerID");
+  contactContainer.style.animation = "slide-in 0.5s ease-out";
+}
+
+
+/**
+ * Generate HTML for clicked contact details
+ * @param {string} content - contactsContent div container
+ * @param {string} selectedContact - This is the selected contact to open
+ */
+function openContactScreenDesktopHTML(content, selectedContact) {
+  content.innerHTML = /*html*/ `
+    <div class="contactsContentRightSideHeadLine">
+        <h1 class="contactsContentRightSideH1">
+          Contacts
+        </h1>
+        <img class="contactsContentRightSideBlueStribeSvg" src="../../assets/img/contact/contactsContentRightSideBlueStripe.svg" alt="">        
+        <p class="contactsContentRightSideHeadLinePElement">Better with a team</p>
+    </div>  
+    <div id="contactsContentRightSideContactDataContainerID">
+      <div class="contactsContentRightSideUserImgAndNameContainer">
+        ${singleMemberToHTMLOpenContactDesktop(selectedContact, 0)}
+      <div>
+          <h2 class="contactsContentRightSideUserNameH2">${selectedContact.name}</h2>
+            <div class="contactsContentRightSideEditAndDeleteButtonContainer">
+              <img class="contactsContentRightSideEditButton" src="../../assets/img/contact/editContactsButtonDesktop.svg" alt="" onclick="editContactDestop(lastClickedContactId)">
+              <img class="contactsContentRightSideDeleteButton" src="../../assets/img/contact/DeleteContactButtonDesktop.svg" alt="" onclick="deleteContact(lastClickedContactId)">
+            </div>
+        </div> 
+      </div>
+      <div class="contactsContentRightSideContactInformationDesktop">
+        <p class="contactsContentRightSideContactInformationDesktopPText">Contact Information</p>
+      </div>
+      <div class="contactsContentRightSideContactEmailH2Desktop">
+        <h2 class="contactsContentRightSideContactEmailH2">Email</h2>
+      </div>
+      <div class="openContactEmailLinkDesktopContainer">
+        <a class="openContactEmailLinkDesktop" href="mailto:${selectedContact.email}">${selectedContact.email}</a>
+      </div>
+      <div class="contactsContentRightSideContactPhoneH2DesktopContainer">
+        <h2 class="contactsContentRightSideContactPhoneH2Desktop">Phone</h2>
+      </div>
+      <div class="openphoneNumberDesktopContainer">
+        <p class="openphoneNumberDesktopPElement">${selectedContact.phone}</p>
+      </div>
+    </div>
+   `;
+}
+
+
+/**
+ * If contact is not clicked set background-color to white and set text color to black
+ * @param {string} contactId - This is the contact ID example "5"
+ */
+function openContactsScreenDesktopChangeColorWhite(contactId) {
+  const lastClickedContactContainer = document.querySelector(`.oneContactContainer[data-contact-id="${contactId}"]`);
+  if (lastClickedContactContainer) {
+    lastClickedContactContainer.style.backgroundColor = "white";
+    const lastClickedContactH2 = lastClickedContactContainer.querySelector("h2");
+    if (lastClickedContactH2) {
+      lastClickedContactH2.style.color = "black";
+    }
+  }
+}
+
+
+/**
+ * If contact is clicked set background-color to grey/black and set text color to white
+ * @param {string} contactId - This is the contact ID example "5"
+ */
+function openContactsScreenDesktopChangeColorBlack(contactId) {
+  if (contactId) {
+    const currentContactContainer = document.querySelector(`.oneContactContainer[data-contact-id="${contactId}"]`);
+    if (currentContactContainer) {
+      currentContactContainer.style.backgroundColor = "#2A3647";
+      const currentContactH2 = currentContactContainer.querySelector("h2");
+      if (currentContactH2) {
+        currentContactH2.style.color = "white";
+      }
+    }
+  }
+}
+
+
+/**
+ * Show contacts content right side only for desktop view
+ */
+function showContactsContentRightSideDesktop() {
+  const showcontactsContentRightSide = document.getElementById("contacts-content-right-side-container-desktop-id");
+  showcontactsContentRightSide.style.display = "flex";
+}
+
+
+/**
+ * Show the color from user image background html
+ * @param {string} member - This is the user or contact name
+ * @param {string} index - This is the ID for the user or contact
+ */
+function singleMemberToHTMLOpenContactDesktop(member, index) {
+  let textcolor;
+  let iconRightStep = 10;
+  if (!isColorLight(member.colorCode)) textcolor = 'white';
+  return `
+      <div class="openContactUserImg" style="background-color: ${member.colorCode};color:${textcolor};right:${index * iconRightStep}px">
+            ${getFirstLettersOfName(member.name)}
+      </div>
+  `;
 }
