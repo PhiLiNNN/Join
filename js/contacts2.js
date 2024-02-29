@@ -499,8 +499,7 @@ function deleteContactMobile(contactId) {
 
 // Edit contact mobile
 
-function editContactOverlayMobile(contactId) {
-  console.log("function editContactOverlayMobile(contactId)" , contactId);
+function editContactOverlayMobile(contactId) {  
   let content = document.getElementById('all-contacts-id');
     content.innerHTML = "";
     const overlay = document.createElement("div");
