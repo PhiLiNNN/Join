@@ -85,13 +85,6 @@
     
 }
 
-.login-input input {
-    font-size: 18px;
-    line-height: 24px;
-    width: 95%;
-    border: none;
-    outline: none;
-}
 
 .info-icon {
     border: 2px solid var(--mockup-color);
@@ -117,10 +110,6 @@
     margin-right: 4px;
 }
 
-.margin-right {
-    margin-right: 9px;
-}
-
 .tooltip .tooltiptext {
     visibility: hidden;
     width: 285px;
@@ -137,11 +126,6 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
 
-.tooltiptext-small {
-    width: 248px !important;
-}  
-
-
 .tooltiptext ul {
     list-style: circle inside;
 }
@@ -149,12 +133,6 @@
 .tooltip:hover .tooltiptext {
     visibility: visible;
 }
-
-
-
-
-
-
 
 .login-email {
     width: 20px;

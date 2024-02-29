@@ -75,6 +75,11 @@ h2 {
     width: 104px !important;
 }
 
+.width-big {
+    width: 104px !important;
+}
+
+
 .filled-btn {
     background-color: var(--mockup-color);
     color: white;
@@ -98,7 +103,8 @@ h2 {
 }
 
 
-.login-input { 
+.input_global,
+.textarea-style { 
     position: relative;
     width: 100%;
     border-radius: 10px;
@@ -110,14 +116,40 @@ h2 {
     padding: 12px 21px;
 }
 
+.input_global input {
+    font-size: 18px;
+    line-height: 24px;
+    width: 95%;
+    outline: none;
+    border: none;
+}
+
+.textarea-style {
+    resize: none;
+    outline: none;
+    font-size: 18px;
+    line-height: 24px;
+    height: 90px;
+    padding: 18px 21px;
+}
+
+.textarea-style:focus-within{
+    border-color: var(--mockup-highlight); 
+}
+
 .error-border { 
     border: 1px solid var(--err-msg-color);
 }
 
-input::placeholder {
+input::placeholder,
+textarea::placeholder {
     color: var(--placeholder-color); 
 }
 
-.login-input:focus-within {
+.input_global:focus-within {
     border-color: var(--mockup-highlight); 
+}
+
+.d-none {
+    display: none;
 }

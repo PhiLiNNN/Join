@@ -1,3 +1,16 @@
+/* Mobile view */
+
+.displayNone {
+    display: none;
+}
+
+.allContacts {
+    position: relative;
+    overflow-y: auto;
+    padding-top: 100px;
+    padding-bottom: 60px;
+}
+
 .addContactButtonContainerMobile {
     display: flex;
     justify-content: flex-end;
@@ -85,6 +98,7 @@
     position: relative;
     font-size: 20px;
     font-weight: 400;
+    cursor: pointer;
 }
 
 .addContactInputMailAddresssMobile {
@@ -100,6 +114,7 @@
     position: relative;
     font-size: 20px;
     font-weight: 400;
+    cursor: pointer;
 }
 
 .addContactInputPhoneMobile {
@@ -115,17 +130,20 @@
     position: relative;
     font-size: 20px;
     font-weight: 400;
+    cursor: pointer;
 }
 
 .createContactButtonImg {
     height: 51px;
+    cursor: pointer;
 }
 
 .addContactButtonImgMobile {
     height: 51px;
     position: absolute;
-    bottom: 100px;
+    bottom: 90px;
     right: 20px;
+    cursor: pointer;    
 }
 
 .letterAndContactsContainer {
@@ -133,8 +151,7 @@
     align-items: center;
     margin: 10px;
     border-bottom: 2px solid var(--placeholder-color);
-    padding-bottom: 10px;
-    margin-top: 120px;
+    padding-bottom: 10px;    
 }
 
 .letter-column {
@@ -186,13 +203,17 @@
 
 /* Open Contakt Overlay Mobile */
 
+.overlay  {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
 .openContactContainerHeader {
     display: flex;
     background-color: var(--white-grey);
     height: 20vh;
-    padding-top: 2em;
-    margin-left: 1em;
-    margin-top: 80px;
+    padding-top: 2em;    
 }
 
 .openContactCloseXContainer {
@@ -203,6 +224,7 @@
 
 .openContactBlockHeader {
     display: flex;
+    margin-left: 1em;
 }
 
 .openContactH1 {
@@ -235,6 +257,7 @@
     position: relative;
     font-size: 20px;
     font-weight: 400;
+    cursor: pointer;
 }
 
 .openContactInputMailAddresssMobile {
@@ -250,6 +273,7 @@
     position: relative;
     font-size: 20px;
     font-weight: 400;
+    cursor: pointer;
 }
 
 .openContactInputPhoneMobile {
@@ -265,9 +289,10 @@
     position: relative;
     font-size: 20px;
     font-weight: 400;
+    cursor: pointer;
 }
 
-  .openContactInputPhoneMobile:focus {
+.openContactInputPhoneMobile:focus {
     outline: none;
     border-color: var(--mockup-highlight);
 }
@@ -284,6 +309,7 @@
     position: absolute;
     top: 105h;
     right: 5vw;
+    cursor: pointer;
 }
 
 .openContactContainerFooter {
@@ -358,7 +384,7 @@
 .dropdown-menu {
     display: none;
     position: absolute;
-    left: 100%; /* Startposition außerhalb des Bildschirms */
+    left: 100%;
     top: 5em;
     border-radius: 15px;
     background-color: var(--white-color);
@@ -368,16 +394,15 @@
 }
 
 .dropdown-menu.slide-in {
-    display: block;
-    
+    display: block;    
 }
 
 @keyframes slide-in-menu {
     from {
-        left: 100%; /* Startposition außerhalb des Bildschirms */
+        left: 100%;
     }
     to {
-        left: 0; /* Endposition am linken Rand */
+        left: 0;
     }
 }
 
@@ -388,7 +413,7 @@
 
 .dropdown-option:hover {
     cursor: pointer;
-    background-color: var(--light-blue);
+    background-color: var(--mockup-highlight);
 }
 
 #contactOptionsDropdownContainer {    
@@ -398,8 +423,6 @@
 .member-icon {
     border-radius: 100%;
 }
-
-
 
 .editContactContainerHeader {
     display: flex;
@@ -424,7 +447,7 @@
 .addContactCloseXContainer {
     position: fixed;
     top: 1em;
-    right: 2em;
+    right: 2em;    
 }
 
 .addContactCloseXButtonMobile {
@@ -436,6 +459,7 @@
     font-weight: bold;
     font-size: 24px;
     background-color: var(--light-grey);
+    cursor: pointer;
 }
 
 .addContactCloseXButtonMobile:active {
@@ -493,7 +517,7 @@
     box-shadow: 0 4px 8px rgb(255, 255, 255, );   
     padding: 15px 24px 15px 24px;
     color: var(--light-grey);
-    background-color: white;
+    background-color: var(--white-color);
     font-size: 21px;
     font-weight: 400;
     border-color: var(--light-grey);
@@ -518,4 +542,22 @@
   
 .cancelContactDesktopDeleteButtonConfirmationContainerMobile {
     margin-top: 1.5rem;
+}
+
+/* Desktop view */
+/*-----------------------------------------------------------------------------------------------------------------------*/
+
+@media only screen and (max-width: 4000px) and (min-width: 760px) {
+    .contactsContent {
+        background-color: var(--white-color);
+        overflow-x: hidden;
+        position: relative;    
+        min-width: 30%;
+        height: 91vh;
+        overflow-y: scroll;
+    }
+
+    .footerCLass {
+        display: none!important;
+    }
 }

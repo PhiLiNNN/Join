@@ -15,25 +15,39 @@
     <script src="./js/template.js"></script>
     <script src="./js/register.js"></script>
     <script src="./js/login.js"></script>
-    <script src="./js/contacts.js"></script>
-    <script src="./js/addContactMobile.js"></script>
-    <script src="./js/openContactOverlayMobile.js"></script>
-    <script src="./js/editContactOverlayMobile.js"></script>
-    <script src="./js/deleteEditContact.js"></script>
+    <script src="./js/contacts2.js"></script>
     <script src="./js/includeHTML.js"></script>
+
+
+    <!--Fav icon integration</!-->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./favicon-16x16.png"
+    />
 </head>
 
-<body onload="contactsInit(); getLoggedInUser(); includeHTML();">
-
-    <div w3-include-html="./assets/templates/header.html"></div>
+<body onload="contactsInit(); includeHTML();">
     
-    <div class="test" id="contacts-content-id">
-        <div> 
-            <img src="./assets/img/contacts/addContactButtonMobile.svg" class="addContactImage" onclick="addContactScreenMobile()">`;
-        </div>
-    </div>
-
+  <div class="contactsContent" id="contacts-content-id">
+    <div w3-include-html="./assets/templates/header.html"></div>
+    <div id="all-contacts-id" class="allContacts"></div>
+    <div id="one-contact-id"></div>
+    <div class="contactsContentRightSideContainerDesktop" id="contacts-content-right-side-container-desktop-id"></div>
     <div w3-include-html="./assets/templates/footer.html"></div>
+  </div>
     
 </body>
 

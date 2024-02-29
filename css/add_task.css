@@ -1,0 +1,45 @@
+.content-container {
+    margin-top: 80px;
+    padding: 48px 16px 0 16px;
+
+}
+
+.default-text::placeholder {
+    color: black !important;
+}
+
+.input_at {
+    padding: 10px 21px !important;
+}
+.input_at input {
+    font-size: 16px !important;
+}
+
+
+
+.rotate-arrow {
+    width: 12px; 
+    height: 12px;
+    cursor: pointer;
+    transition: transform 300ms ease;
+}
+
+#Assigned-to-contacts-id {
+    max-height: 0;
+    transition: max-height 300ms ease;
+ }
+  
+#Assigned-to-contacts-id.visible {
+    max-height: 100px; 
+    overflow-y: auto; 
+}
+
+.assigned-to-content {
+    opacity: 0;
+    transition: opacity 900ms ease-in; 
+}
+
+#Assigned-to-contacts-id.visible .assigned-to-content {
+    opacity: 1;
+
+}

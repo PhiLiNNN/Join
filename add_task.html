@@ -1,27 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!--Fav icon integration</!-->
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png"/>
+    <link rel="icon" type="image/png"sizes="32x32" href="./favicon-32x32.png"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png"/>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/footer.css">
     <link rel="stylesheet" href="./css/header.css">
-    <script src="script.js" ></script>
+    <link rel="stylesheet" href="./css/add_task.css">
+    <script src="./js/add_task.js" ></script>
+    <script src="./js/register.js" ></script>
+    <script src="./js/template.js" ></script>
     <script src="./js/includeHTML.js"></script>
 
     <title>Document</title>
 
 </head>
-<body onload="init(); includeHTML()">
+<body onload="initAddTask(); includeHTML()">
 
     <div w3-include-html="./assets/templates/header.html"></div>
-    <div>
-     <h1>Add Task</h1>
+    
+    <div class="content-container">
+        <h1>Add Task</h1>
+        <div class="content-top-and-left ">
+            <div class="at-title">
+                <label>Title</label>
+                <div class="input_global  input_at">
+                    <input  type="text" placeholder="Enter a title">
+                </div>
+            </div>
+            <div class="at-description">
+                <label>Description</label>
+                <textarea class="textarea-style" placeholder="Enter a description"  maxlength="500"></textarea>
+            </div>
+            <div class="at-assignedto">
+                <label>Assigned to</label>
+                <div class="input_global input_at">
+                    <input placeholder="Select contacts to assign">
+                    <img id="rotate-arrow-id" class="rotate-arrow" src="./assets/svg/arrow_drop_down.svg" onclick="toggleAssignedToContainer()" >
+                </div>
+                <div id="Assigned-to-contacts-id" class=""></div>
+                
+                <div>added assigned icons here</div>
+            </div>
+        </div>
+        <div class="content-bottom-and-rigth">
+            <div class="at-date ">
+                <label>Due date</label>
+                <div class="input_global input_at">
+                    <input  type="date"  max="2025-12-31" min="2024-02-27">
+                </div>
+            </div>
+            <div class="at-Prio ">
+                <label>Prio</label>
+            </div>
+            <div>
+                <div><span>Urgent</span><img src="" alt=""></div>
+                <div><span>Medium</span><img src="" alt=""></div>
+                <div><span>Low</span><img src="" alt=""></div>
+            </div>
+            <div class="at-Category ">
+                <label>Category</label>
+                <div class="input_global input_at">
+                    <input  type="text" placeholder="Select task category">
+                </div>
+            </div>
+            <div>
+                <div>
+                    Technical Task<br>
+                    User Story
+                </div>
+            </div>
+            <div class="at-subtasks ">
+                <label>Subtasks</label>
+                <div class="input_global input_at">
+                    <input  type="text"  placeholder="Add new subtask">
+                </div>
+            </div>
+            <div>
+                <ul>
+                    <li> Task 1</li>
+                    <li> Task 2</li>
+                    <li> Task 3</li>
+                </ul>
+            </div>
+            <div class="content-bottom-container">
+                <span>This field is required</span>
+                <button class="white-btn width-small">Clear X</button>
+                <button class="filled-btn">Create Task checkimg</button>
+            </div>
+        </div>
     </div>
 
 
-    <div w3-include-html="./templates/test.html"></div>
-    
     <div w3-include-html="./assets/templates/footer.html"></div>
+
 </body>
 </html>
