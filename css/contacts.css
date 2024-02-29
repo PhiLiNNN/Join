@@ -1,3 +1,5 @@
+/* Mobile view */
+
 .displayNone {
     display: none;
 }
@@ -5,8 +7,8 @@
 .allContacts {
     position: relative;
     overflow-y: auto;
-    padding-top: 100px; /* Platz für den Header */
-    padding-bottom: 60px; /* Platz für den Footer */
+    padding-top: 100px;
+    padding-bottom: 60px;
 }
 
 .addContactButtonContainerMobile {
@@ -290,7 +292,7 @@
     cursor: pointer;
 }
 
-  .openContactInputPhoneMobile:focus {
+.openContactInputPhoneMobile:focus {
     outline: none;
     border-color: var(--mockup-highlight);
 }
@@ -397,10 +399,10 @@
 
 @keyframes slide-in-menu {
     from {
-        left: 100%; /* Startposition außerhalb des Bildschirms */
+        left: 100%;
     }
     to {
-        left: 0; /* Endposition am linken Rand */
+        left: 0;
     }
 }
 
@@ -421,8 +423,6 @@
 .member-icon {
     border-radius: 100%;
 }
-
-
 
 .editContactContainerHeader {
     display: flex;
@@ -517,7 +517,7 @@
     box-shadow: 0 4px 8px rgb(255, 255, 255, );   
     padding: 15px 24px 15px 24px;
     color: var(--light-grey);
-    background-color: white;
+    background-color: var(--white-color);
     font-size: 21px;
     font-weight: 400;
     border-color: var(--light-grey);
@@ -544,3 +544,20 @@
     margin-top: 1.5rem;
 }
 
+/* Desktop view */
+/*-----------------------------------------------------------------------------------------------------------------------*/
+
+@media only screen and (max-width: 4000px) and (min-width: 760px) {
+    .contactsContent {
+        background-color: var(--white-color);
+        overflow-x: hidden;
+        position: relative;    
+        min-width: 30%;
+        height: 91vh;
+        overflow-y: scroll;
+    }
+
+    .footerCLass {
+        display: none!important;
+    }
+}
