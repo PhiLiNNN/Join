@@ -96,6 +96,7 @@
     position: relative;
     font-size: 20px;
     font-weight: 400;
+    cursor: pointer;
 }
 
 .addContactInputMailAddresssMobile {
@@ -111,6 +112,7 @@
     position: relative;
     font-size: 20px;
     font-weight: 400;
+    cursor: pointer;
 }
 
 .addContactInputPhoneMobile {
@@ -126,17 +128,20 @@
     position: relative;
     font-size: 20px;
     font-weight: 400;
+    cursor: pointer;
 }
 
 .createContactButtonImg {
     height: 51px;
+    cursor: pointer;
 }
 
 .addContactButtonImgMobile {
     height: 51px;
     position: absolute;
     bottom: 90px;
-    right: 20px;    
+    right: 20px;
+    cursor: pointer;    
 }
 
 .letterAndContactsContainer {
@@ -250,6 +255,7 @@
     position: relative;
     font-size: 20px;
     font-weight: 400;
+    cursor: pointer;
 }
 
 .openContactInputMailAddresssMobile {
@@ -265,6 +271,7 @@
     position: relative;
     font-size: 20px;
     font-weight: 400;
+    cursor: pointer;
 }
 
 .openContactInputPhoneMobile {
@@ -280,6 +287,7 @@
     position: relative;
     font-size: 20px;
     font-weight: 400;
+    cursor: pointer;
 }
 
   .openContactInputPhoneMobile:focus {
@@ -299,6 +307,7 @@
     position: absolute;
     top: 105h;
     right: 5vw;
+    cursor: pointer;
 }
 
 .openContactContainerFooter {
@@ -438,7 +447,7 @@
 .addContactCloseXContainer {
     position: fixed;
     top: 1em;
-    right: 2em;
+    right: 2em;    
 }
 
 .addContactCloseXButtonMobile {
@@ -450,6 +459,7 @@
     font-weight: bold;
     font-size: 24px;
     background-color: var(--light-grey);
+    cursor: pointer;
 }
 
 .addContactCloseXButtonMobile:active {
