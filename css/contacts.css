@@ -402,7 +402,7 @@
 
 .dropdown-option:hover {
     cursor: pointer;
-    background-color: var(--light-blue);
+    background-color: var(--mockup-highlight);
 }
 
 #contactOptionsDropdownContainer {    
