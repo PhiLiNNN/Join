@@ -5,7 +5,6 @@
     font-style: normal;
 }
 
-
 :root {
     --mockup-color: #2a3647;
     --mockup-highlight: #29ABE2;
@@ -20,6 +19,15 @@
 body {
     margin: 0;
     box-sizing: border-box;
+    background-color: var(--white-grey);
+}
+
+h1 {
+    font-size: 47px;
+}
+
+h2 {
+    font-size: 27px;
 }
 
 
