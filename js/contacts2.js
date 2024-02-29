@@ -1,3 +1,5 @@
+// Render contacts mobile view
+
 function contactsInit() {    
     renderContacts();
     renderAddContactButtonMobile();
@@ -555,4 +557,28 @@ function createEditContactHTML(selectedContact, colorCode, textColor) {
       </div>
     </form>
   `;
+}
+
+
+function updateContactMobile(contactId) {  
+  const updatedName = document.getElementById('editContactInputNameMobileID').value;
+  const updatedEmail = document.getElementById('editContactInputMailAddresssMobileID').value;
+  const updatedPhone = document.getElementById('editContactInputPhoneMobileID').value;  
+  const currentUser = getLoggedInUser();
+  if (!currentUser) {
+      console.error("Logged in user not found.");
+      return;
+  }  
+  const contactIndex = currentUser.contacts.findIndex(contact => contact.id === contactId);
+  if (contactIndex === -1) {
+      console.error("Contact not found.");
+      return;
+  }  
+  currentUser.contacts[contactIndex].name = updatedName;
+  currentUser.contacts[contactIndex].email = updatedEmail;
+  currentUser.contacts[contactIndex].phone = updatedPhone;  
+  localStorage.setItem('currentUser', JSON.stringify(currentUser));
+  updateCurrentUserInBackend(currentUser);  
+  closeContactOverlay();  
+  contactsInit();
 }
