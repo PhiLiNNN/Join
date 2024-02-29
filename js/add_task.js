@@ -24,7 +24,7 @@ function toggleAssignedToContainer() {
     arrowElement.style.transform = 'rotate(180deg)';
     toggleVisibility('Assigned-to-contacts-id', false, className = 'visible');
   } else {
-    contentContainer.style.transition = 'opacity 300ms ease';
+    contentContainer.style.transition = 'opacity 0ms ease';
     toggleVisibility('Assigned-to-contacts-id', true, className = 'visible');
     arrowElement.style.transform = 'none'; 
   }
