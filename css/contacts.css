@@ -550,6 +550,9 @@
     display: none;
 }
 
+.addContactButtonContainerDesktop {
+    display: none;
+}
 
 /* Desktop view */
 /*-----------------------------------------------------------------------------------------------------------------------*/
@@ -571,7 +574,7 @@
     }
 
     .addContactButtonImgMobile {
-        display: none!important;
+        
     }
 
     .contactsContentContainerDesktop {

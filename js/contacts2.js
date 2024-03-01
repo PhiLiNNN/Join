@@ -54,24 +54,23 @@ function createLetterAndContactsContainer(firstLetter) {
 
 
 function createOneContactContainer(oneContact) {
-    const container = document.createElement('div');
-    container.classList.add('oneContactContainer');
-    container.setAttribute('onclick', `showContactOverlayMobile('${oneContact.id}')`);    
-    const randomColor = getRandomColorHex();
-    const textColor = isColorLight(randomColor) ? 'white' : 'black';
-    const iconHtml = renderSingleMemberToHTMLMobile(oneContact, randomColor, textColor);  
-    container.innerHTML = `
-      <div class="contact-info-container">
-        <div>
-          ${iconHtml}
-        </div>
-        <div>
-          <h2 class="oneContactContainerH2Mobile">${oneContact.name}</h2>
-          <a class="oneContactContainerAElement">${oneContact.email}</a>
-        </div>
+  const container = document.createElement('div');
+  container.classList.add('oneContactContainer');
+  container.setAttribute('onclick', `showContactOverlayMobile('${oneContact.id}')`);  
+  const textColor = isColorLight(oneContact.colorCode) ? 'white' : 'black';
+  const iconHtml = renderSingleMemberToHTMLMobile(oneContact, oneContact.colorCode, textColor);
+  container.innerHTML = `
+    <div class="contact-info-container">
+      <div>
+        ${iconHtml}
       </div>
-    `;
-    return container;
+      <div>
+        <h2 class="oneContactContainerH2Mobile">${oneContact.name}</h2>
+        <a class="oneContactContainerAElement">${oneContact.email}</a>
+      </div>
+    </div>
+  `;
+  return container;
 }
 
 
@@ -207,6 +206,7 @@ async function createContactMobile() {
     const newContact = getNewContact();
     newContact.id = generateUniqueID();    
     addContactToCurrentUser(newContact);
+    contactsInit();
 }
 
 
@@ -219,15 +219,21 @@ function getNewContact() {
 
 
 async function addContactToCurrentUser(newContact) {
-    const currentUser = getLoggedInUser();
-    if (!currentUser) {
-        console.error("Logged in user not found.");
-        return;
-    }
-    currentUser.contacts.push(newContact);
-    localStorage.setItem('currentUser', JSON.stringify(currentUser));
-    updateCurrentUserInBackend(currentUser)    
-    contactsInit();
+  const currentUser = getLoggedInUser();
+  if (!currentUser) {
+      console.error("Logged in user not found.");
+      return;
+  }
+  newContact.id = generateUniqueID();  
+  let colorCode = localStorage.getItem(`color_${newContact.id}`);
+  if (!colorCode) {      
+      colorCode = getRandomColorHex();      
+      localStorage.setItem(`color_${newContact.id}`, colorCode);
+  }  
+  newContact.colorCode = colorCode;
+  currentUser.contacts.push(newContact);
+  localStorage.setItem('currentUser', JSON.stringify(currentUser));
+  updateCurrentUserInBackend(currentUser)
 }
 
 
