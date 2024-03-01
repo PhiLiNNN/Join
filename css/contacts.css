@@ -183,12 +183,14 @@
     color: var(--black-color);
     font-size: 20px;
     font-weight: 400;
+    margin-left: 20px;
 }
 
 .oneContactContainerAElement {
     color: var(--hyper-link-color);
     text-decoration: none;
     cursor: pointer;
+    margin-left: 20px;
 }
 
 .openContactUserImgMobile {
