@@ -57,8 +57,7 @@ function createOneContactContainer(oneContact) {
   const container = document.createElement('div');
   container.classList.add('oneContactContainer');
   container.setAttribute('onclick', `showContactOverlayMobile('${oneContact.id}')`);  
-  const textColor = isColorLight(oneContact.colorCode) ? 'white' : 'black';
-  const iconHtml = renderSingleMemberToHTMLMobile(oneContact, oneContact.colorCode, textColor);
+  const iconHtml = renderSingleMemberToHTMLMobile(oneContact, oneContact.colorCode, oneContact.textColorCode);
   container.innerHTML = `
     <div class="contact-info-container">
       <div>
@@ -226,11 +225,15 @@ async function addContactToCurrentUser(newContact) {
   }
   newContact.id = generateUniqueID();  
   let colorCode = localStorage.getItem(`color_${newContact.id}`);
-  if (!colorCode) {      
-      colorCode = getRandomColorHex();      
+  let textColorCode = localStorage.getItem(`textColor_${newContact.id}`);
+  if (!colorCode || !textColorCode) {      
+      colorCode = getRandomColorHex();
+      textColorCode = isColorLight(colorCode) ? 'white' : 'black';      
       localStorage.setItem(`color_${newContact.id}`, colorCode);
+      localStorage.setItem(`textColor_${newContact.id}`, textColorCode);
   }  
   newContact.colorCode = colorCode;
+  newContact.textColorCode = textColorCode;
   currentUser.contacts.push(newContact);
   localStorage.setItem('currentUser', JSON.stringify(currentUser));
   updateCurrentUserInBackend(currentUser)
