@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/contacts.css">
     <link rel="stylesheet" href="./css/footer.css">
+    <link rel="stylesheet" href="./css/desktop_footer.css">
     <link rel="stylesheet" href="./css/header.css">
 
     <!--script.js integration</!-->
@@ -41,18 +42,21 @@
 
 <body onload="contactsInit(); includeHTML();">
     
-  <div class="contactsContent" id="contacts-content-id">
-    <div w3-include-html="./assets/templates/header.html"></div>
+  <div w3-include-html="./assets/templates/header.html"></div>
+  <div class="contactsContent" id="contacts-content-id">    
     <div id="all-contacts-id" class="allContacts"></div>
     <div id="one-contact-id"></div>    
-    <div w3-include-html="./assets/templates/footer.html"></div>
   </div>
 
-  <div class="contactsContentContainerDesktop" id="contacts-content-container-desktop-id">
-    <div w3-include-html="./assets/templates/header.html"></div>
-    <div class="contactsContentDesktop" id="contacts-content-desktop-id"></div>
-    <div w3-include-html="./assets/templates/footer.html"></div>
+  <div w3-include-html="./assets/templates/footer.html"></div>
+
+
+  <div w3-include-html="./assets/templates/header.html"></div>
+  <div class="contactsContentContainerDesktop" id="contacts-content-container-desktop-id">    
+    <div class="contactsContentDesktop" id="contacts-content-desktop-id"><h1>contactsContentDesktop</h1></div>    
   </div>
+
+  <div w3-include-html="./assets/templates/desktop_footer.html"></div>
     
 </body>
 
