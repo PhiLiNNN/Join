@@ -146,6 +146,16 @@
     cursor: pointer;    
 }
 
+/*
+.addContactButtonImgMobile {
+    height: 51px;
+    position: absolute;
+    bottom: 90px;
+    right: 20px;
+    cursor: pointer;    
+}
+*/
+
 .letterAndContactsContainer {
     display: flex;
     align-items: center;
