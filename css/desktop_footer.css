@@ -16,7 +16,7 @@
     padding: 64px 66px 114px 66px;
 }
 
-.menu-box {
+.desktop-menu-box {
     width: 232px;
     height: 229px;
     gap: 15px;
@@ -26,7 +26,7 @@
     flex-direction: column;
 }
 
-.footer-icon-box {
+.desktop-footer-icon-box {
     height: 46px;
     width: 165px;
     padding-left: 66px;
@@ -35,13 +35,13 @@
     align-items: center;
 }
 
-.footer-icon {
+.desktop-footer-icon {
     height: 30px;
     width: 30px;
     color: #a8a8a8;
 }
 
-.footer-link {
+.desktop-footer-link {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -51,7 +51,7 @@
     font-weight: 400;
 }
 
-.data-box {
+.desktop-data-box {
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -59,7 +59,7 @@
     padding: 0 52px 64px 52px;
 }
 
-.data-link {
+.desktop-data-link {
     text-decoration: none;
     color: #a8a8a8;
     padding: 8px;
