@@ -61,10 +61,6 @@ footer {
     color: white;
 }
 
-.footer-link:hover {
-    background-color: #091931; 
-    border-radius: 8px;
- }
  .footer-link:active {
     background-color: #091931; 
     border-radius: 8px;
