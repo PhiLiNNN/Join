@@ -140,8 +140,8 @@
 
 .addContactButtonImgMobile {
     height: 51px;
-    position: absolute;
-    bottom: 90px;
+    position: sticky;
+    bottom: 20px;
     right: 20px;
     cursor: pointer;    
 }
