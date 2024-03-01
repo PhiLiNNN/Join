@@ -1,8 +1,30 @@
 let isRotated = false;
+let contacts  = [];
 
-async function initAddTask() {
-    
+function initAddTask() {
+  selcetAllContact();
+
 }
+
+function selcetAllContact() {
+  const getCurrentUsers = localStorage.getItem("currentUser");
+  const parsUsers  = JSON.parse(getCurrentUsers);
+  parsUsers.contacts.forEach(contact => {
+    contacts.push(contact.name)
+  });
+
+}
+
+
+function sortContactBySurname() {
+  return [...contacts].sort((a, b) => {
+    const surnameA = a.split(' ')[1];
+    const surnameB = b.split(' ')[1];
+    return surnameA.localeCompare(surnameB);
+  });
+}
+
+
 
 // Funktrion wieder löschen, wenn alles fertig ist
 function showHeaderAndFooter() {
@@ -16,18 +38,17 @@ function showHeaderAndFooter() {
 
 function toggleAssignedToContainer() {
   const arrowElement = document.getElementById('rotate-arrow-id');
-  const assignedToContainer = document.getElementById('Assigned-to-contacts-id');
-  const contentContainer = document.getElementById('assigned-to-content-id');
-  isRotated = !isRotated; 
-  if (isRotated) {
-    assignedToContainer.innerHTML = templateAssignedToContainerHTML();
-    arrowElement.style.transform = 'rotate(180deg)';
-    toggleVisibility('Assigned-to-contacts-id', false, className = 'visible');
-  } else {
-    contentContainer.style.transition = 'opacity 0ms ease';
-    toggleVisibility('Assigned-to-contacts-id', true, className = 'visible');
-    arrowElement.style.transform = 'none'; 
-  }
+  const assignedToContainer = document.getElementById('assigned-to-contacts-id');
+  assignedToContainer.innerHTML = '';
+  assignedToContainer.classList.toggle('active');
+  arrowElement.classList.toggle('upsidedown');
+  const sortedContacts =  sortContactBySurname();
+  sortedContacts.forEach(contact => {
+     assignedToContainer.innerHTML += templateAssignedToContainerHTML(contact);
+  });
+  console.log(sortedContacts)
+    
 }
+
 
 

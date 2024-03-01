@@ -21,25 +21,21 @@
     width: 12px; 
     height: 12px;
     cursor: pointer;
+    transform: rotate(0deg);
     transition: transform 300ms ease;
 }
-
-#Assigned-to-contacts-id {
-    max-height: 0;
-    transition: max-height 300ms ease;
- }
-  
-#Assigned-to-contacts-id.visible {
-    max-height: 100px; 
-    overflow-y: auto; 
+.rotate-arrow.upsidedown {
+    transform: rotate(180deg);
 }
 
-.assigned-to-content {
+.dropdown {
+    height: 0;
     opacity: 0;
-    transition: opacity 900ms ease-in; 
+    overflow-y: auto;
+    transition: all 300ms ease-in-out;
 }
 
-#Assigned-to-contacts-id.visible .assigned-to-content {
+.dropdown.active {
+    height: 100px;
     opacity: 1;
-
 }
