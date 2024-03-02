@@ -25,18 +25,19 @@
     
     <div class="content-container">
         <h1>Add Task</h1>
+        <div class="content-top-and-left">
             <div class="at-title">
-                <label>Title</label>
+                <div class="at-label-style">Title<sup>*</sup></div>
                 <div class="input_global  input_at">
                     <input  type="text" placeholder="Enter a title">
                 </div>
             </div>
             <div class="at-description">
-                <label>Description</label>
+                <div class="at-label-style">Description</div>
                 <textarea class="textarea-style" placeholder="Enter a description"  maxlength="500"></textarea>
             </div>
             <div class="at-assignedto">
-                <label>Assigned to</label>
+                <div class="at-label-style">Assigned to</div>
                 <div class="input_global input_at">
                     <input placeholder="Select contacts to assign">
                     <img id="rotate-arrow-id" class="rotate-arrow" src="./assets/svg/arrow_drop_down.svg" onclick="toggleAssignedToContainer()">
@@ -47,13 +48,13 @@
         </div>
         <div class="content-bottom-and-rigth">
             <div class="at-date ">
-                <label>Due date</label>
+                <div class="at-label-style">Due date<sup>*</sup></div>
                 <div class="input_global input_at">
                     <input  type="date"  max="2025-12-31" min="2024-02-27">
                 </div>
             </div>
-            <div class="at-Prio ">
-                <label>Prio</label>
+            <div class="at-Prio">
+                <div class="at-label-style">Prio</div>
             </div>
             <div>
                 <div><span>Urgent</span><img src="" alt=""></div>
@@ -61,7 +62,7 @@
                 <div><span>Low</span><img src="" alt=""></div>
             </div>
             <div class="at-Category ">
-                <label>Category</label>
+                <span class="at-label-style">Category</span>
                 <div class="input_global input_at">
                     <input  type="text" placeholder="Select task category">
                 </div>
@@ -73,7 +74,7 @@
                 </div>
             </div>
             <div class="at-subtasks ">
-                <label>Subtasks</label>
+                <div class="at-label-style">Subtasks</div>
                 <div class="input_global input_at">
                     <input  type="text"  placeholder="Add new subtask">
                 </div>
@@ -86,7 +87,7 @@
                 </ul>
             </div>
             <div class="content-bottom-container">
-                <span>This field is required</span>
+                <span><sup>*</sup>This field is required</span>
                 <button class="white-btn width-small">Clear X</button>
                 <button class="filled-btn">Create Task checkimg</button>
             </div>

@@ -95,10 +95,16 @@ function addContactFormMobileHTML() {
     `;
 }
 
-function templateAssignedToContainerHTML(contact) {
+function templateAssignedToContainerHTML(contact, index) {
     return /*html*/ `
-        <div id="assigned-to-content-id" class="assigned-to-content">
+        <div id="assigned-to-box-${index}" class="assigned-to-box"  onclick="selectedAssignedToUser(event)">
+          <div class="assigned-to-user">
+            <div class="circle-style"></div>
             <div>${contact}</div>
+          </div>
+          <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="1" y="1.96582" width="16" height="16" rx="3" stroke="#2A3647" stroke-width="2"/>
+          </svg>
         </div>
     `;
 }

@@ -1,5 +1,6 @@
 let isRotated = false;
 let contacts  = [];
+let loggedUser;
 
 function initAddTask() {
   selcetAllContact();
@@ -9,6 +10,7 @@ function initAddTask() {
 function selcetAllContact() {
   const getCurrentUsers = localStorage.getItem("currentUser");
   const parsUsers  = JSON.parse(getCurrentUsers);
+  loggedUser = parsUsers.userName;
   parsUsers.contacts.forEach(contact => {
     contacts.push(contact.name)
   });
@@ -17,6 +19,7 @@ function selcetAllContact() {
 
 
 function sortContactBySurname() {
+  
   return [...contacts].sort((a, b) => {
     const surnameA = a.split(' ')[1];
     const surnameB = b.split(' ')[1];
@@ -39,16 +42,20 @@ function showHeaderAndFooter() {
 function toggleAssignedToContainer() {
   const arrowElement = document.getElementById('rotate-arrow-id');
   const assignedToContainer = document.getElementById('assigned-to-contacts-id');
+  const sortedContacts =  sortContactBySurname();
+  
   assignedToContainer.innerHTML = '';
   assignedToContainer.classList.toggle('active');
   arrowElement.classList.toggle('upsidedown');
-  const sortedContacts =  sortContactBySurname();
-  sortedContacts.forEach(contact => {
-     assignedToContainer.innerHTML += templateAssignedToContainerHTML(contact);
-  });
-  console.log(sortedContacts)
-    
+  sortedContacts.forEach((contact, index) => {
+    if (contact === loggedUser) 
+      contact = contact + ' (you)'
+    assignedToContainer.innerHTML += templateAssignedToContainerHTML(contact, index);
+  });   
 }
 
 
-
+function selectedAssignedToUser(event) {
+  console.log(event.currentTarget);
+  event.currentTarget.classList.toggle('selected-contact');
+}
