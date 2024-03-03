@@ -185,7 +185,7 @@ function addContactScreenMobile() {
     content.innerHTML = addContactFormMobileHTML();
     content.style.paddingTop = '0px';
     document.body.style.overflow = 'hidden';
-    hideHeaderAndFooter();
+    // hideHeaderAndFooter();
 }
 
 
@@ -526,7 +526,7 @@ function editContactOverlayMobile(contactId) {
     const editContactHTML = createEditContactHTML(selectedContact, randomColor, textColor);
     overlay.innerHTML = editContactHTML;  
     document.body.appendChild(overlay);
-    hideHeaderAndFooter();    
+    // hideHeaderAndFooter();    
     content.style.paddingTop = '0px';
     content.style.paddingBottom = '0px';
 }
