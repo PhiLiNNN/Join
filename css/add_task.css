@@ -37,23 +37,29 @@
 }
 
 .dropdown {
-    height: 0;
-    opacity: 0;
+    position: relative;
+    max-height: 0;
     font-size: 16px;
-    transition: height 300ms ease-in-out;
+    overflow: hidden;
+    transition: max-height 300ms ease-in-out;
+    z-index: 1;
 }
 
 .dropdown.active {
     overflow-y: auto;
-    height: auto;
-    max-height: 300px;
-    opacity: 1;
+    max-height: 300px;  
 }
 
 .at-label-style {
     margin-block: 8px;
     font-size: 20px;
+    transition: font-size 300ms  ease-in-out;
 }
+
+.at-label-style.shrink-font-size {
+    font-size: 16px;
+}
+
 
 .at-label-style sup,
 .content-bottom-container span sup {
@@ -98,3 +104,15 @@
 .assigned-to-box.selected-contact svg path {
     stroke: white; 
 }
+
+.added-contacts {
+    position: relative;
+    display: flex;
+    margin: 8px 0 0 8px;
+    z-index: 0; 
+}
+
+.left-indent {
+    margin-left: -10px; 
+}
+

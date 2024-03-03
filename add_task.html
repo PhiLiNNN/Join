@@ -36,23 +36,15 @@
                 <div class="at-label-style">Description</div>
                 <textarea class="textarea-style" placeholder="Enter a description"  maxlength="500"></textarea>
             </div>
-            <div class="at-assignedto">
-                <div class="at-label-style">Assigned to</div>
-                <div class="input_global input_at">
-                    <input placeholder="Select contacts to assign">
-                    <img id="rotate-arrow-id" class="rotate-arrow" src="./assets/svg/arrow_drop_down.svg" onclick="toggleAssignedToContainer()">
-                </div>
-                <div id="assigned-to-contacts-id" class="dropdown"></div>
-                <div>added assigned icons here</div>
-            </div>
-        </div>
-        <div class="content-bottom-and-rigth">
             <div class="at-date ">
                 <div class="at-label-style">Due date<sup>*</sup></div>
                 <div class="input_global input_at">
                     <input  type="date"  max="2025-12-31" min="2024-02-27">
                 </div>
             </div>
+        </div>
+        <div class="content-bottom-and-rigth">
+            
             <div class="at-Prio">
                 <div class="at-label-style">Prio</div>
             </div>
@@ -85,6 +77,15 @@
                     <li> Task 2</li>
                     <li> Task 3</li>
                 </ul>
+            </div>
+            <div class="at-assignedto">
+                <div id="at-label-id" class="at-label-style">Assigned to</div>
+                <div class="input_global input_at" onclick="toggleAssignedToContainer()">
+                    <input placeholder="Select contacts to assign">
+                    <img id="rotate-arrow-id" class="rotate-arrow" src="./assets/svg/arrow_drop_down.svg" >
+                </div>
+                <div id="assigned-to-contacts-id" class="dropdown"></div>
+                <div id="added-contacts-id" class="added-contacts"></div>
             </div>
             <div class="content-bottom-container">
                 <span><sup>*</sup>This field is required</span>
