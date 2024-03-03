@@ -60,7 +60,6 @@
 }
 
 .circle-style {
-    background: rgb(44, 44, 93);
     width: 42px;
     height: 42px;
     border-radius: 50%;
@@ -95,6 +94,6 @@
     border-radius: 10px;
 }
 
-.assigned-to-box.selected-contact svg rect {
+.assigned-to-box.selected-contact svg path {
     stroke: white; 
 }
