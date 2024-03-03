@@ -263,7 +263,7 @@ function generateRandomID() {
 
 async function updateCurrentUserInBackend(currentUser) {
     try {        
-        const existingUsers = await loadUsersFromBackend();        
+        const existingUsers = await loadUsersFromBackend('users');        
         if (!(currentUser.userEMail in existingUsers)) {            
             return;
         }        

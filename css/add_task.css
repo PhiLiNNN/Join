@@ -45,7 +45,8 @@
 
 .dropdown.active {
     overflow-y: auto;
-    height: 300px;
+    height: auto;
+    max-height: 300px;
     opacity: 1;
 }
 

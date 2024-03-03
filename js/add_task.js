@@ -1,19 +1,15 @@
-let loggedUser;
 let currentUser;
+let assignedTo = [];
 
-function initAddTask() {
-  getCurrentUser();
+async function initAddTask() {
+  currentUser = await loadUsersFromBackend('currentUser');
+  
 }
 
-function getCurrentUser() {
-  const getCurrentUsers = localStorage.getItem("currentUser");
-  currentUser  = JSON.parse(getCurrentUsers);
-  loggedUser = currentUser.userName;
-}
 
 
 function sortContactsBySurname(a, b) {
-    const lastNameA = a.name.split(' ').pop(); // Nachnamen extrahieren
+    const lastNameA = a.name.split(' ').pop(); 
     const lastNameB = b.name.split(' ').pop();
     if (lastNameA < lastNameB) return -1;
     if (lastNameA > lastNameB) return 1;
@@ -42,7 +38,7 @@ function toggleAssignedToContainer() {
   assignedToContainer.classList.toggle('active');
   arrowElement.classList.toggle('upsidedown');
   currentUser.contacts.forEach((contact, index) => {
-    if (contact.name === loggedUser) 
+    if (contact.name === currentUser.userName) 
       contact.name = contact.name + ' (you)'
     assignedToContainer.innerHTML += templateAssignedToContainerHTML(contact.name, index, contact.colorCode);
   });   
@@ -50,10 +46,16 @@ function toggleAssignedToContainer() {
 
 
 function selectedAssignedToUser(event) {
+  const assignedContact = event.currentTarget.querySelector('.assigned-to-user span').innerText;
   const svgElement = event.currentTarget.querySelector('svg'); 
   event.currentTarget.classList.toggle('selected-contact');
-  if (event.currentTarget.classList.contains('selected-contact'))
+  if (event.currentTarget.classList.contains('selected-contact')) {
     svgElement.innerHTML = templateSvgCheckboxConfirmedHTML();
-  else 
+    assignedTo.push(assignedContact);
+  }  else { 
     svgElement.innerHTML = templateSvgDefaultCheckboxHTML();
+    const removeContact = assignedTo.indexOf(assignedContact);
+    assignedTo.splice(removeContact, 1);
+  }
+  console.log(assignedTo)
 }

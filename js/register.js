@@ -15,7 +15,7 @@ let confirmPwVisibility = { pwVisibilityOn: false };
 
 // work in progress
 async function init() {
-    users = await loadUsersFromBackend();
+    users = await loadUsersFromBackend('users');
     console.log(users)
     // await setItem("users", JSON.stringify({}));
     addPasswordVisibilityListener('login-pw-border-id', 
@@ -25,9 +25,9 @@ async function init() {
                                 pwVisibility);
 }
 
-async function loadUsersFromBackend() {
+async function loadUsersFromBackend(key) {
     try {
-        const result = await getItem('users');
+        const result = await getItem(key);
         return JSON.parse(result) || [];
     } catch (e) {
         console.error('Loading error:', e);
@@ -68,30 +68,36 @@ function generateNewUserObject() {
         'userPassword': userPassword,
         'userPasswordConfirm': userPasswordConfirm,
         'contacts': [],
-        'tasks': [],
-        'assignedTo': []
+        'tasks': {
+            'title': '',
+            'description': '',
+            'assignedTo': [],
+            'pro': '',
+            'category': '',
+            'subtasks': []
+        }
     };
 }
 
 
 async function addNewUserToBackend(user) {
-    let existingUsers = await loadUsersFromBackend();
+    let existingUsers = await loadUsersFromBackend('users');
     existingUsers[user.userEMail] = user;
     await setItem('users', JSON.stringify(existingUsers));
-    users = await loadUsersFromBackend();
+    users = await loadUsersFromBackend('users');
 }
 
 
 function validateName(name, boolArr) {
     const specialCharRegex  = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/0123456789]/;
-    const checkForDoppleHyphen = name.split("-").length - 1;
+    const checkForDoubleHyphen = name.split("-").length - 1;
     if (name.trim() === "") 
         boolArr[0] = boolArr[10] = true;
     else if (specialCharRegex.test(name)) 
         boolArr[2] = boolArr[10] = true;
-    else if (name.length < 2 && checkForDoppleHyphen === 0) 
+    else if (name.length < 2 && checkForDoubleHyphen === 0) 
         boolArr[1] = boolArr[10] = true;
-    else if (checkForDoppleHyphen !== 0 && (!name.match(/[a-zA-Z]-[a-zA-Z]{2,}/) || name.indexOf('-') < 2 || name.split('-').pop() === '')) 
+    else if (checkForDoubleHyphen !== 0 && (!name.match(/[a-zA-Z]-[a-zA-Z]{2,}/) || name.indexOf('-') < 2 || name.split('-').pop() === '')) 
         boolArr[1] = boolArr[10] = true;
 }
 
@@ -260,11 +266,12 @@ function closeSignUp() {
 }
 
 
-function login() {
+async function login() {
     if (loginValidationCheck()) {
         const loggedInUser = loadCurrentUser();
         if (loggedInUser) {
             localStorage.setItem('currentUser', JSON.stringify(loggedInUser));
+            await setItem("currentUser", JSON.stringify(loggedInUser)); //   für mich Philipp zum testen
             console.log('Logged in user:', loggedInUser);
             window.location.assign("../summary.html");
            
