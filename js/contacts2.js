@@ -120,6 +120,7 @@ function renderSingleMemberToHTMLMobile(oneContact, colorCode, textColor) {
   
   
 function getFirstLettersOfName(name) {
+  console.log("function getFirstLettersOfName(name)" , name);
     let words = name.split(" ");
     switch (words.length) {
       case 1:
