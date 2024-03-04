@@ -145,21 +145,11 @@
 
 .addContactButtonImgMobile {
     height: 51px;
-    position: sticky;
+    position: absolute;
     bottom: 20px;
     right: 20px;
     cursor: pointer;    
 }
-
-/*
-.addContactButtonImgMobile {
-    height: 51px;
-    position: absolute;
-    bottom: 90px;
-    right: 20px;
-    cursor: pointer;    
-}
-*/
 
 .letterAndContactsContainer {
     display: flex;
