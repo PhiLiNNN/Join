@@ -3,7 +3,7 @@
 function contactsInit() {    
     renderContacts();
     renderAddContactButtonMobile();
-    // setTimeout(showHeaderAndFooter, 500);    
+    setTimeout(showHeaderAndFooter, 500);    
     document.body.style.overflow = 'auto';
     const content = document.getElementById("all-contacts-id");
     content.style.paddingTop = '100px';
@@ -161,8 +161,8 @@ function getRandomColorHex() {
   * Hide header and footer for edit contact and create contact screen on mobile view
   */
 function hideHeaderAndFooter() {
-    const mobileHeader = document.querySelector(".header-gap"); 
-    const menuTemplate = document.querySelector(".footerCLass");
+    const mobileHeader = document.querySelector(".header"); 
+    const menuTemplate = document.querySelector(".footer");
     mobileHeader.style.display = "none";
     menuTemplate.style.display = "none";
 }
@@ -172,10 +172,10 @@ function hideHeaderAndFooter() {
   * Show header and footer screen on mobile view
   */
 function showHeaderAndFooter() {
-    const mobileHeader = document.querySelector(".header-gap");
-    const menuTemplate = document.querySelector(".footerCLass");
-    mobileHeader.style.display = "flex";
-    menuTemplate.style.display = "block";
+  const mobileHeader = document.querySelector(".header");
+  const menuTemplate = document.querySelector(".footer");
+  mobileHeader.style.display = "flex";
+  menuTemplate.style.display = "flex";
 }
 
 // Add contact screen
@@ -185,7 +185,7 @@ function addContactScreenMobile() {
     content.innerHTML = addContactFormMobileHTML();
     content.style.paddingTop = '0px';
     document.body.style.overflow = 'hidden';
-    // hideHeaderAndFooter();
+    hideHeaderAndFooter();
 }
 
 
@@ -526,7 +526,7 @@ function editContactOverlayMobile(contactId) {
     const editContactHTML = createEditContactHTML(selectedContact, randomColor, textColor);
     overlay.innerHTML = editContactHTML;  
     document.body.appendChild(overlay);
-    // hideHeaderAndFooter();    
+    hideHeaderAndFooter();    
     content.style.paddingTop = '0px';
     content.style.paddingBottom = '0px';
 }
