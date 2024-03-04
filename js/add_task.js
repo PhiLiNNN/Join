@@ -42,27 +42,18 @@ function renderAssignedToContacts() {
   }); 
 }
 
-// function toggleAssignedToContainer() {
-//   toggleAssignedToLabel('rotate-arrow-id', 'active');
-//   toggleAssignedToLabel('assigned-to-contacts-id', 'upsidedown');
-//   toggleAssignedToLabel('at-label-id', 'shrink-font-size');
-// }
-
 
 
 
 function toggleAssignedToContainer() {
- 
-
-  toggleAssignedToLabel('assigned-to-contacts-id', 'active');
-  toggleAssignedToLabel('rotate-arrow-id', 'upsidedown');
-  toggleAssignedToLabel('at-label-id', 'shrink-font-size');
+  toggleAssignedSection('assigned-to-contacts-id', 'active');
+  toggleAssignedSection('rotate-arrow-id', 'upsidedown');
+  toggleAssignedSection('at-label-id', 'shrink-font-size');
 }
 
-function toggleAssignedToLabel(elementID, toggleClass) {
+function toggleAssignedSection(elementID, toggleClass) {
   const element = document.getElementById(elementID);
   element.classList.toggle(toggleClass)
-
 }
 
 function renderAddedContacts() {
