@@ -3,7 +3,7 @@
 function contactsInit() {    
     renderContacts();
     renderAddContactButtonMobile();
-    setTimeout(showHeaderAndFooter, 500);    
+    showHeaderAndFooter;
     document.body.style.overflow = 'auto';
     const content = document.getElementById("all-contacts-id");
     content.style.paddingTop = '100px';
