@@ -34,13 +34,14 @@
     background-color: var(--mockup-color);
 }
 
-.addContactCloseXContainerMobile {
+.addContactCloseXContainerMobile {    
     position: fixed;
     top: 1em;
     right: 2em;
 }
 
 .addContactCloseXButtonMobile {
+    cursor: pointer;
     width: 32px;
     height: 32px;
     border-radius: 56px;
@@ -48,8 +49,7 @@
     color: var(--white-color);
     font-weight: bold;
     font-size: 24px;
-    background-color: var(--mockup-color);
-    margin-top: 100px;
+    background-color: var(--mockup-color);    
 }
 
 .addContactCloseXButtonMobile:active {
@@ -451,7 +451,7 @@
     width: 32px;    
 }
 
-.addContactCloseXContainer {
+.addContactCloseXContainer {    
     position: fixed;
     top: 1em;
     right: 2em;    
