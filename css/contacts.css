@@ -589,10 +589,14 @@
         height: 27px;    
     }
 
+    .addContactButtonContainerDesktop {
+        display: flex;
+    }
+
     .addContactButtonDesktop {
         position: absolute;
         top: 85px;
-        left: 50px;
+        left: 270px;
         width: 20vw;
         height: 4vw;
         margin-top: 2vh;
@@ -614,5 +618,14 @@
     .addContactButtonDesktopImg {    
         width: 32px;
         height: 32px;    
+    }
+
+    .contactsContentRightSideHeadLine {
+        display: flex;
+        align-items: flex-start;
+        align-items: center;
+        gap: 30px;
+        margin-left: 2em;
+        margin-top: 5em;
     }
 }

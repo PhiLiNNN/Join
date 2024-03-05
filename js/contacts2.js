@@ -603,7 +603,7 @@ function updateContactMobile(contactId) {
  * Create add contact button for desktop view
  */
 function renderAddContactButtonDesktop() {
-  const contentDesktop = document.getElementById("contacts-content-container-desktop-id");
+  const contentDesktop = document.getElementById("contacts-content-id");
   const addContactButtonContainerDesktop = document.createElement("div");
   addContactButtonContainerDesktop.classList.add("addContactButtonContainerDesktop");
   addContactButtonContainerDesktop.innerHTML = /*html*/ `
