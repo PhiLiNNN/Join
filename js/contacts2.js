@@ -120,16 +120,15 @@ function renderSingleMemberToHTMLMobile(oneContact, colorCode, textColor) {
   
   
 function getFirstLettersOfName(name) {
-  console.log("function getFirstLettersOfName(name)" , name);
-    let words = name.split(" ");
-    switch (words.length) {
-      case 1:
-        return words[0].slice(0, 2);
-      case 2:
-        return words[0][0] + words[1][0];
-      default:
-        return words[0][0] + words[1][0];
-    }
+  let words = name.split(" ");
+  switch (words.length) {
+    case 1:
+      return words[0].slice(0, 2).toUpperCase();
+    case 2:
+      return (words[0][0] + words[1][0]).toUpperCase();
+    default:
+      return (words[0][0] + words[1][0]).toUpperCase();
+  }
 }
   
   
