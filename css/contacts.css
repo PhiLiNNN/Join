@@ -548,7 +548,9 @@
 
 @media only screen and (max-width: 4000px) and (min-width: 760px) {
     .contactsContent {
-        /* display: none!important; */
+        max-width: max-content;
+        margin-top: 100px;
+        margin-left: 220px;
     }
 
     .contactsContentDesktop {
@@ -563,7 +565,7 @@
     }
 
     .addContactButtonImgMobile {
-        
+        display: none;
     }
 
     .contactsContentContainerDesktop {
