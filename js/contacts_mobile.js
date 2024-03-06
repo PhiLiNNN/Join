@@ -1,14 +1,23 @@
 // Render contacts mobile view
 
-function contactsInit() {    
-    renderContacts();
-    renderAddContactButtonMobile();
-    showHeaderAndFooter;
-    document.body.style.overflow = 'auto';
-    const content = document.getElementById("all-contacts-id");
-    content.style.paddingTop = '100px';
-    content.style.paddingBottom = '60px';
-    renderAddContactButtonDesktop();
+window.addEventListener('resize', contactsInit);
+window.onload = contactsInit;
+
+
+function contactsInit() {
+    const maxWidth = 759;    
+    if (window.innerWidth <= maxWidth) {
+        setTimeout(showHeaderAndFooter, 250);
+        renderContacts();
+        renderAddContactButtonMobile();               
+        document.body.style.overflow = 'auto';
+        const content = document.getElementById("all-contacts-id");
+        content.style.paddingTop = '100px';
+        content.style.paddingBottom = '60px';
+    } else {
+        setTimeout(showHeaderAndFooter, 250);
+        renderContactsDesktop();
+    }
 }
 
 
@@ -591,25 +600,4 @@ function updateContactMobile(contactId) {
   updateCurrentUserInBackend(currentUser);  
   closeContactOverlay();  
   contactsInit();
-}
-
-
-/*-------------------------------------------------------------------------------------------------------------------------------------------------*/
-/* Desktop view */
-
-
-/**
- * Create add contact button for desktop view
- */
-function renderAddContactButtonDesktop() {
-  const contentDesktop = document.getElementById("contacts-content-id");
-  const addContactButtonContainerDesktop = document.createElement("div");
-  addContactButtonContainerDesktop.classList.add("addContactButtonContainerDesktop");
-  addContactButtonContainerDesktop.innerHTML = /*html*/ `
-    <button class="addContactButtonDesktop" onclick="addContactShowOverlayDesktop()">Add new contact
-      <span><img class="addContactButtonDesktopImg" src="../assets/img/contacts/addNewContactDesktopButtonImg.svg" alt=""></span></button>    
-    `;    
-  contentDesktop.appendChild(addContactButtonContainerDesktop);  
-  addContactButtonContainerDesktop.addEventListener("click", function () { 
-  });
 }
