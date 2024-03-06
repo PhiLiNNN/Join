@@ -39,14 +39,15 @@
     />
 </head>
 
-<body onload="contactsInit(); includeHTML();">
-    
-  <div w3-include-html="./assets/templates/header.html"></div>  <!-- Header for mobile and desktop view </!-->
+<body onload="contactsInit(); includeHTML();">    
+  
   <div class="contactsContent" id="contacts-content-id">  <!-- Only for mobile view </!-->
+    <div w3-include-html="./assets/templates/header.html"></div>  <!-- Header for mobile and desktop view </!-->
     <div id="all-contacts-id" class="allContacts"></div>
-    <div id="one-contact-id"></div>    
+    <div id="one-contact-id"></div>
+    <div w3-include-html="./assets/templates/footer.html"></div>  <!-- Footer for mobile and desktop view </!-->
   </div>
-  <div w3-include-html="./assets/templates/footer.html"></div>  <!-- Footer for mobile and desktop view </!-->
+ 
     
 </body>
 

@@ -1,5 +1,10 @@
 /* Desktop view */
 
+function renderContactsDesktop() {
+    const content = document.getElementById("all-contacts-id");
+    content.innerHTML = "";
+    content.innerHTML = "Test contacts desktop view";
+}
 
 /**
  * Create add contact button for desktop view
