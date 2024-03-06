@@ -1,11 +1,13 @@
 let currentUser;
 let assignedTo = {
-  'names': [],
-  'colorCodes': []
+  'initials': [],
+  'colorCodes': [],
+  'textColor': []
 };
 
-async function initAddTask() {
-  currentUser = await loadUsersFromBackend('currentUser');
+function initAddTask() {
+  currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  console.log(currentUser)
   renderAssignedToContacts();
   
 }
@@ -13,8 +15,8 @@ async function initAddTask() {
 
 
 function sortContactsBySurname(a, b) {
-    const lastNameA = a.name.split(' ').pop(); 
-    const lastNameB = b.name.split(' ').pop();
+    const lastNameA = a.name.split(' ')[1]?.toLowerCase() || '';
+    const lastNameB = b.name.split(' ')[1]?.toLowerCase() || '';
     if (lastNameA < lastNameB) return -1;
     if (lastNameA > lastNameB) return 1;
     return 0;
@@ -35,11 +37,14 @@ function sortContactsBySurname(a, b) {
 
 function renderAssignedToContacts() {
   currentUser.contacts.sort(sortContactsBySurname);
+  console.log(currentUser.contacts)
   const assignedToContainer = document.getElementById('assigned-to-contacts-id');
   currentUser.contacts.forEach((contact, index) => {
     if (contact.name === currentUser.userName) 
       contact.name = contact.name + ' (you)'
-    assignedToContainer.innerHTML += templateAssignedToContainerHTML(contact.name, index, contact.colorCode);
+    const initials =  getFirstLettersOfName(contact.name);
+    textColor = isColorLight(contact.colorCode) ? 'white' : 'black'; 
+    assignedToContainer.innerHTML += templateAssignedToContainerHTML(contact.name, index, contact.colorCode, initials, textColor);
   }); 
 }
 
@@ -60,9 +65,9 @@ function toggleAssignedSection(elementID, toggleClass) {
 function renderAddedContacts() {
   let addedContactsElement =  document.getElementById('added-contacts-id');
   addedContactsElement.innerHTML = '';
-  assignedTo.colorCodes.forEach(colorCode  => {
-    addedContactsElement.innerHTML += templateaddedContactsHTML(colorCode);  
-  })
+  assignedTo.colorCodes.forEach((colorCode, index)  => {
+    addedContactsElement.innerHTML += templateaddedContactsHTML(colorCode, assignedTo.initials[index], assignedTo.textColor[index]);  
+  });
 }
 
 
@@ -83,24 +88,53 @@ function selectedAssignedToUser(event) {
 
 function getUserInfo(event) {
   const circleStyleElement = event.currentTarget.querySelector('.circle-style');
-  const assignedContact = event.currentTarget.querySelector('.assigned-to-user span').innerText;
+  const assignedContact = circleStyleElement.innerText;
   const backgroundColorValue = window.getComputedStyle(circleStyleElement).backgroundColor;
-  return { assignedContact, backgroundColorValue };
+  const textColor = window.getComputedStyle(circleStyleElement).color;
+  return { assignedContact, backgroundColorValue, textColor };
 }
 
 function pushSelectedUser(event) {
-  const { assignedContact, backgroundColorValue } = getUserInfo(event);
-  if (assignedTo.names.includes(assignedContact) || assignedTo.colorCodes.includes(backgroundColorValue)) {
+  const { assignedContact, backgroundColorValue, textColor } = getUserInfo(event);
+  if (assignedTo.initials.includes(assignedContact) || assignedTo.colorCodes.includes(backgroundColorValue)) {
     return
   }
-  assignedTo.names.push(assignedContact);
+  assignedTo.initials.push(assignedContact);
   assignedTo.colorCodes.push(backgroundColorValue);
+  assignedTo.textColor.push(textColor);
 }
 
 function deleteSelectedUser(event) {
-  const { assignedContact, backgroundColorValue } = getUserInfo(event);
-  const removeContact = assignedTo.names.indexOf(assignedContact);
+  const { assignedContact, backgroundColorValue, textColor } = getUserInfo(event);
+  const removeContact = assignedTo.initials.indexOf(assignedContact);
   const removeColorcode = assignedTo.colorCodes.indexOf(backgroundColorValue);
-  assignedTo.names.splice(removeContact, 1);
+  const removeTextColor = assignedTo.colorCodes.indexOf(textColor);
+  assignedTo.initials.splice(removeContact, 1);
   assignedTo.colorCodes.splice(removeColorcode, 1);
+  assignedTo.textColor.splice(removeTextColor, 1);
+}
+
+function togglePrioImg(clickedId) {
+  const imageIds = ['urgent-default-id', 'medium-default-id', 'low-default-id'];
+  imageIds.forEach(id => {
+    const image = document.getElementById(id);
+    if (id === clickedId)
+      image.src = `./assets/img/${id.replace('-default-id', '_highlighted.png')}`;
+    else 
+      image.src = `./assets/img/${id.replace('-default-id', '_default.png')}`;
+  });
+}
+
+
+
+function toggleCategoryContainer() {
+  toggleAssignedSection('rotate-arrow-category-id', 'upsidedown');
+  toggleAssignedSection('category-id', 'active');
+  
+}
+
+function selectCategory(clickedElement){
+  const element = document.getElementById('category-input-id');
+  element.value =  clickedElement.innerHTML;
+  toggleCategoryContainer();
 }

@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="./css/add_task.css">
     <script src="./js/add_task.js" ></script>
+    <script src="./js/contacts2.js" ></script>
     <script src="./js/register.js" ></script>
     <script src="./js/template.js" ></script>
     <script src="./js/includeHTML.js"></script>
@@ -44,49 +45,45 @@
             </div>
         </div>
         <div class="content-bottom-and-rigth">
-            
-            <div class="at-Prio">
-                <div class="at-label-style">Prio</div>
-            </div>
-            <div>
-                <div><span>Urgent</span><img src="" alt=""></div>
-                <div><span>Medium</span><img src="" alt=""></div>
-                <div><span>Low</span><img src="" alt=""></div>
-            </div>
-            <div class="at-Category ">
-                <span class="at-label-style">Category</span>
-                <div class="input_global input_at">
-                    <input  type="text" placeholder="Select task category">
-                </div>
-            </div>
-            <div>
-                <div>
-                    Technical Task<br>
-                    User Story
-                </div>
-            </div>
-            <div class="at-subtasks ">
-                <div class="at-label-style">Subtasks</div>
-                <div class="input_global input_at">
-                    <input  type="text"  placeholder="Add new subtask">
-                </div>
-            </div>
-            <div>
-                <ul>
-                    <li> Task 1</li>
-                    <li> Task 2</li>
-                    <li> Task 3</li>
-                </ul>
-            </div>
             <div class="at-assignedto">
                 <div id="at-label-id" class="at-label-style">Assigned to</div>
                 <div class="input_global input_at" onclick="toggleAssignedToContainer()">
                     <input placeholder="Select contacts to assign">
                     <img id="rotate-arrow-id" class="rotate-arrow" src="./assets/svg/arrow_drop_down.svg" >
                 </div>
-                <div id="assigned-to-contacts-id" class="dropdown"></div>
+                <div id="assigned-to-contacts-id" class="at-dropdown"></div>
                 <div id="added-contacts-id" class="added-contacts"></div>
             </div>
+            <div class="at-prio">
+                <div class="at-label-style">Prio</div>
+                <div id="at-prio-img-id" class="at-prio-img">
+                    <img id="urgent-default-id" src="./assets/img/urgent_default.png" alt="" onclick="togglePrioImg('urgent-default-id')">
+                    <img id="medium-default-id" src="./assets/img/medium_highlighted.png" alt="" onclick="togglePrioImg('medium-default-id')">
+                    <img id="low-default-id" src="./assets/img/low_default.png" alt="" onclick="togglePrioImg('low-default-id')">
+                </div>
+            </div>
+            
+            <div class="at-Category ">
+                <div class="at-label-style">Category</div>
+                <div class="input_global input_at cursor" onclick="toggleCategoryContainer()">
+                    <input id="category-input-id" class="cursor" type="text" placeholder="Select task category">
+                    <img id="rotate-arrow-category-id" class="rotate-arrow" src="./assets/svg/arrow_drop_down.svg" >
+                </div>
+                <div id="category-id" class="category-dropdown">
+                    <ul>
+                        <li onclick="selectCategory(this)">Technical Task</li>
+                        <li onclick="selectCategory(this)">User Story</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="at-subtasks ">
+                <div class="at-label-style">Subtasks</div>
+                <div class="input_global input_at">
+                    <input  type="text"  placeholder="Add new subtask">
+                </div>
+            </div>
+        
             <div class="content-bottom-container">
                 <span><sup>*</sup>This field is required</span>
                 <button class="white-btn width-small">Clear X</button>

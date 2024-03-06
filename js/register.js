@@ -72,7 +72,7 @@ function generateNewUserObject() {
             'title': '',
             'description': '',
             'assignedTo': [],
-            'pro': '',
+            'prio': '',
             'category': '',
             'subtasks': []
         }
@@ -271,7 +271,6 @@ async function login() {
         const loggedInUser = loadCurrentUser();
         if (loggedInUser) {
             localStorage.setItem('currentUser', JSON.stringify(loggedInUser));
-            await setItem("currentUser", JSON.stringify(loggedInUser)); //   für mich Philipp zum testen
             console.log('Logged in user:', loggedInUser);
             window.location.assign("../summary.html");
            

@@ -1,29 +1,18 @@
 ::-webkit-datetime-edit { color: var(--placeholder-color) }
 
-/* ::-webkit-datetime-edit-fields-wrapper { background: silver; }
-::-webkit-datetime-edit-text { color: red; padding: 0 0.3em; }
-::-webkit-datetime-edit-month-field { color: blue; }
-::-webkit-datetime-edit-day-field { color: green; }
-::-webkit-datetime-edit-year-field { color: purple; }
-::-webkit-inner-spin-button { display: none; }
-::-webkit-calendar-picker-indicator { background: orange; } */
-
 .content-container {
     margin-top: 80px;
     padding: 48px 16px 0 16px;
-
 }
 
 .input_at {
     padding: 10px 21px !important;
 }
 
-
 .input_at input,
 .textarea-style {
     font-size: 20px !important;
 }
-
 
 .rotate-arrow {
     width: 12px; 
@@ -32,27 +21,30 @@
     transform: rotate(0deg);
     transition: transform 300ms ease;
 }
+
 .rotate-arrow.upsidedown {
     transform: rotate(180deg);
 }
 
-.dropdown {
+.at-dropdown {
     position: relative;
     max-height: 0;
+    opacity: 0;
     font-size: 16px;
     overflow: hidden;
-    transition: max-height 300ms ease-in-out;
+    transition: all 300ms ease-in-out;
     z-index: 1;
 }
 
-.dropdown.active {
+.at-dropdown.active {
     overflow-y: auto;
+    opacity: 1;
     max-height: 300px;  
 }
 
 .at-label-style {
     margin-block: 8px;
-    font-size: 20px;
+    font-size: 22px;
     transition: font-size 300ms  ease-in-out;
 }
 
@@ -60,18 +52,22 @@
     font-size: 16px;
 }
 
-
 .at-label-style sup,
 .content-bottom-container span sup {
     color: #FF8190;
 }
 
 .circle-style {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 42px;
     height: 42px;
     border-radius: 50%;
+    font-size: 16px;
 }
 
+    
 .assigned-to-box {
     display: flex;
     justify-content: space-between;
@@ -79,7 +75,6 @@
     margin: 4px;
     padding: 16px 7px;
 }
-
 
 .assigned-to-user {
     display: flex;
@@ -89,12 +84,9 @@
     font-size: 20px;
 }
 
-
-
 .assigned-to-box svg {
     margin-right: 52px;
 }
-
 
 .assigned-to-box.selected-contact {
     background: var(--mockup-color);
@@ -115,4 +107,46 @@
 .left-indent {
     margin-left: -10px; 
 }
+
+.at-prio-img {
+    display: flex;
+    justify-content: space-between;
+}
+
+.at-prio-img img {
+    height: 45px;
+    width: 130px;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0 0px 10px  var(--placeholder-color);
+}
+
+.category-dropdown {
+    position: relative;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    font-size: 16px;
+    transition: all 300ms ease-in-out;
+    z-index: 1;
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+.category-dropdown.active {
+    opacity: 1;
+    height: auto;  
+    max-height: 300px;  
+}
+
+.category-dropdown ul li {
+    list-style: none;
+    padding: 12px 16px;
+    font-size: 22px;
+}
+
+
+
 

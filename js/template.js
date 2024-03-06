@@ -95,11 +95,15 @@ function addContactFormMobileHTML() {
     `;
 }
 
-function templateAssignedToContainerHTML(contact, index, iconColor) {
+function templateAssignedToContainerHTML(contact, index, iconColor, initials, textColor) {
     return /*html*/ `
         <div id="assigned-to-box-${index}" class="assigned-to-box"  onclick="selectedAssignedToUser(event)">
           <div class="assigned-to-user">
-            <div class="circle-style" style="background-color: ${iconColor};"></div>
+            <div class="circle-style" style="background-color: ${iconColor}; color: ${textColor};">
+              <span>
+                ${initials}
+              </span>
+            </div>
             <span>${contact}</span>
           </div>
           <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -126,8 +130,12 @@ function templateSvgDefaultCheckboxHTML() {
     `;
 }
 
-function templateaddedContactsHTML(iconColor) {
+function templateaddedContactsHTML(iconColor,  initials, textColor) {
     return /*html*/ `
-        <div class="circle-style left-indent" style="background-color: ${iconColor};"></div>
+      <div class="circle-style left-indent" style="background-color: ${iconColor}; color: ${textColor};">
+        <span>
+            ${initials}
+        </span>
+      </div>
     `;
 }
