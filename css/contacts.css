@@ -569,11 +569,6 @@
         display: none;
     }
 
-    .contactsContentContainerDesktop {
-        display: flex!important;
-        margin-top: 100px;
-    }
-
     .footerCLass {
         display: none!important;
     }
@@ -620,12 +615,4 @@
         height: 32px;    
     }
 
-    .contactsContentRightSideHeadLine {
-        display: flex;
-        align-items: flex-start;
-        align-items: center;
-        gap: 30px;
-        margin-left: 2em;
-        margin-top: 5em;
-    }
 }
