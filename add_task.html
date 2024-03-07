@@ -30,17 +30,17 @@
             <div class="at-title">
                 <div class="at-label-style">Title<sup>*</sup></div>
                 <div class="input_global  input_at">
-                    <input  type="text" placeholder="Enter a title">
+                    <input id="title-input-id"  type="text" placeholder="Enter a title">
                 </div>
             </div>
             <div class="at-description">
                 <div class="at-label-style">Description</div>
-                <textarea class="textarea-style" placeholder="Enter a description"  maxlength="500"></textarea>
+                <textarea id="textarea-input-id" class="textarea-style" placeholder="Enter a description"  maxlength="500"></textarea>
             </div>
             <div class="at-date ">
                 <div class="at-label-style">Due date<sup>*</sup></div>
                 <div class="input_global due_date_at">
-                    <input  type="date"  max="2025-12-31" min="2024-02-27">
+                    <input id="date-input-id" type="date"  max="2025-12-31" min="2024-02-27">
                 </div>
             </div>
         </div>
@@ -110,13 +110,15 @@
                     <ul id="add-task-list-id"></ul>
                 </div>
             </div>
-        
-            <div class="content-bottom-container">
-                <span><sup>*</sup>This field is required</span>
-                <button class="white-btn width-small">Clear X</button>
-                <button class="filled-btn">Create Task checkimg</button>
-            </div>
         </div>
+        
+    </div>
+    <div class="content-bottom-container">
+        <span><sup>*</sup>This field is required</span>
+        <button class="white-btn width-small d-none">Clear X</button>
+        <button class="filled-btn" onclick="createTask()">Create Task 
+            <img src="./assets/img/check.png" alt="">
+        </button>
     </div>
 
 

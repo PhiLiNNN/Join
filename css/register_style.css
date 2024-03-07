@@ -86,17 +86,6 @@
 }
 
 
-.info-icon {
-    border: 2px solid var(--mockup-color);
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    text-align: center;
-    margin-right: 2px;
-    line-height: 18px;
-    font-size: 12px;
-    font-weight: 700;
-}
 
 .tooltip {
     position: relative;
@@ -112,12 +101,13 @@
 
 .tooltip .tooltiptext {
     visibility: hidden;
-    width: 285px;
+    width: 310px;
     background-color: var(--mockup-color);
     color: #fff;
     text-align: left;
     border-radius: 20px 20px 0px 20px;
     padding: 12px;
+    font-weight: 100;
     position: absolute;
     z-index: 1;
     bottom: 120%;

@@ -1,8 +1,12 @@
 ::-webkit-datetime-edit { color: var(--placeholder-color) }
 
 .content-container {
+    position: sticky;
+    overflow-y: auto;
+    max-height: calc(100vh - 238px);
     margin-top: 80px;
     padding: 48px 16px 0 16px;
+    z-index: 100;
 }
 
 .input_at {
@@ -57,6 +61,31 @@
 .content-bottom-container span sup {
     color: #FF8190;
 }
+
+.content-bottom-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    position: absolute;
+    font-size: 20px;
+    padding-inline: 16px ;
+    height: 88px;
+    left: 0;
+    right: 0;
+    bottom: 80px;
+}
+
+.filled-btn {
+    font-size: 20px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+}
+
+
 
 .circle-style {
     display: flex;
@@ -170,20 +199,48 @@
     background: var(--placeholder-color);
 }
 
+.subtask-list {
+    overflow-y: auto;
+    margin-block: 8px;
+    max-height: 300px;
+}
+
+
+  
+.subtask-list ul li {
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+    padding: 14.5px 0;
+    margin-inline: 26px;
+    position: relative;
+}
+
+.subtask-list ul li::before {
+    content: '\2022';
+    margin-right: 10px; 
+}
+
+.subtask-svg {
+    display: flex;
+    align-items: center;
+    margin-left: auto; 
+    gap: 8px;
+    cursor: pointer;
+}
+
+.editable-span {
+    border: none;
+    background: none;
+    font-size: 22px;
+    outline: none;
+}
+
+.blue-line-highlight {
+    border-bottom: 1px solid var(--mockup-highlight);
+}
+
 .d-none {
     display: none;
 }
 
-.subtask-list {
-    margin-block: 8px;
-}
-
-.subtask-list ul  {
-  list-style-position: inside;
-  
-}
-
-.subtask-list ul li {
-    font-size: 22px;
-    padding: 14.5px 0px 14.5px 16px;
-}
