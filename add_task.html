@@ -47,16 +47,16 @@
         <div class="content-bottom-and-rigth">
             <div class="at-assignedto">
                 <div id="at-label-id" class="at-label-style">Assigned to</div>
-                <div class="input_global input_at" onclick="toggleAssignedToContainer()">
-                    <input placeholder="Select contacts to assign">
-                    <img id="rotate-arrow-id" class="rotate-arrow" src="./assets/svg/arrow_drop_down.svg" >
+                <div id="assignedto-container-id" class="input_global input_at" >
+                    <input id="assignedto-input-id" placeholder="Select contacts to assign" onclick="openAssignedToOnce()">
+                    <img id="rotate-arrow-id" class="rotate-arrow" src="./assets/svg/arrow_drop_down.svg"  onclick="toggleAssignedToContainer()">
                 </div>
                 <div id="assigned-to-contacts-id" class="at-dropdown"></div>
                 <div id="added-contacts-id" class="added-contacts"></div>
             </div>
             <div class="at-prio">
                 <div class="at-label-style">Prio</div>
-                <div id="at-prio-img-id" class="at-prio-img">
+                <div class="at-prio-img">
                     <img id="urgent-default-id" src="./assets/img/urgent_default.png" alt="" onclick="togglePrioImg('urgent-default-id')">
                     <img id="medium-default-id" src="./assets/img/medium_highlighted.png" alt="" onclick="togglePrioImg('medium-default-id')">
                     <img id="low-default-id" src="./assets/img/low_default.png" alt="" onclick="togglePrioImg('low-default-id')">
@@ -65,8 +65,8 @@
             
             <div class="at-Category ">
                 <div class="at-label-style">Category</div>
-                <div class="input_global input_at cursor" onclick="toggleCategoryContainer()">
-                    <input id="category-input-id" class="cursor" type="text" placeholder="Select task category">
+                <div id="category-container-id" class="input_global input_at cursor" onclick="toggleCategoryContainer()">
+                    <input id="category-input-id" class="cursor" type="text" placeholder="Select task category" readonly>
                     <img id="rotate-arrow-category-id" class="rotate-arrow" src="./assets/svg/arrow_drop_down.svg" >
                 </div>
                 <div id="category-id" class="category-dropdown">

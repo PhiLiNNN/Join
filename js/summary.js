@@ -1,4 +1,9 @@
-function updateGreeting() {
+
+ 
+
+async function updateGreeting() {
+    let existingUsers = await loadUsersFromBackend('users');
+    console.log('existingUsersexistingUsers',existingUsers)
     const now = new Date();
     const h = now.getHours();
     const m = now.getMinutes();

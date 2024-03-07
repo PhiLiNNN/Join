@@ -17,7 +17,7 @@ let confirmPwVisibility = { pwVisibilityOn: false };
 async function init() {
     users = await loadUsersFromBackend('users');
     console.log(users)
-    await setItem("users", JSON.stringify({}));
+    // await setItem("users", JSON.stringify({})); //  funktion zum clearen des Backends
     addPasswordVisibilityListener('login-pw-border-id', 
                                 'lock-id', 
                                 'login-pw-visibility-off-id',
@@ -47,7 +47,6 @@ function register() {
 async function addNewUser() {
     const newUser = generateNewUserObject();
     newUserArray.push(newUser);   // braucht man  dieses Array?
-    await addNewUserToBackend(newUser);
     try {
         await addNewUserToBackend(newUser);
 

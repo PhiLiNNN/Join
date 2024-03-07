@@ -8,12 +8,16 @@ let assignedTo = {
 let subtaskList = [];
 let subtaskCounter = 0;
 let userIndex;
+let prio = ['urgnet', 'medium', 'low'];
+let prioIndex = 1;
 
 function initAddTask() {
   currentUser = JSON.parse(localStorage.getItem('currentUser'));
   console.log(currentUser)
   renderAssignedToContacts();
   addSubtaskVisibilityListener();
+  closeAssignedToMenu();
+  closeCategoryMenu();
   
 }
 
@@ -46,11 +50,6 @@ function sortContactsBySurname(a, b) {
 
 function renderAssignedToContacts() {
   currentUser.contacts.sort(sortContactsBySurname);
-  currentUser.contacts.forEach(contact => {
-  const lastName = contact.name.split(' ')[1]?.toLowerCase() || '';
-  console.log(lastName);
-});
-  console.log('currentUser.contacts',currentUser.contacts)
   const assignedToContainer = document.getElementById('assigned-to-contacts-id');
   currentUser.contacts.forEach((contact, index) => {
     if (contact.name === currentUser.userName) 
@@ -61,19 +60,37 @@ function renderAssignedToContacts() {
   }); 
 }
 
-
-
-
-function toggleAssignedToContainer() {
-  toggleAssignedSection('assigned-to-contacts-id', 'active');
-  toggleAssignedSection('rotate-arrow-id', 'upsidedown');
-  toggleAssignedSection('at-label-id', 'shrink-font-size');
+function closeAssignedToMenu() {
+  document.addEventListener('click', function (event) {
+    const clickInsideInput = event.target.closest('#assignedto-container-id');
+    const clickInsideDropdown = event.target.closest('#assigned-to-contacts-id');
+    if (!clickInsideDropdown && !clickInsideInput) {
+      toggleVisibility('assigned-to-contacts-id', true ,'active');
+      toggleVisibility('rotate-arrow-id', true,  'upsidedown');
+      toggleVisibility('at-label-id', true,  'shrink-font-size');
+      document.getElementById('assignedto-input-id').value = '';
+    }
+  });
 }
 
-function toggleAssignedSection(elementID, toggleClass) {
+function openAssignedToOnce() {
+  toggleVisibility('assigned-to-contacts-id', false, 'active');
+  toggleVisibility('rotate-arrow-id', false, 'upsidedown');
+  toggleVisibility('at-label-id', false,'shrink-font-size');
+}
+
+function toggleAssignedToContainer() {
+  toggleSection('assigned-to-contacts-id', 'active');
+  toggleSection('rotate-arrow-id',  'upsidedown');
+  toggleSection('at-label-id', 'shrink-font-size');
+  document.getElementById('assignedto-input-id').value = '';
+}
+
+function toggleSection(elementID, toggleClass) {
   const element = document.getElementById(elementID);
   element.classList.toggle(toggleClass)
 }
+
 
 function renderAddedContacts() {
   let addedContactsElement =  document.getElementById('added-contacts-id');
@@ -134,10 +151,13 @@ function deleteSelectedUser(event) {
 
 function togglePrioImg(clickedId) {
   const imageIds = ['urgent-default-id', 'medium-default-id', 'low-default-id'];
-  imageIds.forEach(id => {
+  imageIds.forEach((id, index) => {
+    
     const image = document.getElementById(id);
-    if (id === clickedId)
+    if (id === clickedId) {
+      prioIndex = index;
       image.src = `./assets/img/${id.replace('-default-id', '_highlighted.png')}`;
+    }
     else 
       image.src = `./assets/img/${id.replace('-default-id', '_default.png')}`;
   });
@@ -145,10 +165,19 @@ function togglePrioImg(clickedId) {
 
 
 
+function closeCategoryMenu() {
+  document.addEventListener('click', function (event) {
+    const clickInsideInput = event.target.closest('#category-container-id');
+    if (!clickInsideInput) {
+      toggleVisibility('rotate-arrow-category-id', true, 'upsidedown');
+      toggleVisibility('category-id',true,'active');
+    }
+  });
+}
+
 function toggleCategoryContainer() {
-  toggleAssignedSection('rotate-arrow-category-id', 'upsidedown');
-  toggleAssignedSection('category-id', 'active');
-  
+  toggleSection('rotate-arrow-category-id', 'upsidedown');
+  toggleSection('category-id','active');
 }
 
 function selectCategory(clickedElement){
@@ -157,7 +186,7 @@ function selectCategory(clickedElement){
   allItems.forEach(item => item.classList.remove('selected-contact'));
   element.value =  clickedElement.innerHTML;
   clickedElement.classList.add('selected-contact');
-  toggleCategoryContainer();
+  toggleCategoryContainer(true);
 }
 
 function addSubtaskVisibilityListener() {
@@ -243,15 +272,18 @@ function deleteSubtask(index) {
   subtaskCounter = 0;
 }
 
-function createTask() {
+async function createTask() {
   const titleInput = document.getElementById('title-input-id').value;
   const textareaInput = document.getElementById('textarea-input-id').value;
   const dateInput = document.getElementById('date-input-id').value;
-  // const titleInput = document.getElementById('title-input-id').value;
-  // const titleInput = document.getElementById('title-input-id').value;
+  const categoryInput = document.getElementById('category-input-id').value;
   currentUser.tasks.titles.push(titleInput)
   currentUser.tasks.descriptions.push(textareaInput)
   currentUser.tasks.dates.push(dateInput)
-  console.log(assignedTo.userNames)
-  console.log('dsffdF',currentUser)
+  currentUser.tasks.assignedTo.push(assignedTo.userNames)
+  currentUser.tasks.prios.push(prio[prioIndex])
+  currentUser.tasks.categories.push(categoryInput)
+  currentUser.tasks.subtasks.push(subtaskList)
+  localStorage.setItem('currentUser', JSON.stringify(currentUser));
+  addNewUserToBackend(currentUser);
 }
