@@ -65,21 +65,19 @@ function closeAssignedToMenu() {
     const clickInsideInput = event.target.closest('#assignedto-container-id');
     const clickInsideDropdown = event.target.closest('#assigned-to-contacts-id');
     if (!clickInsideDropdown && !clickInsideInput) {
-      toggleVisibility('assigned-to-contacts-id', true ,'active');
-      toggleVisibility('rotate-arrow-id', true,  'upsidedown');
-      toggleVisibility('at-label-id', true,  'shrink-font-size');
+      toggleAssignedToSection(true)
       document.getElementById('assignedto-input-id').value = '';
     }
   });
 }
 
-function openAssignedToOnce() {
-  toggleVisibility('assigned-to-contacts-id', false, 'active');
-  toggleVisibility('rotate-arrow-id', false, 'upsidedown');
-  toggleVisibility('at-label-id', false,'shrink-font-size');
+function toggleAssignedToSection(bool) {
+  toggleVisibility('assigned-to-contacts-id', bool, 'active');
+  toggleVisibility('rotate-arrow-id', bool, 'upsidedown');
+  toggleVisibility('at-label-id', bool,'shrink-font-size');
 }
 
-function toggleAssignedToContainer() {
+function openAssignedbyArrow() {
   toggleSection('assigned-to-contacts-id', 'active');
   toggleSection('rotate-arrow-id',  'upsidedown');
   toggleSection('at-label-id', 'shrink-font-size');
@@ -231,32 +229,28 @@ function renderSubtasks() {
     element.innerHTML  += templateSubtaskHTML(index, subtask);
   });
 }
+
 function editSubtask(index) {
   subtaskCounter +=1;
-  if(subtaskCounter === 1) {
-    const element = document.getElementById(`editable-span-id${index}`);
-    const ListElement = document.getElementById(`substask-sontent-id${index}`);
-    toggleVisibility(`subtask-edited-container-id${index}`, true);
-    toggleVisibility(`subtask-default-container-id${index}`, false); 
-    ListElement.classList.toggle('blue-line-highlight');
-    element.setAttribute('contentEditable', 'true');
-    element.focus();
-    const maxLength = 30; 
-  
-    element.addEventListener('input', function() {
-      const content = this.innerText;
-      if (content.length > maxLength) {
-        this.innerText = content.slice(0, maxLength);
-        const range = document.createRange();
-        const selection = window.getSelection();
-        range.setStart(this.childNodes[0], maxLength);
-        range.collapse(true);
-        selection.removeAllRanges();
-        selection.addRange(range);
-      }
-    });
+  if (subtaskCounter === 1) {
+      const element = document.getElementById(`editable-span-id${index}`);
+      const ListElement = document.getElementById(`substask-sontent-id${index}`);
+      toggleVisibility(`subtask-edited-container-id${index}`, true);
+      toggleVisibility(`subtask-default-container-id${index}`, false); 
+      ListElement.classList.toggle('blue-line-highlight');
+      makeElementEditableWithMaxLength(element, 30);
+    } else return;
+}
+
+function makeElementEditableWithMaxLength(element, maxLength) {
+  element.setAttribute('contentEditable', 'true');
+  element.focus();
+  element.addEventListener('input', function() {
+  const maxLength = 30;
+  if (this.innerText.length > maxLength) {
+    this.innerText = this.innerText.slice(0, maxLength);
   }
-  else return;
+});
 }
 
 function saveEditSubtask(index) {
