@@ -4,11 +4,13 @@ let assignedTo = {
   'colorCodes': [],
   'textColor': []
 };
+let subtaskList = [];
 
 function initAddTask() {
   currentUser = JSON.parse(localStorage.getItem('currentUser'));
   console.log(currentUser)
   renderAssignedToContacts();
+  addSubtaskVisibilityListener();
   
 }
 
@@ -135,6 +137,51 @@ function toggleCategoryContainer() {
 
 function selectCategory(clickedElement){
   const element = document.getElementById('category-input-id');
+  const allItems = document.querySelectorAll('.category-dropdown ul li');
+  allItems.forEach(item => item.classList.remove('selected-contact'));
   element.value =  clickedElement.innerHTML;
+  clickedElement.classList.add('selected-contact');
   toggleCategoryContainer();
+}
+
+function addSubtaskVisibilityListener() {
+    const inputElement = document.getElementById('subtask-input-id');
+    inputElement.addEventListener("input", function(event) {
+        const inputNotEmpty = isValueNotEmpty(event.target.value);
+        toggleVisibility('subtast-add-button-id', !inputNotEmpty);
+        toggleVisibility('subtask-del-and-confim-id', true);
+        if (!inputNotEmpty) 
+            toggleVisibility('subtask-del-and-confim-id', false);
+    });
+}
+
+function toggleAddNewTaskMenu() {
+  addSubtaskVisibilityListener();
+  const inputElement = document.getElementById('subtask-input-id');
+  inputElement.focus(); 
+}
+
+function deleteOrAddTaskMenu(isDelete) {
+    const inputElement = document.getElementById('subtask-input-id');
+    if (isDelete)
+        inputElement.value = '';
+    else
+        addNewTaskMenu();
+    toggleVisibility('subtask-del-and-confim-id', false);
+    toggleVisibility('subtast-add-button-id', true);
+}
+
+function addNewTaskMenu() {
+    const inputElement = document.getElementById('subtask-input-id');
+    subtaskList.push(inputElement.value);
+    inputElement.value = '';
+    renderSubtasks();
+}
+
+function renderSubtasks() {
+  let element = document.getElementById('add-task-list-id');
+  element.innerHTML = '';
+  subtaskList.forEach(subtask => {
+    element.innerHTML  += templateSubtaskHTML(subtask);
+  });
 }

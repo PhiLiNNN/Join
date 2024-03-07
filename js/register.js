@@ -357,7 +357,7 @@ function toggleCheckbox(event) {
 function addPasswordVisibilityListener(elementId, lockImgId, visibilityOffImg, visibilityOnImg, visibilityObj) {
     const inputElement = document.getElementById(elementId);
     inputElement.addEventListener("input", function(event) {
-        const passwordNotEmpty = isPasswordNotEmpty(event.target.value);
+        const passwordNotEmpty = isValueNotEmpty(event.target.value);
         toggleVisibility(lockImgId, !passwordNotEmpty);
         toggleVisibility(visibilityOffImg, passwordNotEmpty && !visibilityObj.pwVisibilityOn);
         toggleVisibility(visibilityOnImg, passwordNotEmpty && visibilityObj.pwVisibilityOn);
@@ -367,7 +367,7 @@ function addPasswordVisibilityListener(elementId, lockImgId, visibilityOffImg, v
 }
 
 
-function isPasswordNotEmpty(passwordInput) {
+function isValueNotEmpty(passwordInput) {
     return passwordInput.trim().length !== 0;
 }
 
