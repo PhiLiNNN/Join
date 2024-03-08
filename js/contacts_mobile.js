@@ -14,7 +14,7 @@ function contactsInit() {
         setTimeout(showHeaderAndFooter, 250);
         renderContacts();
         renderAddContactButtonMobile();               
-        document.body.style.overflow = 'auto';
+        document.body.style.overflow = 'hidden';
         const content = document.getElementById("all-contacts-id");
         content.style.paddingTop = '100px';
         content.style.paddingBottom = '60px';
