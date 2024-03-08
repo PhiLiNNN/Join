@@ -5,6 +5,7 @@
 }
 
 .contactsContent {
+    display: flex;
     overflow-y: auto;
 }
 
@@ -540,7 +541,7 @@
 /*-----------------------------------------------------------------------------------------------------------------------*/
 
 @media only screen and (max-width: 2500px) and (min-width: 760px) {
-    .allContacts {
+    .allContacts {        
         position: relative;
         overflow-y: auto;
         padding-top: 100px;
@@ -623,5 +624,38 @@
         color: var(--hyper-link-color);
         text-decoration: none;
         cursor: pointer;        
+    }
+
+    .contactsContentRightSide {
+        display: flex;
+        flex-direction: column;
+        min-width: calc(70vh - 232px);
+        background-color: var(--white-grey);
+        /* position: sticky; */
+        top: 10px;
+        /* max-height: calc(100vh - 100px); /* Calculate the maximum height (100vh minus header-height) */
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+        margin-left: 5px;
+    }
+
+    .contactsContentRightSideHeadLine {
+        display: flex;
+        align-items: flex-start;
+        align-items: center;
+        gap: 30px;
+        margin-left: 2em;
+        margin-top: 5em;
+    }
+
+    .contactsContentRightSideH1 {
+        font-size: 4vw;
+        font-weight: 700;
+        color: black;
+    }
+
+    .contactsContentRightSideHeadLinePElement {
+        font-size: 1.5vw;
+        font-weight: 400;
+        color: black;
     }
 }

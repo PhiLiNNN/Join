@@ -1,4 +1,5 @@
 /* Desktop view */
+/* Render contacts desktop view */
 
 function renderContactsDesktop() {
     const content = document.getElementById("all-contacts-id");
@@ -92,3 +93,7 @@ function renderContactsByFirstLetterDesktop(content, contactsByFirstLetter) {  /
         content.innerHTML += section;
     });
 }
+
+
+/* Open contact desktop view */
+
