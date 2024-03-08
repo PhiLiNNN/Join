@@ -183,7 +183,7 @@ function hideHeaderAndFooter() {
 function showHeaderAndFooter() {
   const mobileHeader = document.querySelector(".header");
   const menuTemplate = document.querySelector(".footer");
-  mobileHeader.style.display = "flex";
+  mobileHeader.style.display = "block";
   menuTemplate.style.display = "flex";
 }
 
