@@ -24,15 +24,15 @@ function initAddTask() {
 
 
 function sortContactsBySurname(a, b) {
-    const nameA = a.name.toLowerCase();
-    const nameB = b.name.toLowerCase();
-    if (nameA < nameB) return -1;
-    if (nameA > nameB) return 1;
-    const emailA = a.email.toLowerCase();
-    const emailB = b.email.toLowerCase();
-    if (emailA < emailB) return -1;
-    if (emailA > emailB) return 1;
-    return 0;
+  const nameA = a.name.toLowerCase();
+  const nameB = b.name.toLowerCase();
+  if (nameA < nameB) return -1;
+  if (nameA > nameB) return 1;
+  const emailA = a.email.toLowerCase();
+  const emailB = b.email.toLowerCase();
+  if (emailA < emailB) return -1;
+  if (emailA > emailB) return 1;
+  return 0;
 }
 
 
@@ -188,14 +188,14 @@ function selectCategory(clickedElement){
 }
 
 function addSubtaskVisibilityListener() {
-    const inputElement = document.getElementById('subtask-input-id');
-    inputElement.addEventListener("input", function(event) {
-        const inputNotEmpty = isValueNotEmpty(event.target.value);
-        toggleVisibility('subtast-add-button-id', !inputNotEmpty);
-        toggleVisibility('subtask-del-and-confim-id', true);
-        if (!inputNotEmpty) 
-            toggleVisibility('subtask-del-and-confim-id', false);
-    });
+  const inputElement = document.getElementById('subtask-input-id');
+  inputElement.addEventListener("input", function(event) {
+      const inputNotEmpty = isValueNotEmpty(event.target.value);
+      toggleVisibility('subtast-add-button-id', !inputNotEmpty);
+      toggleVisibility('subtask-del-and-confim-id', true);
+      if (!inputNotEmpty) 
+          toggleVisibility('subtask-del-and-confim-id', false);
+  });
 }
 
 function toggleAddNewTaskMenu() {
@@ -205,21 +205,21 @@ function toggleAddNewTaskMenu() {
 }
 
 function deleteOrAddTaskMenu(isDelete) {
-    const inputElement = document.getElementById('subtask-input-id');
-    if (isDelete)
-        inputElement.value = '';
-    else
-        addNewTaskMenu();
-    toggleVisibility('subtask-del-and-confim-id', false);
-    toggleVisibility('subtast-add-button-id', true);
-    subtaskCounter = 0;
+  const inputElement = document.getElementById('subtask-input-id');
+  if (isDelete)
+      inputElement.value = '';
+  else
+      addNewTaskMenu();
+  toggleVisibility('subtask-del-and-confim-id', false);
+  toggleVisibility('subtast-add-button-id', true);
+  subtaskCounter = 0;
 }
 
 function addNewTaskMenu() {
-    const inputElement = document.getElementById('subtask-input-id');
-    subtaskList.push(inputElement.value);
-    inputElement.value = '';
-    renderSubtasks();
+  const inputElement = document.getElementById('subtask-input-id');
+  subtaskList.push(inputElement.value);
+  inputElement.value = '';
+  renderSubtasks();
 }
 
 function renderSubtasks() {
@@ -232,14 +232,22 @@ function renderSubtasks() {
 
 function editSubtask(index) {
   subtaskCounter +=1;
+  const ListElement = document.getElementById(`substask-content-id${index}`);
   if (subtaskCounter === 1) {
-      const element = document.getElementById(`editable-span-id${index}`);
-      const ListElement = document.getElementById(`substask-sontent-id${index}`);
-      toggleVisibility(`subtask-edited-container-id${index}`, true);
-      toggleVisibility(`subtask-default-container-id${index}`, false); 
-      ListElement.classList.toggle('blue-line-highlight');
-      makeElementEditableWithMaxLength(element, 30);
-    } else return;
+    const element = document.getElementById(`editable-span-id${index}`);
+    toggleVisibility(`subtask-edited-container-id${index}`, true);
+    toggleVisibility(`subtask-default-container-id${index}`, false); 
+    makeElementEditableWithMaxLength(element, 30);
+    ListElement.classList.toggle('blue-line-highlight');
+  }
+  document.addEventListener('click', function(event) {
+  const clickedElement = event.target;
+  const isSubtaskContent = clickedElement.closest(`[id^="substask-content-id${index}"]`);
+  const isSubtaskDefaultContainer = clickedElement.closest(`[id^="subtask-default-container-id${index}"]`);
+  const isSubtaskEditedContainer = clickedElement.closest(`[id^="subtask-edited-container-id${index}"]`);
+  if (!isSubtaskContent && !isSubtaskDefaultContainer && !isSubtaskEditedContainer) 
+    ListElement.classList.add('red-line-highlight');
+  });
 }
 
 function makeElementEditableWithMaxLength(element, maxLength) {

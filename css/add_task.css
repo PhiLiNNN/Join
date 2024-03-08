@@ -240,6 +240,11 @@
     border-bottom: 1px solid var(--mockup-highlight);
 }
 
+.red-line-highlight {
+    border-bottom: 2px solid var(--err-msg-color);
+
+}
+
 .d-none {
     display: none;
 }
