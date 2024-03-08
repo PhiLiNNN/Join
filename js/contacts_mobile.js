@@ -193,11 +193,11 @@ function showHeaderAndFooter() {
 // Add contact screen
 
 function addContactScreenMobile() {
-    const content = document.getElementById("all-contacts-id");
-    content.innerHTML = addContactFormMobileHTML();
-    content.style.paddingTop = '0px';
-    document.body.style.overflow = 'hidden';
-    hideHeaderAndFooter();
+  const content = document.getElementById("all-contacts-id");
+  content.innerHTML = addContactFormMobileHTML();
+  content.style.paddingTop = '0px';
+  content.style.overflow = 'hidden';
+  hideHeaderAndFooter();
 }
 
 
