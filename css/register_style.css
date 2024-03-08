@@ -235,9 +235,6 @@
     font-size: 12px;
 }
 
-.err-msg-color {
-    color: var(--err-msg-color);
-}
 
 .success-msg-popup {
     position: absolute;

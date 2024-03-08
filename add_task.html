@@ -28,20 +28,23 @@
         <h1>Add Task</h1>
         <div class="content-top-and-left">
             <div class="at-title">
-                <div class="at-label-style">Title<sup>*</sup></div>
-                <div class="input_global  input_at">
+                <div class="at-label-style">Title<span class="required">*</span></div>
+                <div id="at-title-border-id" class="input_global input_at">
                     <input id="title-input-id"  type="text" placeholder="Enter a title">
                 </div>
+                <span id="empty-title-id" class="inApp-err-msg d-none">This field is required!</span>
+                
             </div>
             <div class="at-description">
                 <div class="at-label-style">Description</div>
                 <textarea id="textarea-input-id" class="textarea-style" placeholder="Enter a description"  maxlength="500"></textarea>
             </div>
             <div class="at-date ">
-                <div class="at-label-style">Due date<sup>*</sup></div>
-                <div class="input_global due_date_at">
+                <div class="at-label-style">Due date<span class="required">*</span></div>
+                <div id="at-date-border-id" class="input_global due_date_at">
                     <input id="date-input-id" type="date"  max="2025-12-31" min="2024-02-27">
                 </div>
+                <span id="empty-date-id" class="inApp-err-msg d-none">This field is required!</span>
             </div>
         </div>
         <div class="content-bottom-and-rigth">
@@ -64,11 +67,12 @@
             </div>
             
             <div class="at-Category ">
-                <div class="at-label-style">Category</div>
+                <div class="at-label-style">Category<span class="required">*</span></div>
                 <div id="category-container-id" class="input_global input_at cursor" onclick="toggleCategoryContainer()">
                     <input id="category-input-id" class="cursor" type="text" placeholder="Select task category" readonly>
                     <img id="rotate-arrow-category-id" class="rotate-arrow" src="./assets/svg/arrow_drop_down.svg" >
                 </div>
+                <span id="empty-category-id" class="inApp-err-msg d-none">This field is required!</span>
                 <div id="category-id" class="category-dropdown">
                     <ul>
                         <li onclick="selectCategory(this)">Technical Task</li>
@@ -114,7 +118,10 @@
         
     </div>
     <div class="content-bottom-container">
-        <span><sup>*</sup>This field is required</span>
+        <span>
+            <span class="required">*</span>
+            This field is required
+        </span>
         <button class="white-btn width-small d-none">Clear X</button>
         <button class="filled-btn" onclick="createTask()">Create Task 
             <img src="./assets/img/check.png" alt="">

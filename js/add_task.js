@@ -279,13 +279,44 @@ async function createTask() {
   const textareaInput = document.getElementById('textarea-input-id').value;
   const dateInput = document.getElementById('date-input-id').value;
   const categoryInput = document.getElementById('category-input-id').value;
-  currentUser.tasks.titles.push(titleInput)
+  const atBoolArr = [false, false, false, false, false, false];
+  validateInput(titleInput, atBoolArr, 0, 3);
+  validateInput(dateInput, atBoolArr, 1, 4);
+  validateInput(categoryInput, atBoolArr, 2, 5);
+  if (handlerAddTaskValidation(atBoolArr)) {
+    handlerAddTaskValidation(atBoolArr);
+    return;
+  }
+  updateCurrentUser(titleInput, textareaInput, dateInput, assignedTo.userNames, prio[prioIndex], categoryInput, subtaskList);
+  await sendAddTask();
+}
+
+function updateCurrentUser() {
+  currentUser.tasks.titles.push(titleInput);
   currentUser.tasks.descriptions.push(textareaInput)
   currentUser.tasks.dates.push(dateInput)
   currentUser.tasks.assignedTo.push(assignedTo.userNames)
   currentUser.tasks.prios.push(prio[prioIndex])
   currentUser.tasks.categories.push(categoryInput)
   currentUser.tasks.subtasks.push(subtaskList)
+}
+
+function validateInput(input, atBoolArr, index1, index2) {
+  if (input.trim() === "")
+    atBoolArr[index1] = atBoolArr[index2] = true;
+}
+
+function handlerAddTaskValidation(atBoolArr) {
+    toggleVisibility('empty-title-id', atBoolArr[0]);
+    toggleVisibility('empty-date-id', atBoolArr[1]);
+    toggleVisibility('empty-category-id', atBoolArr[2]);
+    toggleVisibility('at-title-border-id', !atBoolArr[3],'error-border')
+    toggleVisibility('at-date-border-id', !atBoolArr[4],'error-border')
+    toggleVisibility('category-container-id', !atBoolArr[5],'error-border')
+    return atBoolArr.some(Boolean);
+}
+
+async function sendAddTask() {
   localStorage.setItem('currentUser', JSON.stringify(currentUser));
   await addNewUserToBackend(currentUser);
 }

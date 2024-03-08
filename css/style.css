@@ -152,6 +152,16 @@ textarea::placeholder {
     border-color: var(--mockup-highlight); 
 }
 
+.err-msg-color {
+    color: var(--err-msg-color);
+}
+
+.inApp-err-msg {
+    color: var(--err-msg-color);
+    font-size: 14px;
+}
+
+
 .d-none {
     display: none;
 }
