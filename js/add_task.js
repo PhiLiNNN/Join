@@ -279,5 +279,5 @@ async function createTask() {
   currentUser.tasks.categories.push(categoryInput)
   currentUser.tasks.subtasks.push(subtaskList)
   localStorage.setItem('currentUser', JSON.stringify(currentUser));
-  addNewUserToBackend(currentUser);
+  await addNewUserToBackend(currentUser);
 }
