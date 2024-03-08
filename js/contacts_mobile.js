@@ -67,6 +67,7 @@ function createLetterAndContactsContainer(firstLetter) {
 
 
 function createOneContactContainer(oneContact) {
+  console.log("function createOneContactContainer(oneContact)" , oneContact.id);
   const container = document.createElement('div');
   container.classList.add('oneContactContainer');
   container.setAttribute('onclick', `showContactOverlayMobile('${oneContact.id}')`);  
@@ -98,6 +99,7 @@ function registerContactClickHandlers() {
     contactContainers.forEach(container => {
         const contactId = container.getAttribute('data-contact-id');
         container.addEventListener('click', () => showContactOverlayMobile(contactId));
+        console.log("function registerContactClickHandlers()" , contactId);
     });
 }
   

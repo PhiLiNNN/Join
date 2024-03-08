@@ -15,6 +15,7 @@
     padding-top: 100px;
     padding-bottom: 60px;
     height: 100vh;
+    width: 100vw;
 }
 
 .addContactButtonContainerMobile {
@@ -537,6 +538,10 @@
     margin-top: 1.5rem;
 }
 
+.contactsContentRightSide {
+    display: none !important;
+}
+
 /* Desktop view */
 /*-----------------------------------------------------------------------------------------------------------------------*/
 
@@ -547,6 +552,7 @@
         padding-top: 100px;
         padding-bottom: 60px;
         margin-left: 240px;
+        min-width: 20vw;
     }
 
     .letterAndContactsContainer {
@@ -602,6 +608,15 @@
         height: 32px;    
     }
 
+    .oneContactContainer {
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        margin-bottom: 1em;
+        cursor: pointer;
+        border-radius: 10px;
+    }
+
     .oneContactContainerH2Desktop {
         color: black;
         font-size: 20px;
@@ -627,7 +642,7 @@
     }
 
     .contactsContentRightSide {
-        display: flex;
+        display: flex !important;
         flex-direction: column;
         min-width: calc(70vh - 232px);
         background-color: var(--white-grey);
@@ -657,5 +672,126 @@
         font-size: 1.5vw;
         font-weight: 400;
         color: black;
+    }
+
+    @keyframes slide-in-desktop {
+        from {
+          transform: translateX(100%);
+        }
+        to {
+          transform: translateX(0);
+        }
+    }
+
+    .contactsContentRightSideBlueStribeSvg {
+        height: 4vw;
+    }
+
+    .contactsContentRightSideUserImgAndNameContainer {
+        display: flex;
+        align-items: flex-start;
+        align-items: center;
+        gap: 5em;
+        margin-left: 2em;
+        margin-top: 5em;
+    }
+
+    .contactsContentRightSideUserNameH2 {
+        font-size: 40px;
+        font-weight: 500;
+    }
+
+    .contactsContentRightSideEditAndDeleteButtonContainer {
+        display: flex;
+    }
+
+    .contactsContentRightSideEditButton {
+        height: 2vw;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+    
+    .contactsContentRightSideEditButton:hover {
+        filter: saturate(400%) brightness(550%);
+    }
+    
+    .contactsContentRightSideDeleteButton {
+        height: 2vw;    
+        cursor: pointer;
+        margin-left: 30px;
+        transition: background-color 0.3s ease;
+    }
+    
+    .contactsContentRightSideDeleteButton:hover {
+        filter: saturate(400%) brightness(550%);
+    }
+
+    .contactsContentRightSideContactInformationDesktop {
+        margin-top: 59px;
+        margin-left: 2em;
+    }
+
+    .contactsContentRightSideContactInformationDesktopPText {
+        color: black;
+        font-size: 2.5vw;
+        font-weight: 400;
+    }
+
+    .contactsContentRightSideContactEmailH2Desktop {
+        margin-top: 59px;
+        margin-left: 2em;
+    }
+
+    .contactsContentRightSideContactEmailH2 {
+        font-size: 1.5vw;
+        font-weight: 700;
+    }
+
+    .openContactEmailLinkDesktopContainer {
+        margin-top: 20px;
+    }
+
+    .openContactEmailLinkDesktop {
+        cursor: pointer;
+        text-decoration: none;
+        color: #007cee;
+        margin-left: 2rem;
+        cursor: pointer;
+        font-size: 1.5vw;
+    }
+    
+    .openContactEmailLinkDesktop:hover {
+        color: var(--light-blue);
+    }
+
+    .contactsContentRightSideContactPhoneH2DesktopContainer {
+        margin-top: 20px;
+        margin-left: 2em;
+    }
+
+    .contactsContentRightSideContactPhoneH2Desktop {
+        font-size: 1.5vw;
+        font-weight: 700;
+    }
+
+    .openphoneNumberDesktopContainer {
+        margin-top: 20px;
+        margin-left: 2em;
+    }
+
+    .openphoneNumberDesktopPElement {
+        font-size: 1.5vw;
+        font-weight: 400;
+    }
+
+    .openContactUserImgDesktop {
+        height: 120px;
+        width: 120px;    
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 100px;
+        border: 8px solid white;
+        position: relative;
     }
 }
