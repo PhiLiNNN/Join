@@ -96,7 +96,7 @@ function renderContactsByFirstLetter(content, contactsByFirstLetter) {
 
 function registerContactClickHandlers() {
     const contactContainers = document.querySelectorAll('.oneContactContainer');
-    contactContainers.forEach(container => {
+    contactContainers.forEach(container => {      
         const contactId = container.getAttribute('data-contact-id');
         container.addEventListener('click', () => showContactOverlayMobile(contactId));
         console.log("function registerContactClickHandlers()" , contactId);
@@ -288,10 +288,11 @@ async function updateCurrentUserInBackend(currentUser) {
 
 // Open contact overlay mobile
 
-function showContactOverlayMobile(contactId) {    
+function showContactOverlayMobile(contactId) {
+  console.log("function showContactOverlayMobile(contactId)" , contactId); 
     const content = document.getElementById('all-contacts-id');
     content.innerHTML = "";
-    const selectedContact = findSelectedContact(contactId);
+    const selectedContact = findSelectedContactMobile(contactId);
     if (!selectedContact) {
         handleContactNotFound();
         return;
@@ -302,13 +303,14 @@ function showContactOverlayMobile(contactId) {
 }
 
 
-function findSelectedContact(contactId) {
+function findSelectedContactMobile(contactId) {
+    console.log("function findSelectedContactMobile(contactId)" , contactId);
     const loggedInUser = getLoggedInUser();    
     if (!loggedInUser) {
       console.error("No logged in user found.");
       return null;
     }
-    return loggedInUser.contacts.find(contact => contact.id === contactId);
+    return loggedInUser.contacts.find(contact => contact.id === contactId);    
 }
 
 
@@ -527,7 +529,7 @@ function editContactOverlayMobile(contactId) {
     content.innerHTML = "";
     const overlay = document.createElement("div");
     overlay.classList.add("overlay");  
-    const selectedContact = findSelectedContact(contactId);
+    const selectedContact = findSelectedContactMobile(contactId);
     if (!selectedContact) {
       handleContactNotFound();
       return;
