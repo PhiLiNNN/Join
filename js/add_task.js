@@ -287,11 +287,11 @@ async function createTask() {
     handlerAddTaskValidation(atBoolArr);
     return;
   }
-  updateCurrentUser(titleInput, textareaInput, dateInput, assignedTo.userNames, prio[prioIndex], categoryInput, subtaskList);
+  updateCurrentUser(titleInput, textareaInput, dateInput, categoryInput);
   await sendAddTask();
 }
 
-function updateCurrentUser() {
+function updateCurrentUser(titleInput, textareaInput, dateInput, categoryInput) {
   currentUser.tasks.titles.push(titleInput);
   currentUser.tasks.descriptions.push(textareaInput)
   currentUser.tasks.dates.push(dateInput)
