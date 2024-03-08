@@ -9,6 +9,7 @@
     justify-content: space-between;
     flex-direction: column;
     z-index: 1000;
+    
 }
 
 .desktop-logo {
@@ -18,22 +19,26 @@
 }
 
 .menu-box {
-    width: 232px;
+    width: 100%;
     height: 229px;
-    gap: 15px;
     margin-top: 114px;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     flex-direction: column;
 }
 
-.footer-icon-box {
-    height: 46px;
-    width: 165px;
-    padding-left: 66px;
+.menu-content {
     display: flex;
-    justify-content: flex-start;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.footer-icon-box {
+    width: 100%;
+    height: 46px;
+    display: flex;
+    justify-content: start;
     align-items: center;
 }
 
@@ -49,7 +54,7 @@
     gap: 8px;
     text-decoration: none;
     color: #a8a8a8;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 400;
 }
 
@@ -70,7 +75,7 @@
 
 @media (max-width: 760px) {
 
-    .footer{
+    .footer {
         height: 80px;
         width: auto;
         position: fixed;
@@ -86,15 +91,15 @@
     }
 
     .menu-box {
-        width: 100%;
         height: auto;
-        gap: 0;
+        margin-top: 0;      
+    }
+    .menu-content {
+        width: 100%;
         display: flex;
-        margin-top: 0;
         justify-content: space-evenly;
         align-items: center;
         flex-direction: row;
-        padding: 2px 16px;
     }
     
     .footer-icon-box {
