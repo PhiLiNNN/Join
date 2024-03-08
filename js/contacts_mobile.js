@@ -67,10 +67,10 @@ function createLetterAndContactsContainer(firstLetter) {
 
 
 function createOneContactContainer(oneContact) {
-  console.log("function createOneContactContainer(oneContact)" , oneContact.id);
   const container = document.createElement('div');
   container.classList.add('oneContactContainer');
-  container.setAttribute('onclick', `showContactOverlayMobile('${oneContact.id}')`);  
+  container.setAttribute('data-contact-id', oneContact.id);
+  container.addEventListener('click', () => showContactOverlayMobile(oneContact.id));
   const iconHtml = renderSingleMemberToHTMLMobile(oneContact, oneContact.colorCode, oneContact.textColorCode);
   container.innerHTML = `
     <div class="contact-info-container">
@@ -98,8 +98,7 @@ function registerContactClickHandlers() {
     const contactContainers = document.querySelectorAll('.oneContactContainer');
     contactContainers.forEach(container => {      
         const contactId = container.getAttribute('data-contact-id');
-        container.addEventListener('click', () => showContactOverlayMobile(contactId));
-        console.log("function registerContactClickHandlers()" , contactId);
+        container.addEventListener('click', () => showContactOverlayMobile(contactId));        
     });
 }
   
@@ -194,11 +193,11 @@ function showHeaderAndFooter() {
 // Add contact screen
 
 function addContactScreenMobile() {
-    const content = document.getElementById("all-contacts-id");
-    content.innerHTML = addContactFormMobileHTML();
-    content.style.paddingTop = '0px';
-    document.body.style.overflow = 'hidden';
-    hideHeaderAndFooter();
+  const content = document.getElementById("all-contacts-id");
+  content.innerHTML = addContactFormMobileHTML();
+  content.style.paddingTop = '0px';
+  content.style.overflow = 'hidden';
+  hideHeaderAndFooter();
 }
 
 
@@ -288,8 +287,7 @@ async function updateCurrentUserInBackend(currentUser) {
 
 // Open contact overlay mobile
 
-function showContactOverlayMobile(contactId) {
-  console.log("function showContactOverlayMobile(contactId)" , contactId); 
+function showContactOverlayMobile(contactId) {   
     const content = document.getElementById('all-contacts-id');
     content.innerHTML = "";
     const selectedContact = findSelectedContactMobile(contactId);
@@ -303,8 +301,7 @@ function showContactOverlayMobile(contactId) {
 }
 
 
-function findSelectedContactMobile(contactId) {
-    console.log("function findSelectedContactMobile(contactId)" , contactId);
+function findSelectedContactMobile(contactId) {    
     const loggedInUser = getLoggedInUser();    
     if (!loggedInUser) {
       console.error("No logged in user found.");
@@ -319,7 +316,7 @@ function handleContactNotFound() {
 }
 
 
-function createContactOverlayContent(selectedContact) {
+function createContactOverlayContent(selectedContact) {    
     return `
     <div class="openContactContainerHeader">                            
         <div class="openContactBlockHeader">
@@ -526,22 +523,22 @@ function deleteContactMobile(contactId) {
 
 function editContactOverlayMobile(contactId) {  
   let content = document.getElementById('all-contacts-id');
-    content.innerHTML = "";
-    const overlay = document.createElement("div");
-    overlay.classList.add("overlay");  
-    const selectedContact = findSelectedContactMobile(contactId);
-    if (!selectedContact) {
-      handleContactNotFound();
+  content.innerHTML = "";
+  const overlay = document.createElement("div");
+  overlay.classList.add("overlay");
+  const currentUser = getLoggedInUser();
+  if (!currentUser) {
+      console.error("Logged in user not found.");
       return;
-    }  
-    const randomColor = getRandomColorHex();
-    const textColor = isColorLight(randomColor) ? 'white' : 'black';
-    const editContactHTML = createEditContactHTML(selectedContact, randomColor, textColor);
-    overlay.innerHTML = editContactHTML;  
-    document.body.appendChild(overlay);
-    hideHeaderAndFooter();    
-    content.style.paddingTop = '0px';
-    content.style.paddingBottom = '0px';
+  }
+  const selectedContact = currentUser.contacts.find(contact => contact.id === contactId);  
+  const randomColor = getRandomColorHex();
+  const textColor = isColorLight(randomColor) ? 'white' : 'black';
+  const editContactHTML = createEditContactHTML(selectedContact, randomColor, textColor);  
+  content.innerHTML = editContactHTML;  
+  hideHeaderAndFooter();
+  content.style.paddingTop = '0px';
+  content.style.paddingBottom = '0px';
 }
 
 
@@ -553,8 +550,8 @@ function closeContactOverlay() {
 }
 
 
-function createEditContactHTML(selectedContact, colorCode, textColor) {
-  const { name, email, phone } = selectedContact;
+function createEditContactHTML(selectedContact, colorCode, textColor) {  
+  const { name, email, phone } = selectedContact;  
   return /*html*/ `
     <div class="editContactContainerHeader">
       <div class="addContactCloseXContainer">
