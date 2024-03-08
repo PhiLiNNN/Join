@@ -103,12 +103,13 @@ function registerContactClickHandlers() {
   
   
 function renderAddContactButtonMobile() {
-    let addContactButtonMobile = document.getElementById(`all-contacts-id`);
-    addContactButtonMobile.innerHTML += `
-      <div>
-        <img class="addContactButtonImgMobile" src="../assets/img/contacts/addContactButtonMobile.svg" alt="createContactButton" onclick="addContactScreenMobile()"></img>
-      </div>
-      `
+  const content = document.getElementById("all-contacts-id");
+  const addContactButtonMobile = document.createElement('div');
+  addContactButtonMobile.classList.add("addContactButtonContainerMobile");
+  addContactButtonMobile.innerHTML = `
+    <img class="addContactButtonImgMobile" src="../assets/img/contacts/addContactButtonMobile.svg" alt="createContactButton" onclick="addContactScreenMobile()"></img>
+  `;
+  content.appendChild(addContactButtonMobile);
 }
 
 function hideAddContactButtonMobile() {

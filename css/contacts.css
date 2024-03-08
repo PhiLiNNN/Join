@@ -22,8 +22,7 @@
     align-items: center; 
     cursor: pointer;  
     margin-right: 1em;
-    margin-bottom: 8em;
-    height: 30vh;
+    margin-bottom: 3em;    
 }
 
 .addContactImageMobile {
@@ -149,10 +148,7 @@
 }
 
 .addContactButtonImgMobile {
-    height: 51px;
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
+    height: 51px;    
     cursor: pointer;    
 }
 
