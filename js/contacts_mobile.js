@@ -237,9 +237,7 @@ async function addContactToCurrentUser(newContact) {
   let textColorCode = localStorage.getItem(`textColor_${newContact.id}`);
   if (!colorCode || !textColorCode) {      
       colorCode = getRandomColorHex();
-      textColorCode = isColorLight(colorCode) ? 'white' : 'black';      
-      localStorage.setItem(`color_${newContact.id}`, colorCode);
-      localStorage.setItem(`textColor_${newContact.id}`, textColorCode);
+      textColorCode = isColorLight(colorCode) ? 'white' : 'black';
   }  
   newContact.colorCode = colorCode;
   newContact.textColorCode = textColorCode;
