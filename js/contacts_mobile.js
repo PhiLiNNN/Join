@@ -1,6 +1,10 @@
 // Render contacts mobile view
 
-window.addEventListener('resize', contactsInit);
+if (window.location.pathname === '/contacts.html') {
+  window.addEventListener('resize', contactsInit);
+} else {
+  window.removeEventListener('resize', contactsInit);
+}
 window.onload = contactsInit;
 
 
