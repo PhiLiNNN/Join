@@ -12,6 +12,7 @@
     font-size: 47px;
     line-height: 56.4px;
     font-weight: 700;
+    transition: all 300ms  ease-in-out;
 }
 
 .input_at {
@@ -24,6 +25,7 @@
 .input_at input,
 .textarea-style {
     font-size: 20px !important;
+    transition: all 300ms  ease-in-out;
 }
 
 .rotate-arrow {
@@ -32,6 +34,10 @@
     cursor: pointer;
     transform: rotate(0deg);
     transition: transform 300ms ease;
+}
+
+.plus-btn {
+    margin-right: -5px;
 }
 
 .rotate-arrow.upsidedown {
@@ -49,13 +55,13 @@
 .at-dropdown.active {
     overflow-y: auto;
     opacity: 1;
-    max-height: 300px;  
+    max-height: 200px;  
 }
 
 .at-label-style {
     margin-block: 8px;
     font-size: 22px;
-    transition: font-size 300ms  ease-in-out;
+    transition: all 300ms  ease-in-out;
 }
 
 .at-label-style.shrink-font-size {
@@ -78,6 +84,7 @@
     left: 0;
     right: 0;
     bottom: 80px;
+    transition: all 300ms  ease-in-out;
 }
 
 .filled-btn {
@@ -87,9 +94,8 @@
     align-items: center;
     gap: 8px;
     justify-content: center;
+    transition: all 300ms  ease-in-out;
 }
-
-
 
 .circle-style {
     display: flex;
@@ -99,13 +105,14 @@
     height: 42px;
     border-radius: 50%;
     font-size: 16px;
+    transition: all 300ms  ease-in-out;
 }
 
-    
 .assigned-to-box {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    cursor: pointer;
     margin: 4px;
     padding: 16px 7px;
 }
@@ -116,6 +123,12 @@
     gap: 16px;
     align-items: center;
     font-size: 22px;
+    transition: all 300ms  ease-in-out;
+}
+
+.assigned-to-user span {
+    max-width: 80vw;
+    overflow-x: auto;
 }
 
 .assigned-to-box svg {
@@ -154,6 +167,19 @@
     cursor: pointer;
     border-radius: 10px;
     box-shadow: 0 0px 10px  var(--placeholder-color);
+    transition: all 300ms  ease-in-out;
+}
+
+.at-prio-img-green:active {
+    box-shadow: 0 0px 5px  #7AE229;
+}
+
+.at-prio-img-yellow:active {
+    box-shadow: 0 0px 5px  #FFA800;
+}
+
+.at-prio-img-red:active {
+    box-shadow: 0 0px 5px  #FF3D00;
 }
 
 .category-dropdown {
@@ -181,6 +207,7 @@
     font-size: 22px;
     cursor: pointer;
     margin: 4px;
+    transition: all 300ms  ease-in-out;
 }
 
 .category-dropdown ul li.selected-contact {
@@ -206,11 +233,9 @@
 .subtask-list {
     overflow-y: auto;
     margin-block: 8px;
-    max-height: 300px;
+    max-height: 160px;
 }
 
-
-  
 .subtask-list ul li {
     display: flex;
     align-items: center;
@@ -218,6 +243,7 @@
     padding: 14.5px 0;
     margin-inline: 26px;
     position: relative;
+    transition: all 300ms  ease-in-out;
 }
 
 .subtask-list ul li::before {
@@ -238,6 +264,8 @@
     background: none;
     font-size: 22px;
     outline: none;
+    word-wrap: break-word;
+    transition: all 300ms  ease-in-out;
 }
 
 .blue-line-highlight {
@@ -251,15 +279,20 @@
 
 .hide-clear-btn {
     display: none;
-    font-size: 22px;
-    height: 45px;
 }
 
 .d-none {
     display: none;
 }
 
-@media (min-width: 760px) {
+@media (min-width: 954px) {
+    .at-prio-img {
+        justify-content: center;
+        gap: 48px;
+    }
+}
+
+@media (min-width: 761px) {
     .content-container {
         max-height: calc(100vh - 158px);
         margin: 80px 0 0 calc(232px); 
@@ -270,8 +303,11 @@
         bottom: 0px;
     }
     .hide-clear-btn {
-        display: block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         font-size: 22px;
+        height: 45px;
     }
     .bottom-btns-container {
         display: flex;
@@ -280,8 +316,14 @@
 }
 
 @media (min-width: 1343px) {
+    .at-prio-img {
+        justify-content: space-between;
+    }
     .at-section {
         width: 100%;
+    }
+    .assigned-to-user span {
+        max-width: 17vw;
     }
     .content-container {
         position: static;
@@ -313,4 +355,78 @@
         min-width: 923px;
     }
 } 
+
+@media (max-width: 1013px) {
+    .assigned-to-user span {
+        max-width: 41vw;
+    }
+}
+
+@media (max-width: 980px) {
+    .editable-span {
+        max-width: 40vw;
+    }
+}
+
+@media (max-width: 761px) {
+    .editable-span {
+        max-width: 50vw;
+    }
+}
+
+@media (max-width: 466px) {
+    .at-prio-img img {
+        height: 30px;
+        width: 85px;
+    }
+    .content-container h1 {
+        font-size: 43px;
+    } 
+    .at-label-style,
+    .assigned-to-user,
+    .editable-span,
+    .content-bottom-container,
+    .bottom-btns-container button {
+        font-size: 16px;
+    }
+    .assigned-to-box {
+        padding: 8px 7px;
+    }
+    .circle-style {
+        width: 30px;
+        height: 30px;
+    }
+    .circle-style  span {
+        font-size: 12px;
+    }
+    .assigned-to-box svg {
+        margin-right: 12px;
+    }
+    .subtask-list ul li  {
+        padding: 4px 0; 
+    }
+    .filled-btn {
+        width: 130px;
+        height: 40px;
+    }
+}  
+
+@media (max-width: 418px) {
+    .editable-span {
+        max-width: 40vw;
+        margin-right: 12px;
+    }
+}
+
+@media (max-width: 344px) {
+    .assigned-to-box {
+        padding: 6px 7px;
+    }
+    .assigned-to-user {
+        gap: 8px;
+    }
+    .assigned-to-box svg {
+        margin-right: 2px;
+    }   
+}
 

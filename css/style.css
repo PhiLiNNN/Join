@@ -8,6 +8,7 @@
     --err-msg-color: #ff3333;
     --white-grey: #f6f7f8;
     --white-grey2: #d9d9d9;
+    --focus-color-btn: #091931;
 }
 
 @font-face {
@@ -70,9 +71,62 @@ h2 {
     cursor: pointer;
     font-size: 16px;
     font-weight: 700;
+}
+
+.white-btn {
+    border: 1px solid var(--mockup-color);
+    color: var(--mockup-color);
+    transition: all 200ms ease-in-out;
+}
+
+.white-btn:hover {
+    border: 2px solid var(--mockup-highlight);
+    color: var(--mockup-highlight);
+    box-shadow: 0 6px 5px rgba(0, 0, 0, 0.18);
+}
+
+.white-btn:hover svg path {
+    stroke: var(--mockup-highlight);
+    transition: stroke 200ms ease-in-out; 
+}
+
+
+.white-btn:active {
+    border: 2px solid var(--focus-color-btn);
+    color: var(--focus-color-btn);
+}
+
+.white-btn:active svg path {
+    stroke: var(--focus-color-btn);
+}
+
+
+
+
+
+
+
+
+
+.filled-btn {
+    background-color: var(--mockup-color);
+    color: white;
     border: 1px solid var(--mockup-color);
     transition: all 200ms ease-in-out;
 }
+
+.filled-btn:hover {
+    background-color: var(--mockup-highlight);
+    border: 2px solid  var(--mockup-highlight);
+    box-shadow: 0 6px 5px rgba(0, 0, 0, 0.18);
+}
+
+.filled-btn:active {
+    background-color: var(--focus-color-btn);
+    border: 2px solid var(--focus-color-btn);
+}
+
+
 
 .width-small {
     width: 104px !important;
@@ -83,27 +137,6 @@ h2 {
 }
 
 
-.filled-btn {
-    background-color: var(--mockup-color);
-    color: white;
-}
-
-.white-btn {
-    width: 180px;
-    color: var(--mockup-color);
-}
-
-.filled-btn:hover:enabled {
-    background-color: var(--mockup-highlight);
-    border: 2px solid var(--mockup-highlight);
-    box-shadow: 0 6px 5px rgba(0, 0, 0, 0.18);
-}
-
-.white-btn:hover {
-    border: 2px solid var(--mockup-highlight);
-    color: var(--mockup-highlight);
-    box-shadow: 0 6px 5px rgba(0, 0, 0, 0.18);
-}
 
 
 .input_global,
@@ -147,6 +180,7 @@ h2 {
 input::placeholder,
 textarea::placeholder {
     color: var(--placeholder-color); 
+    transition: font-size 300ms  ease-in-out;
 }
 
 .input_global:focus-within {
@@ -165,4 +199,11 @@ textarea::placeholder {
 
 .d-none {
     display: none;
+}
+
+@media (max-width: 466px) {
+    input::placeholder,
+    textarea::placeholder {
+      font-size: 16px; 
+    }
 }

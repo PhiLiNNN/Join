@@ -15,12 +15,25 @@ function initAddTask() {
   currentUser = JSON.parse(localStorage.getItem('currentUser'));
   console.log(currentUser)
   renderAssignedToContacts();
+  setCurrentDate();
   addSubtaskVisibilityListener();
   closeAssignedToMenu();
   closeCategoryMenu();
   
 }
 
+function formatWithLeadingZero(value) {
+  return value < 10 ? `0${value}` : value;
+}
+
+function setCurrentDate() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = formatWithLeadingZero(now.getMonth() + 1);
+  const day = formatWithLeadingZero(now.getDate());
+  let element =  document.getElementById('date-input-id');
+  element.min = `${year}-${month}-${day}`;
+}
 
 
 function sortContactsBySurname(a, b) {
