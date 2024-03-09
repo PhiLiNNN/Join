@@ -278,13 +278,13 @@ function generateHTMLAddContactShowOverlayDesktop(overlayContent) {
             <div class="addContactCloseXContainerDesktop">
               <button class="addContactCloseXButton" onclick="hideOverlay()">X</button>
             </div>
-            <div id="editContactDestopID">
+            <div id="edit-contact-destop-id">
               <div class="addContactContainerFooter">
-              <form id="addContactShowOverlayDesktopID" name="addContactShowOverlayDesktop" onsubmit="createContactDesktop()">
+              <form id="add-contact-show-overlay-desktop-id" name="addContactShowOverlayDesktop" onsubmit="createContactDesktop()">
               <div class="addContactContainerFooter">
-              <input class="addContactInputNameDesktop" type="text" name="addContactInputNameDesktop" id="addContactInputNameDesktopID" required pattern="[A-Za-z]+" placeholder="Name" data-contacts>
-                <input class="addContactInputMailAddresssDesktop" name="addContactInputMailAddresssDesktop" id="addContactInputMailAddresssDesktopID" type="email" required placeholder="E Mail" data-contacts>
-                <input class="addContactInputPhoneDesktop" type="tel" name="addContactInputPhoneDesktop" id="addContactInputPhoneDesktopID" required pattern="[0-9]{1,}" placeholder="Phone" data-contacts>
+              <input class="addContactInputNameDesktop" type="text" name="addContactInputNameDesktop" id="add-contact-input-name-desktop-id" required pattern="[A-Za-z]+" placeholder="Name" data-contacts>
+                <input class="addContactInputMailAddresssDesktop" name="addContactInputMailAddresssDesktop" id="add-contact-input-mail-addresss-desktop-id" type="email" required placeholder="E Mail" data-contacts>
+                <input class="addContactInputPhoneDesktop" type="tel" name="addContactInputPhoneDesktop" id="add-contact-input-phone-desktop-id" required pattern="[0-9]{1,}" placeholder="Phone" data-contacts>
                 <div class="addContactButtonContainerDesktop">
                   <button class="cancelContactDesktopDeleteButton" onclick="hideOverlay()">Cancel</button>
                   <button class="createContactButton" onclick="createContactDesktop()">Create contact</button>
@@ -312,5 +312,22 @@ function hideOverlay() {
 
 
 function createContactDesktop() {
+  const currentUser = getLoggedInUser();
+    if (!currentUser) {
+        console.error("No user logged in.");
+        return;
+    }    
+    const newContact = getNewContactDesktop();
+    newContact.id = generateUniqueID();    
+    addContactToCurrentUser(newContact);
+    hideOverlay();
+    contactsInit();
+}
 
+
+function getNewContactDesktop() {
+  const contactName = document.getElementById("add-contact-input-name-desktop-id").value;
+  const contactEmail = document.getElementById("add-contact-input-mail-addresss-desktop-id").value;
+  const contactPhone = document.getElementById("add-contact-input-phone-desktop-id").value;
+  return { name: contactName, email: contactEmail, phone: contactPhone };
 }

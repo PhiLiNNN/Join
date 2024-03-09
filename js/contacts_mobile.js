@@ -217,7 +217,7 @@ async function createContactMobile() {
         return;
     }    
     const newContact = getNewContact();
-    newContact.id = generateUniqueID();    
+    newContact.id = generateUniqueID();   // <-----Delete? 
     addContactToCurrentUser(newContact);
     contactsInit();
 }
