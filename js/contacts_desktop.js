@@ -1,5 +1,6 @@
 /* Desktop view */
 /* Render contacts desktop view */
+
 let lastClickedContactId;
 
 function renderContactsDesktop() {
@@ -221,6 +222,7 @@ function showContactsContentRightSideDesktop() {
     showcontactsContentRightSide.style.display = "flex";
 }
 
+// Delete contact desktop
 
 function deleteContactDesktop(contactId) {
     const currentUser = getLoggedInUser();
@@ -238,4 +240,77 @@ function deleteContactDesktop(contactId) {
     updateCurrentUserInBackend(currentUser);
     document.getElementById("contactsContentRightSideContactDataContainerID").innerHTML = "";
     contactsInit();  
+}
+
+
+// Add contact screen overlay desktop
+
+/**
+ * Show overlay for add contact at desktop view
+ */
+function addContactShowOverlayDesktop() {
+    const overlayContainer = document.createElement("div");
+    overlayContainer.classList.add("overlay-container");
+    document.body.appendChild(overlayContainer);
+    const overlayContent = document.createElement("div");
+    overlayContent.classList.add("overlay-content");
+    overlayContainer.appendChild(overlayContent);
+    generateHTMLAddContactShowOverlayDesktop(overlayContent);    
+    overlayContainer.style.animation = "slide-in-menu 0.5s ease-out";
+  }
+  
+/**
+  * Generate HTML for add contact show overlay desktop
+  * @param {string} overlayContent - Overlay div container
+  */
+function generateHTMLAddContactShowOverlayDesktop(overlayContent) {
+    overlayContent.innerHTML = /*html*/ `
+      <div class="overlay-card">
+        <div class="addContactDesktopLeftSideContainer">
+          <div class="flexDirectionColumn">
+            <img class="joinLogoGreyBackgroundImg" src="../../assets/img/contacts/joinLogoGreyBackground.png" alt="">
+            <h1 class="addContactDesktopLeftSideContainerH1">Add contact</h1>
+            <p class="addContactDesktopLeftSideContainerPElement">Tasks are better with a team!</p>
+            <img class="addContactBlueStroked" src="../../assets/img/contacts/addContactBlueStroked.svg" alt="">
+          </div>
+        </div>
+        <div class="addContactDesktopRightSideContent">
+            <div class="addContactCloseXContainerDesktop">
+              <button class="addContactCloseXButton" onclick="hideOverlay()">X</button>
+            </div>
+            <div id="editContactDestopID">
+              <div class="addContactContainerFooter">
+              <form id="addContactShowOverlayDesktopID" name="addContactShowOverlayDesktop" onsubmit="createContactDesktop()">
+              <div class="addContactContainerFooter">
+              <input class="addContactInputNameDesktop" type="text" name="addContactInputNameDesktop" id="addContactInputNameDesktopID" required pattern="[A-Za-z]+" placeholder="Name" data-contacts>
+                <input class="addContactInputMailAddresssDesktop" name="addContactInputMailAddresssDesktop" id="addContactInputMailAddresssDesktopID" type="email" required placeholder="E Mail" data-contacts>
+                <input class="addContactInputPhoneDesktop" type="tel" name="addContactInputPhoneDesktop" id="addContactInputPhoneDesktopID" required pattern="[0-9]{1,}" placeholder="Phone" data-contacts>
+                <div class="addContactButtonContainerDesktop">
+                  <button class="cancelContactDesktopDeleteButton" onclick="hideOverlay()">Cancel</button>
+                  <button class="createContactButton" onclick="createContactDesktop()">Create contact</button>
+                  </div>
+                </div>
+              </form>  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      `;
+}
+
+
+/**
+ * Function to hide the overlay screen on desktop view
+ */
+function hideOverlay() {
+    const overlayContainer = document.querySelector(".overlay-container");
+    if (overlayContainer) {
+      overlayContainer.parentNode.removeChild(overlayContainer);
+    }
+}
+
+
+function createContactDesktop() {
+
 }
