@@ -172,7 +172,7 @@ function openContactScreenDesktopHTML(content, selectedContact) {
             <h2 class="contactsContentRightSideUserNameH2">${selectedContact.name}</h2>
               <div class="contactsContentRightSideEditAndDeleteButtonContainer">
                 <img class="contactsContentRightSideEditButton" src="../../assets/img/contacts/editContactsButtonDesktop.svg" alt="" onclick="editContactDestop(lastClickedContactId)">
-                <img class="contactsContentRightSideDeleteButton" src="../../assets/img/contacts/DeleteContactButtonDesktop.svg" alt="" onclick="deleteContact(lastClickedContactId)">
+                <img class="contactsContentRightSideDeleteButton" src="../../assets/img/contacts/DeleteContactButtonDesktop.svg" alt="" onclick="deleteContactDesktop(lastClickedContactId)">
               </div>
           </div> 
         </div>
@@ -219,4 +219,23 @@ function singleMemberToHTMLOpenContactDesktop(member, index) {
 function showContactsContentRightSideDesktop() {
     const showcontactsContentRightSide = document.getElementById("contactsContentRightSideID");
     showcontactsContentRightSide.style.display = "flex";
+}
+
+
+function deleteContactDesktop(contactId) {
+    const currentUser = getLoggedInUser();
+    if (!currentUser) {
+        console.error("Logged in user not found.");
+        return;
+    }
+    const index = currentUser.contacts.findIndex(contact => contact.id === contactId);
+    if (index === -1) {
+        console.error("Contact not found.");
+        return;
+    }
+    currentUser.contacts.splice(index, 1);  
+    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+    updateCurrentUserInBackend(currentUser);
+    document.getElementById("contactsContentRightSideContactDataContainerID").innerHTML = "";
+    contactsInit();  
 }

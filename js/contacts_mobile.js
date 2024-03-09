@@ -18,6 +18,7 @@ function contactsInit() {
         const content = document.getElementById("all-contacts-id");
         content.style.paddingTop = '100px';
         content.style.paddingBottom = '60px';
+        content.style.overflow= 'auto';
     } else {
         setTimeout(showHeaderAndFooter, 250);
         renderContactsDesktop();
@@ -514,8 +515,8 @@ function deleteContactMobile(contactId) {
   }
   currentUser.contacts.splice(index, 1);  
   localStorage.setItem('currentUser', JSON.stringify(currentUser));
-  updateCurrentUserInBackend(currentUser);
-  contactsInit();
+  updateCurrentUserInBackend(currentUser);  
+  contactsInit();  
 }
 
 
