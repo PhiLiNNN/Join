@@ -22,6 +22,7 @@ function contactsInit() {
     } else {
         setTimeout(showHeaderAndFooter, 250);
         renderContactsDesktop();
+        document.body.style.overflow = 'hidden';
     }
 }
 
