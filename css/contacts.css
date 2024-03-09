@@ -762,7 +762,7 @@
     }
     
     .openContactEmailLinkDesktop:hover {
-        color: var(--light-blue);
+        color: var(--mockup-highlight);
     }
 
     .contactsContentRightSideContactPhoneH2DesktopContainer {
