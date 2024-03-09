@@ -331,3 +331,10 @@ function getNewContactDesktop() {
   const contactPhone = document.getElementById("add-contact-input-phone-desktop-id").value;
   return { name: contactName, email: contactEmail, phone: contactPhone };
 }
+
+
+// Edit contact screen overlay desktop
+
+function editContactDestop(lastClickedContactId) {
+
+}
