@@ -95,22 +95,23 @@ function addContactFormMobileHTML() {
     `;
 }
 
-function templateAssignedToContainerHTML(contact, index, iconColor, initials, textColor) {
-    return /*html*/ `
-        <div id="assigned-to-box-${index}" class="assigned-to-box"  onclick="selectedAssignedToUser(event, ${index})">
-          <div class="assigned-to-user">
-            <div class="circle-style" style="background-color: ${iconColor}; color: ${textColor};">
-              <span>
-                ${initials}
-              </span>
-            </div>
-            <span id="contact-id${index}" >${contact}</span>
+function templateAssignedToContainerHTML(contact, index, iconColor, initials, textColor, isSelected) {
+  const setSelectedContact = isSelected ? 'selected-contact' : '';
+  return /*html*/ `
+      <div id="assigned-to-box-${index}" class="assigned-to-box ${setSelectedContact}"  onclick="selectedAssignedToUser(event, ${index})">
+        <div class="assigned-to-user">
+          <div class="circle-style" style="background-color: ${iconColor}; color: ${textColor};">
+            <span>
+              ${initials}
+            </span>
           </div>
-          <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="1" y="1.96582" width="16" height="16" rx="3" stroke="#2A3647" stroke-width="2"/>
-          </svg>
+          <span id="contact-id${index}" >${contact}</span>
         </div>
-    `;
+        <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1.96582" width="16" height="16" rx="3" stroke="#2A3647" stroke-width="2"/>
+        </svg>
+      </div>
+  `;
 }
 
 function templateSvgCheckboxConfirmedHTML() {

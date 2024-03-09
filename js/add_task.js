@@ -10,17 +10,53 @@ let subtaskCounter = 0;
 let userIndex;
 let prio = ['urgnet', 'medium', 'low'];
 let prioIndex = 1;
+let isFilterActive = false;
+
 
 function initAddTask() {
   currentUser = JSON.parse(localStorage.getItem('currentUser'));
   console.log(currentUser)
+  console.log(currentUser.contacts)
+  
   renderAssignedToContacts();
   setCurrentDate();
   addSubtaskVisibilityListener();
   closeAssignedToMenu();
   closeCategoryMenu();
-  
+  filterAssignedToContacts();
 }
+
+
+function filterAssignedToContacts() {
+  document.getElementById('assignedto-input-id').addEventListener('input', function (event) {
+    const searchTerm = event.target.value;
+    isFilterActive = searchTerm.trim() !== '';
+    const filteredContacts = currentUser.contacts.filter(contact =>
+      contact.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    iterateOverContacts(filteredContacts);
+  });
+}
+
+
+function renderAssignedToContacts(contacts = currentUser.contacts) {
+  contacts.sort(sortContactsBySurname);
+  iterateOverContacts(contacts);
+}
+
+function iterateOverContacts(contacts) {
+  const assignedToContainer = document.getElementById('assigned-to-contacts-id');
+  assignedToContainer.innerHTML = '';
+  contacts.forEach((contact, index) => {
+      if (contact.name === currentUser.userName) 
+        contact.name = contact.name + ' (you)'
+      const initials =  getFirstLettersOfName(contact.name);
+      textColor = isColorLight(contact.colorCode) ? 'white' : 'black'; 
+      const isSelected  =  contacts[index].selected
+      assignedToContainer.innerHTML += templateAssignedToContainerHTML(contact.name, index, contact.colorCode, initials, textColor, isSelected);
+    }); 
+}
+
 
 function formatWithLeadingZero(value) {
   return value < 10 ? `0${value}` : value;
@@ -61,25 +97,18 @@ function sortContactsBySurname(a, b) {
 }
 */
 
-function renderAssignedToContacts() {
-  currentUser.contacts.sort(sortContactsBySurname);
-  const assignedToContainer = document.getElementById('assigned-to-contacts-id');
-  currentUser.contacts.forEach((contact, index) => {
-    if (contact.name === currentUser.userName) 
-      contact.name = contact.name + ' (you)'
-    const initials =  getFirstLettersOfName(contact.name);
-    textColor = isColorLight(contact.colorCode) ? 'white' : 'black'; 
-    assignedToContainer.innerHTML += templateAssignedToContainerHTML(contact.name, index, contact.colorCode, initials, textColor);
-  }); 
-}
 
 function closeAssignedToMenu() {
   document.addEventListener('click', function (event) {
     const clickInsideInput = event.target.closest('#assignedto-container-id');
     const clickInsideDropdown = event.target.closest('#assigned-to-contacts-id');
     if (!clickInsideDropdown && !clickInsideInput) {
-      toggleAssignedToSection(true)
+      toggleAssignedToSection(true);
       document.getElementById('assignedto-input-id').value = '';
+      if (isFilterActive) {
+        renderAssignedToContacts();
+        isFilterActive = false; 
+      }
     }
   });
 }
@@ -106,24 +135,31 @@ function toggleSection(elementID, toggleClass) {
 function renderAddedContacts() {
   let addedContactsElement =  document.getElementById('added-contacts-id');
   addedContactsElement.innerHTML = '';
+  console.log(assignedTo.colorCodes)
+  console.log(assignedTo.userNames)
   assignedTo.colorCodes.forEach((colorCode, index)  => {
+    
     addedContactsElement.innerHTML += templateaddedContactsHTML(colorCode, assignedTo.initials[index], assignedTo.textColor[index]);  
-  });
+    });
 }
 
 
 function selectedAssignedToUser(event, index) {
-  userIndex  = index;
+  userIndex = index;
   const svgElement = event.currentTarget.querySelector('svg'); 
+  const spanElemnt = document.getElementById(`contact-id${index}`)
+  const contact = currentUser.contacts.find(contact => contact.name === spanElemnt.innerHTML);
   event.currentTarget.classList.toggle('selected-contact');
   if (event.currentTarget.classList.contains('selected-contact')) {
     svgElement.innerHTML = templateSvgCheckboxConfirmedHTML();
     pushSelectedUser(event);
+    contact.selected = true;
   } else { 
     svgElement.innerHTML = templateSvgDefaultCheckboxHTML();
     deleteSelectedUser(event);
+    contact.selected = false;
   }
-  renderAddedContacts();  
+  renderAddedContacts(); 
 }
 
 
@@ -134,14 +170,15 @@ function getUserInfo(event) {
   const assignedContact = circleStyleElement.innerText;
   const backgroundColorValue = window.getComputedStyle(circleStyleElement).backgroundColor;
   const textColor = window.getComputedStyle(circleStyleElement).color;
+  console.log('userName 111',userName)
   return { assignedContact, backgroundColorValue, textColor, userName };
 }
 
 function pushSelectedUser(event) {
   const { assignedContact, backgroundColorValue, textColor, userName } = getUserInfo(event);
-  if (assignedTo.initials.includes(assignedContact) || assignedTo.colorCodes.includes(backgroundColorValue)) {
+  if (assignedTo.initials.includes(assignedContact) && assignedTo.colorCodes.includes(backgroundColorValue)
+    && assignedTo.textColor.includes(textColor) && assignedTo.userName.includes(userName))
     return
-  }
   assignedTo.initials.push(assignedContact);
   assignedTo.colorCodes.push(backgroundColorValue);
   assignedTo.textColor.push(textColor);
@@ -152,8 +189,8 @@ function deleteSelectedUser(event) {
   const { assignedContact, backgroundColorValue, textColor, userName } = getUserInfo(event);
   const removeContact = assignedTo.initials.indexOf(assignedContact);
   const removeColorcode = assignedTo.colorCodes.indexOf(backgroundColorValue);
-  const removeTextColor = assignedTo.colorCodes.indexOf(textColor);
-  const removeUserName = assignedTo.colorCodes.indexOf(userName);
+  const removeTextColor = assignedTo.textColor.indexOf(textColor);
+  const removeUserName = assignedTo.userNames.indexOf(userName);
   assignedTo.initials.splice(removeContact, 1);
   assignedTo.colorCodes.splice(removeColorcode, 1);
   assignedTo.textColor.splice(removeTextColor, 1);

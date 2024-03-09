@@ -79,8 +79,8 @@
     background: white;
     position: absolute;
     font-size: 20px;
-    padding-inline: 16px ;
-    height: 88px;
+    padding-inline: 16px;
+    height: 85px;
     left: 0;
     right: 0;
     bottom: 80px;
@@ -127,7 +127,7 @@
 }
 
 .assigned-to-user span {
-    max-width: 80vw;
+    max-width: 50vw;
     overflow-x: auto;
 }
 
@@ -351,14 +351,18 @@
         line-height: 73.2px;
     }
     .content-bottom-container {
-        margin: 279px 80px 0 calc(232px + 96px);
+        margin: 0px 80px 0 calc(232px + 96px);
         min-width: 923px;
     }
+    .editable-span {
+        max-width: 20vw ;
+    }
+    
 } 
 
 @media (max-width: 1013px) {
     .assigned-to-user span {
-        max-width: 41vw;
+        max-width: 40vw;
     }
 }
 
