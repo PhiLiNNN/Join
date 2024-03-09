@@ -280,13 +280,13 @@ function generateHTMLAddContactShowOverlayDesktop(overlayContent) {
             </div>
             <div id="edit-contact-destop-id">
               <div class="addContactContainerFooter">
-              <form id="add-contact-show-overlay-desktop-id" name="addContactShowOverlayDesktop" onsubmit="createContactDesktop()">
+              <form id="add-contact-show-overlay-desktop-id" name="addContactShowOverlayDesktop" onsubmit="event.preventDefault(); createContactDesktop()">
               <div class="addContactContainerFooter">
               <input class="addContactInputNameDesktop" type="text" name="addContactInputNameDesktop" id="add-contact-input-name-desktop-id" required pattern="[A-Za-z]+" placeholder="Name" data-contacts>
                 <input class="addContactInputMailAddresssDesktop" name="addContactInputMailAddresssDesktop" id="add-contact-input-mail-addresss-desktop-id" type="email" required placeholder="E Mail" data-contacts>
                 <input class="addContactInputPhoneDesktop" type="tel" name="addContactInputPhoneDesktop" id="add-contact-input-phone-desktop-id" required pattern="[0-9]{1,}" placeholder="Phone" data-contacts>
                 <div class="addContactButtonContainerDesktop">
-                  <button class="cancelContactDesktopDeleteButton" onclick="hideOverlay()">Cancel</button>
+                  <button class="cancelContactDesktopDeleteButton" onclick="event.preventDefault(); hideOverlay()">Cancel</button>
                   <button class="createContactButton" onclick="createContactDesktop()">Create contact</button>
                   </div>
                 </div>
