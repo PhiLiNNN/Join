@@ -273,11 +273,11 @@ async function login() {
             localStorage.setItem('currentUser', JSON.stringify(loggedInUser));
             console.log('Logged in user:', loggedInUser);
             window.location.assign("../summary.html");
-           
+            getUserInitials();            
         } else {
             console.error('Error: Unable to log in user.');
         }
-    }
+    }    
 }
 
 
@@ -437,4 +437,42 @@ function guestLogin() {
     document.getElementById("login-user-e-mail-id").value = guestEmail;
     document.getElementById("login-user-password-id").value = guestPassword;    
     login();
+    getUserInitials();
+}
+
+
+function getUserInitials() {    
+    if (localStorage.getItem('currentUser')) {        
+        const userEmail = localStorage.getItem('currentUser');
+        // Extrahiere den Benutzernamen aus der E-Mail-Adresse (alles vor dem '@' Zeichen)
+        const userName = userEmail.split('@')[0];
+        // Teile den Benutzernamen in Vor- und Nachnamen auf
+        const [firstName, lastName] = userName.split('.'); // Annahme: Der Vorname und Nachname sind durch einen Punkt getrennt
+        // Extrahiere die Initialen und konvertiere sie in Großbuchstaben
+        const initials = `${firstName.charAt(0).toUpperCase()}${lastName.charAt(0).toUpperCase()}`;
+        // Speichere die Initialen im localStorage
+        localStorage.setItem('userInitials', initials);
+        console.log("function getUserInitials()" , initials);
+        return initials;
+    } else {
+        return '';
+    }
+}
+
+
+function showHeaderUserInitials() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (currentUser && currentUser.userName) {
+        const userName = currentUser.userName;
+        const [firstName, lastName] = userName.split(' ');
+        const initials = `${firstName.charAt(0).toUpperCase()}${lastName.charAt(0).toUpperCase()}`;
+        const headerProfil = document.querySelector(".header-profil");
+        if (headerProfil) {
+            headerProfil.textContent = initials;
+        } else {
+            console.error("Das Element .header-profil wurde nicht gefunden!");
+        }
+    } else {
+        console.error("Benutzerdaten nicht gefunden!");
+    }
 }

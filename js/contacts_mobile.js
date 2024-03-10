@@ -13,16 +13,18 @@ function contactsInit() {
     if (window.innerWidth <= maxWidth) {
         setTimeout(showHeaderAndFooter, 250);
         renderContacts();
-        renderAddContactButtonMobile();               
+        renderAddContactButtonMobile();
+        setTimeout(showHeaderUserInitials, 500);
         document.body.style.overflow = 'hidden';
         const content = document.getElementById("all-contacts-id");
         content.style.paddingTop = '100px';
         content.style.paddingBottom = '60px';
-        content.style.overflow= 'auto';
+        content.style.overflow= 'auto';        
     } else {
         setTimeout(showHeaderAndFooter, 250);
-        renderContactsDesktop();
+        renderContactsDesktop();        
         document.body.style.overflow = 'hidden';
+        setTimeout(showHeaderUserInitials, 500);
     }
 }
 
