@@ -6,12 +6,10 @@ let assignedTo = {
   'userNames': []
 };
 let subtaskList = [];
-let subtaskCounter = 0;
 let userIndex;
 let prio = ['urgnet', 'medium', 'low'];
 let prioIndex = 1;
 let isFilterActive = false;
-
 
 function initAddTask() {
   currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -24,7 +22,6 @@ function initAddTask() {
   filterAssignedToContacts();
 }
 
-
 function filterAssignedToContacts() {
   document.getElementById('assignedto-input-id').addEventListener('input', function (event) {
     const searchTerm = event.target.value;
@@ -35,7 +32,6 @@ function filterAssignedToContacts() {
     iterateOverContacts(filteredContacts);
   });
 }
-
 
 function renderAssignedToContacts(contacts = currentUser.contacts) {
   contacts.sort(sortContactsBySurname);
@@ -55,7 +51,6 @@ function iterateOverContacts(contacts) {
     }); 
 }
 
-
 function formatWithLeadingZero(value) {
   return value < 10 ? `0${value}` : value;
 }
@@ -69,7 +64,6 @@ function setCurrentDate() {
   element.min = `${year}-${month}-${day}`;
 }
 
-
 function sortContactsBySurname(a, b) {
   const nameA = a.name.toLowerCase();
   const nameB = b.name.toLowerCase();
@@ -81,20 +75,6 @@ function sortContactsBySurname(a, b) {
   if (emailA > emailB) return 1;
   return 0;
 }
-
-
-
-
-
-// Funktrion wieder löschen, wenn alles fertig ist
-/*function showHeaderAndFooter() {
-  const mobileHeader = document.querySelector(".header-gap");
-  const menuTemplate = document.querySelector(".footerCLass");
-  mobileHeader.style.display = "flex";
-  menuTemplate.style.display = "block";
-}
-*/
-
 
 function closeAssignedToMenu() {
   document.addEventListener('click', function (event) {
@@ -133,19 +113,15 @@ function toggleSection(elementID, toggleClass) {
   element.classList.toggle(toggleClass)
 }
 
-
 function renderAddedContacts() {
   let addedContactsElement =  document.getElementById('added-contacts-id');
   addedContactsElement.innerHTML = '';
   assignedTo.colorCodes.forEach((colorCode, index)  => {
-    if (index > 4) {
+    if (index > 4)
       return;
-    }
-    
     addedContactsElement.innerHTML += templateaddedContactsHTML(index, colorCode, assignedTo.initials[index], assignedTo.textColor[index]);  
     });
 }
-
 
 function selectedAssignedToUser(event, index) {
   userIndex = index;
@@ -165,8 +141,6 @@ function selectedAssignedToUser(event, index) {
   renderAddedContacts(); 
 }
 
-
-
 function getUserInfo(event) {
   const circleStyleElement = event.currentTarget.querySelector('.circle-style');
   const userName = document.getElementById(`contact-id${userIndex}`).innerHTML;
@@ -180,7 +154,7 @@ function pushSelectedUser(event) {
   const { assignedContact, backgroundColorValue, textColor, userName } = getUserInfo(event);
   if (assignedTo.initials.includes(assignedContact) && assignedTo.colorCodes.includes(backgroundColorValue)
     && assignedTo.textColor.includes(textColor) && assignedTo.userName.includes(userName))
-    return
+    return;
   assignedTo.initials.push(assignedContact);
   assignedTo.colorCodes.push(backgroundColorValue);
   assignedTo.textColor.push(textColor);
@@ -200,18 +174,14 @@ function deleteSelectedUser(event) {
 function togglePrioImg(clickedId) {
   const imageIds = ['urgent-default-id', 'medium-default-id', 'low-default-id'];
   imageIds.forEach((id, index) => {
-    
     const image = document.getElementById(id);
     if (id === clickedId) {
       prioIndex = index;
       image.src = `./assets/img/${id.replace('-default-id', '_highlighted.png')}`;
-    }
-    else 
+    } else 
       image.src = `./assets/img/${id.replace('-default-id', '_default.png')}`;
   });
 }
-
-
 
 function closeCategoryMenu() {
   document.addEventListener('click', function (event) {
@@ -262,7 +232,6 @@ function deleteOrAddTaskMenu(isDelete) {
       addNewTaskMenu();
   toggleVisibility('subtask-del-and-confim-id', false);
   toggleVisibility('subtast-add-button-id', true);
-  subtaskCounter = 0;
 }
 
 function addNewTaskMenu() {
@@ -281,19 +250,15 @@ function renderSubtasks() {
 }
 
 function editSubtask(index) {
-  subtaskCounter +=1;
   const ListElement = document.getElementById(`substask-content-id${index}`);
-  if (subtaskCounter === 1) {
-    handleFirstSubtaskEdit(index, ListElement);
-    
-  }
+  handleFirstSubtaskEdit(index, ListElement);
   document.addEventListener('click', function(event) {
-  const clickedElement = event.target;
-  const isSubtaskContent = clickedElement.closest(`[id^="substask-content-id${index}"]`);
-  const isSubtaskDefaultContainer = clickedElement.closest(`[id^="subtask-default-container-id${index}"]`);
-  const isSubtaskEditedContainer = clickedElement.closest(`[id^="subtask-edited-container-id${index}"]`);
-  if (!isSubtaskContent && !isSubtaskDefaultContainer && !isSubtaskEditedContainer) 
-    ListElement.classList.add('red-line-highlight');
+    const clickedElement = event.target;
+    const isSubtaskContent = clickedElement.closest(`[id^="substask-content-id${index}"]`);
+    const isSubtaskDefaultContainer = clickedElement.closest(`[id^="subtask-default-container-id${index}"]`);
+    const isSubtaskEditedContainer = clickedElement.closest(`[id^="subtask-edited-container-id${index}"]`);
+    if (!isSubtaskContent && !isSubtaskDefaultContainer && !isSubtaskEditedContainer) 
+      ListElement.classList.add('red-line-highlight');
   });
 }
 
@@ -320,24 +285,21 @@ function makeElementEditableWithMaxLength(element, maxLength) {
   element.setAttribute('contentEditable', 'true');
   element.focus();
   element.addEventListener('input', function() {
-  const maxLength = 30;
-  if (this.innerText.length > maxLength) {
-    this.innerText = this.innerText.slice(0, maxLength);
-  }
-});
+    const maxLength = 30;
+    if (this.innerText.length > maxLength) 
+      this.innerText = this.innerText.slice(0, maxLength);
+  });
 }
 
 function saveEditSubtask(index) {
   const element = document.getElementById(`editable-span-id${index}`);
   subtaskList[index] = element.innerText;
   renderSubtasks();
-  subtaskCounter = 0;
 }
 
 function deleteSubtask(index) {
   subtaskList.splice(index, 1);
   renderSubtasks();
-  subtaskCounter = 0;
 }
 
 async function createTask() {
@@ -387,7 +349,6 @@ async function sendAddTask() {
   await addNewUserToBackend(currentUser);
 }
 
-
 function clearAllInputs() {
   document.getElementById('title-input-id').value = '';
   document.getElementById('textarea-input-id').value = '';
@@ -403,5 +364,4 @@ function clearAllInputs() {
   renderAddedContacts();
   togglePrioImg('medium-default-id');
   renderSubtasks();
-  subtaskCounter = 0;
 }
