@@ -349,28 +349,35 @@ async function sendAddTask() {
   await addNewUserToBackend(currentUser);
 }
 
+function clearAll() {
+  clearAllInputs();
+  clearAllLists();
+  clearAllErrMsg();
+  renderAddedContacts();
+  renderSubtasks();
+  togglePrioImg('medium-default-id');
+  
+}
 function clearAllInputs() {
   document.getElementById('title-input-id').value = '';
   document.getElementById('textarea-input-id').value = '';
   document.getElementById('date-input-id').value = '';
   document.getElementById('category-input-id').value = '';
+}
+
+function clearAllLists() {
   subtaskList.splice(0, subtaskList.length);
   assignedTo.userNames.splice(0, assignedTo.userNames.length);
   assignedTo.colorCodes.splice(0, assignedTo.colorCodes.length);
   assignedTo.initials.splice(0, assignedTo.initials.length);
   assignedTo.textColor.splice(0, assignedTo.textColor.length);
-  renderAddedContacts();
-  togglePrioImg('medium-default-id');
-  renderSubtasks();
-  clearAllErrMsg(false);
-
 }
 
-function clearAllErrMsg(bool) {
-  toggleVisibility('empty-title-id', bool);
-  toggleVisibility('empty-date-id', bool);
-  toggleVisibility('empty-category-id', bool);
-  toggleVisibility('at-title-border-id', !bool,'error-border')
-  toggleVisibility('at-date-border-id', !bool,'error-border')
-  toggleVisibility('category-container-id', !bool,'error-border')
+function clearAllErrMsg() {
+  toggleVisibility('empty-title-id', false);
+  toggleVisibility('empty-date-id', false);
+  toggleVisibility('empty-category-id', false);
+  toggleVisibility('at-title-border-id', !false,'error-border')
+  toggleVisibility('at-date-border-id', !false,'error-border')
+  toggleVisibility('category-container-id', !false,'error-border')
 }
