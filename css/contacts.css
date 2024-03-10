@@ -42,24 +42,25 @@
 
 .addContactCloseXContainerMobile {    
     position: fixed;
-    top: 1em;
-    right: 2em;
+    top: 24px;
+    right: 16px;
 }
 
 .addContactCloseXButtonMobile {
+    position: relative;
+    top: 0px;
     cursor: pointer;
     width: 32px;
     height: 32px;
     border-radius: 56px;
     border: 0;
-    color: var(--white-color);
-    font-weight: bold;
-    font-size: 24px;
     background-color: var(--mockup-color);    
 }
 
+
+
 .addContactCloseXButtonMobile:active {
-    color: var(--light-blue);
+    background-color: var(--mockup-highlight);
 }
 
 .addContactBlockHeaderMobile {
@@ -100,19 +101,27 @@
 .addContactInputMailAddresssMobile,
 .addContactInputPhoneMobile {
     border: 1px solid var(--placeholder-color);
+    outline: none;
     border-radius: 10px;
-    
     background-size: 30px auto;
     background-repeat: no-repeat;
-    background-position-x: right;
+    background-position-x: calc(100% - 21px);
     background-position-y: 5px;
     width: 364px;
     height: 41px;
     position: relative;
     font-size: 20px;
-    font-weight: 400;
+    padding: 8px 21px;
     cursor: pointer;
 }
+.addContactInputNameMobile:focus-within,
+.addContactInputMailAddresssMobile:focus-within,
+.addContactInputPhoneMobile:focus-within {
+    border: 1px solid var(--mockup-highlight);
+}
+
+
+
 .addContactInputNameMobile {
     background-image: url("../assets/img/contacts/addContactUserNameImg.svg");
 }
