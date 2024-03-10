@@ -355,13 +355,22 @@ function clearAllInputs() {
   document.getElementById('date-input-id').value = '';
   document.getElementById('category-input-id').value = '';
   subtaskList.splice(0, subtaskList.length);
-  console.log(assignedTo.userNames)
   assignedTo.userNames.splice(0, assignedTo.userNames.length);
   assignedTo.colorCodes.splice(0, assignedTo.colorCodes.length);
   assignedTo.initials.splice(0, assignedTo.initials.length);
   assignedTo.textColor.splice(0, assignedTo.textColor.length);
-  console.log(assignedTo.userNames)
   renderAddedContacts();
   togglePrioImg('medium-default-id');
   renderSubtasks();
+  clearAllErrMsg(false);
+
+}
+
+function clearAllErrMsg(bool) {
+  toggleVisibility('empty-title-id', bool);
+  toggleVisibility('empty-date-id', bool);
+  toggleVisibility('empty-category-id', bool);
+  toggleVisibility('at-title-border-id', !bool,'error-border')
+  toggleVisibility('at-date-border-id', !bool,'error-border')
+  toggleVisibility('category-container-id', !bool,'error-border')
 }
