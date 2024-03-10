@@ -443,14 +443,10 @@ function guestLogin() {
 
 function getUserInitials() {    
     if (localStorage.getItem('currentUser')) {        
-        const userEmail = localStorage.getItem('currentUser');
-        // Extrahiere den Benutzernamen aus der E-Mail-Adresse (alles vor dem '@' Zeichen)
-        const userName = userEmail.split('@')[0];
-        // Teile den Benutzernamen in Vor- und Nachnamen auf
-        const [firstName, lastName] = userName.split('.'); // Annahme: Der Vorname und Nachname sind durch einen Punkt getrennt
-        // Extrahiere die Initialen und konvertiere sie in Großbuchstaben
-        const initials = `${firstName.charAt(0).toUpperCase()}${lastName.charAt(0).toUpperCase()}`;
-        // Speichere die Initialen im localStorage
+        const userEmail = localStorage.getItem('currentUser');        
+        const userName = userEmail.split('@')[0];        
+        const [firstName, lastName] = userName.split('.');        
+        const initials = `${firstName.charAt(0).toUpperCase()}${lastName.charAt(0).toUpperCase()}`;        
         localStorage.setItem('userInitials', initials);
         console.log("function getUserInitials()" , initials);
         return initials;
