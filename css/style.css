@@ -103,11 +103,7 @@ h2 {
     transition: all 200ms ease-in-out;
 }
 
-.filled-btn:hover {
-    background-color: var(--mockup-highlight);
-    border: 2px solid  var(--mockup-highlight);
-    box-shadow: 0 6px 5px rgba(0, 0, 0, 0.18);
-}
+
 
 .filled-btn:active {
     background-color: var(--focus-color-btn);
@@ -146,7 +142,6 @@ h2 {
 .textarea-style {
     resize: none;
     outline: none;
-    font-size: 18px;
     line-height: 24px;
     height: 90px;
     padding: 18px 21px;
@@ -187,5 +182,13 @@ textarea::placeholder {
     input::placeholder,
     textarea::placeholder {
       font-size: 16px; 
+    }
+   
+}
+@media (min-width: 761px) {
+    .filled-btn:hover {
+        background-color: var(--mockup-highlight);
+        border: 2px solid var(--mockup-highlight);
+        box-shadow: 0 6px 5px rgba(0, 0, 0, 0.18);
     }
 }

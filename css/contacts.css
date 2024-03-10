@@ -96,10 +96,12 @@
     gap: 20px;
 }
 
-.addContactInputNameMobile {
+.addContactInputNameMobile,
+.addContactInputMailAddresssMobile,
+.addContactInputPhoneMobile {
     border: 1px solid var(--placeholder-color);
-    border-radius: 5px;
-    background-image: url("../assets/img/contacts/addContactUserNameImg.svg");
+    border-radius: 10px;
+    
     background-size: 30px auto;
     background-repeat: no-repeat;
     background-position-x: right;
@@ -111,37 +113,15 @@
     font-weight: 400;
     cursor: pointer;
 }
-
+.addContactInputNameMobile {
+    background-image: url("../assets/img/contacts/addContactUserNameImg.svg");
+}
 .addContactInputMailAddresssMobile {
-    border: 1px solid var(--placeholder-color);
-    border-radius: 5px;
     background-image: url("../assets/img/contacts/addContactMailIcon.svg");
-    background-size: 30px auto;
-    background-repeat: no-repeat;
-    background-position-x: right;
-    background-position-y: 5px;
-    width: 364px;
-    height: 41px;
-    position: relative;
-    font-size: 20px;
-    font-weight: 400;
-    cursor: pointer;
 }
 
 .addContactInputPhoneMobile {
-    border: 1px solid var(--placeholder-color);
-    border-radius: 5px;
     background-image: url("../assets/img/contacts/addContactPhoneIcon.svg");
-    background-size: 30px auto;
-    background-repeat: no-repeat;
-    background-position-x: right;
-    background-position-y: 5px;
-    width: 364px;
-    height: 41px;
-    position: relative;
-    font-size: 20px;
-    font-weight: 400;
-    cursor: pointer;
 }
 
 .createContactButtonImg {
