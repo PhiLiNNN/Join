@@ -335,6 +335,63 @@ function getNewContactDesktop() {
 
 // Edit contact screen overlay desktop
 
-function editContactDestop(lastClickedContactId) {
+/**
+ * Edit contact desktop Screen for desktop view
+ * @param {string} contactId - This is the contact ID example "5"
+ */
+function editContactDestop(contactId) {
+  const currentUser = getLoggedInUser();
+  if (!currentUser || !currentUser.contacts) {
+      console.error('Error: User or contacts not found.');
+      return;
+  }
+  const selectedContact = currentUser.contacts.find(contact => contact.id === contactId);
+  if (!selectedContact) {
+      console.error('Error: Selected contact not found.');
+      return;
+  }
+  const overlayContainer = document.createElement("div");
+  overlayContainer.classList.add("overlay-container");
+  document.body.appendChild(overlayContainer);
+  const overlayContent = document.createElement("div");
+  overlayContent.classList.add("overlay-content");
+  overlayContainer.appendChild(overlayContent);
+  generateHTMLEditContactDesktop(overlayContent, selectedContact);
+  overlayContainer.style.animation = "slide-in-menu 0.5s ease-out";
+}
 
+
+function generateHTMLEditContactDesktop(overlayContent, selectedContact) {
+  overlayContent.innerHTML = /*html*/ `
+      <div class="overlay-card">
+          <div class="addContactDesktopLeftSideContainer">
+              <div class="flexDirectionColumn">
+                  <img class="joinLogoGreyBackgroundImg" src="../../assets/img/contacts/joinLogoGreyBackground.png" alt="">
+                  <h1 class="addContactDesktopLeftSideContainerH1">Edit contact</h1>
+                  <p class="addContactDesktopLeftSideContainerPElement">Tasks are better with a team!</p>
+                  <img class="addContactBlueStroked" src="../../assets/img/contacts/addContactBlueStroked.svg" alt="">
+              </div>
+          </div>
+          <div class="addContactDesktopRightSideContent">
+              <div class="addContactCloseXContainerDesktop">
+                  <button class="addContactCloseXButton" onclick="hideOverlay()">X</button>
+              </div>
+              <div id="edit-contact-destop-id">
+                  <div class="addContactContainerFooter">
+                      <form id="edit-contact-form-desktop" name="editContactFormDesktop" onsubmit="event.preventDefault(); updateContactDesktop('${selectedContact.id}')">
+                          <div class="addContactContainerFooter">
+                              <input class="addContactInputNameDesktop" type="text" name="editContactInputNameDesktop" id="edit-contact-input-name-desktop-id" required pattern="[A-Za-z]+" placeholder="Name" value="${selectedContact.name}">
+                              <input class="addContactInputMailAddresssDesktop" name="editContactInputMailAddresssDesktop" id="edit-contact-input-mail-addresss-desktop-id" type="email" required placeholder="E-Mail" value="${selectedContact.email}">
+                              <input class="addContactInputPhoneDesktop" type="tel" name="editContactInputPhoneDesktop" id="edit-contact-input-phone-desktop-id" required pattern="[0-9]{1,}" placeholder="Phone" value="${selectedContact.phone}">
+                              <div class="addContactButtonContainerDesktop">
+                                  <button class="cancelContactDesktopDeleteButton" onclick="hideOverlay()">Cancel</button>
+                                  <button class="createContactButton" type="submit">Save</button>
+                              </div>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  `;
 }
