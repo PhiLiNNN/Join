@@ -16,15 +16,11 @@
     <script src="./js/register.js" ></script>
     <script src="./js/template.js" ></script>
     <script src="./js/includeHTML.js"></script>
-
     <title>Add Task</title>
-
 </head>
 <body onload="initAddTask(); includeHTML()">
-
     <div w3-include-html="./assets/templates/header.html"></div>
     <section class="at-section">
-
         <div class="content-container">
             <h1>Add Task</h1>
             <div class="content-top-and-left">
@@ -67,7 +63,6 @@
                     <div id="assigned-to-contacts-id" class="at-dropdown"></div>
                     <div id="added-contacts-id" class="added-contacts"></div>
                 </div>
-                
                 <div class="at-prio">
                     <div class="at-label-style">Prio</div>
                     <div class="at-prio-img">
@@ -76,9 +71,6 @@
                         <img id="low-default-id" class="at-prio-img-green" src="./assets/img/low_default.png" alt="" onclick="togglePrioImg('low-default-id')">
                     </div>
                 </div>
-                
-                
-    
                 <div class="at-subtasks ">
                     <div class="at-label-style">Subtasks</div>
                     <div class="input_global input_at cursor">
@@ -108,7 +100,6 @@
                             </svg>
                         </div>
                     </div>
-                    
                     <div class="subtask-list">
                         <ul id="add-task-list-id"></ul>
                     </div>
@@ -122,9 +113,7 @@
                         <img  class="event-style" src="./assets/img/event.png"  onclick="openAssignedbyArrow()">
                     </div>
                 </div>
-            </div>
-            
-            
+            </div> 
         </div>
         <div class="content-bottom-container">
             <span>
@@ -141,9 +130,6 @@
             </div>
         </div>
     </section>
-
-
     <div w3-include-html="./assets/templates/footer.html"></div>
-
 </body>
 </html>
