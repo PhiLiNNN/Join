@@ -1,13 +1,35 @@
 ::-webkit-datetime-edit { color: var(--placeholder-color) }
+input#session-date {
+    display: inline-block;
+    position: relative;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    background: transparent;
+    bottom: 0;
+    color: transparent;
+    cursor: pointer;
+    height: auto;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+}
+
+.event-style  {
+    margin-right: 2px;
+}
 
 .content-container {
     position: sticky;
     overflow-y: auto;
     max-height: calc(100vh - 238px);
     margin-top: 80px;
-    padding: 48px 16px 0 16px;
+    padding: 46px 16px 0 16px;
     z-index: 100;
 }
+
 .content-container h1 {
     font-size: 47px;
     line-height: 56.4px;
@@ -18,14 +40,19 @@
 .input_at {
     padding: 10px 21px !important;
 }
+
+
 .due_date_at {
     padding: 10px 15px 10px 21px !important;
+
 }
+
 
 .input_at input,
 .textarea-style {
     font-size: 20px !important;
     transition: all 300ms  ease-in-out;
+    cursor: pointer;
 }
 
 .rotate-arrow {
@@ -103,6 +130,7 @@
     align-items: center;
     width: 42px;
     height: 42px;
+    border: 2px solid white;
     border-radius: 50%;
     font-size: 16px;
     transition: all 300ms  ease-in-out;
@@ -115,6 +143,10 @@
     cursor: pointer;
     margin: 4px;
     padding: 16px 7px;
+    border-radius: 10px;
+}
+.assigned-to-box:hover {
+    background: var(--placeholder-color);
 }
 
 .assigned-to-user {
@@ -135,12 +167,24 @@
     margin-right: 52px;
 }
 
+.assigned-to-box:active {
+    background: var(--focus-color-btn);
+    color: white;
+}
+
+.assigned-to-box:active svg rect {
+    stroke: white;
+}
+  
 .assigned-to-box.selected-contact {
     background: var(--mockup-color);
     border-radius: 10px;
     color: white;
 }
+.assigned-to-box.selected-contact:hover {
+    background: var(--focus-color-btn);
 
+}
 .assigned-to-box.selected-contact svg path {
     stroke: white; 
 }
@@ -169,6 +213,10 @@
     box-shadow: 0 0px 10px  var(--placeholder-color);
     transition: all 300ms  ease-in-out;
 }
+.at-prio-img img:hover {
+    box-shadow: -5px  10px 20px var(--placeholder-color); 
+    transform: translate3d(0, -5px, 0); 
+  }
 
 .at-prio-img-green:active {
     box-shadow: 0 0px 5px  #7AE229;
@@ -207,7 +255,15 @@
     font-size: 22px;
     cursor: pointer;
     margin: 4px;
+    border-radius: 10px;
     transition: all 300ms  ease-in-out;
+}
+.category-dropdown ul li:hover {
+    background: var(--placeholder-color);
+}
+.category-dropdown ul li:active {
+    background: var(--focus-color-btn);
+    color: white;
 }
 
 .category-dropdown ul li.selected-contact {
@@ -215,8 +271,10 @@
     border-radius: 10px;
     color: white;
 }
-
-.subtasks-decision-img{
+.category-dropdown ul li.selected-contact:hover {
+    background: var(--focus-color-btn);
+}
+.subtasks-decision-img {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -237,13 +295,46 @@
 }
 
 .subtask-list ul li {
+    position: relative;
     display: flex;
     align-items: center;
     font-size: 22px;
-    padding: 14.5px 0;
+    padding: 12.5px 16px;
     margin-inline: 26px;
     position: relative;
+    border-radius: 10px;
+    cursor: pointer;
     transition: all 300ms  ease-in-out;
+}
+
+.subtask-list ul li.blue-line-highlight::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--mockup-highlight);
+}
+.subtask-list ul li.red-line-highlight::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--err-msg-color);
+}
+
+.disabled-svg {
+    pointer-events: none;
+    opacity: 0.5; /* optional: reduziert die Deckkraft, um visuell anzuzeigen, dass es deaktiviert ist */
+  }
+
+
+
+.subtask-list ul li:hover {
+    background: var(--placeholder-color);
 }
 
 .subtask-list ul li::before {
@@ -260,6 +351,7 @@
 }
 
 .editable-span {
+    width: 100%;
     border: none;
     background: none;
     font-size: 22px;
@@ -268,19 +360,26 @@
     transition: all 300ms  ease-in-out;
 }
 
-.blue-line-highlight {
-    border-bottom: 1px solid var(--mockup-highlight);
-}
 
-.red-line-highlight {
-    border-bottom: 2px solid var(--err-msg-color);
-
-}
 
 .hide-clear-btn {
     display: none;
 }
 
+.hidden-Edit_menu {
+    display: none;
+    align-items: center;
+    margin-left: auto; 
+    gap: 8px;
+    cursor: pointer;
+}
+
+li:hover .hidden-Edit_menu {
+    display: flex; 
+}
+li:active .hidden-Edit_menu {
+    display: flex;
+}
 .d-none {
     display: none;
 }
@@ -329,10 +428,12 @@
         position: static;
         margin: 279px 90px 0 calc(232px + 96px); 
         overflow-x: hidden;
+        max-height: calc(100vh - 400px);
         display: flex;
         gap: 32px;
         max-width: 1920px;
     }
+    
     .content-top-and-left,
     .content-bottom-and-rigth {
         width: 100%;

@@ -16,8 +16,6 @@ let isFilterActive = false;
 function initAddTask() {
   currentUser = JSON.parse(localStorage.getItem('currentUser'));
   console.log(currentUser)
-  console.log(currentUser.contacts)
-  
   renderAssignedToContacts();
   setCurrentDate();
   addSubtaskVisibilityListener();
@@ -105,6 +103,7 @@ function closeAssignedToMenu() {
     if (!clickInsideDropdown && !clickInsideInput) {
       toggleAssignedToSection(true);
       document.getElementById('assignedto-input-id').value = '';
+      document.getElementById('assignedto-input-id').placeholder = 'Select contacts to assign';
       if (isFilterActive) {
         renderAssignedToContacts();
         isFilterActive = false; 
@@ -114,12 +113,15 @@ function closeAssignedToMenu() {
 }
 
 function toggleAssignedToSection(bool) {
+  document.getElementById('assignedto-input-id').placeholder = 'An: ';
   toggleVisibility('assigned-to-contacts-id', bool, 'active');
   toggleVisibility('rotate-arrow-id', bool, 'upsidedown');
   toggleVisibility('at-label-id', bool,'shrink-font-size');
 }
 
 function openAssignedbyArrow() {
+  renderAssignedToContacts();
+  document.getElementById('assignedto-input-id').placeholder = 'Select contacts to assign';
   toggleSection('assigned-to-contacts-id', 'active');
   toggleSection('rotate-arrow-id',  'upsidedown');
   toggleSection('at-label-id', 'shrink-font-size');
@@ -135,11 +137,12 @@ function toggleSection(elementID, toggleClass) {
 function renderAddedContacts() {
   let addedContactsElement =  document.getElementById('added-contacts-id');
   addedContactsElement.innerHTML = '';
-  console.log(assignedTo.colorCodes)
-  console.log(assignedTo.userNames)
   assignedTo.colorCodes.forEach((colorCode, index)  => {
+    if (index > 4) {
+      return;
+    }
     
-    addedContactsElement.innerHTML += templateaddedContactsHTML(colorCode, assignedTo.initials[index], assignedTo.textColor[index]);  
+    addedContactsElement.innerHTML += templateaddedContactsHTML(index, colorCode, assignedTo.initials[index], assignedTo.textColor[index]);  
     });
 }
 
@@ -170,7 +173,6 @@ function getUserInfo(event) {
   const assignedContact = circleStyleElement.innerText;
   const backgroundColorValue = window.getComputedStyle(circleStyleElement).backgroundColor;
   const textColor = window.getComputedStyle(circleStyleElement).color;
-  console.log('userName 111',userName)
   return { assignedContact, backgroundColorValue, textColor, userName };
 }
 
@@ -186,15 +188,13 @@ function pushSelectedUser(event) {
 }
 
 function deleteSelectedUser(event) {
-  const { assignedContact, backgroundColorValue, textColor, userName } = getUserInfo(event);
-  const removeContact = assignedTo.initials.indexOf(assignedContact);
-  const removeColorcode = assignedTo.colorCodes.indexOf(backgroundColorValue);
-  const removeTextColor = assignedTo.textColor.indexOf(textColor);
-  const removeUserName = assignedTo.userNames.indexOf(userName);
-  assignedTo.initials.splice(removeContact, 1);
-  assignedTo.colorCodes.splice(removeColorcode, 1);
-  assignedTo.textColor.splice(removeTextColor, 1);
-  assignedTo.userNames.splice(removeUserName, 1);
+  const circleStyleElement = event.currentTarget.querySelector('.circle-style');
+  const backgroundColorValue = window.getComputedStyle(circleStyleElement).backgroundColor;
+  const removeColorCode = assignedTo.colorCodes.indexOf(backgroundColorValue);
+  assignedTo.initials.splice(removeColorCode, 1);
+  assignedTo.colorCodes.splice(removeColorCode, 1);
+  assignedTo.textColor.splice(removeColorCode, 1);
+  assignedTo.userNames.splice(removeColorCode, 1);
 }
 
 function togglePrioImg(clickedId) {
@@ -284,11 +284,8 @@ function editSubtask(index) {
   subtaskCounter +=1;
   const ListElement = document.getElementById(`substask-content-id${index}`);
   if (subtaskCounter === 1) {
-    const element = document.getElementById(`editable-span-id${index}`);
-    toggleVisibility(`subtask-edited-container-id${index}`, true);
-    toggleVisibility(`subtask-default-container-id${index}`, false); 
-    makeElementEditableWithMaxLength(element, 30);
-    ListElement.classList.toggle('blue-line-highlight');
+    handleFirstSubtaskEdit(index, ListElement);
+    
   }
   document.addEventListener('click', function(event) {
   const clickedElement = event.target;
@@ -298,6 +295,25 @@ function editSubtask(index) {
   if (!isSubtaskContent && !isSubtaskDefaultContainer && !isSubtaskEditedContainer) 
     ListElement.classList.add('red-line-highlight');
   });
+}
+
+function handleFirstSubtaskEdit(index, ListElement) {
+  disableAllSubtasksExcept(index);
+  const element = document.getElementById(`editable-span-id${index}`);
+  toggleVisibility(`subtask-edited-container-id${index}`, true);
+  toggleVisibility(`subtask-default-container-id${index}`, false); 
+  makeElementEditableWithMaxLength(element, 30);
+  ListElement.classList.toggle('blue-line-highlight');
+}
+
+function disableAllSubtasksExcept(index) {
+  const totalNumberOfSubtasks = document.querySelectorAll('[id^="substask-content-id"]').length;
+  for (let i = 0; i < totalNumberOfSubtasks; i++) {
+    if (i !== index) {
+      const otherSubtask = document.getElementById(`substask-content-id${i}`);
+      otherSubtask.classList.add('disabled-svg'); 
+    }
+  }
 }
 
 function makeElementEditableWithMaxLength(element, maxLength) {
@@ -369,4 +385,23 @@ function handlerAddTaskValidation(atBoolArr) {
 async function sendAddTask() {
   localStorage.setItem('currentUser', JSON.stringify(currentUser));
   await addNewUserToBackend(currentUser);
+}
+
+
+function clearAllInputs() {
+  document.getElementById('title-input-id').value = '';
+  document.getElementById('textarea-input-id').value = '';
+  document.getElementById('date-input-id').value = '';
+  document.getElementById('category-input-id').value = '';
+  subtaskList.splice(0, subtaskList.length);
+  console.log(assignedTo.userNames)
+  assignedTo.userNames.splice(0, assignedTo.userNames.length);
+  assignedTo.colorCodes.splice(0, assignedTo.colorCodes.length);
+  assignedTo.initials.splice(0, assignedTo.initials.length);
+  assignedTo.textColor.splice(0, assignedTo.textColor.length);
+  console.log(assignedTo.userNames)
+  renderAddedContacts();
+  togglePrioImg('medium-default-id');
+  renderSubtasks();
+  subtaskCounter = 0;
 }

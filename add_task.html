@@ -29,10 +29,10 @@
             <h1>Add Task</h1>
             <div class="content-top-and-left">
                 <div class="at-title">
-                    <div class="at-label-style">Title<span class="required">*</span>
+                    <div class="at-label-style ">Title<span class="required">*</span>
                         <span id="empty-title-id" class="inApp-err-msg d-none">This field is required!</span>
                     </div>
-                    <div id="at-title-border-id" class="input_global input_at">
+                    <div id="at-title-border-id" class="input_global input_at cursor">
                         <input id="title-input-id"  type="search" placeholder="Enter a title" autocomplete="off">
                     </div> 
                 </div>
@@ -60,7 +60,7 @@
             <div class="content-bottom-and-rigth">
                 <div>
                     <div id="at-label-id" class="at-label-style">Assigned to</div>
-                    <div id="assignedto-container-id" class="input_global input_at" >
+                    <div id="assignedto-container-id" class="input_global input_at cursor" >
                         <input id="assignedto-input-id" placeholder="Select contacts to assign" onclick="toggleAssignedToSection(false)" autocomplete="off">
                         <img id="rotate-arrow-id" class="rotate-arrow" src="./assets/svg/arrow_drop_down.svg"  onclick="openAssignedbyArrow()">
                     </div>
@@ -81,7 +81,7 @@
     
                 <div class="at-subtasks ">
                     <div class="at-label-style">Subtasks</div>
-                    <div class="input_global input_at">
+                    <div class="input_global input_at cursor">
                         <input id="subtask-input-id" type="text" maxlength="30"   placeholder="Add new subtask" autocomplete="off">
                         <div id="subtast-add-button-id" class="cursor plus-btn" onclick="toggleAddNewTaskMenu()">
                             <svg width="24" height="24" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -119,6 +119,7 @@
                     </div>
                     <div id="at-date-border-id" class="input_global due_date_at">
                         <input id="date-input-id" type="date"  max="2025-12-31" min="2024-02-27">
+                        <img  class="event-style" src="./assets/img/event.png"  onclick="openAssignedbyArrow()">
                     </div>
                 </div>
             </div>
@@ -129,7 +130,7 @@
             <span>
                 <span class="required">*</span>This field is required</span>
             <div class="bottom-btns-container">
-                <button class="white-btn width-small hide-clear-btn">Clear
+                <button class="white-btn width-small hide-clear-btn" onclick="clearAllInputs()">Clear
                     <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12.2496 11.9998L17.4926 17.2428M7.00659 17.2428L12.2496 11.9998L7.00659 17.2428ZM17.4926 6.75684L12.2486 11.9998L17.4926 6.75684ZM12.2486 11.9998L7.00659 6.75684L12.2486 11.9998Z" stroke="#2A3647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
