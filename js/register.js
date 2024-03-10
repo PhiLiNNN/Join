@@ -427,3 +427,14 @@ function loadCurrentUser() {
         return null;
     }
 }
+
+
+// Guest login
+
+function guestLogin() {    
+    const guestEmail = "guest@login.de";
+    const guestPassword = "Guest!login1";    
+    document.getElementById("login-user-e-mail-id").value = guestEmail;
+    document.getElementById("login-user-password-id").value = guestPassword;    
+    login();
+}
