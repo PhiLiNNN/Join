@@ -11,20 +11,16 @@ function contactsInit() {
 function addNewContact() {
     document.body.style.overflow = 'hidden';
     const element = document.getElementById('ad-overlay-id');
-    element.classList.remove('d-none');
     element.innerHTML = templateAddContactHTML();
-    setTimeout(() => {
-        const cardContent = document.getElementById('card-content-id');
-        cardContent.classList.add('card-visible');
+    toggleVisibility('ad-overlay-id', true);
+    setTimeout(() => {  toggleVisibility('card-content-id', false,  'card-visible');
      }, 30);
 }
 
 function closeAddNewContact() {
-    const element = document.getElementById('ad-overlay-id');
-    const cardContent = document.getElementById('card-content-id');
-    cardContent.classList.remove('card-visible');
+    toggleVisibility('card-content-id', true,  'card-visible');
     setTimeout(() => {
-        element.classList.add('d-none');
+        toggleVisibility('ad-overlay-id', false);
         document.body.style.overflow = 'auto';
     }, 300); 
     

@@ -1,0 +1,43 @@
+.contacts-wrapper {
+    position: absolute;
+    top: 80px;
+    bottom: 80px;
+    display: flex;
+    max-width: 1920px;
+
+}
+
+.all-contacts {
+    overflow: auto;
+    width: 100%;
+}
+
+.conatcs-menu {
+    display: none;
+    overflow: hidden;
+}
+
+
+@media (min-width: 1300px) {
+    .all-contacts {
+        max-width: 456px;
+    }
+    .conatcs-menu {
+        display: block;
+        flex-grow: 1;
+        width: calc(100vw - 688px);
+    }
+}
+
+@media (min-width: 761px) {
+    .contacts-wrapper {
+        
+        left: 232px;
+        bottom: 0px;
+    }
+    .all-contacts {
+        margin-top: 78px;
+        width: calc(100vw - 232px);
+ 
+    }
+}
