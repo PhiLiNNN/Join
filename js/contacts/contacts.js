@@ -9,12 +9,23 @@ function contactsInit() {
 
 
 function addNewContact() {
-    const elememt = document.getElementById('ad-overlay-id');
-    elememt.classList.remove('d-none');
-    elememt.innerHTML = templateAddContactHTML();
+    document.body.style.overflow = 'hidden';
+    const element = document.getElementById('ad-overlay-id');
+    element.classList.remove('d-none');
+    element.innerHTML = templateAddContactHTML();
+    setTimeout(() => {
+        const cardContent = document.getElementById('card-content-id');
+        cardContent.classList.add('card-visible');
+     }, 30);
 }
 
 function closeAddNewContact() {
-    const elememt = document.getElementById('ad-overlay-id');
-    elememt.classList.add('d-none');
+    const element = document.getElementById('ad-overlay-id');
+    const cardContent = document.getElementById('card-content-id');
+    cardContent.classList.remove('card-visible');
+    setTimeout(() => {
+        element.classList.add('d-none');
+        document.body.style.overflow = 'auto';
+    }, 300); 
+    
 }

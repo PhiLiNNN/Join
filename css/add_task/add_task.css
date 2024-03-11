@@ -221,9 +221,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     z-index: 1;
 }
 
-.cursor {
-    cursor: pointer;
-}
+
 
 .category-dropdown.active {
     opacity: 1;

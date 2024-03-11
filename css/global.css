@@ -159,6 +159,7 @@ input:-webkit-autofill:active{
     width: 100%;
     outline: none;
     border: none;
+    cursor: pointer;
 }
 
 .textarea-style {
@@ -194,6 +195,10 @@ textarea::placeholder {
 .inApp-err-msg {
     color: var(--err-msg-color);
     font-size: 14px;
+}
+
+.cursor {
+    cursor: pointer;
 }
 
 .d-none {
