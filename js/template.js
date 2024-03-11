@@ -68,31 +68,6 @@ function templateSignUpPopup() {
   `;
 }
 
-function addContactFormMobileHTML() {
-  return /*html*/ `
-    <div class="addContactContainerHeaderMobile">
-      <div class="addContactCloseXContainerMobile">
-        <button class="addContactCloseXButtonMobile" onclick="redirectToContacts()">X</button>
-      </div>
-      <div class="addContactBlockHeaderMobile">
-        <p class="addContactH1Mobile">Add contact</p>
-        <p class="addContactTextMobile">Tasks are better with a team!</p>
-        <img class="addContactBlueStrokedMobile" src="../assets/img/contacts/addContactBlueStroked.svg" alt="addContactBlueStroked">
-      </div>
-      <div>
-        <img class="addContactBlankUserImgMobile" src="../assets/img/contacts/addContactBlankUserImg.svg" alt="addContactBlankUserImg">
-      </div>
-    </div>
-    <form id="add-contact-form-mobile-id" onsubmit="createContactMobile(); return false;">
-      <div class="addContactContainerFooterMobile">
-        <input class="addContactInputNameMobile" name="addContactInputNameMobile" id="add-contact-input-name-mobile-id" type="text" placeholder="Name">
-        <input class="addContactInputMailAddresssMobile" name="addContactInputMailAddresssMobile" id="add-contact-input-mail-addresss-mobile-id" type="text" placeholder="E Mail">
-        <input class="addContactInputPhoneMobile" name="addContactInputPhoneMobile" id="add-contact-input-phone-mobile-id" type="text" placeholder="Phone">          
-        <img class="createContactButtonImg" src="../assets/img/contacts/createContactButton.svg" alt="createContactButton" onclick="createContactMobile()">         
-      </div>
-    </form>
-  `;
-}
 
 function templateAssignedToContainerHTML(contact, index, iconColor, initials, textColor, isSelected) {
   const setSelectedContact = isSelected ? 'selected-contact' : '';

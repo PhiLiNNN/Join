@@ -16,7 +16,15 @@
     src: url('/assets/fonts/Inter/InterVariableFontslntwght.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
-}*/
+}
+
+* {
+    padding: 0px;
+    margin:0px;
+    box-sizing: border-box;
+    font-family: 'Inter';
+    text-decoration: none;
+}
 
 body {
     margin: 0;
@@ -32,14 +40,11 @@ h2 {
     font-size: 27px;
 }
 
-* {
-    padding: 0px;
-    margin:0px;
-    box-sizing: border-box;
-    font-family: 'Inter';
-    text-decoration: none;
-}
 
+a {
+    text-decoration: none;
+    color: black;
+ }
 ::-webkit-scrollbar {
     width: 20px;
 }
@@ -68,14 +73,28 @@ input:-webkit-autofill:active{
 }
 
 
+
+
+
 .filled-btn, 
 .white-btn {
-    border-radius: 8px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+    font-size: 22px;
     width: 180px;
-    height: 40px;
+    height: 45px;
     cursor: pointer;
-    font-size: 16px;
     font-weight: 700;
+    transition: all 300ms  ease-in-out;
+}
+
+.filled-btn {
+    background-color: var(--mockup-color);
+    color: white;
+    border: 1px solid var(--mockup-color);
 }
 
 .white-btn {
@@ -104,12 +123,6 @@ input:-webkit-autofill:active{
     stroke: var(--focus-color-btn);
 }
 
-.filled-btn {
-    background-color: var(--mockup-color);
-    color: white;
-    border: 1px solid var(--mockup-color);
-    transition: all 200ms ease-in-out;
-}
 
 
 
@@ -120,6 +133,7 @@ input:-webkit-autofill:active{
 
 .width-small {
     width: 104px !important;
+    gap: 4px;
 }
 
 .width-big {
@@ -198,5 +212,9 @@ textarea::placeholder {
         background-color: var(--mockup-highlight);
         border: 2px solid var(--mockup-highlight);
         box-shadow: 0 6px 5px rgba(0, 0, 0, 0.18);
+    }
+    .filled-btn:active {
+        background: var(--focus-color-btn);
+        border: 2px solid var(--focus-color-btn);
     }
 }

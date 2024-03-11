@@ -1,6 +1,3 @@
-
- 
-
 async function updateGreeting() {
     let existingUsers = await loadUsersFromBackend('users');
     console.log('existingUsersexistingUsers',existingUsers)

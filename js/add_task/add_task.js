@@ -11,6 +11,7 @@ let prio = ['urgnet', 'medium', 'low'];
 let prioIndex = 1;
 let isFilterActive = false;
 
+
 function initAddTask() {
   currentUser = JSON.parse(localStorage.getItem('currentUser'));
   console.log(currentUser)
@@ -49,6 +50,27 @@ function iterateOverContacts(contacts) {
       const isSelected  =  contacts[index].selected
       assignedToContainer.innerHTML += templateAssignedToContainerHTML(contact.name, index, contact.colorCode, initials, textColor, isSelected);
     }); 
+}
+
+function getFirstLettersOfName(name) {
+  let words = name.replace(/\s+/g, ' ').trim().split(" ");
+  let initials = "";
+  for (let word of words) {
+    initials += word[0].toUpperCase();
+  }  
+  return initials;
+}
+
+function isColorLight(hexcode) {
+    if (hexcode) {
+      let r = parseInt(hexcode.slice(1, 3), 16);
+      let g = parseInt(hexcode.slice(3, 5), 16);
+      let b = parseInt(hexcode.slice(5), 16);
+      var a = 1 - (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+      return a < 0.5;
+    } else {
+      return true;
+    }
 }
 
 function formatWithLeadingZero(value) {

@@ -111,3 +111,7 @@
     font-size: 16px;
     font-weight: 700;
 }
+
+.d-none {
+    display: none;
+}

@@ -3,95 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Summary</title>
-
-    <!--style.css integration</!-->
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/footer.css">
+    <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="./css/footer.css">  
     <link rel="stylesheet" href="./css/header.css">
-    <link rel="stylesheet" href="./css/summary.css">
-
-
-    <!--script.js integration</!-->
-    <script src="./js/summary.js"></script>
-    <script src="./js/register.js"></script>
-    <script src="./js/template.js"></script>
-    <script src="./js/includeHTML.js"></script>
-    <script src="./js/summary.js"></script>
+    <link rel="stylesheet" href="./css/summary/summary.css">
+    <script defer src="./js/includeHTML.js"></script>
+    <script defer src="./js/global.js"></script>
+    <script defer src="./js/summary/summary.js"></script>
+    <script defer src="./js/register/register.js"></script>
+    <script defer src="./js/template.js"></script>
+    
+    
+    <title>Summary</title>
 </head>
 
 <body onload="includeHTML(); updateGreeting()">
 
     <div w3-include-html="./assets/templates/header.html"></div>
     
-   <div class="summary-secondery">
-        <div class="summary-greeting" id="greeting-id"></div>
-   </div>
-
-   <div class="summary-content">
-        <div class="summary-title">
-            <h1>Join 360</h1>
-            <span>Key Metrics at a Glance</span>
-            <div class="separator"></div>
-        </div>
- 
-        <div class="summary-rows">
-            <div class="summary-row"> 
-                
-                <a class="box-1">
-                    <img class="summary-icon" src="./assets/img/to_do.png" alt="to-do">
-                    <div>
-                        <div class="summary-change-content">1</div>
-                        To-do
-                    </div>  
-                </a>
-
-                <div class="box-1">
-                    <img class="summary-icon" src="./assets/img/done.png" alt="done">
-                    <div>
-                        <div class="summary-change-content">1</div>
-                        Done
-                    </div>
-                </div>
-
-            </div>
-            <div class="summary-row">
-                <div class="box-2">
-                    <div class="box-1">
-                    <img class="summary-icon" src="./assets/img/urgent.png" alt="urgent">
-                    <div>
-                        <div class="summary-change-content">1</div>
-                        Urgent
-                    </div>
-                    </div>
-                    <div class="separator2"></div>
-                    <div class="box-2-2">
-                        <div class="summary-change-content2">February 29,2022</div>
-                        Upcomming deadline
-                    </div>
-                </div>
-            </div>
-            
-            <div class="summary-row">
-                
-                <div class="box-3">
-                    <div class="box-2-2">
-                        <div class="summary-change-content">1</div>
-                        Tasks in
-                        <br>
-                        Board 
-                    </div>
-                </div>
-
-                <div class="box-3">
-                    <div class="box-2-2">
-                        <div class="summary-change-content">1</div>
-                        Tasks In
-                        <br>
-                        Progress 
-                    </div>
-                </div> 
+    <section id="summary-section-id" >
         
+        <div class="summary-secondery">
+             <div class="summary-greeting" id="greeting-id"></div>
+        </div>
+     
+        <div class="summary-content">
+            <div class="summary-title">
+                <h1>Join 360</h1>
+                <span>Key Metrics at a Glance</span>
+                <div class="separator"></div>
+            </div>
+    
+            <div class="summary-rows">
+                <div class="summary-row"> 
+                    
+                    <a class="box-1">
+                        <img class="summary-icon" src="./assets/img/to_do.png" alt="to-do">
+                        <div>
+                            <div class="summary-change-content">1</div>
+                            To-do
+                        </div>  
+                    </a>
+    
+                    <div class="box-1">
+                        <img class="summary-icon" src="./assets/img/done.png" alt="done">
+                        <div>
+                            <div class="summary-change-content">1</div>
+                            Done
+                        </div>
+                    </div>
+    
+                </div>
+                <div class="summary-row">
+                    <div class="box-2">
+                        <div class="box-1">
+                        <img class="summary-icon" src="./assets/img/urgent.png" alt="urgent">
+                        <div>
+                            <div class="summary-change-content">1</div>
+                            Urgent
+                        </div>
+                        </div>
+                        <div class="separator2"></div>
+                        <div class="box-2-2">
+                            <div class="summary-change-content2">February 29,2022</div>
+                            Upcomming deadline
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="summary-row">
+                    
+                    <div class="box-3">
+                        <div class="box-2-2">
+                            <div class="summary-change-content">1</div>
+                            Tasks in
+                            <br>
+                            Board 
+                        </div>
+                    </div>
+    
+                    <div class="box-3">
+                        <div class="box-2-2">
+                            <div class="summary-change-content">1</div>
+                            Tasks In
+                            <br>
+                            Progress 
+                        </div>
+                    </div> 
                     <div class="box-3">
                         <div class="box-2-2">
                             <div class="summary-change-content">1</div>
@@ -100,18 +98,10 @@
                             feedback 
                         </div>
                     </div>
-
+                </div>
             </div>
-        </div>
-   </div>
-   <button onclick="button()">click mich</button>
-
-
-    <a href="index.html">Back</a>
-
-    <div  style="position: absolute;">  <!-- Der Link ist nur kurzfristig hier, kommt nach der Menü Leiste wieder weg -->
-        <a href="contacts.html">Contacts</a>
-    </div>
+        </div> 
+    </section>
 
     <div w3-include-html="./assets/templates/footer.html"></div>
 
