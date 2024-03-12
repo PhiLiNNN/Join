@@ -22,6 +22,7 @@ function pushAllNeededLetters() {
 function renderAllContacts() {
     pushAllNeededLetters();
     let element = document.getElementById('all-contacts-content-id');
+    element.innerHTML = '';
     allLetters.forEach(letter => {
         element.innerHTML += templateCreateLettersHTML(letter);
         let letterElement = document.getElementById(`letter-${letter}-id`); 
@@ -55,10 +56,11 @@ async function addNewContact() {
         'colorCode': colorCode,
         'textColorCode': textColorCode
     }
-    // currentUser.contacts.push(newContact)
-    // localStorage.setItem('currentUser', JSON.stringify(currentUser));
-    // await updateCurrentUser(currentUser);
+    currentUser.contacts.push(newContact)
+    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+    await updateCurrentUser(currentUser);
     closeAddNewContact();
+    renderAllContacts();
 }
 
 async function updateCurrentUser(currentUser) {
