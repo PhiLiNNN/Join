@@ -37,16 +37,18 @@ function templateAddContactHTML() {
                             <input id="ac-name-input-id"  type="text" placeholder="Name" autocomplete="on">
                             <img src="./assets/img/person.png" alt="">
                         </div> 
-                        <div id="ac-mail-border-id" class="input_global cursor">
+                        <div id="ac-mail-border-id" class="input_global input_ac cursor">
                         <input id="ac-mail-input-id"  type="text" placeholder="Email" autocomplete="on">
                             <img src="./assets/img/mail.png" alt="">
                         </div> 
-                        <div id="ac-phone-border-id" class="input_global cursor">
+                        <div id="ac-phone-border-id" class="input_global input_ac cursor">
                         <input id="ac-phone-input-id"  type="tel" placeholder="Phone" autocomplete="on">
                             <img src="./assets/img/call.png" alt="">
                         </div> 
                     </div>
+                    
                     <div class="ac-btn-container">
+                        <input id="ac-color-input-id"  class="color-style"  type="color" value="#43da86" />
                         <button class="ac-btn-white" onclick="closeAddNewContact()">
                             <span>Cancel</span>
                             <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">

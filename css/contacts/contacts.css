@@ -56,6 +56,27 @@
     color: white;
 }
 
+
+
+.color-style {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+.color-style::-webkit-color-swatch {
+    border-radius: 50%;
+    border: none;
+}
+.color-style::-moz-color-swatch {
+    border-radius: 15px;
+    border: none;
+}
+
 .contact-circle {
     display: flex;
     justify-content: center;

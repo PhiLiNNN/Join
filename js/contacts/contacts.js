@@ -2,8 +2,6 @@ let currentUser;
 let currentActive = -1;
 const allLetters = [];
 
-
-
 function contactsInit() {
     currentUser = JSON.parse(localStorage.getItem('currentUser'));
     console.log(currentUser)
@@ -37,12 +35,11 @@ function renderAllContacts() {
     });
 }
 
-
 function getUserInputs() {
     const nameInputEl  = document.getElementById('ac-name-input-id').value;
     const mailInputEl  = document.getElementById('ac-mail-input-id').value;
     const phoneInputEl  = document.getElementById('ac-phone-input-id').value;
-    const colorCode =  getRandomColorHex();
+    const colorCode  = document.getElementById('ac-color-input-id').value;
     const textColorCode = isColorLight(colorCode) ? 'white' : 'black';
     return {nameInputEl, mailInputEl, phoneInputEl, colorCode, textColorCode}
 }
@@ -73,20 +70,6 @@ async function updateCurrentUser(currentUser) {
     }
 }
 
-
-
-
-function getRandomColorHex() {
-    let colorHex = "#";
-    let colorVal;
-    for (let i = 0; i < 3; i++) {
-      colorVal = Math.floor(Math.random() * 255).toString(16);
-      if (colorVal.length == 1) colorVal = "0" + colorVal;
-      colorHex += colorVal;
-    }
-    return colorHex;
-}
-
 function isColorLight(hexcode) {
     if (hexcode) {
       let r = parseInt(hexcode.slice(1, 3), 16);
@@ -96,7 +79,6 @@ function isColorLight(hexcode) {
       return a < 0.5;
     } else return true;
 }
-
 
 function openContact(name, email, phone, index) {
     highlightActiveContact(index) ;
@@ -115,25 +97,6 @@ function highlightActiveContact(index) {
         currentActive = -1;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function openAddContactMenu() {
     document.body.style.overflow = 'hidden';
     const element = document.getElementById('ad-overlay-id');
@@ -141,7 +104,8 @@ function openAddContactMenu() {
     contactsElement.style.overflow = 'hidden';
     element.innerHTML = templateAddContactHTML();
     toggleVisibility('ad-overlay-id', true);
-    setTimeout(() => {  toggleVisibility('card-content-id', false,  'card-visible');
+    setTimeout(() => {  
+        toggleVisibility('card-content-id', false,  'card-visible');
      }, 30);
 }
 
@@ -153,5 +117,4 @@ function closeAddNewContact() {
         toggleVisibility('ad-overlay-id', false);
         document.body.style.overflow = 'auto';
     }, 300); 
-    
 }

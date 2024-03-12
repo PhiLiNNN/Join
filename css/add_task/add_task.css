@@ -445,7 +445,7 @@ li:hover .hidden-Edit_menu {
     }
     .content-bottom-container {
         margin: 0px 80px 0 calc(232px + 96px);
-        min-width: 923px;
+        max-width: 1920px;
     }
     .editable-span {
         max-width: 20vw ;
