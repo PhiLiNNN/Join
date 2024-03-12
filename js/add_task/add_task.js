@@ -52,14 +52,7 @@ function iterateOverContacts(contacts) {
     }); 
 }
 
-function getFirstLettersOfName(name) {
-  let words = name.replace(/\s+/g, ' ').trim().split(" ");
-  let initials = "";
-  for (let word of words) {
-    initials += word[0].toUpperCase();
-  }  
-  return initials;
-}
+
 
 function isColorLight(hexcode) {
     if (hexcode) {

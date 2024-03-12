@@ -3,41 +3,134 @@
     top: 80px;
     bottom: 80px;
     display: flex;
+    width: 100%;
     max-width: 1920px;
-
+  
 }
 
 .all-contacts {
     overflow: auto;
     width: 100%;
+
+}
+
+.all-contacts-content {
+    margin: 24px 24px 0 24px;
+}
+
+.letter-style {
+    position: relative;
+    padding: 17px 0px 17px 40px;
+    font-size: 20px;
+    width: 100%;
+}
+
+.letter-style::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    border-radius: 1px;
+    background-color: #D1D1D1;
+}
+
+.contacts-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contact-style {
+    display: flex;
+    align-items: center;
+    padding: 15px 0px 15px 24px;
+    cursor: pointer;
+    margin-bottom: 1px;
+}
+
+.contact-style.selected-contact {
+    background: var(--mockup-color);
+    border-radius: 10px;
+    color: white;
+}
+
+.contact-circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    border: 2px solid white;
+    margin: 0 24px 0 0px;
+}
+
+.contact-content {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 20px;
+}
+
+.contact-content span:last-child {
+    color: var(--hyper-link-color);
+    font-size: 16px;
 }
 
 .conatcs-menu {
     display: none;
     overflow: hidden;
+    box-shadow: -4px 0px 4px 0px rgba(0, 0, 0, 0.1);
 }
 
+.show-contacts-header {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 30px;
+    margin: 123px 0 0 55px;
+}
+
+.show-contacts-header h1 {
+    font-size: 64px;
+    font-weight: bold;
+
+}
+
+.show-contacts-header span {
+    font-size: 27px;
+}
+
+.ac-vertical-bar {
+    background: var(--mockup-highlight);
+    width: 3px;
+    height: 59px;
+    border-radius: 3px;
+}
+
+@media (min-width: 761px) {
+    .contacts-wrapper {
+        width: auto;
+        left: 232px;
+        bottom: 0px;
+    }
+    .all-contacts {
+        width: calc(100vw - 232px);
+        padding-top: 78px;
+    } 
+}
 
 @media (min-width: 1300px) {
     .all-contacts {
         max-width: 456px;
+        background: white;
+        margin-top: -0px;
     }
     .conatcs-menu {
         display: block;
         flex-grow: 1;
         width: calc(100vw - 688px);
-    }
-}
-
-@media (min-width: 761px) {
-    .contacts-wrapper {
-        
-        left: 232px;
-        bottom: 0px;
-    }
-    .all-contacts {
-        margin-top: 78px;
-        width: calc(100vw - 232px);
- 
     }
 }

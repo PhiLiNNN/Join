@@ -4,7 +4,7 @@
     --placeholder-color: #d1d1d1;
     --white-color: #ffffff;
     --black-color: #000000;
-    --hyper-link-color: #007cee;
+    --hyper-link-color: #007CEE;
     --err-msg-color: #ff3333;
     --white-grey: #f6f7f8;
     --white-grey2: #d9d9d9;
@@ -62,7 +62,7 @@ a {
 }
   
 ::-webkit-scrollbar-thumb:hover {
-    background-color: var(--mockup-highlight);
+    background-color: var(--focus-color-btn);
 }
 
 input:-webkit-autofill,

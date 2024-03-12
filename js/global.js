@@ -86,3 +86,12 @@ function toggleVisibility(elementId, show = true, className = 'd-none') {
 function isValueNotEmpty(passwordInput) {
     return passwordInput.trim().length !== 0;
 }
+
+function getFirstLettersOfName(name) {
+  let words = name.replace(/\s+/g, ' ').trim().split(" ");
+  let initials = "";
+  for (let word of words) {
+    initials += word[0].toUpperCase();
+  }  
+  return initials;
+}

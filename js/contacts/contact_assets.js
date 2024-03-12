@@ -53,7 +53,7 @@ function templateAddContactHTML() {
                                 <path d="M12.2496 11.9998L17.4926 17.2428M7.00659 17.2428L12.2496 11.9998L7.00659 17.2428ZM17.4926 6.75684L12.2486 11.9998L17.4926 6.75684ZM12.2486 11.9998L7.00659 6.75684L12.2486 11.9998Z" stroke="#2A3647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </button> 
-                        <button class="ac-btn-fill">
+                        <button class="ac-btn-fill" onclick="addNewContact()"> 
                             <span>Create contact</span>
                             <img src="./assets/img/check.png" alt="">
                         </button> 
@@ -61,5 +61,24 @@ function templateAddContactHTML() {
                 </div>
             </div>
       </div>
+  `;
+}
+
+function templateCreateLettersHTML(letter) {
+  return /*html*/ `
+    <div class="letter-style"> ${letter}</div>
+    <div id="letter-${letter}-id" class="contacts-container"></div>
+  `;
+}
+
+function templateCreateContactsHTML(name, email, phone, bgColor, txtColor, initials, index) {
+  return /*html*/ `
+    <div  id="contact-${index}-id" class="contact-style" onclick="openContact('${name}','${email}','${phone}','${index}')">
+        <div class="contact-circle" style="background-color: ${bgColor}; color: ${txtColor};">${initials}</div>
+        <div class="contact-content">
+            <span>${name}</span>
+            <span>${email}</span>
+        </div>
+    </div>
   `;
 }
