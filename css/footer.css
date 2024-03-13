@@ -146,6 +146,7 @@
         flex-direction: column;
         gap: 4px;
         color: white;
+        margin-left: 0;
     }
     .desktop-data-box {
         display: none;

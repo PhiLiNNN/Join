@@ -327,6 +327,7 @@ function updateCurrentUser(titleInput, textareaInput, dateInput, categoryInput) 
   currentUser.tasks.prios.push(prio[prioIndex])
   currentUser.tasks.categories.push(categoryInput)
   currentUser.tasks.subtasks.push(subtaskList)
+  currentUser.tasks.board.push(`board`)
 }
 
 function validateInput(input, atBoolArr, index1, index2) {

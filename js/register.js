@@ -74,7 +74,8 @@ function generateNewUserObject() {
             'prios': [],
             'categories': [],
             'subtasks': [],
-            'dates': []
+            'dates': [],
+            'board': []
         }
     };
 }
