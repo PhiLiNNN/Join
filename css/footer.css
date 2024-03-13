@@ -15,33 +15,42 @@
 .desktop-logo {
     height: 122px;
     padding: 64px 66px 114px 66px;
+    margin-bottom: 114px;
 }
 
-.menu-box {
-    height: 229px;
-    margin-top: 114px;
+
+.menu-wrapper {
+    width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    
 }
 
 .menu-content {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 15px;
     width: 100%;
+    
+
 }
 
 .footer-icon-box {
-    height: 46px;
     display: flex;
-    justify-content: start;
-    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 46px;
+    padding-left: 50px;
 }
 
 .footer-icon-box:hover {    
     background-color: var(--focus-color-btn);
+}
+.footer-icon-box:active {    
+    background-color: var(--mockup-highlight);
 }
 
 .footer-icon {
@@ -58,7 +67,6 @@
     color: #a8a8a8;
     font-size: 18px;
     font-weight: 400;
-    margin-left: 60px;
     cursor: pointer;
 }
 
@@ -122,11 +130,15 @@
     .footer-icon-box {
         height: 80px;
         width: auto;
+        border-radius: 16px;
         padding: 0;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+    }
+    .footer-icon-box:active{
+        background: var(--focus-color-btn);
     }
 
     .footer-icon {
@@ -150,6 +162,20 @@
     .desktop-data-box {
         display: none;
     }
+    .footer-wrapper {
+        display: block;
+    }
 }
 
-
+@media (max-width: 400px) {
+    .menu-content {
+        gap: 0;
+    }
+    .footer-icon {
+        height: 16px;
+        width: 14px;
+    }
+    .footer-link {
+        font-size: 12px;
+    }
+}
