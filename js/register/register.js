@@ -4,8 +4,11 @@ let ppCheckboxConfirmed = false;
 let users = {};
 let newUserArray = [];
 let emptyInput = true;
-let pwVisibility = { pwVisibilityOn: false };
-let confirmPwVisibility = { pwVisibilityOn: false };
+let visibilityOn;
+let visibilityOnConfirm;
+let inputType = 'password'
+let inputTypeConfirm = 'password'
+let password, confirmPassword = false;
 // pw: tEst1!
 
 async function init() {
@@ -15,8 +18,7 @@ async function init() {
     addPasswordVisibilityListener('login-pw-border-id', 
                                 'lock-id', 
                                 'login-pw-visibility-off-id',
-                                'login-pw-visibility-id',
-                                pwVisibility);
+                                'login-pw-visibility-id', password = true, confirmPassword = false);
 }
 
 function register() {     
@@ -25,6 +27,7 @@ function register() {
     addNewUser();
     toggleSuccessesMsg();
     closeSignUp();
+    inputType = 'password';
 }
 
 async function addNewUser() {
@@ -127,7 +130,7 @@ function resetLoginInputs() {
 }
 
 function signUp() {
-    pwVisibility.pwVisibilityOn = false;
+    inputType =  'password';
     resetLoginInputs();
     toggleVisibility('sign-up-popup-id', true);
     toggleVisibility('signup-container-id', false);
@@ -137,19 +140,15 @@ function signUp() {
     addPasswordVisibilityListener('add-pw-border-id',
                                 'register-lock-id', 
                                 'register-pw-visibility-off-id',
-                                'register-pw-visibility-id',
-                                pwVisibility);
+                                'register-pw-visibility-id', password =  true, confirmPassword = false);
     addPasswordVisibilityListener('add-confirm-pw-border-id', 
                                 'register-confirm-lock-id',
                                 'register-confirm-pw-visibility-off-id',
-                                'register-confirm-pw-visibility-id',
-                                confirmPwVisibility);
+                                'register-confirm-pw-visibility-id', password =  false, confirmPassword = true);
 }
 
 function closeSignUp() {
     document.getElementById('login-user-password-id').type = 'password';
-    pwVisibility.pwVisibilityOn = false;
-    confirmPwVisibility.pwVisibilityOn = false;
     toggleVisibility('lock-id', true);
     toggleVisibility('login-pw-visibility-off-id', false);
     toggleVisibility('login-pw-visibility-id', false);
@@ -158,6 +157,7 @@ function closeSignUp() {
     toggleVisibility('login-id', true);
     document.getElementById('sign-up-popup-id').innerHTML = "";
     ppCheckboxConfirmed = false;
+    inputType = 'password'
 }
 
 async function login() {
@@ -222,42 +222,58 @@ function toggleCheckbox(event) {
     }
 }
 
-function addPasswordVisibilityListener(elementId, lockImgId, visibilityOffImg, visibilityOnImg, visibilityObj) {
+function addPasswordVisibilityListener(elementId, lockImgId, visibilityOffImg, visibilityOnImg, password, confirmPassword) {
     const inputElement = document.getElementById(elementId);
     inputElement.addEventListener("input", function(event) {
         const passwordNotEmpty = isValueNotEmpty(event.target.value);
         toggleVisibility(lockImgId, !passwordNotEmpty);
-        toggleVisibility(visibilityOffImg, passwordNotEmpty && !visibilityObj.pwVisibilityOn);
-        toggleVisibility(visibilityOnImg, passwordNotEmpty && visibilityObj.pwVisibilityOn);
-        if (!passwordNotEmpty) 
-            visibilityObj.pwVisibilityOn = false;
+        if (inputType === 'text' && password) 
+            setRightImg(visibilityOnImg, visibilityOffImg, true, false);
+        else if (inputType === 'password' && password) 
+            setRightImg(visibilityOnImg, visibilityOffImg, false, true);
+        if (inputTypeConfirm === 'text' && confirmPassword) 
+            setRightImg(visibilityOnImg, visibilityOffImg, true, false);
+        else if (inputTypeConfirm === 'password' && confirmPassword) 
+            setRightImg(visibilityOnImg, visibilityOffImg, false, true);
+        if (!passwordNotEmpty ) 
+            setRightImg(visibilityOnImg, visibilityOffImg, false, false);
     });
 }
+
+function setRightImg(visibilityOnImg, visibilityOffImg, visbilityOn, visibilityOff) {
+    toggleVisibility(visibilityOnImg, visbilityOn );
+    toggleVisibility(visibilityOffImg, visibilityOff );
+}
+
 
 function showImage(lockImage, src) {
     lockImage.src = src;
 }
 
-function togglePasswordVisibility(event, ImgId, whichform, value) {
-    let visibilityOn, inputType;
+
+function togglePasswordVisibility(event, ImgId, whichform, value) {   
     if ((whichform === 'password' || whichform === 'registerPw') && value === 1) 
         visibilityOn = true;
     else if ((whichform === 'password' || whichform === 'registerPw') && value === -1) 
         visibilityOn = false;
     else if (whichform === 'confirmPw' && value === 1) 
-        visibilityOn = true;
+        visibilityOnConfirm = true;
     else if (whichform === 'confirmPw' && value === -1) 
-        visibilityOn = false;
+        visibilityOnConfirm = false;
     toggleVisibility(event.target.id, false);
     toggleVisibility(ImgId, true);
     inputType = visibilityOn ? 'text' : 'password';
+    inputTypeConfirm = visibilityOnConfirm ? 'text' : 'password';
     updatePasswordInput(whichform, inputType);
+    if(whichform === 'confirmPw')
+        updatePasswordInput('confirmPw', inputTypeConfirm);
 }
 
 function updatePasswordInput(whichform, inputType) {
     const passwordInput = getPasswordInput(whichform);
     passwordInput.type = inputType;
 }
+
 
 function getPasswordInput(whichform) {
     const formMap = {
