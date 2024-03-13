@@ -14,7 +14,7 @@ let password, confirmPassword = false;
 async function init() {
     users = await loadUsersFromBackend('users');
     console.log(users)
-    // await setItem("users", JSON.stringify({})); //  funktion zum clearen des Backends
+   // await setItem("users", JSON.stringify({})); //  funktion zum clearen des Backends
     addPasswordVisibilityListener('login-pw-border-id', 
                                 'lock-id', 
                                 'login-pw-visibility-off-id',
@@ -59,7 +59,8 @@ function generateNewUserObject() {
             'prios': [],
             'categories': [],
             'subtasks': [],
-            'dates': []
+            'dates': [],
+            'board': []
         }
     };
 }
