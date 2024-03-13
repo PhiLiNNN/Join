@@ -13,7 +13,7 @@ function templateSignUpPopup() {
             <div class="tooltiptext">Valid inputs:
               <ul>
                 <li>First name only</li>
-                <li>First name Last name (with space)</li>
+                <li>First name last name (with space)</li>
                 <li>Double name (e.g., Lisa-Marie)</li>
               </ul>
             </div>
@@ -22,6 +22,7 @@ function templateSignUpPopup() {
           <span id="empty-add-name-id" class="err-msg d-none">This field is required!</span>
           <span id="invalid-add-name-id" class="err-msg d-none">Name must be at least 2 letters.</span>
           <span id="no-special-chars-id" class="err-msg d-none">No special characters are allowed.</span>
+          <span id="hyphens-add-name-id" class="err-msg d-none">Check your hyphen!.</span>
         </div>
         <div id="add-email-border-id" class="input_global">
           <input type="email" name="loginUserEMail" id="add-email-id" placeholder="Email" autocomplete="on">

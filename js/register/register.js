@@ -1,13 +1,10 @@
 
-let rmCheckboxConfirmed = false;
-let ppCheckboxConfirmed = false;
+let rmCheckboxConfirmed = ppCheckboxConfirmed = false;
 let users = {};
 let newUserArray = [];
 let emptyInput = true;
-let visibilityOn;
-let visibilityOnConfirm;
-let inputType = 'password'
-let inputTypeConfirm = 'password'
+let visibilityOn, visibilityOnConfirm;
+let inputType = inputTypeConfirm = 'password'
 let password, confirmPassword = false;
 // pw: tEst1!
 
@@ -15,10 +12,9 @@ async function init() {
     users = await loadUsersFromBackend('users');
     console.log(users)
    // await setItem("users", JSON.stringify({})); //  funktion zum clearen des Backends
-    addPasswordVisibilityListener('login-pw-border-id', 
-                                'lock-id', 
-                                'login-pw-visibility-off-id',
-                                'login-pw-visibility-id', password = true, confirmPassword = false);
+    addPasswordVisibilityListener('login-pw-border-id', 'lock-id', 
+                                'login-pw-visibility-off-id', 'login-pw-visibility-id', 
+                                password = true, confirmPassword = false);
 }
 
 function register() {     
@@ -80,10 +76,11 @@ function handlerFieldValidationRegister(boolArr) {
     toggleVisibility('invalid-add-pw-id', boolArr[7]);
     toggleVisibility('empty-confirm-pw-id', boolArr[8]);
     toggleVisibility('invalid-confirm-pw-id', boolArr[9]);
-    toggleVisibility('add-name-border-id', !boolArr[10],'error-border')
-    toggleVisibility('add-email-border-id', !boolArr[11],'error-border')
-    toggleVisibility('add-pw-border-id', !boolArr[12],'error-border')
-    toggleVisibility('add-confirm-pw-border-id', !boolArr[13],'error-border')
+    toggleVisibility('add-name-border-id', !boolArr[10],'error-border');
+    toggleVisibility('add-email-border-id', !boolArr[11],'error-border');
+    toggleVisibility('add-pw-border-id', !boolArr[12],'error-border');
+    toggleVisibility('add-confirm-pw-border-id', !boolArr[13],'error-border');
+    toggleVisibility('hyphens-add-name-id', boolArr[14]);
     return !boolArr.some(Boolean);
 }
 
@@ -94,7 +91,7 @@ function registerValidationCheck() {
     const confirmPassword = document.getElementById("add-confirm-pw-id").value;
     const checkBox = document.getElementById('privacy-check-id');
     const boolArr = [false, false, false, false, false, false, false, 
-                    false, false, false, false, false, false, false];
+                    false, false, false, false, false, false, false, false];
     validateName(name, boolArr);
     validateRegisterEmail(email, boolArr);
     validatePassword(password, boolArr);
@@ -113,7 +110,7 @@ function toggleSuccessesMsg() {
 
 function resetRegisterInputs() {
     const boolArr = [false, false, false, false, false, false, false,
-                    false, false, false, false, false, false, false];
+                    false, false, false, false, false, false, false, false];
     handlerFieldValidationLogin(boolArr);
     document.getElementById("add-name-id").value = "";
     document.getElementById("add-email-id").value = "";
@@ -127,7 +124,7 @@ function resetLoginInputs() {
     document.getElementById("login-user-e-mail-id").value = "";
     document.getElementById("login-user-password-id").value = "";
     const pwInput = document.getElementById('lock-id');
-    showImage(pwInput, './assets/img/lock.png');
+    pwInput.src = './assets/img/lock.png';
 }
 
 function signUp() {
@@ -138,14 +135,12 @@ function signUp() {
     toggleVisibility('login-id', false);
     let signUpPopupElement = document.getElementById('sign-up-popup-id');
     signUpPopupElement.innerHTML += templateSignUpPopup();
-    addPasswordVisibilityListener('add-pw-border-id',
-                                'register-lock-id', 
-                                'register-pw-visibility-off-id',
-                                'register-pw-visibility-id', password =  true, confirmPassword = false);
-    addPasswordVisibilityListener('add-confirm-pw-border-id', 
-                                'register-confirm-lock-id',
-                                'register-confirm-pw-visibility-off-id',
-                                'register-confirm-pw-visibility-id', password =  false, confirmPassword = true);
+    addPasswordVisibilityListener('add-pw-border-id', 'register-lock-id', 
+                                'register-pw-visibility-off-id','register-pw-visibility-id',
+                                password =  true, confirmPassword = false);
+    addPasswordVisibilityListener('add-confirm-pw-border-id', 'register-confirm-lock-id',
+                                'register-confirm-pw-visibility-off-id', 'register-confirm-pw-visibility-id', 
+                                password = false, confirmPassword = true);
 }
 
 function closeSignUp() {
@@ -223,7 +218,8 @@ function toggleCheckbox(event) {
     }
 }
 
-function addPasswordVisibilityListener(elementId, lockImgId, visibilityOffImg, visibilityOnImg, password, confirmPassword) {
+function addPasswordVisibilityListener(elementId, lockImgId, visibilityOffImg,
+                                        visibilityOnImg, password, confirmPassword) {
     const inputElement = document.getElementById(elementId);
     inputElement.addEventListener("input", function(event) {
         const passwordNotEmpty = isValueNotEmpty(event.target.value);
@@ -247,9 +243,6 @@ function setRightImg(visibilityOnImg, visibilityOffImg, visbilityOn, visibilityO
 }
 
 
-function showImage(lockImage, src) {
-    lockImage.src = src;
-}
 
 
 function togglePasswordVisibility(event, ImgId, whichform, value) {   
