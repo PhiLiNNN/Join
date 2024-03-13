@@ -61,13 +61,6 @@ function generateNewUserObject() {
     };
 }
 
-async function addNewUserToBackend(user) {
-    let existingUsers = await loadUsersFromBackend('users');
-    existingUsers[user.userEMail] = user;
-    await setItem('users', JSON.stringify(existingUsers));
-    users = await loadUsersFromBackend('users');
-}
-
 function validateCheckBoxClicked() {
     toggleVisibility('pp-id', ppCheckboxConfirmed, 'err-msg-color');
 }

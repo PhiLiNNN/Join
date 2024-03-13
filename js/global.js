@@ -34,6 +34,14 @@ async function loadUsersFromBackend(key) {
     }
 }
 
+async function addNewUserToBackend(user) {
+    let existingUsers = await loadUsersFromBackend('users');
+    existingUsers[user.userEMail] = user;
+    await setItem('users', JSON.stringify(existingUsers));
+    users = await loadUsersFromBackend('users');
+}
+
+
 function validateName(name, boolArr) {
     const specialCharRegex  = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/0123456789]/;
     const checkForDoubleHyphen = name.split("-").length - 1;
@@ -95,3 +103,4 @@ function getFirstLettersOfName(name) {
   }  
   return initials;
 }
+
