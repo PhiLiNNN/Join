@@ -31,7 +31,7 @@
     width: 90px;
     height: 3px;
     margin-top: 16px;
-    background-color: #29ABE2;
+    background-color: var(--mockup-highlight);
 }
 
 .summary-rows {
@@ -52,7 +52,7 @@
     height: 110px;
     width: 186px;
     font-size: 14px;
-    background-color: white;
+    background-color: var(--white-color);
     border-radius: 20px;
     display: flex;
     justify-content: center;
@@ -64,7 +64,7 @@
     height: 110px;
     width: 396px ;
     font-size: 14px;
-    background-color: white;
+    background-color: var(--white-color);
     display: flex;
     justify-content: space-between;
     border-radius: 20px;
@@ -85,7 +85,7 @@
     height: 116px;
     width: 116px;
     font-size: 14px;
-    background-color: white;
+    background-color: var(--white-color);
     border-radius: 20px;
 }
 
@@ -103,8 +103,8 @@
 .separator2 {
     height: 68px;
     width: 2px;
-    background-color: #D1D1D1;
-   margin: 21px 0 21px 0;
+    background-color: var(--placeholder-color);
+    margin: 21px 0 21px 0;
 }
 
 .summary-change-content2 {

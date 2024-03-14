@@ -1,5 +1,5 @@
 .footer {
-    background-color: #2a3647;
+    background-color: var(--mockup-color);
     position: absolute;
     width: 232px;
     bottom: 0;
