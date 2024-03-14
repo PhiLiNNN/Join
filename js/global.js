@@ -53,9 +53,8 @@ function validateName(name, boolArr) {
         boolArr[2] = boolArr[10] = true;
     else if (name.length < 2 && checkForDoubleHyphen === 0) 
         boolArr[1] = boolArr[10] = true;
-    else if (checkForDoubleHyphen > 1) {
+    else if (checkForDoubleHyphen > 1)
         boolArr[14] = boolArr[10] = true;
-    }
     else if (checkForDoubleHyphen !== 0 && (!name.match(/[a-zA-Z]-[a-zA-Z]{2,}/) || name.indexOf('-') < 2 || name.split('-').pop() === '')) {
         boolArr[1] = boolArr[10] = true;
         console.log('dsfdsfdsf')

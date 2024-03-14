@@ -44,7 +44,7 @@ function getUserInputs() {
     return {nameInputEl, mailInputEl, phoneInputEl, colorCode, textColorCode}
 }
 
-async function addNewContact() {
+async function addNewContact(event) {
     const {nameInputEl, mailInputEl, phoneInputEl, colorCode, textColorCode} = getUserInputs();
     const newContact =  {
         'name': nameInputEl,
@@ -58,6 +58,7 @@ async function addNewContact() {
     await updateCurrentUser(currentUser);
     closeAddNewContact();
     renderAllContacts();
+    highlightActiveContact(currentUser.contacts.length - 1)
 }
 
 async function updateCurrentUser(currentUser) {
@@ -80,8 +81,17 @@ function isColorLight(hexcode) {
     } else return true;
 }
 
-function openContact(name, email, phone, index) {
-    highlightActiveContact(index) ;
+function openEditContact(name, email, phone, index, bgColor, txtColor, initials ) {
+ 
+    document.body.style.overflow = 'hidden';
+    const element = document.getElementById('edit-overlay-id');
+    const contactsElement = document.getElementById('all-contacts-id');
+    contactsElement.style.overflow = 'hidden';
+    element.innerHTML = templateEditContactHTML(initials, name, email, phone, bgColor, txtColor );
+    toggleVisibility('edit-overlay-id', true);
+    setTimeout(() => {  
+        toggleVisibility('edit-card-content-id', false,  'card-visible');
+     }, 30);
 }
 
 function highlightActiveContact(index) {
@@ -93,7 +103,9 @@ function highlightActiveContact(index) {
     if (currentActive !== index) {
         element.classList.add('selected-contact');
         currentActive = index;
-    } else
+    } else if (currentActive === index) 
+        return;
+    else
         currentActive = -1;
 }
 
@@ -105,16 +117,38 @@ function openAddContactMenu() {
     element.innerHTML = templateAddContactHTML();
     toggleVisibility('ad-overlay-id', true);
     setTimeout(() => {  
-        toggleVisibility('card-content-id', false,  'card-visible');
+        toggleVisibility('ac-card-content-id', false,  'card-visible');
      }, 30);
 }
 
 function closeAddNewContact() {
     const contactsElement = document.getElementById('all-contacts-id');
     contactsElement.style.overflow = 'auto';
-    toggleVisibility('card-content-id', true,  'card-visible');
+    toggleVisibility('ac-card-content-id', true,  'card-visible');
     setTimeout(() => {
         toggleVisibility('ad-overlay-id', false);
         document.body.style.overflow = 'auto';
     }, 300); 
+}
+
+
+function openContact(name, email, phone, index, bgColor, txtColor, initials) {
+    let viewportWidth = window.innerWidth;
+    highlightActiveContact(index);
+    const element = document.getElementById('show-overlay-id');
+    if (viewportWidth < 1340) 
+        element.classList.toggle('d-none');
+    else if (viewportWidth >= 1340) 
+        element.classList.remove('d-none');
+    element.innerHTML  = templateShowContact(name, email, phone, index, bgColor, txtColor, initials);
+    
+
+}
+
+function closeContact(index) {
+    const selectedEl = document.getElementById(`contact-${index}-id`);
+    selectedEl.classList.add('selected-contact');
+    const element = document.getElementById('show-overlay-id');
+    element.classList.toggle('d-none');
+  
 }
