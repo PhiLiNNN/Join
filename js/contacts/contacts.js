@@ -1,15 +1,17 @@
 let currentUser;
 let currentActive = -1;
+let currentContact = -1;;
 const allLetters = [];
 
 function contactsInit() {
     currentUser = JSON.parse(localStorage.getItem('currentUser'));
     console.log(currentUser)
     renderAllContacts();
+    
 }
 
 function pushAllNeededLetters() {
-    currentUser.contacts.forEach((contact, index) => {
+    currentUser.contacts.forEach(contact => {
         if(allLetters.includes(contact.name[0].toUpperCase()))
             return;
         allLetters.push(contact.name[0].toUpperCase())
@@ -96,17 +98,28 @@ function openEditContact(name, email, phone, index, bgColor, txtColor, initials 
 
 function highlightActiveContact(index) {
     const element = document.getElementById(`contact-${index}-id`);
-    if (currentActive !== -1) {
+     if (currentActive !== index && currentActive !== -1) {
         const previousElement = document.getElementById(`contact-${currentActive}-id`);
         previousElement.classList.remove('selected-contact');
-    }
-    if (currentActive !== index) {
+        element.classList.add('selected-contact');
+        currentActive = index;
+    } else if (currentActive === -1) {
         element.classList.add('selected-contact');
         currentActive = index;
     } else if (currentActive === index) 
-        return;
-    else
-        currentActive = -1;
+        element.classList.toggle('selected-contact');
+}
+
+
+
+function closeAddNewContact() {
+    const contactsElement = document.getElementById('all-contacts-id');
+    contactsElement.style.overflow = 'auto';
+    toggleVisibility('ac-card-content-id', true,  'card-visible');
+    setTimeout(() => {
+        toggleVisibility('ad-overlay-id', false);
+        document.body.style.overflow = 'auto';
+    }, 300); 
 }
 
 function openAddContactMenu() {
@@ -120,7 +133,6 @@ function openAddContactMenu() {
         toggleVisibility('ac-card-content-id', false,  'card-visible');
      }, 30);
 }
-
 function closeAddNewContact() {
     const contactsElement = document.getElementById('all-contacts-id');
     contactsElement.style.overflow = 'auto';
@@ -131,24 +143,52 @@ function closeAddNewContact() {
     }, 300); 
 }
 
-
 function openContact(name, email, phone, index, bgColor, txtColor, initials) {
-    let viewportWidth = window.innerWidth;
     highlightActiveContact(index);
+    document.body.style.overflow = 'hidden';
+    let viewportWidth = window.innerWidth;
     const element = document.getElementById('show-overlay-id');
     if (viewportWidth < 1340) 
-        element.classList.toggle('d-none');
-    else if (viewportWidth >= 1340) 
-        element.classList.remove('d-none');
-    element.innerHTML  = templateShowContact(name, email, phone, index, bgColor, txtColor, initials);
-    
-
+        showContactOverlay(element, name, email, phone, index, bgColor, txtColor, initials);
+    else 
+        showOverlayForLargeViewport(element, name, email, phone, index, bgColor, txtColor, initials);
+    currentContact = index;
 }
+
+function showContactOverlay(element, name, email, phone, index, bgColor, txtColor, initials) {
+    element.innerHTML = templateShowContact(name, email, phone, index, bgColor, txtColor, initials);
+    element.classList.toggle('d-none');
+}
+
+function showOverlayForLargeViewport(element, name, email, phone, index, bgColor, txtColor, initials) {
+    element.classList.remove('d-none');
+    const clickedElement = document.getElementById(`contact-${index}-id`);
+    if (clickedElement.classList.contains('selected-contact')) {
+        if (currentContact === index || currentContact === -1) {
+            element.innerHTML = templateShowContact(name, email, phone, index, bgColor, txtColor, initials);
+            setTimeout(() => {
+                toggleVisibility('show-overlay-id', false, 'show-card-visible');
+            }, 300);
+        } else {
+            toggleVisibility('show-overlay-id', true, 'show-card-visible');
+            setTimeout(() => {
+                element.innerHTML = templateShowContact(name, email, phone, index, bgColor, txtColor, initials);
+                toggleVisibility('show-overlay-id', false, 'show-card-visible');
+            }, 300);
+        }
+    } else {
+        toggleVisibility('show-overlay-id', true, 'show-card-visible');
+    }
+}
+
+
+
 
 function closeContact(index) {
     const selectedEl = document.getElementById(`contact-${index}-id`);
     selectedEl.classList.add('selected-contact');
     const element = document.getElementById('show-overlay-id');
     element.classList.toggle('d-none');
-  
+     
 }
+
