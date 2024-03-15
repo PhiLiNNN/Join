@@ -5,7 +5,7 @@
     left: 0;
     right: 0;
     background: rgb(255, 255, 255);
-    z-index: 999;
+    z-index: 998;
     transition: all 300ms ease-in-out;
 
 }

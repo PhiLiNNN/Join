@@ -408,3 +408,13 @@
         font-size: 16px;
     }
 }
+@media (min-width: 2500px) {
+    .card-content{
+        transform: translateY(100%);
+    }
+    .card-content.card-visible {
+    transform: translatex(0);
+    transform: translateY(0);
+    }
+}
+
