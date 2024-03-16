@@ -108,8 +108,6 @@ function highlightActiveContact(index) {
         element.classList.toggle('selected-contact');
 }
 
-
-
 function closeAddNewContact() {
     const contactsElement = document.getElementById('all-contacts-id');
     contactsElement.style.overflow = 'auto';
@@ -131,6 +129,7 @@ function openAddContactMenu() {
         toggleVisibility('ac-card-content-id', false,  'card-visible');
      }, 30);
 }
+
 function closeAddNewContact() {
     const contactsElement = document.getElementById('all-contacts-id');
     contactsElement.style.overflow = 'auto';
@@ -162,7 +161,7 @@ function showContactOverlay(element, name, email, phone, index, bgColor, txtColo
 }
 
 function showOverlayForLargeViewport(element, name, email, phone, index, bgColor, txtColor, initials) {
-    toggleVisibility('edit-contact-id', true);
+    toggleVisibility('show-overlay-id', true);
     const clickedElement = document.getElementById(`contact-${index}-id`);
     if (clickedElement.classList.contains('selected-contact')) {
         if (currentContact === index || currentContact === -1) {
@@ -191,10 +190,6 @@ function closeContact(index) {
     toggleVisibility('edit-contact-id', false);
 }
 
-
-
-
-
 function openEditContactMenu() {
     toggleVisibility('ec-menu-id', true);
     const element = document.getElementById('ec-menu-id');
@@ -204,10 +199,10 @@ function openEditContactMenu() {
         toggleVisibility('ec-menu-id', false,  'ec-menu-visible');
      }, 30);
     document.addEventListener('click', function(event) {
-        if (event.target !== element && !element.contains(event.target) &&  event.target !== CircleElement &&  event.target !== ImgElement) {
+        if (event.target !== element && !element.contains(event.target) &&
+            event.target !== CircleElement && event.target !== ImgElement) {
             toggleVisibility('ec-menu-id', true,  'ec-menu-visible');
-            setTimeout(() => {  
-                toggleVisibility('ec-menu-id', false);
+            setTimeout(() => { toggleVisibility('ec-menu-id', false);
             }, 300);
         }
     });
