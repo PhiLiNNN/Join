@@ -90,11 +90,7 @@ function isColorLight(hexcode) {
 }
 
 function highlightActiveContact(indexString) {
-    console.log('----------------')
-    console.log('indexString',typeof indexString)
     const index = +indexString;
-    console.log('index',index)
-    console.log('currentActive',currentActive)
     const element = document.getElementById(`contact-${index}-id`);
      if (currentActive !== index && currentActive !== -1) {
         console.log('els if  1111')
@@ -102,15 +98,10 @@ function highlightActiveContact(indexString) {
         toggleVisibility(`contact-${index}-id`, false,  'selected-contact');
         currentActive = index;
     } else if (currentActive === -1) {
-        console.log('els if  22222')
         toggleVisibility(`contact-${index}-id`, false,  'selected-contact');
         currentActive = index;
-    } else if (currentActive === index) {
-        console.log('els if  333333')
+    } else if (currentActive === index) 
         element.classList.toggle('selected-contact');
-    }
-    console.log('index',index)
-    console.log('currentActive',currentActive)
 }
 
 function closeAddNewContact() {
@@ -169,27 +160,13 @@ function showOverlayForLargeViewport(element, name, email, phone, index, bgColor
     toggleVisibility('show-overlay-id', true);
     const clickedElement = document.getElementById(`contact-${index}-id`);
     if (clickedElement.classList.contains('selected-contact')) {
-        if (currentContact === index || currentContact === -1) {
-            console.log('55555')
-            toggleVisibility('show-overlay-id', true, 'show-card-visible');
-            setTimeout(() => {
-                element.innerHTML = templateShowContact(name, email, phone, index, bgColor, txtColor, initials);
-                toggleVisibility('show-overlay-id', false, 'show-card-visible');
-            }, 300);
-        } else {
-            console.log('4444')
-            toggleVisibility('show-overlay-id', true, 'show-card-visible');
-            setTimeout(() => {
-                element.innerHTML = templateShowContact(name, email, phone, index, bgColor, txtColor, initials);
-                toggleVisibility('show-overlay-id', false, 'show-card-visible');
-            }, 300);
-        }
-    } else {
-        console.log('3333')
         toggleVisibility('show-overlay-id', true, 'show-card-visible');
-
-    }
-    
+        setTimeout(() => {
+            element.innerHTML = templateShowContact(name, email, phone, index, bgColor, txtColor, initials);
+            toggleVisibility('show-overlay-id', false, 'show-card-visible');
+        }, 300); 
+    } else 
+        toggleVisibility('show-overlay-id', true, 'show-card-visible');
 }
 
 
