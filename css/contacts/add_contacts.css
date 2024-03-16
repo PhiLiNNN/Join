@@ -1,4 +1,5 @@
-.ac-circle {
+.ac-circle,
+.ec-circle {
     position: absolute;
     bottom: 128px;
     right: 16px;
@@ -9,6 +10,10 @@
     padding: 12px;
     cursor: pointer;
     transition: all 300ms ease-in-out;
+}
+.ec-circle {
+    transition: none;
+    z-index: 991;
 }
 
 .ac-circle span {
@@ -230,6 +235,40 @@
     display: none;
 }
 
+.ec-menu-container {
+    position: absolute;
+    background: white;
+    bottom: 103px;
+    right: 16px;    
+    border-bottom-left-radius: 20px ;
+    box-shadow: -4px 6px 6px 0px #00000040;
+    z-index: 1000;
+    transform: translateX(150%);
+    transition: all 300ms ease-in-out;
+}
+.ec-menu-container.ec-menu-visible  {
+    transform: translateX(0%);
+}
+
+.ec-menu-content {
+
+    height: 100px;
+    width: 116px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px 0 10px  22px;
+    gap: 16px;
+    color: var(--mockup-color);
+}
+
+.ec-menu {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
 @media (min-width: 1341px) {
     .close-ac-card-mobile {
         display: none;
@@ -240,8 +279,8 @@
         align-items: center;
     }
     .ac-overlay {
-        position: relative;
-        z-index: 1000;
+        position: absolute;
+        z-index: 999;
     }
     .card-content {
         display: flex;
@@ -291,6 +330,12 @@
     }
     .card-content.card-visible {
         transform: translateX(0);
+    }
+    .ec-circle {
+        visibility: hidden;
+    }
+    .ec-menu-container {
+        display: none;
     }
 }
 

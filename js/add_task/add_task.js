@@ -273,7 +273,7 @@ function editSubtask(index) {
     const isSubtaskDefaultContainer = clickedElement.closest(`[id^="subtask-default-container-id${index}"]`);
     const isSubtaskEditedContainer = clickedElement.closest(`[id^="subtask-edited-container-id${index}"]`);
     if (!isSubtaskContent && !isSubtaskDefaultContainer && !isSubtaskEditedContainer) 
-      ListElement.classList.add('red-line-highlight');
+      toggleVisibility(`substask-content-id${index}`, false, 'red-line-highlight');
   });
 }
 
@@ -289,10 +289,8 @@ function handleFirstSubtaskEdit(index, ListElement) {
 function disableAllSubtasksExcept(index) {
   const totalNumberOfSubtasks = document.querySelectorAll('[id^="substask-content-id"]').length;
   for (let i = 0; i < totalNumberOfSubtasks; i++) {
-    if (i !== index) {
-      const otherSubtask = document.getElementById(`substask-content-id${i}`);
-      otherSubtask.classList.add('disabled-svg'); 
-    }
+    if (i !== index) 
+      toggleVisibility(`substask-content-id${i}`, false, 'disabled-svg'); 
   }
 }
 

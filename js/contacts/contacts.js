@@ -84,7 +84,6 @@ function isColorLight(hexcode) {
 }
 
 function openEditContact(name, email, phone, index, bgColor, txtColor, initials ) {
- 
     document.body.style.overflow = 'hidden';
     const element = document.getElementById('edit-overlay-id');
     const contactsElement = document.getElementById('all-contacts-id');
@@ -99,12 +98,11 @@ function openEditContact(name, email, phone, index, bgColor, txtColor, initials 
 function highlightActiveContact(index) {
     const element = document.getElementById(`contact-${index}-id`);
      if (currentActive !== index && currentActive !== -1) {
-        const previousElement = document.getElementById(`contact-${currentActive}-id`);
-        previousElement.classList.remove('selected-contact');
-        element.classList.add('selected-contact');
+        toggleVisibility(`contact-${currentActive}-id`, true,  'selected-contact');
+        toggleVisibility(`contact-${index}-id`, false,  'selected-contact');
         currentActive = index;
     } else if (currentActive === -1) {
-        element.classList.add('selected-contact');
+        toggleVisibility(`contact-${index}-id`, false,  'selected-contact');
         currentActive = index;
     } else if (currentActive === index) 
         element.classList.toggle('selected-contact');
@@ -148,11 +146,14 @@ function openContact(name, email, phone, index, bgColor, txtColor, initials) {
     document.body.style.overflow = 'hidden';
     let viewportWidth = window.innerWidth;
     const element = document.getElementById('show-overlay-id');
-    if (viewportWidth < 1340) 
+    toggleVisibility('edit-contact-id', true);
+    if (viewportWidth < 1340) {
         showContactOverlay(element, name, email, phone, index, bgColor, txtColor, initials);
+    }
     else 
         showOverlayForLargeViewport(element, name, email, phone, index, bgColor, txtColor, initials);
     currentContact = index;
+    
 }
 
 function showContactOverlay(element, name, email, phone, index, bgColor, txtColor, initials) {
@@ -161,7 +162,7 @@ function showContactOverlay(element, name, email, phone, index, bgColor, txtColo
 }
 
 function showOverlayForLargeViewport(element, name, email, phone, index, bgColor, txtColor, initials) {
-    element.classList.remove('d-none');
+    toggleVisibility('edit-contact-id', true);
     const clickedElement = document.getElementById(`contact-${index}-id`);
     if (clickedElement.classList.contains('selected-contact')) {
         if (currentContact === index || currentContact === -1) {
@@ -176,19 +177,40 @@ function showOverlayForLargeViewport(element, name, email, phone, index, bgColor
                 toggleVisibility('show-overlay-id', false, 'show-card-visible');
             }, 300);
         }
-    } else {
+    } else 
         toggleVisibility('show-overlay-id', true, 'show-card-visible');
-    }
 }
 
 
 
 
 function closeContact(index) {
-    const selectedEl = document.getElementById(`contact-${index}-id`);
-    selectedEl.classList.add('selected-contact');
     const element = document.getElementById('show-overlay-id');
-    element.classList.toggle('d-none');
-     
+    element.classList.toggle('d-none'); 
+    toggleVisibility(`contact-${index}-id`, false, 'selected-contact');
+    toggleVisibility('edit-contact-id', false);
 }
+
+
+
+
+
+function openEditContactMenu() {
+    toggleVisibility('ec-menu-id', true);
+    const element = document.getElementById('ec-menu-id');
+    const CircleElement = document.getElementById('edit-contact-id');
+    const ImgElement = document.querySelector('#edit-contact-id img');
+    setTimeout(() => {  
+        toggleVisibility('ec-menu-id', false,  'ec-menu-visible');
+     }, 30);
+    document.addEventListener('click', function(event) {
+        if (event.target !== element && !element.contains(event.target) &&  event.target !== CircleElement &&  event.target !== ImgElement) {
+            toggleVisibility('ec-menu-id', true,  'ec-menu-visible');
+            setTimeout(() => {  
+                toggleVisibility('ec-menu-id', false);
+            }, 300);
+        }
+    });
+}
+
 
