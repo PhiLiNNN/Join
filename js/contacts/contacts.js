@@ -46,7 +46,7 @@ function getUserInputs() {
     return {nameInputEl, mailInputEl, phoneInputEl, colorCode, textColorCode}
 }
 
-async function addNewContact(event) {
+async function addNewContact() {
     const {nameInputEl, mailInputEl, phoneInputEl, colorCode, textColorCode} = getUserInputs();
     const newContact =  {
         'name': nameInputEl,
@@ -96,6 +96,9 @@ function openEditContact(name, email, phone, index, bgColor, txtColor, initials 
 }
 
 function highlightActiveContact(index) {
+    console.log('----------------')
+    console.log('index',index)
+    console.log('currentActive',currentActive)
     const element = document.getElementById(`contact-${index}-id`);
      if (currentActive !== index && currentActive !== -1) {
         toggleVisibility(`contact-${currentActive}-id`, true,  'selected-contact');
@@ -106,6 +109,8 @@ function highlightActiveContact(index) {
         currentActive = index;
     } else if (currentActive === index) 
         element.classList.toggle('selected-contact');
+    console.log('index',index)
+    console.log('currentActive',currentActive)
 }
 
 function closeAddNewContact() {
@@ -186,7 +191,6 @@ function showOverlayForLargeViewport(element, name, email, phone, index, bgColor
 function closeContact(index) {
     const element = document.getElementById('show-overlay-id');
     element.classList.toggle('d-none'); 
-    toggleVisibility(`contact-${index}-id`, false, 'selected-contact');
     toggleVisibility('edit-contact-id', false);
 }
 
