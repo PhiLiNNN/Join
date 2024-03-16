@@ -61,6 +61,12 @@ async function addNewContact() {
     closeAddNewContact();
     renderAllContacts();
     highlightActiveContact(currentUser.contacts.length - 1)
+    if (window.innerWidth >= 1340) {
+        const element = document.getElementById('show-overlay-id');
+        const initials =  getFirstLettersOfName(newContact.name);
+        showOverlayForLargeViewport(element, newContact.name, newContact.email, 
+            newContact.phone, currentUser.contacts.length - 1, newContact.colorCode, newContact.textColorCode, initials);
+    }
 }
 
 async function updateCurrentUser(currentUser) {
@@ -83,32 +89,26 @@ function isColorLight(hexcode) {
     } else return true;
 }
 
-function openEditContact(name, email, phone, index, bgColor, txtColor, initials ) {
-    document.body.style.overflow = 'hidden';
-    const element = document.getElementById('edit-overlay-id');
-    const contactsElement = document.getElementById('all-contacts-id');
-    contactsElement.style.overflow = 'hidden';
-    element.innerHTML = templateEditContactHTML(initials, name, email, phone, bgColor, txtColor );
-    toggleVisibility('edit-overlay-id', true);
-    setTimeout(() => {  
-        toggleVisibility('edit-card-content-id', false,  'card-visible');
-     }, 30);
-}
-
-function highlightActiveContact(index) {
+function highlightActiveContact(indexString) {
     console.log('----------------')
+    console.log('indexString',typeof indexString)
+    const index = +indexString;
     console.log('index',index)
     console.log('currentActive',currentActive)
     const element = document.getElementById(`contact-${index}-id`);
      if (currentActive !== index && currentActive !== -1) {
+        console.log('els if  1111')
         toggleVisibility(`contact-${currentActive}-id`, true,  'selected-contact');
         toggleVisibility(`contact-${index}-id`, false,  'selected-contact');
         currentActive = index;
     } else if (currentActive === -1) {
+        console.log('els if  22222')
         toggleVisibility(`contact-${index}-id`, false,  'selected-contact');
         currentActive = index;
-    } else if (currentActive === index) 
+    } else if (currentActive === index) {
+        console.log('els if  333333')
         element.classList.toggle('selected-contact');
+    }
     console.log('index',index)
     console.log('currentActive',currentActive)
 }
@@ -170,19 +170,26 @@ function showOverlayForLargeViewport(element, name, email, phone, index, bgColor
     const clickedElement = document.getElementById(`contact-${index}-id`);
     if (clickedElement.classList.contains('selected-contact')) {
         if (currentContact === index || currentContact === -1) {
-            element.innerHTML = templateShowContact(name, email, phone, index, bgColor, txtColor, initials);
+            console.log('55555')
+            toggleVisibility('show-overlay-id', true, 'show-card-visible');
             setTimeout(() => {
+                element.innerHTML = templateShowContact(name, email, phone, index, bgColor, txtColor, initials);
                 toggleVisibility('show-overlay-id', false, 'show-card-visible');
             }, 300);
         } else {
+            console.log('4444')
             toggleVisibility('show-overlay-id', true, 'show-card-visible');
             setTimeout(() => {
                 element.innerHTML = templateShowContact(name, email, phone, index, bgColor, txtColor, initials);
                 toggleVisibility('show-overlay-id', false, 'show-card-visible');
             }, 300);
         }
-    } else 
+    } else {
+        console.log('3333')
         toggleVisibility('show-overlay-id', true, 'show-card-visible');
+
+    }
+    
 }
 
 
