@@ -1,5 +1,5 @@
 function templateSignUpPopup() {
-  return /*html*/`
+  return /*html*/ `
     <div class="form-header"> 
       <img class="back-arrow" src="./assets/img/back_arrow.png" alt="backwards button" onclick="closeSignUp()">
       <h1>Sign up</h1>
@@ -69,9 +69,15 @@ function templateSignUpPopup() {
   `;
 }
 
-
-function templateAssignedToContainerHTML(contact, index, iconColor, initials, textColor, isSelected) {
-  const setSelectedContact = isSelected ? 'selected-contact' : '';
+function templateAssignedToContainerHTML(
+  contact,
+  index,
+  iconColor,
+  initials,
+  textColor,
+  isSelected
+) {
+  const setSelectedContact = isSelected ? "selected-contact-at" : "";
   return /*html*/ `
     <div id="assigned-to-box-${index}" class="assigned-to-box ${setSelectedContact}"  onclick="selectedAssignedToUser(event, ${index})">
       <div class="assigned-to-user">
@@ -106,11 +112,11 @@ function templateSvgDefaultCheckboxHTML() {
   `;
 }
 
-function templateaddedContactsHTML(index, iconColor,  initials, textColor) {
-  if (index === 4 ){
-    iconColor = '#2a3647'
-    initials = `+${assignedTo.colorCodes.length - 4}`
-    textColor = 'rgb(255, 255, 255)';
+function templateaddedContactsHTML(index, iconColor, initials, textColor) {
+  if (index === 4) {
+    iconColor = "#2a3647";
+    initials = `+${assignedTo.colorCodes.length - 4}`;
+    textColor = "rgb(255, 255, 255)";
   }
   return /*html*/ `
   <div class="circle-style left-indent" style="background-color: ${iconColor}; color: ${textColor};">

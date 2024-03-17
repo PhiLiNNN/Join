@@ -51,6 +51,7 @@ function iterateOverContacts(contacts) {
     const initials = getFirstLettersOfName(contact.name);
     textColor = isColorLight(contact.colorCode) ? "white" : "black";
     const isSelected = contacts[index].selected;
+    console.log("isSelected :>> ", isSelected);
     assignedToContainer.innerHTML += templateAssignedToContainerHTML(
       contact.name,
       index,
@@ -370,6 +371,7 @@ async function createTask() {
     return;
   }
   updateTasks(titleInput, textareaInput, dateInput, categoryInput);
+  clearAllSelectedUsers();
   localStorage.setItem("currentUser", JSON.stringify(currentUser));
   await updateBackend(currentUser);
   window.location.assign("../board.html");
@@ -408,6 +410,7 @@ function clearAll() {
   renderAddedContacts();
   renderSubtasks();
   togglePrioImg("medium-default-id");
+  localStorage.setItem("currentUser", JSON.stringify(currentUser));
 }
 function clearAllInputs() {
   document.getElementById("title-input-id").value = "";
@@ -433,11 +436,9 @@ function clearAllErrMsg() {
   toggleVisibility("category-container-id", !false, "error-border");
 }
 
-function clearAllSelectedUsers() {
+async function clearAllSelectedUsers() {
   currentUser.contacts.forEach((contact) => {
-    console.log(contact);
     contact.selected = false;
-    console.log(contact.selected);
   });
   renderAssignedToContacts();
 }
