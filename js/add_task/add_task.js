@@ -51,7 +51,6 @@ function iterateOverContacts(contacts) {
     const initials = getFirstLettersOfName(contact.name);
     textColor = isColorLight(contact.colorCode) ? "white" : "black";
     const isSelected = contacts[index].selected;
-    console.log("isSelected :>> ", isSelected);
     assignedToContainer.innerHTML += templateAssignedToContainerHTML(
       contact.name,
       index,
