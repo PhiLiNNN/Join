@@ -9,7 +9,14 @@ let password,
 // pw: tEst1!
 
 async function init() {
-  users = await loadUsersFromBackend("users");
+  showLoader();
+  try {
+    users = await loadUsersFromBackend("users");
+  } catch (error) {
+    console.error("Error updating current user :", error);
+  } finally {
+    hideLoader();
+  }
   console.log(users);
   // await setItem("users", JSON.stringify({})); //  funktion zum clearen des Backends
   addPasswordVisibilityListener(
@@ -32,11 +39,13 @@ function register() {
 
 async function addNewUser() {
   const newUser = generateNewUserObject();
-  newUserArray.push(newUser); // braucht man  dieses Array?
+  showLoader();
   try {
     await addNewUserToBackend(newUser);
   } catch (error) {
     console.error("Error sending user data to the backend:", error);
+  } finally {
+    hideLoader();
   }
 }
 
@@ -200,13 +209,11 @@ function closeSignUp() {
   inputType = "password";
 }
 
-async function login() {
+function login() {
   if (loginValidationCheck()) {
     const loggedInUser = loadCurrentUser();
-    if (loggedInUser) {
-      localStorage.setItem("currentUser", JSON.stringify(loggedInUser));
-      window.location.assign("../summary.html");
-    } else console.error("Error: Unable to log in user.");
+    localStorage.setItem("currentUser", JSON.stringify(loggedInUser));
+    window.location.assign("../summary.html");
   }
 }
 
@@ -333,21 +340,7 @@ function getPasswordInput(whichform) {
 
 function loadCurrentUser() {
   const loginUserEmail = document.getElementById("login-user-e-mail-id").value;
-  const loginUserPassword = document.getElementById(
-    "login-user-password-id"
-  ).value;
-  if (loginUserEmail in users) {
-    const user = users[loginUserEmail];
-    if (user.userPassword === loginUserPassword) {
-      return user;
-    } else {
-      console.error("Error: Incorrect password.");
-      return null;
-    }
-  } else {
-    console.error("Error: User not found.");
-    return null;
-  }
+  return users[loginUserEmail];
 }
 
 function guestLogin() {

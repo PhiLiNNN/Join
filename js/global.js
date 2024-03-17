@@ -29,13 +29,8 @@ async function getItem(key) {
 }
 
 async function loadUsersFromBackend(key) {
-  try {
-    const result = await getItem(key);
-    return JSON.parse(result) || [];
-  } catch (e) {
-    console.error("Loading error:", e);
-    return [];
-  }
+  const result = await getItem(key);
+  return JSON.parse(result) || [];
 }
 
 async function addNewUserToBackend(user) {
@@ -48,8 +43,6 @@ async function addNewUserToBackend(user) {
 function validateName(name, boolArr) {
   const specialCharRegex = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/0123456789]/;
   const checkForDoubleHyphen = name.split("-").length - 1;
-  console.log("checkForDoubleHyphen", checkForDoubleHyphen);
-  console.log("name.indexOf(" - ")", name.indexOf("-"));
   if (name.trim() === "") boolArr[0] = boolArr[10] = true;
   else if (specialCharRegex.test(name)) boolArr[2] = boolArr[10] = true;
   else if (name.length < 2 && checkForDoubleHyphen === 0)
@@ -60,10 +53,8 @@ function validateName(name, boolArr) {
     (!name.match(/[a-zA-Z]-[a-zA-Z]{2,}/) ||
       name.indexOf("-") < 2 ||
       name.split("-").pop() === "")
-  ) {
+  )
     boolArr[1] = boolArr[10] = true;
-    console.log("dsfdsfdsf");
-  }
 }
 
 function validateRegisterEmail(email, boolArr) {
@@ -139,13 +130,9 @@ async function updateBackend(currentUser) {
 }
 
 async function updateCurrentUser(currentUser) {
-  try {
-    const existingUsers = await loadUsersFromBackend("users");
-    existingUsers[currentUser.userEMail] = currentUser;
-    await setItem("users", JSON.stringify(existingUsers));
-  } catch (error) {
-    console.error("Error updating current user:", error);
-  }
+  const existingUsers = await loadUsersFromBackend("users");
+  existingUsers[currentUser.userEMail] = currentUser;
+  await setItem("users", JSON.stringify(existingUsers));
 }
 
 function hideLoader() {

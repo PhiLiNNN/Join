@@ -1,72 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./css/global.css">
-  <link rel="stylesheet" href="./css/register/register_style.css">
-  <script defer src="./js/register/register.js"></script>  
-  <script defer src="./js/template.js"></script>
-  <script defer src="./js/global.js"></script>
-  <title>Login</title>
-</head>
-<body onload="init()">
-  <div class="logo">
-    <img src="./assets/img/logo.png" alt="join Logo">
-  </div>
-  <div class="container">
-    <div id="success-msg-id" class="success-msg-popup d-none">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/global.css" />
+    <link rel="stylesheet" href="./css/register/register_style.css" />
+    <script defer src="./js/register/register.js"></script>
+    <script defer src="./js/template.js"></script>
+    <script defer src="./js/global.js"></script>
+    <title>Login</title>
+  </head>
+  <body onload="init()">
+    <div class="logo">
+      <img src="./assets/img/logo.png" alt="join Logo" />
+    </div>
+    <div class="container">
+      <div id="success-msg-id" class="success-msg-popup d-none">
         <span>You signed up successfully</span>
-    </div>
-    <div class="content">
-      <div id="sign-up-popup-id" class="signin-container d-none"></div>
-      <div id="login-id" class="login-container">
-        <div class="form-header"> 
-          <h1>Log in</h1>
-          <div  class="line"></div>
-         </div>
-        <div class="login-fields-container">
-          <div class="login-fields-gap">
-            <div id="login-email-border-id" class="input_global">
-              <input type="email" name="loginUserEMail" id="login-user-e-mail-id" placeholder="E Mail" autocomplete="on">
-              <img class="login-email" src="./assets/img/mail.png" alt="">
-              <span id="invalid-email-id" class="err-msg d-none">No user found with this email.</span>
-              <span id="empty-email-id" class="err-msg d-none">This field is required!</span>
-              <span id="this-is-no-email-id" class="err-msg d-none">Enter a valid email (e.g., user@example.com)!</span>
+      </div>
+      <div class="content">
+        <div id="sign-up-popup-id" class="signin-container d-none"></div>
+        <div id="login-id" class="login-container">
+          <div class="form-header">
+            <h1>Log in</h1>
+            <div class="line"></div>
+          </div>
+          <div class="login-fields-container">
+            <div class="login-fields-gap">
+              <div id="login-email-border-id" class="input_global">
+                <input
+                  type="email"
+                  name="loginUserEMail"
+                  id="login-user-e-mail-id"
+                  placeholder="E Mail"
+                  autocomplete="on"
+                />
+                <img class="login-email" src="./assets/img/mail.png" alt="" />
+                <span id="invalid-email-id" class="err-msg d-none"
+                  >No user found with this email.</span
+                >
+                <span id="empty-email-id" class="err-msg d-none"
+                  >This field is required!</span
+                >
+                <span id="this-is-no-email-id" class="err-msg d-none"
+                  >Enter a valid email (e.g., user@example.com)!</span
+                >
+              </div>
+
+              <div id="login-pw-border-id" class="input_global">
+                <input
+                  type="password"
+                  name="loginUserPassword"
+                  id="login-user-password-id"
+                  placeholder="Password"
+                  autocomplete="current-password"
+                />
+                <img
+                  id="lock-id"
+                  class="login-lock"
+                  src="./assets/img/lock.png"
+                  alt=""
+                />
+                <img
+                  id="login-pw-visibility-off-id"
+                  class="login-lock d-none"
+                  src="./assets/img/visibility_off.png"
+                  alt=""
+                  onclick="togglePasswordVisibility(event, 'login-pw-visibility-id', 'password', 1)"
+                />
+                <img
+                  id="login-pw-visibility-id"
+                  class="d-none"
+                  src="./assets/img/visibility.png"
+                  alt=""
+                  onclick="togglePasswordVisibility(event, 'login-pw-visibility-off-id', 'password', -1)"
+                />
+                <span id="empty-password-id" class="err-msg d-none"
+                  >This field is required!</span
+                >
+                <span id="invalid-password-id" class="err-msg d-none"
+                  >Wrong password Ups! Try again.</span
+                >
+              </div>
             </div>
-            
-            <div id="login-pw-border-id" class="input_global">
-              <input type="password" name="loginUserPassword" id="login-user-password-id" placeholder="Password"  autocomplete="current-password">
-              <img id="lock-id" class="login-lock" src="./assets/img/lock.png" alt="">
-              <img id="login-pw-visibility-off-id" class="login-lock d-none" src="./assets/img/visibility_off.png" alt="" onclick="togglePasswordVisibility(event, 'login-pw-visibility-id', 'password', 1)">
-              <img id="login-pw-visibility-id" class="d-none" src="./assets/img/visibility.png" alt="" onclick="togglePasswordVisibility(event, 'login-pw-visibility-off-id', 'password', -1)">
-              <span id="empty-password-id" class="err-msg d-none">This field is required!</span>
-              <span id="invalid-password-id" class="err-msg d-none">Wrong password Ups! Try again.</span>
+            <div class="remember-me-checkbox-container">
+              <img
+                id="uncheckbox-id"
+                src="./assets/img/checkbox.svg"
+                alt="remember me checkbox"
+                onclick="toggleCheckbox(event)"
+              />
+              <span>Remember me</span>
             </div>
           </div>
-          <div class="remember-me-checkbox-container">
-            <img id="uncheckbox-id" src="./assets/img/checkbox.svg" alt="remember me checkbox" onclick="toggleCheckbox(event)">
-            <span>Remember me</span>
+          <div class="login-btns-container">
+            <button
+              class="filled-btn"
+              name="registerBtn"
+              id="register-btn-id"
+              onclick="login()"
+            >
+              Log in
+            </button>
+            <button class="white-btn" onclick="guestLogin()">
+              Guest Log in
+            </button>
           </div>
         </div>
-        <div class="login-btns-container">
-          <button class="filled-btn" name="registerBtn" id="register-btn-id" onclick="login()">Log in</button>
-          <button class="white-btn" onclick="guestLogin()">Guest Log in</button>
+        <div id="signup-container-id" class="signup-container">
+          <span>Not a Join user?</span>
+          <button class="filled-btn width-small" onclick="signUp()">
+            Sign up
+          </button>
+        </div>
+        <div class="legal-information-container">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Legal notice</a>
         </div>
       </div>
-      <div id="signup-container-id" class="signup-container">
-        <span>Not a Join user?</span>
-        <button class="filled-btn width-small" onclick="signUp()">Sign up</button>
-      </div>
-      <div class="legal-information-container">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Legal notice</a>        
-      </div>      
     </div>
-  </div>
-
-</body>
-
+    <div id="loader-id" class="loader d-none"></div>
+  </body>
 </html>

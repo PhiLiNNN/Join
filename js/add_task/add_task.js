@@ -161,8 +161,8 @@ function selectedAssignedToUser(event, index) {
   const contact = currentUser.contacts.find(
     (contact) => contact.name === spanElemnt.innerHTML
   );
-  event.currentTarget.classList.toggle("selected-contact");
-  if (event.currentTarget.classList.contains("selected-contact")) {
+  event.currentTarget.classList.toggle("selected-contact-at");
+  if (event.currentTarget.classList.contains("selected-contact-at")) {
     svgElement.innerHTML = templateSvgCheckboxConfirmedHTML();
     pushSelectedUser(event);
     contact.selected = true;
@@ -244,9 +244,9 @@ function toggleCategoryContainer() {
 function selectCategory(clickedElement) {
   const element = document.getElementById("category-input-id");
   const allItems = document.querySelectorAll(".category-dropdown ul li");
-  allItems.forEach((item) => item.classList.remove("selected-contact"));
+  allItems.forEach((item) => item.classList.remove("selected-contact-at"));
   element.value = clickedElement.innerHTML;
-  clickedElement.classList.add("selected-contact");
+  clickedElement.classList.add("selected-contact-at");
   toggleCategoryContainer(true);
 }
 
@@ -371,7 +371,7 @@ async function createTask() {
   }
   updateTasks(titleInput, textareaInput, dateInput, categoryInput);
   localStorage.setItem("currentUser", JSON.stringify(currentUser));
-  await updateCurrentUser(currentUser);
+  await updateBackend(currentUser);
   window.location.assign("../board.html");
 }
 
@@ -404,6 +404,7 @@ function clearAll() {
   clearAllInputs();
   clearAllLists();
   clearAllErrMsg();
+  clearAllSelectedUsers();
   renderAddedContacts();
   renderSubtasks();
   togglePrioImg("medium-default-id");
@@ -430,4 +431,13 @@ function clearAllErrMsg() {
   toggleVisibility("at-title-border-id", !false, "error-border");
   toggleVisibility("at-date-border-id", !false, "error-border");
   toggleVisibility("category-container-id", !false, "error-border");
+}
+
+function clearAllSelectedUsers() {
+  currentUser.contacts.forEach((contact) => {
+    console.log(contact);
+    contact.selected = false;
+    console.log(contact.selected);
+  });
+  renderAssignedToContacts();
 }

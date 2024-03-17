@@ -96,7 +96,6 @@ function highlightActiveContact(indexString) {
   const index = +indexString;
   const element = document.getElementById(`contact-${index}-id`);
   if (currentActive !== index && currentActive !== -1) {
-    console.log("els if  1111");
     toggleVisibility(`contact-${currentActive}-id`, true, "selected-contact");
     toggleVisibility(`contact-${index}-id`, false, "selected-contact");
     currentActive = index;
