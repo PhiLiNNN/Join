@@ -1,3 +1,10 @@
+let saveName,
+  saveEmail,
+  savePhone,
+  saveIndex,
+  saveBg,
+  saveTextColor,
+  savedInitials;
 
 function templateAddContactHTML() {
   return /*html*/ `
@@ -72,7 +79,15 @@ function templateCreateLettersHTML(letter) {
   `;
 }
 
-function templateCreateContactsHTML(name, email, phone, bgColor, txtColor, initials, index) {
+function templateCreateContactsHTML(
+  name,
+  email,
+  phone,
+  bgColor,
+  txtColor,
+  initials,
+  index
+) {
   return /*html*/ `
     <div  id="contact-${index}-id" class="contact-style" onclick="openContact('${name}','${email}',
                                                                                 '${phone}','${index}','${bgColor}',
@@ -86,8 +101,8 @@ function templateCreateContactsHTML(name, email, phone, bgColor, txtColor, initi
   `;
 }
 
-function templateEditContactHTML(initials, name, email, phone, bgColor, txtColor ) {
- return /*html*/ `
+function templateEditContactHTML() {
+  return /*html*/ `
     <div id="edit-card-content-id" class="card-content">
         <div  class="card-header">
             <div class="header-content-wrapper">
@@ -96,53 +111,50 @@ function templateEditContactHTML(initials, name, email, phone, bgColor, txtColor
                 <span>Tasks are better with a team!</span>
                 <div class="ac-bottom-line"></div>
             </div>
-            <div class="close-ac-card-mobile" onclick="closeAddNewContact()">
+            <div class="close-ac-card-mobile" onclick="closeEditContact()">
                 <svg width="16" height="16" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M6.9998 8.36587L2.0998 13.2659C1.91647 13.4492 1.68314 13.5409 1.3998 13.5409C1.11647 13.5409 0.883138 13.4492 0.699805 13.2659C0.516471 13.0825 0.424805 12.8492 0.424805 12.5659C0.424805 12.2825 0.516471 12.0492 0.699805 11.8659L5.5998 6.96587L0.699805 2.06587C0.516471 1.88254 0.424805 1.6492 0.424805 1.36587C0.424805 1.08254 0.516471 0.849202 0.699805 0.665869C0.883138 0.482536 1.11647 0.390869 1.3998 0.390869C1.68314 0.390869 1.91647 0.482536 2.0998 0.665869L6.9998 5.56587L11.8998 0.665869C12.0831 0.482536 12.3165 0.390869 12.5998 0.390869C12.8831 0.390869 13.1165 0.482536 13.2998 0.665869C13.4831 0.849202 13.5748 1.08254 13.5748 1.36587C13.5748 1.6492 13.4831 1.88254 13.2998 2.06587L8.3998 6.96587L13.2998 11.8659C13.4831 12.0492 13.5748 12.2825 13.5748 12.5659C13.5748 12.8492 13.4831 13.0825 13.2998 13.2659C13.1165 13.4492 12.8831 13.5409 12.5998 13.5409C12.3165 13.5409 12.0831 13.4492 11.8998 13.2659L6.9998 8.36587Z" fill="white"/>
                 </svg>
             </div>
-            <div class="ac-card-circle-mobile" style="background-color: ${bgColor}; color: ${txtColor}">
-                ${initials}
+            <div class="ac-card-circle-mobile" style="background-color: ${saveBg}; color: ${saveTextColor}">
+                ${saveInitials}
             </div>
         </div>
         <div class="card-footer">
-            <div class="close-ac-card-desktop"  onclick="closeAddNewContact()">
+            <div class="close-ac-card-desktop"  onclick="closeEditContact()">
                 <svg width="16" height="16" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M6.9998 8.36587L2.0998 13.2659C1.91647 13.4492 1.68314 13.5409 1.3998 13.5409C1.11647 13.5409 0.883138 13.4492 0.699805 13.2659C0.516471 13.0825 0.424805 12.8492 0.424805 12.5659C0.424805 12.2825 0.516471 12.0492 0.699805 11.8659L5.5998 6.96587L0.699805 2.06587C0.516471 1.88254 0.424805 1.6492 0.424805 1.36587C0.424805 1.08254 0.516471 0.849202 0.699805 0.665869C0.883138 0.482536 1.11647 0.390869 1.3998 0.390869C1.68314 0.390869 1.91647 0.482536 2.0998 0.665869L6.9998 5.56587L11.8998 0.665869C12.0831 0.482536 12.3165 0.390869 12.5998 0.390869C12.8831 0.390869 13.1165 0.482536 13.2998 0.665869C13.4831 0.849202 13.5748 1.08254 13.5748 1.36587C13.5748 1.6492 13.4831 1.88254 13.2998 2.06587L8.3998 6.96587L13.2998 11.8659C13.4831 12.0492 13.5748 12.2825 13.5748 12.5659C13.5748 12.8492 13.4831 13.0825 13.2998 13.2659C13.1165 13.4492 12.8831 13.5409 12.5998 13.5409C12.3165 13.5409 12.0831 13.4492 11.8998 13.2659L6.9998 8.36587Z" fill="white"/>
                 </svg>
             </div>
             <div class="footer-grid">
                 <div class="ac-card-circle-wrapper">
-                    <div class="ac-card-circle-desktop" style="background-color: ${bgColor}; color: ${txtColor}">
-                        ${initials}
+                    <div class="ac-card-circle-desktop" style="background-color: ${saveBg}; color: ${saveTextColor}">
+                        ${saveInitials}
                     </div>
                 </div>
                 <div class="footer-right">
                     <div class="card-inputs">
                         <div id="ac-name-border-id" class="input_global input_ac cursor">
-                            <input id="ac-name-input-id"  type="text" placeholder="Name" autocomplete="on" value="${name}">
+                            <input id="ac-name-input-id"  type="text" placeholder="Name" autocomplete="on" value="${saveName}">
                             <img src="./assets/img/person.png" alt="">
                         </div> 
                         <div id="ac-mail-border-id" class="input_global input_ac cursor">
-                        <input id="ac-mail-input-id"  type="text" placeholder="Email" autocomplete="on"  value="${email}">
+                        <input id="ac-mail-input-id"  type="text" placeholder="Email" autocomplete="on"  value="${saveEmail}">
                             <img src="./assets/img/mail.png" alt="">
                         </div> 
                         <div id="ac-phone-border-id" class="input_global input_ac cursor">
-                        <input id="ac-phone-input-id"  type="tel" placeholder="Phone" autocomplete="on"  value="${phone}">
+                        <input id="ac-phone-input-id"  type="tel" placeholder="Phone" autocomplete="on"  value="${savePhone}">
                             <img src="./assets/img/call.png" alt="">
                         </div> 
                     </div>
                     
                     <div class="ac-btn-container">
                         <input id="ac-color-input-id"  class="color-style"  type="color" value="#43da86" />
-                        <button class="ac-btn-white" onclick="closeAddNewContact()">
-                            <span>Cancel</span>
-                            <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12.2496 11.9998L17.4926 17.2428M7.00659 17.2428L12.2496 11.9998L7.00659 17.2428ZM17.4926 6.75684L12.2486 11.9998L17.4926 6.75684ZM12.2486 11.9998L7.00659 6.75684L12.2486 11.9998Z" stroke="#2A3647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
+                        <button class="ec-btn-white" onclick="closeEditContact()">
+                            <span>Delete</span>
                         </button> 
-                        <button class="ac-btn-fill" onclick="addNewContact()"> 
-                            <span>Create contact</span>
+                        <button class="ec-btn-fill" > 
+                            <span>Save</span>
                             <img src="./assets/img/check.png" alt="">
                         </button> 
                     </div>
@@ -152,9 +164,23 @@ function templateEditContactHTML(initials, name, email, phone, bgColor, txtColor
   `;
 }
 
-
-function templateShowContact(name, email, phone, index, bgColor, txtColor, initials) {
- return /*html*/ `
+function templateShowContact(
+  name,
+  email,
+  phone,
+  index,
+  bgColor,
+  txtColor,
+  initials
+) {
+  saveName = name;
+  saveEmail = email;
+  savePhone = phone;
+  saveIndex = index;
+  saveBg = bgColor;
+  saveTextColor = txtColor;
+  saveInitials = initials;
+  return /*html*/ `
     <div class="open-contacts-header">
         <div class="open-contacts-arrow" onclick="closeContact('${index}')">
           <svg width="25" height="24" viewBox="0 0 25 23" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -170,7 +196,25 @@ function templateShowContact(name, email, phone, index, bgColor, txtColor, initi
         <div class="open-contacts-circle" style="background-color: ${bgColor}; color: ${txtColor};">
           ${initials}
         </div>
-        <span>${name}</span>
+        <div class="contact-name">
+            <span>${name}</span>
+            <div class="desktop-menu-container">
+                <div class="desktop-menu" onclick="editContact('${saveName}','${saveEmail}',
+                                                                '${phone}','${index}','${bgColor}',
+                                                                '${txtColor}')">
+                     <svg width="24" height="24" viewBox="0 0 19 19" fill="none"  xmlns="http://www.w3.org/2000/svg" >
+                        <path d="M2.00098 17H3.40098L12.026 8.375L10.626 6.975L2.00098 15.6V17ZM16.301 6.925L12.051 2.725L13.451 1.325C13.8343 0.941667 14.3051 0.75 14.8635 0.75C15.4218 0.75 15.8926 0.941667 16.276 1.325L17.676 2.725C18.0593 3.10833 18.2593 3.57083 18.276 4.1125C18.2926 4.65417 18.1093 5.11667 17.726 5.5L16.301 6.925ZM14.851 8.4L4.25098 19H0.000976562V14.75L10.601 4.15L14.851 8.4Z"  fill="#2A3647"/>
+                    </svg>
+                    <span>Edit</span>
+                </div>
+                <div  class="desktop-menu">
+                    <svg width="24" height="24" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3.00098 18C2.45098 18 1.98014 17.8042 1.58848 17.4125C1.19681 17.0208 1.00098 16.55 1.00098 16V3C0.717643 3 0.480143 2.90417 0.288477 2.7125C0.0968099 2.52083 0.000976562 2.28333 0.000976562 2C0.000976562 1.71667 0.0968099 1.47917 0.288477 1.2875C0.480143 1.09583 0.717643 1 1.00098 1H5.00098C5.00098 0.716667 5.09681 0.479167 5.28848 0.2875C5.48014 0.0958333 5.71764 0 6.00098 0H10.001C10.2843 0 10.5218 0.0958333 10.7135 0.2875C10.9051 0.479167 11.001 0.716667 11.001 1H15.001C15.2843 1 15.5218 1.09583 15.7135 1.2875C15.9051 1.47917 16.001 1.71667 16.001 2C16.001 2.28333 15.9051 2.52083 15.7135 2.7125C15.5218 2.90417 15.2843 3 15.001 3V16C15.001 16.55 14.8051 17.0208 14.4135 17.4125C14.0218 17.8042 13.551 18 13.001 18H3.00098ZM3.00098 3V16H13.001V3H3.00098ZM5.00098 13C5.00098 13.2833 5.09681 13.5208 5.28848 13.7125C5.48014 13.9042 5.71764 14 6.00098 14C6.28431 14 6.52181 13.9042 6.71348 13.7125C6.90514 13.5208 7.00098 13.2833 7.00098 13V6C7.00098 5.71667 6.90514 5.47917 6.71348 5.2875C6.52181 5.09583 6.28431 5 6.00098 5C5.71764 5 5.48014 5.09583 5.28848 5.2875C5.09681 5.47917 5.00098 5.71667 5.00098 6V13ZM9.00098 13C9.00098 13.2833 9.09681 13.5208 9.28848 13.7125C9.48014 13.9042 9.71764 14 10.001 14C10.2843 14 10.5218 13.9042 10.7135 13.7125C10.9051 13.5208 11.001 13.2833 11.001 13V6C11.001 5.71667 10.9051 5.47917 10.7135 5.2875C10.5218 5.09583 10.2843 5 10.001 5C9.71764 5 9.48014 5.09583 9.28848 5.2875C9.09681 5.47917 9.00098 5.71667 9.00098 6V13Z" fill="#2A3647"/>
+                    </svg>
+                    <span>Delete</span>
+                </div>
+            </div>
+        </div>
       </div>
       <div class="contact-info">
         <h2>Contact Information</h2>
@@ -183,5 +227,41 @@ function templateShowContact(name, email, phone, index, bgColor, txtColor, initi
             <span>${phone}</span>
         </div>
       </div>
+    `;
+}
+
+function templateEditContactMenu() {
+  return /*html*/ `
+        <div class="ec-menu-content">
+          <div class="ec-menu"  onclick=editContact()>
+            <svg
+              width="19"
+              height="19"
+              viewBox="0 0 19 19"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2.00098 17H3.40098L12.026 8.375L10.626 6.975L2.00098 15.6V17ZM16.301 6.925L12.051 2.725L13.451 1.325C13.8343 0.941667 14.3051 0.75 14.8635 0.75C15.4218 0.75 15.8926 0.941667 16.276 1.325L17.676 2.725C18.0593 3.10833 18.2593 3.57083 18.276 4.1125C18.2926 4.65417 18.1093 5.11667 17.726 5.5L16.301 6.925ZM14.851 8.4L4.25098 19H0.000976562V14.75L10.601 4.15L14.851 8.4Z"
+                fill="#2A3647"
+              />
+            </svg>
+            <span>Edit</span>
+          </div>
+          <div class="ec-menu">
+            <svg
+              width="16"
+              height="18"
+              viewBox="0 0 16 18"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M3.00098 18C2.45098 18 1.98014 17.8042 1.58848 17.4125C1.19681 17.0208 1.00098 16.55 1.00098 16V3C0.717643 3 0.480143 2.90417 0.288477 2.7125C0.0968099 2.52083 0.000976562 2.28333 0.000976562 2C0.000976562 1.71667 0.0968099 1.47917 0.288477 1.2875C0.480143 1.09583 0.717643 1 1.00098 1H5.00098C5.00098 0.716667 5.09681 0.479167 5.28848 0.2875C5.48014 0.0958333 5.71764 0 6.00098 0H10.001C10.2843 0 10.5218 0.0958333 10.7135 0.2875C10.9051 0.479167 11.001 0.716667 11.001 1H15.001C15.2843 1 15.5218 1.09583 15.7135 1.2875C15.9051 1.47917 16.001 1.71667 16.001 2C16.001 2.28333 15.9051 2.52083 15.7135 2.7125C15.5218 2.90417 15.2843 3 15.001 3V16C15.001 16.55 14.8051 17.0208 14.4135 17.4125C14.0218 17.8042 13.551 18 13.001 18H3.00098ZM3.00098 3V16H13.001V3H3.00098ZM5.00098 13C5.00098 13.2833 5.09681 13.5208 5.28848 13.7125C5.48014 13.9042 5.71764 14 6.00098 14C6.28431 14 6.52181 13.9042 6.71348 13.7125C6.90514 13.5208 7.00098 13.2833 7.00098 13V6C7.00098 5.71667 6.90514 5.47917 6.71348 5.2875C6.52181 5.09583 6.28431 5 6.00098 5C5.71764 5 5.48014 5.09583 5.28848 5.2875C5.09681 5.47917 5.00098 5.71667 5.00098 6V13ZM9.00098 13C9.00098 13.2833 9.09681 13.5208 9.28848 13.7125C9.48014 13.9042 9.71764 14 10.001 14C10.2843 14 10.5218 13.9042 10.7135 13.7125C10.9051 13.5208 11.001 13.2833 11.001 13V6C11.001 5.71667 10.9051 5.47917 10.7135 5.2875C10.5218 5.09583 10.2843 5 10.001 5C9.71764 5 9.48014 5.09583 9.28848 5.2875C9.09681 5.47917 9.00098 5.71667 9.00098 6V13Z"
+                fill="#2A3647"
+              />
+            </svg>
+            <span>Delete</span>
+          </div>
     `;
 }
