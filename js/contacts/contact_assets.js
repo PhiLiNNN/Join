@@ -1,9 +1,9 @@
-let saveName,
-  saveEmail,
-  savePhone,
-  saveIndex,
-  saveBg,
-  saveTextColor,
+let savedName,
+  savedEmail,
+  savedPhone,
+  savedIndex,
+  savedBg,
+  savedTextColor,
   savedInitials;
 
 function templateAddContactHTML() {
@@ -116,8 +116,8 @@ function templateEditContactHTML() {
                     <path d="M6.9998 8.36587L2.0998 13.2659C1.91647 13.4492 1.68314 13.5409 1.3998 13.5409C1.11647 13.5409 0.883138 13.4492 0.699805 13.2659C0.516471 13.0825 0.424805 12.8492 0.424805 12.5659C0.424805 12.2825 0.516471 12.0492 0.699805 11.8659L5.5998 6.96587L0.699805 2.06587C0.516471 1.88254 0.424805 1.6492 0.424805 1.36587C0.424805 1.08254 0.516471 0.849202 0.699805 0.665869C0.883138 0.482536 1.11647 0.390869 1.3998 0.390869C1.68314 0.390869 1.91647 0.482536 2.0998 0.665869L6.9998 5.56587L11.8998 0.665869C12.0831 0.482536 12.3165 0.390869 12.5998 0.390869C12.8831 0.390869 13.1165 0.482536 13.2998 0.665869C13.4831 0.849202 13.5748 1.08254 13.5748 1.36587C13.5748 1.6492 13.4831 1.88254 13.2998 2.06587L8.3998 6.96587L13.2998 11.8659C13.4831 12.0492 13.5748 12.2825 13.5748 12.5659C13.5748 12.8492 13.4831 13.0825 13.2998 13.2659C13.1165 13.4492 12.8831 13.5409 12.5998 13.5409C12.3165 13.5409 12.0831 13.4492 11.8998 13.2659L6.9998 8.36587Z" fill="white"/>
                 </svg>
             </div>
-            <div class="ac-card-circle-mobile" style="background-color: ${saveBg}; color: ${saveTextColor}">
-                ${saveInitials}
+            <div class="ac-card-circle-mobile" style="background-color: ${savedBg}; color: ${savedTextColor}">
+                ${savedInitials}
             </div>
         </div>
         <div class="card-footer">
@@ -128,32 +128,32 @@ function templateEditContactHTML() {
             </div>
             <div class="footer-grid">
                 <div class="ac-card-circle-wrapper">
-                    <div class="ac-card-circle-desktop" style="background-color: ${saveBg}; color: ${saveTextColor}">
-                        ${saveInitials}
+                    <div class="ac-card-circle-desktop" style="background-color: ${savedBg}; color: ${savedTextColor}">
+                        ${savedInitials}
                     </div>
                 </div>
                 <div class="footer-right">
                     <div class="card-inputs">
                         <div id="ac-name-border-id" class="input_global input_ac cursor">
-                            <input id="ac-name-input-id"  type="text" placeholder="Name" autocomplete="on" value="${saveName}">
+                            <input id="ac-name-input-id"  type="text" placeholder="Name" autocomplete="on" value="${savedName}">
                             <img src="./assets/img/person.png" alt="">
                         </div> 
                         <div id="ac-mail-border-id" class="input_global input_ac cursor">
-                        <input id="ac-mail-input-id"  type="text" placeholder="Email" autocomplete="on"  value="${saveEmail}">
+                        <input id="ac-mail-input-id"  type="text" placeholder="Email" autocomplete="on"  value="${savedEmail}">
                             <img src="./assets/img/mail.png" alt="">
                         </div> 
                         <div id="ac-phone-border-id" class="input_global input_ac cursor">
-                        <input id="ac-phone-input-id"  type="tel" placeholder="Phone" autocomplete="on"  value="${savePhone}">
+                        <input id="ac-phone-input-id"  type="tel" placeholder="Phone" autocomplete="on"  value="${savedPhone}">
                             <img src="./assets/img/call.png" alt="">
                         </div> 
                     </div>
                     
                     <div class="ac-btn-container">
                         <input id="ac-color-input-id"  class="color-style"  type="color" value="#43da86" />
-                        <button class="ec-btn-white" onclick="closeEditContact()">
+                        <button class="ec-btn-white">
                             <span>Delete</span>
                         </button> 
-                        <button class="ec-btn-fill" > 
+                        <button class="ec-btn-fill" onclick="saveEditContact()"> 
                             <span>Save</span>
                             <img src="./assets/img/check.png" alt="">
                         </button> 
@@ -173,16 +173,16 @@ function templateShowContact(
   txtColor,
   initials
 ) {
-  saveName = name;
-  saveEmail = email;
-  savePhone = phone;
-  saveIndex = index;
-  saveBg = bgColor;
-  saveTextColor = txtColor;
-  saveInitials = initials;
+  savedName = name;
+  savedEmail = email;
+  savedPhone = phone;
+  savedBg = bgColor;
+  savedTextColor = txtColor;
+  savedInitials = initials;
+  savedIndex = index;
   return /*html*/ `
     <div class="open-contacts-header">
-        <div class="open-contacts-arrow" onclick="closeContact('${index}')">
+        <div class="open-contacts-arrow" onclick="closeContact()">
           <svg width="25" height="24" viewBox="0 0 25 23" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M6.00972 9.88554H23.1871C24.0362 9.88554 24.7246 10.5739 24.7246 11.4231C24.7246 12.2722 24.0362 12.9606 23.1871 12.9606H6.00972L13.17 20.1209C13.7704 20.7213 13.7704 21.6946 13.17 22.295C12.5697 22.8954 11.5963 22.8954 10.996 22.295L1.53824 12.8373C0.757188 12.0562 0.757188 10.7899 1.53824 10.0089L10.996 0.55115C11.5963 -0.0492049 12.5697 -0.0492048 13.17 0.55115C13.7704 1.1515 13.7704 2.12487 13.17 2.72523L6.00972 9.88554Z" fill="#29ABE2"/>
           </svg>
@@ -199,9 +199,7 @@ function templateShowContact(
         <div class="contact-name">
             <span>${name}</span>
             <div class="desktop-menu-container">
-                <div class="desktop-menu" onclick="editContact('${saveName}','${saveEmail}',
-                                                                '${phone}','${index}','${bgColor}',
-                                                                '${txtColor}')">
+                <div class="desktop-menu" onclick="editContact()">
                      <svg width="24" height="24" viewBox="0 0 19 19" fill="none"  xmlns="http://www.w3.org/2000/svg" >
                         <path d="M2.00098 17H3.40098L12.026 8.375L10.626 6.975L2.00098 15.6V17ZM16.301 6.925L12.051 2.725L13.451 1.325C13.8343 0.941667 14.3051 0.75 14.8635 0.75C15.4218 0.75 15.8926 0.941667 16.276 1.325L17.676 2.725C18.0593 3.10833 18.2593 3.57083 18.276 4.1125C18.2926 4.65417 18.1093 5.11667 17.726 5.5L16.301 6.925ZM14.851 8.4L4.25098 19H0.000976562V14.75L10.601 4.15L14.851 8.4Z"  fill="#2A3647"/>
                     </svg>

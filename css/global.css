@@ -1,225 +1,255 @@
 :root {
-    --mockup-color: #2a3647;
-    --mockup-highlight: #29ABE2;
-    --placeholder-color: #d1d1d1;
-    --white-color: #ffffff;
-    --black-color: #000000;
-    --hyper-link-color: #007CEE;
-    --err-msg-color: #ff3333;
-    --white-grey: #f6f7f8;
-    --white-grey2: #d9d9d9;
-    --focus-color-btn: #091931;
+  --mockup-color: #2a3647;
+  --mockup-highlight: #29abe2;
+  --placeholder-color: #d1d1d1;
+  --white-color: #ffffff;
+  --black-color: #000000;
+  --hyper-link-color: #007cee;
+  --err-msg-color: #ff3333;
+  --white-grey: #f6f7f8;
+  --white-grey2: #d9d9d9;
+  --focus-color-btn: #091931;
 }
 
 @font-face {
-    font-family: 'Inter';
-    src: url('/assets/fonts/Inter/InterVariableFontslntwght.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+  font-family: "Inter";
+  src: url("/assets/fonts/Inter/InterVariableFontslntwght.ttf")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }
 
 * {
-    padding: 0px;
-    margin:0px;
-    box-sizing: border-box;
-    font-family: 'Inter';
-    text-decoration: none;
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+  font-family: "Inter";
+  text-decoration: none;
 }
 
 body {
-    margin: 0;
-    box-sizing: border-box;
-    background-color: var(--white-grey);
+  margin: 0;
+  box-sizing: border-box;
+  background-color: var(--white-grey);
 }
 
 h1 {
-    font-size: 47px;
+  font-size: 47px;
 }
 
 h2 {
-    font-size: 27px;
+  font-size: 27px;
 }
-
 
 a {
-    text-decoration: none;
-    color: black;
- }
-::-webkit-scrollbar {
-    width: 20px;
+  text-decoration: none;
+  color: black;
 }
-  
+::-webkit-scrollbar {
+  width: 20px;
+}
+
 ::-webkit-scrollbar-track {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: var(--mockup-color);
-    border-radius: 20px;
-    border: 6px solid transparent;
-    background-clip: content-box;
-    transition: background-color 0.3s ease-in-out;
+  background-color: var(--mockup-color);
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+  transition: background-color 0.3s ease-in-out;
 }
-  
+
 ::-webkit-scrollbar-thumb:hover {
-    background-color: var(--focus-color-btn);
+  background-color: var(--focus-color-btn);
 }
 
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
-input:-webkit-autofill:active{
-    -webkit-box-shadow: 0 0 0 30px white inset !important;
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
 
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #2f2f2fd6;
+  z-index: 1000;
+  transition: opacity 0.75s, visibility 0.75s;
+}
 
+.loader-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
 
+.loader::after {
+  content: "";
+  width: 75px;
+  height: 75px;
+  border: 15px solid #dddddd;
+  border-top-color: var(--mockup-color);
+  border-radius: 50%;
+  animation: loading 0.75s ease infinite;
+}
 
+@keyframes loading {
+  from {
+    transform: rotate(0turn);
+  }
+  to {
+    transform: rotate(1turn);
+  }
+}
 
-.filled-btn, 
+.filled-btn,
 .white-btn {
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    justify-content: center;
-    font-size: 22px;
-    width: 180px;
-    height: 45px;
-    cursor: pointer;
-    font-weight: 700;
-    transition: all 300ms  ease-in-out;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  font-size: 22px;
+  width: 180px;
+  height: 45px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 300ms ease-in-out;
 }
 
 .filled-btn {
-    background-color: var(--mockup-color);
-    color: white;
-    border: 1px solid var(--mockup-color);
+  background-color: var(--mockup-color);
+  color: white;
+  border: 1px solid var(--mockup-color);
 }
 
 .white-btn {
-    border: 1px solid var(--mockup-color);
-    color: var(--mockup-color);
-    transition: all 200ms ease-in-out;
+  border: 1px solid var(--mockup-color);
+  color: var(--mockup-color);
+  transition: all 200ms ease-in-out;
 }
 
 .white-btn:hover {
-    border: 2px solid var(--mockup-highlight);
-    color: var(--mockup-highlight);
-    box-shadow: 0 6px 5px rgba(0, 0, 0, 0.18);
+  border: 2px solid var(--mockup-highlight);
+  color: var(--mockup-highlight);
+  box-shadow: 0 6px 5px rgba(0, 0, 0, 0.18);
 }
 
 .white-btn:hover svg path {
-    stroke: var(--mockup-highlight);
-    transition: stroke 200ms ease-in-out; 
+  stroke: var(--mockup-highlight);
+  transition: stroke 200ms ease-in-out;
 }
 
 .white-btn:active {
-    border: 2px solid var(--focus-color-btn);
-    color: var(--focus-color-btn);
+  border: 2px solid var(--focus-color-btn);
+  color: var(--focus-color-btn);
 }
 
 .white-btn:active svg path {
-    stroke: var(--focus-color-btn);
+  stroke: var(--focus-color-btn);
 }
 
-
-
-
 .filled-btn:active {
-    background-color: var(--focus-color-btn);
-    border: 2px solid var(--focus-color-btn);
+  background-color: var(--focus-color-btn);
+  border: 2px solid var(--focus-color-btn);
 }
 
 .width-small {
-    width: 104px !important;
-    gap: 4px;
+  width: 104px !important;
+  gap: 4px;
 }
 
 .width-big {
-    width: 104px !important;
+  width: 104px !important;
 }
 
 .input_global,
-.textarea-style { 
-    position: relative;
-    width: 100%;
-    border-radius: 10px;
-    border: 1px solid var(--placeholder-color);
-    height: 48px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 21px;
+.textarea-style {
+  position: relative;
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid var(--placeholder-color);
+  height: 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 21px;
 }
 
 .input_global input {
-    font-size: 18px;
-    line-height: 24px;
-    width: 100%;
-    outline: none;
-    border: none;
-    cursor: pointer;
+  font-size: 18px;
+  line-height: 24px;
+  width: 100%;
+  outline: none;
+  border: none;
+  cursor: pointer;
 }
 
 .textarea-style {
-    resize: none;
-    outline: none;
-    line-height: 24px;
-    height: 90px;
-    padding: 18px 21px;
+  resize: none;
+  outline: none;
+  line-height: 24px;
+  height: 90px;
+  padding: 18px 21px;
 }
 
-.textarea-style:focus-within{
-    border-color: var(--mockup-highlight); 
+.textarea-style:focus-within {
+  border-color: var(--mockup-highlight);
 }
 
-.error-border { 
-    border: 1px solid var(--err-msg-color);
+.error-border {
+  border: 1px solid var(--err-msg-color);
 }
 
 input::placeholder,
 textarea::placeholder {
-    color: var(--placeholder-color); 
-    transition: font-size 300ms  ease-in-out;
+  color: var(--placeholder-color);
+  transition: font-size 300ms ease-in-out;
 }
 
 .input_global:focus-within {
-    border-color: var(--mockup-highlight); 
+  border-color: var(--mockup-highlight);
 }
 
 .err-msg-color {
-    color: var(--err-msg-color);
+  color: var(--err-msg-color);
 }
 
 .inApp-err-msg {
-    color: var(--err-msg-color);
-    font-size: 14px;
+  color: var(--err-msg-color);
+  font-size: 14px;
 }
 
 .cursor {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .d-none {
-    display: none;
+  display: none;
 }
 
 @media (max-width: 466px) {
-    input::placeholder,
-    textarea::placeholder {
-      font-size: 16px; 
-    }
-   
+  input::placeholder,
+  textarea::placeholder {
+    font-size: 16px;
+  }
 }
 @media (min-width: 761px) {
-    .filled-btn:hover {
-        background-color: var(--mockup-highlight);
-        border: 2px solid var(--mockup-highlight);
-        box-shadow: 0 6px 5px rgba(0, 0, 0, 0.18);
-    }
-    .filled-btn:active {
-        background: var(--focus-color-btn);
-        border: 2px solid var(--focus-color-btn);
-    }
+  .filled-btn:hover {
+    background-color: var(--mockup-highlight);
+    border: 2px solid var(--mockup-highlight);
+    box-shadow: 0 6px 5px rgba(0, 0, 0, 0.18);
+  }
+  .filled-btn:active {
+    background: var(--focus-color-btn);
+    border: 2px solid var(--focus-color-btn);
+  }
 }

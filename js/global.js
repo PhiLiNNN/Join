@@ -117,3 +117,37 @@ function getFirstLettersOfName(name) {
   }
   return initials;
 }
+
+function toggleScrollbar(value) {
+  document.body.style.overflow = value;
+}
+
+function showLoader() {
+  toggleVisibility("loader-id", true);
+  toggleVisibility("loader-id", true, "loader-hidden");
+}
+
+async function updateBackend(currentUser) {
+  showLoader();
+  try {
+    await updateCurrentUser(currentUser);
+  } catch (error) {
+    console.error("Error updating current user :", error);
+  } finally {
+    hideLoader();
+  }
+}
+
+async function updateCurrentUser(currentUser) {
+  try {
+    const existingUsers = await loadUsersFromBackend("users");
+    existingUsers[currentUser.userEMail] = currentUser;
+    await setItem("users", JSON.stringify(existingUsers));
+  } catch (error) {
+    console.error("Error updating current user:", error);
+  }
+}
+
+function hideLoader() {
+  toggleVisibility("loader-id", false, "loader-hidden");
+}

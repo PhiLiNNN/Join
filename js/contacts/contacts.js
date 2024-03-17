@@ -1,7 +1,7 @@
 let currentUser;
 let currentActive = -1;
 let currentContact = -1;
-const allLetters = [];
+let allLetters = [];
 
 function contactsInit() {
   currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -62,8 +62,7 @@ async function addNewContact() {
   };
   currentUser.contacts.push(newContact);
   localStorage.setItem("currentUser", JSON.stringify(currentUser));
-  await updateCurrentUser(currentUser);
-  closeAddNewContact();
+  await updateBackend(currentUser);
   renderAllContacts();
   highlightActiveContact(currentUser.contacts.length - 1);
   if (window.innerWidth >= 1340) {
@@ -80,16 +79,7 @@ async function addNewContact() {
       initials
     );
   }
-}
-
-async function updateCurrentUser(currentUser) {
-  try {
-    const existingUsers = await loadUsersFromBackend("users");
-    existingUsers[currentUser.userEMail] = currentUser;
-    await setItem("users", JSON.stringify(existingUsers));
-  } catch (error) {
-    console.error("Error updating current user:", error);
-  }
+  closeAddNewContact();
 }
 
 function isColorLight(hexcode) {
@@ -123,12 +113,12 @@ function closeAddNewContact() {
   toggleVisibility("ac-card-content-id", true, "card-visible");
   setTimeout(() => {
     toggleVisibility("ad-overlay-id", false);
-    document.body.style.overflow = "auto";
+    toggleScrollbar("auto");
   }, 300);
 }
 
 function openAddContactMenu() {
-  document.body.style.overflow = "hidden";
+  toggleScrollbar("hidden");
   const element = document.getElementById("ad-overlay-id");
   const contactsElement = document.getElementById("all-contacts-id");
   contactsElement.style.overflow = "hidden";
@@ -145,13 +135,13 @@ function closeAddNewContact() {
   toggleVisibility("ac-card-content-id", true, "card-visible");
   setTimeout(() => {
     toggleVisibility("ad-overlay-id", false);
-    document.body.style.overflow = "auto";
+    toggleScrollbar("auto");
   }, 300);
 }
 
 function openContact(name, email, phone, index, bgColor, txtColor, initials) {
   highlightActiveContact(index);
-  document.body.style.overflow = "hidden";
+  toggleScrollbar("hidden");
   let viewportWidth = window.innerWidth;
   const element = document.getElementById("show-overlay-id");
   toggleVisibility("edit-contact-id", true);
@@ -275,4 +265,34 @@ function closeEditContact() {
   setTimeout(() => {
     toggleVisibility("edit-overlay-id", false);
   }, 300);
+}
+
+async function saveEditContact() {
+  const { nameInputEl, mailInputEl, phoneInputEl, colorCode, textColorCode } =
+    getUserInputs();
+  const initials = getFirstLettersOfName(nameInputEl);
+  const element = document.getElementById("show-overlay-id");
+  element.innerHTML = templateShowContact(
+    nameInputEl,
+    mailInputEl,
+    phoneInputEl,
+    savedIndex,
+    colorCode,
+    textColorCode,
+    initials
+  );
+  const newContact = {
+    name: nameInputEl,
+    email: mailInputEl,
+    phone: phoneInputEl,
+    colorCode: colorCode,
+    textColorCode: textColorCode,
+  };
+  currentUser.contacts[savedIndex] = newContact;
+  localStorage.setItem("currentUser", JSON.stringify(currentUser));
+  allLetters = [];
+  renderAllContacts();
+  toggleVisibility(`contact-${savedIndex}-id`, false, "selected-contact");
+  await updateBackend(currentUser);
+  closeEditContact();
 }
