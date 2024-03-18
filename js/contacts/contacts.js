@@ -1,6 +1,8 @@
 let currentUser;
 let currentActive = -1;
 let currentContact = -1;
+let editContactOpen = false;
+let editContactMenuOpen = false;
 let allLetters = [];
 
 function contactsInit() {
@@ -220,13 +222,15 @@ function showOverlayForLargeViewport(
   } else toggleVisibility("show-overlay-id", true, "show-card-visible");
 }
 
-function closeContact(index) {
+function closeContact() {
+  editContactMenuOpen = false;
   const element = document.getElementById("show-overlay-id");
   element.classList.toggle("d-none");
   toggleVisibility("edit-contact-id", false);
 }
 
 function openEditContactMenu() {
+  editContactMenuOpen = true;
   toggleVisibility("ec-menu-id", true);
   const element = document.getElementById("ec-menu-id");
   element.innerHTML = templateEditContactMenu();
@@ -251,6 +255,7 @@ function openEditContactMenu() {
 }
 
 function editContact() {
+  editContactOpen = true;
   const element = document.getElementById("edit-overlay-id");
   element.innerHTML = templateEditContactHTML();
   toggleVisibility("edit-overlay-id", true);
@@ -260,6 +265,7 @@ function editContact() {
 }
 
 function closeEditContact() {
+  editContactOpen = false;
   toggleVisibility("edit-card-content-id", true, "card-visible");
   setTimeout(() => {
     toggleVisibility("edit-overlay-id", false);
@@ -294,4 +300,22 @@ async function saveEditContact() {
   toggleVisibility(`contact-${savedIndex}-id`, false, "selected-contact");
   await updateBackend(currentUser);
   closeEditContact();
+}
+
+async function deleteContact() {
+  toggleVisibility("show-overlay-id", true, "show-card-visible");
+  currentUser.contacts.splice(savedIndex, 1);
+  localStorage.setItem("currentUser", JSON.stringify(currentUser));
+  allLetters = [];
+  currentActive = -1;
+  if (editContactOpen) closeEditContact();
+  if (editContactMenuOpen) {
+    toggleVisibility("ec-menu-id", true, "ec-menu-visible");
+    setTimeout(() => {
+      toggleVisibility("ec-menu-id", false);
+    }, 300);
+  }
+  closeContact();
+  await updateBackend(currentUser);
+  renderAllContacts();
 }
