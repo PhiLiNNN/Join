@@ -219,7 +219,12 @@ function showOverlayForLargeViewport(
       );
       toggleVisibility("show-overlay-id", false, "show-card-visible");
     }, 300);
-  } else toggleVisibility("show-overlay-id", true, "show-card-visible");
+  } else {
+    toggleVisibility("show-overlay-id", true, "show-card-visible");
+    setTimeout(() => {
+      toggleVisibility("show-overlay-id", false);
+    }, 300);
+  }
 }
 
 function closeContact() {
