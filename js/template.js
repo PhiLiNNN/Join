@@ -22,7 +22,7 @@ function templateSignUpPopup() {
           <span id="empty-add-name-id" class="err-msg d-none">This field is required!</span>
           <span id="invalid-add-name-id" class="err-msg d-none">Name must be at least 2 letters.</span>
           <span id="no-special-chars-id" class="err-msg d-none">No special characters are allowed.</span>
-          <span id="hyphens-add-name-id" class="err-msg d-none">Check your hyphen!.</span>
+          <span id="hyphens-add-name-id" class="err-msg d-none">Check your hyphen!</span>
         </div>
         <div id="add-email-border-id" class="input_global">
           <input type="email" name="loginUserEMail" id="add-email-id" placeholder="Email" autocomplete="on">
@@ -69,14 +69,7 @@ function templateSignUpPopup() {
   `;
 }
 
-function templateAssignedToContainerHTML(
-  contact,
-  index,
-  iconColor,
-  initials,
-  textColor,
-  isSelected
-) {
+function templateAssignedToContainerHTML(contact, index, iconColor, initials, textColor, isSelected) {
   const setSelectedContact = isSelected ? "selected-contact-at" : "";
   return /*html*/ `
     <div id="assigned-to-box-${index}" class="assigned-to-box ${setSelectedContact}"  onclick="selectedAssignedToUser(event, ${index})">

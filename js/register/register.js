@@ -19,19 +19,12 @@ async function init() {
   }
   console.log(users);
   // await setItem("users", JSON.stringify({})); //  funktion zum clearen des Backends
-  addPasswordVisibilityListener(
-    "login-pw-border-id",
-    "lock-id",
-    "login-pw-visibility-off-id",
-    "login-pw-visibility-id",
-    (password = true),
-    (confirmPassword = false)
-  );
+  addPasswordVisibilityListener("login-pw-border-id", "lock-id", "login-pw-visibility-off-id", "login-pw-visibility-id", (password = true), (confirmPassword = false));
 }
 
-function register() {
+async function register() {
   if (!(registerValidationCheck() && ppCheckboxConfirmed)) return;
-  addNewUser();
+  await addNewUser();
   toggleSuccessesMsg();
   closeSignUp();
   inputType = "password";
@@ -53,8 +46,7 @@ function generateNewUserObject() {
   const userName = document.getElementById("add-name-id").value;
   const userEMail = document.getElementById("add-email-id").value;
   const userPassword = document.getElementById("add-pw-id").value;
-  const userPasswordConfirm =
-    document.getElementById("add-confirm-pw-id").value;
+  const userPasswordConfirm = document.getElementById("add-confirm-pw-id").value;
   return {
     userName: userName,
     userEMail: userEMail,
@@ -103,23 +95,7 @@ function registerValidationCheck() {
   const password = document.getElementById("add-pw-id").value;
   const confirmPassword = document.getElementById("add-confirm-pw-id").value;
   const checkBox = document.getElementById("privacy-check-id");
-  const boolArr = [
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-  ];
+  const boolArr = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
   validateName(name, boolArr);
   validateRegisterEmail(email, boolArr);
   validatePassword(password, boolArr);
@@ -137,23 +113,7 @@ function toggleSuccessesMsg() {
 }
 
 function resetRegisterInputs() {
-  const boolArr = [
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-  ];
+  const boolArr = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
   handlerFieldValidationLogin(boolArr);
   document.getElementById("add-name-id").value = "";
   document.getElementById("add-email-id").value = "";
@@ -178,14 +138,7 @@ function signUp() {
   toggleVisibility("login-id", false);
   let signUpPopupElement = document.getElementById("sign-up-popup-id");
   signUpPopupElement.innerHTML += templateSignUpPopup();
-  addPasswordVisibilityListener(
-    "add-pw-border-id",
-    "register-lock-id",
-    "register-pw-visibility-off-id",
-    "register-pw-visibility-id",
-    (password = true),
-    (confirmPassword = false)
-  );
+  addPasswordVisibilityListener("add-pw-border-id", "register-lock-id", "register-pw-visibility-off-id", "register-pw-visibility-id", (password = true), (confirmPassword = false));
   addPasswordVisibilityListener(
     "add-confirm-pw-border-id",
     "register-confirm-lock-id",
@@ -229,24 +182,17 @@ function handlerFieldValidationLogin(boolArr) {
 
 function loginValidationCheck() {
   const loginUserEmail = document.getElementById("login-user-e-mail-id").value;
-  const loginUserPassword = document.getElementById(
-    "login-user-password-id"
-  ).value;
+  const loginUserPassword = document.getElementById("login-user-password-id").value;
   const boolArr = [false, false, false, false, false, false, false];
-  if (loginUserEmail === "" && loginUserPassword === "")
-    boolArr[0] = boolArr[4] = boolArr[5] = boolArr[6] = true;
-  else if (loginUserEmail === "" && loginUserPassword !== "")
-    boolArr[0] = boolArr[5] = true;
+  if (loginUserEmail === "" && loginUserPassword === "") boolArr[0] = boolArr[4] = boolArr[5] = boolArr[6] = true;
+  else if (loginUserEmail === "" && loginUserPassword !== "") boolArr[0] = boolArr[5] = true;
   else if (loginUserEmail !== "" && loginUserPassword === "")
-    if (!validateLoginEmail(loginUserEmail))
-      boolArr[1] = boolArr[4] = boolArr[5] = boolArr[6] = true;
+    if (!validateLoginEmail(loginUserEmail)) boolArr[1] = boolArr[4] = boolArr[5] = boolArr[6] = true;
     else boolArr[4] = boolArr[6] = true;
   else if (loginUserEmail !== "" && loginUserPassword !== "")
     if (!validateLoginEmail(loginUserEmail)) boolArr[1] = boolArr[5] = true;
-    else if (validateLoginEmail(loginUserEmail) && !(loginUserEmail in users))
-      boolArr[2] = boolArr[5] = true;
-    else if (users[loginUserEmail].userPassword !== loginUserPassword)
-      boolArr[3] = boolArr[6] = true;
+    else if (validateLoginEmail(loginUserEmail) && !(loginUserEmail in users)) boolArr[2] = boolArr[5] = true;
+    else if (users[loginUserEmail].userPassword !== loginUserPassword) boolArr[3] = boolArr[6] = true;
   handlerFieldValidationLogin(boolArr);
   return !boolArr.some(Boolean);
 }
@@ -257,70 +203,42 @@ function toggleCheckbox(event) {
   ppCheckboxConfirmed = !ppCheckboxConfirmed;
   if (event.target.id === "uncheckbox-id") {
     rmCheckboxConfirmed = !rmCheckboxConfirmed;
-    loginCheckbox.src = rmCheckboxConfirmed
-      ? "./assets/img/checkbox_confirmed.svg"
-      : "./assets/img/checkbox.svg";
+    loginCheckbox.src = rmCheckboxConfirmed ? "./assets/img/checkbox_confirmed.svg" : "./assets/img/checkbox.svg";
     ppCheckboxConfirmed = false;
   } else if (event.target.id === "privacy-checkbox-id") {
-    ppCheckbox.src = ppCheckboxConfirmed
-      ? "./assets/img/checkbox_confirmed.svg"
-      : "./assets/img/checkbox.svg";
+    ppCheckbox.src = ppCheckboxConfirmed ? "./assets/img/checkbox_confirmed.svg" : "./assets/img/checkbox.svg";
   }
 }
 
-function addPasswordVisibilityListener(
-  elementId,
-  lockImgId,
-  visibilityOffImg,
-  visibilityOnImg,
-  password,
-  confirmPassword
-) {
+function addPasswordVisibilityListener(elementId, lockImgId, visibilityOffImg, visibilityOnImg, password, confirmPassword) {
   const inputElement = document.getElementById(elementId);
   inputElement.addEventListener("input", function (event) {
     const passwordNotEmpty = isValueNotEmpty(event.target.value);
     toggleVisibility(lockImgId, !passwordNotEmpty);
-    if (inputType === "text" && password)
-      setRightImg(visibilityOnImg, visibilityOffImg, true, false);
-    else if (inputType === "password" && password)
-      setRightImg(visibilityOnImg, visibilityOffImg, false, true);
-    if (inputTypeConfirm === "text" && confirmPassword)
-      setRightImg(visibilityOnImg, visibilityOffImg, true, false);
-    else if (inputTypeConfirm === "password" && confirmPassword)
-      setRightImg(visibilityOnImg, visibilityOffImg, false, true);
-    if (!passwordNotEmpty)
-      setRightImg(visibilityOnImg, visibilityOffImg, false, false);
+    if (inputType === "text" && password) setRightImg(visibilityOnImg, visibilityOffImg, true, false);
+    else if (inputType === "password" && password) setRightImg(visibilityOnImg, visibilityOffImg, false, true);
+    if (inputTypeConfirm === "text" && confirmPassword) setRightImg(visibilityOnImg, visibilityOffImg, true, false);
+    else if (inputTypeConfirm === "password" && confirmPassword) setRightImg(visibilityOnImg, visibilityOffImg, false, true);
+    if (!passwordNotEmpty) setRightImg(visibilityOnImg, visibilityOffImg, false, false);
   });
 }
 
-function setRightImg(
-  visibilityOnImg,
-  visibilityOffImg,
-  visbilityOn,
-  visibilityOff
-) {
+function setRightImg(visibilityOnImg, visibilityOffImg, visbilityOn, visibilityOff) {
   toggleVisibility(visibilityOnImg, visbilityOn);
   toggleVisibility(visibilityOffImg, visibilityOff);
 }
 
 function togglePasswordVisibility(event, ImgId, whichform, value) {
-  if ((whichform === "password" || whichform === "registerPw") && value === 1)
-    visibilityOn = true;
-  else if (
-    (whichform === "password" || whichform === "registerPw") &&
-    value === -1
-  )
-    visibilityOn = false;
+  if ((whichform === "password" || whichform === "registerPw") && value === 1) visibilityOn = true;
+  else if ((whichform === "password" || whichform === "registerPw") && value === -1) visibilityOn = false;
   else if (whichform === "confirmPw" && value === 1) visibilityOnConfirm = true;
-  else if (whichform === "confirmPw" && value === -1)
-    visibilityOnConfirm = false;
+  else if (whichform === "confirmPw" && value === -1) visibilityOnConfirm = false;
   toggleVisibility(event.target.id, false);
   toggleVisibility(ImgId, true);
   inputType = visibilityOn ? "text" : "password";
   inputTypeConfirm = visibilityOnConfirm ? "text" : "password";
   updatePasswordInput(whichform, inputType);
-  if (whichform === "confirmPw")
-    updatePasswordInput("confirmPw", inputTypeConfirm);
+  if (whichform === "confirmPw") updatePasswordInput("confirmPw", inputTypeConfirm);
 }
 
 function updatePasswordInput(whichform, inputType) {

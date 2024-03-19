@@ -1,10 +1,4 @@
-let savedName,
-  savedEmail,
-  savedPhone,
-  savedIndex,
-  savedBg,
-  savedTextColor,
-  savedInitials;
+let savedName, savedEmail, savedPhone, savedIndex, savedBg, savedTextColor, savedInitials;
 
 function templateAddContactHTML() {
   return /*html*/ `
@@ -42,14 +36,23 @@ function templateAddContactHTML() {
                         <div id="ac-name-border-id" class="input_global input_ac cursor">
                             <input id="ac-name-input-id"  type="text" placeholder="Name" autocomplete="on">
                             <img src="./assets/img/person.png" alt="">
+                            <span id="ac-empty-name-id" class="ac-err-msg d-none">This field is required!</span>
+                            <span id="ac-invalid-name-id" class="ac-err-msg d-none">Name must be at least 2 letters.</span>
+                            <span id="ac-no-special-chars-id" class="ac-err-msg d-none">No special characters are allowed.</span>
+                            <span id="ac-hyphens-name-id" class="ac-err-msg d-none">Check your hyphen!</span>
                         </div> 
                         <div id="ac-mail-border-id" class="input_global input_ac cursor">
                         <input id="ac-mail-input-id"  type="text" placeholder="Email" autocomplete="on">
                             <img src="./assets/img/mail.png" alt="">
+                            <span id="ac-empty-email-id" class="ac-err-msg d-none">This field is required!</span>
+                            <span id="ac-invalid-email-id" class="ac-err-msg d-none">Enter a valid email (e.g., user@example.com)!</span>
+                            <span id="ac-existing-email-id" class="ac-err-msg d-none">This email is already in your contacts!</span>
                         </div> 
                         <div id="ac-phone-border-id" class="input_global input_ac cursor">
-                        <input id="ac-phone-input-id"  type="tel" placeholder="Phone" autocomplete="on">
+                        <input id="ac-phone-input-id" type="tel" placeholder="Phone" autocomplete="on" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                             <img src="./assets/img/call.png" alt="">
+                            <span id="ac-empty-phone-id" class="ac-err-msg d-none">This field is required!</span>
+                            <span id="ac-invalid-phone-id" class="ac-err-msg d-none">Min. 3 digits required!</span>
                         </div> 
                     </div>
                     
@@ -79,15 +82,7 @@ function templateCreateLettersHTML(letter) {
   `;
 }
 
-function templateCreateContactsHTML(
-  name,
-  email,
-  phone,
-  bgColor,
-  txtColor,
-  initials,
-  index
-) {
+function templateCreateContactsHTML(name, email, phone, bgColor, txtColor, initials, index) {
   return /*html*/ `
     <div  id="contact-${index}-id" class="contact-style" onclick="openContact('${name}','${email}',
                                                                                 '${phone}','${index}','${bgColor}',
@@ -134,22 +129,31 @@ function templateEditContactHTML() {
                 </div>
                 <div class="footer-right">
                     <div class="card-inputs">
-                        <div id="ac-name-border-id" class="input_global input_ac cursor">
-                            <input id="ac-name-input-id"  type="text" placeholder="Name" autocomplete="on" value="${savedName}">
+                        <div id="ec-name-border-id" class="input_global input_ac cursor">
+                            <input id="ec-name-input-id"  type="text" placeholder="Name" autocomplete="on" value="${savedName}">
                             <img src="./assets/img/person.png" alt="">
+                            <span id="ec-empty-name-id" class="ac-err-msg d-none">This field is required!</span>
+                            <span id="ec-invalid-name-id" class="ac-err-msg d-none">Name must be at least 2 letters.</span>
+                            <span id="ec-no-special-chars-id" class="ac-err-msg d-none">No special characters are allowed.</span>
+                            <span id="ec-hyphens-name-id" class="ac-err-msg d-none">Check your hyphen!</span>
                         </div> 
-                        <div id="ac-mail-border-id" class="input_global input_ac cursor">
-                        <input id="ac-mail-input-id"  type="text" placeholder="Email" autocomplete="on"  value="${savedEmail}">
+                        <div id="ec-mail-border-id" class="input_global input_ac cursor">
+                            <input id="ec-mail-input-id"  type="text" placeholder="Email" autocomplete="on"  value="${savedEmail}">
                             <img src="./assets/img/mail.png" alt="">
+                            <span id="ec-empty-email-id" class="ac-err-msg d-none">This field is required!</span>
+                            <span id="ec-invalid-email-id" class="ac-err-msg d-none">Enter a valid email (e.g., user@example.com)!</span>
+                            <span id="ec-existing-email-id" class="ac-err-msg d-none">This email is already in your contacts!</span>
                         </div> 
-                        <div id="ac-phone-border-id" class="input_global input_ac cursor">
-                        <input id="ac-phone-input-id"  type="tel" placeholder="Phone" autocomplete="on"  value="${savedPhone}">
+                        <div id="ec-phone-border-id" class="input_global input_ac cursor">
+                            <input id="ec-phone-input-id"  type="tel" placeholder="Phone" autocomplete="on"  value="${savedPhone}">
                             <img src="./assets/img/call.png" alt="">
+                            <span id="ec-empty-phone-id" class="ac-err-msg d-none">This field is required!</span>
+                            <span id="ec-invalid-phone-id" class="ac-err-msg d-none">Min. 3 digits required!</span>
                         </div> 
                     </div>
                     
                     <div class="ac-btn-container">
-                        <input id="ac-color-input-id"  class="color-style"  type="color" value="#43da86" />
+                        <input id="ec-color-input-id"  class="color-style"  type="color" value="#43da86" />
                         <button class="ec-btn-white" onclick="deleteContact()"> 
                             <span>Delete</span>
                         </button> 
@@ -164,15 +168,7 @@ function templateEditContactHTML() {
   `;
 }
 
-function templateShowContact(
-  name,
-  email,
-  phone,
-  index,
-  bgColor,
-  txtColor,
-  initials
-) {
+function templateShowContact(name, email, phone, index, bgColor, txtColor, initials) {
   savedName = name;
   savedEmail = email;
   savedPhone = phone;
