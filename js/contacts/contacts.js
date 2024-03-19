@@ -163,6 +163,7 @@ function closeContact() {
   editContactMenuOpen = false;
   const element = document.getElementById("show-overlay-id");
   element.classList.toggle("d-none");
+  toggleVisibility(`contact-${savedIndex}-id`, false, "selected-contact");
   toggleVisibility("edit-contact-id", false);
 }
 

@@ -1,11 +1,12 @@
 .logo {
   position: absolute;
-  top: 37px;
-  left: 38px;
+  top: 80px;
+  left: 77px;
 }
 .logo img {
   width: 64px;
   height: 78px;
+  transition: all 300ms ease-in-out;
 }
 
 .container {
@@ -21,11 +22,10 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-
   margin-top: 205px;
   margin-bottom: 32px;
-
   max-width: 800px;
+  transition: all 300ms ease-in-out;
 }
 
 .form-header {
@@ -40,6 +40,7 @@
   font-weight: 700;
   font-size: 47px;
   line-height: 56.4px;
+  transition: all 300ms ease-in-out;
 }
 
 .line {
@@ -190,6 +191,7 @@
   justify-content: center;
   gap: 35px;
   margin-top: 57.5px;
+  transition: all 300ms ease-in-out;
 }
 
 .signup-container span {
@@ -210,14 +212,16 @@
   line-height: 19.2px;
   color: #a8a8a8;
 }
-
-.back-arrow {
+.back-arrow-container {
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   top: 13.63px;
   left: 29.33px;
-  height: 20.74px;
-  width: 21.33px;
   cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
 }
 
 .success-msg-popup {
@@ -240,4 +244,66 @@
 
 .d-none {
   display: none;
+}
+
+@media (max-width: 1156px) {
+  .content {
+    margin-top: 260px;
+  }
+}
+
+@media (min-width: 761px) {
+  .logo img {
+    width: 80px;
+    height: 102px;
+  }
+  .signup-container {
+    position: absolute;
+    top: 67px;
+    right: 64px;
+    margin: 0;
+    justify-content: end;
+  }
+  .content h1 {
+    font-size: 61px;
+  }
+  .login-btns-container {
+    flex-direction: row;
+  }
+  .register-small {
+    width: 102px !important;
+  }
+  .back-arrow-container:hover {
+    background: var(--mockup-color);
+  }
+  .back-arrow-container:active {
+    background: var(--focus-color-btn);
+  }
+  .back-arrow-container:active svg path {
+    fill: white;
+  }
+}
+
+@media (min-width: 949px) {
+  .signup-container {
+    right: 80px;
+  }
+}
+
+@media (min-width: 949px) {
+  .signup-container {
+    right: 80px;
+  }
+}
+
+@media (min-width: 1340px) {
+  .logo img {
+    width: 100px;
+    height: 122px;
+  }
+}
+@media (max-width: 761px) {
+  .back-arrow-container:active {
+    background: var(--placeholder-color);
+  }
 }

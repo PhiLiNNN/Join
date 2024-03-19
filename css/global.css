@@ -136,20 +136,9 @@ input:-webkit-autofill:active {
   transition: all 200ms ease-in-out;
 }
 
-.white-btn:hover {
-  border: 2px solid var(--mockup-highlight);
-  color: var(--mockup-highlight);
-  box-shadow: 0 6px 5px rgba(0, 0, 0, 0.18);
-}
-
 .white-btn:hover svg path {
   stroke: var(--mockup-highlight);
   transition: stroke 200ms ease-in-out;
-}
-
-.white-btn:active {
-  border: 2px solid var(--focus-color-btn);
-  color: var(--focus-color-btn);
 }
 
 .white-btn:active svg path {
@@ -258,5 +247,20 @@ textarea::placeholder {
   .filled-btn:active {
     background: var(--focus-color-btn);
     border: 2px solid var(--focus-color-btn);
+  }
+  .white-btn:hover {
+    border: 2px solid var(--mockup-highlight);
+    color: var(--mockup-highlight);
+    box-shadow: 0 6px 5px rgba(0, 0, 0, 0.18);
+  }
+  .white-btn:active {
+    border: 2px solid var(--focus-color-btn);
+    color: var(--focus-color-btn);
+  }
+}
+@media (max-width: 761px) {
+  .white-btn:active {
+    border: 2px solid var(--focus-color-btn);
+    color: var(--focus-color-btn);
   }
 }

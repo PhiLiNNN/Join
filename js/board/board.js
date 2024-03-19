@@ -1,62 +1,52 @@
-const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-console.log(currentUser)
+const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+console.log(currentUser);
 
 let currentDraggedElement;
 
 function updateHTML(tasks) {
+  let toDo = tasks.filter((t) => t["board"] == "toDo");
 
-    let toDo = tasks.filter(t => t['board'] == 'toDo');
+  document.getElementById("toDo").innerHTML = "";
 
-    document.getElementById('toDo').innerHTML = '';
+  for (let index = 0; index < toDo.length; index++) {
+    const element = toDo[index];
+    document.getElementById("toDo").innerHTML += generateTaskHTML(element);
+  }
 
-    for (let index = 0; index < toDo.length; index++) {
-        const element = toDo[index];
-        document.getElementById('toDo').innerHTML += generateTaskHTML(element);
-    }
+  let inProgres = tasks.filter((t) => t["board"] == "inProgres");
 
-    let inProgres  = tasks.filter(t => t['board'] == 'inProgres');
+  document.getElementById("inProgres").innerHTML = "";
 
-    document.getElementById('inProgres').innerHTML = '';
+  for (let index = 0; index < inProgres.length; index++) {
+    const element = inProgres[index];
+    document.getElementById("inProgres").innerHTML += generateTaskHTML(element);
+  }
 
-    for (let index = 0; index < inProgres.length; index++) {
-        const element = inProgres[index];
-        document.getElementById('inProgres').innerHTML += generateTaskHTML(element);
-    }
+  let awaitFeedback = tasks.filter((t) => t["board"] == "awaitFeedback");
 
-    let awaitFeedback = tasks.filter(t => t['board'] == 'awaitFeedback');
+  document.getElementById("awaitFeedback").innerHTML = "";
 
-    document.getElementById('awaitFeedback').innerHTML = '';
+  for (let index = 0; index < awaitFeedback.length; index++) {
+    const element = awaitFeedback[index];
+    document.getElementById("awaitFeedback").innerHTML += generateTaskHTML(element);
+  }
 
-    for (let index = 0; index < awaitFeedback.length; index++) {
-        const element = awaitFeedback[index];
-        document.getElementById('awaitFeedback').innerHTML += generateTaskHTML(element);
-    }
+  let done = tasks.filter((t) => t["board"] == "done");
 
-    let done = tasks.filter(t => t['board'] == 'done');
+  document.getElementById("done").innerHTML = "";
 
-    document.getElementById('done').innerHTML = '';
-
-    for (let index = 0; index < done.length; index++) {
-        const element = done[index];
-        document.getElementById('done').innerHTML += generateTaskHTML(element);
-    }
-
+  for (let index = 0; index < done.length; index++) {
+    const element = done[index];
+    document.getElementById("done").innerHTML += generateTaskHTML(element);
+  }
 }
 
 function startDragging(titles) {
-    currentDraggedElement = titles;
+  currentDraggedElement = titles;
 }
 
-function generateTaskHTML(
-    titles,
-    descriptions,
-    assignedTo,
-    dates,
-    prios,
-    categories,
-    subtasks
-) {
-    return /*html*/`
+function generateTaskHTML(titles, descriptions, assignedTo, dates, prios, categories, subtasks) {
+  return /*html*/ `
     <div draggable="true" ondragstart="startDragging('${titles}')" class="board-card">
     <div class="container-1">
 
@@ -126,11 +116,10 @@ function generateTaskHTML(
 }
 
 function allowDrop(ev) {
-    ev.preventDefault();
+  ev.preventDefault();
 }
 
 function moveTo(board) {
-    tasks [currentDraggedElement]['board'] = board;
-    updateHTML();
+  tasks[currentDraggedElement]["board"] = board;
+  updateHTML();
 }
-

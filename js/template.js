@@ -1,7 +1,11 @@
 function templateSignUpPopup() {
   return /*html*/ `
     <div class="form-header"> 
-      <img class="back-arrow" src="./assets/img/back_arrow.png" alt="backwards button" onclick="closeSignUp()">
+      <div class="back-arrow-container" onclick="closeSignUp()">
+          <svg width="25" height="24" viewBox="0 0 25 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6.00972 9.88554H23.1871C24.0362 9.88554 24.7246 10.5739 24.7246 11.4231C24.7246 12.2722 24.0362 12.9606 23.1871 12.9606H6.00972L13.17 20.1209C13.7704 20.7213 13.7704 21.6946 13.17 22.295C12.5697 22.8954 11.5963 22.8954 10.996 22.295L1.53824 12.8373C0.757188 12.0562 0.757188 10.7899 1.53824 10.0089L10.996 0.55115C11.5963 -0.0492049 12.5697 -0.0492048 13.17 0.55115C13.7704 1.1515 13.7704 2.12487 13.17 2.72523L6.00972 9.88554Z" fill="#29ABE2"/>
+          </svg>
+      </div>
       <h1>Sign up</h1>
       <div  class="line"></div>
       </div>
@@ -69,7 +73,14 @@ function templateSignUpPopup() {
   `;
 }
 
-function templateAssignedToContainerHTML(contact, index, iconColor, initials, textColor, isSelected) {
+function templateAssignedToContainerHTML(
+  contact,
+  index,
+  iconColor,
+  initials,
+  textColor,
+  isSelected
+) {
   const setSelectedContact = isSelected ? "selected-contact-at" : "";
   return /*html*/ `
     <div id="assigned-to-box-${index}" class="assigned-to-box ${setSelectedContact}"  onclick="selectedAssignedToUser(event, ${index})">

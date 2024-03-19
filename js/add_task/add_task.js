@@ -26,7 +26,9 @@ function filterAssignedToContacts() {
   document.getElementById("assignedto-input-id").addEventListener("input", function (event) {
     const searchTerm = event.target.value;
     isFilterActive = searchTerm.trim() !== "";
-    const filteredContacts = currentUser.contacts.filter((contact) => contact.name.toLowerCase().includes(searchTerm.toLowerCase()));
+    const filteredContacts = currentUser.contacts.filter((contact) =>
+      contact.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
     iterateOverContacts(filteredContacts);
   });
 }
@@ -44,7 +46,14 @@ function iterateOverContacts(contacts) {
     const initials = getFirstLettersOfName(contact.name);
     textColor = isColorLight(contact.colorCode) ? "white" : "black";
     const isSelected = contacts[index].selected;
-    assignedToContainer.innerHTML += templateAssignedToContainerHTML(contact.name, index, contact.colorCode, initials, textColor, isSelected);
+    assignedToContainer.innerHTML += templateAssignedToContainerHTML(
+      contact.name,
+      index,
+      contact.colorCode,
+      initials,
+      textColor,
+      isSelected
+    );
   });
 }
 
@@ -127,7 +136,12 @@ function renderAddedContacts() {
   addedContactsElement.innerHTML = "";
   assignedTo.colorCodes.forEach((colorCode, index) => {
     if (index > 4) return;
-    addedContactsElement.innerHTML += templateaddedContactsHTML(index, colorCode, assignedTo.initials[index], assignedTo.textColor[index]);
+    addedContactsElement.innerHTML += templateaddedContactsHTML(
+      index,
+      colorCode,
+      assignedTo.initials[index],
+      assignedTo.textColor[index]
+    );
   });
 }
 
@@ -160,7 +174,12 @@ function getUserInfo(event) {
 
 function pushSelectedUser(event) {
   const {assignedContact, backgroundColorValue, textColor, userName} = getUserInfo(event);
-  if (assignedTo.initials.includes(assignedContact) && assignedTo.colorCodes.includes(backgroundColorValue) && assignedTo.textColor.includes(textColor) && assignedTo.userName.includes(userName))
+  if (
+    assignedTo.initials.includes(assignedContact) &&
+    assignedTo.colorCodes.includes(backgroundColorValue) &&
+    assignedTo.textColor.includes(textColor) &&
+    assignedTo.userName.includes(userName)
+  )
     return;
   assignedTo.initials.push(assignedContact);
   assignedTo.colorCodes.push(backgroundColorValue);
@@ -258,9 +277,14 @@ function editSubtask(index) {
   document.addEventListener("click", function (event) {
     const clickedElement = event.target;
     const isSubtaskContent = clickedElement.closest(`[id^="substask-content-id${index}"]`);
-    const isSubtaskDefaultContainer = clickedElement.closest(`[id^="subtask-default-container-id${index}"]`);
-    const isSubtaskEditedContainer = clickedElement.closest(`[id^="subtask-edited-container-id${index}"]`);
-    if (!isSubtaskContent && !isSubtaskDefaultContainer && !isSubtaskEditedContainer) toggleVisibility(`substask-content-id${index}`, false, "red-line-highlight");
+    const isSubtaskDefaultContainer = clickedElement.closest(
+      `[id^="subtask-default-container-id${index}"]`
+    );
+    const isSubtaskEditedContainer = clickedElement.closest(
+      `[id^="subtask-edited-container-id${index}"]`
+    );
+    if (!isSubtaskContent && !isSubtaskDefaultContainer && !isSubtaskEditedContainer)
+      toggleVisibility(`substask-content-id${index}`, false, "red-line-highlight");
   });
 }
 
