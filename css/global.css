@@ -13,8 +13,7 @@
 
 @font-face {
   font-family: "Inter";
-  src: url("/assets/fonts/Inter/InterVariableFontslntwght.ttf")
-    format("truetype");
+  src: url("/assets/fonts/Inter/InterVariableFontslntwght.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -221,6 +220,14 @@ textarea::placeholder {
 
 .err-msg-color {
   color: var(--err-msg-color);
+}
+
+.err-msg {
+  position: absolute;
+  top: 55px;
+  left: 0;
+  color: var(--err-msg-color);
+  font-size: 12px;
 }
 
 .inApp-err-msg {

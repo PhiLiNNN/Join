@@ -12,60 +12,56 @@
     <script src="/js/includeHTML.js"></script>
     <script src="/js/board/board.js"></script>
     <title>Board</title>
-
-</head>
-<body onload="includeHTML(); updateHTML();">
-
-<div w3-include-html="./assets/templates/header.html"></div>
-<div class="board">
-    <h1>Board</h1>
-    <div>
-        <button class="add-task"><img src="./assets/img/add_task_board.png" alt="add task"></button>
-    </div>
-    <div class="find-task">
-        <input type="text" placeholder="Find Task" id="search" onchange="">
+  </head>
+  <body onload="includeHTML(); updateHTML();">
+    <div w3-include-html="./assets/templates/header.html"></div>
+    <div class="board">
+      <h1>Board</h1>
+      <div>
+        <button class="add-task"><img src="./assets/img/add_task_board.png" alt="add task" /></button>
+      </div>
+      <div class="find-task">
+        <input type="text" placeholder="Find Task" id="search" onchange="" />
         <div class="board-separator"></div>
         <button></button>
-    </div>
-    <div>
+      </div>
+      <div>
         <div class="board-box">
-            <h2>To do</h2>
-            <div>
-                <button class="add-task-2"><img src="./assets/img/add_task_board_2.png" alt="add task"></button>
-            </div>
-            <div class="drag-area" ondrop="moveTo('toDo')" overgleave="removeHighlight('toDo')" ondragover="allowDrop(event); highlight('toDo')">No tasks To do</div>
+          <h2>To do</h2>
+          <div>
+            <button class="add-task-2"><img src="./assets/img/add_task_board_2.png" alt="add task" /></button>
+          </div>
+          <div class="drag-area" ondrop="moveTo('toDo')" overgleave="removeHighlight('toDo')" ondragover="allowDrop(event); highlight('toDo')">No tasks To do</div>
         </div>
-    </div>
-    <div>
+      </div>
+      <div>
         <div class="board-box">
-            <h2>In progress</h2>
-            <div>
-                <button class="add-task-2"><img src="./assets/img/add_task_board_2.png" alt="add task"></button>
-            </div>
-            <div class="drag-area" ondrop="moveTo('inProgress')" overgleave="removeHighlight('inProgress')" ondragover="allowDrop(event); highlight('inProgress')">No tasks To do</div>
+          <h2>In progress</h2>
+          <div>
+            <button class="add-task-2"><img src="./assets/img/add_task_board_2.png" alt="add task" /></button>
+          </div>
+          <div class="drag-area" ondrop="moveTo('inProgress')" overgleave="removeHighlight('inProgress')" ondragover="allowDrop(event); highlight('inProgress')">No tasks To do</div>
         </div>
-    </div>
-    <div>
+      </div>
+      <div>
         <div class="board-box">
-            <h2>Await feedback</h2>
-            <div>
-                <button class="add-task-2"><img src="./assets/img/add_task_board_2.png" alt="add task"></button>
-            </div>
-            <div class="drag-area" ondrop="moveTo('awaitFeedback')" overgleave="removeHighlight('awaitFeedback')" ondragover="allowDrop(event); highlight('awaitFeedback')">No tasks To do</div>
+          <h2>Await feedback</h2>
+          <div>
+            <button class="add-task-2"><img src="./assets/img/add_task_board_2.png" alt="add task" /></button>
+          </div>
+          <div class="drag-area" ondrop="moveTo('awaitFeedback')" overgleave="removeHighlight('awaitFeedback')" ondragover="allowDrop(event); highlight('awaitFeedback')">No tasks To do</div>
         </div>
-    </div>
-    <div>
+      </div>
+      <div>
         <div class="board-box">
-            <h2>Done</h2>
-            <div>
-                <button class="add-task-2"><img src="./assets/img/add_task_board_2.png" alt="add task"></button>
-            </div>
-            <div class="drag-area" ondrop="moveTo('done')" overgleave="removeHighlight('done')" ondragover="allowDrop(event); highlight('done')">No tasks To do</div>
+          <h2>Done</h2>
+          <div>
+            <button class="add-task-2"><img src="./assets/img/add_task_board_2.png" alt="add task" /></button>
+          </div>
+          <div class="drag-area" ondrop="moveTo('done')" overgleave="removeHighlight('done')" ondragover="allowDrop(event); highlight('done')">No tasks To do</div>
         </div>
+      </div>
     </div>
-
-</div>
-<div w3-include-html="./assets/templates/footer.html"></div>
-
-</body>
+    <div w3-include-html="./assets/templates/footer.html"></div>
+  </body>
 </html>
