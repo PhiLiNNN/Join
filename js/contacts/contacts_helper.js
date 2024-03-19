@@ -32,7 +32,6 @@ function contactsValidationCheck(string) {
   const nameInputEl = document.getElementById(`${string}-name-input-id`).value;
   const mailInputEl = document.getElementById(`${string}-mail-input-id`).value;
   const phoneInputEl = document.getElementById(`${string}-phone-input-id`).value;
-  console.log("mailInputElCheckl :>> ", mailInputEl);
   const boolArr = [
     false,
     false,
