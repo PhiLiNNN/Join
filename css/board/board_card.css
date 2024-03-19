@@ -1,0 +1,167 @@
+.board-card {
+    background-color: var(--white-color);
+    width: 252px;
+    border-radius: 24px;
+    padding: 16px;
+    position: relative;
+}
+
+.container-1 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.categorie-block {
+    background-color: #0038FF;
+    color: var(--white-color);
+    width: 113px;
+    height: 27px;
+    padding: 4px,  16px, 4px, 16px;
+    border-radius: 8px;
+
+}
+
+
+.x-button-board {
+    display: none;
+}
+
+.container-2 {
+    margin-top: 24px;
+}
+
+.title-block {
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: 700;   
+}
+
+.description-block {
+   margin-bottom: 24px;
+   color: #A8A8A8;
+   font-size: 16px; 
+   font-weight: 400;
+}
+
+.date-prio-block {
+    display: none;
+}
+
+.static-block {
+    color: #42526E;
+    padding-right: 25px;
+}
+
+.static-block div {
+    margin-bottom: 16px;
+}
+
+.changeing-block div {
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.assignedTo {
+    display: none;
+}
+
+.assignedTo-box {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    height: 32px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.assignedTo-pic {
+    width: 32px;
+    height: 32px;
+    border-radius: 45px;
+    margin-right: 16px;
+    
+}
+
+.assignedTo-text {
+    display: none;
+}
+
+.little-card-subtasks {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    display: none;
+}
+
+.relativ {
+    position: relative;
+}
+
+.gray {
+    width: 128px;
+    height: 8px;
+    background-color: #F4F4F4;
+    border-radius: 16px;
+    position: absolute;
+    left: 16px;
+}
+
+.blaue {
+    width: 64px;
+    height: 8px;
+    border-radius: 16px;
+    background-color: #4589FF;
+    position: absolute;
+}
+
+.little-subtask {
+    position: relative;
+    font-size: 12px;
+    margin-left: 150px;
+}
+
+
+.subtask {
+   display: none;
+}
+
+.subtask-box {
+    margin-top: 8px;
+    padding: 4px 0 4px 16px;
+}
+
+.delete-edit {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 24px;
+    gap: 8px;
+    display: none;
+}
+
+.delete-edit-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.delete-edit image {
+    height: 24px;
+    width: 24px;
+}
+
+.seperator {
+    height: 24px;
+    width: 1px;
+    background-color: #D1D1D1;
+}
+
+
+
+
