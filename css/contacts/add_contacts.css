@@ -37,7 +37,7 @@
 .card-content {
   z-index: 901;
   border-radius: 30px;
-  position: absolute;
+  position: fixed;
   top: 80px;
   bottom: 80px;
   left: 16px;
@@ -348,6 +348,14 @@
   .ec-menu-container {
     display: none;
   }
+  .success-msg-popup {
+    position: fixed;
+    left: calc(800px);
+    transform: translate(700%, 300%) !important;
+  }
+  .success-msg-popup.slide-sm {
+    transform: translate(0, 300%) !important;
+  }
 }
 
 @media (max-width: 1340px) {
@@ -480,5 +488,12 @@
   .card-content.card-visible {
     transform: translatex(0);
     transform: translateY(0);
+  }
+  .success-msg-popup {
+    position: fixed;
+    transform: translate(calc(00px), 1000%) !important;
+  }
+  .success-msg-popup.slide-sm {
+    transform: translate(calc(0), 300%) !important;
   }
 }

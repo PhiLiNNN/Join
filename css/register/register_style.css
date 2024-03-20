@@ -224,24 +224,6 @@
   border-radius: 50%;
 }
 
-.success-msg-popup {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  top: 2px;
-  background: var(--mockup-color);
-  height: 74px;
-  width: 326px;
-  border-radius: 20px;
-}
-
-.success-msg-popup span {
-  color: white;
-  font-size: 20px;
-  line-height: 24px;
-}
-
 .d-none {
   display: none;
 }

@@ -53,14 +53,39 @@ function addNewContact() {
   updateBackend(currentUser);
   renderAllContacts();
   highlightActiveContact(currentUser.contacts.length - 1);
-  checkIfDesktopMode(newCon);
+  handleScreenMode(newCon);
   closeAddNewContact();
+  sendSuccsessMsg();
 }
 
-function checkIfDesktopMode(newCon) {
-  if (window.innerWidth >= 1340) {
+function sendSuccsessMsg() {
+  toggleScrollbar("hidden");
+  toggleVisibility("contacts-success-msg-id", true);
+  setTimeout(() => {
+    toggleVisibility("contacts-success-msg-id", false, "slide-sm");
+    setTimeout(() => {
+      toggleVisibility("contacts-success-msg-id", true, "slide-sm");
+    }, 900);
+  }, 600);
+  setTimeout(() => {
+    toggleVisibility("contacts-success-msg-id", false);
+  }, 2000);
+}
+
+function handleScreenMode(newCon) {
+  const initials = getFirstLettersOfName(newCon.name);
+  if (window.innerWidth < 1340) {
+    openContact(
+      newCon.name,
+      newCon.email,
+      newCon.phone,
+      currentUser.contacts.length - 1,
+      newCon.colorCode,
+      newCon.textColorCode,
+      initials
+    );
+  } else {
     const element = document.getElementById("show-overlay-id");
-    const initials = getFirstLettersOfName(newCon.name);
     showDesktopOverlay(
       element,
       newCon.name,
@@ -123,9 +148,9 @@ function openContact(name, email, phone, index, bgColor, txtColor, initials) {
   let viewportWidth = window.innerWidth;
   const element = document.getElementById("show-overlay-id");
   toggleVisibility("edit-contact-id", true);
-  if (viewportWidth < 1340) {
+  if (viewportWidth < 1340)
     showContactOverlay(element, name, email, phone, index, bgColor, txtColor, initials);
-  } else showDesktopOverlay(element, name, email, phone, index, bgColor, txtColor, initials);
+  else showDesktopOverlay(element, name, email, phone, index, bgColor, txtColor, initials);
   currentContact = index;
 }
 

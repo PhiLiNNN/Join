@@ -47,12 +47,17 @@ function validateName(name, boolArr) {
   else if (specialCharRegex.test(name)) boolArr[2] = boolArr[10] = true;
   else if (name.length < 2 && checkForDoubleHyphen === 0) boolArr[1] = boolArr[10] = true;
   else if (checkForDoubleHyphen > 1) boolArr[14] = boolArr[10] = true;
-  else if (checkForDoubleHyphen !== 0 && (!name.match(/[a-zA-Z]-[a-zA-Z]{2,}/) || name.indexOf("-") < 2 || name.split("-").pop() === "")) boolArr[1] = boolArr[10] = true;
+  else if (
+    checkForDoubleHyphen !== 0 &&
+    (!name.match(/[a-zA-Z]-[a-zA-Z]{2,}/) || name.indexOf("-") < 2 || name.split("-").pop() === "")
+  )
+    boolArr[1] = boolArr[10] = true;
 }
 
 function validateRegisterEmail(email, boolArr) {
   if (email.trim() === "") boolArr[3] = boolArr[11] = true;
-  else if (!email.includes("@") || email.indexOf("@") === 0 || email.split("@").pop() === "") boolArr[4] = boolArr[11] = true;
+  else if (!email.includes("@") || email.indexOf("@") === 0 || email.split("@").pop() === "")
+    boolArr[4] = boolArr[11] = true;
   else if (email in users) boolArr[5] = boolArr[11] = true;
 }
 
@@ -61,7 +66,8 @@ function validatePassword(password, boolArr) {
   const hasSpecialChar = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/]/.test(password);
   const hasDigit = /[0123456789]/.test(password);
   if (password.trim() === "") boolArr[6] = boolArr[12] = true;
-  else if (!hasUpperCase || !hasSpecialChar || !hasDigit || password.length < 6) boolArr[7] = boolArr[12] = true;
+  else if (!hasUpperCase || !hasSpecialChar || !hasDigit || password.length < 6)
+    boolArr[7] = boolArr[12] = true;
 }
 
 function validateConfirmPassword(password, confirmPassword, boolArr) {
@@ -70,7 +76,9 @@ function validateConfirmPassword(password, confirmPassword, boolArr) {
 }
 
 function validateLoginEmail(email) {
-  return email !== "" && email.includes("@") && email.indexOf("@") !== 0 && email.split("@").pop() !== "";
+  return (
+    email !== "" && email.includes("@") && email.indexOf("@") !== 0 && email.split("@").pop() !== ""
+  );
 }
 
 function toggleVisibility(elementId, show = true, className = "d-none") {

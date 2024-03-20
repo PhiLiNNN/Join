@@ -324,11 +324,16 @@ function deleteSubtask(index) {
   renderSubtasks();
 }
 
-async function createTask() {
+function getAddTaskInputs() {
   const titleInput = document.getElementById("title-input-id").value;
   const textareaInput = document.getElementById("textarea-input-id").value;
   const dateInput = document.getElementById("date-input-id").value;
   const categoryInput = document.getElementById("category-input-id").value;
+  return {titleInput, textareaInput, dateInput, categoryInput};
+}
+
+function createTask() {
+  const {titleInput, textareaInput, dateInput, categoryInput} = getAddTaskInputs();
   const atBoolArr = [false, false, false, false, false, false];
   validateInput(titleInput, atBoolArr, 0, 3);
   validateInput(dateInput, atBoolArr, 1, 4);
@@ -339,9 +344,25 @@ async function createTask() {
   }
   updateTasks(titleInput, textareaInput, dateInput, categoryInput);
   clearAllSelectedUsers();
+  save();
+  sendUserToBoard();
+}
+
+function save() {
   localStorage.setItem("currentUser", JSON.stringify(currentUser));
-  await updateBackend(currentUser);
-  window.location.assign("../board.html");
+  updateBackend(currentUser);
+}
+
+function sendUserToBoard() {
+  toggleScrollbar("hidden");
+  toggleVisibility("at-success-msg-id", true);
+  toggleVisibility("trans-bg-id", true);
+  setTimeout(() => {
+    toggleVisibility("at-success-msg-id", false, "slide-sm");
+    setTimeout(() => {
+      window.location.assign("../board.html");
+    }, 900);
+  }, 200);
 }
 
 function updateTasks(titleInput, textareaInput, dateInput, categoryInput) {
