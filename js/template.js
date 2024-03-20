@@ -1,7 +1,11 @@
 function templateSignUpPopup() {
-  return /*html*/`
+  return /*html*/ `
     <div class="form-header"> 
-      <img class="back-arrow" src="./assets/img/back_arrow.png" alt="backwards button" onclick="closeSignUp()">
+      <div class="back-arrow-container" onclick="closeSignUp()">
+          <svg width="25" height="24" viewBox="0 0 25 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6.00972 9.88554H23.1871C24.0362 9.88554 24.7246 10.5739 24.7246 11.4231C24.7246 12.2722 24.0362 12.9606 23.1871 12.9606H6.00972L13.17 20.1209C13.7704 20.7213 13.7704 21.6946 13.17 22.295C12.5697 22.8954 11.5963 22.8954 10.996 22.295L1.53824 12.8373C0.757188 12.0562 0.757188 10.7899 1.53824 10.0089L10.996 0.55115C11.5963 -0.0492049 12.5697 -0.0492048 13.17 0.55115C13.7704 1.1515 13.7704 2.12487 13.17 2.72523L6.00972 9.88554Z" fill="#29ABE2"/>
+          </svg>
+      </div>
       <h1>Sign up</h1>
       <div  class="line"></div>
       </div>
@@ -13,7 +17,7 @@ function templateSignUpPopup() {
             <div class="tooltiptext">Valid inputs:
               <ul>
                 <li>First name only</li>
-                <li>First name Last name (with space)</li>
+                <li>First name last name (with space)</li>
                 <li>Double name (e.g., Lisa-Marie)</li>
               </ul>
             </div>
@@ -22,6 +26,7 @@ function templateSignUpPopup() {
           <span id="empty-add-name-id" class="err-msg d-none">This field is required!</span>
           <span id="invalid-add-name-id" class="err-msg d-none">Name must be at least 2 letters.</span>
           <span id="no-special-chars-id" class="err-msg d-none">No special characters are allowed.</span>
+          <span id="hyphens-add-name-id" class="err-msg d-none">Check your hyphen!</span>
         </div>
         <div id="add-email-border-id" class="input_global">
           <input type="email" name="loginUserEMail" id="add-email-id" placeholder="Email" autocomplete="on">
@@ -68,34 +73,15 @@ function templateSignUpPopup() {
   `;
 }
 
-function addContactFormMobileHTML() {
-  return /*html*/ `
-    <div class="addContactContainerHeaderMobile">
-      <div class="addContactCloseXContainerMobile">
-        <button class="addContactCloseXButtonMobile" onclick="redirectToContacts()">X</button>
-      </div>
-      <div class="addContactBlockHeaderMobile">
-        <p class="addContactH1Mobile">Add contact</p>
-        <p class="addContactTextMobile">Tasks are better with a team!</p>
-        <img class="addContactBlueStrokedMobile" src="../assets/img/contacts/addContactBlueStroked.svg" alt="addContactBlueStroked">
-      </div>
-      <div>
-        <img class="addContactBlankUserImgMobile" src="../assets/img/contacts/addContactBlankUserImg.svg" alt="addContactBlankUserImg">
-      </div>
-    </div>
-    <form id="add-contact-form-mobile-id" onsubmit="createContactMobile(); return false;">
-      <div class="addContactContainerFooterMobile">
-        <input class="addContactInputNameMobile" name="addContactInputNameMobile" id="add-contact-input-name-mobile-id" type="text" placeholder="Name">
-        <input class="addContactInputMailAddresssMobile" name="addContactInputMailAddresssMobile" id="add-contact-input-mail-addresss-mobile-id" type="text" placeholder="E Mail">
-        <input class="addContactInputPhoneMobile" name="addContactInputPhoneMobile" id="add-contact-input-phone-mobile-id" type="text" placeholder="Phone">          
-        <img class="createContactButtonImg" src="../assets/img/contacts/createContactButton.svg" alt="createContactButton" onclick="createContactMobile()">         
-      </div>
-    </form>
-  `;
-}
-
-function templateAssignedToContainerHTML(contact, index, iconColor, initials, textColor, isSelected) {
-  const setSelectedContact = isSelected ? 'selected-contact' : '';
+function templateAssignedToContainerHTML(
+  contact,
+  index,
+  iconColor,
+  initials,
+  textColor,
+  isSelected
+) {
+  const setSelectedContact = isSelected ? "selected-contact-at" : "";
   return /*html*/ `
     <div id="assigned-to-box-${index}" class="assigned-to-box ${setSelectedContact}"  onclick="selectedAssignedToUser(event, ${index})">
       <div class="assigned-to-user">
@@ -130,11 +116,11 @@ function templateSvgDefaultCheckboxHTML() {
   `;
 }
 
-function templateaddedContactsHTML(index, iconColor,  initials, textColor) {
-  if (index === 4 ){
-    iconColor = '#2a3647'
-    initials = `+${assignedTo.colorCodes.length - 4}`
-    textColor = 'rgb(255, 255, 255)';
+function templateaddedContactsHTML(index, iconColor, initials, textColor) {
+  if (index === 4) {
+    iconColor = "#2a3647";
+    initials = `+${assignedTo.colorCodes.length - 4}`;
+    textColor = "rgb(255, 255, 255)";
   }
   return /*html*/ `
   <div class="circle-style left-indent" style="background-color: ${iconColor}; color: ${textColor};">

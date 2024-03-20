@@ -1,0 +1,22 @@
+.legal-style,
+.policy-style {
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+}
+
+.legal-style span,
+.policy-style span {
+    color: #29ABE2;
+} 
+
+.legal-style p,
+.policy-style p {
+    max-width: 1920px;
+} 
+
+.daten-arrow {
+    height: 17.94px;
+    display: flex;
+
+}
