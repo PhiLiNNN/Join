@@ -248,7 +248,7 @@
 }
 
 .ec-menu-container {
-  position: absolute;
+  position: fixed;
   background: white;
   bottom: 103px;
   right: 16px;
