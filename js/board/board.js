@@ -1,44 +1,37 @@
-const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-console.log(currentUser);
 
 let currentDraggedElement;
+let currentUser;
 
-function updateHTML(tasks) {
-  let toDo = tasks.filter((t) => t["board"] == "toDo");
-
-  document.getElementById("toDo").innerHTML = "";
-
-  for (let index = 0; index < toDo.length; index++) {
-    const element = toDo[index];
-    document.getElementById("toDo").innerHTML += generateTaskHTML(element);
-  }
-
-  let inProgres = tasks.filter((t) => t["board"] == "inProgres");
-
-  document.getElementById("inProgres").innerHTML = "";
-
-  for (let index = 0; index < inProgres.length; index++) {
-    const element = inProgres[index];
-    document.getElementById("inProgres").innerHTML += generateTaskHTML(element);
-  }
-
-  let awaitFeedback = tasks.filter((t) => t["board"] == "awaitFeedback");
-
-  document.getElementById("awaitFeedback").innerHTML = "";
-
-  for (let index = 0; index < awaitFeedback.length; index++) {
-    const element = awaitFeedback[index];
-    document.getElementById("awaitFeedback").innerHTML += generateTaskHTML(element);
-  }
-
-  let done = tasks.filter((t) => t["board"] == "done");
-
-  document.getElementById("done").innerHTML = "";
-
-  for (let index = 0; index < done.length; index++) {
-    const element = done[index];
-    document.getElementById("done").innerHTML += generateTaskHTML(element);
-  }
+function initBoard(tasks) {
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    let toDo = currentUser.tasks.board.filter((t) => t == "toDo");
+    const element0 = document.getElementById("to-do-id");
+    element0.innerHTML = "";
+    for (let index = 0; index < toDo.length; index++) {
+        const elementTodo = toDo[index];
+        element0.innerHTML += generateTaskHTML(elementTodo);
+    }
+    let inProgres = currentUser.tasks.board.filter((t) => t == "inProgres");
+    const element1 = document.getElementById("in-progres-id");
+    element1.innerHTML = "";
+    for (let index = 0; index < inProgres.length; index++) {
+        const elementInProgres = inProgres[index];
+        element1.innerHTML += generateTaskHTML(elementInProgres);
+    }
+    let awaitFeedback = currentUser.tasks.board.filter((t) => t == "awaitFeedback");
+    const element2 = document.getElementById("await-feedback-id");
+    element2.innerHTML = "";
+    for (let index = 0; index < awaitFeedback.length; index++) {
+        const elementawaitFeedback = awaitFeedback[index];
+        element2.innerHTML += generateTaskHTML(elementawaitFeedback);
+    }
+    let done = currentUser.tasks.board.filter((t) => t == "done");
+    const element3 = document.getElementById("done-id");
+    element3.innerHTML = "";
+    for (let index = 0; index < done.length; index++) {
+        const elementdone = done[index];
+        element3.innerHTML += generateTaskHTML(elementdone);
+    }
 }
 
 function startDragging(titles) {
