@@ -7,7 +7,6 @@ let editContactMenuOpen = false;
 let allLetters = [];
 let nameCheck;
 let emailCheck;
-document.querySelector(".d-none").classList.remove("d-none");
 
 function contactsInit() {
   isUserLoggedIn = checkUserLogIn();
@@ -16,7 +15,6 @@ function contactsInit() {
   currentUser = JSON.parse(localStorage.getItem("currentUser"));
   console.log(currentUser);
   renderAllContacts();
-  document.querySelector(".d-none").classList.remove("d-none");
   toggleVisibility("contacts-body-id", true);
 }
 
