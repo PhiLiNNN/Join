@@ -48,6 +48,7 @@
   background-color: #29abe2;
   height: 3px;
   width: 88px;
+  transition: all 300ms ease-in-out;
 }
 
 .login-container,
@@ -196,7 +197,7 @@
 
 .signup-container span {
   font-size: 20px;
-  line-height: 24px;
+  transition: all 300ms ease-in-out;
 }
 
 .legal-information-container {
@@ -222,6 +223,7 @@
   cursor: pointer;
   padding: 4px;
   border-radius: 50%;
+  transition: all 300ms ease-in-out;
 }
 
 .d-none {
@@ -264,6 +266,12 @@
   .back-arrow-container:active svg path {
     fill: white;
   }
+  .success-msg-popup {
+    transform: translate(-50%, -800%);
+  }
+  .success-msg-popup.slide-sm {
+    transform: translate(-50%, -420%);
+  }
 }
 
 @media (min-width: 949px) {
@@ -272,9 +280,9 @@
   }
 }
 
-@media (min-width: 949px) {
-  .signup-container {
-    right: 80px;
+@media (min-width: 1156px) {
+  .success-msg-popup.slide-sm {
+    transform: translate(-50%, -500%);
   }
 }
 
@@ -287,5 +295,26 @@
 @media (max-width: 761px) {
   .back-arrow-container:active {
     background: var(--placeholder-color);
+  }
+  .success-msg-popup {
+    transform: translate(-50%, -1000%);
+  }
+  .success-msg-popup.slide-sm {
+    transform: translate(-50%, -520%);
+  }
+  .line {
+    margin-top: 6px;
+    width: 70px;
+  }
+}
+@media (max-width: 400px) {
+  .back-arrow-container {
+    left: 0px;
+  }
+}
+
+@media (max-width: 340px) {
+  .signup-container span {
+    font-size: 16px;
   }
 }

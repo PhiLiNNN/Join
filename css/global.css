@@ -113,7 +113,6 @@ input:-webkit-autofill:active {
   position: fixed;
   top: calc(50%);
   left: calc(50%);
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -310,5 +309,12 @@ textarea::placeholder {
   .white-btn:active {
     border: 2px solid var(--focus-color-btn);
     color: var(--focus-color-btn);
+  }
+  .success-msg-popup {
+    height: 55px;
+    width: 250px;
+  }
+  .success-msg-popup span {
+    font-size: 18px;
   }
 }
