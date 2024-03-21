@@ -308,7 +308,6 @@ function makeElementEditableWithMaxLength(element, maxLength) {
 }
 
 function saveEditSubtask(index) {
-  test = false;
   const element = document.getElementById(`editable-span-id${index}`);
   subtaskList[index] = element.innerText;
   renderSubtasks();
