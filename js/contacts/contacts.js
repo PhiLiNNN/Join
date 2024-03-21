@@ -1,4 +1,5 @@
 let currentUser;
+let isUserLoggedIn;
 let currentActive = -1;
 let currentContact = -1;
 let editContactOpen = false;
@@ -6,11 +7,17 @@ let editContactMenuOpen = false;
 let allLetters = [];
 let nameCheck;
 let emailCheck;
+document.querySelector(".d-none").classList.remove("d-none");
 
 function contactsInit() {
+  isUserLoggedIn = checkUserLogIn();
+  if (!isUserLoggedIn) window.location.assign("../errorPage.html");
+  document.body.classList.remove("d-none");
   currentUser = JSON.parse(localStorage.getItem("currentUser"));
   console.log(currentUser);
   renderAllContacts();
+  document.querySelector(".d-none").classList.remove("d-none");
+  toggleVisibility("contacts-body-id", true);
 }
 
 function renderAllContacts() {

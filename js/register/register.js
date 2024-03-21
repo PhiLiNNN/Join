@@ -9,6 +9,7 @@ let password,
 // pw: tEst1!
 
 async function init() {
+  localStorage.clear();
   showLoader();
   try {
     users = await loadUsersFromBackend("users");

@@ -13,7 +13,7 @@
     <script src="/js/board/board.js"></script>
     <title>Board</title>
   </head>
-  <body onload="includeHTML(); initBoard();">
+  <body id="board-body-id" class="d-none" onload="includeHTML(); initBoard();">
     <div w3-include-html="./assets/templates/header.html"></div>
     <div class="board">
       <h1>Board</h1>
@@ -40,8 +40,7 @@
             id="to-do-id"
             ondrop="moveTo('toDo')"
             overgleave="removeHighlight('toDo')"
-            ondragover="allowDrop(event); highlight('toDo')">
-          </div>
+            ondragover="allowDrop(event); highlight('toDo')"></div>
         </div>
       </div>
       <div>
@@ -52,13 +51,12 @@
               <img src="./assets/img/add_task_board_2.png" alt="add task" />
             </button>
           </div>
-          <div class="drag-area"> No tasks To do</div>
+          <div class="drag-area">No tasks To do</div>
           <div
             id="in-progress-id"
             ondrop="moveTo('inProgress')"
             overgleave="removeHighlight('inProgress')"
-            ondragover="allowDrop(event); highlight('inProgress')">
-          </div>
+            ondragover="allowDrop(event); highlight('inProgress')"></div>
         </div>
       </div>
       <div>
@@ -74,8 +72,7 @@
             id="await-feedback-id"
             ondrop="moveTo('awaitFeedback')"
             overgleave="removeHighlight('awaitFeedback')"
-            ondragover="allowDrop(event); highlight('awaitFeedback')">
-          </div>
+            ondragover="allowDrop(event); highlight('awaitFeedback')"></div>
         </div>
       </div>
       <div>
@@ -91,8 +88,7 @@
             id="done-id"
             ondrop="moveTo('done')"
             overgleave="removeHighlight('done')"
-            ondragover="allowDrop(event); highlight('done')">
-          </div>
+            ondragover="allowDrop(event); highlight('done')"></div>
         </div>
       </div>
     </div>

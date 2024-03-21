@@ -27,6 +27,12 @@ async function getItem(key) {
     .then((res) => res.json())
     .then((res) => res.data.value);
 }
+function showErrorPage() {}
+
+function checkUserLogIn() {
+  if (localStorage.getItem("currentUser")) return true;
+  else return false;
+}
 
 async function loadUsersFromBackend(key) {
   const result = await getItem(key);
