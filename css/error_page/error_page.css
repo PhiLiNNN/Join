@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--mockup-color);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  font-size: 30px;
+}
+.content a {
+  color: var(--hyper-link-color);
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.content a:hover {
+  color: var(--focus-color-btn);
+  text-decoration: none;
+}

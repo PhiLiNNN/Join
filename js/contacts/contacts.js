@@ -10,8 +10,7 @@ let emailCheck;
 
 function contactsInit() {
   isUserLoggedIn = checkUserLogIn();
-  if (!isUserLoggedIn) window.location.assign("../errorPage.html");
-  document.body.classList.remove("d-none");
+  if (!isUserLoggedIn) window.location.assign("../error_page.html");
   currentUser = JSON.parse(localStorage.getItem("currentUser"));
   console.log(currentUser);
   renderAllContacts();

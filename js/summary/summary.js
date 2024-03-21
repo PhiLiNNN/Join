@@ -2,7 +2,7 @@ let isUserLoggedIn;
 
 function initSummary() {
   isUserLoggedIn = checkUserLogIn();
-  if (!isUserLoggedIn) window.location.assign("../errorPage.html");
+  if (!isUserLoggedIn) window.location.assign("../error_page.html");
   updateGreeting();
 }
 

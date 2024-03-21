@@ -15,8 +15,7 @@ let isFilterActive = false;
 
 function initAddTask() {
   isUserLoggedIn = checkUserLogIn();
-  if (!isUserLoggedIn) window.location.assign("../errorPage.html");
-
+  if (!isUserLoggedIn) window.location.assign("../error_page.html");
   currentUser = JSON.parse(localStorage.getItem("currentUser"));
   console.log(currentUser);
   renderAssignedToContacts();

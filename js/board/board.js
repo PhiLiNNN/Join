@@ -4,7 +4,7 @@ let currentUser;
 
 function initBoard() {
   isUserLoggedIn = checkUserLogIn();
-  if (!isUserLoggedIn) window.location.assign("../errorPage.html");
+  if (!isUserLoggedIn) window.location.assign("../error_page.html");
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   let toDo = currentUser.tasks.board.filter((t) => t == "toDo");
   const element0 = document.getElementById("to-do-id");

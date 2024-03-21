@@ -4,15 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/global.css" />
+    <link rel="stylesheet" href="./css/error_page/error_page.css" />
     <script defer src="./js/includeHTML.js"></script>
     <script defer src="./js/register/register.js"></script>
     <script defer src="./js/template.js"></script>
     <script defer src="./js/global.js"></script>
-    <title>Add Task</title>
+    <title>Error</title>
   </head>
-  <body onload=" includeHTML()">
-    <section id="at-section-id" class="at-section">
-      <h1>Please login</h1>
+  <body>
+    <section>
+      <div class="container">
+        <div class="content">
+          <span>Oops! You are not logged in.</span>
+          <span
+            >Please <a href="./index.html"><strong>log in</strong></a> <span>&#128274;</span> to
+            continue.</span
+          >
+        </div>
+      </div>
     </section>
   </body>
 </html>
