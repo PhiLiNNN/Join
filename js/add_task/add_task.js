@@ -1,4 +1,5 @@
 let currentUser;
+let currentIndex = -1;
 let assignedTo = {
   initials: [],
   colorCodes: [],
@@ -19,6 +20,7 @@ function initAddTask() {
   addSubtaskVisibilityListener();
   closeAssignedToMenu();
   closeCategoryMenu();
+  toggleReadBorderInSubtasks();
   filterAssignedToContacts();
 }
 
@@ -55,18 +57,6 @@ function iterateOverContacts(contacts) {
       isSelected
     );
   });
-}
-
-function isColorLight(hexcode) {
-  if (hexcode) {
-    let r = parseInt(hexcode.slice(1, 3), 16);
-    let g = parseInt(hexcode.slice(3, 5), 16);
-    let b = parseInt(hexcode.slice(5), 16);
-    var a = 1 - (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-    return a < 0.5;
-  } else {
-    return true;
-  }
 }
 
 function formatWithLeadingZero(value) {
@@ -271,30 +261,34 @@ function renderSubtasks() {
   });
 }
 
-function editSubtask(index) {
-  const ListElement = document.getElementById(`substask-content-id${index}`);
-  handleFirstSubtaskEdit(index, ListElement);
+function toggleReadBorderInSubtasks() {
   document.addEventListener("click", function (event) {
     const clickedElement = event.target;
-    const isSubtaskContent = clickedElement.closest(`[id^="substask-content-id${index}"]`);
+    const isSubtaskContent = clickedElement.closest("[id^='substask-content-id']");
     const isSubtaskDefaultContainer = clickedElement.closest(
-      `[id^="subtask-default-container-id${index}"]`
+      "[id^='subtask-default-container-id']"
     );
-    const isSubtaskEditedContainer = clickedElement.closest(
-      `[id^="subtask-edited-container-id${index}"]`
-    );
-    if (!isSubtaskContent && !isSubtaskDefaultContainer && !isSubtaskEditedContainer)
-      toggleVisibility(`substask-content-id${index}`, false, "red-line-highlight");
+    const isSubtaskEditedContainer = clickedElement.closest("[id^='subtask-edited-container-id']");
+    if (!isSubtaskContent && !isSubtaskDefaultContainer && !isSubtaskEditedContainer) {
+      if (currentIndex === -1) return;
+      else toggleVisibility(`substask-content-id${currentIndex}`, false, "red-line-highlight");
+    }
   });
 }
 
-function handleFirstSubtaskEdit(index, ListElement) {
+function editSubtask(index) {
+  currentIndex = index;
+  const listElement = document.getElementById(`substask-content-id${index}`);
+  handleFirstSubtaskEdit(index, listElement);
+}
+
+function handleFirstSubtaskEdit(index, listElement) {
   disableAllSubtasksExcept(index);
   const element = document.getElementById(`editable-span-id${index}`);
   toggleVisibility(`subtask-edited-container-id${index}`, true);
   toggleVisibility(`subtask-default-container-id${index}`, false);
   makeElementEditableWithMaxLength(element, 30);
-  ListElement.classList.toggle("blue-line-highlight");
+  listElement.classList.toggle("blue-line-highlight");
 }
 
 function disableAllSubtasksExcept(index) {
@@ -314,6 +308,7 @@ function makeElementEditableWithMaxLength(element, maxLength) {
 }
 
 function saveEditSubtask(index) {
+  test = false;
   const element = document.getElementById(`editable-span-id${index}`);
   subtaskList[index] = element.innerText;
   renderSubtasks();

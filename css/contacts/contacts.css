@@ -149,6 +149,18 @@
     width: calc(100vw - 232px);
     padding-top: 78px;
   }
+  .contact-style:hover {
+    background: var(--placeholder-color);
+  }
+  .contact-style.selected-contact:hover {
+    background: var(--focus-color-btn);
+  }
+  .contact-style.selected-contact:active {
+    background: #11305f;
+  }
+  .contact-style:active {
+    background: var(--focus-color-btn);
+  }
 }
 
 @media (min-width: 1340px) {
@@ -163,6 +175,16 @@
     width: calc(100vw - 688px);
   }
 }
+
+@media (max-width: 761px) {
+  .contact-style.selected-contact:active {
+    background: var(--focus-color-btn);
+  }
+  .contact-style:active {
+    background: var(--focus-color-btn);
+  }
+}
+
 @media (max-width: 400px) {
   .contact-content {
     font-size: 16px;

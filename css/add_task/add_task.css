@@ -73,6 +73,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .at-dropdown {
   position: relative;
+  background: #e1e0e0;
+  border-radius: 10px;
   max-height: 0;
   opacity: 0;
   overflow: hidden;
@@ -203,6 +205,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .category-dropdown {
   position: relative;
+  background: #e1e0e0;
+  border-radius: 10px;
   max-height: 0;
   opacity: 0;
   overflow: hidden;
@@ -212,6 +216,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .category-dropdown.active {
   opacity: 1;
+  overflow-y: auto;
   height: auto;
   max-height: 300px;
 }
@@ -364,20 +369,28 @@ li:hover .hidden-Edit_menu {
   .at-prio-img img:hover {
     transform: translate3d(0, -3px, 0);
   }
-  .assigned-to-box:hover {
-    background: var(--placeholder-color);
-  }
-  .assigned-to-box.selected-contact-at:hover {
-    background: var(--focus-color-btn);
-  }
-  .category-dropdown ul li:hover {
-    background: var(--placeholder-color);
-  }
+
+  .assigned-to-box.selected-contact-at:hover,
   .category-dropdown ul li.selected-contact-at:hover {
     background: var(--focus-color-btn);
   }
+  .assigned-to-box:hover,
+  .category-dropdown ul li:hover,
   .subtask-list ul li:hover {
     background: var(--placeholder-color);
+  }
+  .assigned-to-box:active,
+  .category-dropdown ul li:active {
+    background: var(--focus-color-btn);
+    color: white;
+  }
+  .assigned-to-box:active svg rect {
+    stroke: white;
+  }
+
+  .assigned-to-box.selected-contact-at:active,
+  .category-dropdown ul li.selected-contact-at:active {
+    background: #11305f;
   }
 }
 

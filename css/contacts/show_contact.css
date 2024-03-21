@@ -76,6 +76,8 @@
   justify-content: center;
   cursor: pointer;
   gap: 8px;
+  padding: 8px 12px;
+  border-radius: 10px;
 }
 
 .desktop-menu span {
