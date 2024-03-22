@@ -81,12 +81,18 @@
 }
 
 .desktop-menu span {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 400;
   margin-right: 16px;
   color: var(--mockup-color);
 }
 
+.desktop-edit-span-small {
+  width: 20px;
+}
+.desktop-edit-span-large {
+  width: 45px;
+}
 .contact-name {
   margin-left: 34px;
   transition: all 300ms ease-in-out;
@@ -196,6 +202,15 @@
   .desktop-menu-container {
     display: flex;
     align-items: center;
+  }
+  .open-contacts-circle {
+    width: 120px;
+    height: 120px;
+    font-size: 47px;
+    font-weight: 500;
+  }
+  .contact-name span:first-child {
+    font-size: 47px;
   }
 }
 
