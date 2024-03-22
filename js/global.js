@@ -41,7 +41,7 @@ function loadHeaderInitials() {
 
 function templateHeaderInitialsMenu(initials) {
   return /*html*/ `
-          <span class="header-initials">${initials}</span>
+          <span id="header-initials-id" class="header-initials">${initials}</span>
     `;
 }
 
@@ -166,4 +166,20 @@ function togglelogoutContainer() {
 function toggleSection(elementID, toggleClass) {
   const element = document.getElementById(elementID);
   element.classList.toggle(toggleClass);
+  closeLogOutByClick();
+}
+
+function closeLogOutByClick() {
+  document.addEventListener("click", function (event) {
+    const target = event.target;
+    const headerInitials = document.getElementById("header-initials-id");
+    const logoutDropdown = document.getElementById("logout-id");
+    const checkAllTargets =
+      logoutDropdown.classList.contains("active") &&
+      target !== headerInitials &&
+      !headerInitials.contains(target) &&
+      target !== logoutDropdown &&
+      !logoutDropdown.contains(target);
+    if (checkAllTargets) toggleVisibility("logout-id", true, "active");
+  });
 }
