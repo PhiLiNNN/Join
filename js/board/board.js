@@ -35,6 +35,7 @@ function initBoard() {
     element3.innerHTML += generateTaskHTML(elementdone);
   }
   toggleVisibility("board-body-id", true);
+  loadHeaderInitials();
 }
 
 function startDragging(titles) {

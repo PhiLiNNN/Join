@@ -15,6 +15,7 @@ function contactsInit() {
   console.log(currentUser);
   renderAllContacts();
   toggleVisibility("contacts-body-id", true);
+  loadHeaderInitials();
 }
 
 function renderAllContacts() {

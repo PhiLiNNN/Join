@@ -15,7 +15,7 @@
     <title>Summary</title>
   </head>
 
-  <body id="summary-body-id" class="d-none" onload="includeHTML(); initSummary()">
+  <body id="summary-body-id" class="d-none" onload="includeHTML().then(() => initSummary())">
     <div w3-include-html="./assets/templates/header.html"></div>
 
     <section id="summary-section-id">

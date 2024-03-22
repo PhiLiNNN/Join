@@ -13,7 +13,7 @@
     <script src="/js/board/board.js"></script>
     <title>Board</title>
   </head>
-  <body id="board-body-id" class="d-none" onload="includeHTML(); initBoard();">
+  <body id="board-body-id" class="d-none" onload="includeHTML().then(() => initBoard())">
     <div w3-include-html="./assets/templates/header.html"></div>
     <div class="board">
       <h1>Board</h1>

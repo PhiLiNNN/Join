@@ -26,6 +26,7 @@ function initAddTask() {
   toggleReadBorderInSubtasks();
   filterAssignedToContacts();
   toggleVisibility("at-body-id", true);
+  loadHeaderInitials();
 }
 
 function filterAssignedToContacts() {

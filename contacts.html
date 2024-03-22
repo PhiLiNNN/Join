@@ -17,9 +17,10 @@
     <script defer src="./js/template.js"></script>
     <script defer src="./js/register/register.js"></script>
     <script defer src="./js/global.js"></script>
+    
   </head>
 
-  <body id="contacts-body-id" class="d-none" onload="contactsInit(); includeHTML();">
+  <body id="contacts-body-id" onload="includeHTML().then(() => contactsInit())">
     <div w3-include-html="./assets/templates/header.html"></div>
     <section id="contacts-section-id">
       <div id="contacts-wrapper-id" class="contacts-wrapper">

@@ -57,7 +57,7 @@ function generateNewUserObject() {
   const userPasswordConfirm = document.getElementById("add-confirm-pw-id").value;
   return {
     userName: userName,
-    userEMail: userEMail,
+    userEMail: userEMail.toLowerCase(),
     userPassword: userPassword,
     userPasswordConfirm: userPasswordConfirm,
     contacts: [],
@@ -121,13 +121,13 @@ function registerValidationCheck() {
     false,
   ];
   validateName(name, boolArr);
-  validateRegisterEmail(email, boolArr);
+  validateRegisterEmail(email.toLowerCase(), boolArr);
   validatePassword(password, boolArr);
   validateConfirmPassword(password, confirmPassword, boolArr);
   validateCheckBoxClicked(checkBox);
   return handlerFieldValidationRegister(boolArr);
 }
-// tEst1!
+
 function toggleSuccessesMsg() {
   toggleVisibility("success-msg-id", true);
   setTimeout(() => {
@@ -234,20 +234,21 @@ function handlerFieldValidationLogin(boolArr) {
 
 function loginValidationCheck() {
   const loginUserEmail = document.getElementById("login-user-e-mail-id").value;
+  const lowerCaseEmail = loginUserEmail.toLowerCase();
   const loginUserPassword = document.getElementById("login-user-password-id").value;
   const boolArr = [false, false, false, false, false, false, false];
-  if (loginUserEmail === "" && loginUserPassword === "")
+  if (lowerCaseEmail === "" && loginUserPassword === "")
     boolArr[0] = boolArr[4] = boolArr[5] = boolArr[6] = true;
-  else if (loginUserEmail === "" && loginUserPassword !== "") boolArr[0] = boolArr[5] = true;
-  else if (loginUserEmail !== "" && loginUserPassword === "")
-    if (!validateLoginEmail(loginUserEmail))
+  else if (lowerCaseEmail === "" && loginUserPassword !== "") boolArr[0] = boolArr[5] = true;
+  else if (lowerCaseEmail !== "" && loginUserPassword === "")
+    if (!validateLoginEmail(lowerCaseEmail))
       boolArr[1] = boolArr[4] = boolArr[5] = boolArr[6] = true;
     else boolArr[4] = boolArr[6] = true;
-  else if (loginUserEmail !== "" && loginUserPassword !== "")
-    if (!validateLoginEmail(loginUserEmail)) boolArr[1] = boolArr[5] = true;
-    else if (validateLoginEmail(loginUserEmail) && !(loginUserEmail in users))
+  else if (lowerCaseEmail !== "" && loginUserPassword !== "")
+    if (!validateLoginEmail(lowerCaseEmail)) boolArr[1] = boolArr[5] = true;
+    else if (validateLoginEmail(lowerCaseEmail) && !(lowerCaseEmail in users))
       boolArr[2] = boolArr[5] = true;
-    else if (users[loginUserEmail].userPassword !== loginUserPassword)
+    else if (users[lowerCaseEmail].userPassword !== loginUserPassword)
       boolArr[3] = boolArr[6] = true;
   handlerFieldValidationLogin(boolArr);
   return !boolArr.some(Boolean);
@@ -330,13 +331,13 @@ function getPasswordInput(whichform) {
 
 function loadCurrentUser() {
   const loginUserEmail = document.getElementById("login-user-e-mail-id").value;
-  return users[loginUserEmail];
+  return users[loginUserEmail.toLowerCase()];
 }
 
 function guestLogin() {
   const guestEmail = "guest@login.de";
   const guestPassword = "Guest!login1";
-  document.getElementById("login-user-e-mail-id").value = guestEmail;
+  document.getElementById("login-user-e-mail-id").value = guestEmail.toLowerCase();
   document.getElementById("login-user-password-id").value = guestPassword;
   login();
 }
