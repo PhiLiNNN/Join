@@ -38,7 +38,7 @@
   z-index: 901;
   border-radius: 30px;
   position: fixed;
-  top: 80px;
+  top: 96px;
   bottom: 80px;
   left: 16px;
   right: 16px;
@@ -400,7 +400,7 @@
     gap: 16px;
     bottom: 0;
     right: 0;
-    top: 102px;
+    top: 118px;
     left: 284px;
     border-radius: 10px;
     width: 352px;

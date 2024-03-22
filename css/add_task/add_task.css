@@ -26,8 +26,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .content-container {
   position: sticky;
   overflow-y: auto;
-  max-height: calc(100vh - 238px);
-  margin-top: 80px;
+  max-height: calc(100vh - 254px);
+  margin-top: 100px;
   padding: 46px 16px 0 16px;
   z-index: 100;
   transition: all 300ms ease-in-out;
@@ -347,8 +347,8 @@ li:hover .hidden-Edit_menu {
 
 @media (min-width: 761px) {
   .content-container {
-    max-height: calc(100vh - 158px);
-    margin: 80px 0 0 calc(232px);
+    max-height: calc(100vh - 178px);
+    margin: 100px 0 0 calc(232px);
   }
   .content-bottom-container {
     max-width: 1310px;
@@ -406,9 +406,9 @@ li:hover .hidden-Edit_menu {
   }
   .content-container {
     position: static;
-    margin: 200px 90px 0 calc(232px + 96px);
+    margin: 232px 90px 0 calc(232px + 96px);
     overflow-x: hidden;
-    max-height: calc(100vh - 286px);
+    max-height: calc(100vh - 318px);
     display: flex;
     gap: 32px;
     max-width: 1920px;
@@ -426,7 +426,7 @@ li:hover .hidden-Edit_menu {
   }
   .content-container h1 {
     position: absolute;
-    top: 125px;
+    top: 141px;
     font-size: 64px;
     line-height: 73.2px;
   }
@@ -536,5 +536,12 @@ li:hover .hidden-Edit_menu {
   }
   .assigned-to-box svg {
     margin-right: 2px;
+  }
+}
+
+@media (min-width: 2500px) {
+  .success-msg-popup {
+    top: calc(50%);
+    left: 1180px;
   }
 }

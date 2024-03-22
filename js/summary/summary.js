@@ -1,4 +1,13 @@
-async function updateGreeting() {
+let isUserLoggedIn;
+let currentUser;
+
+function initSummary() {
+  isUserLoggedIn = checkUserLogIn();
+  if (!isUserLoggedIn) window.location.assign("../error_page.html");
+  updateGreeting();
+}
+
+function updateGreeting() {
   const now = new Date();
   const h = now.getHours();
   const m = now.getMinutes();
@@ -28,9 +37,10 @@ async function updateGreeting() {
   }
   const waitTime = addHours * 60 * 60 * 1000 + addMinutes * 60 * 1000;
   setTimeout(updateGreeting, waitTime);
+  currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  toggleVisibility("summary-body-id", true);
+  loadHeaderInitials();
 }
-
-updateGreeting();
 
 async function requestToBackend() {
   try {

@@ -14,7 +14,7 @@
     <script defer src="./js/global.js"></script>
     <title>Add Task</title>
   </head>
-  <body onload="initAddTask(); includeHTML()">
+  <body id="at-body-id" class="d-none" onload="includeHTML().then(() => initAddTask())">
     <div w3-include-html="./assets/templates/header.html"></div>
     <section id="at-section-id" class="at-section">
       <div class="content-container">

@@ -1,38 +1,41 @@
-
 let currentDraggedElement;
+let isUserLoggedIn;
 let currentUser;
 
-
 function initBoard() {
-    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    let toDo = currentUser.tasks.board.filter((t) => t == "toDo");
-    const element0 = document.getElementById("to-do-id");
-    element0.innerHTML = "";
-    for (let index = 0; index < toDo.length; index++) {
-        const elementTodo = toDo[index];
-        element0.innerHTML += generateTaskHTML(elementTodo);
-    }
-    let inProgres = currentUser.tasks.board.filter((t) => t == "inProgres");
-    const element1 = document.getElementById("in-progres-id");
-    element1.innerHTML = "";
-    for (let index = 0; index < inProgres.length; index++) {
-        const elementInProgres = inProgres[index];
-        element1.innerHTML += generateTaskHTML(elementInProgres);
-    }
-    let awaitFeedback = currentUser.tasks.board.filter((t) => t == "awaitFeedback");
-    const element2 = document.getElementById("await-feedback-id");
-    element2.innerHTML = "";
-    for (let index = 0; index < awaitFeedback.length; index++) {
-        const elementawaitFeedback = awaitFeedback[index];
-        element2.innerHTML += generateTaskHTML(elementawaitFeedback);
-    }
-    let done = currentUser.tasks.board.filter((t) => t == "done");
-    const element3 = document.getElementById("done-id");
-    element3.innerHTML = "";
-    for (let index = 0; index < done.length; index++) {
-        const elementdone = done[index];
-        element3.innerHTML += generateTaskHTML(elementdone);
-    }
+  isUserLoggedIn = checkUserLogIn();
+  if (!isUserLoggedIn) window.location.assign("../error_page.html");
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  let toDo = currentUser.tasks.board.filter((t) => t == "toDo");
+  const element0 = document.getElementById("to-do-id");
+  element0.innerHTML = "";
+  for (let index = 0; index < toDo.length; index++) {
+    const elementTodo = toDo[index];
+    element0.innerHTML += generateTaskHTML(elementTodo);
+  }
+  let inProgres = currentUser.tasks.board.filter((t) => t == "inProgres");
+  const element1 = document.getElementById("in-progres-id");
+  element1.innerHTML = "";
+  for (let index = 0; index < inProgres.length; index++) {
+    const elementInProgres = inProgres[index];
+    element1.innerHTML += generateTaskHTML(elementInProgres);
+  }
+  let awaitFeedback = currentUser.tasks.board.filter((t) => t == "awaitFeedback");
+  const element2 = document.getElementById("await-feedback-id");
+  element2.innerHTML = "";
+  for (let index = 0; index < awaitFeedback.length; index++) {
+    const elementawaitFeedback = awaitFeedback[index];
+    element2.innerHTML += generateTaskHTML(elementawaitFeedback);
+  }
+  let done = currentUser.tasks.board.filter((t) => t == "done");
+  const element3 = document.getElementById("done-id");
+  element3.innerHTML = "";
+  for (let index = 0; index < done.length; index++) {
+    const elementdone = done[index];
+    element3.innerHTML += generateTaskHTML(elementdone);
+  }
+  toggleVisibility("board-body-id", true);
+  loadHeaderInitials();
 }
 
 function startDragging(index) {

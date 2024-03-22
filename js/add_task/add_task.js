@@ -1,4 +1,5 @@
 let currentUser;
+let isUserLoggedIn;
 let currentIndex = -1;
 let assignedTo = {
   initials: [],
@@ -13,6 +14,8 @@ let prioIndex = 1;
 let isFilterActive = false;
 
 function initAddTask() {
+  isUserLoggedIn = checkUserLogIn();
+  if (!isUserLoggedIn) window.location.assign("../error_page.html");
   currentUser = JSON.parse(localStorage.getItem("currentUser"));
   console.log(currentUser);
   renderAssignedToContacts();
@@ -22,6 +25,8 @@ function initAddTask() {
   closeCategoryMenu();
   toggleReadBorderInSubtasks();
   filterAssignedToContacts();
+  toggleVisibility("at-body-id", true);
+  loadHeaderInitials();
 }
 
 function filterAssignedToContacts() {

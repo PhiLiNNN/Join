@@ -48,6 +48,7 @@
   background-color: #29abe2;
   height: 3px;
   width: 88px;
+  border-radius: 10px;
   transition: all 300ms ease-in-out;
 }
 
@@ -82,43 +83,6 @@
   width: 100%;
   gap: 32px;
   margin: 32px 0 40px 0;
-}
-
-.tooltip {
-  position: relative;
-  display: inline-block;
-  font-weight: 700;
-  width: 20px;
-  height: 20px;
-  border: 2px solid var(--mockup-color);
-  border-radius: 50%;
-  text-align: center;
-  margin-right: 4px;
-}
-
-.tooltip .tooltiptext {
-  visibility: hidden;
-  width: 310px;
-  background-color: var(--mockup-color);
-  color: #fff;
-  text-align: left;
-  border-radius: 20px 20px 0px 20px;
-  padding: 12px;
-  font-weight: 100;
-  position: absolute;
-  z-index: 1;
-  bottom: 120%;
-  right: 50%;
-  margin-left: -60px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.tooltiptext ul {
-  list-style: circle inside;
-}
-
-.tooltip:hover .tooltiptext {
-  visibility: visible;
 }
 
 .login-email {

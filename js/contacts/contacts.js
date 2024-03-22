@@ -1,4 +1,5 @@
 let currentUser;
+let isUserLoggedIn;
 let currentActive = -1;
 let currentContact = -1;
 let editContactOpen = false;
@@ -8,9 +9,13 @@ let nameCheck;
 let emailCheck;
 
 function contactsInit() {
+  isUserLoggedIn = checkUserLogIn();
+  if (!isUserLoggedIn) window.location.assign("../error_page.html");
   currentUser = JSON.parse(localStorage.getItem("currentUser"));
   console.log(currentUser);
   renderAllContacts();
+  toggleVisibility("contacts-body-id", true);
+  loadHeaderInitials();
 }
 
 function renderAllContacts() {

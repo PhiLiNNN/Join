@@ -28,6 +28,23 @@ async function getItem(key) {
     .then((res) => res.data.value);
 }
 
+function checkUserLogIn() {
+  if (localStorage.getItem("currentUser")) return true;
+  else return false;
+}
+
+function loadHeaderInitials() {
+  const element = document.getElementById("header-initials-id");
+  const initials = getFirstLettersOfName(currentUser.userName);
+  element.innerHTML = templateHeaderInitialsMenu(initials);
+}
+
+function templateHeaderInitialsMenu(initials) {
+  return /*html*/ `
+          <span class="header-initials">${initials}</span>
+    `;
+}
+
 async function loadUsersFromBackend(key) {
   const result = await getItem(key);
   return JSON.parse(result) || [];
@@ -55,10 +72,11 @@ function validateName(name, boolArr) {
 }
 
 function validateRegisterEmail(email, boolArr) {
+  const containsNumberOrSpecialChar = /[0-9!#$%^&*(),?":{}|<>]/.test(email);
   if (email.trim() === "") boolArr[3] = boolArr[11] = true;
-  else if (!email.includes("@") || email.indexOf("@") === 0 || email.split("@").pop() === "")
-    boolArr[4] = boolArr[11] = true;
+  else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) boolArr[4] = boolArr[11] = true;
   else if (email in users) boolArr[5] = boolArr[11] = true;
+  else if (containsNumberOrSpecialChar) boolArr[4] = boolArr[11] = true;
 }
 
 function validatePassword(password, boolArr) {

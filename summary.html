@@ -12,11 +12,10 @@
     <script defer src="./js/summary/summary.js"></script>
     <script defer src="./js/register/register.js"></script>
     <script defer src="./js/template.js"></script>
-
     <title>Summary</title>
   </head>
 
-  <body onload="includeHTML(); updateGreeting()">
+  <body id="summary-body-id" class="d-none" onload="includeHTML().then(() => initSummary())">
     <div w3-include-html="./assets/templates/header.html"></div>
 
     <section id="summary-section-id">

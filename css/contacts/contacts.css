@@ -8,7 +8,7 @@
 
 .contacts-wrapper {
   position: absolute;
-  top: 80px;
+  top: 96px;
   bottom: 80px;
   display: flex;
   width: 100%;
@@ -120,7 +120,7 @@
   justify-content: start;
   align-items: center;
   gap: 30px;
-  margin: 123px 0 0 55px;
+  margin: 108px 0 0 55px;
 }
 
 .show-contacts-header h1 {
