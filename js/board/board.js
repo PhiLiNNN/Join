@@ -2,7 +2,8 @@
 let currentDraggedElement;
 let currentUser;
 
-function initBoard(tasks) {
+
+function initBoard() {
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
     let toDo = currentUser.tasks.board.filter((t) => t == "toDo");
     const element0 = document.getElementById("to-do-id");
@@ -34,16 +35,24 @@ function initBoard(tasks) {
     }
 }
 
-function startDragging(titles) {
-  currentDraggedElement = titles;
+function startDragging(index) {
+  currentDraggedElement = index;
 }
 
-function generateTaskHTML(titles, descriptions, assignedTo, dates, prios, categories, subtasks) {
+function generateTaskHTML(
+    titles, 
+    descriptions, 
+    assignedTo, 
+    dates, 
+    prios, 
+    categories, 
+    subtasks) {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   return /*html*/ `
     <div draggable="true" ondragstart="startDragging('${titles}')" class="board-card">
     <div class="container-1">
 
-            <span class="categorie-block">${categories}</span>
+            <span class="categorie-block">${currentUser.tasks.categories}</span>
 
             <button class="x-button-board"></button>
 
@@ -51,11 +60,11 @@ function generateTaskHTML(titles, descriptions, assignedTo, dates, prios, catego
         <div class="container-2">
 
             <div class="title-block">
-                <span>${titles}</span>
+                <span>${currentUser.tasks.titles}</span>
             </div>
 
             <div class="description-block">
-                <span>${descriptions}</span>
+                <span>${currentUser.tasks.descriptions}</span>
             </div>
 
             <div class="date-prio-block">
@@ -64,8 +73,8 @@ function generateTaskHTML(titles, descriptions, assignedTo, dates, prios, catego
                     <div>Priority:</div>
                 </div>
                 <div class="changeing-block">
-                    <div>10/05/2023 ${dates}</div>
-                    <div>Medium <img src="./assets/img/board_medium.png" alt="Medium">${prios}</div>
+                    <div>10/05/2023 ${currentUser.tasks.dates}</div>
+                    <div>Medium <img src="./assets/img/board_medium.png" alt="Medium">${currentUser.tasks.prios}</div>
                 </div>
             </div>
 
@@ -75,8 +84,8 @@ function generateTaskHTML(titles, descriptions, assignedTo, dates, prios, catego
             <div class="assignedTo">
                 <div class="static-block">Assigned To:</div>
                 <div class="assignedTo-box">
-                    <div class="assignedTo-pic">${assignedTo}</div>
-                    <div class="assignedTo-text">${assignedTo}</div>
+                    <div class="assignedTo-pic">${currentUser.tasks.assignedTo}</div>
+                    <div class="assignedTo-text">${currentUser.tasks.assignedTo}</div>
                 </div>
             </div>
         </div>
@@ -95,7 +104,7 @@ function generateTaskHTML(titles, descriptions, assignedTo, dates, prios, catego
             <div class="subtask">
                 <div class="static-block" >Subtasks</div>
                 <div class="subtask-box">
-                    <input type="checkbox"><span>${subtasks}</span>
+                    <input type="checkbox"><span>${currentUser.tasks.subtasks}</span>
                 </div>
             </div>
         </div>
