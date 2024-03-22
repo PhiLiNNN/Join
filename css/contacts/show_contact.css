@@ -157,6 +157,14 @@
   .open-contacts-arrow:active svg path {
     fill: white;
   }
+  .open-contacts-circle {
+    width: 120px;
+    height: 120px;
+    font-size: 47px;
+  }
+  .contact-name span:first-child {
+    font-size: 47px;
+  }
 }
 @media (max-width: 761px) {
   .open-contacts-arrow:active {
@@ -202,15 +210,6 @@
   .desktop-menu-container {
     display: flex;
     align-items: center;
-  }
-  .open-contacts-circle {
-    width: 120px;
-    height: 120px;
-    font-size: 47px;
-    font-weight: 500;
-  }
-  .contact-name span:first-child {
-    font-size: 47px;
   }
 }
 
