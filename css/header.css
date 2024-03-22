@@ -5,6 +5,7 @@
   right: 0;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
   background-color: var(--white-color);
+  z-index: 990;
 }
 
 .header-gap {
@@ -20,6 +21,7 @@
 }
 
 .header-profil {
+  position: relative;
   width: 56px;
   height: 56px;
   border-style: solid;
@@ -34,4 +36,59 @@
   font-size: 22px;
   color: var(--mockup-highlight);
   font-weight: 700;
+}
+
+.logout-dropdown {
+  position: absolute;
+  background: var(--mockup-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  top: 77px;
+  right: 44px;
+  border-radius: 20px 0px 20px 20px;
+  height: 158px;
+  gap: 16px;
+  width: 150px;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 300ms ease-in-out;
+}
+
+.logout-dropdown.active {
+  opacity: 1;
+  max-height: 158px;
+}
+
+.logout-dropdown a {
+  padding-block: 8px;
+  margin-left: 5px;
+  cursor: pointer;
+  width: 140px;
+  text-align: center;
+  color: #cdcdcd;
+  list-style-type: none;
+}
+
+@media (min-width: 761px) {
+  .logout-dropdown {
+    top: 96px;
+    right: 16px;
+  }
+  .logout-dropdown a:hover {
+    border-radius: 10px;
+    background: var(--focus-color-btn);
+  }
+  .logout-dropdown a:active {
+    border-radius: 10px;
+    background: var(--hyper-link-color);
+  }
+}
+@media (max-width: 761px) {
+  .logout-dropdown a:active {
+    border-radius: 10px;
+    background: var(--hyper-link-color);
+  }
 }

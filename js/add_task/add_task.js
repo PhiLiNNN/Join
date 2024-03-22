@@ -123,11 +123,6 @@ function openAssignedbyArrow() {
   document.getElementById("assignedto-input-id").value = "";
 }
 
-function toggleSection(elementID, toggleClass) {
-  const element = document.getElementById(elementID);
-  element.classList.toggle(toggleClass);
-}
-
 function renderAddedContacts() {
   let addedContactsElement = document.getElementById("added-contacts-id");
   addedContactsElement.innerHTML = "";

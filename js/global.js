@@ -158,3 +158,12 @@ function isColorLight(hexcode) {
     return a < 0.5;
   } else return true;
 }
+
+function togglelogoutContainer() {
+  toggleSection("logout-id", "active");
+}
+
+function toggleSection(elementID, toggleClass) {
+  const element = document.getElementById(elementID);
+  element.classList.toggle(toggleClass);
+}
