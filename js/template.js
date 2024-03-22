@@ -79,16 +79,16 @@ function templateAssignedToContainerHTML(
   iconColor,
   initials,
   textColor,
-  isSelected
+  isSelected,
+  email
 ) {
   const setSelectedContact = isSelected ? "selected-contact-at" : "";
   return /*html*/ `
     <div id="assigned-to-box-${index}" class="assigned-to-box ${setSelectedContact}"  onclick="selectedAssignedToUser(event, ${index})">
       <div class="assigned-to-user">
         <div class="circle-style" style="background-color: ${iconColor}; color: ${textColor};">
-          <span>
-            ${initials}
-          </span>
+          <span> ${initials}</span>
+          <span id="at-user-mail-id${index}" style="display: none;">${email}</span>
         </div>
         <span id="contact-id${index}" >${contact}</span>
       </div>

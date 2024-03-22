@@ -6,6 +6,7 @@ let assignedTo = {
   colorCodes: [],
   textColor: [],
   userNames: [],
+  userMail: [],
 };
 let subtaskList = [];
 let userIndex;
@@ -59,7 +60,8 @@ function iterateOverContacts(contacts) {
       contact.colorCode,
       initials,
       textColor,
-      isSelected
+      isSelected,
+      contact.email
     );
   });
 }
@@ -161,35 +163,31 @@ function selectedAssignedToUser(event, index) {
 function getUserInfo(event) {
   const circleStyleElement = event.currentTarget.querySelector(".circle-style");
   const userName = document.getElementById(`contact-id${userIndex}`).innerHTML;
+  const userMail = document.getElementById(`at-user-mail-id${userIndex}`).innerHTML;
   const assignedContact = circleStyleElement.innerText;
   const backgroundColorValue = window.getComputedStyle(circleStyleElement).backgroundColor;
   const textColor = window.getComputedStyle(circleStyleElement).color;
-  return {assignedContact, backgroundColorValue, textColor, userName};
+  return {assignedContact, backgroundColorValue, textColor, userName, userMail};
 }
 
 function pushSelectedUser(event) {
-  const {assignedContact, backgroundColorValue, textColor, userName} = getUserInfo(event);
-  if (
-    assignedTo.initials.includes(assignedContact) &&
-    assignedTo.colorCodes.includes(backgroundColorValue) &&
-    assignedTo.textColor.includes(textColor) &&
-    assignedTo.userName.includes(userName)
-  )
-    return;
+  const {assignedContact, backgroundColorValue, textColor, userName, userMail} = getUserInfo(event);
+  if (assignedTo.userMail.includes(userMail)) return;
   assignedTo.initials.push(assignedContact);
   assignedTo.colorCodes.push(backgroundColorValue);
   assignedTo.textColor.push(textColor);
   assignedTo.userNames.push(userName);
+  assignedTo.userMail.push(userMail);
 }
 
 function deleteSelectedUser(event) {
-  const circleStyleElement = event.currentTarget.querySelector(".circle-style");
-  const backgroundColorValue = window.getComputedStyle(circleStyleElement).backgroundColor;
-  const removeColorCode = assignedTo.colorCodes.indexOf(backgroundColorValue);
-  assignedTo.initials.splice(removeColorCode, 1);
-  assignedTo.colorCodes.splice(removeColorCode, 1);
-  assignedTo.textColor.splice(removeColorCode, 1);
-  assignedTo.userNames.splice(removeColorCode, 1);
+  const userMail = document.getElementById(`at-user-mail-id${userIndex}`).innerHTML;
+  const index = assignedTo.userMail.indexOf(userMail);
+  assignedTo.initials.splice(index, 1);
+  assignedTo.colorCodes.splice(index, 1);
+  assignedTo.textColor.splice(index, 1);
+  assignedTo.userNames.splice(index, 1);
+  assignedTo.userMail.splice(index, 1);
 }
 
 function togglePrioImg(clickedId) {
