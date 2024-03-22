@@ -35,6 +35,15 @@ function templateAddContactHTML() {
                     <div class="card-inputs">
                         <div id="ac-name-border-id" class="input_global input_ac cursor">
                             <input id="ac-name-input-id"  type="text" placeholder="Name" autocomplete="on">
+                            <span class="tooltip">i
+                                <div class="tooltiptext">Valid inputs:
+                                <ul>
+                                    <li>First name only</li>
+                                    <li>First name last name (with space)</li>
+                                    <li>Double name (e.g., Lisa-Marie)</li>
+                                </ul>
+                                </div>
+                            </span>
                             <img src="./assets/img/person.png" alt="">
                             <span id="ac-empty-name-id" class="ac-err-msg d-none">This field is required!</span>
                             <span id="ac-invalid-name-id" class="ac-err-msg d-none">Name must be at least 2 letters.</span>
@@ -131,6 +140,15 @@ function templateEditContactHTML() {
                     <div class="card-inputs">
                         <div id="ec-name-border-id" class="input_global input_ac cursor">
                             <input id="ec-name-input-id"  type="text" placeholder="Name" autocomplete="on" value="${savedName}">
+                            <span class="tooltip">i
+                                <div class="tooltiptext">Valid inputs:
+                                <ul>
+                                    <li>First name only</li>
+                                    <li>First name last name (with space)</li>
+                                    <li>Double name (e.g., Lisa-Marie)</li>
+                                </ul>
+                                </div>
+                            </span>
                             <img src="./assets/img/person.png" alt="">
                             <span id="ec-empty-name-id" class="ac-err-msg d-none">This field is required!</span>
                             <span id="ec-invalid-name-id" class="ac-err-msg d-none">Name must be at least 2 letters.</span>

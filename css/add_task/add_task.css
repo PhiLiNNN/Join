@@ -538,3 +538,10 @@ li:hover .hidden-Edit_menu {
     margin-right: 2px;
   }
 }
+
+@media (min-width: 2500px) {
+  .success-msg-popup {
+    top: calc(50%);
+    left: 1180px;
+  }
+}
