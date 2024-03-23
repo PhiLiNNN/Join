@@ -98,7 +98,7 @@
   font-size: 1rem;
 }
 
-@media (max-width: 761px) {
+@media (max-width: 760px) {
   .footer {
     height: 80px;
     width: auto;
