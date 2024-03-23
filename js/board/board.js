@@ -3,40 +3,42 @@ let isUserLoggedIn;
 let currentUser;
 
 function initBoard() {
-  isUserLoggedIn = checkUserLogIn();
-  if (!isUserLoggedIn) window.location.assign("../error_page.html");
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  let toDo = currentUser.tasks.board.filter((t) => t == "toDo");
-  const element0 = document.getElementById("to-do-id");
-  element0.innerHTML = "";
-  for (let index = 0; index < toDo.length; index++) {
-    const elementTodo = toDo[index];
-    element0.innerHTML += generateTaskHTML(elementTodo);
+    const isUserLoggedIn = checkUserLogIn();
+    if (!isUserLoggedIn) {
+      window.location.assign("../error_page.html");
+      return; 
+    }
+  
+   
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if (!currentUser || !currentUser.tasks || !currentUser.tasks.board) {
+      console.error("Fehler beim Abrufen der Benutzerdaten.");
+      return; 
+    }
+  
+
+    const tasksByStatus = {
+      "toDo": document.getElementById("to-do-id"),
+      "inProgress": document.getElementById("in-progress-id"),
+      "awaitFeedback": document.getElementById("await-feedback-id"),
+      "done": document.getElementById("done-id")
+    };
+  
+    for (const status in tasksByStatus) {
+      if (Object.hasOwnProperty.call(tasksByStatus, status)) {
+        const tasks = currentUser.tasks.board.filter(task => task === status);
+        const element = tasksByStatus[status];
+        element.innerHTML = "";
+        tasks.forEach(task => {
+          element.innerHTML += generateTaskHTML(task);
+        });
+      }
+    }
+  
+    toggleVisibility("board-body-id", true);
+  
+    loadHeaderInitials();
   }
-  let inProgres = currentUser.tasks.board.filter((t) => t == "inProgres");
-  const element1 = document.getElementById("in-progres-id");
-  element1.innerHTML = "";
-  for (let index = 0; index < inProgres.length; index++) {
-    const elementInProgres = inProgres[index];
-    element1.innerHTML += generateTaskHTML(elementInProgres);
-  }
-  let awaitFeedback = currentUser.tasks.board.filter((t) => t == "awaitFeedback");
-  const element2 = document.getElementById("await-feedback-id");
-  element2.innerHTML = "";
-  for (let index = 0; index < awaitFeedback.length; index++) {
-    const elementawaitFeedback = awaitFeedback[index];
-    element2.innerHTML += generateTaskHTML(elementawaitFeedback);
-  }
-  let done = currentUser.tasks.board.filter((t) => t == "done");
-  const element3 = document.getElementById("done-id");
-  element3.innerHTML = "";
-  for (let index = 0; index < done.length; index++) {
-    const elementdone = done[index];
-    element3.innerHTML += generateTaskHTML(elementdone);
-  }
-  toggleVisibility("board-body-id", true);
-  loadHeaderInitials();
-}
 
 function startDragging(index) {
   currentDraggedElement = index;
