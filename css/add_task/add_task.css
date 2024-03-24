@@ -316,6 +316,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   outline: none;
   word-wrap: break-word;
   transition: all 300ms ease-in-out;
+  margin-right: 8px;
 }
 
 .hide-clear-btn {
@@ -332,6 +333,21 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 li:hover .hidden-Edit_menu {
   display: flex;
+}
+
+.err-msg-flex {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.rotate-err-arrow {
+  transform: rotate(90deg);
+  transition: all 300ms ease-in-out;
+}
+
+.rotate-err-arrow path {
+  fill: var(--err-msg-color);
 }
 
 .d-none {
@@ -450,27 +466,28 @@ li:hover .hidden-Edit_menu {
     max-width: 40vw;
   }
 }
+@media (max-width: 824px) {
+  .required-msg {
+    font-size: 16px;
+    transition: all 300ms ease-in-out;
+  }
+  .rotate-err-arrow {
+    width: 14px;
+    height: 16px;
+  }
+}
 
 @media (max-width: 761px) {
   .editable-span {
     max-width: 50vw;
   }
-  .assigned-to-box:active {
-    background: var(--focus-color-btn);
-    color: white;
-  }
   .assigned-to-box:active svg rect {
     stroke: white;
   }
+  .assigned-to-box:active,
+  .category-dropdown ul li:active,
+  .category-dropdown ul li.selected-contact-at:active,
   .assigned-to-box.selected-contact-at:active {
-    background: var(--focus-color-btn);
-    color: white;
-  }
-  .category-dropdown ul li:active {
-    background: var(--focus-color-btn);
-    color: white;
-  }
-  .category-dropdown ul li.selected-contact-at:active {
     background: var(--focus-color-btn);
     color: white;
   }
@@ -479,6 +496,13 @@ li:hover .hidden-Edit_menu {
   }
   .subtask-list ul li:active {
     background: var(--placeholder-color);
+  }
+  .required-msg {
+    font-size: 18px;
+  }
+  .rotate-err-arrow {
+    width: 14px;
+    height: 14px;
   }
 }
 
@@ -507,6 +531,9 @@ li:hover .hidden-Edit_menu {
   .circle-style span {
     font-size: 12px;
   }
+  .required-msg {
+    font-size: 14px;
+  }
   .assigned-to-box svg {
     margin-right: 12px;
   }
@@ -517,6 +544,10 @@ li:hover .hidden-Edit_menu {
   .filled-btn {
     width: 150px;
     height: 40px;
+  }
+  .rotate-err-arrow {
+    width: 12px;
+    height: 12px;
   }
 }
 
@@ -536,6 +567,9 @@ li:hover .hidden-Edit_menu {
   }
   .assigned-to-box svg {
     margin-right: 2px;
+  }
+  .required-msg {
+    font-size: 12px;
   }
 }
 

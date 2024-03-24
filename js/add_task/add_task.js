@@ -332,8 +332,10 @@ function createTask() {
   validateInput(categoryInput, atBoolArr, 2, 5);
   if (handlerAddTaskValidation(atBoolArr)) {
     handlerAddTaskValidation(atBoolArr);
+    toggleVisibility("rotate-err-arrow-id", true);
     return;
   }
+  toggleVisibility("rotate-err-arrow-id", false);
   updateTasks(titleInput, textareaInput, dateInput, categoryInput);
   clearAllSelectedUsers();
   save();
@@ -390,6 +392,7 @@ function clearAll() {
   renderAddedContacts();
   renderSubtasks();
   togglePrioImg("medium-default-id");
+  toggleVisibility("rotate-err-arrow-id", false);
   localStorage.setItem("currentUser", JSON.stringify(currentUser));
 }
 function clearAllInputs() {
