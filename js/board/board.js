@@ -10,6 +10,7 @@ function initBoard() {
   }
 
   currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  console.log("currentUser :>> ", currentUser);
   if (!currentUser || !currentUser.tasks || !currentUser.tasks.board) {
     console.error("Fehler beim Abrufen der Benutzerdaten.");
     return;
@@ -32,7 +33,7 @@ function initBoard() {
       });
     }
   }
-  console.log("currentUser :>> ", currentUser);
+
   toggleVisibility("board-body-id", true);
 
   loadHeaderInitials();
@@ -43,7 +44,6 @@ function startDragging(index) {
 }
 
 function generateTaskHTML(titles, descriptions, assignedTo, dates, prios, categories, subtasks) {
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   return /*html*/ `
     <div draggable="true" ondragstart="startDragging('${titles}')" class="board-card">
     <div class="container-1">
