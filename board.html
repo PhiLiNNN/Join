@@ -23,7 +23,7 @@
         </button>
       </div>
       <div class="find-task">
-        <input type="text" placeholder="Find Task" id="search" onchange="" />
+        <input type="text" id="search" name="search" placeholder="Find Task" />
         <div class="board-separator"></div>
         <button></button>
       </div>
@@ -39,8 +39,7 @@
           <div
             id="to-do-id"
             ondrop="moveTo('toDo')"
-            overgleave="removeHighlight('toDo')"
-            ondragover="allowDrop(event); highlight('toDo')"></div>
+            ondragover="allowDrop(event)"></div>
         </div>
       </div>
       <div>
@@ -55,8 +54,7 @@
           <div
             id="in-progress-id"
             ondrop="moveTo('inProgress')"
-            overgleave="removeHighlight('inProgress')"
-            ondragover="allowDrop(event); highlight('inProgress')"></div>
+            ondragover="allowDrop(event)"></div>
         </div>
       </div>
       <div>
@@ -71,8 +69,7 @@
           <div
             id="await-feedback-id"
             ondrop="moveTo('awaitFeedback')"
-            overgleave="removeHighlight('awaitFeedback')"
-            ondragover="allowDrop(event); highlight('awaitFeedback')"></div>
+            ondragover="allowDrop(event)"></div>
         </div>
       </div>
       <div>
@@ -87,8 +84,7 @@
           <div
             id="done-id"
             ondrop="moveTo('done')"
-            overgleave="removeHighlight('done')"
-            ondragover="allowDrop(event); highlight('done')"></div>
+            ondragover="allowDrop(event)"></div>
         </div>
       </div>
     </div>
