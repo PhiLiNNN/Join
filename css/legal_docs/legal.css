@@ -1,22 +1,132 @@
-.legal-style,
-.policy-style {
-    font-size: 16px;
-    display: flex;
-    justify-content: center;
+.legal-notice-content * {
+  font-size: 20px;
+  transition: all 300ms ease-in-out;
+}
+
+.legal-notice-content p {
+  text-wrap: wrap;
 }
 
 .legal-style span,
-.policy-style span {
-    color: #29ABE2;
-} 
+.policy-style span,
+.legal-info a,
+.legal-indemnity a {
+  color: #29abe2;
+}
+.legal-style,
+.policy-style {
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+}
 
-.legal-style p,
-.policy-style p {
-    max-width: 1920px;
-} 
+.legal-notice-content {
+  margin: 96px 0px 0 16px;
+  padding-block: 48px;
+  padding-right: 16px;
+  overflow-y: auto;
+  max-height: calc(100vh - 176px);
+}
+.legal-header {
+  position: relative;
+}
 
-.daten-arrow {
-    height: 17.94px;
-    display: flex;
+.legal-header h1 {
+  font-size: 54px;
+  font-weight: 700;
+  margin-bottom: 32px;
+  transition: all 300ms ease-in-out;
+}
 
+.legal-imprint h2 {
+  font-size: 34px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  transition: all 300ms ease-in-out;
+}
+.legal-imprint ul li {
+  list-style-position: inside;
+  list-style-type: disc;
+}
+
+.legal-imprint,
+.legal-info,
+.legal-acceptance,
+.legal-scope,
+.legal-rights,
+.legal-use-info,
+.legal-disclaimer,
+.legal-indemnity {
+  margin-bottom: 24px;
+}
+.legal-info h3,
+.legal-acceptance h3,
+.legal-scope h3,
+.legal-rights h3,
+.legal-use-info h3,
+.legal-disclaimer h3,
+.legal-indemnity h3 {
+  font-size: 22px;
+  font-weight: 700;
+  transition: all 300ms ease-in-out;
+}
+
+.legal-sub-scope {
+  margin-top: 16px;
+}
+
+.legal-back-arrow {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  top: 10px;
+  right: 16px;
+  border-radius: 50%;
+  padding: 4px;
+  transition: all 300ms ease-in-out;
+}
+
+@media (min-width: 761px) {
+  .legal-back-arrow:hover {
+    background: var(--mockup-color);
+  }
+  .legal-back-arrow:active {
+    background: var(--focus-color-btn);
+  }
+  .legal-back-arrow:active svg path {
+    fill: white;
+  }
+}
+
+@media (max-width: 761px) {
+  .legal-back-arrow:active {
+    background: var(--placeholder-color);
+  }
+}
+
+@media (max-width: 466px) {
+  .legal-notice-content * {
+    font-size: 14px;
+  }
+  .legal-header h1 {
+    font-size: 40px;
+  }
+  .legal-imprint h2 {
+    font-size: 20px;
+  }
+  .legal-info h3,
+  .legal-acceptance h3,
+  .legal-scope h3,
+  .legal-rights h3,
+  .legal-use-info h3,
+  .legal-disclaimer h3,
+  .legal-indemnity h3 {
+    font-size: 16px;
+    margin-bottom: 6px;
+  }
+  .legal-back-arrow {
+    right: -16px;
+  }
 }

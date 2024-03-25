@@ -3,92 +3,144 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Legal Notice</title>
+    <link rel="stylesheet" href="./css/global.css" />
+    <link rel="stylesheet" href="./css/footer.css" />
+    <link rel="stylesheet" href="./css/header.css" />
     <link rel="stylesheet" href="./css/legal_docs/legal.css" />
+    <script defer src="./js/includeHTML.js"></script>
+    <script defer src="./js/legal_docs/legal_docs.js"></script>
+    <script defer src="./js/global.js"></script>
+    <title>Legal Notice</title>
   </head>
-  <body>
+  <body onload="policyInit();">
+    <div w3-include-html="./assets/templates/header.html"></div>
     <section class="legal-style">
-      <div>
-        <h1>Legal Notice</h1>
+      <div class="legal-notice-content">
+        <div>
+          <div class="legal-header">
+            <div class="legal-back-arrow">
+              <svg
+                width="25"
+                height="24"
+                viewBox="0 0 25 23"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M6.00972 9.88554H23.1871C24.0362 9.88554 24.7246 10.5739 24.7246 11.4231C24.7246 12.2722 24.0362 12.9606 23.1871 12.9606H6.00972L13.17 20.1209C13.7704 20.7213 13.7704 21.6946 13.17 22.295C12.5697 22.8954 11.5963 22.8954 10.996 22.295L1.53824 12.8373C0.757188 12.0562 0.757188 10.7899 1.53824 10.0089L10.996 0.55115C11.5963 -0.0492049 12.5697 -0.0492048 13.17 0.55115C13.7704 1.1515 13.7704 2.12487 13.17 2.72523L6.00972 9.88554Z"
+                  fill="#29ABE2" />
+              </svg>
+            </div>
+            <h1>Legal Notice</h1>
+          </div>
 
-        <h2>Imprint</h2>
-        <ul>
-          <li>Philipp Wendschuch, Martin Hoffmann, Silas Voss</li>
-          <li>Musterstraße.5</li>
-          <li>22222 Musterstadt</li>
-        </ul>
+          <div class="legal-imprint">
+            <h2>Imprint</h2>
+            <ul>
+              <li>Philipp Wendschuch, Silas Voss</li>
+              <li>Friedrich-Bosse-Straße 49</li>
+              <li>04159 Leipzig</li>
+            </ul>
+          </div>
 
-        <h3>Exploring the Board</h3>
-        <a href="mailto:muster@mail.com">muster@mail.com</a>
+          <div class="legal-info">
+            <h3>Exploring the Board</h3>
+            <a href="mailto:ph.wendschuch@web.de">ph.wendschuch@web.de</a>
+          </div>
 
-        <h3>Acceptance of terms</h3>
-        <p>
-          By accessing and using
-          <span>Join</span>
-          (Product), you acknowledge and agree to the following terms and conditions, and any policies, guidelines, or amendments thereto that may be presented to you from time to time. We, the listed
-          students, may update or change the terms and conditions from time to time without notice.
-        </p>
-        <h3>Scope and ownership of the product</h3>
-        <p>
-          <span>Join</span>
-          has been developed as part of a student group project in a web development bootcamp at the
-          <span>Developer Akademie GmbH</span>
-          . It has an educational purpose and is not intended for extensive personal & business usage. As such, we cannot guarantee consistent availability, reliability, accuracy, or any other aspect
-          of quality regarding this Product.
-          <br />
-          <br />
-          The design of
-          <span>Join</span>
-          is owned by the
-          <span>Developer Akademie GmbH</span>
-          . Unauthorized use, reproduction, modification, distribution, or replication of the design is strictly prohibited.
-        </p>
-        <h4>Proprietary rights</h4>
-        <p>
-          Aside from the design owned by
-          <span>Developer Akademie GmbH</span>
-          , we, the listed students, retain all proprietary rights in
-          <span>Join</span>
-          , including any associated copyrighted material, trademarks, and other proprietary information.
-        </p>
-        <h4>Use of the product</h4>
-        <p>
-          <span>Join</span>
-          is intended to be used for lawful purposes only, in accordance with all applicable laws and regulations. Any use of
-          <span>Join</span>
-          for illegal activities, or to harass, harm, threaten, or intimidate another person, is strictly prohibited. You are solely responsible for your interactions with other users of
-          <span>Join</span>
-          .
-        </p>
-        <h4>Disclaimer of warranties and limitation of liability</h4>
-        <p>
-          <span>Join</span>
-          is provided "as is" without warranty of any kind, whether express or implied, including but not limited to the implied warranties of merchantability, fitness for a particular purpose, and
-          non-infringement. In no event will we, the listed students, or the
-          <span>Developer Akademie</span>
-          , be liable for any direct, indirect, incidental, special, consequential or exemplary damages, including but not limited to, damages for loss of profits, goodwill, use, data, or other
-          intangible losses, even if we have been advised of the possibility of such damages, arising out of or in connection with the use or performance of
-          <span>Join</span>
-          .
-        </p>
-        <h4>Indemnity</h4>
-        <p>
-          You agree to indemnify, defend and hold harmless us, the listed students, the
-          <span>Developer Akademie</span>
-          , and our affiliates, partners, officers, directors, agents, and employees, from and against any claim, demand, loss, damage, cost, or liability (including reasonable legal fees) arising out
-          of or relating to your use of
-          <span>Join</span>
-          and/or your breach of this Legal Notice.
-          <br />
-          <br />
-          For any questions or notices, please contact us at info@developer-akademie.de.
-          <br />
-          <br />
-          Date: February 20, 2024
-        </p>
+          <div class="legal-acceptance">
+            <h3>Acceptance of terms</h3>
+            <p>
+              By accessing and using
+              <span>Join</span>
+              (Product), you acknowledge and agree to the following terms and conditions, and any
+              policies, guidelines, or amendments thereto that may be presented to you from time to
+              time. We, the listed students, may update or change the terms and conditions from time
+              to time without notice.
+            </p>
+          </div>
+          <div class="legal-scope">
+            <h3>Scope and ownership of the product</h3>
+            <p>
+              <span>Join</span>
+              has been developed as part of a student group project in a web development bootcamp at
+              the
+              <span>Developer Akademie GmbH</span>. It has an educational purpose and is not
+              intended for extensive personal & business usage. As such, we cannot guarantee
+              consistent availability, reliability, accuracy, or any other aspect of quality
+              regarding this Product.
+            </p>
+            <div class="legal-sub-scope">
+              <p>
+                The design of
+                <span>Join</span>
+                is owned by the <span>Developer Akademie GmbH</span>. Unauthorized use,
+                reproduction, modification, distribution, or replication of the design is strictly
+                prohibited.
+              </p>
+            </div>
+          </div>
+          <div class="legal-rights">
+            <h3>Proprietary rights</h3>
+            <p>
+              Aside from the design owned by
+              <span>Developer Akademie GmbH</span>, we, the listed students, retain all proprietary
+              rights in <span>Join</span>, including any associated copyrighted material,
+              trademarks, and other proprietary information.
+            </p>
+          </div>
+
+          <div class="legal-use-info">
+            <h3>Use of the product</h3>
+            <p>
+              <span>Join</span>
+              is intended to be used for lawful purposes only, in accordance with all applicable
+              laws and regulations. Any use of
+              <span>Join</span>
+              for illegal activities, or to harass, harm, threaten, or intimidate another person, is
+              strictly prohibited. You are solely responsible for your interactions with other users
+              of
+              <span>Join</span>.
+            </p>
+          </div>
+          <div class="legal-disclaimer">
+            <h3>Disclaimer of warranties and limitation of liability</h3>
+            <p>
+              <span>Join</span>
+              is provided "as is" without warranty of any kind, whether express or implied,
+              including but not limited to the implied warranties of merchantability, fitness for a
+              particular purpose, and non-infringement. In no event will we, the listed students, or
+              the
+              <span>Developer Akademie</span>
+              , be liable for any direct, indirect, incidental, special, consequential or exemplary
+              damages, including but not limited to, damages for loss of profits, goodwill, use,
+              data, or other intangible losses, even if we have been advised of the possibility of
+              such damages, arising out of or in connection with the use or performance of
+              <span>Join</span>
+              .
+            </p>
+          </div>
+          <div class="legal-indemnity">
+            <h3>Indemnity</h3>
+            <p>
+              You agree to indemnify, defend and hold harmless us, the listed students, the
+              <span>Developer Akademie</span>
+              , and our affiliates, partners, officers, directors, agents, and employees, from and
+              against any claim, demand, loss, damage, cost, or liability (including reasonable
+              legal fees) arising out of or relating to your use of
+              <span>Join</span>
+              and/or your breach of this Legal Notice.
+              <br />
+              <br />
+              For any questions or notices, please contact us at
+              <a href="mailto:info@developer-akademie.de">info@developer-akademie.de</a>.
+              <br />
+              <br />
+              Date: February 20, 2024
+            </p>
+          </div>
+        </div>
       </div>
-
-      <img onclick="" class="daten-arrow" src="./assets/img/arrow_left_line.png" alt="back-arrow-btn" />
     </section>
+    <div w3-include-html="./assets/templates/footer.html"></div>
   </body>
 </html>
