@@ -3,55 +3,46 @@ let isUserLoggedIn;
 let currentUser;
 
 function initBoard() {
-    const isUserLoggedIn = checkUserLogIn();
-    if (!isUserLoggedIn) {
-      window.location.assign("../error_page.html");
-      return; 
-    }
-  
-   
-    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    if (!currentUser || !currentUser.tasks || !currentUser.tasks.board) {
-      console.error("Fehler beim Abrufen der Benutzerdaten.");
-      return; 
-    }
-  
-
-    const tasksByStatus = {
-      "toDo": document.getElementById("to-do-id"),
-      "inProgress": document.getElementById("in-progress-id"),
-      "awaitFeedback": document.getElementById("await-feedback-id"),
-      "done": document.getElementById("done-id")
-    };
-  
-    for (const status in tasksByStatus) {
-      if (Object.hasOwnProperty.call(tasksByStatus, status)) {
-        const tasks = currentUser.tasks.board.filter(task => task === status);
-        const element = tasksByStatus[status];
-        element.innerHTML = "";
-        tasks.forEach(task => {
-          element.innerHTML += generateTaskHTML(task);
-        });
-      }
-    }
-  
-    toggleVisibility("board-body-id", true);
-  
-    loadHeaderInitials();
+  const isUserLoggedIn = checkUserLogIn();
+  if (!isUserLoggedIn) {
+    window.location.assign("../error_page.html");
+    return;
   }
+
+  currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  if (!currentUser || !currentUser.tasks || !currentUser.tasks.board) {
+    console.error("Fehler beim Abrufen der Benutzerdaten.");
+    return;
+  }
+
+  const tasksByStatus = {
+    toDo: document.getElementById("to-do-id"),
+    inProgress: document.getElementById("in-progress-id"),
+    awaitFeedback: document.getElementById("await-feedback-id"),
+    done: document.getElementById("done-id"),
+  };
+
+  for (const status in tasksByStatus) {
+    if (Object.hasOwnProperty.call(tasksByStatus, status)) {
+      const tasks = currentUser.tasks.board.filter((task) => task === status);
+      const element = tasksByStatus[status];
+      element.innerHTML = "";
+      tasks.forEach((task) => {
+        element.innerHTML += generateTaskHTML(task);
+      });
+    }
+  }
+  console.log("currentUser :>> ", currentUser);
+  toggleVisibility("board-body-id", true);
+
+  loadHeaderInitials();
+}
 
 function startDragging(index) {
   currentDraggedElement = index;
 }
 
-function generateTaskHTML(
-    titles, 
-    descriptions, 
-    assignedTo, 
-    dates, 
-    prios, 
-    categories, 
-    subtasks) {
+function generateTaskHTML(titles, descriptions, assignedTo, dates, prios, categories, subtasks) {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   return /*html*/ `
     <div draggable="true" ondragstart="startDragging('${titles}')" class="board-card">

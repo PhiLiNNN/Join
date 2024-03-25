@@ -103,7 +103,6 @@
 .middle-box svg {
   width: 60px;
   height: 60px;
-  transition: width 300ms ease-in-out, height 300ms ease-in-out;
 }
 
 .top {
