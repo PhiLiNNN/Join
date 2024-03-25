@@ -91,7 +91,13 @@
   .top-left:hover,
   .top-right:hover {
     background: var(--mockup-color);
+
     color: white;
+  }
+  .top-left:hover svg,
+  .top-right:hover svg {
+    width: 80px;
+    height: 80px;
   }
   .top-left:hover svg circle,
   .top-right:hover svg circle {
@@ -109,6 +115,7 @@
   .top-right:active {
     background: var(--focus-color-btn);
   }
+
   .top-left:active svg path {
     fill: var(--focus-color-btn);
   }
@@ -299,6 +306,11 @@
     background: var(--mockup-color);
     color: white;
   }
+  .top-left:active svg,
+  .top-right:active svg {
+    width: 65px;
+    height: 65px;
+  }
   .top-left:active svg circle,
   .top-right:active svg circle {
     fill: white;
@@ -403,7 +415,8 @@
     text-align: center;
   }
   .summary-content {
-    height: calc(70vh);
+    max-height: calc(100vh - 180px);
+    height: calc(100vh);
   }
   .summary-info {
     width: 180px;
@@ -423,6 +436,11 @@
   .tasks-info {
     width: 124px;
     padding: 8px 0 8px 0;
+  }
+  .top-left:active svg,
+  .top-right:active svg {
+    width: 55px;
+    height: 55px;
   }
 }
 

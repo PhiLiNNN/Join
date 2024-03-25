@@ -10,6 +10,7 @@
   flex-direction: column;
   z-index: 990;
   transition: all 300ms ease-in-out;
+  overflow: auto;
 }
 
 .desktop-logo {

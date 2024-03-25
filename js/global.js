@@ -35,6 +35,8 @@ function checkUserLogIn() {
 
 function loadHeaderInitials() {
   const element = document.getElementById("header-initials-id");
+
+  console.log("currentUser :>> ", currentUser);
   const initials = getFirstLettersOfName(currentUser.userName);
   element.innerHTML = templateHeaderInitialsMenu(initials);
 }
