@@ -14,7 +14,6 @@
 }
 
 .summary-column {
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -108,17 +107,20 @@
 }
 
 .top {
+  cursor: pointer;
   padding: 38px 19px 38px 19px;
   transition: width 200ms ease-in-out, height 200ms ease-in-out, font-size 300ms ease-in-out,
     transform 200ms ease-in-out;
 }
 
 .middle-section {
+  cursor: pointer;
   transition: width 200ms ease-in-out, height 200ms ease-in-out, font-size 300ms ease-in-out,
     transform 200ms ease-in-out;
 }
 
 .tasks-info {
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -210,14 +212,21 @@
     display: flex;
     justify-content: center;
   }
+
   .summary-content {
     max-height: calc(100vh - 100px);
-    margin: 32px 0 0px 16px;
+    margin: 32px 0 0px 0px;
     gap: 16px;
+    width: 100%;
+    max-width: calc(100vw - 248px);
   }
   .summary-title {
+    margin-left: 16px;
     display: flex;
     align-items: center;
+  }
+  .summary-title h1 {
+    font-size: 53px;
   }
   .separator-desktop {
     height: 59px;
@@ -231,6 +240,9 @@
     display: none;
   }
   .summary-column {
+    width: 100%;
+    max-width: calc(100vw - 270px);
+    margin-left: 16px;
     align-items: center;
     gap: 0px;
   }
@@ -242,7 +254,8 @@
     width: 69px;
     height: 69px;
   }
-  .summary-secondery {
+  .summary-secondary {
+    text-align: center;
     width: 490px;
   }
   .bottom-hover-container {
@@ -252,22 +265,26 @@
   .hover-left:hover,
   .hover-right:hover,
   .hover-middle:hover {
-    height: 166px;
-    width: 144px;
     background: var(--mockup-color);
     color: white;
   }
+  .hover-left:active,
+  .hover-right:active,
+  .hover-middle:active {
+    background: var(--focus-color-btn);
+  }
+
   .hover-right:hover {
-    transform: translate(-9%, -5%) scale(1.01);
+    transform: translate(-5%, 0%) scale(1.05);
   }
   .hover-left:hover {
-    transform: translate(1%, -5%) scale(1.01);
+    transform: translate(5%, 0%) scale(1.05);
   }
   .hover-middle:hover {
-    transform: translate(-8px, -5%) scale(1.01);
+    transform: scale(1.05);
   }
   .bottom-section {
-    width: 500px;
+    width: 490px;
   }
   .hover-left:hover span,
   .hover-middle:hover span,
@@ -278,19 +295,40 @@
   }
   .top-left:hover,
   .top-right:hover {
-    width: 223px;
-    height: 166px;
     background: var(--mockup-color);
     color: white;
   }
+  .top-left:hover svg circle,
+  .top-right:hover svg circle {
+    fill: white;
+  }
+  .top-left:hover svg path {
+    fill: var(--mockup-color);
+  }
+
+  .top-right:hover svg path {
+    stroke: var(--mockup-color);
+  }
+
+  .top-left:active,
+  .top-right:active {
+    background: var(--focus-color-btn);
+  }
+  .top-left:active svg path {
+    fill: var(--focus-color-btn);
+  }
+  .top-right:active svg path {
+    stroke: var(--focus-color-btn);
+  }
+
   .top-left:hover {
-    transform: translate(1%, -5%) scale(1.01);
+    transform: translate(5%, 0%) scale(1.05);
   }
   .top-right:hover {
-    transform: translate(-9%, -5%) scale(1.01);
+    transform: translate(-5%, 0%) scale(1.05);
   }
   .top-section {
-    width: 525px;
+    width: 490px;
     gap: 16px;
   }
   .top {
@@ -301,9 +339,9 @@
     width: 223px;
     height: 166px;
   }
-  .middle-section:hover {
-    width: 490px;
-    height: 166px;
+  .top-hover-container:last-child {
+    display: flex;
+    justify-content: end;
   }
 
   .middle-section:hover,
@@ -313,22 +351,28 @@
     background: var(--mockup-color);
     color: white;
   }
+  .middle-section:active {
+    background: var(--focus-color-btn);
+  }
   .middle-section:hover .separator2 {
     background: white;
   }
   .middle-section:hover {
-    transform: scale(1.01);
+    transform: scale(1.03);
   }
+
   .middle-section {
     gap: 16px;
-  }
-  .middle-section {
-    width: 500px;
+    width: 490px;
     height: 150px;
   }
+
   .middle-hover-container {
-    width: 510px;
+    width: 490px;
     height: 166px;
+  }
+  .user-highlight {
+    font-size: 47px;
   }
 }
 
@@ -338,21 +382,22 @@
   }
 }
 @media (min-width: 1000px) {
+  .summary-title {
+    margin-left: 32px;
+  }
   .summary-column {
     align-items: start;
+    margin-left: 32px;
   }
   .summary-content {
-    margin: 32px 0 0px 96px;
-  }
-  .middle-section {
-    gap: 61px;
+    margin: 32px 0 0px 0px;
   }
   .top-section {
-    width: 600px;
+    width: 560px;
     gap: 32px;
   }
   .bottom-section {
-    width: 600px;
+    width: 560px;
     gap: 28px;
   }
   .tasks-info {
@@ -365,11 +410,11 @@
   }
 
   .middle-section {
-    width: 583px;
+    width: 560px;
     height: 168px;
   }
   .middle-hover-container {
-    width: 600px;
+    width: 560px;
     height: 184px;
   }
   .top-hover-container {
@@ -382,40 +427,142 @@
     height: 184px;
   }
   .middle-section:hover {
-    width: 576px;
-    height: 184px;
+    transform: scale(1.05);
   }
-  .top-left:hover,
-  .top-right:hover {
-    width: 283px;
-    height: 184px;
-  }
-  .hover-left:hover,
-  .hover-right:hover,
-  .hover-middle:hover {
-    height: 184px;
-    width: 184px;
-  }
-  .summary-secondery {
+  .summary-secondary {
     width: 576px;
   }
 }
 @media (min-width: 1341px) {
+  .summary-title {
+    margin-left: 0;
+  }
   .summary-column {
     flex-direction: row;
-    justify-content: start;
     align-items: center;
-    gap: 80px;
+    justify-content: start;
+    margin-left: 0px;
+    gap: 73px;
   }
-  .summary-secondery {
+  .summary-greeting {
+    justify-content: start;
+    flex: 1;
+  }
+  .summary-secondary {
     display: flex;
     justify-content: start;
   }
+
   .summary-content {
-    margin: 110px 0 0px 96px;
+    margin: 110px 96px 0px 96px;
+    max-width: calc(100vw - 424px);
+    gap: 56px;
   }
 }
+@media (max-width: 760px) {
+  .summary-content {
+    margin: 46px 0 0 0;
+    gap: 40px;
+  }
+  .bottom-hover-container {
+    width: 124px;
+    height: 124px;
+  }
+  .hover-left:active,
+  .hover-right:active,
+  .hover-middle:active {
+    height: 124px;
+    width: 124px;
+    background: var(--mockup-color);
+    color: white;
+  }
+  .hover-right:active {
+    transform: translate(-9%, -5%) scale(1.01);
+  }
+  .hover-left:active {
+    transform: translate(1%, -5%) scale(1.01);
+  }
+  .hover-middle:active {
+    transform: translate(-8px, -5%) scale(1.01);
+  }
+  .bottom-section {
+    width: 500px;
+  }
+  .hover-left:active span,
+  .hover-middle:active span,
+  .hover-right:active span,
+  .top-left:active span,
+  .top-right:active span {
+    color: inherit;
+  }
+  .top-left:active,
+  .top-right:active {
+    width: 194px;
+    height: 120px;
+    background: var(--mockup-color);
+    color: white;
+  }
+  .top-left:active svg circle,
+  .top-right:active svg circle {
+    fill: white;
+  }
+  .top-left:active svg path {
+    fill: var(--mockup-color);
+  }
 
+  .top-right:active svg path {
+    stroke: var(--mockup-color);
+  }
+  .top-left:active {
+    transform: translate(1%, -5%) scale(1.01);
+  }
+  .top-right:active {
+    transform: translate(-9%, -5%) scale(1.01);
+  }
+  .top-section {
+    width: 396px;
+    gap: 16px;
+  }
+  .top {
+    width: 186px;
+    height: 110px;
+  }
+  .top-hover-container {
+    width: 194px;
+    height: 120px;
+  }
+
+  .middle-section {
+    width: 500px;
+    height: 120px;
+    gap: 16px;
+  }
+  .middle-section:active {
+    width: 520px;
+    height: 130px;
+  }
+  .middle-section:active,
+  .middle-section:active *,
+  .middle-section:active .summary-change-content span,
+  .middle-section:active {
+    background: var(--mockup-color);
+    color: white;
+  }
+  .middle-section:active .separator2 {
+    background: white;
+  }
+  .middle-section:active {
+    transform: scale(1.01);
+  }
+  .middle-section {
+    gap: 16px;
+  }
+
+  .middle-hover-container {
+    width: 500px;
+    height: 120px;
+  }
+}
 @media (max-width: 466px) {
   .summary-title h1 {
     font-size: 43px;
