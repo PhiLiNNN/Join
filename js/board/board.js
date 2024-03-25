@@ -1,7 +1,3 @@
-let currentDraggedElement;
-let isUserLoggedIn;
-let currentUser;
-
 function initBoard() {
   const isUserLoggedIn = checkUserLogIn();
   if (!isUserLoggedIn) {
@@ -44,8 +40,9 @@ function startDragging(index) {
 }
 
 function generateTaskHTML(titles, descriptions, assignedTo, dates, prios, categories, subtasks) {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   return /*html*/ `
-    <div draggable="true" ondragstart="startDragging('${titles}')" class="board-card">
+    <div draggable="true" ondragstart="startDragging('${task.index}')" class="board-card">
     <div class="container-1">
 
             <span class="categorie-block">${currentUser.tasks.categories}</span>
@@ -100,7 +97,7 @@ function generateTaskHTML(titles, descriptions, assignedTo, dates, prios, catego
             <div class="subtask">
                 <div class="static-block" >Subtasks</div>
                 <div class="subtask-box">
-                    <input type="checkbox"><span>${currentUser.tasks.subtasks}</span>
+                    <input type="checkbox" id="subtaskCheckbox" name="subtaskCheckbox"><span>${currentUser.tasks.subtasks}</span>
                 </div>
             </div>
         </div>
@@ -111,6 +108,10 @@ function generateTaskHTML(titles, descriptions, assignedTo, dates, prios, catego
             <div class="delete-edit-box"><img src="./assets/img/board_edit.png" alt="Edit"><span>Edit</span></div>
         </div>
     </div>`;
+}
+
+function startDragging(index) {
+  currentDraggedElement = index;
 }
 
 function allowDrop(ev) {
