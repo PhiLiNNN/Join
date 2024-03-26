@@ -11,3 +11,7 @@ async function privacyInit() {
   currentUser = JSON.parse(localStorage.getItem("currentUser"));
   loadHeaderInitials();
 }
+
+function goBack() {
+  window.history.back();
+}
