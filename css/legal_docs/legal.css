@@ -1,9 +1,14 @@
-.legal-notice-content * {
+.legal-notice-content *,
+.policy-notice-content * {
+  word-wrap: break-word;
   font-size: 20px;
   transition: all 300ms ease-in-out;
 }
-
-.legal-notice-content p {
+.policy-notice-content a {
+  color: #29abe2;
+}
+.legal-notice-content p,
+.policy-notice-content p {
   text-wrap: wrap;
 }
 
@@ -20,33 +25,52 @@
   justify-content: center;
 }
 
-.legal-notice-content {
+.legal-notice-content,
+.policy-notice-content {
   margin: 96px 0px 0 16px;
   padding-block: 48px;
   padding-right: 16px;
   overflow-y: auto;
   max-height: calc(100vh - 176px);
 }
-.legal-header {
-  position: relative;
-}
 
-.legal-header h1 {
+.legal-header h1,
+.privacy-policy h1 {
   font-size: 54px;
   font-weight: 700;
   margin-bottom: 32px;
   transition: all 300ms ease-in-out;
 }
 
-.legal-imprint h2 {
+.legal-imprint h2,
+.privacy-rights h2,
+.privacy-collection h2,
+.privacy-registration h2,
+.privacy-scripts h2,
+.privacy-information h2,
+.privacy-questions h2,
+.privacy-protection h2 {
   font-size: 34px;
   font-weight: 700;
   margin-bottom: 16px;
   transition: all 300ms ease-in-out;
 }
+.privacy-information h2,
+.privacy-questions h2 {
+  margin-top: 16px;
+}
+.privacy-policy {
+  margin-bottom: 16px;
+}
+
+.privacy-rights ul li,
+.privacy-collection ul li {
+  margin-left: 34px;
+  padding-left: 16px;
+  list-style-position: outside;
+}
 .legal-imprint ul li {
   list-style-position: inside;
-  list-style-type: disc;
 }
 
 .legal-imprint,
@@ -56,16 +80,39 @@
 .legal-rights,
 .legal-use-info,
 .legal-disclaimer,
-.legal-indemnity {
+.legal-indemnity,
+.privacy-rights,
+.privacy-collection,
+.privacy-provision,
+.privacy-storage,
+.privacy-interest,
+.privacy-required,
+.privacy-duration,
+.privacy-recipients,
+.privacy-basis,
+.privacy-processing,
+.privacy-objection,
+.privacy-individual {
   margin-bottom: 24px;
 }
+
 .legal-info h3,
 .legal-acceptance h3,
 .legal-scope h3,
 .legal-rights h3,
 .legal-use-info h3,
 .legal-disclaimer h3,
-.legal-indemnity h3 {
+.legal-indemnity h3,
+.privacy-provision h3,
+.privacy-storage h3,
+.privacy-interest h3,
+.privacy-required h3,
+.privacy-duration h3,
+.privacy-recipients h3,
+.privacy-basis h3,
+.privacy-processing h3,
+.privacy-objection h3,
+.privacy-individual h3 {
   font-size: 22px;
   font-weight: 700;
   transition: all 300ms ease-in-out;
@@ -98,12 +145,14 @@
   .legal-back-arrow:active svg path {
     fill: white;
   }
-  .legal-notice-content {
+  .legal-notice-content,
+  .policy-notice-content {
     margin: 96px 0px 0 232px;
     padding: 32px 32px 32px 32px;
     max-height: calc(100vh - 96px);
   }
-  .legal-style {
+  .legal-style,
+  .policy-style {
     justify-content: start;
   }
   .legal-back-arrow {
@@ -112,7 +161,8 @@
   }
 }
 @media (min-width: 1000px) {
-  .legal-notice-content {
+  .legal-notice-content,
+  .policy-notice-content {
     margin: 96px 0px 0 232px;
     padding: 110px 96px 96px 96px;
     max-height: calc(100vh - 96px);
@@ -130,7 +180,8 @@
 }
 
 @media (max-width: 466px) {
-  .legal-notice-content * {
+  .legal-notice-content *,
+  .policy-notice-content * {
     font-size: 14px;
   }
   .legal-header h1 {

@@ -5,3 +5,9 @@ async function policyInit() {
   currentUser = JSON.parse(localStorage.getItem("currentUser"));
   loadHeaderInitials();
 }
+
+async function privacyInit() {
+  await includeHTML();
+  currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  loadHeaderInitials();
+}
