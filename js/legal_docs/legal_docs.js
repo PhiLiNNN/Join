@@ -9,10 +9,17 @@ function legalsInit() {
   const footerHTML = isUserLoggedIn ? templateFooterHTML(false) : templateFooterHTML(true);
   header.innerHTML = headerHTML;
   footer.innerHTML = footerHTML;
+
   if (isUserLoggedIn) {
     currentUser = JSON.parse(localStorage.getItem("currentUser"));
     loadHeaderInitials();
   }
+}
+
+async function helpInit() {
+  await includeHTML();
+  currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  loadHeaderInitials();
 }
 
 function templateHeaderHTML(isVisible) {
@@ -22,7 +29,9 @@ function templateHeaderHTML(isVisible) {
         <img class="header-logo" src="/assets/img/logo.png" alt="join logo" />
         <span class="header-info">Kanban Project Management Tool</span>
         <div class="header-menu-container" style="${visibilityStyle}">
-          <img class="header-logo" src="/assets/img/help.png" alt="join logo" />
+          <a href="/help.html">
+          <img  class="header-logo" src="/assets/img/help.png" alt="join logo" />
+          </a>
           <div id="header-initials-id" class="header-profil" onclick="togglelogoutContainer()"></div>
           <div id="logout-id" class="logout-dropdown">
               <a href="/privacy_policy.html" >Privacy Policy</a>
