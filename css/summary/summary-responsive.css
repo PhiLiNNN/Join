@@ -7,7 +7,6 @@
     display: flex;
     justify-content: center;
   }
-
   .summary-content {
     max-height: calc(100vh - 100px);
     margin: 32px 0 0px 0px;
@@ -57,27 +56,6 @@
     width: 124px;
     height: 186px;
   }
-  .hover-left:hover,
-  .hover-right:hover,
-  .hover-middle:hover {
-    background: var(--mockup-color);
-    color: white;
-  }
-  .hover-left:active,
-  .hover-right:active,
-  .hover-middle:active {
-    background: var(--focus-color-btn);
-  }
-
-  .hover-right:hover {
-    transform: translate(-5%, 0%) scale(1.05);
-  }
-  .hover-left:hover {
-    transform: translate(5%, 0%) scale(1.05);
-  }
-  .hover-middle:hover {
-    transform: scale(1.05);
-  }
   .bottom-section {
     width: 490px;
   }
@@ -89,9 +67,11 @@
     color: inherit;
   }
   .top-left:hover,
-  .top-right:hover {
+  .top-right:hover,
+  .hover-left:hover,
+  .hover-right:hover,
+  .hover-middle:hover {
     background: var(--mockup-color);
-
     color: white;
   }
   .top-left:hover svg,
@@ -106,28 +86,29 @@
   .top-left:hover svg path {
     fill: var(--mockup-color);
   }
-
   .top-right:hover svg path {
     stroke: var(--mockup-color);
   }
-
   .top-left:active,
-  .top-right:active {
+  .top-right:active,
+  .hover-left:active,
+  .hover-right:active,
+  .hover-middle:active {
     background: var(--focus-color-btn);
   }
-
   .top-left:active svg path {
     fill: var(--focus-color-btn);
   }
   .top-right:active svg path {
     stroke: var(--focus-color-btn);
   }
-
-  .top-left:hover {
-    transform: translate(5%, 0%) scale(1.05);
-  }
+  .hover-right:hover,
   .top-right:hover {
     transform: translate(-5%, 0%) scale(1.05);
+  }
+  .hover-left:hover,
+  .top-left:hover {
+    transform: translate(5%, 0%) scale(1.05);
   }
   .top-section {
     width: 490px;
@@ -145,7 +126,6 @@
     display: flex;
     justify-content: end;
   }
-
   .middle-section:hover,
   .middle-section:hover *,
   .middle-section:hover .summary-change-content span,
@@ -159,16 +139,15 @@
   .middle-section:hover .separator2 {
     background: white;
   }
-  .middle-section:hover {
+  .middle-section:hover,
+  .hover-middle:hover {
     transform: scale(1.05);
   }
-
   .middle-section {
     gap: 16px;
     width: 490px;
     height: 150px;
   }
-
   .middle-hover-container {
     width: 490px;
     height: 166px;
@@ -183,6 +162,7 @@
     margin-inline: 30px;
   }
 }
+
 @media (min-width: 1000px) {
   .summary-title {
     margin-left: 32px;
@@ -210,7 +190,6 @@
     width: 264px;
     height: 168px;
   }
-
   .middle-section {
     width: 560px;
     height: 168px;
@@ -223,18 +202,15 @@
     width: 283px;
     height: 184px;
   }
-
   .bottom-hover-container {
     width: 184px;
     height: 184px;
-  }
-  .middle-section:hover {
-    transform: scale(1.05);
   }
   .summary-secondary {
     width: 576px;
   }
 }
+
 @media (min-width: 1341px) {
   .summary-title {
     margin-left: 0;
@@ -257,13 +233,13 @@
     display: flex;
     justify-content: start;
   }
-
   .summary-content {
     margin: 110px 96px 0px 96px;
     max-width: calc(100vw - 444px);
     gap: 56px;
   }
 }
+
 @media (max-width: 760px) {
   .summary-content {
     height: 100vh;
@@ -284,15 +260,6 @@
   .hover-middle:active {
     background: var(--mockup-color);
     color: white;
-  }
-  .hover-right:active {
-    transform: translate(-5%, 0%) scale(1.05);
-  }
-  .hover-left:active {
-    transform: translate(5%, 0%) scale(1.05);
-  }
-  .hover-middle:active {
-    transform: scale(1.05);
   }
   .bottom-section {
     width: 500px;
@@ -321,15 +288,16 @@
   .top-left:active svg path {
     fill: var(--mockup-color);
   }
-
   .top-right:active svg path {
     stroke: var(--mockup-color);
   }
-  .top-left:active {
-    transform: translate(5%, 0%) scale(1.05);
-  }
+  .hover-right:active,
   .top-right:active {
     transform: translate(-5%, 0%) scale(1.05);
+  }
+  .hover-left:active,
+  .top-left:active {
+    transform: translate(5%, 0%) scale(1.05);
   }
   .top-section {
     width: 500px;
@@ -352,7 +320,6 @@
     height: 120px;
     gap: 16px;
   }
-
   .middle-section:active,
   .middle-section:active *,
   .middle-section:active .summary-change-content span,
@@ -363,10 +330,10 @@
   .middle-section:active .separator2 {
     background: white;
   }
-  .middle-section:active {
+  .middle-section:active,
+  .hover-middle:active {
     transform: scale(1.05);
   }
-
   .middle-hover-container {
     width: 500px;
     height: 120px;
@@ -496,22 +463,16 @@
   .top-section {
     gap: 32px;
   }
-  .middle-section:active {
+  .middle-section:active,
+  .hover-middle:active {
     transform: scale(1.03);
   }
-  .top-left:active {
-    transform: translate(5%, 0%) scale(1.03);
-  }
-  .top-right:active {
-    transform: translate(-5%, 0%) scale(1.03);
-  }
-  .hover-right:active {
-    transform: translate(-5%, 0%) scale(1.03);
-  }
+  .top-left:active,
   .hover-left:active {
     transform: translate(5%, 0%) scale(1.03);
   }
-  .hover-middle:active {
-    transform: scale(1.03);
+  .top-right:active,
+  .hover-right:active {
+    transform: translate(-5%, 0%) scale(1.03);
   }
 }
