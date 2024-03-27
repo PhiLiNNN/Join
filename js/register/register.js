@@ -7,7 +7,6 @@ let inputType = (inputTypeConfirm = "password");
 let password,
   confirmPassword = false;
 // pw: tEst1!
-document.querySelector(".logo").classList.add("reveal");
 async function init() {
   localStorage.clear();
   showLoader();
