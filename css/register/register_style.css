@@ -7,8 +7,9 @@
   z-index: 3000;
   background: var(--mockup-color);
   animation: animateLogoBg 3s forwards;
-  animation-delay: 300ms;
+  animation-delay: 600ms;
 }
+
 @keyframes animateLogoBg {
   0% {
   }
@@ -18,7 +19,7 @@
   }
 }
 
-.logo img {
+.logo svg {
   position: absolute;
   top: calc(50% - 100px);
   left: calc(50% - 100px);
@@ -27,7 +28,11 @@
   animation: animateLogo 3s forwards;
   animation-delay: 300ms;
 }
-
+.change-color {
+  fill: white;
+  animation: changeColor 3s forwards;
+  animation-delay: 300ms;
+}
 .container {
   position: relative;
   display: flex;
@@ -220,13 +225,20 @@
 }
 
 @media (min-width: 761px) {
-  @keyframes animateLogo {
-    0% {
-      top: calc(50% - 100px);
-      left: calc(50% - 100px);
-      width: 200px;
-      height: 200px;
+  .change-color {
+    fill: var(--mockup-color);
+  }
+  .logo {
+    background: white;
+  }
+  @keyframes animateLogoBg {
+    100% {
+      z-index: 0;
+      background: white;
     }
+  }
+
+  @keyframes animateLogo {
     100% {
       top: 80px;
       left: 77px;
@@ -281,12 +293,6 @@
 
 @media (min-width: 1200px) {
   @keyframes animateLogo {
-    0% {
-      top: calc(50% - 100px);
-      left: calc(50% - 100px);
-      width: 200px;
-      height: 200px;
-    }
     100% {
       top: 80px;
       left: 77px;
@@ -297,13 +303,16 @@
 }
 
 @media (max-width: 761px) {
-  @keyframes animateLogo {
+  @keyframes changeColor {
     0% {
-      top: calc(50% - 100px);
-      left: calc(50% - 100px);
-      width: 200px;
-      height: 200px;
+      fill: white;
     }
+    100% {
+      fill: var(--mockup-color);
+    }
+  }
+
+  @keyframes animateLogo {
     100% {
       top: 80px;
       left: 77px;
@@ -326,6 +335,13 @@
     width: 70px;
   }
 }
+
+@media (max-width: 500px) {
+  .content {
+    margin-top: 200px;
+  }
+}
+
 @media (max-width: 400px) {
   .back-arrow-container {
     left: 0px;
