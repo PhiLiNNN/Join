@@ -2,25 +2,26 @@ let currentUser;
 let isUserLoggedIn;
 
 function legalsInit() {
-  isUserLoggedIn = checkUserLogIn();
+  const isUserLoggedIn = checkUserLogIn();
   const header = document.getElementById("header-id");
   const footer = document.getElementById("footer-id");
-  if (!isUserLoggedIn) {
-    header.innerHTML = templateHeaderHTML();
-    footer.innerHTML = templateFooterHTML();
-  } else {
+  const headerHTML = isUserLoggedIn ? templateHeaderHTML(false) : templateHeaderHTML(true);
+  const footerHTML = isUserLoggedIn ? templateFooterHTML(false) : templateFooterHTML(true);
+  header.innerHTML = headerHTML;
+  footer.innerHTML = footerHTML;
+  if (isUserLoggedIn) {
     currentUser = JSON.parse(localStorage.getItem("currentUser"));
     loadHeaderInitials();
   }
-  toggleHeaderAndFooter();
 }
 
-function templateHeaderHTML() {
+function templateHeaderHTML(isVisible) {
+  const visibilityStyle = isVisible ? "visibility: hidden;" : "visibility: visible;";
   return /*html*/ `
     <div class="header-gap">
         <img class="header-logo" src="/assets/img/logo.png" alt="join logo" />
         <span class="header-info">Kanban Project Management Tool</span>
-        <div id="header-menu-id" class="header-menu-container" >
+        <div class="header-menu-container" style="${visibilityStyle}">
           <img class="header-logo" src="/assets/img/help.png" alt="join logo" />
           <div id="header-initials-id" class="header-profil" onclick="togglelogoutContainer()"></div>
           <div id="logout-id" class="logout-dropdown">
@@ -34,14 +35,15 @@ function templateHeaderHTML() {
       </div>
   `;
 }
-function templateFooterHTML() {
+function templateFooterHTML(isVisible) {
+  const visibilityStyle = isVisible ? "visibility: hidden;" : "visibility: visible;";
   return /*html*/ `
     <div class="footer-wrapper">
         <div class="desktop-logo">
             <img src="/assets/img/footer_logo.png" alt="Join Logo">
         </div>
-        <div id="menu-navigation-id" class="menu-wrapper">
-            <div class="menu-content" >
+        <div  class="menu-wrapper">
+            <div class="menu-content" style="${visibilityStyle}" >
                 <div class="footer-icon-box">
                     <a href="/summary.html" class="footer-link">
                         <img src="/assets/img/summary_Icons.png" alt="Summary" class="footer-icon"> 
@@ -77,13 +79,6 @@ function templateFooterHTML() {
         
     </div>
   `;
-}
-
-function toggleHeaderAndFooter() {
-  const footerElement = document.getElementById("menu-navigation-id");
-  const headerElement = document.getElementById("header-menu-id");
-  footerElement.style.visibility = "hidden";
-  headerElement.style.visibility = "hidden";
 }
 
 function goBack() {
