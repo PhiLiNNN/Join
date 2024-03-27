@@ -11,11 +11,9 @@
 }
 
 @keyframes animateLogoBg {
-  0% {
-  }
   100% {
-    z-index: 0;
-    background: white;
+    z-index: 1;
+    background: transparent;
   }
 }
 
@@ -231,13 +229,6 @@
   .logo {
     background: white;
   }
-  @keyframes animateLogoBg {
-    100% {
-      z-index: 0;
-      background: white;
-    }
-  }
-
   @keyframes animateLogo {
     100% {
       top: 80px;
@@ -292,6 +283,12 @@
 }
 
 @media (min-width: 1200px) {
+  .logo svg {
+    top: calc(50% - 167px);
+    left: calc(50% - 137px);
+    width: 334px;
+    height: 274px;
+  }
   @keyframes animateLogo {
     100% {
       top: 80px;
@@ -311,7 +308,12 @@
       fill: var(--mockup-color);
     }
   }
-
+  .logo svg {
+    top: calc(50% - 76px);
+    left: calc(50% - 60px);
+    width: 120px;
+    height: 142px;
+  }
   @keyframes animateLogo {
     100% {
       top: 80px;
