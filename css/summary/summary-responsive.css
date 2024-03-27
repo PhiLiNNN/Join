@@ -11,7 +11,7 @@
   .summary-content {
     max-height: calc(100vh - 100px);
     margin: 32px 0 0px 0px;
-    gap: 16px;
+    gap: 32px;
     width: 100%;
     max-width: calc(100vw - 248px);
   }
@@ -36,10 +36,10 @@
   }
   .summary-column {
     width: 100%;
-    max-width: calc(100vw - 270px);
+    max-width: calc(100vw - 284px);
     margin-left: 16px;
     align-items: center;
-    gap: 0px;
+    gap: 32px;
   }
   .summary-overview {
     gap: 0px;
@@ -246,6 +246,9 @@
     margin-left: 0px;
     gap: 73px;
   }
+  .summary-column > div:first-child {
+    order: 2;
+  }
   .summary-greeting {
     justify-content: start;
     flex: 1;
@@ -257,7 +260,7 @@
 
   .summary-content {
     margin: 110px 96px 0px 96px;
-    max-width: calc(100vw - 424px);
+    max-width: calc(100vw - 444px);
     gap: 56px;
   }
 }
