@@ -7,13 +7,12 @@
     <link rel="stylesheet" href="./css/footer.css" />
     <link rel="stylesheet" href="./css/header.css" />
     <link rel="stylesheet" href="./css/legal_docs/legal.css" />
-    <script defer src="./js/includeHTML.js"></script>
     <script defer src="./js/legal_docs/legal_docs.js"></script>
     <script defer src="./js/global.js"></script>
     <title>Legal Notice</title>
   </head>
-  <body onload="policyInit();">
-    <div w3-include-html="./assets/templates/header.html"></div>
+  <body onload="legalsInit();">
+    <header id="header-id" class="header"></header>
     <section class="legal-style">
       <div class="legal-back-arrow" onclick="goBack()">
         <svg
@@ -138,6 +137,6 @@
         </div>
       </div>
     </section>
-    <div w3-include-html="./assets/templates/footer.html"></div>
+    <footer id="footer-id" class="footer"></footer>
   </body>
 </html>

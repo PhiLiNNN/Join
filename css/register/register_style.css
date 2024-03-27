@@ -174,7 +174,7 @@
 }
 
 .legal-information-container a {
-  line-height: 19.2px;
+  cursor: pointer;
   color: #a8a8a8;
 }
 .back-arrow-container {

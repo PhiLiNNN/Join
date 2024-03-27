@@ -9,7 +9,7 @@
   justify-content: space-between;
   flex-direction: column;
   z-index: 990;
-
+  transition: all 300ms ease-in-out;
   overflow: auto;
 }
 
@@ -33,7 +33,9 @@
   align-items: center;
   gap: 15px;
   width: 100%;
-  transition: all 300ms ease-in-out;
+  transition: display 300ms ease-in-out, flex-direction 300ms ease-in-out,
+    justify-content 300ms ease-in-out, align-items 300ms ease-in-out, gap 300ms ease-in-out,
+    width 300ms ease-in-out;
 }
 
 .footer-icon-box {
@@ -43,7 +45,8 @@
   width: 100%;
   height: 46px;
   padding-left: 50px;
-  transition: all 300ms ease-in-out;
+  transition: width 300ms ease-in-out, height 300ms ease-in-out, padding-left 300ms ease-in-out,
+    align-items 300ms ease-in-out;
 }
 
 .footer-icon-box:hover {
@@ -68,7 +71,8 @@
   font-size: 18px;
   font-weight: 400;
   cursor: pointer;
-  transition: all 300ms ease-in-out;
+  transition: font-size 300ms ease-in-out, height 300ms ease-in-out, width 300ms ease-in-out,
+    gap 300ms ease-in-out, flex-direction 300ms ease-in-out;
 }
 
 .footer-link:hover {

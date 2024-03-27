@@ -8,10 +8,11 @@
     <link rel="stylesheet" href="./css/register/register_style.css" />
     <script defer src="./js/register/register.js"></script>
     <script defer src="./js/template.js"></script>
+    <script defer src="./js/legal_docs/legal_docs.js"></script>
     <script defer src="./js/global.js"></script>
     <title>Login</title>
   </head>
-  <body onload="init()">
+  <body onload="init();">
     <div class="logo">
       <img src="./assets/img/logo.png" alt="join Logo" />
     </div>
@@ -96,8 +97,8 @@
           <button class="filled-btn width-small" onclick="signUp()">Sign up</button>
         </div>
         <div class="legal-information-container">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Legal notice</a>
+          <a onclick="showLegals('policy')">Privacy Policy</a>
+          <a onclick="showLegals('legal')">Legal notice</a>
         </div>
       </div>
     </div>

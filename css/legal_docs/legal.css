@@ -184,10 +184,18 @@
   .policy-notice-content * {
     font-size: 14px;
   }
-  .legal-header h1 {
+  .legal-header h1,
+  .privacy-policy h1 {
     font-size: 40px;
   }
-  .legal-imprint h2 {
+  .legal-imprint h2,
+  .privacy-rights h2,
+  .privacy-collection h2,
+  .privacy-registration h2,
+  .privacy-scripts h2,
+  .privacy-information h2,
+  .privacy-questions h2,
+  .privacy-protection h2 {
     font-size: 20px;
   }
   .legal-info h3,
@@ -196,12 +204,28 @@
   .legal-rights h3,
   .legal-use-info h3,
   .legal-disclaimer h3,
-  .legal-indemnity h3 {
+  .legal-indemnity h3,
+  .privacy-provision h3,
+  .privacy-storage h3,
+  .privacy-interest h3,
+  .privacy-required h3,
+  .privacy-duration h3,
+  .privacy-recipients h3,
+  .privacy-basis h3,
+  .privacy-processing h3,
+  .privacy-objection h3,
+  .privacy-individual h3 {
     font-size: 16px;
     margin-bottom: 6px;
   }
   .legal-back-arrow {
     top: 150px;
     right: 16px;
+  }
+}
+
+@media (max-width: 335px) {
+  .privacy-policy h1 {
+    font-size: 38px;
   }
 }
