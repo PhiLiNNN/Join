@@ -19,11 +19,13 @@ function initBoard() {
 
   loadHeaderInitials();
 
+  generateCardHTML();
+
 }
 
 
 function generateCardHTML(){
-  const tasksByStatus = {
+    const tasksByStatus = {
     toDo: document.getElementById("to-do-id"),
     inProgress: document.getElementById("in-progress-id"),
     awaitFeedback: document.getElementById("await-feedback-id"),
@@ -42,11 +44,11 @@ function generateCardHTML(){
   }
 }
 
+//drag and drop
+
 function startDragging(index) {
   currentDraggedElement = index;
 }
-
-
 
 function allowDrop(ev) {
   ev.preventDefault();
@@ -57,28 +59,35 @@ function moveTo(board) {
   updateHTML();
 }
 
-function createOverlay() {
+//Big Card Overlay
+
+function createBigCard() {
     let overlayContent = document.getElementById('board-body-id')
     overlayContent.innerHTML += templatAddTaskHTML();
 }
 
 
-function showOverlay() {
+
+//add Task Overlay
+
+function createAddTask() {
+    let overlayContent = document.getElementById('board-body-id')
+    overlayContent.innerHTML += templatAddTaskHTML();
+}
+
+function showAddTask() {
     document.getElementById('overlay-add-id').style.display = 'block';
 }
 
-
-function hideOverlay() {
+function hideAddTask() {
     document.getElementById('overlay-add-id').style.display = 'none';
 }
 
-
 function openAddTaskOverlay() {
-    createOverlay(); 
-    showOverlay(); 
+    createAddTask(); 
+    showAddTask(); 
 }
 
-
 function closeAddTaskOverlay() {
-    hideOverlay(); 
+    hideAddTask(); 
 }

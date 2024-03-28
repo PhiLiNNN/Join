@@ -580,15 +580,3 @@ li:hover .hidden-Edit_menu {
   }
 }
 
-.x-button-addTask {
-  background-image: url(/assets/img/board_close.png);
-  background-color: var(--white-color);
-  position: fixed;
-  top: 120px;
-  right: 40px;
-  height: 32px;
-  width: 32px;
-  background-repeat: no-repeat;
-  background-position: center;
-  border: none;
-}
