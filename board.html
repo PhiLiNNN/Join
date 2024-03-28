@@ -8,9 +8,12 @@
     <link rel="stylesheet" href="/css/header.css" />
     <link rel="stylesheet" href="/css/board/board.css" />
     <link rel="stylesheet" href="/css/board/board_card.css" />
+    <link rel="stylesheet" href="/css/add_task/add_task.css" />
     <script src="/js/global.js"></script>
     <script src="/js/includeHTML.js"></script>
     <script src="/js/board/board.js"></script>
+    <script src="/js/board/board_assets.js"></script>
+    <script src="/js/add_task/add_task.js"></script>
     <title>Board</title>
   </head>
   <body id="board-body-id" class="d-none" onload="includeHTML().then(() => initBoard())">
@@ -18,7 +21,7 @@
     <div class="board">
       <h1>Board</h1>
       <div>
-        <button class="add-task">
+        <button class="add-task" id="add-task-Btn-id">
           <img src="./assets/img/add_task_board.png" alt="add task" />
         </button>
       </div>
@@ -31,54 +34,44 @@
         <div class="board-box">
           <h2>To do</h2>
           <div>
-            <button class="add-task-2">
+            <button class="add-task-2" id="add-task-Btn-id">
               <img src="./assets/img/add_task_board_2.png" alt="add task" />
             </button>
           </div>
-          <div class="drag-area">No tasks To do</div>
-          <div id="to-do-id" ondrop="moveTo('toDo')" ondragover="allowDrop(event)"></div>
+          <div class="drag-area" id="to-do-id" ondrop="moveTo('toDo')" ondragover="allowDrop(event)">No tasks To do</div>
         </div>
       </div>
       <div>
         <div class="board-box">
           <h2>In progress</h2>
           <div>
-            <button class="add-task-2">
+            <button class="add-task-2" id="add-task-Btn-id">
               <img src="./assets/img/add_task_board_2.png" alt="add task" />
             </button>
           </div>
-          <div class="drag-area">No tasks To do</div>
-          <div
-            id="in-progress-id"
-            ondrop="moveTo('inProgress')"
-            ondragover="allowDrop(event)"></div>
+          <div class="drag-area" id="in-progress-id" ondrop="moveTo('inProgress')" ondragover="allowDrop(event)">No tasks To do</div>
         </div>
       </div>
       <div>
         <div class="board-box">
           <h2>Await feedback</h2>
           <div>
-            <button class="add-task-2">
+            <button class="add-task-2" id="add-task-Btn-id">
               <img src="./assets/img/add_task_board_2.png" alt="add task" />
             </button>
           </div>
-          <div class="drag-area">No tasks To do</div>
-          <div
-            id="await-feedback-id"
-            ondrop="moveTo('awaitFeedback')"
-            ondragover="allowDrop(event)"></div>
+          <div class="drag-area" id="await-feedback-id" ondrop="moveTo('awaitFeedback')" ondragover="allowDrop(event)">No tasks To do</div>
         </div>
       </div>
       <div>
         <div class="board-box">
           <h2>Done</h2>
           <div>
-            <button class="add-task-2">
+            <button class="add-task-2" id="add-task-Btn-id">
               <img src="./assets/img/add_task_board_2.png" alt="add task" />
             </button>
           </div>
-          <div class="drag-area">No tasks To do</div>
-          <div id="done-id" ondrop="moveTo('done')" ondragover="allowDrop(event)"></div>
+          <div class="drag-area" id="done-id" ondrop="moveTo('done')" ondragover="allowDrop(event)">No tasks To do</div>
         </div>
       </div>
     </div>

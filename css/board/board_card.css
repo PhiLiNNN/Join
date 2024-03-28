@@ -1,3 +1,20 @@
+.show-overlay {
+    position: absolute;
+    top: 110px;
+    bottom: 90px;
+    left: 10px;
+    right: 10px;
+    height: auto;
+    background: rgb(255, 255, 255);
+    z-index: 989;
+    overflow: hidden;
+    transition: all 300ms ease-in-out;
+}
+
+.show-overlay.show-card-visible {
+    transform: translateX(0%);
+}
+
 .board-card {
     background-color: var(--white-color);
     width: 252px;

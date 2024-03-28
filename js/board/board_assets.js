@@ -1,0 +1,357 @@
+let currentUser
+
+function generateTaskHTML(titles, descriptions, assignedTo, dates, prios, categories, subtasks) {
+    return /*html*/ `
+    <div draggable="true" ondragstart="startDragging('${titles}')" class="board-card">
+        <div class="container-1">
+            <span class="categorie-block">${currentUser.tasks.categories}</span>
+        </div>
+        <div class="container-2">
+            <div class="title-block">
+                <span>${currentUser.tasks.titles}</span>
+            </div>
+            <div class="description-block">
+                <span>${currentUser.tasks.descriptions}</span>
+            </div>
+            <div>   
+                <div><img src="./assets/img/board_medium.png" alt="Medium">${currentUser.tasks.prios}</div>
+            </div>
+        </div>
+        <div>
+            <div class="assignedTo">
+                <div class="assignedTo-box">
+                    <div class="assignedTo-pic">${currentUser.tasks.assignedTo}</div>
+                </div>
+            </div>
+        </div>
+        <div class="little-card-subtasks">
+            <div class="relativ">
+                <div class="gray"></div>
+                <div class="blaue"></div>
+            </div>
+            <div>
+                <div class="little-subtask">1/2 Subtasks</div>
+            </div>
+        </div>
+    </div>`;
+}
+
+function templatBigTaskHTML(titles, descriptions, assignedTo, dates, prios, categories, subtasks) {
+    return /*html*/ `
+    <div id="overlay-big-id">
+    <div id="overlay-content-big-id"></div>
+      <div class="container-1">
+            <span class="categorie-block">${currentUser.tasks.categories}</span>  
+            <button class="x-button-board" id="closeAddTask" ></button>  
+        </div>
+        <div class="container-2"> 
+            <div class="title-block">
+                <span>${currentUser.tasks.titles}</span>
+            </div>  
+            <div class="description-block">
+                <span>${currentUser.tasks.descriptions}</span>
+            </div>  
+            <div class="date-prio-block">
+                <div class="static-block">
+                    <div>Due date:</div>
+                    <div>Priority:</div>
+                </div>
+                <div class="changeing-block">
+                    <div>10/05/2023 ${currentUser.tasks.dates}</div>
+                    <div>Medium <img src="./assets/img/board_medium.png" alt="Medium">${currentUser.tasks.prios}</div>
+                </div>
+            </div>  
+        </div> 
+        <div>
+            <div class="assignedTo">
+                <div class="static-block">Assigned To:</div>
+                <div class="assignedTo-box">
+                    <div class="assignedTo-pic">${currentUser.tasks.assignedTo}</div>
+                    <div class="assignedTo-text">${currentUser.tasks.assignedTo}</div>
+                </div>
+            </div>
+        </div> 
+        <div class="little-card-subtasks">
+            <div class="relativ">
+                <div class="gray"></div>
+                <div class="blaue"></div>
+            </div>
+            <div>
+                <div class="little-subtask">1/2 Subtasks</div>
+            </div>
+        </div>  
+        <div>
+            <div class="subtask">
+                <div class="static-block" >Subtasks</div>
+                <div class="subtask-box">
+                    <input type="checkbox"><span>${currentUser.tasks.subtasks}</span>
+                </div>
+            </div>
+        </div>  
+        <div class="delete-edit">
+            <div class="delete-edit-box"><img src="./assets/img/board_delete.png" alt="Delete"><span>Delete</span></div>
+            <div class="seperator"></div>
+            <div class="delete-edit-box"><img src="./assets/img/board_edit.png" alt="Edit"><span>Edit</span></div>
+        </div>
+    </div>
+    </div>
+    `;
+}
+
+function templatAddTaskHTML() {
+    return /*html*/`
+    <div id="overlay-add-id">
+    <div id="overlay-content-add-id">
+    <section id="at-section-id" class="at-section">
+      <div class="content-container">
+      <button class="x-button-addTask" id="hide-add-task-Btn-id" ></button>
+        <h1>Add Task</h1>
+        <div class="content-top-and-left">
+          <div class="at-title">
+            <div class="at-label-style">
+              Title<span class="required">*</span>
+              <span id="empty-title-id" class="inApp-err-msg d-none">This field is required!</span>
+            </div>
+            <div id="at-title-border-id" class="input_global input_at cursor">
+              <input
+                id="title-input-id"
+                type="search"
+                placeholder="Enter a title"
+                autocomplete="off" />
+            </div>
+          </div>
+          <div class="at-description">
+            <div class="at-label-style">Description</div>
+            <textarea
+              id="textarea-input-id"
+              class="textarea-style"
+              placeholder="Enter a description"
+              maxlength="500"></textarea>
+          </div>
+          <div class="at-Category">
+            <div class="at-label-style">
+              Category<span class="required">*</span>
+              <span id="empty-category-id" class="inApp-err-msg d-none"
+                >This field is required!</span
+              >
+            </div>
+            <div
+              id="category-container-id"
+              class="input_global input_at cursor"
+              onclick="toggleCategoryContainer()">
+              <input
+                id="category-input-id"
+                class="cursor"
+                type="text"
+                placeholder="Select task category"
+                readonly />
+              <img
+                id="rotate-arrow-category-id"
+                class="rotate-arrow"
+                src="./assets/svg/arrow_drop_down.svg" />
+            </div>
+            <div id="category-id" class="category-dropdown">
+              <ul>
+                <li onclick="selectCategory(this)">Technical Task</li>
+                <li onclick="selectCategory(this)">User Story</li>
+                <li onclick="selectCategory(this)">Bug</li>
+                <li onclick="selectCategory(this)">Feature Request</li>
+                <li onclick="selectCategory(this)">Enhancement</li>
+                <li onclick="selectCategory(this)">Documentation</li>
+                <li onclick="selectCategory(this)">Testing</li>
+                <li onclick="selectCategory(this)">Infrastructure</li>
+                <li onclick="selectCategory(this)">Design</li>
+                <li onclick="selectCategory(this)">Research</li>
+                <li onclick="selectCategory(this)">Other</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="vertical-bar"></div>
+        <div class="content-bottom-and-rigth">
+          <div>
+            <div id="at-label-id" class="at-label-style">Assigned to</div>
+            <div id="assignedto-container-id" class="input_global input_at cursor">
+              <input
+                id="assignedto-input-id"
+                placeholder="Select contacts to assign"
+                onclick="toggleAssignedToSection(false)"
+                autocomplete="off" />
+              <img
+                id="rotate-arrow-id"
+                class="rotate-arrow"
+                src="./assets/svg/arrow_drop_down.svg"
+                onclick="openAssignedbyArrow()" />
+            </div>
+            <div id="assigned-to-contacts-id" class="at-dropdown"></div>
+            <div id="added-contacts-id" class="added-contacts"></div>
+          </div>
+          <div class="at-prio">
+            <div class="at-label-style">Prio</div>
+            <div class="at-prio-img">
+              <img
+                id="urgent-default-id"
+                class="at-prio-img-red"
+                src="./assets/img/urgent_default.png"
+                alt=""
+                onclick="togglePrioImg('urgent-default-id')" />
+              <img
+                id="medium-default-id"
+                class="at-prio-img-yellow"
+                src="./assets/img/medium_highlighted.png"
+                alt=""
+                onclick="togglePrioImg('medium-default-id')" />
+              <img
+                id="low-default-id"
+                class="at-prio-img-green"
+                src="./assets/img/low_default.png"
+                alt=""
+                onclick="togglePrioImg('low-default-id')" />
+            </div>
+          </div>
+          <div class="at-subtasks">
+            <div class="at-label-style">Subtasks</div>
+            <div class="input_global input_at cursor">
+              <input
+                id="subtask-input-id"
+                type="text"
+                maxlength="30"
+                placeholder="Add new subtask"
+                autocomplete="off" />
+              <div
+                id="subtast-add-button-id"
+                class="cursor plus-btn"
+                onclick="toggleAddNewTaskMenu()">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 14 14"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M6.00098 8H1.00098C0.717643 8 0.480143 7.90417 0.288477 7.7125C0.0968099 7.52083 0.000976562 7.28333 0.000976562 7C0.000976562 6.71667 0.0968099 6.47917 0.288477 6.2875C0.480143 6.09583 0.717643 6 1.00098 6H6.00098V1C6.00098 0.716667 6.09681 0.479167 6.28848 0.2875C6.48014 0.0958333 6.71764 0 7.00098 0C7.28431 0 7.52181 0.0958333 7.71348 0.2875C7.90514 0.479167 8.00098 0.716667 8.00098 1V6H13.001C13.2843 6 13.5218 6.09583 13.7135 6.2875C13.9051 6.47917 14.001 6.71667 14.001 7C14.001 7.28333 13.9051 7.52083 13.7135 7.7125C13.5218 7.90417 13.2843 8 13.001 8H8.00098V13C8.00098 13.2833 7.90514 13.5208 7.71348 13.7125C7.52181 13.9042 7.28431 14 7.00098 14C6.71764 14 6.48014 13.9042 6.28848 13.7125C6.09681 13.5208 6.00098 13.2833 6.00098 13V8Z"
+                    fill="#2A3647" />
+                </svg>
+              </div>
+              <div id="subtask-del-and-confim-id" class="subtasks-decision-img d-none">
+                <svg
+                  onclick="deleteOrAddTaskMenu(true)"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <mask
+                    id="mask0_75880_8799"
+                    style="mask-type: alpha"
+                    maskUnits="userSpaceOnUse"
+                    x="0"
+                    y="0"
+                    width="25"
+                    height="24">
+                    <rect x="0.000976562" width="24" height="24" fill="#D9D9D9" />
+                  </mask>
+                  <g mask="url(#mask0_75880_8799)">
+                    <path
+                      d="M12.0008 13.4L7.10078 18.3C6.91745 18.4834 6.68411 18.575 6.40078 18.575C6.11745 18.575 5.88411 18.4834 5.70078 18.3C5.51745 18.1167 5.42578 17.8834 5.42578 17.6C5.42578 17.3167 5.51745 17.0834 5.70078 16.9L10.6008 12L5.70078 7.10005C5.51745 6.91672 5.42578 6.68338 5.42578 6.40005C5.42578 6.11672 5.51745 5.88338 5.70078 5.70005C5.88411 5.51672 6.11745 5.42505 6.40078 5.42505C6.68411 5.42505 6.91745 5.51672 7.10078 5.70005L12.0008 10.6L16.9008 5.70005C17.0841 5.51672 17.3174 5.42505 17.6008 5.42505C17.8841 5.42505 18.1174 5.51672 18.3008 5.70005C18.4841 5.88338 18.5758 6.11672 18.5758 6.40005C18.5758 6.68338 18.4841 6.91672 18.3008 7.10005L13.4008 12L18.3008 16.9C18.4841 17.0834 18.5758 17.3167 18.5758 17.6C18.5758 17.8834 18.4841 18.1167 18.3008 18.3C18.1174 18.4834 17.8841 18.575 17.6008 18.575C17.3174 18.575 17.0841 18.4834 16.9008 18.3L12.0008 13.4Z"
+                      fill="#2A3647" />
+                  </g>
+                </svg>
+                <div class="vertical-line"></div>
+                <svg
+                  onclick="deleteOrAddTaskMenu(false)"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <mask
+                    id="mask0_75880_8801"
+                    style="mask-type: alpha"
+                    maskUnits="userSpaceOnUse"
+                    x="0"
+                    y="0"
+                    width="25"
+                    height="24">
+                    <rect x="0.000976562" width="24" height="24" fill="#D9D9D9" />
+                  </mask>
+                  <g mask="url(#mask0_75880_8801)">
+                    <path
+                      d="M9.55118 15.15L18.0262 6.675C18.2262 6.475 18.4637 6.375 18.7387 6.375C19.0137 6.375 19.2512 6.475 19.4512 6.675C19.6512 6.875 19.7512 7.1125 19.7512 7.3875C19.7512 7.6625 19.6512 7.9 19.4512 8.1L10.2512 17.3C10.0512 17.5 9.81785 17.6 9.55118 17.6C9.28452 17.6 9.05118 17.5 8.85118 17.3L4.55118 13C4.35118 12.8 4.25535 12.5625 4.26368 12.2875C4.27202 12.0125 4.37618 11.775 4.57618 11.575C4.77618 11.375 5.01368 11.275 5.28868 11.275C5.56368 11.275 5.80118 11.375 6.00118 11.575L9.55118 15.15Z"
+                      fill="#2A3647" />
+                  </g>
+                </svg>
+              </div>
+            </div>
+            <div class="subtask-list">
+              <ul id="add-task-list-id"></ul>
+            </div>
+          </div>
+          <div class="at-date">
+            <div class="at-label-style">
+              Due date<span class="required">*</span>
+              <span id="empty-date-id" class="inApp-err-msg d-none">This field is required!</span>
+            </div>
+            <div id="at-date-border-id" class="input_global due_date_at">
+              <input id="date-input-id" type="date" max="2025-12-31" min="2024-02-27" />
+              <img
+                class="event-style"
+                src="./assets/img/event.png"
+                onclick="openAssignedbyArrow()" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="content-bottom-container">
+        <div class="err-msg-flex">
+          <span class="required-msg"> <span class="required">*</span>This field is required</span>
+          <svg
+            id="rotate-err-arrow-id"
+            class="rotate-err-arrow d-none"
+            width="20"
+            height="15"
+            viewBox="0 0 24 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M4.70752 8.63255H22.1981C22.9345 8.63255 23.5314 9.2295 23.5314 9.96588C23.5314 10.7023 22.9345 11.2992 22.1981 11.2992H4.70752L10.9169 17.5085C11.4375 18.0292 11.4375 18.8733 10.9168 19.3939C10.3962 19.9145 9.55214 19.9145 9.03152 19.3939L1.01773 11.3801C0.236679 10.599 0.236681 9.33272 1.01773 8.55167L9.03152 0.537881C9.55214 0.0172601 10.3962 0.0172609 10.9168 0.537881C11.4375 1.0585 11.4375 1.90259 10.9168 2.42322L4.70752 8.63255Z"
+              fill="#29ABE2" />
+          </svg>
+        </div>
+        <div class="bottom-btns-container">
+          <button
+            id="ad-clear-btn"
+            class="white-btn width-small hide-clear-btn"
+            onclick="clearAll()">
+            Clear
+            <svg
+              width="25"
+              height="24"
+              viewBox="0 0 25 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M12.2496 11.9998L17.4926 17.2428M7.00659 17.2428L12.2496 11.9998L7.00659 17.2428ZM17.4926 6.75684L12.2486 11.9998L17.4926 6.75684ZM12.2486 11.9998L7.00659 6.75684L12.2486 11.9998Z"
+                stroke="#2A3647"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </button>
+          <button id="ad-add-btn" class="filled-btn" onclick="createTask()">
+            Create Task
+            <img src="./assets/img/check.png" alt="" />
+          </button>
+        </div>
+      </div>
+      <div id="loader-id" class="loader d-none"></div>
+      <div id="trans-bg-id" class="trans-bg d-none"></div>
+      <div id="at-success-msg-id" class="success-msg-popup d-none">
+        <span>Task added to board</span>
+        <img src="./assets/img/Board_Icons.png" alt="" />
+      </div>
+    </section>       
+    </div>
+    </div>
+    `
+}
