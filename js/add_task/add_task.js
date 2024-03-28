@@ -4,13 +4,13 @@ let currentIndex = -1;
 let assignedTo = {
   initials: [],
   colorCodes: [],
-  textColor: [],
+  textColors: [],
   userNames: [],
-  userMail: [],
+  userMails: [],
 };
 let subtaskList = [];
 let userIndex;
-let prio = ["urgnet", "medium", "low"];
+let prio = ["urgent", "medium", "low"];
 let prioIndex = 1;
 let isFilterActive = false;
 
@@ -132,7 +132,7 @@ function renderAddedContacts() {
       index,
       colorCode,
       assignedTo.initials[index],
-      assignedTo.textColor[index]
+      assignedTo.textColors[index]
     );
   });
 }
@@ -167,22 +167,22 @@ function getUserInfo(event) {
 
 function pushSelectedUser(event) {
   const {assignedContact, backgroundColorValue, textColor, userName, userMail} = getUserInfo(event);
-  if (assignedTo.userMail.includes(userMail)) return;
+  if (assignedTo.userMails.includes(userMail)) return;
   assignedTo.initials.push(assignedContact);
   assignedTo.colorCodes.push(backgroundColorValue);
-  assignedTo.textColor.push(textColor);
+  assignedTo.textColors.push(textColor);
   assignedTo.userNames.push(userName);
-  assignedTo.userMail.push(userMail);
+  assignedTo.userMails.push(userMail);
 }
 
 function deleteSelectedUser(event) {
   const userMail = document.getElementById(`at-user-mail-id${userIndex}`).innerHTML;
-  const index = assignedTo.userMail.indexOf(userMail);
+  const index = assignedTo.userMails.indexOf(userMail);
   assignedTo.initials.splice(index, 1);
   assignedTo.colorCodes.splice(index, 1);
-  assignedTo.textColor.splice(index, 1);
+  assignedTo.textColors.splice(index, 1);
   assignedTo.userNames.splice(index, 1);
-  assignedTo.userMail.splice(index, 1);
+  assignedTo.userMails.splice(index, 1);
 }
 
 function togglePrioImg(clickedId) {
@@ -363,7 +363,7 @@ function updateTasks(titleInput, textareaInput, dateInput, categoryInput) {
   currentUser.tasks.titles.push(titleInput);
   currentUser.tasks.descriptions.push(textareaInput);
   currentUser.tasks.dates.push(dateInput);
-  currentUser.tasks.assignedTo.push(assignedTo.userNames);
+  currentUser.tasks.assignedTo.push(assignedTo);
   currentUser.tasks.prios.push(prio[prioIndex]);
   currentUser.tasks.categories.push(categoryInput);
   currentUser.tasks.subtasks.push(subtaskList);
@@ -394,6 +394,7 @@ function clearAll() {
   togglePrioImg("medium-default-id");
   toggleVisibility("rotate-err-arrow-id", false);
   localStorage.setItem("currentUser", JSON.stringify(currentUser));
+  console.log("assignedTo :>> ", assignedTo);
 }
 function clearAllInputs() {
   document.getElementById("title-input-id").value = "";
@@ -405,9 +406,10 @@ function clearAllInputs() {
 function clearAllLists() {
   subtaskList.splice(0, subtaskList.length);
   assignedTo.userNames.splice(0, assignedTo.userNames.length);
+  assignedTo.userMails.splice(0, assignedTo.userMails.length);
   assignedTo.colorCodes.splice(0, assignedTo.colorCodes.length);
   assignedTo.initials.splice(0, assignedTo.initials.length);
-  assignedTo.textColor.splice(0, assignedTo.textColor.length);
+  assignedTo.textColors.splice(0, assignedTo.textColors.length);
 }
 
 function clearAllErrMsg() {

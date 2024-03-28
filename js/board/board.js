@@ -1,4 +1,8 @@
 let currentDraggedElement;
+let assignedToInfo = {
+  initials: [],
+  colorCodes: [],
+};
 
 function initBoard() {
   const isUserLoggedIn = checkUserLogIn();
@@ -37,7 +41,26 @@ function generateCardHTML() {
   let {toDoEl, inProgEl, awaitFedEl, doneEl} = getBoardElements();
   if (currentUser.tasks.board.length === 0) return;
   currentUser.tasks.board.forEach((task, index) => {
-    if (task === "toDo") toDoEl.innerHTML += generateTaskHTML(index);
+    if (task === "toDo") {
+      const prio = currentUser.tasks.prios[index];
+      toDoEl.innerHTML += generateTaskHTML(index, prio);
+      renderBoardAssignedTo(index);
+    }
+  });
+}
+
+function renderBoardAssignedTo(index) {
+  let addedContactsElement = document.getElementById(`board-assignedTo-id${index}`);
+  addedContactsElement.innerHTML = "";
+  currentUser.tasks.assignedTo[index].colorCodes.forEach((colorCode, idx) => {
+    if (idx > 4) return;
+    addedContactsElement.innerHTML += templateBoardAssignedToHTML(
+      idx,
+      colorCode,
+      currentUser.tasks.assignedTo[index].initials[idx],
+      currentUser.tasks.assignedTo[index].textColors[idx],
+      index
+    );
   });
 }
 

@@ -1,4 +1,5 @@
-function generateTaskHTML(index) {
+function generateTaskHTML(index, prio) {
+  const progressWidth = ((2 / currentUser.tasks.subtasks[index].length) * 100).toFixed(2);
   return /*html*/ `
     <div draggable="true" ondragstart="startDragging('${currentUser.tasks.titles[index]}')" class="board-card">
         <div class="category-container">
@@ -12,11 +13,14 @@ function generateTaskHTML(index) {
                 <span >${currentUser.tasks.descriptions[index]}</span>
             </div>
             <div class="subtasks-block">
-               <div>test</div> <span >0/2 Subtasks</span>
+              <div class="progress-bar">
+                <div class="progress" style="width: ${progressWidth}%"></div> 
+              </div>
+              <span >0/${currentUser.tasks.subtasks[index].length} Subtasks</span>
             </div>
             <div class="priority-block">   
-                <div>assignedto</div>
-                <div><img src="./assets/img/board_medium.png" alt="Medium"></div>
+                <div id="board-assignedTo-id${index}"  class="board-added-contacts"></div>
+                <div class="board-assignedTo-prio"><img src="./assets/img/board_${prio}.png" alt="Medium"></div>
             </div>
         </div>
         <div>
@@ -36,6 +40,21 @@ function generateTaskHTML(index) {
             </div>
         </div>
     </div>`;
+}
+
+function templateBoardAssignedToHTML(idx, iconColor, initials, textColor, index) {
+  if (idx === 4) {
+    iconColor = "#2a3647";
+    initials = `+${currentUser.tasks.assignedTo[index].colorCodes.length - 4}`;
+    textColor = "rgb(255, 255, 255)";
+  }
+  return /*html*/ `
+  <div class="board-circle-style board-left-indent" style="background-color: ${iconColor}; color: ${textColor};">
+    <span>
+        ${initials}
+    </span>
+  </div>
+`;
 }
 
 function templatBigTaskHTML(titles, descriptions, assignedTo, dates, prios, categories, subtasks) {

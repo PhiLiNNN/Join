@@ -7,6 +7,7 @@
 }
 
 .category-container {
+  width: 252px;
   display: flex;
   justify-content: start;
   align-items: center;
@@ -46,6 +47,48 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.subtasks-block {
+  gap: 11px;
+  font-size: 12px;
+  color: black;
+}
+.progress {
+  height: 100%;
+  background-color: #4589ff;
+}
+.board-added-contacts {
+  position: relative;
+  display: flex;
+  margin-left: 8px;
+  z-index: 0;
+}
+.board-assignedTo-prio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-bar {
+  width: 128px;
+  height: 8px;
+  background-color: #f0f0f0;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.board-circle-style {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  border: 2px solid white;
+  border-radius: 50%;
+  font-size: 12px;
+}
+
+.board-left-indent {
+  margin-left: -10px;
 }
 
 .date-prio-block {
