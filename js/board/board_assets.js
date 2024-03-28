@@ -1,4 +1,4 @@
-let currentUser
+
 
 function generateTaskHTML(titles, descriptions, assignedTo, dates, prios, categories, subtasks) {
     return /*html*/ `
@@ -101,10 +101,9 @@ function templatBigTaskHTML(titles, descriptions, assignedTo, dates, prios, cate
 function templatAddTaskHTML() {
     return /*html*/`
     <div id="overlay-add-id">
-    <div id="overlay-content-add-id">
     <section id="at-section-id" class="at-section">
-      <div class="content-container">
-      <button class="x-button-addTask" id="hide-add-task-Btn-id" ></button>
+      <div class="content-container-board">
+      <button class="x-button-addTask" id="hide-add-task-Btn-id" onclick="closeAddTaskOverlay()" ></button>
         <h1>Add Task</h1>
         <div class="content-top-and-left">
           <div class="at-title">
@@ -302,7 +301,7 @@ function templatAddTaskHTML() {
           </div>
         </div>
       </div>
-      <div class="content-bottom-container">
+      <div class="content-bottom-container-board">
         <div class="err-msg-flex">
           <span class="required-msg"> <span class="required">*</span>This field is required</span>
           <svg
@@ -351,7 +350,6 @@ function templatAddTaskHTML() {
         <img src="./assets/img/Board_Icons.png" alt="" />
       </div>
     </section>       
-    </div>
     </div>
     `
 }

@@ -1,6 +1,5 @@
 let currentDraggedElement;
-let isUserLoggedIn;
-let currentUser;
+
 
 function initBoard() {
   const isUserLoggedIn = checkUserLogIn();
@@ -20,7 +19,6 @@ function initBoard() {
 
   loadHeaderInitials();
 
-  renderAddTask();
 }
 
 
@@ -59,15 +57,28 @@ function moveTo(board) {
   updateHTML();
 }
 
-
-function openAddTask() {
-    document.getElementById("add-task-Btn-id").addEventListener("click", function() {
-    document.getElementById("overlay-add-id").style.display = "block";
-    });
+function createOverlay() {
+    let overlayContent = document.getElementById('board-body-id')
+    overlayContent.innerHTML += templatAddTaskHTML();
 }
 
-function closeAddTask() {
-    document.getElementById("hide-add-task-Btn-id").addEventListener("click", function() {
-    document.getElementById("overlay-add-id").style.display = "none";
-    });
+
+function showOverlay() {
+    document.getElementById('overlay-add-id').style.display = 'block';
+}
+
+
+function hideOverlay() {
+    document.getElementById('overlay-add-id').style.display = 'none';
+}
+
+
+function openAddTaskOverlay() {
+    createOverlay(); 
+    showOverlay(); 
+}
+
+
+function closeAddTaskOverlay() {
+    hideOverlay(); 
 }
