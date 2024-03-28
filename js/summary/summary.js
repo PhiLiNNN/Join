@@ -1,7 +1,7 @@
 let isUserLoggedIn;
 let currentUser;
 
-function initSummary() {
+async function initSummary() {
   isUserLoggedIn = checkUserLogIn();
   if (!isUserLoggedIn) window.location.assign("../error_page.html");
   currentUser = JSON.parse(localStorage.getItem("currentUser"));

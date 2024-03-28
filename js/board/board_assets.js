@@ -1,26 +1,28 @@
-
-
-function generateTaskHTML(titles, descriptions, assignedTo, dates, prios, categories, subtasks) {
-    return /*html*/ `
-    <div draggable="true" ondragstart="startDragging('${titles}')" class="board-card">
-        <div class="container-1">
-            <span class="categorie-block">${currentUser.tasks.categories}</span>
+function generateTaskHTML(index) {
+  return /*html*/ `
+    <div draggable="true" ondragstart="startDragging('${currentUser.tasks.titles[index]}')" class="board-card">
+        <div class="category-container">
+            <span class="category-block">${currentUser.tasks.categories[index]}</span>
         </div>
-        <div class="container-2">
+        <div class="task-container">
             <div class="title-block">
-                <span>${currentUser.tasks.titles}</span>
+                <span>${currentUser.tasks.titles[index]}</span>
             </div>
-            <div class="description-block">
-                <span>${currentUser.tasks.descriptions}</span>
+            <div  class="description-block">
+                <span >${currentUser.tasks.descriptions[index]}</span>
             </div>
-            <div>   
-                <div><img src="./assets/img/board_medium.png" alt="Medium">${currentUser.tasks.prios}</div>
+            <div class="subtasks-block">
+               <div>test</div> <span >0/2 Subtasks</span>
+            </div>
+            <div class="priority-block">   
+                <div>assignedto</div>
+                <div><img src="./assets/img/board_medium.png" alt="Medium"></div>
             </div>
         </div>
         <div>
             <div class="assignedTo">
                 <div class="assignedTo-box">
-                    <div class="assignedTo-pic">${currentUser.tasks.assignedTo}</div>
+                    <div class="assignedTo-pic">${currentUser.tasks.assignedTo[index]}</div>
                 </div>
             </div>
         </div>
@@ -37,7 +39,7 @@ function generateTaskHTML(titles, descriptions, assignedTo, dates, prios, catego
 }
 
 function templatBigTaskHTML(titles, descriptions, assignedTo, dates, prios, categories, subtasks) {
-    return /*html*/ `
+  return /*html*/ `
     <div id="overlay-big-id">
     <div id="overlay-content-big-id"></div>
       <div class="container-1">
@@ -99,7 +101,7 @@ function templatBigTaskHTML(titles, descriptions, assignedTo, dates, prios, cate
 }
 
 function templatAddTaskHTML() {
-    return /*html*/`
+  return /*html*/ `
     <div id="overlay-add-id">
     <section id="at-section-id" class="at-section">
       <div class="content-container-board">
@@ -351,5 +353,5 @@ function templatAddTaskHTML() {
       </div>
     </section>       
     </div>
-    `
+    `;
 }

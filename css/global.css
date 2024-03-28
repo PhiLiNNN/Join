@@ -232,6 +232,10 @@ input:-webkit-autofill:active {
   width: 104px !important;
 }
 
+input {
+  background: transparent;
+}
+
 .input_global,
 .textarea-style {
   position: relative;

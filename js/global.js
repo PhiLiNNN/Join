@@ -8,7 +8,6 @@ const STORAGE_URL = "https://remote-storage.developerakademie.org/item";
  * @param {string} value
  * @returns Promise: resolved or rejected.
  */
-
 async function setItem(key, value) {
   const payload = {key, value, token: STORAGE_TOKEN};
   return fetch(STORAGE_URL, {

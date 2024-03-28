@@ -6,6 +6,7 @@ let visibilityOn, visibilityOnConfirm;
 let inputType = (inputTypeConfirm = "password");
 let password,
   confirmPassword = false;
+
 // pw: tEst1!
 async function init() {
   localStorage.clear();
@@ -213,11 +214,11 @@ function closeSignUp() {
   inputType = "password";
 }
 
-function login() {
+async function login() {
   if (loginValidationCheck()) {
     const loggedInUser = loadCurrentUser();
     localStorage.setItem("currentUser", JSON.stringify(loggedInUser));
-    window.location.assign("../summary.html");
+    window.location.assign(`../summary.html?userId=${loggedInUser.userEMail}`);
   }
 }
 

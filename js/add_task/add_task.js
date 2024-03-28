@@ -14,7 +14,7 @@ let prio = ["urgnet", "medium", "low"];
 let prioIndex = 1;
 let isFilterActive = false;
 
-function initAddTask() {
+async function initAddTask() {
   isUserLoggedIn = checkUserLogIn();
   if (!isUserLoggedIn) window.location.assign("../error_page.html");
   currentUser = JSON.parse(localStorage.getItem("currentUser"));

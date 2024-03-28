@@ -1,47 +1,44 @@
 let currentDraggedElement;
 
-
 function initBoard() {
   const isUserLoggedIn = checkUserLogIn();
-  if (!isUserLoggedIn) {
-    window.location.assign("../error_page.html");
-    return;
- }
-
- currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  if (!isUserLoggedIn) window.location.assign("../error_page.html");
+  currentUser = JSON.parse(localStorage.getItem("currentUser"));
   console.log("currentUser :>> ", currentUser);
-  if (!currentUser || !currentUser.tasks || !currentUser.tasks.board) {
-    console.error("Fehler beim Abrufen der Benutzerdaten.");
-    return;
-  }
 
   toggleVisibility("board-body-id", true);
-
   loadHeaderInitials();
-
   generateCardHTML();
-
+  truncateDescriptionIfTooLong();
 }
 
-
-function generateCardHTML(){
-    const tasksByStatus = {
-    toDo: document.getElementById("to-do-id"),
-    inProgress: document.getElementById("in-progress-id"),
-    awaitFeedback: document.getElementById("await-feedback-id"),
-    done: document.getElementById("done-id"),
-  };
-
-  for (const status in tasksByStatus) {
-    if (Object.hasOwnProperty.call(tasksByStatus, status)) {
-      const tasks = currentUser.tasks.board.filter((task) => task === status);
-      const element = tasksByStatus[status];
-      element.innerHTML = "";
-      tasks.forEach((task) => {
-        element.innerHTML += generateTaskHTML(task);
-      });
+function truncateDescriptionIfTooLong() {
+  const descriptionSpans = document.querySelectorAll(".description-block");
+  const maxHeight = 50;
+  const ellipsis = " ...";
+  descriptionSpans.forEach((descriptionSpan) => {
+    if (descriptionSpan.scrollHeight > maxHeight) {
+      const text = descriptionSpan.textContent.trim();
+      const truncatedText = text.slice(0, maxHeight) + ellipsis;
+      descriptionSpan.textContent = truncatedText;
     }
-  }
+  });
+}
+
+function getBoardElements() {
+  let toDoEl = document.getElementById("to-do-id");
+  let inProgEl = document.getElementById("in-progress-id");
+  let awaitFedEl = document.getElementById("await-feedback-id");
+  let doneEl = document.getElementById("done-id");
+  return {toDoEl, inProgEl, awaitFedEl, doneEl};
+}
+
+function generateCardHTML() {
+  let {toDoEl, inProgEl, awaitFedEl, doneEl} = getBoardElements();
+  if (currentUser.tasks.board.length === 0) return;
+  currentUser.tasks.board.forEach((task, index) => {
+    if (task === "toDo") toDoEl.innerHTML += generateTaskHTML(index);
+  });
 }
 
 //drag and drop
@@ -62,32 +59,30 @@ function moveTo(board) {
 //Big Card Overlay
 
 function createBigCard() {
-    let overlayContent = document.getElementById('board-body-id')
-    overlayContent.innerHTML += templatAddTaskHTML();
+  let overlayContent = document.getElementById("board-body-id");
+  overlayContent.innerHTML += templatAddTaskHTML();
 }
-
-
 
 //add Task Overlay
 
 function createAddTask() {
-    let overlayContent = document.getElementById('board-body-id')
-    overlayContent.innerHTML += templatAddTaskHTML();
+  let overlayContent = document.getElementById("board-body-id");
+  overlayContent.innerHTML += templatAddTaskHTML();
 }
 
 function showAddTask() {
-    document.getElementById('overlay-add-id').style.display = 'block';
+  document.getElementById("overlay-add-id").style.display = "block";
 }
 
 function hideAddTask() {
-    document.getElementById('overlay-add-id').style.display = 'none';
+  document.getElementById("overlay-add-id").style.display = "none";
 }
 
 function openAddTaskOverlay() {
-    createAddTask(); 
-    showAddTask(); 
+  createAddTask();
+  showAddTask();
 }
 
 function closeAddTaskOverlay() {
-    hideAddTask(); 
+  hideAddTask();
 }
