@@ -7,7 +7,6 @@ let inputType = (inputTypeConfirm = "password");
 let password,
   confirmPassword = false;
 // pw: tEst1!
-
 async function init() {
   localStorage.clear();
   showLoader();
