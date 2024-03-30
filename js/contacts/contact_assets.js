@@ -36,7 +36,9 @@ function templateAddContactHTML() {
                         <div id="ac-name-border-id" class="input_global input_ac cursor">
                             <input id="ac-name-input-id"  type="text" placeholder="Name" autocomplete="on">
                             <div class="tooltip">
-                                <img src="./assets/svg/info.svg" alt="">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path fill="#2a3647" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/>
+                                </svg>
                                 <div class="tooltiptext">Valid inputs:
                                 <ul>
                                     <li>First name only</li>
@@ -141,7 +143,10 @@ function templateEditContactHTML() {
                     <div class="card-inputs">
                         <div id="ec-name-border-id" class="input_global input_ac cursor">
                             <input id="ec-name-input-id"  type="text" placeholder="Name" autocomplete="on" value="${savedName}">
-                            <span class="tooltip">i
+                            <div class="tooltip">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path fill="#2a3647" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/>
+                                </svg>
                                 <div class="tooltiptext">Valid inputs:
                                 <ul>
                                     <li>First name only</li>
@@ -149,7 +154,7 @@ function templateEditContactHTML() {
                                     <li>Double name (e.g., Lisa-Marie)</li>
                                 </ul>
                                 </div>
-                            </span>
+                            </div>
                             <img src="./assets/img/person.png" alt="">
                             <span id="ec-empty-name-id" class="ac-err-msg d-none">This field is required!</span>
                             <span id="ec-invalid-name-id" class="ac-err-msg d-none">Name must be at least 2 letters.</span>
