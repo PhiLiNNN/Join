@@ -26,16 +26,16 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .content-container {
   position: sticky;
   overflow-y: auto;
-  max-height: calc(100vh - 254px);
-  margin-top: 100px;
-  padding: 46px 16px 0 16px;
+  max-height: calc(100vh - 364px);
+  margin: 210px 0 0 0;
+  padding: 0 16px 16px 16px;
   z-index: 100;
   transition: all 300ms ease-in-out;
 }
 
-.content-container h1 {
+.section-title {
+  position: absolute;
   font-size: 54px;
-  line-height: 56.4px;
   font-weight: bold;
   transition: all 300ms ease-in-out;
 }
@@ -63,6 +63,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   transition: transform 300ms ease;
 }
 
+.at-asignedTo {
+  color: var(--mockup-color);
+}
+
 .plus-btn {
   margin-right: -5px;
 }
@@ -88,7 +92,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .at-label-style {
-  margin-block: 8px;
+  margin-bottom: 8px;
   font-size: 22px;
   transition: all 300ms ease-in-out;
 }
@@ -178,6 +182,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .at-prio-img {
+  margin-top: 18px;
   display: flex;
   justify-content: space-between;
 }
@@ -263,7 +268,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   align-items: center;
   font-size: 22px;
   padding: 12.5px 16px;
-  margin-inline: 26px;
   position: relative;
   border-radius: 10px;
   cursor: pointer;
@@ -362,13 +366,23 @@ li:hover .hidden-Edit_menu {
 }
 
 @media (min-width: 761px) {
+  .section-title {
+    left: 264px;
+    top: 144px;
+  }
+  .at-label-style,
+  .at-prio {
+    margin-top: 32px;
+  }
   .content-container {
-    max-height: calc(100vh - 178px);
-    margin: 100px 0 0 calc(232px);
+    max-height: calc(100vh - 300px);
+    padding: 0 32px 16px 32px;
+    margin: 232px 0 0 calc(232px);
   }
   .content-bottom-container {
     max-width: 1310px;
     margin: 0 0 0 calc(232px);
+    padding-inline: 32px;
     bottom: 0px;
   }
   .hide-clear-btn {
@@ -411,6 +425,12 @@ li:hover .hidden-Edit_menu {
 }
 
 @media (min-width: 1343px) {
+  .at-label-style {
+    color: var(--mockup-color);
+  }
+  .at-prio div {
+    color: black;
+  }
   .at-prio-img {
     justify-content: space-between;
   }
@@ -422,9 +442,10 @@ li:hover .hidden-Edit_menu {
   }
   .content-container {
     position: static;
-    margin: 232px 90px 0 calc(232px + 96px);
+    margin: 310px 70px 0 calc(232px + 96px);
     overflow-x: hidden;
-    max-height: calc(100vh - 318px);
+    padding: 0 32px 0 0;
+    max-height: calc(100vh - 400px);
     display: flex;
     gap: 32px;
     max-width: 1920px;
@@ -432,7 +453,6 @@ li:hover .hidden-Edit_menu {
   .content-top-and-left,
   .content-bottom-and-rigth {
     width: 100%;
-    min-width: 414px;
   }
   .vertical-bar {
     height: 424px;
@@ -440,9 +460,10 @@ li:hover .hidden-Edit_menu {
     border-radius: 1px;
     width: 1px;
   }
-  .content-container h1 {
+  .section-title {
     position: absolute;
-    top: 141px;
+    top: 206px;
+    left: 330px;
     font-size: 64px;
     line-height: 73.2px;
   }
@@ -478,6 +499,15 @@ li:hover .hidden-Edit_menu {
 }
 
 @media (max-width: 761px) {
+  .at-label-style,
+  .at-prio {
+    margin-top: 32px;
+  }
+  .section-title {
+    left: 16px;
+    top: 144px;
+  }
+
   .editable-span {
     max-width: 50vw;
   }
@@ -507,11 +537,15 @@ li:hover .hidden-Edit_menu {
 }
 
 @media (max-width: 466px) {
+  .at-label-style,
+  .at-prio {
+    margin-top: 16px;
+  }
   .at-prio-img img {
     height: 32px;
     width: 87px;
   }
-  .content-container h1 {
+  .section-title {
     font-size: 43px;
   }
   .at-label-style,

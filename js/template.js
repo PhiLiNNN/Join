@@ -13,15 +13,16 @@ function templateSignUpPopup() {
       <div class="login-fields-gap">
       <div id="add-name-border-id" class="input_global">
           <input type="name" name="name" id="add-name-id" placeholder="Name" autocomplete="off">
-          <span class="tooltip">i
-            <div class="tooltiptext">Valid inputs:
+          <div class="tooltip">
+              <img src="./assets/svg/info.svg" alt="">
+              <div class="tooltiptext">Valid inputs:
               <ul>
-                <li>First name only</li>
-                <li>First name last name (with space)</li>
-                <li>Double name (e.g., Lisa-Marie)</li>
+                  <li>First name only</li>
+                  <li>First name last name (with space)</li>
+                  <li>Double name (e.g., Lisa-Marie)</li>
               </ul>
-            </div>
-          </span>
+              </div>
+          </div>
           <img class="login-name" src="./assets/img/person.png" alt="login image">
           <span id="empty-add-name-id" class="err-msg d-none">This field is required!</span>
           <span id="invalid-add-name-id" class="err-msg d-none">Name must be at least 2 letters.</span>
@@ -37,16 +38,17 @@ function templateSignUpPopup() {
         </div>
         <div id="add-pw-border-id" class="input_global">
           <input type="password" name="loginUserPassword" id="add-pw-id" placeholder="Password" autocomplete="new-password">
-          <span class="tooltip">i
-            <div class="tooltiptext">Valid inputs:
+          <div class="tooltip">
+              <img src="./assets/svg/info.svg" alt="">
+              <div class="tooltiptext">Valid inputs:
               <ul>
                 <li>At least one number</li>
                 <li>At least one letter</li>
                 <li>At least one special character</li>
                 <li>6 or more characters</li>
               </ul>
-            </div> 
-          </span>
+              </div>
+          </div>
           <img id="register-lock-id" class="login-lock" src="./assets/img/lock.png" alt=""> 
           <img id="register-pw-visibility-id" class="visibility-img d-none" src="./assets/img/visibility.png" alt=""  onclick="togglePasswordVisibility(event, 'register-pw-visibility-off-id', 'registerPw', -1)">
           <img id="register-pw-visibility-off-id" class="visibility-off-img d-none" src="./assets/img/visibility_off.png" alt="" onclick="togglePasswordVisibility(event, 'register-pw-visibility-id', 'registerPw', 1)">

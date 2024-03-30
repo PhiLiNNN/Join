@@ -59,6 +59,11 @@
   margin-left: 16px;
 }
 
+.contact-name {
+  flex: 1;
+  padding-right: 16px;
+}
+
 .open-contacts-name span {
   font-size: 36px;
   font-weight: 700;
@@ -95,6 +100,9 @@
 .contact-name {
   margin-left: 34px;
   transition: all 300ms ease-in-out;
+}
+.contact-name span {
+  text-wrap: wrap;
 }
 
 .open-contacts-circle {
@@ -214,6 +222,9 @@
   .desktop-menu-container {
     display: flex;
     align-items: center;
+  }
+  .open-contacts-name {
+    margin-left: 10px;
   }
 }
 

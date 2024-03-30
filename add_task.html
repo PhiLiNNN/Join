@@ -17,8 +17,8 @@
   <body id="at-body-id" class="d-none" onload="includeHTML().then(() => initAddTask())">
     <div w3-include-html="./assets/templates/header.html"></div>
     <section id="at-section-id" class="at-section">
+      <h1 class="section-title">Add Task</h1>
       <div class="content-container">
-        <h1>Add Task</h1>
         <div class="content-top-and-left">
           <div class="at-title">
             <div class="at-label-style">
@@ -83,7 +83,7 @@
         <div class="vertical-bar"></div>
         <div class="content-bottom-and-rigth">
           <div>
-            <div id="at-label-id" class="at-label-style">Assigned to</div>
+            <div id="at-label-id" class="at-label-style at-asignedTo">Assigned to</div>
             <div id="assignedto-container-id" class="input_global input_at cursor">
               <input
                 id="assignedto-input-id"
