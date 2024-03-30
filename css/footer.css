@@ -52,6 +52,12 @@
 .footer-icon-box:hover {
   background-color: var(--focus-color-btn);
 }
+.highlight-menu:hover {
+  background: #11305f;
+}
+.highlight-menu {
+  background: var(--focus-color-btn);
+}
 .footer-icon-box:active {
   background-color: var(--mockup-highlight);
 }

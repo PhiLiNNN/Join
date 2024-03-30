@@ -219,7 +219,7 @@ async function login() {
   if (loginValidationCheck()) {
     const loggedInUser = loadCurrentUser();
     localStorage.setItem("currentUser", JSON.stringify(loggedInUser));
-    window.location.assign(`../summary.html?userId=${loggedInUser.userEMail}`);
+    window.location.assign(`../summary.html`);
   }
 }
 

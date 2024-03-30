@@ -173,7 +173,6 @@ input:-webkit-autofill:active {
 .success-msg-popup span {
   color: white;
   font-size: 22px;
-  line-height: 24px;
 }
 .success-msg-popup img {
   width: 24px;
@@ -359,7 +358,7 @@ textarea::placeholder {
   }
   .success-msg-popup {
     height: 55px;
-    width: 250px;
+    width: 285px;
     transform: translate(calc(-100% + 116px), 900%);
   }
   .success-msg-popup span {
@@ -387,5 +386,11 @@ textarea::placeholder {
 @media (max-width: 371px) {
   .error-page span {
     font-size: 22px;
+  }
+  .success-msg-popup {
+    width: 250px;
+  }
+  .success-msg-popup span {
+    font-size: 16px;
   }
 }

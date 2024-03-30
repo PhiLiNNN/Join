@@ -163,7 +163,7 @@
 
 .separator2 {
   height: 102px;
-  width: 2px;
+  width: 3px;
   border-radius: 10px;
   background-color: var(--placeholder-color);
   margin: 21px 0 21px 0;

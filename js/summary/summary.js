@@ -6,6 +6,7 @@ async function initSummary() {
   if (!isUserLoggedIn) window.location.assign("../error_page.html");
   currentUser = JSON.parse(localStorage.getItem("currentUser"));
   console.log("currentUser :>> ", currentUser);
+  toggleVisibility("summary-menu-id", false, "highlight-menu");
   toggleVisibility("summary-body-id", true);
   loadHeaderInitials();
   updateGreeting();

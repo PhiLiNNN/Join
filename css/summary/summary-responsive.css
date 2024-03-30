@@ -212,6 +212,9 @@
 }
 
 @media (min-width: 1341px) {
+  .summary-title h1 {
+    font-size: 64px;
+  }
   .summary-title {
     margin-left: 0;
   }
@@ -338,6 +341,9 @@
     width: 500px;
     height: 120px;
   }
+  .separator2 {
+    height: 80px;
+  }
 }
 
 @media (max-width: 560px) {
@@ -393,9 +399,6 @@
     font-size: 16px;
     padding: 19px 8px 19px 8px;
   }
-  .separator2 {
-    height: 80px;
-  }
   .middle-hover-container,
   .middle-section,
   .top-section,
@@ -411,6 +414,9 @@
   .top-right:active svg {
     width: 55px;
     height: 55px;
+  }
+  .separator2 {
+    height: 70px;
   }
 }
 

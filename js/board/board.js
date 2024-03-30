@@ -5,13 +5,12 @@ let assignedToInfo = {
   colorCodes: [],
 };
 
-
 function initBoard() {
   const isUserLoggedIn = checkUserLogIn();
   if (!isUserLoggedIn) window.location.assign("../error_page.html");
   currentUser = JSON.parse(localStorage.getItem("currentUser"));
   console.log("currentUser :>> ", currentUser);
-
+  toggleVisibility("board-menu-id", false, "highlight-menu");
   toggleVisibility("board-body-id", true);
   loadHeaderInitials();
   generateCardHTML();
@@ -41,10 +40,10 @@ function getBoardElements() {
 
 function generateCardHTML() {
   let {toDoEl, inProgEl, awaitFedEl, doneEl} = getBoardElements();
-  toDoEl.innerHTML = '';
-  inProgEl.innerHTML= '';
-  awaitFedEl.innerHTML= '';
-  doneEl.innerHTML='';
+  toDoEl.innerHTML = "";
+  inProgEl.innerHTML = "";
+  awaitFedEl.innerHTML = "";
+  doneEl.innerHTML = "";
   if (currentUser.tasks.board.length === 0) return;
   currentUser.tasks.board.forEach((task, index) => {
     if (task === "toDo") {
@@ -58,19 +57,17 @@ function generateCardHTML() {
       renderBoardAssignedTo(index);
     }
     if (task === "awaitFeedback") {
-        const prio = currentUser.tasks.prios[index];
-        awaitFedEl.innerHTML += generateTaskHTML(index, prio);
-        renderBoardAssignedTo(index);
+      const prio = currentUser.tasks.prios[index];
+      awaitFedEl.innerHTML += generateTaskHTML(index, prio);
+      renderBoardAssignedTo(index);
     }
     if (task === "done") {
-        const prio = currentUser.tasks.prios[index];
-        doneEl.innerHTML += generateTaskHTML(index, prio);
-        renderBoardAssignedTo(index);
+      const prio = currentUser.tasks.prios[index];
+      doneEl.innerHTML += generateTaskHTML(index, prio);
+      renderBoardAssignedTo(index);
     }
-    
   });
 }
-
 
 function renderBoardAssignedTo(index) {
   let addedContactsElement = document.getElementById(`board-assignedTo-id${index}`);
@@ -90,27 +87,27 @@ function renderBoardAssignedTo(index) {
 //drag and drop
 
 function startDragging(title) {
-    currentDraggedElement = title;
+  currentDraggedElement = title;
 }
 
 function allowDrop(event) {
-    event.preventDefault();
+  event.preventDefault();
 }
 
 function moveTo(section) {
   const index = currentUser.tasks.titles.indexOf(currentDraggedElement);
-  if (index === -1) return; 
+  if (index === -1) return;
 
   const previousStatus = currentUser.tasks.board[index];
 
-  if (section === 'toDo') {
-      currentUser.tasks.board[index] = 'toDo';
-  } else if (section === 'inProgress') {
-      currentUser.tasks.board[index] = 'inProgress';
-  } else if (section === 'awaitFeedback') {
-      currentUser.tasks.board[index] = 'awaitFeedback';
-  } else if (section === 'done') {
-      currentUser.tasks.board[index] = 'done';
+  if (section === "toDo") {
+    currentUser.tasks.board[index] = "toDo";
+  } else if (section === "inProgress") {
+    currentUser.tasks.board[index] = "inProgress";
+  } else if (section === "awaitFeedback") {
+    currentUser.tasks.board[index] = "awaitFeedback";
+  } else if (section === "done") {
+    currentUser.tasks.board[index] = "done";
   }
 
   const newStatus = currentUser.tasks.board[index];
@@ -122,9 +119,6 @@ function moveTo(section) {
   truncateDescriptionIfTooLong();
   save();
 }
- 
-
-
 
 //Big Card Overlay
 

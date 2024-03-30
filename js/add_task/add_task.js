@@ -26,6 +26,7 @@ async function initAddTask() {
   closeCategoryMenu();
   toggleReadBorderInSubtasks();
   filterAssignedToContacts();
+  toggleVisibility("add-task-menu-id", false, "highlight-menu");
   toggleVisibility("at-body-id", true);
   loadHeaderInitials();
 }
