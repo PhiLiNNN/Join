@@ -10,9 +10,9 @@ async function initSummary() {
   toggleVisibility("summary-body-id", true);
   loadHeaderInitials();
   updateGreeting();
-}
+} //www.youtube.com/watch?v=ovBM-keVtRo
 
-function updateGreeting() {
+https: function updateGreeting() {
   const now = new Date();
   const hours = now.getHours();
   const minutes = now.getMinutes();

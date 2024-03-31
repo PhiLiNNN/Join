@@ -14,18 +14,21 @@ function initBoard() {
   toggleVisibility("board-body-id", true);
   loadHeaderInitials();
   generateCardHTML();
-  truncateDescriptionIfTooLong();
+  truncateTextIfTooLong(".description-block", 50);
+  truncateTextIfTooLong(".title-block", 31);
 }
 
-function truncateDescriptionIfTooLong() {
-  const descriptionSpans = document.querySelectorAll(".description-block");
-  const maxHeight = 50;
+function truncateTextIfTooLong(querrySelec, maxHeight) {
+  const textSpans = document.querySelectorAll(querrySelec);
   const ellipsis = " ...";
-  descriptionSpans.forEach((descriptionSpan) => {
-    if (descriptionSpan.scrollHeight > maxHeight) {
-      const text = descriptionSpan.textContent.trim();
+  textSpans.forEach((textSpan) => {
+    console.log("trim :>> ", textSpan.innerHTML.trim());
+    console.log("-----------------------------");
+    if (textSpan.innerHTML.includes(" ")) console.log("trussssssssssssssse :>> ");
+    if (textSpan.scrollHeight > maxHeight) {
+      const text = textSpan.textContent.trim();
       const truncatedText = text.slice(0, maxHeight) + ellipsis;
-      descriptionSpan.textContent = truncatedText;
+      textSpan.textContent = truncatedText;
     }
   });
 }
@@ -116,7 +119,8 @@ function moveTo(section) {
 
   generateCardHTML();
   loadHeaderInitials();
-  truncateDescriptionIfTooLong();
+  truncateTextIfTooLong(".description-block", 50);
+  truncateTextIfTooLong(".title-block", 29);
   save();
 }
 

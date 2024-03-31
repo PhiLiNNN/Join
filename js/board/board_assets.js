@@ -9,7 +9,7 @@ function generateTaskHTML(index, prio) {
             <div class="title-block">
                 <span>${currentUser.tasks.titles[index]}</span>
             </div>
-            <div  class="description-block">
+            <div class="description-block">
                 <span >${currentUser.tasks.descriptions[index]}</span>
             </div>
             <div class="subtasks-block">

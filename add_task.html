@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./css/footer.css" />
     <link rel="stylesheet" href="./css/header.css" />
     <link rel="stylesheet" href="./css/add_task/add_task.css" />
+    <link rel="stylesheet" href="./css/add_task/add_task_media.css" />
     <script defer src="./js/includeHTML.js"></script>
     <script defer src="./js/add_task/add_task.js"></script>
     <script defer src="./js/register/register.js"></script>
@@ -28,9 +29,10 @@
             <div id="at-title-border-id" class="input_global input_at cursor">
               <input
                 id="title-input-id"
-                type="search"
+                type="text"
                 placeholder="Enter a title"
-                autocomplete="off" />
+                autocomplete="off"
+                maxlength="50" />
             </div>
           </div>
           <div class="at-description">
@@ -128,7 +130,7 @@
               <input
                 id="subtask-input-id"
                 type="text"
-                maxlength="30"
+                maxlength="50"
                 placeholder="Add new subtask"
                 autocomplete="off" />
               <div
