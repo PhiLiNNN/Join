@@ -1,6 +1,6 @@
 @media (min-width: 761px) {
   .summary-wrapper {
-    max-height: calc(100vh - 100px);
+    max-height: calc(100vh - 110px);
     margin: 100px 0 0 calc(232px);
   }
   .summary-greeting {
@@ -9,18 +9,18 @@
   }
   .summary-content {
     max-height: calc(100vh - 100px);
-    margin: 32px 0 0px 0px;
+    margin: 48px 0 0px 0px;
     gap: 32px;
     width: 100%;
     max-width: calc(100vw - 248px);
   }
   .summary-title {
-    margin-left: 16px;
+    margin-left: 32px;
     display: flex;
     align-items: center;
   }
   .summary-title h1 {
-    font-size: 53px;
+    font-size: 49px;
   }
   .separator-desktop {
     height: 59px;
@@ -36,7 +36,7 @@
   .summary-column {
     width: 100%;
     max-width: calc(100vw - 284px);
-    margin-left: 16px;
+    margin-left: 32px;
     align-items: center;
     gap: 32px;
   }
@@ -156,6 +156,11 @@
     font-size: 47px;
   }
 }
+@media (min-width: 782px) {
+  .summary-title h1 {
+    font-size: 54px;
+  }
+}
 
 @media (min-width: 900px) {
   .separator-desktop {
@@ -244,11 +249,17 @@
 }
 
 @media (max-width: 760px) {
+  .summary-wrapper {
+    max-height: calc(100vh - 181px);
+    margin: 100px 8px 0 8px;
+  }
+  .summary-title h1 {
+    font-size: 54px;
+  }
+
   .summary-content {
-    height: 100vh;
-    max-height: calc(100vh - 227px);
     justify-content: start;
-    margin: 48px 0 0 0px;
+    margin: 44px 0 0 8px;
     gap: 40px;
   }
   .summary-column {
@@ -347,9 +358,6 @@
 }
 
 @media (max-width: 560px) {
-  .summary-title h1 {
-    font-size: 43px;
-  }
   .tasks-info,
   .summary-change-content {
     font-size: 36px;
@@ -382,17 +390,9 @@
   .summary-row {
     gap: 10px;
   }
-  .summary-content {
-    margin: 0;
-    justify-content: space-evenly;
-  }
   .tasks-info {
     width: 88px;
     text-align: center;
-  }
-  .summary-content {
-    max-height: calc(100vh - 180px);
-    height: calc(100vh);
   }
   .summary-info {
     width: 180px;
@@ -420,7 +420,7 @@
   }
 }
 
-@media (max-width: 445px) {
+@media (max-width: 466px) {
   .summary-wrapper {
     margin: 100px 8px 0 8px;
   }
@@ -431,6 +431,9 @@
   .middle-box,
   .summary-info {
     padding: 8px;
+  }
+  .summary-title h1 {
+    font-size: 43px;
   }
   .summary-title span,
   .tasks-info span:last-child,
