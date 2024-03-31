@@ -241,7 +241,7 @@
 }
 
 .ac-card-circle-wrapper,
-.header-content-wrapper img,
+.header-content-wrapper svg,
 .close-ac-card-desktop,
 .ac-btn-white {
   display: none;
@@ -323,7 +323,7 @@
   .header-content-wrapper {
     margin-top: -60px;
   }
-  .header-content-wrapper img {
+  .header-content-wrapper svg {
     display: block;
     height: 80px;
     width: 69px;

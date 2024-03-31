@@ -1,3 +1,9 @@
+.policy-notice-content,
+.legal-notice-content,
+.help-content {
+  transition: all 300ms ease-in-out;
+}
+
 .legal-notice-content *,
 .policy-notice-content *,
 .help-content * {
