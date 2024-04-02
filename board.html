@@ -26,7 +26,7 @@
         </button>
       </div>
       <div class="find-task">
-        <input type="text" id="search" name="search" placeholder="Find Task" />
+        <input type="text" id="search" name="search" placeholder="Find Task" onkeydown="filter()"/>
         <div class="board-separator"></div>
         <button></button>
       </div>
@@ -39,12 +39,14 @@
             </button>
           </div>
           <div
-            class="drag-area"
+            class="drop-area"
             id="to-do-id"
             ondrop="moveTo('toDo')"
             ondragover="allowDrop(event)">
-            No tasks To do
           </div>
+            <div class="drag-area">
+              No tasks To do
+            </div>
         </div>
       </div>
       <div>
@@ -56,11 +58,13 @@
             </button>
           </div>
           <div
-            class="drag-area"
+            class="drop-area"
             id="in-progress-id"
             ondrop="moveTo('inProgress')"
             ondragover="allowDrop(event)">
-            No tasks To do
+            <div class="drag-area">
+              No tasks To do
+            </div>
           </div>
         </div>
       </div>
@@ -73,11 +77,13 @@
             </button>
           </div>
           <div
-            class="drag-area"
+            class="drop-area"
             id="await-feedback-id"
             ondrop="moveTo('awaitFeedback')"
             ondragover="allowDrop(event)">
-            No tasks To do
+            <div class="drag-area">
+              No tasks To do
+            </div>
           </div>
         </div>
       </div>
@@ -90,11 +96,13 @@
             </button>
           </div>
           <div 
-          class="drag-area" 
+          class="drop-area" 
           id="done-id" 
           ondrop="moveTo('done')" 
           ondragover="allowDrop(event)">
+          <div class="drag-area">
             No tasks To do
+          </div>
           </div>
         </div>
       </div>

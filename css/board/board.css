@@ -68,6 +68,11 @@
   gap: 10px;
 }
 
+.drop-area {
+  min-height: 80px;
+  max-width: 100vw;
+}
+
 .drag-area {
   min-height: 48px;
   max-width: 100vw;
@@ -77,16 +82,16 @@
   border: 1px dashed #a8a8a8;
   border-radius: 10px;
   display: flex;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
   margin-top: 16px;
   overflow-x: auto;
   margin-bottom: 26px;
 }
 
-.drag-area-highlight {
-  background-color: #e7e7e7dd;
-}
+
+
+            
 
 .task {
   background-color: rgb(19, 6, 251);
