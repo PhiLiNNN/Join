@@ -14,6 +14,7 @@ function contactsInit() {
   currentUser = JSON.parse(localStorage.getItem("currentUser"));
   console.log(currentUser);
   renderAllContacts();
+  toggleVisibility("contacts-menu-id", false, "highlight-menu");
   toggleVisibility("contacts-body-id", true);
   loadHeaderInitials();
 }

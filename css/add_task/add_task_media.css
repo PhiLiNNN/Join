@@ -1,0 +1,272 @@
+@media (min-width: 761px) {
+  .section-title {
+    left: 264px;
+    top: 144px;
+  }
+  .at-label-style,
+  .at-prio {
+    margin-top: 32px;
+  }
+  .content-container {
+    max-height: calc(100vh - 300px);
+    padding: 0 32px 16px 32px;
+    margin: 232px 0 0 calc(232px);
+  }
+  .content-bottom-container {
+    max-width: 1310px;
+    margin: 0 0 0 calc(232px);
+    padding-inline: 32px;
+    bottom: 0px;
+  }
+  .hide-clear-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    height: 45px;
+  }
+  .bottom-btns-container {
+    display: flex;
+    gap: 16px;
+  }
+  .at-prio-img img:hover {
+    transform: translate3d(0, -3px, 0);
+  }
+
+  .assigned-to-box.selected-contact-at:hover,
+  .category-dropdown ul li.selected-contact-at:hover {
+    background: var(--focus-color-btn);
+  }
+  .assigned-to-box:hover,
+  .category-dropdown ul li:hover,
+  .subtask-list ul li:hover {
+    background: var(--placeholder-color);
+  }
+  .assigned-to-box:active,
+  .category-dropdown ul li:active {
+    background: var(--focus-color-btn);
+    color: white;
+  }
+  .assigned-to-box:active svg rect {
+    stroke: white;
+  }
+
+  .assigned-to-box.selected-contact-at:active,
+  .category-dropdown ul li.selected-contact-at:active {
+    background: #11305f;
+  }
+  .editable-span {
+    max-width: 42vw;
+  }
+}
+
+@media (min-width: 954px) {
+  .at-prio-img {
+    justify-content: center;
+    gap: 48px;
+  }
+  .editable-span {
+    max-width: 53vw;
+  }
+}
+
+@media (min-width: 1341px) {
+  .at-label-style {
+    color: var(--mockup-color);
+  }
+  .at-prio div {
+    color: black;
+  }
+  .at-prio-img {
+    justify-content: space-between;
+  }
+  .at-section {
+    width: 100%;
+  }
+  .assigned-to-user span {
+    max-width: 17vw;
+  }
+  .content-container {
+    position: static;
+    margin: 310px 70px 0 calc(232px + 96px);
+    overflow-x: hidden;
+    padding: 0 32px 0 0;
+    max-height: calc(100vh - 400px);
+    display: flex;
+    gap: 32px;
+    max-width: 1920px;
+  }
+  .content-top-and-left,
+  .content-bottom-and-rigth {
+    width: 100%;
+  }
+  .vertical-bar-container {
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .vertical-bar {
+    height: 350px;
+    background-color: var(--placeholder-color);
+    border-radius: 1px;
+    width: 1px;
+  }
+  .section-title {
+    top: 206px;
+    left: 330px;
+    font-size: 64px;
+    line-height: 73.2px;
+  }
+  .content-bottom-container {
+    margin: 0px 80px 0 calc(232px + 96px);
+    max-width: 1920px;
+  }
+  .editable-span {
+    max-width: 25vw;
+  }
+}
+
+@media (max-width: 1013px) {
+  .assigned-to-user span {
+    max-width: 40vw;
+  }
+}
+
+@media (max-width: 824px) {
+  .required-msg {
+    font-size: 16px;
+    transition: all 300ms ease-in-out;
+  }
+  .rotate-err-arrow {
+    width: 14px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 760px) {
+  .at-label-style,
+  .at-prio {
+    margin-top: 32px;
+  }
+  .section-title {
+    left: 16px;
+    top: 144px;
+  }
+
+  .editable-span {
+    max-width: 66vw;
+  }
+  .assigned-to-box:active svg rect {
+    stroke: white;
+  }
+  .assigned-to-box:active,
+  .category-dropdown ul li:active,
+  .category-dropdown ul li.selected-contact-at:active,
+  .assigned-to-box.selected-contact-at:active {
+    background: var(--focus-color-btn);
+    color: white;
+  }
+  li:active .hidden-Edit_menu {
+    display: flex;
+  }
+  .subtask-list ul li:active {
+    background: var(--placeholder-color);
+  }
+  .required-msg {
+    font-size: 18px;
+  }
+  .rotate-err-arrow {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+@media (max-width: 500px) {
+  .editable-span {
+    max-width: 50vw;
+  }
+}
+
+@media (max-width: 466px) {
+  .at-label-style,
+  .at-prio {
+    margin-top: 16px;
+  }
+  .at-prio-img img {
+    height: 32px;
+    width: 87px;
+  }
+  .section-title {
+    font-size: 43px;
+  }
+  .at-label-style,
+  .assigned-to-user,
+  .editable-span,
+  .content-bottom-container,
+  .bottom-btns-container button {
+    font-size: 18px;
+  }
+  .assigned-to-box {
+    padding: 8px 7px;
+  }
+  .circle-style {
+    width: 30px;
+    height: 30px;
+  }
+  .circle-style span {
+    font-size: 12px;
+  }
+  .required-msg {
+    font-size: 14px;
+  }
+  .assigned-to-box svg {
+    margin-right: 12px;
+  }
+  .subtask-list ul li {
+    padding: 4px 12px;
+    margin-inline: 12px;
+  }
+  .filled-btn {
+    width: 150px;
+    height: 40px;
+  }
+  .rotate-err-arrow {
+    width: 12px;
+    height: 12px;
+  }
+  .subtask-err-msg {
+    font-size: 16px;
+    top: 1px;
+    left: 85px;
+  }
+}
+
+@media (max-width: 418px) {
+  .editable-span {
+    max-width: 40vw;
+    margin-right: 12px;
+  }
+}
+
+@media (max-width: 344px) {
+  .assigned-to-box {
+    padding: 6px 7px;
+  }
+  .assigned-to-user {
+    gap: 8px;
+  }
+  .assigned-to-box svg {
+    margin-right: 2px;
+  }
+  .required-msg {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 2500px) {
+  .success-msg-popup {
+    top: calc(50%);
+    left: 1180px;
+  }
+}

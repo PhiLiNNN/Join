@@ -49,13 +49,13 @@
     align-items 300ms ease-in-out;
 }
 
-.footer-icon-box:hover {
-  background-color: var(--focus-color-btn);
+.highlight-menu {
+  background: var(--focus-color-btn);
 }
-.footer-icon-box:active {
-  background-color: var(--mockup-highlight);
+.highlight-menu .footer-link,
+.highlight-menu .desktop-data-link {
+  color: white;
 }
-
 .footer-icon {
   height: 30px;
   width: 30px;
@@ -75,32 +75,53 @@
     gap 300ms ease-in-out, flex-direction 300ms ease-in-out;
 }
 
-.footer-link:hover {
-  color: var(--white-color);
-}
-
 .desktop-data-box {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   flex-direction: column;
-  padding: 0 52px 64px 52px;
+  padding: 0 0 64px 0;
+}
+
+.desktop-data-content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-block: 2px;
 }
 
 .desktop-data-link {
-  text-decoration: none;
+  padding-block: 8px;
   color: #a8a8a8;
-  padding: 8px;
-  gap: 8px;
-  transition: transform 0.5s ease;
-  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
 }
 
-.desktop-data-link:hover {
-  color: var(--mockup-highlight);
-  cursor: pointer;
-  transform: scaleX(1.2);
-  font-size: 1rem;
+@media (min-width: 761px) {
+  .footer-icon-box:hover {
+    background-color: var(--focus-color-btn);
+  }
+  .footer-icon-box:hover .footer-link {
+    color: var(--white-color);
+  }
+  .desktop-data-content:hover {
+    background: var(--focus-color-btn);
+  }
+  .desktop-data-content:hover .desktop-data-link {
+    transform: scaleX(1.2);
+    color: white;
+  }
+  .highlight-menu:hover {
+    background-color: #11305f;
+  }
+
+  .footer-icon-box:active {
+    background-color: var(--mockup-highlight);
+  }
+  .desktop-data-content:active {
+    background: var(--mockup-highlight);
+  }
 }
 
 @media (max-width: 760px) {
@@ -158,6 +179,12 @@
   }
   .footer-wrapper {
     display: block;
+  }
+  .footer-icon-box:active {
+    background-color: var(--mockup-highlight);
+  }
+  .desktop-data-content:active {
+    background: var(--mockup-highlight);
   }
 }
 

@@ -34,6 +34,9 @@
   margin-bottom: 8px;
   color: var(--mockup-color);
   font-weight: 700;
+  overflow: hidden;
+  max-height: 38px;
+  word-wrap: break-word;
 }
 
 .description-block {
@@ -41,6 +44,7 @@
   overflow: hidden;
   margin-bottom: 24px;
   color: #a8a8a8;
+  word-wrap: break-word;
 }
 .subtasks-block,
 .priority-block {

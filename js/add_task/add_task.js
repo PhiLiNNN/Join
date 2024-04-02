@@ -13,6 +13,7 @@ let userIndex;
 let prio = ["urgent", "medium", "low"];
 let prioIndex = 1;
 let isFilterActive = false;
+let clickEventListener;
 
 async function initAddTask() {
   isUserLoggedIn = checkUserLogIn();
@@ -21,11 +22,13 @@ async function initAddTask() {
   console.log(currentUser);
   renderAssignedToContacts();
   setCurrentDate();
+  addSubtaskByEnter();
   addSubtaskVisibilityListener();
   closeAssignedToMenu();
   closeCategoryMenu();
-  toggleReadBorderInSubtasks();
+
   filterAssignedToContacts();
+  toggleVisibility("add-task-menu-id", false, "highlight-menu");
   toggleVisibility("at-body-id", true);
   loadHeaderInitials();
 }
@@ -244,6 +247,15 @@ function deleteOrAddTaskMenu(isDelete) {
   toggleVisibility("subtast-add-button-id", true);
 }
 
+function addSubtaskByEnter() {
+  const inputElement = document.getElementById("subtask-input-id");
+  inputElement.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" && inputElement.value !== "") {
+      deleteOrAddTaskMenu(false);
+    }
+  });
+}
+
 function addNewTaskMenu() {
   const inputElement = document.getElementById("subtask-input-id");
   subtaskList.push(inputElement.value);
@@ -259,24 +271,49 @@ function renderSubtasks() {
   });
 }
 
-function toggleReadBorderInSubtasks() {
-  document.addEventListener("click", function (event) {
-    const clickedElement = event.target;
-    const isSubtaskContent = clickedElement.closest("[id^='substask-content-id']");
-    const isSubtaskDefaultContainer = clickedElement.closest(
-      "[id^='subtask-default-container-id']"
-    );
-    const isSubtaskEditedContainer = clickedElement.closest("[id^='subtask-edited-container-id']");
-    if (!isSubtaskContent && !isSubtaskDefaultContainer && !isSubtaskEditedContainer) {
-      if (currentIndex === -1) return;
-      else toggleVisibility(`substask-content-id${currentIndex}`, false, "red-line-highlight");
+function toggleReadBorderInSubtasks(index, listElement) {
+  const saveElement = document.getElementById(`save-edit-subtask-id${index}`);
+  const deleteElement = document.getElementById(`delete-edit-subtask-id${index}`);
+  function handleClick(event) {
+    const isClickOutsideList = !listElement.contains(event.target);
+    const isClickOnSaveOrDelete =
+      saveElement.contains(event.target) || deleteElement.contains(event.target);
+    if (isClickOutsideList) {
+      disableFiledElements(true);
+      toggleVisibility(`substask-content-id${currentIndex}`, false, "red-line-highlight");
+    } else if (isClickOnSaveOrDelete) {
+      disableFiledElements(false);
+      toggleVisibility(`substask-content-id${currentIndex}`, true, "red-line-highlight");
+      document.removeEventListener("click", handleClick);
+    } else {
+      disableFiledElements(false);
+      toggleVisibility(`substask-content-id${currentIndex}`, true, "red-line-highlight");
     }
-  });
+  }
+  clickEventListener = handleClick;
+  document.addEventListener("click", clickEventListener);
+}
+
+function disableFiledElements(bool) {
+  const inputElement = document.getElementById("subtask-input-id");
+  const createTaskElement = document.getElementById("ad-add-btn");
+  inputElement.disabled = bool;
+  createTaskElement.disabled = bool;
+  showSubtasksError(bool);
+}
+
+function showSubtasksError(bool) {
+  if (bool) {
+    toggleVisibility("subtask-err-msg-id", true);
+    const targetElement = document.getElementById("subtask-err-msg-id");
+    targetElement.scrollIntoView({behavior: "smooth", block: "start"});
+  } else toggleVisibility("subtask-err-msg-id", false);
 }
 
 function editSubtask(index) {
   currentIndex = index;
   const listElement = document.getElementById(`substask-content-id${index}`);
+  toggleReadBorderInSubtasks(index, listElement);
   handleFirstSubtaskEdit(index, listElement);
 }
 
@@ -385,6 +422,8 @@ function handlerAddTaskValidation(atBoolArr) {
 }
 
 function clearAll() {
+  document.removeEventListener("click", clickEventListener);
+  clickEventListener = null;
   clearAllInputs();
   clearAllLists();
   clearAllErrMsg();
@@ -392,13 +431,16 @@ function clearAll() {
   renderAddedContacts();
   renderSubtasks();
   togglePrioImg("medium-default-id");
+  toggleVisibility("subtask-del-and-confim-id", false);
+  toggleVisibility("subtast-add-button-id", true);
   toggleVisibility("rotate-err-arrow-id", false);
+  disableFiledElements(false);
   localStorage.setItem("currentUser", JSON.stringify(currentUser));
-  console.log("assignedTo :>> ", assignedTo);
 }
 function clearAllInputs() {
   document.getElementById("title-input-id").value = "";
   document.getElementById("textarea-input-id").value = "";
+  document.getElementById("subtask-input-id").value = "";
   document.getElementById("date-input-id").value = "";
   document.getElementById("category-input-id").value = "";
 }

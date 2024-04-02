@@ -5,7 +5,14 @@ function templateAddContactHTML() {
     <div id="ac-card-content-id" class="card-content">
         <div  class="card-header">
             <div class="header-content-wrapper">
-                <img src="./assets/img/footer_logo.png" alt="">
+                <svg width="102" height="122" viewBox="0 0 102 122" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M72.6549 0H50.4971V25.4923H72.6549V0Z" fill="white"/>
+                    <path d="M50.4971 46.2251H72.655V82.1779C72.7562 90.8292 70.2941 99.3153 65.5815 106.557C60.9284 113.594 51.9459 121.966 35.3275 121.966C17.2263 121.966 6.67577 113.406 0.98291 108.715L14.9594 91.4743C20.5159 96.0112 25.8679 99.7435 35.4128 99.7435C42.6396 99.7435 45.5202 96.7988 47.2076 94.2307C49.5015 90.6637 50.6881 86.4923 50.6165 82.2464L50.4971 46.2251Z" fill="white"/>
+                    <path d="M39.1964 30.1318H17.0386V52.3884H39.1964V30.1318Z" fill="#29ABE2"/>
+                    <path d="M84.2624 111.522C84.2624 116.265 81.8591 118.815 78.5013 118.815C75.1436 118.815 72.9448 115.785 72.9448 111.762C72.9448 107.739 75.2117 104.554 78.6888 104.554C82.1659 104.554 84.2624 107.687 84.2624 111.522ZM75.5185 111.711C75.5185 114.57 76.6605 116.675 78.6206 116.675C80.5808 116.675 81.6886 114.45 81.6886 111.539C81.6886 108.988 80.666 106.592 78.6206 106.592C76.5753 106.592 75.5185 108.903 75.5185 111.711Z" fill="white"/>
+                    <path d="M88.66 104.76V118.593H86.2056V104.76H88.66Z" fill="white"/>
+                    <path d="M91.3188 118.593V104.76H94.046L96.9776 110.461C97.7323 111.952 98.4038 113.483 98.9889 115.049C98.8355 113.337 98.7673 111.368 98.7673 109.177V104.76H101.017V118.593H98.4775L95.5118 112.772C94.7266 111.243 94.0267 109.671 93.4153 108.064C93.4153 109.776 93.5346 111.711 93.5346 114.09V118.576L91.3188 118.593Z" fill="white"/>
+                </svg>
                 <h1>Add Contact</h1>
                 <span>Tasks are better with a team!</span>
                 <div class="ac-bottom-line"></div>
@@ -34,7 +41,7 @@ function templateAddContactHTML() {
                 <div class="footer-right">
                     <div class="card-inputs">
                         <div id="ac-name-border-id" class="input_global input_ac cursor">
-                            <input id="ac-name-input-id"  type="text" placeholder="Name" autocomplete="on">
+                            <input id="ac-name-input-id"  type="text" placeholder="Name" autocomplete="on" maxlength="50">
                             <div class="tooltip">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                     <path fill="#2a3647" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/>
@@ -54,14 +61,14 @@ function templateAddContactHTML() {
                             <span id="ac-hyphens-name-id" class="ac-err-msg d-none">Check your hyphen!</span>
                         </div> 
                         <div id="ac-mail-border-id" class="input_global input_ac cursor">
-                        <input id="ac-mail-input-id"  type="text" placeholder="Email" autocomplete="on">
+                        <input id="ac-mail-input-id"  type="text" placeholder="Email" autocomplete="on" maxlength="50">
                             <img src="./assets/img/mail.png" alt="">
                             <span id="ac-empty-email-id" class="ac-err-msg d-none">This field is required!</span>
                             <span id="ac-invalid-email-id" class="ac-err-msg d-none">Enter a valid email (e.g., user@example.com)!</span>
                             <span id="ac-existing-email-id" class="ac-err-msg d-none">This email is already in your contacts!</span>
                         </div> 
                         <div id="ac-phone-border-id" class="input_global input_ac cursor">
-                        <input id="ac-phone-input-id" type="tel" placeholder="Phone" autocomplete="on" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                        <input id="ac-phone-input-id" type="tel" placeholder="Phone" autocomplete="on" oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="50">
                             <img src="./assets/img/call.png" alt="">
                             <span id="ac-empty-phone-id" class="ac-err-msg d-none">This field is required!</span>
                             <span id="ac-invalid-phone-id" class="ac-err-msg d-none">Min. 3 digits required!</span>
@@ -69,7 +76,7 @@ function templateAddContactHTML() {
                     </div>
                     
                     <div class="ac-btn-container">
-                        <input id="ac-color-input-id"  class="color-style"  type="color" value="#43da86" />
+                        <input id="ac-color-input-id"  class="color-style"  type="color" value="#43da86" maxlength="50"/>
                         <button class="ac-btn-white" onclick="closeAddNewContact()">
                             <span>Cancel</span>
                             <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -113,7 +120,14 @@ function templateEditContactHTML() {
     <div id="edit-card-content-id" class="card-content">
         <div  class="card-header">
             <div class="header-content-wrapper">
-                <img src="./assets/img/footer_logo.png" alt="">
+                <svg width="102" height="122" viewBox="0 0 102 122" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M72.6549 0H50.4971V25.4923H72.6549V0Z" fill="white"/>
+                    <path d="M50.4971 46.2251H72.655V82.1779C72.7562 90.8292 70.2941 99.3153 65.5815 106.557C60.9284 113.594 51.9459 121.966 35.3275 121.966C17.2263 121.966 6.67577 113.406 0.98291 108.715L14.9594 91.4743C20.5159 96.0112 25.8679 99.7435 35.4128 99.7435C42.6396 99.7435 45.5202 96.7988 47.2076 94.2307C49.5015 90.6637 50.6881 86.4923 50.6165 82.2464L50.4971 46.2251Z" fill="white"/>
+                    <path d="M39.1964 30.1318H17.0386V52.3884H39.1964V30.1318Z" fill="#29ABE2"/>
+                    <path d="M84.2624 111.522C84.2624 116.265 81.8591 118.815 78.5013 118.815C75.1436 118.815 72.9448 115.785 72.9448 111.762C72.9448 107.739 75.2117 104.554 78.6888 104.554C82.1659 104.554 84.2624 107.687 84.2624 111.522ZM75.5185 111.711C75.5185 114.57 76.6605 116.675 78.6206 116.675C80.5808 116.675 81.6886 114.45 81.6886 111.539C81.6886 108.988 80.666 106.592 78.6206 106.592C76.5753 106.592 75.5185 108.903 75.5185 111.711Z" fill="white"/>
+                    <path d="M88.66 104.76V118.593H86.2056V104.76H88.66Z" fill="white"/>
+                    <path d="M91.3188 118.593V104.76H94.046L96.9776 110.461C97.7323 111.952 98.4038 113.483 98.9889 115.049C98.8355 113.337 98.7673 111.368 98.7673 109.177V104.76H101.017V118.593H98.4775L95.5118 112.772C94.7266 111.243 94.0267 109.671 93.4153 108.064C93.4153 109.776 93.5346 111.711 93.5346 114.09V118.576L91.3188 118.593Z" fill="white"/>
+                </svg>
                 <h1>Edit Contact</h1>
                 <span>Tasks are better with a team!</span>
                 <div class="ac-bottom-line"></div>
@@ -142,7 +156,7 @@ function templateEditContactHTML() {
                 <div class="footer-right">
                     <div class="card-inputs">
                         <div id="ec-name-border-id" class="input_global input_ac cursor">
-                            <input id="ec-name-input-id"  type="text" placeholder="Name" autocomplete="on" value="${savedName}">
+                            <input id="ec-name-input-id"  type="text" placeholder="Name" autocomplete="on" value="${savedName}" maxlength="50">
                             <div class="tooltip">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                     <path fill="#2a3647" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/>
@@ -162,14 +176,14 @@ function templateEditContactHTML() {
                             <span id="ec-hyphens-name-id" class="ac-err-msg d-none">Check your hyphen!</span>
                         </div> 
                         <div id="ec-mail-border-id" class="input_global input_ac cursor">
-                            <input id="ec-mail-input-id"  type="text" placeholder="Email" autocomplete="on"  value="${savedEmail}">
+                            <input id="ec-mail-input-id"  type="text" placeholder="Email" autocomplete="on"  value="${savedEmail}" maxlength="50">
                             <img src="./assets/img/mail.png" alt="">
                             <span id="ec-empty-email-id" class="ac-err-msg d-none">This field is required!</span>
                             <span id="ec-invalid-email-id" class="ac-err-msg d-none">Enter a valid email (e.g., user@example.com)!</span>
                             <span id="ec-existing-email-id" class="ac-err-msg d-none">This email is already in your contacts!</span>
                         </div> 
                         <div id="ec-phone-border-id" class="input_global input_ac cursor">
-                            <input id="ec-phone-input-id"  type="tel" placeholder="Phone" autocomplete="on"  value="${savedPhone}">
+                            <input id="ec-phone-input-id"  type="tel" placeholder="Phone" autocomplete="on"  value="${savedPhone}"  maxlength="50">
                             <img src="./assets/img/call.png" alt="">
                             <span id="ec-empty-phone-id" class="ac-err-msg d-none">This field is required!</span>
                             <span id="ec-invalid-phone-id" class="ac-err-msg d-none">Min. 3 digits required!</span>
@@ -177,7 +191,7 @@ function templateEditContactHTML() {
                     </div>
                     
                     <div class="ac-btn-container">
-                        <input id="ec-color-input-id"  class="color-style"  type="color" value="#43da86" />
+                        <input id="ec-color-input-id"  class="color-style"  type="color" value="#43da86" maxlength="50"/>
                         <button class="ec-btn-white" onclick="deleteContact()"> 
                             <span>Delete</span>
                         </button> 

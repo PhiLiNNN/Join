@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/css/header.css" />
     <link rel="stylesheet" href="/css/board/board.css" />
     <link rel="stylesheet" href="/css/board/board_card.css" />
+    <link rel="stylesheet" href="/css/board/board_media.css" />
     <link rel="stylesheet" href="/css/add_task/add_task.css" />
     <script defer src="/js/global.js"></script>
     <script defer src="/js/includeHTML.js"></script>
@@ -18,95 +19,112 @@
   </head>
   <body id="board-body-id" class="d-none" onload="includeHTML().then(() => initBoard())">
     <div w3-include-html="./assets/templates/header.html"></div>
-    <div class="board">
-      <h1>Board</h1>
-      <div>
-        <button class="add-task" id="add-task-Btn-id" onclick="openAddTaskOverlay()">
-          <img src="./assets/img/add_task_board.png" alt="add task" />
-        </button>
-      </div>
-      <div class="find-task">
-        <input type="text" id="search" name="search" placeholder="Find Task" onkeydown="filter()"/>
-        <div class="board-separator"></div>
-        <button></button>
-      </div>
-      <div>
-        <div class="board-box">
-          <h2>To do</h2>
-          <div>
-            <button class="add-task-2" id="add-task-Btn-id" onclick="openAddTaskOverlay()">
-              <img src="./assets/img/add_task_board_2.png" alt="add task" />
-            </button>
-          </div>
-          <div
-            class="drop-area"
-            id="to-do-id"
-            ondrop="moveTo('toDo')"
-            ondragover="allowDrop(event)">
-          </div>
-            <div class="drag-area">
-              No tasks To do
+    <div class="board-wrapper">
+      <div class="board">
+        <div class="board-headline">
+          <h1>Board</h1>
+          <div class="board-headline-right">
+            <div class="input_global board-search-desktop">
+              <input type="search" placeholder="Find Task" autocomplete="on" onkeydown="filter()"/>
+              <div class="add-task"></div>
+              <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M6.71181 13.2137C4.89463 13.2137 3.35669 12.5843 2.098 11.3256C0.839307 10.0669 0.209961 8.52899 0.209961 6.71181C0.209961 4.89463 0.839307 3.35669 2.098 2.098C3.35669 0.839307 4.89463 0.209961 6.71181 0.209961C8.52899 0.209961 10.0669 0.839307 11.3256 2.098C12.5843 3.35669 13.2137 4.89463 13.2137 6.71181C13.2137 7.44535 13.097 8.13721 12.8636 8.7874C12.6302 9.43758 12.3134 10.0127 11.9133 10.5129L17.5149 16.1145C17.6983 16.2979 17.79 16.5313 17.79 16.8147C17.79 17.0981 17.6983 17.3315 17.5149 17.5149C17.3315 17.6983 17.0981 17.79 16.8147 17.79C16.5313 17.79 16.2979 17.6983 16.1145 17.5149L10.5129 11.9133C10.0127 12.3134 9.43758 12.6302 8.7874 12.8636C8.13721 13.097 7.44535 13.2137 6.71181 13.2137ZM6.71181 11.2131C7.96217 11.2131 9.02497 10.7755 9.90022 9.90022C10.7755 9.02497 11.2131 7.96217 11.2131 6.71181C11.2131 5.46145 10.7755 4.39865 9.90022 3.5234C9.02497 2.64815 7.96217 2.21053 6.71181 2.21053C5.46145 2.21053 4.39865 2.64815 3.5234 3.5234C2.64815 4.39865 2.21053 5.46145 2.21053 6.71181C2.21053 7.96217 2.64815 9.02497 3.5234 9.90022C4.39865 10.7755 5.46145 11.2131 6.71181 11.2131Z"
+                  fill="#2A3647" />
+              </svg>
             </div>
-        </div>
-      </div>
-      <div>
-        <div class="board-box">
-          <h2>In progress</h2>
-          <div>
-            <button class="add-task-2" id="add-task-Btn-id" onclick="openAddTaskOverlay()">
-              <img src="./assets/img/add_task_board_2.png" alt="add task" />
+            <button class="filled-btn board-at-btn">
+              <span>Add Task</span>
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 14 14"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M6.00098 8H1.00098C0.717643 8 0.480143 7.90417 0.288477 7.7125C0.0968099 7.52083 0.000976562 7.28333 0.000976562 7C0.000976562 6.71667 0.0968099 6.47917 0.288477 6.2875C0.480143 6.09583 0.717643 6 1.00098 6H6.00098V1C6.00098 0.716667 6.09681 0.479167 6.28848 0.2875C6.48014 0.0958333 6.71764 0 7.00098 0C7.28431 0 7.52181 0.0958333 7.71348 0.2875C7.90514 0.479167 8.00098 0.716667 8.00098 1V6H13.001C13.2843 6 13.5218 6.09583 13.7135 6.2875C13.9051 6.47917 14.001 6.71667 14.001 7C14.001 7.28333 13.9051 7.52083 13.7135 7.7125C13.5218 7.90417 13.2843 8 13.001 8H8.00098V13C8.00098 13.2833 7.90514 13.5208 7.71348 13.7125C7.52181 13.9042 7.28431 14 7.00098 14C6.71764 14 6.48014 13.9042 6.28848 13.7125C6.09681 13.5208 6.00098 13.2833 6.00098 13V8Z"
+                  fill="white" />
+              </svg>
             </button>
-          </div>
-          <div
-            class="drop-area"
-            id="in-progress-id"
-            ondrop="moveTo('inProgress')"
-            ondragover="allowDrop(event)">
-            <div class="drag-area">
-              No tasks To do
-            </div>
           </div>
         </div>
-      </div>
-      <div>
-        <div class="board-box">
-          <h2>Await feedback</h2>
-          <div>
-            <button class="add-task-2" id="add-task-Btn-id" onclick="openAddTaskOverlay()">
-              <img src="./assets/img/add_task_board_2.png" alt="add task" />
-            </button>
-          </div>
-          <div
-            class="drop-area"
-            id="await-feedback-id"
-            ondrop="moveTo('awaitFeedback')"
-            ondragover="allowDrop(event)">
-            <div class="drag-area">
+        <div class="input_global board-search-mobile">
+          <input type="search" placeholder="Find Task" autocomplete="on" />
+          <div class="add-task"></div>
+          <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M6.71181 13.2137C4.89463 13.2137 3.35669 12.5843 2.098 11.3256C0.839307 10.0669 0.209961 8.52899 0.209961 6.71181C0.209961 4.89463 0.839307 3.35669 2.098 2.098C3.35669 0.839307 4.89463 0.209961 6.71181 0.209961C8.52899 0.209961 10.0669 0.839307 11.3256 2.098C12.5843 3.35669 13.2137 4.89463 13.2137 6.71181C13.2137 7.44535 13.097 8.13721 12.8636 8.7874C12.6302 9.43758 12.3134 10.0127 11.9133 10.5129L17.5149 16.1145C17.6983 16.2979 17.79 16.5313 17.79 16.8147C17.79 17.0981 17.6983 17.3315 17.5149 17.5149C17.3315 17.6983 17.0981 17.79 16.8147 17.79C16.5313 17.79 16.2979 17.6983 16.1145 17.5149L10.5129 11.9133C10.0127 12.3134 9.43758 12.6302 8.7874 12.8636C8.13721 13.097 7.44535 13.2137 6.71181 13.2137ZM6.71181 11.2131C7.96217 11.2131 9.02497 10.7755 9.90022 9.90022C10.7755 9.02497 11.2131 7.96217 11.2131 6.71181C11.2131 5.46145 10.7755 4.39865 9.90022 3.5234C9.02497 2.64815 7.96217 2.21053 6.71181 2.21053C5.46145 2.21053 4.39865 2.64815 3.5234 3.5234C2.64815 4.39865 2.21053 5.46145 2.21053 6.71181C2.21053 7.96217 2.64815 9.02497 3.5234 9.90022C4.39865 10.7755 5.46145 11.2131 6.71181 11.2131Z"
+              fill="#2A3647" />
+          </svg>
+        </div>
+        <div class="board-content-wrapper">
+          <div class="board-box">
+            <h2>To do</h2>
+            <div>
+              <button class="add-task-2" id="add-task-Btn-id" onclick="openAddTaskOverlay()">
+                <img src="./assets/img/add_task_board_2.png" alt="add task" />
+              </button>
+            </div>
+            <div
+              class="drag-area"
+              id="to-do-id"
+              ondrop="moveTo('toDo')"
+              ondragover="allowDrop(event)">
               No tasks To do
             </div>
           </div>
-        </div>
-      </div>
-      <div>
-        <div class="board-box">
-          <h2>Done</h2>
-          <div>
-            <button class="add-task-2" id="add-task-Btn-id" onclick="openAddTaskOverlay()">
-              <img src="./assets/img/add_task_board_2.png" alt="add task" />
-            </button>
+
+          <div class="board-box">
+            <h2>In progress</h2>
+            <div>
+              <button class="add-task-2" id="add-task-Btn-id" onclick="openAddTaskOverlay()">
+                <img src="./assets/img/add_task_board_2.png" alt="add task" />
+              </button>
+            </div>
+            <div
+              class="drag-area"
+              id="in-progress-id"
+              ondrop="moveTo('inProgress')"
+              ondragover="allowDrop(event)">
+              No tasks To do
+            </div>
           </div>
-          <div 
-          class="drop-area" 
-          id="done-id" 
-          ondrop="moveTo('done')" 
-          ondragover="allowDrop(event)">
-          <div class="drag-area">
-            No tasks To do
+
+          <div class="board-box">
+            <h2>Await feedback</h2>
+            <div>
+              <button class="add-task-2" id="add-task-Btn-id" onclick="openAddTaskOverlay()">
+                <img src="./assets/img/add_task_board_2.png" alt="add task" />
+              </button>
+            </div>
+            <div
+              class="drag-area"
+              id="await-feedback-id"
+              ondrop="moveTo('awaitFeedback')"
+              ondragover="allowDrop(event)">
+              No tasks To do
+            </div>
           </div>
+
+          <div class="board-box">
+            <h2>Done</h2>
+            <div>
+              <button class="add-task-2" id="add-task-Btn-id" onclick="openAddTaskOverlay()">
+                <img src="./assets/img/add_task_board_2.png" alt="add task" />
+              </button>
+            </div>
+            <div
+              class="drag-area"
+              id="done-id"
+              ondrop="moveTo('done')"
+              ondragover="allowDrop(event)">
+              No tasks To do
+            </div>
           </div>
         </div>
       </div>
     </div>
+    <div id="loader-id" class="loader d-none"></div>
     <div w3-include-html="./assets/templates/footer.html"></div>
   </body>
 </html>

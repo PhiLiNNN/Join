@@ -6,12 +6,13 @@ async function initSummary() {
   if (!isUserLoggedIn) window.location.assign("../error_page.html");
   currentUser = JSON.parse(localStorage.getItem("currentUser"));
   console.log("currentUser :>> ", currentUser);
+  toggleVisibility("summary-menu-id", false, "highlight-menu");
   toggleVisibility("summary-body-id", true);
   loadHeaderInitials();
   updateGreeting();
-}
+} //www.youtube.com/watch?v=ovBM-keVtRo
 
-function updateGreeting() {
+https: function updateGreeting() {
   const now = new Date();
   const hours = now.getHours();
   const minutes = now.getMinutes();

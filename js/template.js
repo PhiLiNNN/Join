@@ -1,5 +1,32 @@
 function templateSignUpPopup() {
   return /*html*/ `
+      <div class="low-height-class">
+            <svg
+              width="61"
+              height="82"
+              viewBox="0 0 101 122"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path class="change-color" d="M71.6725 0H49.5146V25.4923H71.6725V0Z" fill="white" />
+              <path
+                class="change-color"
+                d="M49.5142 46.2251H71.6721V82.1779C71.7733 90.8292 69.3112 99.3153 64.5986 106.557C59.9455 113.594 50.963 121.966 34.3446 121.966C16.2434 121.966 5.69286 113.406 0 108.715L13.9765 91.4743C19.533 96.0112 24.885 99.7435 34.4299 99.7435C41.6567 99.7435 44.5372 96.7988 46.2247 94.2307C48.5186 90.6637 49.7052 86.4923 49.6335 82.2464L49.5142 46.2251Z"
+                fill="white" />
+              <path d="M38.2135 30.1318H16.0557V52.3884H38.2135V30.1318Z" fill="#29ABE2" />
+              <path
+                class="change-color"
+                d="M83.2795 111.522C83.2795 116.265 80.8762 118.815 77.5184 118.815C74.1607 118.815 71.9619 115.785 71.9619 111.762C71.9619 107.739 74.2288 104.554 77.7059 104.554C81.183 104.554 83.2795 107.687 83.2795 111.522ZM74.5356 111.711C74.5356 114.57 75.6776 116.675 77.6377 116.675C79.5978 116.675 80.7057 114.45 80.7057 111.539C80.7057 108.988 79.6831 106.592 77.6377 106.592C75.5924 106.592 74.5356 108.903 74.5356 111.711Z"
+                fill="white" />
+              <path
+                class="change-color"
+                d="M87.6771 104.76V118.593H85.2227V104.76H87.6771Z"
+                fill="white" />
+              <path
+                class="change-color"
+                d="M90.3359 118.593V104.76H93.0631L95.9947 110.461C96.7494 111.952 97.4209 113.483 98.006 115.049C97.8526 113.337 97.7844 111.368 97.7844 109.177V104.76H100.034V118.593H97.4946L94.5289 112.772C93.7437 111.243 93.0438 109.671 92.4324 108.064C92.4324 109.776 92.5517 111.711 92.5517 114.09V118.576L90.3359 118.593Z"
+                fill="white" />
+            </svg>
+          </div>
     <div class="form-header"> 
       <div class="back-arrow-container" onclick="closeSignUp()">
           <svg width="25" height="24" viewBox="0 0 25 23" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -12,7 +39,7 @@ function templateSignUpPopup() {
     <div class="login-fields-container">
       <div class="login-fields-gap">
       <div id="add-name-border-id" class="input_global">
-          <input type="name" name="name" id="add-name-id" placeholder="Name" autocomplete="off">
+          <input type="name" name="name" id="add-name-id" placeholder="Name" autocomplete="off" maxlength="50">
           <div class="tooltip">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                 <path fill="#2a3647" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/>
@@ -32,14 +59,14 @@ function templateSignUpPopup() {
           <span id="hyphens-add-name-id" class="err-msg d-none">Check your hyphen!</span>
         </div>
         <div id="add-email-border-id" class="input_global">
-          <input type="email" name="loginUserEMail" id="add-email-id" placeholder="Email" autocomplete="on">
+          <input type="email" name="loginUserEMail" id="add-email-id" placeholder="Email" autocomplete="on"  maxlength="50">
           <img class="login-email" src="./assets/img/mail.png" alt="">
           <span id="empty-add-email-id" class="err-msg d-none">This field is required!</span>
           <span id="invalid-add-email-id" class="err-msg d-none">Enter a valid email (e.g., user@example.com)!</span>
           <span id="existing-add-email-id" class="err-msg d-none">This email address is already registered!</span>
         </div>
         <div id="add-pw-border-id" class="input_global">
-          <input type="password" name="loginUserPassword" id="add-pw-id" placeholder="Password" autocomplete="new-password">
+          <input type="password" name="loginUserPassword" id="add-pw-id" placeholder="Password" autocomplete="new-password"  maxlength="50">
           <div class="tooltip">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                 <path fill="#2a3647" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/>
@@ -60,7 +87,7 @@ function templateSignUpPopup() {
           <span id="invalid-add-pw-id" class="register-pw-visbility-id err-msg d-none">6+ chars, 1 uppercase, 1 special char, 1 digit required.</span>
         </div>
         <div id="add-confirm-pw-border-id" class="input_global">
-          <input type="password" name="confirmPassword" id="add-confirm-pw-id" placeholder="Confirm Password" autocomplete="new-password"> 
+          <input type="password" name="confirmPassword" id="add-confirm-pw-id" placeholder="Confirm Password" autocomplete="new-password" maxlength="50"> 
           <img id="register-confirm-lock-id" class="login-lock" src="./assets/img/lock.png" alt="">
           <img id="register-confirm-pw-visibility-id" class="visibility-img d-none" src="./assets/img/visibility.png" alt=""  onclick="togglePasswordVisibility(event, 'register-confirm-pw-visibility-off-id', 'confirmPw', -1)">
           <img id="register-confirm-pw-visibility-off-id" class="visibility-off-img d-none" src="./assets/img/visibility_off.png" alt=""  onclick="togglePasswordVisibility(event, 'register-confirm-pw-visibility-id', 'confirmPw', 1)">
@@ -155,18 +182,18 @@ function templateSubtaskHTML(index, subtask) {
         </div>
       </div>
       <div id="subtask-edited-container-id${index}" class="subtask-svg d-none">
-        <svg onclick="deleteSubtask(${index})" width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg id="delete-edit-subtask-id${index}"  onclick="deleteSubtask(${index})" width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M3.00098 18C2.45098 18 1.98014 17.8042 1.58848 17.4125C1.19681 17.0208 1.00098 16.55 1.00098 16V3C0.717643 3 0.480143 2.90417 0.288477 2.7125C0.0968099 2.52083 0.000976562 2.28333 0.000976562 2C0.000976562 1.71667 0.0968099 1.47917 0.288477 1.2875C0.480143 1.09583 0.717643 1 1.00098 1H5.00098C5.00098 0.716667 5.09681 0.479167 5.28848 0.2875C5.48014 0.0958333 5.71764 0 6.00098 0H10.001C10.2843 0 10.5218 0.0958333 10.7135 0.2875C10.9051 0.479167 11.001 0.716667 11.001 1H15.001C15.2843 1 15.5218 1.09583 15.7135 1.2875C15.9051 1.47917 16.001 1.71667 16.001 2C16.001 2.28333 15.9051 2.52083 15.7135 2.7125C15.5218 2.90417 15.2843 3 15.001 3V16C15.001 16.55 14.8051 17.0208 14.4135 17.4125C14.0218 17.8042 13.551 18 13.001 18H3.00098ZM3.00098 3V16H13.001V3H3.00098ZM5.00098 13C5.00098 13.2833 5.09681 13.5208 5.28848 13.7125C5.48014 13.9042 5.71764 14 6.00098 14C6.28431 14 6.52181 13.9042 6.71348 13.7125C6.90514 13.5208 7.00098 13.2833 7.00098 13V6C7.00098 5.71667 6.90514 5.47917 6.71348 5.2875C6.52181 5.09583 6.28431 5 6.00098 5C5.71764 5 5.48014 5.09583 5.28848 5.2875C5.09681 5.47917 5.00098 5.71667 5.00098 6V13ZM9.00098 13C9.00098 13.2833 9.09681 13.5208 9.28848 13.7125C9.48014 13.9042 9.71764 14 10.001 14C10.2843 14 10.5218 13.9042 10.7135 13.7125C10.9051 13.5208 11.001 13.2833 11.001 13V6C11.001 5.71667 10.9051 5.47917 10.7135 5.2875C10.5218 5.09583 10.2843 5 10.001 5C9.71764 5 9.48014 5.09583 9.28848 5.2875C9.09681 5.47917 9.00098 5.71667 9.00098 6V13Z" fill="#2A3647"/>
         </svg> 
         <div class="vertical-line"></div>
-          <svg onclick="saveEditSubtask(${index})" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <mask id="mask0_75880_8801" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="25" height="24">
-              <rect x="0.000976562" width="24" height="24" fill="#D9D9D9"/>
-            </mask>
-            <g mask="url(#mask0_75880_8801)">
-              <path d="M9.55118 15.15L18.0262 6.675C18.2262 6.475 18.4637 6.375 18.7387 6.375C19.0137 6.375 19.2512 6.475 19.4512 6.675C19.6512 6.875 19.7512 7.1125 19.7512 7.3875C19.7512 7.6625 19.6512 7.9 19.4512 8.1L10.2512 17.3C10.0512 17.5 9.81785 17.6 9.55118 17.6C9.28452 17.6 9.05118 17.5 8.85118 17.3L4.55118 13C4.35118 12.8 4.25535 12.5625 4.26368 12.2875C4.27202 12.0125 4.37618 11.775 4.57618 11.575C4.77618 11.375 5.01368 11.275 5.28868 11.275C5.56368 11.275 5.80118 11.375 6.00118 11.575L9.55118 15.15Z" fill="#2A3647"/>
-            </g>
-          </svg>    
+        <svg id="save-edit-subtask-id${index}" onclick="saveEditSubtask(${index})" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <mask id="mask0_75880_8801" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="25" height="24">
+            <rect x="0.000976562" width="24" height="24" fill="#D9D9D9"/>
+          </mask>
+          <g mask="url(#mask0_75880_8801)">
+            <path d="M9.55118 15.15L18.0262 6.675C18.2262 6.475 18.4637 6.375 18.7387 6.375C19.0137 6.375 19.2512 6.475 19.4512 6.675C19.6512 6.875 19.7512 7.1125 19.7512 7.3875C19.7512 7.6625 19.6512 7.9 19.4512 8.1L10.2512 17.3C10.0512 17.5 9.81785 17.6 9.55118 17.6C9.28452 17.6 9.05118 17.5 8.85118 17.3L4.55118 13C4.35118 12.8 4.25535 12.5625 4.26368 12.2875C4.27202 12.0125 4.37618 11.775 4.57618 11.575C4.77618 11.375 5.01368 11.275 5.28868 11.275C5.56368 11.275 5.80118 11.375 6.00118 11.575L9.55118 15.15Z" fill="#2A3647"/>
+          </g>
+        </svg>    
       </div>
     </li>
   `;
