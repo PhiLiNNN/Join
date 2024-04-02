@@ -1,26 +1,24 @@
 @media (min-width: 761px) {
   .summary-wrapper {
-    max-height: calc(100vh - 110px);
-    margin: 100px 0 0 calc(232px);
+    margin: 144px 0 0 calc(232px);
+    width: calc(100vw - 232px - 64px);
   }
   .summary-greeting {
     display: flex;
     justify-content: center;
   }
   .summary-content {
-    max-height: calc(100vh - 100px);
-    margin: 48px 0 0px 0px;
-    gap: 32px;
-    width: 100%;
-    max-width: calc(100vw - 248px);
+    gap: 16px;
+    max-height: calc(100vh - 154px);
+    padding-left: 32px;
+    overflow-y: auto;
   }
   .summary-title {
-    margin-left: 32px;
     display: flex;
     align-items: center;
   }
   .summary-title h1 {
-    font-size: 49px;
+    font-size: 54px;
   }
   .separator-desktop {
     height: 59px;
@@ -36,9 +34,9 @@
   .summary-column {
     width: 100%;
     max-width: calc(100vw - 284px);
-    margin-left: 32px;
     align-items: center;
     gap: 32px;
+    margin-bottom: 8px;
   }
   .summary-overview {
     gap: 0px;
@@ -50,14 +48,13 @@
   }
   .summary-secondary {
     text-align: center;
-    width: 490px;
+    width: 410px;
   }
   .bottom-hover-container {
     width: 124px;
-    height: 186px;
   }
   .bottom-section {
-    width: 490px;
+    width: 410px;
   }
   .hover-left:hover span,
   .hover-middle:hover span,
@@ -111,15 +108,15 @@
     transform: translate(5%, 0%) scale(1.05);
   }
   .top-section {
-    width: 490px;
-    gap: 16px;
+    width: 410px;
+    gap: 8px;
   }
   .top {
-    width: 204px;
+    width: 180px;
     height: 150px;
   }
   .top-hover-container {
-    width: 223px;
+    width: 200px;
     height: 166px;
   }
   .top-hover-container:last-child {
@@ -145,6 +142,20 @@
   }
   .middle-section {
     gap: 16px;
+    width: 410px;
+    height: 150px;
+  }
+  .middle-hover-container {
+    width: 410px;
+    height: 166px;
+  }
+  .user-highlight {
+    font-size: 47px;
+  }
+}
+@media (min-width: 853px) {
+  .middle-section {
+    gap: 16px;
     width: 490px;
     height: 150px;
   }
@@ -152,13 +163,29 @@
     width: 490px;
     height: 166px;
   }
-  .user-highlight {
-    font-size: 47px;
+  .top-section {
+    width: 490px;
+    gap: 16px;
   }
-}
-@media (min-width: 782px) {
-  .summary-title h1 {
-    font-size: 54px;
+  .top {
+    width: 204px;
+    height: 150px;
+  }
+  .top-hover-container {
+    width: 223px;
+    height: 166px;
+  }
+  .summary-column {
+    gap: 32px;
+  }
+  .summary-secondary {
+    width: 490px;
+  }
+  .bottom-hover-container {
+    width: 124px;
+  }
+  .bottom-section {
+    width: 490px;
   }
 }
 
@@ -169,15 +196,8 @@
 }
 
 @media (min-width: 1000px) {
-  .summary-title {
-    margin-left: 32px;
-  }
   .summary-column {
     align-items: start;
-    margin-left: 32px;
-  }
-  .summary-content {
-    margin: 32px 0 0px 0px;
   }
   .top-section {
     width: 560px;
@@ -220,6 +240,9 @@
   .summary-title h1 {
     font-size: 64px;
   }
+  .summary-content {
+    padding: 0;
+  }
   .summary-title {
     margin-left: 0;
   }
@@ -241,25 +264,22 @@
     display: flex;
     justify-content: start;
   }
-  .summary-content {
-    margin: 110px 96px 0px 96px;
-    max-width: calc(100vw - 444px);
-    gap: 56px;
+  .summary-wrapper {
+    margin: 206px 0 0 calc(232px + 98px);
+    width: calc(100vw - 232px - 196px);
   }
 }
 
 @media (max-width: 760px) {
   .summary-wrapper {
     max-height: calc(100vh - 181px);
-    margin: 100px 8px 0 8px;
+    margin: 144px 8px 0 16px;
   }
   .summary-title h1 {
     font-size: 54px;
   }
-
   .summary-content {
     justify-content: start;
-    margin: 44px 0 0 8px;
     gap: 40px;
   }
   .summary-column {
@@ -421,9 +441,6 @@
 }
 
 @media (max-width: 466px) {
-  .summary-wrapper {
-    margin: 100px 8px 0 8px;
-  }
   .box-1,
   .middle-section {
     padding: 0;
@@ -483,5 +500,18 @@
   .top-right:active,
   .hover-right:active {
     transform: translate(-5%, 0%) scale(1.03);
+  }
+}
+@media (max-width: 328px) {
+  .middle-hover-container,
+  .middle-section {
+    width: 280px;
+  }
+  .middle-section:active,
+  .hover-middle:active {
+    transform: scale(1.03);
+  }
+  .summary-content {
+    gap: 64px;
   }
 }

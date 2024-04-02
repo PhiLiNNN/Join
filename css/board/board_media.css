@@ -1,0 +1,33 @@
+@media (min-width: 761px) {
+  .board {
+    margin: 120px 24px 24px 256px;
+    overflow: hidden;
+  }
+  .board-at-btn {
+    width: 60px;
+    height: 48px;
+  }
+  .board-at-btn span {
+    display: none;
+  }
+  .board-headline-right {
+    gap: 8px;
+  }
+}
+@media (min-width: 973px) {
+  .board-at-btn {
+    width: 260px;
+    height: 48px;
+  }
+  .board-at-btn span {
+    display: block;
+  }
+  .board-headline-right {
+    gap: 32px;
+  }
+}
+@media (min-width: 1341px) {
+  .board {
+    margin: 128px 16px 100px 16px;
+  }
+}

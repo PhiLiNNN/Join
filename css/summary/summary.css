@@ -1,10 +1,3 @@
-.summary-wrapper {
-  height: 100vh;
-  margin: 100px 16px 0 16px;
-  overflow-y: auto;
-  transition: all 300ms ease-in-out;
-}
-
 .summary-content {
   display: flex;
   align-items: start;
@@ -49,6 +42,7 @@
 }
 
 .summary-title h1 {
+  text-wrap: nowrap;
   font-weight: bold;
   transition: all 300ms ease-in-out;
 }
@@ -56,7 +50,8 @@
 .summary-title span {
   font-size: 22px;
   color: var(--mockup-color);
-  text-wrap: nowrap;
+  text-wrap: wrap;
+  text-align: center;
   transition: all 300ms ease-in-out;
 }
 
