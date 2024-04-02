@@ -274,32 +274,40 @@ function renderSubtasks() {
 function toggleReadBorderInSubtasks(index, listElement) {
   const saveElement = document.getElementById(`save-edit-subtask-id${index}`);
   const deleteElement = document.getElementById(`delete-edit-subtask-id${index}`);
-
   function handleClick(event) {
     const isClickOutsideList = !listElement.contains(event.target);
     const isClickOnSaveOrDelete =
       saveElement.contains(event.target) || deleteElement.contains(event.target);
-
     if (isClickOutsideList) {
-      disableSubtaskFiled(true);
+      disableFiledElements(true);
       toggleVisibility(`substask-content-id${currentIndex}`, false, "red-line-highlight");
     } else if (isClickOnSaveOrDelete) {
-      disableSubtaskFiled(false);
+      disableFiledElements(false);
       toggleVisibility(`substask-content-id${currentIndex}`, true, "red-line-highlight");
       document.removeEventListener("click", handleClick);
     } else {
-      disableSubtaskFiled(false);
+      disableFiledElements(false);
       toggleVisibility(`substask-content-id${currentIndex}`, true, "red-line-highlight");
     }
   }
-
   clickEventListener = handleClick;
   document.addEventListener("click", clickEventListener);
 }
 
-function disableSubtaskFiled(bool) {
-  const element = document.getElementById("subtask-input-id");
-  element.disabled = bool;
+function disableFiledElements(bool) {
+  const inputElement = document.getElementById("subtask-input-id");
+  const createTaskElement = document.getElementById("ad-add-btn");
+  inputElement.disabled = bool;
+  createTaskElement.disabled = bool;
+  showSubtaksError(bool);
+}
+function showSubtaksError(bool) {
+  console.log("bool :>> ", bool);
+  if (bool) {
+    toggleVisibility("subtask-err-msg-id", true);
+    const targetElement = document.getElementById("subtask-err-msg-id");
+    targetElement.scrollIntoView({behavior: "smooth", block: "start"});
+  } else toggleVisibility("subtask-err-msg-id", false);
 }
 
 function editSubtask(index) {
@@ -426,7 +434,7 @@ function clearAll() {
   toggleVisibility("subtask-del-and-confim-id", false);
   toggleVisibility("subtast-add-button-id", true);
   toggleVisibility("rotate-err-arrow-id", false);
-  disableSubtaskFiled(false);
+  disableFiledElements(false);
   localStorage.setItem("currentUser", JSON.stringify(currentUser));
 }
 function clearAllInputs() {

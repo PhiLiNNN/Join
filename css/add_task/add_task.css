@@ -19,12 +19,19 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   width: auto;
 }
 
-.test {
-  width: 3000px;
-}
-
 .event-style {
   margin-right: 2px;
+}
+.at-subtasks {
+  position: relative;
+}
+.subtask-err-msg {
+  position: absolute;
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--err-msg-color);
+  top: 4px;
+  left: 108px;
 }
 
 .content-container {
