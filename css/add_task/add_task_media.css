@@ -100,8 +100,14 @@
   .content-bottom-and-rigth {
     width: 100%;
   }
+  .vertical-bar-container {
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   .vertical-bar {
-    height: 424px;
+    height: 350px;
     background-color: var(--placeholder-color);
     border-radius: 1px;
     width: 1px;

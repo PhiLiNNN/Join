@@ -13,6 +13,7 @@ let userIndex;
 let prio = ["urgent", "medium", "low"];
 let prioIndex = 1;
 let isFilterActive = false;
+let clickEventListener;
 
 async function initAddTask() {
   isUserLoggedIn = checkUserLogIn();
@@ -273,10 +274,12 @@ function renderSubtasks() {
 function toggleReadBorderInSubtasks(index, listElement) {
   const saveElement = document.getElementById(`save-edit-subtask-id${index}`);
   const deleteElement = document.getElementById(`delete-edit-subtask-id${index}`);
+
   function handleClick(event) {
     const isClickOutsideList = !listElement.contains(event.target);
     const isClickOnSaveOrDelete =
       saveElement.contains(event.target) || deleteElement.contains(event.target);
+
     if (isClickOutsideList) {
       disableSubtaskFiled(true);
       toggleVisibility(`substask-content-id${currentIndex}`, false, "red-line-highlight");
@@ -289,7 +292,9 @@ function toggleReadBorderInSubtasks(index, listElement) {
       toggleVisibility(`substask-content-id${currentIndex}`, true, "red-line-highlight");
     }
   }
-  document.addEventListener("click", handleClick);
+
+  clickEventListener = handleClick;
+  document.addEventListener("click", clickEventListener);
 }
 
 function disableSubtaskFiled(bool) {
@@ -409,6 +414,8 @@ function handlerAddTaskValidation(atBoolArr) {
 }
 
 function clearAll() {
+  document.removeEventListener("click", clickEventListener);
+  clickEventListener = null;
   clearAllInputs();
   clearAllLists();
   clearAllErrMsg();
@@ -416,13 +423,16 @@ function clearAll() {
   renderAddedContacts();
   renderSubtasks();
   togglePrioImg("medium-default-id");
+  toggleVisibility("subtask-del-and-confim-id", false);
+  toggleVisibility("subtast-add-button-id", true);
   toggleVisibility("rotate-err-arrow-id", false);
+  disableSubtaskFiled(false);
   localStorage.setItem("currentUser", JSON.stringify(currentUser));
-  console.log("assignedTo :>> ", assignedTo);
 }
 function clearAllInputs() {
   document.getElementById("title-input-id").value = "";
   document.getElementById("textarea-input-id").value = "";
+  document.getElementById("subtask-input-id").value = "";
   document.getElementById("date-input-id").value = "";
   document.getElementById("category-input-id").value = "";
 }
