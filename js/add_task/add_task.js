@@ -21,10 +21,11 @@ async function initAddTask() {
   console.log(currentUser);
   renderAssignedToContacts();
   setCurrentDate();
+  addSubtaskByEnter();
   addSubtaskVisibilityListener();
   closeAssignedToMenu();
   closeCategoryMenu();
-  toggleReadBorderInSubtasks();
+
   filterAssignedToContacts();
   toggleVisibility("add-task-menu-id", false, "highlight-menu");
   toggleVisibility("at-body-id", true);
@@ -245,6 +246,15 @@ function deleteOrAddTaskMenu(isDelete) {
   toggleVisibility("subtast-add-button-id", true);
 }
 
+function addSubtaskByEnter() {
+  const inputElement = document.getElementById("subtask-input-id");
+  inputElement.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" && inputElement.value !== "") {
+      deleteOrAddTaskMenu(false);
+    }
+  });
+}
+
 function addNewTaskMenu() {
   const inputElement = document.getElementById("subtask-input-id");
   subtaskList.push(inputElement.value);
@@ -260,24 +270,37 @@ function renderSubtasks() {
   });
 }
 
-function toggleReadBorderInSubtasks() {
-  document.addEventListener("click", function (event) {
-    const clickedElement = event.target;
-    const isSubtaskContent = clickedElement.closest("[id^='substask-content-id']");
-    const isSubtaskDefaultContainer = clickedElement.closest(
-      "[id^='subtask-default-container-id']"
-    );
-    const isSubtaskEditedContainer = clickedElement.closest("[id^='subtask-edited-container-id']");
-    if (!isSubtaskContent && !isSubtaskDefaultContainer && !isSubtaskEditedContainer) {
-      if (currentIndex === -1) return;
-      else toggleVisibility(`substask-content-id${currentIndex}`, false, "red-line-highlight");
+function toggleReadBorderInSubtasks(index, listElement) {
+  const saveElement = document.getElementById(`save-edit-subtask-id${index}`);
+  const deleteElement = document.getElementById(`delete-edit-subtask-id${index}`);
+  function handleClick(event) {
+    const isClickOutsideList = !listElement.contains(event.target);
+    const isClickOnSaveOrDelete =
+      saveElement.contains(event.target) || deleteElement.contains(event.target);
+    if (isClickOutsideList) {
+      disableSubtaskFiled(true);
+      toggleVisibility(`substask-content-id${currentIndex}`, false, "red-line-highlight");
+    } else if (isClickOnSaveOrDelete) {
+      disableSubtaskFiled(false);
+      toggleVisibility(`substask-content-id${currentIndex}`, true, "red-line-highlight");
+      document.removeEventListener("click", handleClick);
+    } else {
+      disableSubtaskFiled(false);
+      toggleVisibility(`substask-content-id${currentIndex}`, true, "red-line-highlight");
     }
-  });
+  }
+  document.addEventListener("click", handleClick);
+}
+
+function disableSubtaskFiled(bool) {
+  const element = document.getElementById("subtask-input-id");
+  element.disabled = bool;
 }
 
 function editSubtask(index) {
   currentIndex = index;
   const listElement = document.getElementById(`substask-content-id${index}`);
+  toggleReadBorderInSubtasks(index, listElement);
   handleFirstSubtaskEdit(index, listElement);
 }
 
