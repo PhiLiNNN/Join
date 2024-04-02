@@ -1,4 +1,8 @@
 @media (min-width: 761px) {
+  .board-content-wrapper {
+    max-height: calc(100vh - 209px);
+    overflow-y: auto;
+  }
   .board-wrapper {
     margin: 144px 0 0 calc(232px + 32px);
     width: calc(100vw - 232px - 64px);
@@ -34,6 +38,11 @@
   }
 }
 @media (min-width: 1341px) {
+  .board-content-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+  }
   .board-wrapper {
     margin: 206px 0 0 calc(232px + 98px);
     width: calc(100vw - 232px - 196px);
@@ -44,6 +53,10 @@
 }
 
 @media (max-width: 760px) {
+  .board-content-wrapper {
+    max-height: calc(100vh - 380px);
+    overflow-y: auto;
+  }
   .board-search-desktop {
     display: none;
   }
