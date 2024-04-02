@@ -22,9 +22,6 @@ function truncateTextIfTooLong(querrySelec, maxHeight) {
   const textSpans = document.querySelectorAll(querrySelec);
   const ellipsis = " ...";
   textSpans.forEach((textSpan) => {
-    console.log("trim :>> ", textSpan.innerHTML.trim());
-    console.log("-----------------------------");
-    if (textSpan.innerHTML.includes(" ")) console.log("trussssssssssssssse :>> ");
     if (textSpan.scrollHeight > maxHeight) {
       const text = textSpan.textContent.trim();
       const truncatedText = text.slice(0, maxHeight) + ellipsis;

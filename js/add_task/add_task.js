@@ -299,10 +299,10 @@ function disableFiledElements(bool) {
   const createTaskElement = document.getElementById("ad-add-btn");
   inputElement.disabled = bool;
   createTaskElement.disabled = bool;
-  showSubtaksError(bool);
+  showSubtasksError(bool);
 }
-function showSubtaksError(bool) {
-  console.log("bool :>> ", bool);
+
+function showSubtasksError(bool) {
   if (bool) {
     toggleVisibility("subtask-err-msg-id", true);
     const targetElement = document.getElementById("subtask-err-msg-id");

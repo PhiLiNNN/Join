@@ -9,8 +9,6 @@ function legalsInit(event) {
   const footerHTML = isUserLoggedIn ? templateFooterHTML(false) : templateFooterHTML(true);
   header.innerHTML = headerHTML;
   footer.innerHTML = footerHTML;
-  console.log("event :>> ", event);
-
   if (isUserLoggedIn) {
     currentUser = JSON.parse(localStorage.getItem("currentUser"));
     if (event.target.activeElement.id === "policy-id")
