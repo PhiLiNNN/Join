@@ -1,8 +1,12 @@
 @media (min-width: 761px) {
-  .board {
-    margin: 120px 24px 24px 256px;
-    overflow: hidden;
+  .board-wrapper {
+    margin: 144px 0 0 calc(232px + 32px);
+    width: calc(100vw - 232px - 64px);
   }
+  .board-headline h1 {
+    font-size: 54px;
+  }
+
   .board-at-btn {
     width: 60px;
     height: 48px;
@@ -12,6 +16,9 @@
   }
   .board-headline-right {
     gap: 8px;
+  }
+  .board-search-mobile {
+    display: none;
   }
 }
 @media (min-width: 973px) {
@@ -27,7 +34,40 @@
   }
 }
 @media (min-width: 1341px) {
-  .board {
-    margin: 128px 16px 100px 16px;
+  .board-wrapper {
+    margin: 206px 0 0 calc(232px + 98px);
+    width: calc(100vw - 232px - 196px);
+  }
+  .board-headline h1 {
+    font-size: 64px;
+  }
+}
+
+@media (max-width: 760px) {
+  .board-search-desktop {
+    display: none;
+  }
+  .board-search-mobile {
+    margin-top: 48px;
+  }
+  .board-wrapper {
+    max-height: calc(100vh - 181px);
+    margin: 144px 16px 0 16px;
+  }
+  .board-headline h1 {
+    font-size: 54px;
+  }
+}
+
+@media (max-width: 466px) {
+  .board-at-btn {
+    width: 50px;
+    height: 40px;
+  }
+  .board-at-btn svg {
+    width: 20px;
+  }
+  .board-headline h1 {
+    font-size: 43px;
   }
 }

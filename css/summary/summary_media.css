@@ -273,7 +273,7 @@
 @media (max-width: 760px) {
   .summary-wrapper {
     max-height: calc(100vh - 181px);
-    margin: 144px 8px 0 16px;
+    margin: 144px 16px 0 16px;
   }
   .summary-title h1 {
     font-size: 54px;

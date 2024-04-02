@@ -1,20 +1,26 @@
-.board {
-  margin: 128px 16px 100px 16px;
+.board,
+.board-wrapper {
+  transition: all 300ms ease-in-out;
 }
-
+.board-at-btn span {
+  display: none;
+}
 .board-headline {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
+.board-headline h1 {
+  transition: all 300ms ease-in-out;
+}
 .search-at-container {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
 }
-.board-search {
+.board-search-desktop,
+.board-search-mobile {
   height: 48px;
   width: 100%;
   margin-left: 8px;
@@ -31,13 +37,17 @@
   align-items: center;
 }
 
-.board-search svg {
+.board-search-desktop svg,
+.board-search-mobile svg {
   cursor: pointer;
   height: 23px;
   padding-left: 23px;
 }
 
 .board-at-btn {
+  width: 60px;
+  height: 48px;
+
   display: flex;
   justify-content: center;
   align-items: center;
