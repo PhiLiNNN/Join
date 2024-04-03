@@ -1,7 +1,7 @@
 @media (min-width: 761px) {
   .summary-wrapper {
     margin: 144px 0 0 calc(232px);
-    width: calc(100vw - 232px - 64px);
+    width: calc(100vw - 232px - 0px);
   }
   .summary-greeting {
     display: flex;
@@ -9,9 +9,7 @@
   }
   .summary-content {
     gap: 16px;
-    max-height: calc(100vh - 154px);
-    padding-left: 32px;
-    overflow-y: auto;
+    padding-inline: 32px;
   }
   .summary-title {
     display: flex;
@@ -41,6 +39,9 @@
   .summary-overview {
     gap: 0px;
   }
+  .box-1 {
+    padding: 0px;
+  }
   .box-1 svg,
   .middle-box svg {
     width: 69px;
@@ -48,13 +49,13 @@
   }
   .summary-secondary {
     text-align: center;
-    width: 410px;
+    width: 420px;
   }
   .bottom-hover-container {
     width: 124px;
   }
   .bottom-section {
-    width: 410px;
+    width: 420px;
   }
   .hover-left:hover span,
   .hover-middle:hover span,
@@ -108,21 +109,19 @@
     transform: translate(5%, 0%) scale(1.05);
   }
   .top-section {
-    width: 410px;
-    gap: 8px;
+    width: 420px;
+    justify-content: space-between;
+    gap: 16px;
   }
   .top {
     width: 180px;
     height: 150px;
   }
   .top-hover-container {
-    width: 200px;
+    width: 180px;
     height: 166px;
   }
-  .top-hover-container:last-child {
-    display: flex;
-    justify-content: end;
-  }
+
   .middle-section:hover,
   .middle-section:hover *,
   .middle-section:hover .summary-change-content span,
@@ -142,11 +141,11 @@
   }
   .middle-section {
     gap: 16px;
-    width: 410px;
+    width: 420px;
     height: 150px;
   }
   .middle-hover-container {
-    width: 410px;
+    width: 420px;
     height: 166px;
   }
   .user-highlight {
@@ -168,7 +167,7 @@
     gap: 16px;
   }
   .top {
-    width: 204px;
+    width: 220px;
     height: 150px;
   }
   .top-hover-container {
@@ -276,6 +275,9 @@
 }
 
 @media (max-width: 760px) {
+  .summary-overview {
+    gap: 16px;
+  }
   .summary-wrapper {
     max-height: calc(100vh - 181px);
     margin: 144px 16px 0 16px;
@@ -343,12 +345,13 @@
     gap: 16px;
   }
   .top {
-    width: 186px;
-    height: 110px;
+    width: 180px;
+    height: 160px;
   }
+
   .top-hover-container {
     width: 194px;
-    height: 120px;
+    height: 160px;
   }
   .top-hover-container:last-child {
     display: flex;
@@ -356,7 +359,7 @@
   }
   .middle-section {
     width: 500px;
-    height: 120px;
+    height: 160px;
     gap: 16px;
   }
   .middle-section:active,
@@ -375,7 +378,7 @@
   }
   .middle-hover-container {
     width: 500px;
-    height: 120px;
+    height: 160px;
   }
   .separator2 {
     height: 80px;
@@ -391,7 +394,7 @@
   .tasks-info span:last-child,
   .summary-change-content span:last-child,
   .summary-info {
-    font-size: 18px;
+    font-size: 20px;
   }
   .summary-info {
     text-align: center;
@@ -402,8 +405,8 @@
   }
   .box-1 svg,
   .middle-box svg {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
   }
   .box-1,
   .middle-box {
@@ -427,9 +430,13 @@
   .middle-hover-container,
   .middle-section,
   .top-section,
-  .bottom-section {
+  .bottom-section,
+  .bottom-hover-container,
+  .hover-right,
+  .hover-middle,
+  .hover-left {
     width: 396px;
-    height: 110px;
+    height: 160px;
   }
   .tasks-info {
     width: 124px;
@@ -441,11 +448,14 @@
     height: 55px;
   }
   .separator2 {
-    height: 70px;
+    height: 80px;
   }
 }
 
 @media (max-width: 466px) {
+  .summary-overview {
+    gap: 24px;
+  }
   .box-1,
   .middle-section {
     padding: 0;
@@ -476,9 +486,12 @@
   .middle-hover-container,
   .middle-section,
   .top-section,
-  .bottom-section {
+  .bottom-section,
+  .hover-right,
+  .hover-middle,
+  .hover-left {
     width: 295px;
-    height: 110px;
+    height: 150px;
   }
   .top-hover-container,
   .top-right,
@@ -518,5 +531,17 @@
   }
   .summary-content {
     gap: 64px;
+  }
+}
+@media (min-width: 761px) and (max-height: 841px) {
+  .summary-column {
+    display: block;
+    max-height: calc(100vh - 240px);
+    overflow-y: auto;
+  }
+}
+@media (min-width: 999px) and (max-height: 841px) {
+  .summary-column {
+    display: flex;
   }
 }
