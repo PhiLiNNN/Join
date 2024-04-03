@@ -99,6 +99,9 @@ function toggledDragHover(elementId, bool) {
 }
 
 function moveTo(section) {
+  console.log("sadasdasdasdasdsad", section);
+  toggleVisibility(section + "-hover-id", true, "drag-area-hover");
+
   const index = currentUser.tasks.titles.indexOf(currentDraggedElement);
   if (index === -1) return;
 
