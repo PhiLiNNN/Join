@@ -10,6 +10,7 @@ async function initSummary() {
   toggleVisibility("summary-body-id", true);
   loadHeaderInitials();
   updateGreeting();
+  calculateSummaryAmounts();
 } //www.youtube.com/watch?v=ovBM-keVtRo
 
 https: function updateGreeting() {
@@ -52,4 +53,17 @@ function templateGreetingsHTML(greeting, user) {
       <span class="user-highlight">${user !== "guest user" ? `<span>${user}</span>` : ""}</span>
     </div>
   `;
+}
+
+function calculateSummaryAmounts() {
+  const toDoEl = document.getElementById("to-do-amount-id");
+  const toDos = countOccurrences(currentUser.tasks.board, "toDo");
+  console.log("toDos :>> ", toDos);
+  // toDoEl.innerHTML = currentUser.;
+}
+
+function countOccurrences(list, value) {
+  return list.reduce((count, currentValue) => {
+    return currentValue === value ? count + 1 : count;
+  }, 0);
 }

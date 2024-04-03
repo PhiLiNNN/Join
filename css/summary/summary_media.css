@@ -240,8 +240,12 @@
   .summary-title h1 {
     font-size: 64px;
   }
+  .summary-wrapper {
+    margin: 206px 0 0 calc(232px + 66px);
+    width: calc(100vw - 232px - 196px);
+  }
   .summary-content {
-    padding: 0;
+    padding-left: 32px;
   }
   .summary-title {
     margin-left: 0;
@@ -263,10 +267,6 @@
   .summary-secondary {
     display: flex;
     justify-content: start;
-  }
-  .summary-wrapper {
-    margin: 206px 0 0 calc(232px + 98px);
-    width: calc(100vw - 232px - 196px);
   }
 }
 

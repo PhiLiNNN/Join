@@ -79,25 +79,23 @@
   max-width: 100vw;
 }
 
+.drag-area-hover {
+  background-color: #e7e7e7;
+  border: 1px dashed #a8a8a8;
+  border-radius: 10px;
+}
+
 .drag-area {
   min-height: 48px;
   max-width: 100vw;
   font-size: 16px;
-  color: #a8a8a8;
-  background-color: #e7e7e7;
-  border: 1px dashed #a8a8a8;
-  border-radius: 10px;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 16px;
   overflow-x: auto;
-  margin-bottom: 26px;
+  padding-block: 16px;
 }
-
-
-
-            
 
 .task {
   background-color: rgb(19, 6, 251);

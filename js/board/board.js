@@ -88,12 +88,14 @@ function renderBoardAssignedTo(index) {
 
 //drag and drop
 
+function allowDrop(event) {
+  event.preventDefault();
+}
 function startDragging(title) {
   currentDraggedElement = title;
 }
-
-function allowDrop(event) {
-  event.preventDefault();
+function toggledDragHover(elementId, bool) {
+  toggleVisibility(elementId, bool, "drag-area-hover");
 }
 
 function moveTo(section) {
@@ -112,9 +114,8 @@ function moveTo(section) {
     currentUser.tasks.board[index] = "done";
   }
 
-  const newStatus = currentUser.tasks.board[index];
-
-  console.log(`Task "${currentDraggedElement}" moved from "${previousStatus}" to "${newStatus}".`);
+  // const newStatus = currentUser.tasks.board[index];
+  // console.log(`Task "${currentDraggedElement}" moved from "${previousStatus}" to "${newStatus}".`);
 
   generateCardHTML();
   loadHeaderInitials();
@@ -126,7 +127,7 @@ function moveTo(section) {
 // search fumction
 
 function filterToDos() {
-  let search = document.getElementById('search').value.toLowerCase();
+  let search = document.getElementById("search").value.toLowerCase();
   generateCardHTML(search);
 }
 

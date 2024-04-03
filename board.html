@@ -25,7 +25,12 @@
           <h1>Board</h1>
           <div class="board-headline-right">
             <div class="input_global board-search-desktop">
-              <input id="search" type="text" placeholder="Find Task" autocomplete="on" onkeydown="filterToDos()"/>
+              <input
+                id="search"
+                type="text"
+                placeholder="Find Task"
+                autocomplete="on"
+                onkeydown="filterToDos()" />
               <div class="add-task"></div>
               <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -61,64 +66,68 @@
           <div class="board-box">
             <h2>To do</h2>
             <div>
-              <button class="add-task-2" id="add-task-Btn-id" onclick="openAddTaskOverlay()">
+              <button class="add-task-2" onclick="openAddTaskOverlay()">
                 <img src="./assets/img/add_task_board_2.png" alt="add task" />
               </button>
             </div>
             <div
-              class="drag-area"
-              id="to-do-id"
+              id="toDo-hover-id"
               ondrop="moveTo('toDo')"
-              ondragover="allowDrop(event)">
+              ondragleave="toggledDragHover('toDo-hover-id', true)"
+              ondragover="allowDrop(event); toggledDragHover('toDo-hover-id',  false)">
               No tasks To do
+              <div class="drag-area" id="to-do-id"></div>
             </div>
           </div>
 
           <div class="board-box">
             <h2>In progress</h2>
             <div>
-              <button class="add-task-2" id="add-task-Btn-id" onclick="openAddTaskOverlay()">
+              <button class="add-task-2" onclick="openAddTaskOverlay()">
                 <img src="./assets/img/add_task_board_2.png" alt="add task" />
               </button>
             </div>
             <div
-              class="drag-area"
-              id="in-progress-id"
+              id="inProgress-hover-id"
               ondrop="moveTo('inProgress')"
-              ondragover="allowDrop(event)">
+              ondragleave="toggledDragHover('inProgress-hover-id', true)"
+              ondragover="allowDrop(event); toggledDragHover('inProgress-hover-id',  false)">
               No tasks To do
+              <div class="drag-area" id="in-progress-id"></div>
             </div>
           </div>
 
           <div class="board-box">
             <h2>Await feedback</h2>
             <div>
-              <button class="add-task-2" id="add-task-Btn-id" onclick="openAddTaskOverlay()">
+              <button class="add-task-2" onclick="openAddTaskOverlay()">
                 <img src="./assets/img/add_task_board_2.png" alt="add task" />
               </button>
             </div>
             <div
-              class="drag-area"
-              id="await-feedback-id"
+              id="awaitFeedback-hover-id"
               ondrop="moveTo('awaitFeedback')"
-              ondragover="allowDrop(event)">
+              ondragleave="toggledDragHover('awaitFeedback-hover-id', true)"
+              ondragover="allowDrop(event); toggledDragHover('awaitFeedback-hover-id',  false)">
               No tasks To do
+              <div class="drag-area" id="await-feedback-id"></div>
             </div>
           </div>
 
           <div class="board-box">
             <h2>Done</h2>
             <div>
-              <button class="add-task-2" id="add-task-Btn-id" onclick="openAddTaskOverlay()">
+              <button class="add-task-2" onclick="openAddTaskOverlay()">
                 <img src="./assets/img/add_task_board_2.png" alt="add task" />
               </button>
             </div>
             <div
-              class="drag-area"
-              id="done-id"
+              id="done-hover-id"
               ondrop="moveTo('done')"
-              ondragover="allowDrop(event)">
+              ondragleave="toggledDragHover('done-hover-id', true)"
+              ondragover="allowDrop(event); toggledDragHover('done-hover-id',  false)">
               No tasks To do
+              <div class="drag-area" id="done-id"></div>
             </div>
           </div>
         </div>

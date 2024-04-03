@@ -100,8 +100,8 @@
   .content-bottom-and-rigth {
     width: 100%;
   }
-  .vertical-bar-container {
-    height: 500px;
+  summary-content .vertical-bar-container {
+    height: 545px;
     display: flex;
     justify-content: center;
     align-items: center;

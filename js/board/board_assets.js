@@ -1,7 +1,7 @@
 function generateTaskHTML(index, prio) {
   const progressWidth = ((0 / currentUser.tasks.subtasks[index].length) * 100).toFixed(2);
   return /*html*/ `
-    <div draggable="true" ondragstart="startDragging('${currentUser.tasks.titles[index]}')" class="board-card">
+    <div id="draggedCard${index}-id" draggable="true" ondragstart="startDragging('${currentUser.tasks.titles[index]}')" class="board-card">
         <div class="category-container">
             <span class="category-block">${currentUser.tasks.categories[index]}</span>
         </div>
