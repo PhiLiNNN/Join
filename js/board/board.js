@@ -139,7 +139,8 @@ function moveTo(section) {
 // search fumction
 
 function filterToDos() {
-  let search = document.getElementById("search").value.toLowerCase();
+  const searchInputElement = window.innerWidth < 761 ? "search-mobile-id" : "search-desktop-id";
+  const search = document.getElementById(searchInputElement).value.toLowerCase();
   generateCardHTML(search);
 }
 

@@ -26,7 +26,7 @@
           <div class="board-headline-right">
             <div class="input_global board-search-desktop">
               <input
-                id="search"
+                id="search-desktop-id"
                 type="text"
                 placeholder="Find Task"
                 autocomplete="on"
@@ -54,7 +54,12 @@
           </div>
         </div>
         <div class="input_global board-search-mobile">
-          <input type="search" placeholder="Find Task" autocomplete="on" />
+          <input
+            id="search-mobile-id"
+            type="text"
+            placeholder="Find Task"
+            autocomplete="on"
+            onkeydown="filterToDos()" />
           <div class="add-task"></div>
           <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -78,7 +83,6 @@
               <div class="drag-area" id="to-do-id"></div>
             </div>
           </div>
-
           <div class="board-box">
             <h2>In progress</h2>
             <div>
