@@ -38,7 +38,7 @@ function getBoardElements() {
   return {toDoEl, inProgEl, awaitFedEl, doneEl};
 }
 
-function generateCardHTML() {
+function generateCardHTML(search) {
   let {toDoEl, inProgEl, awaitFedEl, doneEl} = getBoardElements();
   toDoEl.innerHTML = "";
   inProgEl.innerHTML = "";
@@ -46,6 +46,8 @@ function generateCardHTML() {
   doneEl.innerHTML = "";
   if (currentUser.tasks.board.length === 0) return;
   currentUser.tasks.board.forEach((task, index) => {
+    let taskTitle = currentUser.tasks.titles[index].toLowerCase();
+    if (search && !taskTitle.includes(search)) return;
     if (task === "toDo") {
       const prio = currentUser.tasks.prios[index];
       toDoEl.innerHTML += generateTaskHTML(index, prio);
@@ -119,6 +121,13 @@ function moveTo(section) {
   truncateTextIfTooLong(".description-block", 50);
   truncateTextIfTooLong(".title-block", 29);
   save();
+}
+
+// search fumction
+
+function filterToDos() {
+  let search = document.getElementById('search').value.toLowerCase();
+  generateCardHTML(search);
 }
 
 //Big Card Overlay
