@@ -134,8 +134,6 @@ function moveTo(section) {
   truncateTextIfTooLong(".title-block", 29);
   save();
   checkIfSectionIsEmpty();
-  currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  console.log("currentUser :>> ", currentUser);
 }
 
 // search fumction

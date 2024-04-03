@@ -40,15 +40,33 @@
 @media (min-width: 1341px) {
   .board-content-wrapper {
     display: flex;
-    justify-content: center;
-    gap: 24px;
+    justify-content: space-between;
+    max-height: calc(100vh - 283px);
+    overflow: hidden;
   }
   .board-wrapper {
-    margin: 206px 0 0 calc(232px + 98px);
-    width: calc(100vw - 232px - 196px);
+    margin: 206px 0 0 calc(232px + 32px);
+    width: calc(100vw - 232px - 64px);
   }
   .board-headline h1 {
     font-size: 64px;
+  }
+  .board-box {
+    height: 100vh;
+    width: 246px;
+    margin: 0;
+  }
+  .drag-area {
+    flex-direction: column;
+
+    padding: 0;
+  }
+  .drag-area-hover-default {
+    min-height: 64px;
+  }
+  .drag-area-hover {
+    min-height: 100vh;
+    min-width: 248px;
   }
 }
 
