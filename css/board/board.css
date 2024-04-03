@@ -79,17 +79,21 @@
   max-width: 100vw;
 }
 
-.drag-area-hover {
+.drag-area-hover,
+.drag-area-hover-default {
   background-color: #e7e7e7;
   border: 1px dashed #a8a8a8;
   border-radius: 10px;
+  min-height: 48px;
 }
 
+.empty-section {
+  color: #a8a8a8;
+}
 .drag-area {
   min-height: 48px;
   max-width: 100vw;
   font-size: 16px;
-
   display: flex;
   justify-content: center;
   align-items: center;

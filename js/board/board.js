@@ -14,6 +14,7 @@ function initBoard() {
   toggleVisibility("board-body-id", true);
   loadHeaderInitials();
   generateCardHTML();
+  checkIfSectionIsEmpty();
   truncateTextIfTooLong(".description-block", 50);
   truncateTextIfTooLong(".title-block", 31);
 }
@@ -71,6 +72,15 @@ function generateCardHTML(search) {
   });
 }
 
+function checkIfSectionIsEmpty() {
+  const sections = ["toDo", "inProgress", "awaitFeedback", "done"];
+  sections.forEach((section) => {
+    const hoverId = `${section}-hover-id`;
+    const isVisible = currentUser.tasks.board.includes(section);
+    toggleVisibility(hoverId, isVisible, "drag-area-hover-default");
+  });
+}
+
 function renderBoardAssignedTo(index) {
   let addedContactsElement = document.getElementById(`board-assignedTo-id${index}`);
   addedContactsElement.innerHTML = "";
@@ -104,9 +114,7 @@ function moveTo(section) {
 
   const index = currentUser.tasks.titles.indexOf(currentDraggedElement);
   if (index === -1) return;
-
   const previousStatus = currentUser.tasks.board[index];
-
   if (section === "toDo") {
     currentUser.tasks.board[index] = "toDo";
   } else if (section === "inProgress") {
@@ -125,6 +133,9 @@ function moveTo(section) {
   truncateTextIfTooLong(".description-block", 50);
   truncateTextIfTooLong(".title-block", 29);
   save();
+  checkIfSectionIsEmpty();
+  currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  console.log("currentUser :>> ", currentUser);
 }
 
 // search fumction
