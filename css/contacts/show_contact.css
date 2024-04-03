@@ -207,13 +207,17 @@
   }
 }
 
-@media (min-width: 1340px) {
+@media (min-width: 1341px) {
   .show-overlay {
     background: transparent;
     position: fixed;
-    top: 319px;
-    right: 0;
-    left: calc(232px + 500px);
+    box-shadow: 0 0 14px #2a364739;
+    border-radius: 24px;
+    top: 297px;
+    right: 16px;
+    bottom: 16px;
+    padding: 32px;
+    left: calc(232px + 455px);
     transform: translateX(100%);
   }
   .open-contacts-header {

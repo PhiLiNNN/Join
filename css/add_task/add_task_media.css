@@ -88,11 +88,13 @@
   }
   .content-container {
     position: static;
-    margin: 310px 70px 0 calc(232px + 96px);
-    overflow-x: hidden;
-    padding: 0 32px 0 0;
-    max-height: calc(100vh - 400px);
+    margin: 290px 70px 0px calc(232px + 64px);
+    max-height: calc(100vh - 380px);
+    box-shadow: 0 0 14px #2a364739;
+    border-radius: 24px;
+    padding: 32px;
     display: flex;
+    align-items: start;
     gap: 32px;
     max-width: 1920px;
   }
@@ -100,7 +102,7 @@
   .content-bottom-and-rigth {
     width: 100%;
   }
-  summary-content .vertical-bar-container {
+  .vertical-bar-container {
     height: 545px;
     display: flex;
     justify-content: center;

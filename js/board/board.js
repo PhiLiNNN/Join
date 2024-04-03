@@ -142,6 +142,8 @@ function filterToDos() {
   const searchInputElement = window.innerWidth < 761 ? "search-mobile-id" : "search-desktop-id";
   const search = document.getElementById(searchInputElement).value.toLowerCase();
   generateCardHTML(search);
+  truncateTextIfTooLong(".description-block", 50);
+  truncateTextIfTooLong(".title-block", 29);
 }
 
 //Big Card Overlay

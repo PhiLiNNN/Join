@@ -241,20 +241,25 @@
     font-size: 64px;
   }
   .summary-wrapper {
-    margin: 206px 0 0 calc(232px + 66px);
-    width: calc(100vw - 232px - 196px);
+    margin: 206px 0 0 calc(232px + 56px);
+    width: calc(100vw - 232px - 64px);
   }
   .summary-content {
-    padding-left: 32px;
+    gap: 8px;
+    padding: 0 56px 8px 8px;
+    max-width: 1920px;
   }
   .summary-title {
-    margin-left: 0;
+    margin-left: 32px;
   }
   .summary-column {
     flex-direction: row;
     align-items: center;
     justify-content: start;
-    margin-left: 0px;
+    margin: 0px;
+    box-shadow: 0 0 14px #2a364739;
+    padding: 32px;
+    border-radius: 24px;
     gap: 73px;
   }
   .summary-column > div:first-child {
