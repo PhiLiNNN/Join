@@ -56,9 +56,10 @@ function templateAddContactHTML() {
                             </div>
                             <img src="./assets/img/person.png" alt="">
                             <span id="ac-empty-name-id" class="ac-err-msg d-none">This field is required!</span>
-                            <span id="ac-invalid-name-id" class="ac-err-msg d-none">Name must be at least 2 letters.</span>
+                            <span id="ac-invalid-name-id" class="ac-err-msg d-none">Each name part needs 2 letters minimum.</span>
                             <span id="ac-no-special-chars-id" class="ac-err-msg d-none">No special characters are allowed.</span>
                             <span id="ac-hyphens-name-id" class="ac-err-msg d-none">Check your hyphen!</span>
+                            <span id="ac-spaces-name-id" class="ac-err-msg d-none">Check your spaces!</span>
                         </div> 
                         <div id="ac-mail-border-id" class="input_global input_ac cursor">
                         <input id="ac-mail-input-id"  type="text" placeholder="Email" autocomplete="on" maxlength="50">
@@ -171,9 +172,10 @@ function templateEditContactHTML() {
                             </div>
                             <img src="./assets/img/person.png" alt="">
                             <span id="ec-empty-name-id" class="ac-err-msg d-none">This field is required!</span>
-                            <span id="ec-invalid-name-id" class="ac-err-msg d-none">Name must be at least 2 letters.</span>
+                            <span id="ec-invalid-name-id" class="ac-err-msg d-none">Each name part needs 2 letters minimum.</span>
                             <span id="ec-no-special-chars-id" class="ac-err-msg d-none">No special characters are allowed.</span>
                             <span id="ec-hyphens-name-id" class="ac-err-msg d-none">Check your hyphen!</span>
+                            <span id="ec-spaces-name-id" class="ac-err-msg d-none">Check your spaces!</span>
                         </div> 
                         <div id="ec-mail-border-id" class="input_global input_ac cursor">
                             <input id="ec-mail-input-id"  type="text" placeholder="Email" autocomplete="on"  value="${savedEmail}" maxlength="50">

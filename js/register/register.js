@@ -95,6 +95,7 @@ function handlerFieldValidationRegister(boolArr) {
   toggleVisibility("add-pw-border-id", !boolArr[12], "error-border");
   toggleVisibility("add-confirm-pw-border-id", !boolArr[13], "error-border");
   toggleVisibility("hyphens-add-name-id", boolArr[14]);
+  toggleVisibility("spaces-add-name-id", boolArr[15]);
   return !boolArr.some(Boolean);
 }
 
@@ -105,6 +106,7 @@ function registerValidationCheck() {
   const confirmPassword = document.getElementById("add-confirm-pw-id").value;
   const checkBox = document.getElementById("privacy-check-id");
   const boolArr = [
+    false,
     false,
     false,
     false,

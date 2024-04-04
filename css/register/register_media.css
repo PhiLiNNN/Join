@@ -136,6 +136,11 @@
   .signup-container {
     gap: 16px;
   }
+  .login-container,
+  .signin-container {
+    box-shadow: none;
+    padding: 0;
+  }
 }
 
 /* --------------------Media - height-----------------------------*/

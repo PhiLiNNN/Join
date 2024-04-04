@@ -54,9 +54,10 @@ function templateSignUpPopup() {
           </div>
           <img class="login-name" src="./assets/img/person.png" alt="login image">
           <span id="empty-add-name-id" class="err-msg d-none">This field is required!</span>
-          <span id="invalid-add-name-id" class="err-msg d-none">Name must be at least 2 letters.</span>
+          <span id="invalid-add-name-id" class="err-msg d-none">Each name part needs 2 letters minimum.</span>
           <span id="no-special-chars-id" class="err-msg d-none">No special characters are allowed.</span>
           <span id="hyphens-add-name-id" class="err-msg d-none">Check your hyphen!</span>
+          <span id="spaces-add-name-id" class="err-msg d-none">Check your spaces!</span>
         </div>
         <div id="add-email-border-id" class="input_global">
           <input type="email" name="loginUserEMail" id="add-email-id" placeholder="Email" autocomplete="on"  maxlength="50">

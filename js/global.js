@@ -59,10 +59,12 @@ async function addNewUserToBackend(user) {
 function validateName(name, boolArr) {
   const specialCharRegex = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/0123456789]/;
   const checkForDoubleHyphen = name.split("-").length - 1;
+  const checkForMultipleSpaces = name.split(" ").length - 1;
   if (name.trim() === "") boolArr[0] = boolArr[10] = true;
   else if (specialCharRegex.test(name)) boolArr[2] = boolArr[10] = true;
   else if (name.length < 2 && checkForDoubleHyphen === 0) boolArr[1] = boolArr[10] = true;
   else if (checkForDoubleHyphen > 1) boolArr[14] = boolArr[10] = true;
+  else if (checkForMultipleSpaces > 1) boolArr[15] = boolArr[10] = true;
   else if (
     checkForDoubleHyphen !== 0 &&
     (!name.match(/[a-zA-Z]-[a-zA-Z]{2,}/) || name.indexOf("-") < 2 || name.split("-").pop() === "")

@@ -45,6 +45,7 @@ function contactsValidationCheck(string) {
     false,
     false,
     false,
+    false,
   ];
   validateContactName(nameInputEl, boolArr);
   validateContactEmail(mailInputEl.toLowerCase(), boolArr);
@@ -65,6 +66,7 @@ function handlerFieldValidationContact(string, boolArr) {
   toggleVisibility(`${string}-name-border-id`, !boolArr[9], "error-border");
   toggleVisibility(`${string}-mail-border-id`, !boolArr[10], "error-border");
   toggleVisibility(`${string}-phone-border-id`, !boolArr[11], "error-border");
+  toggleVisibility(`${string}-spaces-name-id`, boolArr[12]);
   return !boolArr.some(Boolean);
 }
 
@@ -85,11 +87,13 @@ function validateContactEmail(email, boolArr) {
 function validateContactName(name, boolArr) {
   const specialCharRegex = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/0123456789]/;
   const checkForDoubleHyphen = name.split("-").length - 1;
+  const checkForMultipleSpaces = name.split(" ").length - 1;
   if (name === nameCheck) return;
   if (name.trim() === "") boolArr[0] = boolArr[9] = true;
   else if (specialCharRegex.test(name)) boolArr[2] = boolArr[9] = true;
   else if (name.length < 2 && checkForDoubleHyphen === 0) boolArr[1] = boolArr[9] = true;
   else if (checkForDoubleHyphen > 1) boolArr[3] = boolArr[9] = true;
+  else if (checkForMultipleSpaces > 1) boolArr[12] = boolArr[9] = true;
   else if (
     checkForDoubleHyphen !== 0 &&
     (!name.match(/[a-zA-Z]-[a-zA-Z]{2,}/) || name.indexOf("-") < 2 || name.split("-").pop() === "")

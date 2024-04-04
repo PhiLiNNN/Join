@@ -13,15 +13,24 @@ async function initSummary() {
   calculateSummaryAmounts();
 } //www.youtube.com/watch?v=ovBM-keVtRo
 
-https: function updateGreeting() {
+function updateGreeting() {
   const now = new Date();
   const hours = now.getHours();
   const minutes = now.getMinutes();
   const element = document.getElementById("greeting-id");
   let {addHours, greeting} = checkDayTime(hours);
-  element.innerHTML = templateGreetingsHTML(greeting, currentUser.userName);
+  let name = formatName(currentUser.userName);
+  element.innerHTML = templateGreetingsHTML(greeting, name);
   const waitTime = addHours * 60 * 60 * 1000 + minutes * 60 * 1000;
   setTimeout(updateGreeting, waitTime);
+}
+
+function formatName(name) {
+  let parts = name.split(/[ -]/);
+  for (let i = 0; i < parts.length; i++) {
+    parts[i] = parts[i].charAt(0).toUpperCase() + parts[i].slice(1).toLowerCase();
+  }
+  return parts.join(" ");
 }
 
 function checkDayTime(hours) {
@@ -47,6 +56,7 @@ function checkDayTime(hours) {
 }
 
 function templateGreetingsHTML(greeting, user) {
+  console.log("user :>> ", user);
   return /*html*/ `
     <div class="greetings-content" >
       <span>${greeting}${user !== "guest user" ? "," : ""}</span>
@@ -55,11 +65,132 @@ function templateGreetingsHTML(greeting, user) {
   `;
 }
 
-function calculateSummaryAmounts() {
+function getElementIds() {
   const toDoEl = document.getElementById("to-do-amount-id");
-  const toDos = countOccurrences(currentUser.tasks.board, "toDo");
-  console.log("toDos :>> ", toDos);
-  // toDoEl.innerHTML = currentUser.;
+  const inProgressEl = document.getElementById("inProgress-id");
+  const awaitFeedbackEl = document.getElementById("awaitingFeedback-id");
+  const doneEl = document.getElementById("done-amount-id");
+  const urgentEl = document.getElementById("urgent-id");
+  return {toDoEl, inProgressEl, awaitFeedbackEl, doneEl, urgentEl};
+}
+
+function getAmounts() {
+  const toDoAmount = countOccurrences(currentUser.tasks.board, "toDo");
+  const awaitFeedbackAmount = countOccurrences(currentUser.tasks.board, "awaitFeedback");
+  const inProgressAmount = countOccurrences(currentUser.tasks.board, "inProgress");
+  const doneAmount = countOccurrences(currentUser.tasks.board, "done");
+  const urgentAmount = countOccurrences(currentUser.tasks.prios, "urgent");
+  return {toDoAmount, awaitFeedbackAmount, inProgressAmount, doneAmount, urgentAmount};
+}
+function setAmounts(
+  toDoEl,
+  inProgressEl,
+  awaitFeedbackEl,
+  doneEl,
+  urgentEl,
+  toDoAmount,
+  awaitFeedbackAmount,
+  inProgressAmount,
+  doneAmount,
+  urgents
+) {
+  toDoEl.innerHTML = toDoAmount;
+  inProgressEl.innerHTML = awaitFeedbackAmount;
+  awaitFeedbackEl.innerHTML = inProgressAmount;
+  doneEl.innerHTML = doneAmount;
+  urgentEl.innerHTML = urgents;
+  let totalEl = document.getElementById("total-tasks-id");
+  totalEl.innerHTML = toDoAmount + awaitFeedbackAmount + inProgressAmount + doneAmount;
+}
+
+function calculateSummaryAmounts() {
+  let {toDoEl, inProgressEl, awaitFeedbackEl, doneEl, urgentEl} = getElementIds();
+  let {toDoAmount, awaitFeedbackAmount, inProgressAmount, doneAmount, urgentAmount} = getAmounts();
+
+  setAmounts(
+    toDoEl,
+    inProgressEl,
+    awaitFeedbackEl,
+    doneEl,
+    urgentEl,
+    toDoAmount,
+    awaitFeedbackAmount,
+    inProgressAmount,
+    doneAmount,
+    urgentAmount
+  );
+  if (noUpcommingUrgents(urgentAmount)) return;
+  let nearestDate = getNearestUrgent();
+  setNearestDate(nearestDate);
+}
+
+function noUpcommingUrgents(urgentAmount) {
+  if (urgentAmount === 0) return true;
+  else return false;
+}
+
+function setNearestDate(nearestDate) {
+  let dateEl = document.getElementById("upcomming-date-id");
+  let date = new Date(nearestDate);
+  let day = ("0" + date.getDate()).slice(-2);
+  let month = date.getMonth() + 1;
+  let monthString = getMonthAsName(month);
+  let year = date.getFullYear();
+  dateEl.innerHTML = `${monthString} ` + `${day} ` + `${year}`;
+}
+
+function getMonthAsName(month) {
+  console.log("month :>> ", month);
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  return monthNames[month - 1];
+}
+
+function getNearestUrgent() {
+  let dateListMs = getAllDates();
+  let currentTimeInMilliseconds = getCurrentDate();
+  return checkForClosesDate(dateListMs, currentTimeInMilliseconds);
+}
+
+function getAllDates() {
+  let dateList = [];
+  let dateListMs = [];
+  currentUser.tasks.prios.forEach((prio, index) => {
+    if (prio === "urgent") {
+      dateList.push(currentUser.tasks.dates[index]);
+      let dateTime = new Date(currentUser.tasks.dates[index]);
+      let currentTimeInMilliseconds = dateTime.getTime();
+      dateListMs.push(currentTimeInMilliseconds);
+    }
+  });
+  return dateListMs;
+}
+
+function getCurrentDate() {
+  let newDate = new Date();
+  return newDate.getTime();
+}
+
+function checkForClosesDate(dateListMs, currentTimeInMilliseconds) {
+  let dates = [];
+  dateListMs.forEach((date) => {
+    dates.push(date - currentTimeInMilliseconds);
+  });
+  nearestDate = dates.indexOf(Math.min(...dates));
+  return new Date(dateListMs[nearestDate]);
 }
 
 function countOccurrences(list, value) {

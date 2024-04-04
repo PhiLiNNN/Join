@@ -1,9 +1,4 @@
 let currentDraggedElement;
-let newStatus;
-let assignedToInfo = {
-  initials: [],
-  colorCodes: [],
-};
 
 function initBoard() {
   const isUserLoggedIn = checkUserLogIn();

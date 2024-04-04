@@ -533,6 +533,14 @@
   .close-ac-card-mobile {
     right: 8px;
   }
+  .card-content {
+    border-radius: 0px;
+    top: 96px;
+    bottom: 80px;
+    left: 0px;
+    right: 0px;
+    height: 100vh;
+  }
 }
 @media (min-width: 2500px) {
   .card-content {

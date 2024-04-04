@@ -29,6 +29,9 @@
   .separator-mobile {
     display: none;
   }
+  .summary-info {
+    text-align: center;
+  }
   .summary-column {
     width: 100%;
     max-width: calc(100vw - 284px);
