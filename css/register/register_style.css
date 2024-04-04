@@ -83,6 +83,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  transition: all 300ms ease-in-out;
 }
 
 .login-fields-container {
@@ -106,6 +107,7 @@
   width: 100%;
   gap: 32px;
   margin: 32px 0 40px 0;
+  transition: all 300ms ease-in-out;
 }
 
 .login-email {
