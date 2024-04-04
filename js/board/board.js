@@ -109,31 +109,24 @@ function toggledDragHover(elementId, bool) {
 }
 
 function moveTo(section) {
-  console.log("sadasdasdasdasdsad", section);
   toggleVisibility(section + "-hover-id", true, "drag-area-hover");
-
-  const index = currentUser.tasks.titles.indexOf(currentDraggedElement);
-  if (index === -1) return;
-  const previousStatus = currentUser.tasks.board[index];
-  if (section === "toDo") {
-    currentUser.tasks.board[index] = "toDo";
-  } else if (section === "inProgress") {
-    currentUser.tasks.board[index] = "inProgress";
-  } else if (section === "awaitFeedback") {
-    currentUser.tasks.board[index] = "awaitFeedback";
-  } else if (section === "done") {
-    currentUser.tasks.board[index] = "done";
-  }
-
-  // const newStatus = currentUser.tasks.board[index];
-  // console.log(`Task "${currentDraggedElement}" moved from "${previousStatus}" to "${newStatus}".`);
-
+  updateTaskStatus(section);
   generateCardHTML();
   loadHeaderInitials();
   truncateTextIfTooLong(".description-block", 50);
   truncateTextIfTooLong(".title-block", 29);
   save();
+  clearSeachInput();
   checkIfSectionIsEmpty();
+}
+
+function updateTaskStatus(section) {
+  const index = currentUser.tasks.titles.indexOf(currentDraggedElement);
+  if (index === -1) return;
+  if (section === "toDo") currentUser.tasks.board[index] = "toDo";
+  else if (section === "inProgress") currentUser.tasks.board[index] = "inProgress";
+  else if (section === "awaitFeedback") currentUser.tasks.board[index] = "awaitFeedback";
+  else if (section === "done") currentUser.tasks.board[index] = "done";
 }
 
 // search fumction
@@ -178,4 +171,9 @@ function openAddTaskOverlay() {
 
 function closeAddTaskOverlay() {
   hideAddTask();
+}
+
+function clearSeachInput() {
+  document.getElementById("search-desktop-id").value = "";
+  document.getElementById("search-mobile-id").value = "";
 }
