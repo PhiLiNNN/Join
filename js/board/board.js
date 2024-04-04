@@ -146,6 +146,9 @@ function filterToDos() {
   truncateTextIfTooLong(".title-block", 29);
 }
 
+document.getElementById("search-desktop-id").addEventListener("input", filterToDos);
+document.getElementById("search-mobile-id").addEventListener("input", filterToDos);
+
 //Big Card Overlay
 
 function createBigCard() {
