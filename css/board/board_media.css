@@ -60,8 +60,18 @@
     font-size: 64px;
     margin-left: 30px;
   }
+  .add-task-2 {
+    position: absolute;
+    right: 16px;
+  }
   .board-box {
     margin: 0;
+    max-width: none;
+  }
+  .board-header {
+    position: relative;
+    margin-bottom: 16px;
+    min-width: 260px;
   }
   .drag-area {
     flex-direction: column;
@@ -90,7 +100,7 @@
   }
   .board-box h2 {
     font-size: 24px;
-    margin-bottom: 16px;
+    margin-left: 16px;
   }
 }
 @media (min-width: 1450px) {
@@ -99,6 +109,9 @@
   }
   .drag-area {
     width: 270px;
+  }
+  .add-task-2 {
+    right: 0px;
   }
 }
 @media (max-width: 760px) {
