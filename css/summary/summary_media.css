@@ -1,7 +1,7 @@
 @media (min-width: 761px) {
   .summary-wrapper {
     margin: 144px 0 0 calc(232px);
-    width: calc(100vw - 232px - 0px);
+    max-width: 1920px;
   }
   .summary-greeting {
     display: flex;
@@ -34,7 +34,6 @@
   }
   .summary-column {
     width: 100%;
-    max-width: calc(100vw - 284px);
     align-items: center;
     gap: 32px;
     margin-bottom: 8px;
@@ -177,9 +176,6 @@
     width: 223px;
     height: 166px;
   }
-  .summary-column {
-    gap: 32px;
-  }
   .summary-secondary {
     width: 490px;
   }
@@ -199,7 +195,7 @@
 
 @media (min-width: 1000px) {
   .summary-column {
-    align-items: start;
+    gap: 16px;
   }
   .top-section {
     width: 560px;
@@ -211,27 +207,27 @@
   }
   .tasks-info {
     width: 168px;
-    height: 168px;
+    height: 160px;
   }
   .top {
     width: 264px;
-    height: 168px;
+    height: 160px;
   }
   .middle-section {
     width: 560px;
-    height: 168px;
+    height: 160px;
   }
   .middle-hover-container {
     width: 560px;
-    height: 184px;
+    height: 180px;
   }
   .top-hover-container {
     width: 283px;
-    height: 184px;
+    height: 180px;
   }
   .bottom-hover-container {
     width: 184px;
-    height: 184px;
+    height: 180px;
   }
   .summary-secondary {
     width: 576px;
