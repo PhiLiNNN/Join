@@ -97,8 +97,10 @@ function renderBoardAssignedTo(index) {
 function allowDrop(event) {
   event.preventDefault();
 }
-function startDragging(title) {
+function startDragging(title, index) {
   currentDraggedElement = title;
+  toggleVisibility(`draggedCard${index}-id`, false, "board-card-tilt");
+  console.log("index :>> ", index);
 }
 function toggledDragHover(elementId, bool) {
   toggleVisibility(elementId, bool, "drag-area-hover");

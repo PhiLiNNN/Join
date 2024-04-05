@@ -1,10 +1,15 @@
 .board-card {
+  cursor: pointer;
   background-color: var(--white-color);
   width: 252px;
   border-radius: 24px;
   padding: 16px;
   margin-right: 24px;
   box-shadow: 0 0 14px #2a364739;
+}
+
+.board-card-tilt {
+  transform: rotate(5deg);
 }
 
 .category-container {

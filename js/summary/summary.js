@@ -198,3 +198,7 @@ function countOccurrences(list, value) {
     return currentValue === value ? count + 1 : count;
   }, 0);
 }
+
+function redirectToBoard() {
+  window.location.href = "./board.html";
+}

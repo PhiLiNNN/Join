@@ -43,7 +43,7 @@
   .board-content-wrapper {
     display: flex;
     justify-content: space-between;
-    max-height: calc(100vh - 280px);
+    max-height: calc(100vh - 320px);
     overflow-y: auto;
     box-shadow: 0 0 14px #2a364739;
     border-radius: 24px;
@@ -71,7 +71,7 @@
   .board-header {
     position: relative;
     margin-bottom: 16px;
-    min-width: 260px;
+    min-width: 252px;
   }
   .drag-area {
     flex-direction: column;
@@ -96,11 +96,14 @@
   .drag-container {
     display: flex;
     justify-content: center;
-    width: 260px;
+    width: 252px;
   }
   .board-box h2 {
     font-size: 24px;
     margin-left: 16px;
+  }
+  .drag-area-hover-default {
+    margin-top: 32px;
   }
 }
 @media (min-width: 1450px) {
