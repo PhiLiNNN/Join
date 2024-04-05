@@ -43,11 +43,13 @@
   .board-content-wrapper {
     display: flex;
     justify-content: space-between;
-    max-height: calc(100vh - 300px);
+    max-height: calc(100vh - 280px);
+    overflow-y: auto;
     box-shadow: 0 0 14px #2a364739;
     border-radius: 24px;
     margin-top: 8px;
     padding: 32px;
+    gap: 24px;
   }
   .board-wrapper {
     margin: 180px 0 0 calc(232px + 32px);
@@ -59,26 +61,46 @@
     margin-left: 30px;
   }
   .board-box {
-    height: 100vh;
     margin: 0;
-  }
-  .board-box h2 {
-    margin-bottom: 16px;
   }
   .drag-area {
     flex-direction: column;
-    padding: 0;
-    padding-left: 0 !important;
+    padding-block: 16px;
+    overflow: hidden;
+    width: 252px;
+  }
+  .drag-area:first-child {
+    padding-left: 0;
   }
   .drag-area-hover-default {
     min-height: 64px;
   }
   .drag-area-hover {
     min-height: 100vh;
-    min-width: 248px;
+  }
+  .board-card {
+    width: 225px;
+    margin-right: 0;
+    margin-bottom: 16px;
+  }
+  .drag-container {
+    display: flex;
+    justify-content: center;
+    width: 260px;
+  }
+  .board-box h2 {
+    font-size: 24px;
+    margin-bottom: 16px;
   }
 }
-
+@media (min-width: 1450px) {
+  .board-card {
+    width: 252px;
+  }
+  .drag-area {
+    width: 270px;
+  }
+}
 @media (max-width: 760px) {
   .board-content-wrapper {
     max-height: calc(100vh - 380px);

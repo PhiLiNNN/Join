@@ -76,6 +76,7 @@
               </button>
             </div>
             <div
+              class="drag-container"
               id="toDo-hover-id"
               ondrop="moveTo('toDo')"
               ondragleave="toggledDragHover('toDo-hover-id', true)"
@@ -91,6 +92,7 @@
               </button>
             </div>
             <div
+              class="drag-container"
               id="inProgress-hover-id"
               ondrop="moveTo('inProgress')"
               ondragleave="toggledDragHover('inProgress-hover-id', true)"
@@ -107,6 +109,7 @@
               </button>
             </div>
             <div
+              class="drag-container"
               id="awaitFeedback-hover-id"
               ondrop="moveTo('awaitFeedback')"
               ondragleave="toggledDragHover('awaitFeedback-hover-id', true)"
@@ -117,12 +120,8 @@
 
           <div class="board-box">
             <h2>Done</h2>
-            <div>
-              <button class="add-task-2" onclick="openAddTaskOverlay()">
-                <img src="./assets/img/add_task_board_2.png" alt="add task" />
-              </button>
-            </div>
             <div
+              class="drag-container"
               id="done-hover-id"
               ondrop="moveTo('done')"
               ondragleave="toggledDragHover('done-hover-id', true)"
