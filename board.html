@@ -9,10 +9,13 @@
     <link rel="stylesheet" href="/css/board/board.css" />
     <link rel="stylesheet" href="/css/board/board_card.css" />
     <link rel="stylesheet" href="/css/board/board_media.css" />
+    <link rel="stylesheet" href="/css/board/board_add_task_overlay.css" />
     <link rel="stylesheet" href="/css/add_task/add_task.css" />
+    <link rel="stylesheet" href="./css/add_task/add_task_media.css" />
     <script defer src="/js/global.js"></script>
     <script defer src="/js/includeHTML.js"></script>
     <script defer src="/js/board/board.js"></script>
+    <script defer src="./js/template.js"></script>
     <script defer src="/js/board/board_assets.js"></script>
     <script defer src="/js/add_task/add_task.js"></script>
     <title>Board</title>
@@ -133,6 +136,7 @@
       </div>
     </div>
     <div id="loader-id" class="loader d-none"></div>
+    <div id="board-at-id" class="d-none board-at-overlay"></div>
     <div w3-include-html="./assets/templates/footer.html"></div>
   </body>
 </html>

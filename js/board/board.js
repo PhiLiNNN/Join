@@ -143,28 +143,20 @@ document.getElementById("search-mobile-id").addEventListener("input", filterToDo
 //Big Card Overlay
 
 function createBigCard() {
-  let overlayContent = document.getElementById("board-body-id");
+  let overlayContent = document.getElementById("board-at-id");
   overlayContent.innerHTML += templatAddTaskHTML();
 }
 
 //add Task Overlay
 
 function createAddTask() {
-  let overlayContent = document.getElementById("board-body-id");
+  toggleVisibility("board-at-id", true);
+  let overlayContent = document.getElementById("board-at-id");
   overlayContent.innerHTML += templatAddTaskHTML();
-}
-
-function showAddTask() {
-  document.getElementById("overlay-add-id").style.display = "block";
-}
-
-function hideAddTask() {
-  document.getElementById("overlay-add-id").style.display = "none";
 }
 
 function openAddTaskOverlay() {
   createAddTask();
-  showAddTask();
 }
 
 function closeAddTaskOverlay() {

@@ -56,11 +56,12 @@ function checkDayTime(hours) {
 }
 
 function templateGreetingsHTML(greeting, user) {
-  console.log("user :>> ", user);
   return /*html*/ `
     <div class="greetings-content" >
-      <span>${greeting}${user !== "guest user" ? "," : ""}</span>
-      <span class="user-highlight">${user !== "guest user" ? `<span>${user}</span>` : ""}</span>
+      <span>${greeting}${user.toLowerCase() !== "guest user" ? "," : ""}</span>
+      <span class="user-highlight">${
+        user.toLowerCase() !== "guest user" ? `<span>${user}</span>` : ""
+      }</span>
     </div>
   `;
 }
@@ -140,7 +141,6 @@ function setNearestDate(nearestDate) {
 }
 
 function getMonthAsName(month) {
-  console.log("month :>> ", month);
   const monthNames = [
     "January",
     "February",

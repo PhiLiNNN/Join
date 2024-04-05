@@ -121,11 +121,10 @@ function templatBigTaskHTML(titles, descriptions, assignedTo, dates, prios, cate
 
 function templatAddTaskHTML() {
   return /*html*/ `
-    <div id="overlay-add-id">
+  <div class="board-at-wrapper">
     <section id="at-section-id" class="at-section">
       <div class="content-container-board">
-      <button class="x-button-addTask" id="hide-add-task-Btn-id" onclick="closeAddTaskOverlay()" ></button>
-        <h1>Add Task</h1>
+        <h1 >Add Task</h1>
         <div class="content-top-and-left">
           <div class="at-title">
             <div class="at-label-style">
@@ -370,7 +369,7 @@ function templatAddTaskHTML() {
         <span>Task added to board</span>
         <img src="./assets/img/Board_Icons.png" alt="" />
       </div>
-    </section>       
-    </div>
-    `;
+    </section>   
+  </div>    
+  `;
 }
