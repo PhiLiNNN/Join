@@ -43,7 +43,8 @@ function generateCardHTML(search) {
   if (currentUser.tasks.board.length === 0) return;
   currentUser.tasks.board.forEach((task, index) => {
     let taskTitle = currentUser.tasks.titles[index].toLowerCase();
-    if (search && !taskTitle.includes(search)) return;
+    let taskDescription = currentUser.tasks.descriptions[index].toLowerCase();
+    if (search && !(taskTitle.includes(search) || taskDescription.includes(search))) return;
     if (task === "toDo") {
       const prio = currentUser.tasks.prios[index];
       toDoEl.innerHTML += generateTaskHTML(index, prio);
