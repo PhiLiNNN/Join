@@ -88,8 +88,8 @@
   }
   .content-container {
     position: static;
-    margin: 290px 70px 0px calc(232px + 64px);
-    max-height: calc(100vh - 380px);
+    margin: 264px 70px 0px calc(232px + 64px);
+    max-height: calc(100vh - 354px);
     box-shadow: 0 0 14px #2a364739;
     border-radius: 24px;
     display: flex;
@@ -114,7 +114,7 @@
     width: 1px;
   }
   .section-title {
-    top: 206px;
+    top: 180px;
     left: 330px;
     font-size: 64px;
     line-height: 73.2px;

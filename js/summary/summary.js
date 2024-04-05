@@ -136,7 +136,7 @@ function setNearestDate(nearestDate) {
   let month = date.getMonth() + 1;
   let monthString = getMonthAsName(month);
   let year = date.getFullYear();
-  dateEl.innerHTML = `${monthString} ` + `${day} ` + `${year}`;
+  dateEl.innerHTML = `${monthString} ` + `${day}, ` + `${year}`;
 }
 
 function getMonthAsName(month) {

@@ -50,7 +50,7 @@
     padding: 32px;
   }
   .board-wrapper {
-    margin: 206px 0 0 calc(232px + 32px);
+    margin: 180px 0 0 calc(232px + 32px);
     width: calc(100vw - 232px - 64px);
     max-width: 1920px;
   }
