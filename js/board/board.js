@@ -148,19 +148,23 @@ function createBigCard() {
 }
 
 //add Task Overlay
-
-function createAddTask() {
+function closeAddTaskOverlay() {
+  toggleVisibility("at-section-id", true, "card-visible");
+  setTimeout(() => {
+    toggleVisibility("board-at-id", false);
+    toggleScrollbar("auto");
+  }, 300);
+}
+function openAddTaskOverlay() {
   toggleVisibility("board-at-id", true);
   let overlayContent = document.getElementById("board-at-id");
+  overlayContent.innerHTML = "";
   overlayContent.innerHTML += templatAddTaskHTML();
-}
-
-function openAddTaskOverlay() {
-  createAddTask();
-}
-
-function closeAddTaskOverlay() {
-  hideAddTask();
+  toggleScrollbar("hidden");
+  toggleVisibility("board-at-id", true);
+  setTimeout(() => {
+    toggleVisibility("at-section-id", false, "card-visible");
+  }, 30);
 }
 
 function clearSeachInput() {
