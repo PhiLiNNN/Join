@@ -70,7 +70,9 @@ function templatAddTaskHTML() {
             </div>
           </div>
         </div>
-        <div class="vertical-bar"></div>
+        <div class="vertical-bar-container">
+          <div class="vertical-bar"></div>
+        </div>
         <div class="content-bottom-and-rigth">
           <div>
             <div id="at-label-id" class="at-label-style">Assigned to</div>
@@ -163,7 +165,7 @@ function templatAddTaskHTML() {
                       fill="#2A3647" />
                   </g>
                 </svg>
-                <div class="vertical-line"></div>
+                <div class="vertical-bar"></div>
                 <svg
                   onclick="deleteOrAddTaskMenu(false)"
                   width="24"
