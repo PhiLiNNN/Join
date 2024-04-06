@@ -82,18 +82,6 @@ function setCurrentDate() {
   element.min = `${year}-${month}-${day}`;
 }
 
-function sortContactsBySurname(a, b) {
-  const nameA = a.name.toLowerCase();
-  const nameB = b.name.toLowerCase();
-  if (nameA < nameB) return -1;
-  if (nameA > nameB) return 1;
-  const emailA = a.email.toLowerCase();
-  const emailB = b.email.toLowerCase();
-  if (emailA < emailB) return -1;
-  if (emailA > emailB) return 1;
-  return 0;
-}
-
 function closeAssignedToMenu() {
   document.addEventListener("click", function (event) {
     const clickInsideInput = event.target.closest("#assignedto-container-id");

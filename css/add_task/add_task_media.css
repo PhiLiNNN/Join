@@ -71,6 +71,9 @@
 }
 
 @media (min-width: 1341px) {
+  .board-at-headline {
+    left: 74px;
+  }
   .at-label-style {
     color: var(--mockup-color);
   }

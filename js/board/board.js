@@ -148,6 +148,12 @@ function createBigCard() {
 }
 
 //add Task Overlay
+
+function clearSeachInput() {
+  document.getElementById("search-desktop-id").value = "";
+  document.getElementById("search-mobile-id").value = "";
+}
+
 function closeAddTaskOverlay() {
   toggleVisibility("at-section-id", true, "card-visible");
   setTimeout(() => {
@@ -156,6 +162,18 @@ function closeAddTaskOverlay() {
   }, 300);
 }
 function openAddTaskOverlay() {
+  currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+  toggleAtCard();
+  renderAssignedToContacts();
+  setCurrentDate();
+  addSubtaskByEnter();
+  addSubtaskVisibilityListener();
+  closeAssignedToMenu();
+  closeCategoryMenu();
+}
+
+function toggleAtCard() {
   toggleVisibility("board-at-id", true);
   let overlayContent = document.getElementById("board-at-id");
   overlayContent.innerHTML = "";
@@ -165,9 +183,4 @@ function openAddTaskOverlay() {
   setTimeout(() => {
     toggleVisibility("at-section-id", false, "card-visible");
   }, 30);
-}
-
-function clearSeachInput() {
-  document.getElementById("search-desktop-id").value = "";
-  document.getElementById("search-mobile-id").value = "";
 }

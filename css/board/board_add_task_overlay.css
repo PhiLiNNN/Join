@@ -126,6 +126,7 @@
     margin-inline: 64px;
     transform: translateY(0);
     transform: translateX(100%);
+    padding: 74px;
   }
 
   .board-at-headline {

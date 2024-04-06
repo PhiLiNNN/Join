@@ -113,6 +113,9 @@ function templatAddTaskHTML() {
             </div>
           </div>
           <div class="at-subtasks">
+            <span id="subtask-err-msg-id" class="subtask-err-msg d-none"
+              >Finish all subtasks first.
+            </span>
             <div class="at-label-style">Subtasks</div>
             <div class="input_global input_at cursor">
               <input
@@ -199,8 +202,7 @@ function templatAddTaskHTML() {
               <input id="date-input-id" type="date" max="2025-12-31" min="2024-02-27" />
               <img
                 class="event-style"
-                src="./assets/img/event.png"
-                onclick="openAssignedbyArrow()" />
+                src="./assets/img/event.png" />
             </div>
           </div>
         </div>
