@@ -357,4 +357,15 @@
     height: auto;
     padding-bottom: 4px;
   }
+  .at-label-style,
+  .at-prio {
+    margin-top: 0px;
+  }
+  .at-label-style,
+  .assigned-to-user,
+  .editable-span,
+  .content-bottom-container,
+  .bottom-btns-container button {
+    font-size: 12px;
+  }
 }
