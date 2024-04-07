@@ -1,4 +1,19 @@
 let currentDraggedElement;
+let currentCard;
+let toDoLeftBorder;
+let inProgressLeftBorder;
+let awaitLeftBorder;
+let doneLeftBorder;
+let toDoTopBorder;
+let inProgressTopBorder;
+let awaitTopBorder;
+let doneTopBorder;
+let elementWidth;
+let toDotHeight;
+let inProgressHeight;
+let awaitHeight;
+let doneHeight;
+let allDragElements;
 
 function initBoard() {
   const isUserLoggedIn = checkUserLogIn();
@@ -9,6 +24,8 @@ function initBoard() {
   toggleVisibility("board-body-id", true);
   loadHeaderInitials();
   generateCardHTML();
+  getHoverContainerGeometrie();
+  setDragEventListeners();
   checkIfSectionIsEmpty();
   truncateTextIfTooLong(".description-block", 50);
   truncateTextIfTooLong(".title-block", 31);
@@ -97,25 +114,119 @@ function renderBoardAssignedTo(index) {
 function allowDrop(event) {
   event.preventDefault();
 }
-function startDragging(title, index) {
-  currentDraggedElement = title;
-  toggleVisibility(`draggedCard${index}-id`, false, "board-card-tilt");
-  console.log("index :>> ", index);
+function setDragEventListeners() {
+  const dragElementsConfig = [
+    {
+      el: document.querySelector(".board-card"),
+      leftBorder: toDoLeftBorder,
+      topBorder: toDoTopBorder,
+      height: toDotHeight,
+      id: "toDo-hover-id",
+    },
+    {
+      el: document.querySelector(".board-card"),
+      leftBorder: inProgressLeftBorder,
+      topBorder: inProgressTopBorder,
+      height: inProgressHeight,
+      id: "inProgress-hover-id",
+    },
+    {
+      el: document.querySelector(".board-card"),
+      leftBorder: awaitLeftBorder,
+      topBorder: awaitTopBorder,
+      height: awaitHeight,
+      id: "awaitFeedback-hover-id",
+    },
+    {
+      el: document.querySelector(".board-card"),
+      leftBorder: doneLeftBorder,
+      topBorder: doneTopBorder,
+      height: doneHeight,
+      id: "done-hover-id",
+    },
+  ];
+
+  dragElementsConfig.forEach((config) => {
+    config.el.addEventListener("drag", (event) => {
+      checkAndToggleVisibility(
+        event.clientX,
+        event.clientY,
+        config.leftBorder,
+        config.topBorder,
+        config.height,
+        config.id
+      );
+    });
+  });
 }
-function toggledDragHover(elementId, bool) {
-  toggleVisibility(elementId, bool, "drag-area-hover");
+
+function checkAndToggleVisibility(
+  clientX,
+  clientY,
+  leftBorder,
+  topBorder,
+  elementHeight,
+  elementId
+) {
+  const withinHorizontalRange = clientX >= leftBorder && clientX <= leftBorder + elementWidth;
+  const withinVerticalRange = clientY >= topBorder && clientY <= topBorder + elementHeight;
+  const shouldBeVisible = window.innerWidth >= 1341 ? withinHorizontalRange : withinVerticalRange;
+  toggleVisibility(elementId, !shouldBeVisible, "drag-area-hover");
+}
+
+function getDragContainerIds() {
+  let toDoEl = document.getElementById("toDo-hover-id");
+  let inProgressEl = document.getElementById("inProgress-hover-id");
+  let awaitEl = document.getElementById("awaitFeedback-hover-id");
+  let doneEl = document.getElementById("done-hover-id");
+  return {toDoEl, inProgressEl, awaitEl, doneEl};
+}
+
+function getHoverContainerGeometrie() {
+  let {toDoEl, inProgressEl, awaitEl, doneEl} = getDragContainerIds();
+  let toDoRect = toDoEl.getBoundingClientRect();
+  let inProgressRect = inProgressEl.getBoundingClientRect();
+  let awaitRect = awaitEl.getBoundingClientRect();
+  let doneRect = doneEl.getBoundingClientRect();
+  toDoLeftBorder = toDoRect.left;
+  inProgressLeftBorder = inProgressRect.left;
+  awaitLeftBorder = awaitRect.left;
+  doneLeftBorder = doneRect.left;
+  elementWidth = toDoRect.width;
+  toDotHeight = toDoRect.height;
+  inProgressHeight = inProgressRect.height;
+  awaitHeight = awaitRect.height;
+  doneHeight = doneRect.height;
+  toDoTopBorder = toDoRect.top;
+  inProgressTopBorder = inProgressRect.top;
+  awaitTopBorder = awaitRect.top;
+  doneTopBorder = doneRect.top;
+}
+
+function startDragging(title, index) {
+  currentCard = index;
+  currentDraggedElement = title;
+  getHoverContainerGeometrie();
+  toggleVisibility(`draggedCard${index}-id`, false, "board-card-tilt");
+}
+
+function resetDragInputs() {
+  toggleVisibility("toDo-hover-id", true, "drag-area-hover");
+  toggleVisibility("inProgress-hover-id", true, "drag-area-hover");
+  toggleVisibility("awaitFeedback-hover-id", true, "drag-area-hover");
+  toggleVisibility("done-hover-id", true, "drag-area-hover");
 }
 
 function moveTo(section) {
-  toggleVisibility(section + "-hover-id", true, "drag-area-hover");
+  resetDragInputs();
   updateTaskStatus(section);
   generateCardHTML();
-  loadHeaderInitials();
   truncateTextIfTooLong(".description-block", 50);
   truncateTextIfTooLong(".title-block", 29);
   save();
-  clearSeachInput();
+  clearSearchInput();
   checkIfSectionIsEmpty();
+  setDragEventListeners();
 }
 
 function updateTaskStatus(section) {
@@ -139,17 +250,19 @@ function filterToDos() {
 
 document.getElementById("search-desktop-id").addEventListener("input", filterToDos);
 document.getElementById("search-mobile-id").addEventListener("input", filterToDos);
-
+document.addEventListener("dragend", () => {
+  toggleVisibility(`draggedCard${currentCard}-id`, true, "board-card-tilt");
+});
 //Big Card Overlay
 
 function createBigCard() {
   let overlayContent = document.getElementById("board-at-id");
-  overlayContent.innerHTML += templatAddTaskHTML();
+  overlayContent.innerHTML += templateAddTaskHTML();
 }
 
 //add Task Overlay
 
-function clearSeachInput() {
+function clearSearchInput() {
   document.getElementById("search-desktop-id").value = "";
   document.getElementById("search-mobile-id").value = "";
 }
@@ -161,9 +274,8 @@ function closeAddTaskOverlay() {
     toggleScrollbar("auto");
   }, 300);
 }
-function openAddTaskOverlay() {
-  currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
+function openAddTaskOverlay() {
   toggleAtCard();
   renderAssignedToContacts();
   setCurrentDate();
@@ -174,10 +286,9 @@ function openAddTaskOverlay() {
 }
 
 function toggleAtCard() {
-  toggleVisibility("board-at-id", true);
   let overlayContent = document.getElementById("board-at-id");
   overlayContent.innerHTML = "";
-  overlayContent.innerHTML += templatAddTaskHTML();
+  overlayContent.innerHTML += templateAddTaskHTML();
   toggleScrollbar("hidden");
   toggleVisibility("board-at-id", true);
   setTimeout(() => {

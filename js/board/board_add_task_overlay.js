@@ -1,4 +1,4 @@
-function templatAddTaskHTML() {
+function templateAddTaskHTML() {
   return /*html*/ `
   <div class="board-at-wrapper">
     <section id="at-section-id" class="at-section">

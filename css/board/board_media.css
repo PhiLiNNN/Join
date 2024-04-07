@@ -2,15 +2,15 @@
   .board-content-wrapper {
     max-height: calc(100vh - 209px);
     overflow-y: auto;
+    padding-right: 32px;
   }
   .board-wrapper {
     margin: 144px 0 0 calc(232px + 32px);
-    width: calc(100vw - 232px - 64px);
+    width: calc(100vw - 232px - 32px);
   }
   .board-headline h1 {
     font-size: 54px;
   }
-
   .board-at-btn {
     width: 60px;
     height: 48px;
@@ -108,9 +108,10 @@
 }
 @media (min-width: 1450px) {
   .board-card {
-    width: 2a60px;
+    width: 260px;
   }
-  .drag-area {
+  .drag-area,
+  .drag-container {
     width: 270px;
   }
   .add-task-2 {
@@ -121,6 +122,8 @@
   .board-content-wrapper {
     max-height: calc(100vh - 380px);
     overflow-y: auto;
+    width: calc(100vw - 16px);
+    padding-right: 16px;
   }
   .board-search-desktop {
     display: none;

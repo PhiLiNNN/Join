@@ -71,7 +71,7 @@
               fill="#2A3647" />
           </svg>
         </div>
-        <div class="board-content-wrapper">
+        <div id="toDo-box-id" class="board-content-wrapper">
           <div class="board-box">
             <div class="board-header">
               <h2>To do</h2>
@@ -83,12 +83,11 @@
               class="drag-container"
               id="toDo-hover-id"
               ondrop="moveTo('toDo')"
-              ondragleave="toggledDragHover('toDo-hover-id', true)"
-              ondragover="allowDrop(event); toggledDragHover('toDo-hover-id',  false)">
+              ondragover="allowDrop(event)">
               <div class="drag-area" id="to-do-id"></div>
             </div>
           </div>
-          <div class="board-box">
+          <div id="inProgress-box-id" class="board-box">
             <div class="board-header">
               <h2>In progress</h2>
               <button class="add-task-2" onclick="openAddTaskOverlay()">
@@ -99,13 +98,12 @@
               class="drag-container"
               id="inProgress-hover-id"
               ondrop="moveTo('inProgress')"
-              ondragleave="toggledDragHover('inProgress-hover-id', true)"
-              ondragover="allowDrop(event); toggledDragHover('inProgress-hover-id',  false)">
+              ondragover="allowDrop(event)">
               <div class="drag-area" id="in-progress-id"></div>
             </div>
           </div>
 
-          <div class="board-box">
+          <div id="await-feedback-box-id" class="board-box">
             <div class="board-header">
               <h2>Await feedback</h2>
               <button class="add-task-2" onclick="openAddTaskOverlay()">
@@ -116,20 +114,18 @@
               class="drag-container"
               id="awaitFeedback-hover-id"
               ondrop="moveTo('awaitFeedback')"
-              ondragleave="toggledDragHover('awaitFeedback-hover-id', true)"
-              ondragover="allowDrop(event); toggledDragHover('awaitFeedback-hover-id',  false)">
+              ondragover="allowDrop(event)">
               <div class="drag-area" id="await-feedback-id"></div>
             </div>
           </div>
 
-          <div class="board-box">
+          <div id="done-box-id" class="board-box">
             <h2>Done</h2>
             <div
               class="drag-container"
               id="done-hover-id"
               ondrop="moveTo('done')"
-              ondragleave="toggledDragHover('done-hover-id', true)"
-              ondragover="allowDrop(event); toggledDragHover('done-hover-id',  false)">
+              ondragover="allowDrop(event)">
               <div class="drag-area" id="done-id"></div>
             </div>
           </div>

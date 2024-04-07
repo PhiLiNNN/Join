@@ -148,6 +148,12 @@
   .at-section.card-visible {
     transform: translateX(0);
   }
+  .close-board-at {
+    right: 72px;
+  }
+  .board-box {
+    height: 100vh;
+  }
 }
 @media (max-width: 760px) {
   .at-section {
