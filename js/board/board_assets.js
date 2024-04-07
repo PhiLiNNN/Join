@@ -118,3 +118,11 @@ function templatBigTaskHTML(titles, descriptions, assignedTo, dates, prios, cate
     </div>
     `;
 }
+
+function emptyBoardMsgToHTML() {
+  return /*html*/ `
+    <span class="noTaskMsg">
+        No tasks to do
+    </span>
+`;
+}

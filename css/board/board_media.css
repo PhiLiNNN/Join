@@ -49,7 +49,7 @@
     border-radius: 24px;
     margin-top: 8px;
     padding: 32px;
-    gap: 24px;
+    gap: 48px;
   }
   .board-wrapper {
     margin: 180px 0 0 calc(232px + 32px);
@@ -75,38 +75,37 @@
   }
   .drag-area {
     flex-direction: column;
-    padding-block: 16px;
     overflow: hidden;
-    width: 252px;
+    width: 230px;
+    padding-block: 16px;
   }
   .drag-area:first-child {
     padding-left: 0;
   }
   .drag-area-hover-default {
     min-height: 64px;
+    margin-top: 64px;
   }
   .drag-area-hover {
     min-height: 100vh;
   }
   .board-card {
-    width: 225px;
+    width: 200px;
     margin-right: 0;
     margin-bottom: 16px;
   }
   .drag-container {
     display: flex;
     justify-content: center;
-    width: 252px;
+    width: 230px;
+    margin-top: 32px;
   }
   .board-box h2 {
     font-size: 24px;
     margin-left: 16px;
   }
-  .drag-area-hover-default {
-    margin-top: 32px;
-  }
 }
-@media (min-width: 1450px) {
+@media (min-width: 1475px) {
   .board-card {
     width: 260px;
   }

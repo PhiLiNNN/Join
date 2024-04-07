@@ -44,9 +44,9 @@ function truncateTextIfTooLong(querrySelec, maxHeight) {
 }
 
 function getBoardElements() {
-  let toDoEl = document.getElementById("to-do-id");
-  let inProgEl = document.getElementById("in-progress-id");
-  let awaitFedEl = document.getElementById("await-feedback-id");
+  let toDoEl = document.getElementById("toDo-id");
+  let inProgEl = document.getElementById("inProgress-id");
+  let awaitFedEl = document.getElementById("awaitFeedback-id");
   let doneEl = document.getElementById("done-id");
   return {toDoEl, inProgEl, awaitFedEl, doneEl};
 }
@@ -90,7 +90,11 @@ function checkIfSectionIsEmpty() {
   sections.forEach((section) => {
     const hoverId = `${section}-hover-id`;
     const isVisible = currentUser.tasks.board.includes(section);
-    toggleVisibility(hoverId, isVisible, "drag-area-hover-default");
+    if (!isVisible) {
+      let element = document.getElementById(`${section}-id`);
+      element.innerHTML = emptyBoardMsgToHTML();
+      toggleVisibility(hoverId, false, "drag-area-hover-default");
+    } else toggleVisibility(hoverId, true, "drag-area-hover-default");
   });
 }
 

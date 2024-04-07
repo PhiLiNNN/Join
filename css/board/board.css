@@ -101,9 +101,15 @@
   justify-content: start;
   align-items: center;
   overflow-x: auto;
-  padding-block: 16px;
   transition: all 300ms ease-in-out;
 }
+
+.noTaskMsg {
+  margin-top: 2px;
+  font-size: 22px;
+  color: #a8a8a8;
+}
+
 .drag-area:first-child {
   padding-left: 24px;
 }
