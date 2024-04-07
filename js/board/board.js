@@ -27,7 +27,7 @@ function initBoard() {
   getHoverContainerGeometrie();
   setDragEventListeners();
   checkIfSectionIsEmpty();
-  truncateTextIfTooLong(".description-block", 50);
+  truncateTextIfTooLong(".description-block");
   truncateTextIfTooLong(".title-block", 31);
 }
 
@@ -123,55 +123,45 @@ function setDragEventListeners() {
   allDragElements = document.querySelectorAll(".board-card");
   allDragElements.forEach((el) => {
     el.addEventListener("drag", (event) => {
+      checkAndToggleVisibility(event, toDoLeftBorder, toDoTopBorder, toDotHeight, "toDo-hover-id");
       checkAndToggleVisibility(
-        event.clientX,
-        event.clientY,
-        toDoLeftBorder,
-        toDoTopBorder,
-        toDotHeight,
-        "toDo-hover-id"
-      );
-      checkAndToggleVisibility(
-        event.clientX,
-        event.clientY,
+        event,
         inProgressLeftBorder,
         inProgressTopBorder,
         inProgressHeight,
         "inProgress-hover-id"
       );
       checkAndToggleVisibility(
-        event.clientX,
-        event.clientY,
+        event,
         awaitLeftBorder,
         awaitTopBorder,
         awaitHeight,
         "awaitFeedback-hover-id"
       );
-      checkAndToggleVisibility(
-        event.clientX,
-        event.clientY,
-        doneLeftBorder,
-        doneTopBorder,
-        doneHeight,
-        "done-hover-id"
-      );
+      checkAndToggleVisibility(event, doneLeftBorder, doneTopBorder, doneHeight, "done-hover-id");
     });
   });
 }
 
-function checkAndToggleVisibility(
-  clientX,
-  clientY,
-  leftBorder,
-  topBorder,
-  elementHeight,
-  elementId
-) {
-  const withinHorizontalRange = clientX >= leftBorder && clientX <= leftBorder + elementWidth;
-  const withinVerticalRange = clientY >= topBorder && clientY <= topBorder + elementHeight;
+function checkAndToggleVisibility(event, leftBorder, topBorder, elementHeight, elementId) {
+  const withinHorizontalRange =
+    event.clientX >= leftBorder && event.clientX <= leftBorder + elementWidth;
+  const withinVerticalRange =
+    event.clientY >= topBorder && event.clientY <= topBorder + elementHeight;
   const shouldBeVisible = window.innerWidth >= 1341 ? withinHorizontalRange : withinVerticalRange;
   toggleVisibility(elementId, !shouldBeVisible, "drag-area-hover");
 }
+
+function setNewHoverContainerHeight(event) {
+  let parentContainer = event.target.parentNode.parentNode;
+  let containerHeight = parentContainer.offsetHeight - 50;
+  ["toDo-id", "inProgress-id", "awaitFeedback-id", "done-id"].forEach((id) => {
+    let element = document.getElementById(id);
+    element.style.minHeight = containerHeight + "px";
+  });
+}
+
+function toggleContainerHeight() {}
 
 function getDragContainerIds() {
   let toDoEl = document.getElementById("toDo-hover-id");
@@ -202,7 +192,8 @@ function getHoverContainerGeometrie() {
   doneTopBorder = doneRect.top;
 }
 
-function startDragging(title, index) {
+function startDragging(event, title, index) {
+  setNewHoverContainerHeight(event);
   currentCard = index;
   currentDraggedElement = title;
   getHoverContainerGeometrie();
@@ -218,6 +209,7 @@ function resetDragInputs() {
 
 function moveTo(section) {
   resetDragInputs();
+  resetNewHoverContainerHeight();
   updateTaskStatus(section);
   generateCardHTML();
   truncateTextIfTooLong(".description-block", 50);
@@ -247,9 +239,17 @@ function filterToDos() {
   truncateTextIfTooLong(".title-block", 29);
 }
 
+function resetNewHoverContainerHeight() {
+  ["toDo-id", "inProgress-id", "awaitFeedback-id", "done-id"].forEach((id) => {
+    let element = document.getElementById(id);
+    element.style.minHeight = "auto";
+  });
+}
+
 document.getElementById("search-desktop-id").addEventListener("input", filterToDos);
 document.getElementById("search-mobile-id").addEventListener("input", filterToDos);
 document.addEventListener("dragend", () => {
+  resetNewHoverContainerHeight();
   toggleVisibility(`draggedCard${currentCard}-id`, true, "board-card-tilt");
 });
 //Big Card Overlay

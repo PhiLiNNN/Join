@@ -24,6 +24,10 @@
   .board-search-mobile {
     display: none;
   }
+  .drag-container,
+  .drag-area {
+    height: 300px;
+  }
 }
 
 @media (min-width: 973px) {
@@ -77,6 +81,7 @@
     flex-direction: column;
     overflow: hidden;
     width: 230px;
+    height: auto;
     padding-block: 16px;
   }
   .drag-area:first-child {
@@ -86,9 +91,7 @@
     min-height: 64px;
     margin-top: 64px;
   }
-  .drag-area-hover {
-    min-height: 100vh;
-  }
+
   .board-card {
     width: 200px;
     margin-right: 0;
@@ -98,6 +101,7 @@
     display: flex;
     justify-content: center;
     width: 230px;
+    height: auto;
     margin-top: 32px;
   }
   .board-box h2 {
