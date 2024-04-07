@@ -114,47 +114,42 @@ function renderBoardAssignedTo(index) {
 function allowDrop(event) {
   event.preventDefault();
 }
-function setDragEventListeners() {
-  const dragElementsConfig = [
-    {
-      el: document.querySelector(".board-card"),
-      leftBorder: toDoLeftBorder,
-      topBorder: toDoTopBorder,
-      height: toDotHeight,
-      id: "toDo-hover-id",
-    },
-    {
-      el: document.querySelector(".board-card"),
-      leftBorder: inProgressLeftBorder,
-      topBorder: inProgressTopBorder,
-      height: inProgressHeight,
-      id: "inProgress-hover-id",
-    },
-    {
-      el: document.querySelector(".board-card"),
-      leftBorder: awaitLeftBorder,
-      topBorder: awaitTopBorder,
-      height: awaitHeight,
-      id: "awaitFeedback-hover-id",
-    },
-    {
-      el: document.querySelector(".board-card"),
-      leftBorder: doneLeftBorder,
-      topBorder: doneTopBorder,
-      height: doneHeight,
-      id: "done-hover-id",
-    },
-  ];
 
-  dragElementsConfig.forEach((config) => {
-    config.el.addEventListener("drag", (event) => {
+function setDragEventListeners() {
+  allDragElements = document.querySelectorAll(".board-card");
+  allDragElements.forEach((el) => {
+    el.addEventListener("drag", (event) => {
       checkAndToggleVisibility(
         event.clientX,
         event.clientY,
-        config.leftBorder,
-        config.topBorder,
-        config.height,
-        config.id
+        toDoLeftBorder,
+        toDoTopBorder,
+        toDotHeight,
+        "toDo-hover-id"
+      );
+      checkAndToggleVisibility(
+        event.clientX,
+        event.clientY,
+        inProgressLeftBorder,
+        inProgressTopBorder,
+        inProgressHeight,
+        "inProgress-hover-id"
+      );
+      checkAndToggleVisibility(
+        event.clientX,
+        event.clientY,
+        awaitLeftBorder,
+        awaitTopBorder,
+        awaitHeight,
+        "awaitFeedback-hover-id"
+      );
+      checkAndToggleVisibility(
+        event.clientX,
+        event.clientY,
+        doneLeftBorder,
+        doneTopBorder,
+        doneHeight,
+        "done-hover-id"
       );
     });
   });
