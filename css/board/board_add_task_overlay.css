@@ -1,4 +1,4 @@
-.board-at-overlay {
+.board-overlay {
   position: absolute;
   top: 96px;
   bottom: 80px;
@@ -53,18 +53,6 @@
   z-index: 101;
   margin-top: 10px;
 }
-.card-content {
-  z-index: 900;
-  border-radius: 30px;
-  position: fixed;
-  top: 96px;
-  bottom: 80px;
-  left: 16px;
-  right: 16px;
-  overflow: hidden;
-  transform: translateY(100%);
-  transition: all 300ms ease-in-out;
-}
 
 @media (min-width: 761px) {
   .content-container-board {
@@ -82,7 +70,7 @@
   .close-board-at:active svg path {
     fill: white;
   }
-  .board-at-overlay {
+  .board-overlay {
     bottom: 0px;
     left: 232px;
     top: 0;
@@ -144,9 +132,6 @@
     top: 48px;
     left: 16px;
     font-size: 64px;
-  }
-  .at-section.card-visible {
-    transform: translateX(0);
   }
   .close-board-at {
     right: 72px;

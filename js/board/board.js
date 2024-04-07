@@ -285,12 +285,24 @@ function openAddTaskOverlay() {
 }
 
 function toggleAtCard() {
-  let overlayContent = document.getElementById("board-at-id");
-  overlayContent.innerHTML = "";
-  overlayContent.innerHTML += templateAddTaskHTML();
+  let element = document.getElementById("board-at-id");
+  element.innerHTML = "";
+  element.innerHTML = templateAddTaskHTML();
   toggleScrollbar("hidden");
   toggleVisibility("board-at-id", true);
   setTimeout(() => {
     toggleVisibility("at-section-id", false, "card-visible");
+  }, 30);
+}
+
+function openCardInfo() {
+  let element = document.getElementById("board-card-info-id");
+
+  element.innerHTML = "";
+  element.innerHTML = templateCardInfoHTML();
+  toggleScrollbar("hidden");
+  toggleVisibility("board-card-info-id", true);
+  setTimeout(() => {
+    toggleVisibility("card-info-section-id", false, "card-visible");
   }, 30);
 }

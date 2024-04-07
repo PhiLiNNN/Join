@@ -20,6 +20,7 @@
   }
   .board-headline-right {
     gap: 8px;
+    margin-right: 52px;
   }
   .board-search-mobile {
     display: none;

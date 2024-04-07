@@ -1,0 +1,33 @@
+.card-info-section {
+  padding: 0px 16px 0px 16px;
+  overflow-y: auto;
+  transform: translateY(200%);
+  transition: all 300ms ease-in-out;
+}
+.card-info-section.card-visible {
+  transform: translateY(0);
+  transform: translateX(0);
+}
+
+@media (min-width: 761px) {
+  .card-info-wrapper {
+    margin-top: 100px;
+    height: calc(100vh - 100px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .card-info-section {
+    margin-inline: 16px;
+    border-radius: 20px;
+    background: white;
+    width: 100%;
+    padding: 16px;
+  }
+}
+@media (min-width: 1341px) {
+  .card-info-section {
+    transform: translateY(0);
+    transform: translateX(100%);
+  }
+}

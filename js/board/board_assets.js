@@ -1,7 +1,7 @@
 function generateTaskHTML(index, prio) {
   const progressWidth = ((0 / currentUser.tasks.subtasks[index].length) * 100).toFixed(2);
   return /*html*/ `
-    <div id="draggedCard${index}-id" draggable="true" ondragstart="startDragging( event,'${currentUser.tasks.titles[index]}', '${index}')" class="board-card">
+    <div id="draggedCard${index}-id" draggable="true" onclick="openCardInfo()" ondragstart="startDragging(event,'${currentUser.tasks.titles[index]}', '${index}')" class="board-card">
         <div class="category-container">
             <span class="category-block">${currentUser.tasks.categories[index]}</span>
         </div>
@@ -33,7 +33,7 @@ function generateTaskHTML(index, prio) {
         <div class="little-card-subtasks">
             <div class="relativ">
                 <div class="gray"></div>
-                <div class="blaue"></div>
+                <div class="blue"></div>
             </div>
             <div>
                 <div class="little-subtask">1/2 Subtasks</div>
@@ -57,64 +57,64 @@ function templateBoardAssignedToHTML(idx, iconColor, initials, textColor, index)
 `;
 }
 
-function templatBigTaskHTML() {
+function templateCardInfoHTML() {
   return /*html*/ `
-    <div id="overlay-big-id">
-    <div id="overlay-content-big-id"></div>
-      <div class="container-1">
-            <span class="categorie-block">${currentUser.tasks.categories}</span>  
-            <button class="x-button-board" id="closeAddTask" ></button>  
-        </div>
-        <div class="container-2"> 
-            <div class="title-block">
-                <span>${currentUser.tasks.titles}</span>
-            </div>  
-            <div class="description-block">
-                <span>${currentUser.tasks.descriptions}</span>
-            </div>  
-            <div class="date-prio-block">
-                <div class="static-block">
-                    <div>Due date:</div>
-                    <div>Priority:</div>
-                </div>
-                <div class="changeing-block">
-                    <div>10/05/2023 ${currentUser.tasks.dates}</div>
-                    <div>Medium <img src="./assets/img/board_medium.png" alt="Medium">${currentUser.tasks.prios}</div>
-                </div>
-            </div>  
-        </div> 
-        <div>
-            <div class="assignedTo">
-                <div class="static-block">Assigned To:</div>
-                <div class="assignedTo-box">
-                    <div class="assignedTo-pic">${currentUser.tasks.assignedTo}</div>
-                    <div class="assignedTo-text">${currentUser.tasks.assignedTo}</div>
-                </div>
+    <div class="card-info-wrapper">
+        <div id="card-info-section-id" class="card-info-section">
+            <div >
+                <span >${currentUser.tasks.categories}</span>  
+                <button  ></button>  
             </div>
-        </div> 
-        <div class="little-card-subtasks">
-            <div class="relativ">
-                <div class="gray"></div>
-                <div class="blaue"></div>
-            </div>
+            <div > 
+                <div >
+                    <span>${currentUser.tasks.titles}</span>
+                </div>  
+                <div >
+                    <span>${currentUser.tasks.descriptions}</span>
+                </div>  
+                <div >
+                    <div >
+                        <div>Due date:</div>
+                        <div>Priority:</div>
+                    </div>
+                    <div >
+                        <div>10/05/2023 ${currentUser.tasks.dates}</div>
+                        <div>Medium <img src="./assets/img/board_medium.png" alt="Medium">${currentUser.tasks.prios}</div>
+                    </div>
+                </div>  
+            </div> 
             <div>
-                <div class="little-subtask">1/2 Subtasks</div>
-            </div>
-        </div>  
-        <div>
-            <div class="subtask">
-                <div class="static-block" >Subtasks</div>
-                <div class="subtask-box">
-                    <input type="checkbox"><span>${currentUser.tasks.subtasks}</span>
+                <div>
+                    <div >Assigned To:</div>
+                    <div >
+                        <div >${currentUser.tasks.assignedTo}</div>
+                        <div >${currentUser.tasks.assignedTo}</div>
+                    </div>
                 </div>
+            </div> 
+            <div >
+                <div >
+                    <div ></div>
+                    <div ></div>
+                </div>
+                <div>
+                    <div >1/2 Subtasks</div>
+                </div>
+            </div>  
+            <div>
+                <div >
+                    <div >Subtasks</div>
+                    <div >
+                        <input type="checkbox"><span>${currentUser.tasks.subtasks}</span>
+                    </div>
+                </div>
+            </div>  
+            <div >
+                <div ><img src="./assets/img/board_delete.png" alt="Delete"><span>Delete</span></div>
+                <div ></div>
+                <div ><img src="./assets/img/board_edit.png" alt="Edit"><span>Edit</span></div>
             </div>
-        </div>  
-        <div class="delete-edit">
-            <div class="delete-edit-box"><img src="./assets/img/board_delete.png" alt="Delete"><span>Delete</span></div>
-            <div class="seperator"></div>
-            <div class="delete-edit-box"><img src="./assets/img/board_edit.png" alt="Edit"><span>Edit</span></div>
         </div>
-    </div>
     </div>
     `;
 }
