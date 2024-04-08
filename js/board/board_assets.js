@@ -57,8 +57,7 @@ function templateBoardAssignedToHTML(idx, iconColor, initials, textColor, index)
 `;
 }
 
-function templateCardInfoHTML(idx, bgColor) {
-  console.log("idx :>> ", idx);
+function templateCardInfoHTML(idx, bgColor, prio, date) {
   return /*html*/ `
     <div class="card-info-wrapper">
         <div id="card-info-section-id" class="card-info-section">
@@ -77,24 +76,23 @@ function templateCardInfoHTML(idx, bgColor) {
                 <div class="board-info-description">
                     <span>${currentUser.tasks.descriptions[idx]}</span>
                 </div>  
-                <div >
-                    <div >
-                        <div>Due date:</div>
-                        <div>Priority:</div>
-                    </div>
-                    <div >
-                        <div>10/05/2023 ${currentUser.tasks.dates[idx]}</div>
-                        <div>Medium <img src="./assets/img/board_medium.png" alt="Medium">${currentUser.tasks.prios[idx]}</div>
-                    </div>
-                </div>  
+                <table class="board-info-table">
+                    <tr>
+                        <td class="board-info-color">Due date:</td>
+                        <td>${date}</td>
+                    </tr>
+                    <tr>
+                        <td class="board-info-color">Priority:</td>
+                        <td><div class="board-info-prio-content">
+                        ${currentUser.tasks.prios[idx]}
+                        <img src="./assets/img/board_${prio}.png" alt="Medium">
+                    </div></td>
+                    </tr>
+            </table>
             </div> 
-            <div>
-                <div>
-                    <div >Assigned To:</div>
-                    <div >
-                        <div >${currentUser.tasks.assignedTo[idx]}</div>
-                    </div>
-                </div>
+            <div id="board-info-assigendTo-id">
+                <span class="board-info-color board-info-big-size">Assigned To:</span>
+  
             </div> 
             <div >
                 <div >
@@ -122,7 +120,22 @@ function templateCardInfoHTML(idx, bgColor) {
     </div>
     `;
 }
-
+function templateInfoAssignedToHTML(iconColor, initials, contact, textColor) {
+  return /*html*/ `
+  <div class="board-info-assignedTo-content">
+      <div class="board-info-circle-style" style="background-color: ${iconColor}; color: ${textColor};">
+        <span class="board-info-small-size">
+            ${initials}
+        </span>
+      </div>
+      <div>
+        <span class="board-info-big-size">
+            ${contact}
+        </span>
+      </div>
+  </div>
+`;
+}
 function emptyBoardMsgToHTML() {
   return /*html*/ `
     <span class="noTaskMsg">

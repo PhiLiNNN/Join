@@ -1,8 +1,17 @@
+.card-info-section,
+.board-info-title,
+.board-info-title span,
+.board-info-description,
+.board-info-description span,
+.board-info-big-size,
+.board-info-small-size {
+  transition: all 300ms ease-in-out;
+}
+
 .card-info-section {
   padding: 0px 16px 0px 16px;
   overflow-y: auto;
   transform: translateY(200%);
-  transition: all 300ms ease-in-out;
 }
 .card-info-section.card-visible {
   transform: translateY(0);
@@ -11,22 +20,54 @@
 .board-info-title {
   max-height: 230px;
   overflow-y: auto;
-  transition: all 300ms ease-in-out;
 }
 .board-info-title span {
   font-weight: 700;
   word-wrap: break-word;
-  transition: all 300ms ease-in-out;
 }
 .board-info-description {
   max-height: 200px;
   overflow-y: auto;
-  transition: all 300ms ease-in-out;
 }
 .board-info-description span {
   word-wrap: break-word;
-  transition: all 300ms ease-in-out;
 }
+.board-info-prio-content {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+}
+.board-info-table {
+  border-collapse: collapse;
+}
+td {
+  text-align: left;
+  padding-right: 25px;
+}
+
+.board-info-color {
+  color: var(--mockup-color);
+}
+
+.board-info-assignedTo-content {
+  display: flex;
+  align-items: center;
+  justify-self: start;
+  gap: 16px;
+}
+
+.board-info-circle-style {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid white;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  font-size: 12px;
+}
+
 @media (min-width: 761px) {
   .card-info-wrapper {
     margin-top: 100px;
@@ -44,10 +85,15 @@
   }
 
   .board-info-title span {
-    font-size: 36px;
+    font-size: 48px;
   }
-  .board-info-description span {
+  .board-info-description span,
+  .board-info-table,
+  .board-info-big-size {
     font-size: 22px;
+  }
+  .board-info-small-size {
+    font-size: 16px;
   }
 }
 @media (min-width: 1341px) {
@@ -65,13 +111,15 @@
 }
 
 @media (max-width: 760px) {
-  .board-info-title {
-    height: 219px;
-  }
   .board-info-title span {
     font-size: 36px;
   }
-  .board-info-description span {
+  .board-info-description span,
+  .board-info-table,
+  .board-info-big-size {
+    font-size: 16px;
+  }
+  .board-info-small-size {
     font-size: 16px;
   }
 }

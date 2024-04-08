@@ -310,18 +310,41 @@ function toggleAtCard() {
   }, 30);
 }
 
+function dateFormatter(date) {
+  const dateArr = date.split("-");
+  return dateArr[2] + "/" + dateArr[1] + "/" + dateArr[0];
+}
+
+function prepareCardInfoInpurts(index) {
+  const bgColor = getCategoryBgColor(currentUser.tasks.categories[index]);
+  const prio = currentUser.tasks.prios[index];
+  const date = dateFormatter(currentUser.tasks.dates[index]);
+  return {bgColor, prio, date};
+}
+
 function openCardInfo(index) {
   let element = document.getElementById("board-card-info-id");
   element.innerHTML = "";
-  let bgColor = getCategoryBgColor(currentUser.tasks.categories[index]);
-  element.innerHTML = templateCardInfoHTML(index, bgColor);
+  const {bgColor, prio, date} = prepareCardInfoInpurts(index);
+  element.innerHTML = templateCardInfoHTML(index, bgColor, prio, date);
+  renderInfoAssignedTo(index);
   toggleScrollbar("hidden");
   toggleVisibility("board-card-info-id", true);
   setTimeout(() => {
     toggleVisibility("card-info-section-id", false, "card-visible");
   }, 30);
 }
-
+function renderInfoAssignedTo(index) {
+  let element = document.getElementById("board-info-assigendTo-id");
+  currentUser.tasks.assignedTo[index].colorCodes.forEach((colorCode, idx) => {
+    element.innerHTML += templateInfoAssignedToHTML(
+      colorCode,
+      currentUser.tasks.assignedTo[index].initials[idx],
+      currentUser.tasks.assignedTo[index].userNames[idx],
+      currentUser.tasks.assignedTo[index].textColors[idx]
+    );
+  });
+}
 function closeCardInfo() {
   toggleVisibility("card-info-section-id", true, "card-visible");
   setTimeout(() => {
