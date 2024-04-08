@@ -1,13 +1,9 @@
-.summary-wrapper {
-  transition: all 300ms ease-in-out;
-}
-
 .summary-content {
   display: flex;
   align-items: start;
   justify-content: center;
   flex-direction: column;
-  transition: all 300ms ease-in-out;
+  transition: all 100ms ease-in-out;
 }
 
 .summary-column {

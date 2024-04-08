@@ -1,7 +1,3 @@
-.board,
-.board-wrapper {
-  transition: all 300ms ease-in-out;
-}
 .board-at-btn span {
   display: none;
 }

@@ -172,7 +172,7 @@
   height: calc(100vh - 352px - 160px);
   background: white;
   padding-inline: 32px;
-  transition: all 300ms ease-in-out;
+  transition: padding-inline 300ms ease-in-out;
 }
 
 .ac-btn-fill,
@@ -553,7 +553,7 @@
   }
   .card-content {
     border-radius: 0px;
-    top: 96px;
+    top: 0px;
     bottom: 80px;
     left: 0px;
     right: 0px;
