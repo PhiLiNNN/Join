@@ -4,12 +4,13 @@
 .board-info-description,
 .board-info-description span,
 .board-info-big-size,
-.board-info-small-size {
+.board-info-small-size,
+.board-info-category span {
   transition: all 300ms ease-in-out;
 }
 
 .card-info-section {
-  padding: 0px 16px 0px 16px;
+  padding: 40px;
   overflow-y: auto;
   transform: translateY(200%);
 }
@@ -17,44 +18,55 @@
   transform: translateY(0);
   transform: translateX(0);
 }
-.board-info-title {
-  max-height: 230px;
-  overflow-y: auto;
+
+.board-info-category {
+  display: inline-block;
+  height: 48px;
+  border-radius: 8px;
+  line-height: 40px;
+  padding: 4px 24px 4px 24px;
 }
+
+.board-info-category span {
+  color: var(--white-color);
+}
+
 .board-info-title span {
   font-weight: 700;
   word-wrap: break-word;
 }
-.board-info-description {
-  max-height: 200px;
-  overflow-y: auto;
-}
+
 .board-info-description span {
   word-wrap: break-word;
 }
-.board-info-prio-content {
+.board-info-prio-container {
+  display: flex;
+  align-items: center;
+  margin-top: 24px;
+  gap: 10px;
+}
+.prio-margin {
+  margin-right: 36px;
+}
+.board-info-prio-content,
+.board-info-date-content {
   display: flex;
   align-items: center;
   justify-content: start;
   gap: 10px;
 }
-.board-info-table {
-  border-collapse: collapse;
+.board-info-date-content {
+  gap: 25px;
 }
-td {
-  text-align: left;
-  padding-right: 25px;
-}
-
-.board-info-color {
-  color: var(--mockup-color);
+.board-info-prop {
+  color: #42526e;
 }
 
 .board-info-assignedTo-content {
   display: flex;
   align-items: center;
-  justify-self: start;
   gap: 16px;
+  margin-top: 18px;
 }
 
 .board-info-circle-style {
@@ -68,6 +80,46 @@ td {
   font-size: 12px;
 }
 
+.board-info-task {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+  align-items: center;
+}
+
+.board-info-assignedTo-content:first-child {
+  margin-top: 15px;
+}
+
+.board-info-menu-container {
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+  margin-top: 30px;
+}
+.board-info-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  gap: 8px;
+}
+.board-info-menu span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  gap: 8px;
+}
+.board-info-line {
+  height: 24px;
+  border-radius: 3px;
+  background: #d1d1d1;
+  width: 1px;
+}
+.board-info-margin {
+  margin-top: 24px;
+}
 @media (min-width: 761px) {
   .card-info-wrapper {
     margin-top: 100px;
@@ -81,15 +133,15 @@ td {
     border-radius: 20px;
     background: white;
     width: 100%;
-    padding: 16px;
+    max-height: calc(100vh - 200px);
   }
-
   .board-info-title span {
     font-size: 48px;
   }
   .board-info-description span,
   .board-info-table,
-  .board-info-big-size {
+  .board-info-big-size,
+  .board-info-category span {
     font-size: 22px;
   }
   .board-info-small-size {
@@ -116,7 +168,8 @@ td {
   }
   .board-info-description span,
   .board-info-table,
-  .board-info-big-size {
+  .board-info-big-size,
+  .board-info-category span {
     font-size: 16px;
   }
   .board-info-small-size {

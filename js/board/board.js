@@ -328,6 +328,7 @@ function openCardInfo(index) {
   const {bgColor, prio, date} = prepareCardInfoInpurts(index);
   element.innerHTML = templateCardInfoHTML(index, bgColor, prio, date);
   renderInfoAssignedTo(index);
+  renderInfoSubtasks(index);
   toggleScrollbar("hidden");
   toggleVisibility("board-card-info-id", true);
   setTimeout(() => {
@@ -335,7 +336,7 @@ function openCardInfo(index) {
   }, 30);
 }
 function renderInfoAssignedTo(index) {
-  let element = document.getElementById("board-info-assigendTo-id");
+  let element = document.getElementById("board-info-assignedTo-id");
   currentUser.tasks.assignedTo[index].colorCodes.forEach((colorCode, idx) => {
     element.innerHTML += templateInfoAssignedToHTML(
       colorCode,
@@ -345,6 +346,14 @@ function renderInfoAssignedTo(index) {
     );
   });
 }
+function renderInfoSubtasks(index) {
+  let element = document.getElementById("board-info-subtasks-id");
+  currentUser.tasks.subtasks[index].forEach((task) => {
+    console.log("task :>> ", task);
+    element.innerHTML += templateInfoSubtasksHTML(task);
+  });
+}
+
 function closeCardInfo() {
   toggleVisibility("card-info-section-id", true, "card-visible");
   setTimeout(() => {
