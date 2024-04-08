@@ -51,38 +51,53 @@ function getBoardElements() {
   return {toDoEl, inProgEl, awaitFedEl, doneEl};
 }
 
-function generateCardHTML(search) {
-  let {toDoEl, inProgEl, awaitFedEl, doneEl} = getBoardElements();
+function clearElementInnerHTML(toDoEl, inProgEl, awaitFedEl, doneEl) {
   toDoEl.innerHTML = "";
   inProgEl.innerHTML = "";
   awaitFedEl.innerHTML = "";
   doneEl.innerHTML = "";
+}
+
+function generateCardHTML(search) {
+  let {toDoEl, inProgEl, awaitFedEl, doneEl} = getBoardElements();
+  clearElementInnerHTML(toDoEl, inProgEl, awaitFedEl, doneEl);
   if (currentUser.tasks.board.length === 0) return;
   currentUser.tasks.board.forEach((task, index) => {
     let taskTitle = currentUser.tasks.titles[index].toLowerCase();
     let taskDescription = currentUser.tasks.descriptions[index].toLowerCase();
     if (search && !(taskTitle.includes(search) || taskDescription.includes(search))) return;
-    if (task === "toDo") {
-      const prio = currentUser.tasks.prios[index];
-      toDoEl.innerHTML += generateTaskHTML(index, prio);
-      renderBoardAssignedTo(index);
-    }
-    if (task === "inProgress") {
-      const prio = currentUser.tasks.prios[index];
-      inProgEl.innerHTML += generateTaskHTML(index, prio);
-      renderBoardAssignedTo(index);
-    }
-    if (task === "awaitFeedback") {
-      const prio = currentUser.tasks.prios[index];
-      awaitFedEl.innerHTML += generateTaskHTML(index, prio);
-      renderBoardAssignedTo(index);
-    }
-    if (task === "done") {
-      const prio = currentUser.tasks.prios[index];
-      doneEl.innerHTML += generateTaskHTML(index, prio);
-      renderBoardAssignedTo(index);
-    }
+    const taskElements = {
+      toDo: toDoEl,
+      inProgress: inProgEl,
+      awaitFeedback: awaitFedEl,
+      done: doneEl,
+    };
+    if (taskElements.hasOwnProperty(task)) addTaskToList(index, taskElements[task]);
   });
+}
+
+function addTaskToList(index, element) {
+  const prio = currentUser.tasks.prios[index];
+  let bgColor = getCategoryBgColor(currentUser.tasks.categories[index]);
+  element.innerHTML += generateTaskHTML(index, prio, bgColor);
+  renderBoardAssignedTo(index);
+}
+
+function getCategoryBgColor(category) {
+  const taskColors = {
+    "Technical Task": "#0038ff",
+    "User Story": "#1FD7C1",
+    Bug: "#FF5733",
+    "Feature Request": "#FFC300",
+    Enhancement: "#4CAF50",
+    Documentation: "#FF00FF",
+    Testing: "#00FFFF",
+    Infrastructure: "#9C27B0",
+    Design: "#FF1493",
+    Research: "#795548",
+    Other: "#607D8B",
+  };
+  return taskColors[category];
 }
 
 function checkIfSectionIsEmpty() {
@@ -295,14 +310,22 @@ function toggleAtCard() {
   }, 30);
 }
 
-function openCardInfo() {
+function openCardInfo(index) {
   let element = document.getElementById("board-card-info-id");
-
   element.innerHTML = "";
-  element.innerHTML = templateCardInfoHTML();
+  let bgColor = getCategoryBgColor(currentUser.tasks.categories[index]);
+  element.innerHTML = templateCardInfoHTML(index, bgColor);
   toggleScrollbar("hidden");
   toggleVisibility("board-card-info-id", true);
   setTimeout(() => {
     toggleVisibility("card-info-section-id", false, "card-visible");
   }, 30);
+}
+
+function closeCardInfo() {
+  toggleVisibility("card-info-section-id", true, "card-visible");
+  setTimeout(() => {
+    toggleVisibility("board-card-info-id", false);
+    toggleScrollbar("auto");
+  }, 300);
 }

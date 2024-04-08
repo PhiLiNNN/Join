@@ -8,7 +8,25 @@
   transform: translateY(0);
   transform: translateX(0);
 }
-
+.board-info-title {
+  max-height: 230px;
+  overflow-y: auto;
+  transition: all 300ms ease-in-out;
+}
+.board-info-title span {
+  font-weight: 700;
+  word-wrap: break-word;
+  transition: all 300ms ease-in-out;
+}
+.board-info-description {
+  max-height: 200px;
+  overflow-y: auto;
+  transition: all 300ms ease-in-out;
+}
+.board-info-description span {
+  word-wrap: break-word;
+  transition: all 300ms ease-in-out;
+}
 @media (min-width: 761px) {
   .card-info-wrapper {
     margin-top: 100px;
@@ -24,10 +42,36 @@
     width: 100%;
     padding: 16px;
   }
+
+  .board-info-title span {
+    font-size: 36px;
+  }
+  .board-info-description span {
+    font-size: 22px;
+  }
 }
 @media (min-width: 1341px) {
+  .card-info-wrapper {
+    max-width: 1920px;
+  }
   .card-info-section {
     transform: translateY(0);
     transform: translateX(100%);
+    max-width: calc(100vw - 232px - 128px);
+  }
+  .board-info-title span {
+    font-size: 61px;
+  }
+}
+
+@media (max-width: 760px) {
+  .board-info-title {
+    height: 219px;
+  }
+  .board-info-title span {
+    font-size: 36px;
+  }
+  .board-info-description span {
+    font-size: 16px;
   }
 }
