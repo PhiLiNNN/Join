@@ -19,6 +19,7 @@
     display: none;
   }
   .board-headline-right {
+    margin-left: 8px;
     gap: 8px;
     margin-right: 52px;
   }
@@ -28,6 +29,20 @@
   .drag-container,
   .drag-area {
     height: 300px;
+  }
+  .magnifier-container:hover {
+    background: #d1d1d164;
+  }
+  .magnifier-container:active svg path {
+    fill: var(--mockup-highlight);
+  }
+  .board-plus-btn:hover svg path,
+  .board-plus-btn:hover svg rect {
+    stroke: var(--mockup-highlight);
+  }
+  .board-plus-btn:active svg path,
+  .board-plus-btn:active svg rect {
+    stroke: var(--focus-color-btn);
   }
 }
 
@@ -40,6 +55,7 @@
     display: block;
   }
   .board-headline-right {
+    margin-left: 32px;
     gap: 32px;
   }
 }
@@ -65,7 +81,7 @@
     font-size: 64px;
     margin-left: 30px;
   }
-  .add-task-2 {
+  .board-plus-btn {
     position: absolute;
     right: 16px;
   }
@@ -118,7 +134,7 @@
   .drag-container {
     width: 270px;
   }
-  .add-task-2 {
+  .board-plus-btn {
     right: 0px;
   }
 }
@@ -142,11 +158,21 @@
   .board-headline h1 {
     font-size: 54px;
   }
+  .magnifier-container:active {
+    background: #d1d1d164;
+  }
+  .magnifier-container:active svg path {
+    fill: var(--mockup-highlight);
+  }
+  .board-plus-btn:active svg path,
+  .board-plus-btn:active svg rect {
+    stroke: var(--mockup-highlight);
+  }
 }
 
 @media (max-width: 466px) {
   .board-at-btn {
-    width: 50px;
+    width: 50px !important;
     height: 40px;
   }
   .board-at-btn svg {

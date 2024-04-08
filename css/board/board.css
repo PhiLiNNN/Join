@@ -23,7 +23,6 @@
 .board-search-mobile {
   height: 48px;
   width: 100%;
-  margin-left: 8px;
 }
 .add-task {
   background-color: #d1d1d1;
@@ -35,13 +34,13 @@
 .board-headline-right {
   display: flex;
   align-items: center;
+  transition: all 300ms ease-in-out;
 }
 
 .board-search-desktop svg,
 .board-search-mobile svg {
   cursor: pointer;
   height: 23px;
-  padding-left: 23px;
 }
 
 .board-at-btn {
@@ -62,18 +61,10 @@
   transition: all 300ms ease-in-out;
 }
 
-.add-task-2 {
-  position: absolute;
-  top: 0;
-  right: 0px;
-  background-color: var(--white-color);
-  width: 30px;
-  height: 30px;
-  border: 2px solid var(--mockup-color);
-  border-radius: 10px;
-  padding: 3px;
-  gap: 10px;
-  transition: all 300ms ease-in-out;
+.board-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .drop-area {
@@ -128,4 +119,17 @@
   color: var(--mockup-color);
   font-weight: 700;
   transition: all 300ms ease-in-out;
+}
+
+.magnifier-container {
+  margin-left: 4px;
+  display: flex;
+  padding: 8px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+}
+
+.board-plus-btn {
+  cursor: pointer;
 }
