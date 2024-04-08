@@ -348,10 +348,17 @@ function renderInfoAssignedTo(index) {
 }
 function renderInfoSubtasks(index) {
   let element = document.getElementById("board-info-subtasks-id");
-  currentUser.tasks.subtasks[index].forEach((task) => {
+  currentUser.tasks.subtasks[index].tasks.forEach((task, idx) => {
     console.log("task :>> ", task);
-    element.innerHTML += templateInfoSubtasksHTML(task);
+    element.innerHTML += templateInfoSubtasksHTML(task, idx);
   });
+}
+
+function toggleSubtaskCheckbox(index) {
+  let element = document.getElementById(`board-info-Subtaks${index}-id`);
+  let isChecked = element.getAttribute("data-checked") === "true";
+  element.innerHTML = isChecked ? templateNotCheckedSubtaskHTML() : templateCheckedSubtaskHTML();
+  element.setAttribute("data-checked", isChecked ? "false" : "true");
 }
 
 function closeCardInfo() {

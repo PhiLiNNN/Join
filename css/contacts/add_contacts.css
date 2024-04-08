@@ -461,6 +461,18 @@
   .ec-menu:hover {
     background: var(--placeholder-color);
   }
+  .desktop-menu:hover svg path,
+  .ec-menu:hover svg path {
+    fill: var(--mockup-highlight);
+  }
+  .desktop-menu:hover > span,
+  .ec-menu:hover > span {
+    color: var(--mockup-highlight);
+  }
+  .desktop-menu:active > span,
+  .ec-menu:active > span {
+    color: white;
+  }
   .desktop-menu:active svg path,
   .ec-menu:active svg path {
     fill: white;
@@ -494,6 +506,12 @@
   }
   .ec-menu:active {
     background: var(--placeholder-color);
+  }
+  .ec-menu:active svg path {
+    fill: var(--mockup-highlight);
+  }
+  .ec-menu:active > span {
+    color: var(--mockup-highlight);
   }
   .ec-btn-white:active {
     border: 2px solid var(--focus-color-btn);

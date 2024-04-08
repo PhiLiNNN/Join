@@ -74,7 +74,6 @@
     bottom: 0px;
     left: 232px;
     top: 0;
-
     background: #2f2f2f8d;
   }
   .content-bottom-container-board {
@@ -115,7 +114,7 @@
     max-width: calc(100vw - 232px - 128px);
     margin-inline: 64px;
     transform: translateY(0);
-    transform: translateX(100%);
+    transform: translateX(200%);
     padding: 70px;
     height: calc(100vh - 200px);
     overflow: hidden;

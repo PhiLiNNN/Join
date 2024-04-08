@@ -1,5 +1,5 @@
 function generateTaskHTML(index, prio, bgColor) {
-  const progressWidth = ((0 / currentUser.tasks.subtasks[index].length) * 100).toFixed(2);
+  const progressWidth = ((0 / currentUser.tasks.subtasks[index].tasks.length) * 100).toFixed(2);
   return /*html*/ `
     <div id="draggedCard${index}-id" draggable="true" onclick="openCardInfo('${index}')" ondragstart="startDragging(event,'${currentUser.tasks.titles[index]}', '${index}')" class="board-card">
         <div class="category-container">
@@ -16,7 +16,7 @@ function generateTaskHTML(index, prio, bgColor) {
               <div class="progress-bar">
                 <div class="progress" style="width: ${progressWidth}%"></div> 
               </div>
-              <span >0/${currentUser.tasks.subtasks[index].length} Subtasks</span>
+              <span >0/${currentUser.tasks.subtasks[index].tasks.length} Subtasks</span>
             </div>
             <div class="priority-block">   
                 <div id="board-assignedTo-id${index}"  class="board-added-contacts"></div>
@@ -133,19 +133,32 @@ function templateInfoAssignedToHTML(iconColor, initials, contact, textColor) {
   </div>
 `;
 }
-function templateInfoSubtasksHTML(task) {
+function templateInfoSubtasksHTML(task, index) {
   return /*html*/ `
-  <div class="board-info-task">
-    <svg width="16" height="16" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <div class="board-info-task" onclick="toggleSubtaskCheckbox('${index}')" data-checked="false">
+    <svg id="board-info-Subtaks${index}-id" width="16" height="16" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect x="1" y="1.96582" width="16" height="16" rx="3" stroke="#2A3647" stroke-width="2"/>
     </svg>
     <span class="board-info-big-size">
         ${task}
     </span>
-     
   </div>
 `;
 }
+
+function templateCheckedSubtaskHTML() {
+  return /*html*/ `
+    <path d="M17 8V14C17 15.6569 15.6569 17 14 17H4C2.34315 17 1 15.6569 1 14V4C1 2.34315 2.34315 1 4 1H12" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+    <path d="M5 9L9 13L17 1.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+`;
+}
+
+function templateNotCheckedSubtaskHTML() {
+  return /*html*/ `
+    <rect x="1" y="1.96582" width="16" height="16" rx="3" stroke="#2A3647" stroke-width="2"/>
+`;
+}
+
 function emptyBoardMsgToHTML() {
   return /*html*/ `
     <span class="noTaskMsg">

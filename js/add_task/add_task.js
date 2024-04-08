@@ -8,7 +8,10 @@ let assignedTo = {
   userNames: [],
   userMails: [],
 };
-let subtaskList = [];
+let subtaskList = {
+  tasks: [],
+  done: 0,
+};
 let userIndex;
 let prio = ["urgent", "medium", "low"];
 let prioIndex = 1;
@@ -246,7 +249,7 @@ function addSubtaskByEnter() {
 
 function addNewTaskMenu() {
   const inputElement = document.getElementById("subtask-input-id");
-  subtaskList.push(inputElement.value);
+  subtaskList.tasks.push(inputElement.value);
   inputElement.value = "";
   renderSubtasks();
 }
@@ -254,7 +257,7 @@ function addNewTaskMenu() {
 function renderSubtasks() {
   let element = document.getElementById("add-task-list-id");
   element.innerHTML = "";
-  subtaskList.forEach((subtask, index) => {
+  subtaskList.tasks.forEach((subtask, index) => {
     element.innerHTML += templateSubtaskHTML(index, subtask);
   });
 }
@@ -332,12 +335,12 @@ function makeElementEditableWithMaxLength(element, maxLength) {
 
 function saveEditSubtask(index) {
   const element = document.getElementById(`editable-span-id${index}`);
-  subtaskList[index] = element.innerText;
+  subtaskList.tasks[index] = element.innerText;
   renderSubtasks();
 }
 
 function deleteSubtask(index) {
-  subtaskList.splice(index, 1);
+  subtaskList.tasks.splice(index, 1);
   renderSubtasks();
 }
 
@@ -434,7 +437,7 @@ function clearAllInputs() {
 }
 
 function clearAllLists() {
-  subtaskList.splice(0, subtaskList.length);
+  subtaskList.tasks.splice(0, subtaskList.tasks.length);
   assignedTo.userNames.splice(0, assignedTo.userNames.length);
   assignedTo.userMails.splice(0, assignedTo.userMails.length);
   assignedTo.colorCodes.splice(0, assignedTo.colorCodes.length);
