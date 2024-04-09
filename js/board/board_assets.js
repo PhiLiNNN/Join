@@ -163,8 +163,10 @@ function templateNotCheckedSubtaskHTML() {
 
 function emptyBoardMsgToHTML() {
   return /*html*/ `
-    <span class="noTaskMsg">
-        No tasks to do
-    </span>
+  <div id="noTaskMsg-container-id" class="noTaskMsg-container">
+      <span class="noTaskMsg">
+          No tasks to do
+      </span>
+  </div>
 `;
 }

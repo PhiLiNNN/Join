@@ -30,8 +30,12 @@
   .drag-area {
     height: 215px;
   }
+  .noTaskMsg-container {
+    width: 100%;
+    height: 200px;
+  }
   .drag-container {
-    margin-block: 32px;
+    margin-block: 16px;
   }
   .magnifier-container:hover {
     background: #d1d1d164;
@@ -88,6 +92,10 @@
     position: absolute;
     right: 16px;
   }
+  .noTaskMsg-container {
+    width: 230px;
+    height: auto;
+  }
   .board-box {
     margin: 0;
     max-width: none;
@@ -107,11 +115,6 @@
   .drag-area:first-child {
     padding-left: 0;
   }
-  .drag-area-hover-default {
-    min-height: 64px;
-    margin-top: 64px;
-  }
-
   .board-card {
     width: 200px;
     margin-right: 0;
@@ -142,6 +145,10 @@
   }
 }
 @media (max-width: 760px) {
+  .noTaskMsg-container {
+    width: 100%;
+    height: 200px;
+  }
   .board-content-wrapper {
     max-height: calc(100vh - 370px);
     overflow-y: auto;
@@ -150,7 +157,7 @@
     padding-right: 16px;
   }
   .drag-container {
-    margin-block: 32px;
+    margin-block: 16px;
   }
   .drag-container,
   .drag-area {

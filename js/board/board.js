@@ -103,13 +103,11 @@ function getCategoryBgColor(category) {
 function checkIfSectionIsEmpty() {
   const sections = ["toDo", "inProgress", "awaitFeedback", "done"];
   sections.forEach((section) => {
-    const hoverId = `${section}-hover-id`;
     const isVisible = currentUser.tasks.board.includes(section);
     if (!isVisible) {
       let element = document.getElementById(`${section}-id`);
       element.innerHTML = emptyBoardMsgToHTML();
-      toggleVisibility(hoverId, false, "drag-area-hover-default");
-    } else toggleVisibility(hoverId, true, "drag-area-hover-default");
+    }
   });
 }
 
@@ -164,6 +162,7 @@ function checkAndToggleVisibility(event, leftBorder, topBorder, elementHeight, e
   const withinVerticalRange =
     event.clientY >= topBorder && event.clientY <= topBorder + elementHeight;
   const shouldBeVisible = window.innerWidth >= 1341 ? withinHorizontalRange : withinVerticalRange;
+  console.log("withinHorizontalRange :>> ", withinHorizontalRange);
   toggleVisibility(elementId, !shouldBeVisible, "drag-area-hover");
 }
 

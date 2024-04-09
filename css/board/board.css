@@ -70,13 +70,19 @@
 }
 
 .drag-area-hover,
-.drag-area-hover-default {
+.noTaskMsg-container {
   background-color: #e7e7e7;
   border: 1px dashed #a8a8a8;
   border-radius: 10px;
   min-height: 48px;
 }
-
+.noTaskMsg-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 230px;
+  border: none;
+}
 .empty-section {
   color: #a8a8a8;
 }
