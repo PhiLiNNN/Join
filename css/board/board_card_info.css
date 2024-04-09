@@ -15,7 +15,10 @@
 .board-info-description span,
 .board-info-big-size,
 .board-info-small-size,
-.board-info-category span {
+.board-info-category span,
+.card-info-wrapper,
+.card-info-section,
+.board-content-container {
   transition: all 300ms ease-in-out;
 }
 
@@ -360,6 +363,35 @@
   }
   .close-board-info-at {
     top: 33px;
+  }
+}
+
+@media (min-width: 1341px) and (max-height: 700px) {
+  .card-info-wrapper {
+    display: flex;
+    margin-bottom: 0;
+  }
+  .card-info-section {
+    height: calc(100vh - 96px);
+    margin-inline: 64px;
+    border-radius: 20px;
+  }
+  .board-content-container {
+    height: calc(100vh - 260px);
+    margin-top: 16px;
+    box-shadow: none;
+    max-height: none;
+  }
+}
+@media (min-width: 1341px) and (max-height: 500px) {
+  .card-info-wrapper {
+    display: block;
+  }
+  .card-info-section {
+    height: 100vh;
+  }
+  .board-content-container {
+    height: calc(100vh - 150px);
   }
 }
 
