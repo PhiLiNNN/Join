@@ -30,6 +30,9 @@
   .drag-area {
     height: 215px;
   }
+  .drag-container {
+    margin-block: 32px;
+  }
   .magnifier-container:hover {
     background: #d1d1d164;
   }
@@ -57,9 +60,6 @@
   .board-headline-right {
     margin-left: 32px;
     gap: 32px;
-  }
-  .drag-container {
-    margin-top: 32px;
   }
 }
 
@@ -122,6 +122,7 @@
     justify-content: center;
     width: 230px;
     height: auto;
+    margin-block: 0px;
   }
   .board-box h2 {
     font-size: 24px;
@@ -142,16 +143,24 @@
 }
 @media (max-width: 760px) {
   .board-content-wrapper {
-    max-height: calc(100vh - 380px);
+    max-height: calc(100vh - 370px);
     overflow-y: auto;
+    margin-top: 16px;
     width: calc(100vw - 16px);
     padding-right: 16px;
+  }
+  .drag-container {
+    margin-block: 32px;
+  }
+  .drag-container,
+  .drag-area {
+    height: 215px;
   }
   .board-search-desktop {
     display: none;
   }
   .board-search-mobile {
-    margin-top: 48px;
+    margin-top: 16px;
   }
   .board-wrapper {
     max-height: calc(100vh - 181px);
