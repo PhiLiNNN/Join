@@ -21,12 +21,20 @@
 
 .card-info-section {
   padding: 40px;
-  overflow-y: auto;
   transform: translateY(200%);
 }
 .card-info-section.card-visible {
   transform: translateY(0);
   transform: translateX(0);
+}
+
+.board-content-container {
+  box-shadow: 0 0 14px #2a364739;
+  padding: 8px;
+  border-radius: 20px;
+  max-height: calc(100vh - 320px);
+  margin-top: 24px;
+  overflow-y: auto;
 }
 
 .board-info-category {

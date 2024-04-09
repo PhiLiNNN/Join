@@ -337,21 +337,30 @@ function openCardInfo(index) {
 }
 function renderInfoAssignedTo(index) {
   let element = document.getElementById("board-info-assignedTo-id");
-  currentUser.tasks.assignedTo[index].colorCodes.forEach((colorCode, idx) => {
-    element.innerHTML += templateInfoAssignedToHTML(
-      colorCode,
-      currentUser.tasks.assignedTo[index].initials[idx],
-      currentUser.tasks.assignedTo[index].userNames[idx],
-      currentUser.tasks.assignedTo[index].textColors[idx]
-    );
-  });
+  let emptyEl = document.getElementById("board-info-no-users-assigned-id");
+  if (currentUser.tasks.assignedTo[index].userNames.length === 0)
+    emptyEl.innerHTML = `Assigned To: <span style="color: black;"> No contact assigned </span>`;
+  else {
+    currentUser.tasks.assignedTo[index].colorCodes.forEach((colorCode, idx) => {
+      element.innerHTML += templateInfoAssignedToHTML(
+        colorCode,
+        currentUser.tasks.assignedTo[index].initials[idx],
+        currentUser.tasks.assignedTo[index].userNames[idx],
+        currentUser.tasks.assignedTo[index].textColors[idx]
+      );
+    });
+  }
 }
 function renderInfoSubtasks(index) {
   let element = document.getElementById("board-info-subtasks-id");
-  currentUser.tasks.subtasks[index].tasks.forEach((task, idx) => {
-    console.log("task :>> ", task);
-    element.innerHTML += templateInfoSubtasksHTML(task, idx);
-  });
+  if (currentUser.tasks.subtasks[index].tasks.length === 0)
+    toggleVisibility("no-subtaks-id", false);
+  else {
+    currentUser.tasks.subtasks[index].tasks.forEach((task, idx) => {
+      console.log("task :>> ", task);
+      element.innerHTML += templateInfoSubtasksHTML(task, idx);
+    });
+  }
 }
 
 function toggleSubtaskCheckbox(index) {

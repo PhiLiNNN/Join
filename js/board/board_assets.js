@@ -71,33 +71,35 @@ function templateCardInfoHTML(idx, bgColor, prio, date) {
             <div style="background-color: ${bgColor};" class="board-info-category">
                 <span >${currentUser.tasks.categories[idx]}</span>
             </div>
-            <div class="board-info-title board-info-margin">
-                <span>${currentUser.tasks.titles[idx]}</span>
-            </div>  
-            <div class="board-info-description board-info-margin">
-                <span>${currentUser.tasks.descriptions[idx]}</span>
-            </div>  
-            <div class="board-info-table board-info-margin ">
-                <div class="board-info-date-content">
-                    <span class="board-info-prop">Due date:</span>
-                    <span>${date}</span>
-                </div>
-                <div class="board-info-prio-container">
-                    <span class="board-info-prop prio-margin">Priority:</span>
-                    <div class="board-info-prio-content">
-                         <span> ${firstLetterUpperCasePrio}</span>
-                        <img src="./assets/img/board_${prio}.png" alt="Medium">
+            <div class="board-content-container">
+                <div class="board-info-title">
+                    <span>${currentUser.tasks.titles[idx]}</span>
+                </div>  
+                <div class="board-info-description board-info-margin">
+                    <span>${currentUser.tasks.descriptions[idx]}</span>
+                </div>  
+                <div class="board-info-table board-info-margin ">
+                    <div class="board-info-date-content">
+                        <span class="board-info-prop">Due date:</span>
+                        <span>${date}</span>
+                    </div>
+                    <div class="board-info-prio-container">
+                        <span class="board-info-prop prio-margin">Priority:</span>
+                        <div class="board-info-prio-content">
+                             <span> ${firstLetterUpperCasePrio}</span>
+                            <img src="./assets/img/board_${prio}.png" alt="Medium">
+                        </div>
                     </div>
                 </div>
+                <div class="board-info-margin">
+                    <span id="board-info-no-users-assigned-id" class="board-info-prop board-info-big-size">Assigned To:</span>
+                    <div id="board-info-assignedTo-id" class="board-info-assignedTo"></div>
+                </div> 
+                <div  class="board-info-margin">
+                    <span id="no-subtaks-id" class="board-info-prop board-info-big-size">Subtasks</span>
+                    <div id="board-info-subtasks-id" class="board-info-subtasks"></div>
+                </div> 
             </div>
-            <div class="board-info-margin">
-                <span class="board-info-prop board-info-big-size">Assigned To:</span>
-                <div id="board-info-assignedTo-id" class="board-info-assignedTo"></div>
-            </div> 
-            <div  class="board-info-margin">
-                <span class="board-info-prop board-info-big-size">Subtasks</span>
-                <div id="board-info-subtasks-id" class="board-info-subtasks"></div>
-            </div> 
             <div class="board-info-menu-container">
                 <div  class="board-info-menu" >
                     <svg width="24" height="24" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
