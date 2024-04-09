@@ -370,11 +370,6 @@ function createTask() {
   sendUserToBoard();
 }
 
-function save() {
-  localStorage.setItem("currentUser", JSON.stringify(currentUser));
-  updateBackend(currentUser);
-}
-
 function sendUserToBoard() {
   toggleScrollbar("hidden");
   toggleVisibility("at-success-msg-id", true);

@@ -357,7 +357,6 @@ function renderInfoSubtasks(index) {
     toggleVisibility("no-subtaks-id", false);
   else {
     currentUser.tasks.subtasks[index].tasks.forEach((task, idx) => {
-      console.log("task :>> ", task);
       element.innerHTML += templateInfoSubtasksHTML(task, idx);
     });
   }
@@ -376,4 +375,18 @@ function closeCardInfo() {
     toggleVisibility("board-card-info-id", false);
     toggleScrollbar("auto");
   }, 300);
+}
+
+function deleteBoardCard(index) {
+  console.log("index :>> ", index);
+  currentUser.tasks.assignedTo.splice(index, 1);
+  currentUser.tasks.board.splice(index, 1);
+  currentUser.tasks.categories.splice(index, 1);
+  currentUser.tasks.descriptions.splice(index, 1);
+  currentUser.tasks.prios.splice(index, 1);
+  currentUser.tasks.subtasks.splice(index, 1);
+  currentUser.tasks.titles.splice(index, 1);
+  save();
+  closeCardInfo();
+  generateCardHTML();
 }

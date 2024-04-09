@@ -56,6 +56,11 @@ async function addNewUserToBackend(user) {
   users = await loadUsersFromBackend("users");
 }
 
+function save() {
+  localStorage.setItem("currentUser", JSON.stringify(currentUser));
+  updateBackend(currentUser);
+}
+
 function validateName(name, boolArr) {
   const specialCharRegex = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/0123456789]/;
   const checkForDoubleHyphen = name.split("-").length - 1;

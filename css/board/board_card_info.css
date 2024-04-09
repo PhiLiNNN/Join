@@ -5,7 +5,7 @@
   left: 0px;
   right: 0px;
   background: white;
-  z-index: 999;
+  z-index: 991;
 }
 
 .card-info-section,
@@ -30,8 +30,8 @@
 
 .board-content-container {
   box-shadow: 0 0 14px #2a364739;
-  padding: 8px;
-  border-radius: 20px;
+  padding: 16px;
+  border-radius: 24px;
   max-height: calc(100vh - 320px);
   margin-top: 24px;
   overflow-y: auto;
@@ -42,6 +42,7 @@
   height: 48px;
   border-radius: 8px;
   line-height: 40px;
+  margin-left: 16px;
   padding: 4px 24px 4px 24px;
 }
 
@@ -271,12 +272,22 @@
     background: var(--placeholder-color);
   }
 }
+
+@media (max-width: 600px) {
+  .board-content-container {
+    box-shadow: none;
+  }
+  .card-info-section {
+    padding-inline: 16px;
+  }
+}
+
 @media (max-width: 450px) {
   .card-info-section {
     margin-inline: 0;
     border-radius: none;
     background: white;
     width: 100%;
-    max-height: calc(100vh - 160px);
+    max-height: 100vh;
   }
 }
