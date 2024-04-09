@@ -80,7 +80,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 230px;
   border: none;
 }
 .empty-section {
@@ -101,6 +100,7 @@
   margin-top: 2px;
   font-size: 22px;
   color: #a8a8a8;
+  text-align: center;
 }
 
 .drag-area:first-child {

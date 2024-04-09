@@ -106,7 +106,7 @@ function checkIfSectionIsEmpty() {
     const isVisible = currentUser.tasks.board.includes(section);
     if (!isVisible) {
       let element = document.getElementById(`${section}-id`);
-      element.innerHTML = emptyBoardMsgToHTML();
+      element.innerHTML = emptyBoardMsgToHTML(section);
     }
   });
 }
@@ -333,7 +333,7 @@ function renderInfoAssignedTo(index) {
   let element = document.getElementById("board-info-assignedTo-id");
   let emptyEl = document.getElementById("board-info-no-users-assigned-id");
   if (currentUser.tasks.assignedTo[index].userNames.length === 0)
-    emptyEl.innerHTML = `Assigned To: <span style="color: black;"> No contact assigned </span>`;
+    emptyEl.innerHTML = `Assigned To: <span style="color: black;"> No contacts assigned </span>`;
   else {
     currentUser.tasks.assignedTo[index].colorCodes.forEach((colorCode, idx) => {
       element.innerHTML += templateInfoAssignedToHTML(
