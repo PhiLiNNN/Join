@@ -269,11 +269,6 @@ document.addEventListener("dragend", () => {
 });
 //Big Card Overlay
 
-function createBigCard() {
-  let overlayContent = document.getElementById("board-at-id");
-  overlayContent.innerHTML += templateAddTaskHTML();
-}
-
 //add Task Overlay
 
 function clearSearchInput() {
@@ -378,15 +373,68 @@ function closeCardInfo() {
 }
 
 function deleteBoardCard(index) {
-  console.log("index :>> ", index);
   currentUser.tasks.assignedTo.splice(index, 1);
   currentUser.tasks.board.splice(index, 1);
   currentUser.tasks.categories.splice(index, 1);
   currentUser.tasks.descriptions.splice(index, 1);
   currentUser.tasks.prios.splice(index, 1);
   currentUser.tasks.subtasks.splice(index, 1);
+  currentUser.tasks.dates.splice(index, 1);
   currentUser.tasks.titles.splice(index, 1);
   save();
   closeCardInfo();
   generateCardHTML();
+  checkIfSectionIsEmpty();
+  getHoverContainerGeometrie();
+  setDragEventListeners();
+}
+
+function createBoardTask() {
+  const {titleInput, textareaInput, dateInput, categoryInput} = getAddTaskInputs();
+  const atBoolArr = [false, false, false, false, false, false];
+  validateInput(titleInput, atBoolArr, 0, 3);
+  validateInput(dateInput, atBoolArr, 1, 4);
+  validateInput(categoryInput, atBoolArr, 2, 5);
+  if (handlerAddTaskValidation(atBoolArr)) {
+    handlerAddTaskValidation(atBoolArr);
+    toggleVisibility("rotate-err-arrow-id", true);
+    return;
+  }
+  toggleVisibility("rotate-err-arrow-id", false);
+  updateTasks(titleInput, textareaInput, dateInput, categoryInput);
+  clearAllSelectedUsers();
+  save();
+  generateCardHTML();
+  sendUserToBack();
+}
+
+function sendUserToBack() {
+  console.log("fgfgfgfg");
+  toggleScrollbar("hidden");
+  toggleVisibility("at-success-msg-id", true);
+  toggleVisibility("trans-bg-id", true);
+  setTimeout(() => {
+    toggleVisibility("at-success-msg-id", false, "slide-sm");
+    setTimeout(() => {
+      closeAddTaskOverlay();
+      checkIfSectionIsEmpty();
+      getHoverContainerGeometrie();
+      setDragEventListeners();
+    }, 900);
+  }, 200);
+}
+
+function editBoardCard(index) {
+  toggleAtCard();
+  renderAssignedToContacts();
+  setCurrentDate();
+  addSubtaskByEnter();
+  addSubtaskVisibilityListener();
+  closeAssignedToMenu();
+  closeCategoryMenu();
+  setInputValue("title-input-id", currentUser.tasks.titles[index]);
+}
+
+function setInputValue(elementId, value) {
+  const element = (document.getElementById(elementId).value = value);
 }

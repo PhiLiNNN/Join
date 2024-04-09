@@ -145,11 +145,24 @@
 .board-info-margin {
   margin-top: 24px;
 }
+.close-board-info-at {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+}
+.close-board-info-at svg path {
+  fill: var(--mockup-color);
+}
 @media (min-width: 761px) {
-  .close-board-at {
-    top: 43px;
-    position: sticky;
-    left: 100%;
+  .close-board-info-at {
+    right: 48px;
+    top: 50px;
   }
   .board-info-overlay {
     bottom: 0px;
@@ -206,10 +219,20 @@
   .board-info-menu:active {
     background: var(--focus-color-btn);
   }
+  .card-info-section .close-board-info-at:hover {
+    background: var(--placeholder-color);
+  }
+  .card-info-section .close-board-info-at:active,
+  .close-board-info-at:active {
+    background: var(--focus-color-btn);
+  }
+  .close-board-info-at:active svg path {
+    fill: white;
+  }
 }
 @media (min-width: 1341px) {
-  .close-board-at {
-    top: 41px;
+  .close-board-info-at {
+    top: 53px;
   }
   .card-info-wrapper {
     max-width: 1920px;
@@ -225,8 +248,9 @@
 }
 
 @media (max-width: 760px) {
-  .close-board-at {
-    top: 41px;
+  .close-board-info-at {
+    right: 48px;
+    top: 48px;
   }
   .board-info-overlay {
     bottom: 0px;
@@ -270,6 +294,13 @@
   }
   .board-info-menu:active {
     background: var(--placeholder-color);
+  }
+  .card-info-section .close-board-info-at:active,
+  .close-board-info-at:active {
+    background: var(--focus-color-btn);
+  }
+  .close-board-info-at:active svg path {
+    fill: white;
   }
 }
 

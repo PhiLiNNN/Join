@@ -245,7 +245,7 @@ function templateAddTaskHTML() {
                 stroke-linejoin="round" />
             </svg>
           </button>
-          <button id="ad-add-btn" class="filled-btn" onclick="createTask()">
+          <button id="ad-add-btn" class="filled-btn" onclick="createBoardTask()">
             Create Task
             <img src="./assets/img/check.png" alt="" />
           </button>
@@ -253,11 +253,11 @@ function templateAddTaskHTML() {
       </div>
       <div id="loader-id" class="loader d-none"></div>
       <div id="trans-bg-id" class="trans-bg d-none"></div>
-      <div id="at-success-msg-id" class="success-msg-popup d-none">
+    </section>   
+    <div id="at-success-msg-id" class="success-msg-popup d-none">
         <span>Task added to board</span>
         <img src="./assets/img/Board_Icons.png" alt="" />
       </div>
-    </section>   
   </div>    
   `;
 }

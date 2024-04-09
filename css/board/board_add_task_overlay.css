@@ -5,6 +5,7 @@
   left: 0px;
   right: 0px;
   background: white;
+  z-index: 999;
 }
 .at-section {
   padding: 0px 16px 0px 16px;
@@ -59,11 +60,13 @@
     max-height: calc(100vh - 380px);
   }
   .close-board-at {
-    right: 16px;
+    top: 32px;
+    right: 40px;
   }
   .at-section .close-board-at:hover {
     background: var(--placeholder-color);
   }
+  .at-section .close-board-at:active,
   .close-board-at:active {
     background: var(--focus-color-btn);
   }
@@ -87,8 +90,7 @@
     padding: 16px;
   }
   .board-at-wrapper {
-    margin-top: 100px;
-    height: calc(100vh - 100px);
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -97,7 +99,8 @@
 
 @media (min-width: 1341px) {
   .close-board-at {
-    top: 64px;
+    top: 74px;
+    right: 72px;
   }
   .board-at-wrapper {
     max-width: 1920px;
@@ -132,14 +135,12 @@
     left: 16px;
     font-size: 64px;
   }
-  .close-board-at {
-    right: 72px;
-  }
-  .board-box {
-    height: 100vh;
-  }
 }
 @media (max-width: 760px) {
+  .close-board-at {
+    top: 38px;
+    right: 32px;
+  }
   .at-section {
     height: 100vh;
   }
@@ -151,12 +152,6 @@
     bottom: 190px;
   }
 
-  .close-board-at {
-    position: sticky;
-    top: 16px;
-    left: 100%;
-    z-index: 900;
-  }
   .close-board-at:active {
     background: var(--focus-color-btn);
   }
@@ -165,7 +160,7 @@
   }
   .content-container-board {
     max-height: calc(100vh - 320px);
-    margin-top: 48px;
+    margin-top: 72px;
   }
   .board-at-headline {
     position: absolute;
@@ -198,14 +193,15 @@
     display: none;
   }
   .content-container-board {
-    margin-top: -25px;
+    margin-top: 0px;
     max-height: calc(100vh - 230px);
   }
   .board-at-headline,
   .close-board-at {
-    top: 4px;
+    top: 0px;
   }
   .close-board-at {
+    z-index: 999;
     left: 85%;
   }
 }
@@ -213,7 +209,6 @@
   .board-at-wrapper {
     display: block;
     margin-bottom: 0;
-    margin-top: 96px;
   }
   .at-section {
     height: 100vh;
@@ -233,7 +228,7 @@
     top: 32px;
   }
 }
-@media (min-width: 1341px) and (max-height: 889px) {
+@media (min-width: 1341px) and (max-height: 700px) {
   .content-container-board {
     max-height: calc(100vh - 275px);
     margin-top: 42px;
@@ -243,9 +238,6 @@
     height: calc(100vh - 96px);
     margin-inline: 64px;
     border-radius: 20px;
-  }
-  .close-board-at {
-    top: 16px;
   }
   .board-at-wrapper {
     display: block;
