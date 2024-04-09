@@ -45,7 +45,7 @@
 }
 
 .description-block {
-  max-height: 38px;
+  max-height: 40px;
   overflow: hidden;
   margin-bottom: 24px;
   color: #a8a8a8;
@@ -214,4 +214,41 @@
   height: 24px;
   width: 1px;
   background-color: #d1d1d1;
+}
+
+@media (min-width: 761px) {
+  .task-container,
+  .priority-block {
+    margin-top: 8px;
+  }
+  .description-block {
+    margin-bottom: 8px;
+  }
+  .board-card {
+    padding: 12px;
+  }
+}
+@media (min-width: 1341px) {
+  .task-container,
+  .priority-block {
+    margin-top: 24px;
+  }
+  .description-block {
+    margin-bottom: 24px;
+  }
+  .board-card {
+    padding: 16px;
+  }
+}
+@media (max-width: 760px) {
+  .task-container,
+  .priority-block {
+    margin-top: 8px;
+  }
+  .description-block {
+    margin-bottom: 8px;
+  }
+  .board-card {
+    padding: 12px;
+  }
 }

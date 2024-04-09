@@ -98,7 +98,7 @@
 }
 
 .drag-area:first-child {
-  padding-left: 24px;
+  padding-left: 8px;
 }
 .task {
   background-color: rgb(19, 6, 251);

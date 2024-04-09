@@ -28,7 +28,7 @@
   }
   .drag-container,
   .drag-area {
-    height: 300px;
+    height: 215px;
   }
   .magnifier-container:hover {
     background: #d1d1d164;
@@ -58,6 +58,9 @@
     margin-left: 32px;
     gap: 32px;
   }
+  .drag-container {
+    margin-top: 32px;
+  }
 }
 
 @media (min-width: 1341px) {
@@ -70,7 +73,7 @@
     border-radius: 24px;
     margin-top: 8px;
     padding: 32px;
-    gap: 48px;
+    gap: 0px;
   }
   .board-wrapper {
     margin: 180px 0 0 calc(232px + 32px);
@@ -119,7 +122,6 @@
     justify-content: center;
     width: 230px;
     height: auto;
-    margin-top: 32px;
   }
   .board-box h2 {
     font-size: 24px;
