@@ -162,11 +162,11 @@ function templateNotCheckedSubtaskHTML() {
 }
 
 function emptyBoardMsgToHTML(section) {
+  let feedback = "";
   if (section === "done") feedback = "done";
   if (section === "inProgress") feedback = "in progress";
   if (section === "awaitFeedback") feedback = "await feedback";
   if (section === "toDo") feedback = "to do";
-  console.log(section);
   return /*html*/ `
   <div id="noTaskMsg-container-id" class="noTaskMsg-container">
       <span class="noTaskMsg">

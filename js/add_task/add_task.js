@@ -219,8 +219,8 @@ function addSubtaskVisibilityListener() {
   inputElement.addEventListener("input", function (event) {
     const inputNotEmpty = isValueNotEmpty(event.target.value);
     toggleVisibility("subtast-add-button-id", !inputNotEmpty);
-    toggleVisibility("subtask-del-and-confim-id", true);
-    if (!inputNotEmpty) toggleVisibility("subtask-del-and-confim-id", false);
+    toggleVisibility("subtask-del-and-confirm-id", true);
+    if (!inputNotEmpty) toggleVisibility("subtask-del-and-confirm-id", false);
   });
 }
 
@@ -234,7 +234,7 @@ function deleteOrAddTaskMenu(isDelete) {
   const inputElement = document.getElementById("subtask-input-id");
   if (isDelete) inputElement.value = "";
   else addNewTaskMenu();
-  toggleVisibility("subtask-del-and-confim-id", false);
+  toggleVisibility("subtask-del-and-confirm-id", false);
   toggleVisibility("subtast-add-button-id", true);
 }
 
@@ -271,6 +271,9 @@ function toggleReadBorderInSubtasks(index, listElement) {
       saveElement.contains(event.target) || deleteElement.contains(event.target);
     if (isClickOutsideList) {
       disableFiledElements(true);
+      document.getElementById("subtask-input-id").value = "";
+      toggleVisibility("subtask-del-and-confirm-id", false);
+      toggleVisibility("subtast-add-button-id", true);
       toggleVisibility(`substask-content-id${currentIndex}`, false, "red-line-highlight");
     } else if (isClickOnSaveOrDelete) {
       disableFiledElements(false);
@@ -382,7 +385,7 @@ function sendUserToBoard() {
   }, 200);
 }
 
-function updateTasks(titleInput, textareaInput, dateInput, categoryInput) {
+function updateTasks(titleInput, textareaInput, dateInput, categoryInput, section = "toDo") {
   currentUser.tasks.titles.push(titleInput);
   currentUser.tasks.descriptions.push(textareaInput);
   currentUser.tasks.dates.push(dateInput);
@@ -390,7 +393,8 @@ function updateTasks(titleInput, textareaInput, dateInput, categoryInput) {
   currentUser.tasks.prios.push(prio[prioIndex]);
   currentUser.tasks.categories.push(categoryInput);
   currentUser.tasks.subtasks.push(subtaskList);
-  currentUser.tasks.board.push("toDo");
+  console.log("section :>> ", section);
+  currentUser.tasks.board.push(section);
 }
 
 function validateInput(input, atBoolArr, index1, index2) {
@@ -417,7 +421,7 @@ function clearAll() {
   renderAddedContacts();
   renderSubtasks();
   togglePrioImg("medium-default-id");
-  toggleVisibility("subtask-del-and-confim-id", false);
+  toggleVisibility("subtask-del-and-confirm-id", false);
   toggleVisibility("subtast-add-button-id", true);
   toggleVisibility("rotate-err-arrow-id", false);
   disableFiledElements(false);

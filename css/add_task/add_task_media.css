@@ -147,6 +147,11 @@
     height: 16px;
   }
 }
+@media (max-width: 780px) {
+  .bottom-btns-container {
+    gap: 2px;
+  }
+}
 
 @media (max-width: 760px) {
   .at-label-style,

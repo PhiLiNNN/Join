@@ -14,6 +14,7 @@ let inProgressHeight;
 let awaitHeight;
 let doneHeight;
 let allDragElements;
+let cardSection;
 
 function initBoard() {
   const isUserLoggedIn = checkUserLogIn();
@@ -162,7 +163,6 @@ function checkAndToggleVisibility(event, leftBorder, topBorder, elementHeight, e
   const withinVerticalRange =
     event.clientY >= topBorder && event.clientY <= topBorder + elementHeight;
   const shouldBeVisible = window.innerWidth >= 1341 ? withinHorizontalRange : withinVerticalRange;
-  console.log("withinHorizontalRange :>> ", withinHorizontalRange);
   toggleVisibility(elementId, !shouldBeVisible, "drag-area-hover");
 }
 
@@ -278,12 +278,15 @@ function clearSearchInput() {
 function closeAddTaskOverlay() {
   toggleVisibility("at-section-id", true, "card-visible");
   setTimeout(() => {
+    setTimeout(() => {
+      toggleScrollbar("auto");
+    }, 900);
     toggleVisibility("board-at-id", false);
-    toggleScrollbar("auto");
   }, 300);
 }
 
-function openAddTaskOverlay() {
+function openAddTaskOverlay(section) {
+  cardSection = section;
   toggleAtCard();
   renderAssignedToContacts();
   setCurrentDate();
@@ -400,15 +403,14 @@ function createBoardTask() {
     return;
   }
   toggleVisibility("rotate-err-arrow-id", false);
-  updateTasks(titleInput, textareaInput, dateInput, categoryInput);
+  updateTasks(titleInput, textareaInput, dateInput, categoryInput, cardSection);
   clearAllSelectedUsers();
   save();
   generateCardHTML();
-  sendUserToBack();
+  sendUserBack();
 }
 
-function sendUserToBack() {
-  console.log("fgfgfgfg");
+function sendUserBack() {
   toggleScrollbar("hidden");
   toggleVisibility("at-success-msg-id", true);
   toggleVisibility("trans-bg-id", true);

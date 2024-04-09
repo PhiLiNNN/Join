@@ -34,7 +34,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   left: 108px;
   transition: all 300ms ease-in-out;
 }
-
+.bottom-btns-container {
+  transition: all 300ms ease-in-out;
+}
 .content-container {
   position: sticky;
   overflow-y: auto;

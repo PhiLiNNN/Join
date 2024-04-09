@@ -118,7 +118,7 @@
   justify-content: end;
   align-items: center;
   gap: 10px;
-  margin-top: 30px;
+  margin-top: 16px;
 }
 .board-info-menu {
   display: flex;
@@ -313,12 +313,92 @@
   }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 481px) {
   .card-info-section {
     margin-inline: 0;
     border-radius: none;
     background: white;
     width: 100%;
     max-height: 100vh;
+  }
+}
+
+@media (min-width: 761px) and (max-height: 700px) {
+  .card-info-wrapper {
+    display: block;
+    margin-bottom: 0;
+  }
+  .card-info-section {
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+    max-height: 100vh;
+  }
+  .board-content-container {
+    max-height: calc(100vh - 200px);
+    margin-top: 42px;
+  }
+}
+@media (min-width: 761px) and (max-height: 500px) {
+  .card-info-section {
+    padding: 24px;
+  }
+  .board-content-container {
+    box-shadow: none;
+    max-height: calc(100vh - 160px);
+    margin-top: 16px;
+  }
+  .board-info-title span {
+    font-size: 32px;
+  }
+  .board-info-description span,
+  .board-info-table,
+  .board-info-big-size,
+  .board-info-category span {
+    font-size: 18px;
+  }
+  .close-board-info-at {
+    top: 33px;
+  }
+}
+
+@media (max-width: 760px) and (max-height: 700px) {
+  .card-info-wrapper {
+    display: block;
+    margin-bottom: 0;
+  }
+  .card-info-section {
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+    max-height: 100vh;
+  }
+  .board-content-container {
+    max-height: calc(100vh - 200px);
+    margin-top: 42px;
+  }
+}
+@media (max-width: 760px) and (max-height: 500px) {
+  .card-info-section {
+    padding: 24px;
+  }
+  .board-content-container {
+    box-shadow: none;
+    max-height: calc(100vh - 160px);
+    margin-top: 16px;
+  }
+  .board-info-title span {
+    font-size: 32px;
+  }
+  .board-info-description span,
+  .board-info-table,
+  .board-info-big-size,
+  .board-info-category span {
+    font-size: 18px;
+  }
+  .close-board-info-at {
+    top: 33px;
   }
 }
