@@ -409,7 +409,9 @@
   }
   .board-content-container {
     max-height: calc(100vh - 200px);
-    margin-top: 42px;
+    margin-top: 24px;
+    padding: 0;
+    border-radius: 0px;
   }
 }
 @media (max-width: 760px) and (max-height: 500px) {
