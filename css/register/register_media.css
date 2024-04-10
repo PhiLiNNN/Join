@@ -98,8 +98,8 @@
   }
   @keyframes animateLogo {
     100% {
-      top: 80px;
-      left: 77px;
+      top: 16px;
+      left: 16px;
       width: 64px;
       height: 78px;
     }

@@ -6,7 +6,7 @@
   transition: all 100ms ease-in-out;
 }
 
-.summary-column {
+*/ .summary-column {
   display: flex;
   justify-content: center;
   align-items: center;

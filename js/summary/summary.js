@@ -18,9 +18,11 @@ function updateGreeting() {
   const hours = now.getHours();
   const minutes = now.getMinutes();
   const element = document.getElementById("greeting-id");
+  const elementMobile = document.getElementById("summary-greeting-id");
   let {addHours, greeting} = checkDayTime(hours);
   let name = formatName(currentUser.userName);
   element.innerHTML = templateGreetingsHTML(greeting, name);
+  elementMobile.innerHTML = templateGreetingsHTML(greeting, name);
   const waitTime = addHours * 60 * 60 * 1000 + minutes * 60 * 1000;
   setTimeout(updateGreeting, waitTime);
 }
