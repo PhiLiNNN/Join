@@ -20,7 +20,7 @@ let clickEventListener;
 
 async function initAddTask() {
   isUserLoggedIn = checkUserLogIn();
-  if (!isUserLoggedIn) window.location.assign("../error_page.html");
+  if (!isUserLoggedIn) window.location.assign("./error_page.html");
   currentUser = JSON.parse(localStorage.getItem("currentUser"));
   console.log(currentUser);
   renderAssignedToContacts();
@@ -380,7 +380,7 @@ function sendUserToBoard() {
   setTimeout(() => {
     toggleVisibility("at-success-msg-id", false, "slide-sm");
     setTimeout(() => {
-      window.location.assign("../board.html");
+      window.location.assign("./board.html");
     }, 900);
   }, 200);
 }

@@ -221,7 +221,7 @@ async function login() {
   if (loginValidationCheck()) {
     const loggedInUser = loadCurrentUser();
     localStorage.setItem("currentUser", JSON.stringify(loggedInUser));
-    window.location.assign(`../summary.html`);
+    window.location.assign(`./summary.html`);
   }
 }
 

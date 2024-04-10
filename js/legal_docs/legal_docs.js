@@ -39,13 +39,13 @@ function templateHeaderHTML(isVisible) {
       </svg>
         <span class="header-info">Kanban Project Management Tool</span>
         <div class="header-menu-container" style="${visibilityStyle}">
-          <a href="/help.html">
-          <img  class="header-logo" src="/assets/img/help.png" alt="join logo" />
+          <a href="./help.html">
+          <img  class="header-logo" src="./assets/img/help.png" alt="join logo" />
           </a>
           <div id="header-initials-id" class="header-profil" onclick="togglelogoutContainer()"></div>
           <div id="logout-id" class="logout-dropdown">
-              <a href="/privacy_policy.html" >Privacy Policy</a>
-              <a  href="/legal_notice.html">Legal Notice</a>
+              <a href="./privacy_policy.html" >Privacy Policy</a>
+              <a  href="./legal_notice.html">Legal Notice</a>
               
               <a href="./index.html">Log out</a>
           </div>
@@ -89,26 +89,26 @@ function templateFooterHTML(isVisible) {
         <div  class="menu-wrapper">
             <div class="menu-content" style="${visibilityStyle}" >
                 <div class="footer-icon-box">
-                    <a href="/summary.html" class="footer-link">
-                        <img src="/assets/img/summary_Icons.png" alt="Summary" class="footer-icon"> 
+                    <a href="./summary.html" class="footer-link">
+                        <img src="./assets/img/summary_Icons.png" alt="Summary" class="footer-icon"> 
                         Summary
                     </a>
                 </div>
                 <div class="footer-icon-box">
-                    <a href="/board.html" class="footer-link">
-                        <img src="/assets/img/Board_Icons.png" alt="Board" class="footer-icon">
+                    <a href="./board.html" class="footer-link">
+                        <img src="./assets/img/Board_Icons.png" alt="Board" class="footer-icon">
                         Board
                     </a>
                 </div>
                 <div class="footer-icon-box">
-                    <a href="/add_task.html" class="footer-link">
-                        <img src="/assets/img/Add_Tasks_Icon.png" alt="Add Tasks" class="footer-icon">
+                    <a href="./add_task.html" class="footer-link">
+                        <img src="./assets/img/Add_Tasks_Icon.png" alt="Add Tasks" class="footer-icon">
                         Add Tasks
                     </a>
                 </div>
                 <div class="footer-icon-box">
-                    <a href="/contacts.html" class="footer-link">
-                        <img src="/assets/img/Contacts_Icons.png" alt="Contacts" class="footer-icon">
+                    <a href="./contacts.html" class="footer-link">
+                        <img src="./assets/img/Contacts_Icons.png" alt="Contacts" class="footer-icon">
                         Contacts
                     </a>
                     </div>
@@ -118,10 +118,10 @@ function templateFooterHTML(isVisible) {
        
         <div class="desktop-data-box">
           <div id="policy-menu-id" class="desktop-data-content" showLegals="legals('policy')">
-            <a  href="/privacy_policy.html" class="desktop-data-link">Privacy Policy</a>
+            <a  href="./privacy_policy.html" class="desktop-data-link">Privacy Policy</a>
           </div>
           <div id="legal-menu-id"class="desktop-data-content" showLegals="legals('legal')">
-            <a  href="/legal_notice.html" class="desktop-data-link">Legal notice</a>
+            <a  href="./legal_notice.html" class="desktop-data-link">Legal notice</a>
           </div>
         </div>
         
@@ -134,6 +134,6 @@ function goBack() {
 }
 
 function showLegals(page) {
-  if (page === "policy") window.location.assign("../privacy_policy.html");
-  else if (page === "legal") window.location.assign("../legal_notice.html");
+  if (page === "policy") window.location.assign("./privacy_policy.html");
+  else if (page === "legal") window.location.assign("./legal_notice.html");
 }
