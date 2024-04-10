@@ -12,13 +12,6 @@
   transform: rotate(5deg);
 }
 
-.category-container {
-  width: 252px;
-  display: flex;
-  justify-content: start;
-  align-items: center;
-}
-
 .category-block {
   color: var(--white-color);
   text-align: center;
@@ -225,7 +218,7 @@
     margin-bottom: 8px;
   }
   .board-card {
-    padding: 12px;
+    padding: 16px;
   }
 }
 @media (min-width: 1341px) {
@@ -249,6 +242,6 @@
     margin-bottom: 8px;
   }
   .board-card {
-    padding: 12px;
+    padding: 16px;
   }
 }

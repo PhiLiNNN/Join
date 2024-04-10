@@ -233,6 +233,12 @@
     fill: white;
   }
 }
+@media (max-width: 857px) {
+  .card-info-section {
+    margin-inline: 0px;
+  }
+}
+
 @media (min-width: 1341px) {
   .close-board-info-at {
     top: 53px;

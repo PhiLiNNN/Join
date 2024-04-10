@@ -79,9 +79,24 @@ function generateCardHTML(search) {
 
 function addTaskToList(index, element) {
   const prio = currentUser.tasks.prios[index];
-  let bgColor = getCategoryBgColor(currentUser.tasks.categories[index]);
-  element.innerHTML += generateTaskHTML(index, prio, bgColor);
+  const bgColor = getCategoryBgColor(currentUser.tasks.categories[index]);
+  const {tasksDone, progress} = updateSubtaskStatusBar(index);
+  element.innerHTML += generateTaskHTML(index, prio, bgColor, tasksDone, progress);
   renderBoardAssignedTo(index);
+}
+
+function updateSubtaskStatusBar(index) {
+  let tasksDone = 0;
+  if (currentUser.tasks.subtasks[index].tasks.length === 0) return {tasksDone: 0, progress: false};
+  else {
+    currentUser.tasks.subtasks[index].done.forEach((done) => {
+      if (done) tasksDone++;
+    });
+    const progress = ((tasksDone / currentUser.tasks.subtasks[index].tasks.length) * 100).toFixed(
+      2
+    );
+    return {tasksDone, progress};
+  }
 }
 
 function getCategoryBgColor(category) {
@@ -230,6 +245,7 @@ function moveTo(section) {
   truncateTextIfTooLong(".title-block", 29);
   save();
   clearSearchInput();
+  getHoverContainerGeometrie();
   checkIfSectionIsEmpty();
   setDragEventListeners();
 }
@@ -332,6 +348,7 @@ function openCardInfo(index) {
     toggleVisibility("card-info-section-id", false, "card-visible");
   }, 30);
 }
+
 function renderInfoAssignedTo(index) {
   let element = document.getElementById("board-info-assignedTo-id");
   let emptyEl = document.getElementById("board-info-no-users-assigned-id");
@@ -348,20 +365,25 @@ function renderInfoAssignedTo(index) {
     });
   }
 }
+
 function renderInfoSubtasks(index) {
   let element = document.getElementById("board-info-subtasks-id");
   if (currentUser.tasks.subtasks[index].tasks.length === 0)
     toggleVisibility("no-subtaks-id", false);
   else {
     currentUser.tasks.subtasks[index].tasks.forEach((task, idx) => {
-      element.innerHTML += templateInfoSubtasksHTML(task, idx);
+      const isChecked = currentUser.tasks.subtasks[index].done[idx];
+      element.innerHTML += templateInfoSubtasksHTML(task, isChecked, idx, index);
     });
   }
 }
 
-function toggleSubtaskCheckbox(index) {
+function toggleSubtaskCheckbox(index, cardIndex) {
   let element = document.getElementById(`board-info-Subtaks${index}-id`);
   let isChecked = element.getAttribute("data-checked") === "true";
+  isChecked
+    ? (currentUser.tasks.subtasks[cardIndex].done[index] = false)
+    : (currentUser.tasks.subtasks[cardIndex].done[index] = true);
   element.innerHTML = isChecked ? templateNotCheckedSubtaskHTML() : templateCheckedSubtaskHTML();
   element.setAttribute("data-checked", isChecked ? "false" : "true");
 }
@@ -372,6 +394,10 @@ function closeCardInfo() {
     toggleVisibility("board-card-info-id", false);
     toggleScrollbar("auto");
   }, 300);
+  save();
+  generateCardHTML();
+  checkIfSectionIsEmpty();
+  setDragEventListeners();
 }
 
 function deleteBoardCard(index) {
@@ -403,6 +429,7 @@ function createBoardTask() {
     return;
   }
   toggleVisibility("rotate-err-arrow-id", false);
+  pushZeros(subtaskList.tasks.length);
   updateTasks(titleInput, textareaInput, dateInput, categoryInput, cardSection);
   clearAllSelectedUsers();
   save();

@@ -10,7 +10,7 @@ let assignedTo = {
 };
 let subtaskList = {
   tasks: [],
-  done: 0,
+  done: [],
 };
 let userIndex;
 let prio = ["urgent", "medium", "low"];
@@ -29,7 +29,6 @@ async function initAddTask() {
   addSubtaskVisibilityListener();
   closeAssignedToMenu();
   closeCategoryMenu();
-
   filterAssignedToContacts();
   toggleVisibility("add-task-menu-id", false, "highlight-menu");
   toggleVisibility("at-body-id", true);
@@ -367,10 +366,17 @@ function createTask() {
     return;
   }
   toggleVisibility("rotate-err-arrow-id", false);
+  pushZeros(subtaskList.tasks.length);
   updateTasks(titleInput, textareaInput, dateInput, categoryInput);
   clearAllSelectedUsers();
   save();
   sendUserToBoard();
+}
+
+function pushZeros(listLength) {
+  for (let i = 0; i < listLength; i++) {
+    subtaskList.done.push(false);
+  }
 }
 
 function sendUserToBoard() {
@@ -393,7 +399,6 @@ function updateTasks(titleInput, textareaInput, dateInput, categoryInput, sectio
   currentUser.tasks.prios.push(prio[prioIndex]);
   currentUser.tasks.categories.push(categoryInput);
   currentUser.tasks.subtasks.push(subtaskList);
-  console.log("section :>> ", section);
   currentUser.tasks.board.push(section);
 }
 
