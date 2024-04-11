@@ -124,6 +124,7 @@ function calculateSummaryAmounts() {
   );
   if (noUpcommingUrgents(urgentAmount)) return;
   let nearestDate = getNearestUrgent();
+  console.log("nearestDate :>> ", nearestDate);
   setNearestDate(nearestDate);
 }
 
@@ -134,11 +135,10 @@ function noUpcommingUrgents(urgentAmount) {
 
 function setNearestDate(nearestDate) {
   let dateEl = document.getElementById("upcomming-date-id");
-  let date = new Date(nearestDate);
-  let day = ("0" + date.getDate()).slice(-2);
-  let month = date.getMonth() + 1;
+  let day = ("0" + nearestDate.getDate()).slice(-2);
+  let month = nearestDate.getMonth() + 1;
   let monthString = getMonthAsName(month);
-  let year = date.getFullYear();
+  let year = nearestDate.getFullYear();
   dateEl.innerHTML = `${monthString} ` + `${day}, ` + `${year}`;
 }
 
@@ -188,11 +188,25 @@ function getCurrentDate() {
 
 function checkForClosesDate(dateListMs, currentTimeInMilliseconds) {
   let dates = [];
+  let timePastSinceTwoOclock = checkIfDateIsInPast();
   dateListMs.forEach((date) => {
-    dates.push(date - currentTimeInMilliseconds);
+    dates.push(date + timePastSinceTwoOclock - currentTimeInMilliseconds);
   });
+  console.log("dates :>> ", dates);
+  console.log("dateListMs :>> ", dateListMs);
+  console.log("currentTimeInMilliseconds :>> ", currentTimeInMilliseconds);
+
   nearestDate = dates.indexOf(Math.min(...dates));
+
   return new Date(dateListMs[nearestDate]);
+}
+
+function checkIfDateIsInPast() {
+  let now = new Date();
+  let midnight = new Date(now);
+  midnight.setHours(2, 0, 0, 0);
+  let msSinceMidnight = now - midnight;
+  return msSinceMidnight;
 }
 
 function countOccurrences(list, value) {
