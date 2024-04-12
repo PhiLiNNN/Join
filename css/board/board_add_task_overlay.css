@@ -22,7 +22,8 @@
   transform: translateY(0);
   transform: translateX(0);
 }
-.close-board-at {
+.close-board-at,
+.close-edit-at {
   position: absolute;
   display: flex;
   justify-content: center;
@@ -36,7 +37,8 @@
 .board-at-headline {
   transition: all 300ms ease-in-out;
 }
-.close-board-at svg path {
+.close-board-at svg path,
+.close-edit-at svg path {
   fill: var(--mockup-color);
 }
 
@@ -59,18 +61,23 @@
   .content-container-board {
     max-height: calc(100vh - 380px);
   }
-  .close-board-at {
+  .close-board-at,
+  .close-edit-at {
     top: 32px;
     right: 40px;
   }
-  .board-at-section .close-board-at:hover {
+  .board-at-section .close-board-at:hover,
+  .board-at-section .close-edit-at:hover {
     background: var(--placeholder-color);
   }
   .board-at-section .close-board-at:active,
-  .close-board-at:active {
+  .close-board-at:active,
+  .board-at-section .close-edit-at:active,
+  .close-edit-at:active {
     background: var(--focus-color-btn);
   }
-  .close-board-at:active svg path {
+  .close-board-at:active svg path,
+  .close-edit-at:active svg path {
     fill: white;
   }
   .board-overlay {
@@ -98,7 +105,8 @@
 }
 
 @media (min-width: 1341px) {
-  .close-board-at {
+  .close-board-at,
+  .close-edit-at {
     top: 74px;
     right: 72px;
   }
@@ -147,7 +155,8 @@
   .content-container-board {
     max-height: calc(100vh - 380px);
   }
-  .close-board-at {
+  .close-board-at,
+  .close-edit-at {
     top: 32px;
     right: 40px;
   }
@@ -173,10 +182,12 @@
     justify-content: center;
     align-items: center;
   }
-  .close-board-at:active {
+  .close-board-at:active,
+  .close-edit-at:active {
     background: var(--focus-color-btn);
   }
-  .close-board-at:active svg path {
+  .close-board-at:active svg path,
+  .close-edit-at:active svg path {
     fill: white;
   }
 }
@@ -188,7 +199,8 @@
   .board-at-headline {
     font-size: 43px;
   }
-  .close-board-at {
+  .close-board-at,
+  .close-edit-at {
     top: 28px;
   }
 }
@@ -237,7 +249,8 @@
     top: 0;
     font-size: 48px;
   }
-  .close-board-at {
+  .close-board-at,
+  .close-edit-at {
     top: 32px;
   }
 }
@@ -269,7 +282,8 @@
     margin-top: 24px;
     height: calc(100vh - 110px);
   }
-  .close-board-at {
+  .close-board-at,
+  .close-edit-at {
     top: 12px;
   }
 }

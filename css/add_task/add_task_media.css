@@ -42,6 +42,9 @@
   .subtask-list ul li:hover {
     background: var(--placeholder-color);
   }
+  .subtask-list ul li:hover .vertical-line {
+    background: var(--mockup-color);
+  }
   .assigned-to-box:active,
   .category-dropdown ul li:active {
     background: var(--focus-color-btn);

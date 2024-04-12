@@ -294,9 +294,6 @@ function clearSearchInput() {
 
 function closeAddTaskOverlay() {
   closeOverlay();
-  // clearAllLists();
-  // Object.assign(currentUser, currentUserClone);
-  // save();
 }
 
 function closeOverlay() {
@@ -356,7 +353,6 @@ function renderInfoSubtasks(index) {
   else {
     currentUser.tasks.subtasks[index].tasks.forEach((task, idx) => {
       const isChecked = currentUser.tasks.subtasks[index].done[idx];
-      console.log("isChecked :>> ", isChecked);
       element.innerHTML += templateInfoSubtasksHTML(task, isChecked, idx, index);
     });
   }
@@ -400,7 +396,6 @@ function deleteBoardCard(index) {
 function createBoardTask() {
   const {titleInput, textareaInput, dateInput, categoryInput} = getAddTaskInputs();
   const atBoolArr = [false, false, false, false, false, false];
-  console.log("createBoardTask :>> ", currentUser.tasks);
   validateInput(titleInput, atBoolArr, 0, 3);
   validateInput(dateInput, atBoolArr, 1, 4);
   validateInput(categoryInput, atBoolArr, 2, 5);
@@ -416,8 +411,9 @@ function createBoardTask() {
   save();
   generateCardHTML();
   sendUserBack();
-
-  console.log("createBoardTask :>> ", currentUser.tasks);
+  checkIfSectionIsEmpty();
+  getHoverContainerGeometrie();
+  setDragEventListeners();
 }
 
 function sendUserBack() {
@@ -428,9 +424,6 @@ function sendUserBack() {
     toggleVisibility("at-success-msg-id", false, "slide-sm");
     setTimeout(() => {
       closeOverlay();
-      checkIfSectionIsEmpty();
-      getHoverContainerGeometrie();
-      setDragEventListeners();
     }, 900);
   }, 200);
 }
@@ -447,23 +440,8 @@ function openCardInfo(index) {
   setTimeout(() => {
     toggleVisibility("card-info-section-id", false, "card-visible");
   }, 30);
-  console.log("openCardInfo :>> ", currentUser.tasks);
 }
-// function initBoard() {
-//   const isUserLoggedIn = checkUserLogIn();
-//   if (!isUserLoggedIn) window.location.assign("./error_page.html");
-//   currentUser = JSON.parse(localStorage.getItem("currentUser"));
-//   console.log("currentUser :>> ", currentUser);
-//   toggleVisibility("board-menu-id", false, "highlight-menu");
-//   toggleVisibility("board-body-id", true);
-//   loadHeaderInitials();
-//   generateCardHTML();
-//   getHoverContainerGeometrie();
-//   setDragEventListeners();
-//   checkIfSectionIsEmpty();
-//   truncateTextIfTooLong(".description-block");
-//   truncateTextIfTooLong(".title-block", 31);
-// }
+
 function openAddTaskOverlay(section) {
   clearAllLists();
   currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -477,25 +455,34 @@ function openAddTaskOverlay(section) {
   closeAssignedToMenu();
   closeCategoryMenu();
   filterAssignedToContacts();
-  console.log("openAddTaskOverlay :>> ", currentUser.tasks);
 }
 function clearAllSelectedBoardUsers() {
   currentUser.contacts.forEach((contact) => {
     contact.selected = false;
   });
 }
-// function cloneCurrentUser(obj) {
-//   return JSON.parse(JSON.stringify(obj));
-// }
+
+function pusAllAssignedUser(index) {
+  currentUser.tasks.assignedTo[index].userNames.forEach((name, idx) => {
+    assignedTo.initials.push(currentUser.tasks.assignedTo[index].initials[idx]);
+    assignedTo.colorCodes.push(currentUser.tasks.assignedTo[index].colorCodes[idx]);
+    assignedTo.textColors.push(currentUser.tasks.assignedTo[index].textColors[idx]);
+    assignedTo.userNames.push(name);
+    assignedTo.userMails.push(currentUser.tasks.assignedTo[index].userMails[idx]);
+  });
+}
 
 function editBoardCard(index) {
-  // currentUserClone = cloneCurrentUser(currentUser);
+  currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  clearAllLists();
+  pusAllAssignedUser(index);
   toggleAtCard();
+  toggleVisibility("close-edit-at-id", true);
+  toggleVisibility("close-board-at-id", false);
   setSelectedUsersToTrue(index);
   renderAssignedToContacts();
   setRightCheckBox();
   renderAddedContactsToEdit(index);
-  //hier wird verdoppeklt oder geleert wenn ich die arrays leere
   setCurrentDate();
   addSubtaskByEnter();
   addSubtaskVisibilityListener();
@@ -505,14 +492,20 @@ function editBoardCard(index) {
   setInputValue("title-input-id", currentUser.tasks.titles[index]);
   setInputValue("textarea-input-id", currentUser.tasks.descriptions[index]);
   setInputValue("category-input-id", currentUser.tasks.categories[index]);
+  setInputValue("date-input-id", currentUser.tasks.dates[index]);
 }
-
+function closeEditTaskOverlay() {
+  currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  toggleVisibility("close-edit-at-id", false);
+  toggleVisibility("close-board-at-id", true);
+  clearAllLists();
+  clearAllSelectedUsers();
+  closeOverlay();
+}
 function renderAddedContactsToEdit(index) {
-  console.log("hier in board");
   let addedContactsElement = document.getElementById("added-contacts-id");
   addedContactsElement.innerHTML = "";
   currentUser.tasks.assignedTo[index].colorCodes.forEach((colorCode, idx) => {
-    pushCurrentSelected(index, idx);
     if (idx > 4) return;
     addedContactsElement.innerHTML += templateaddedContactsHTML(
       idx,
@@ -521,16 +514,6 @@ function renderAddedContactsToEdit(index) {
       currentUser.tasks.assignedTo[index].textColors[idx]
     );
   });
-}
-
-function pushCurrentSelected(index, idx) {
-  // clearAllLists();
-  console.log("currentUser.tasks :>> ", currentUser.tasks);
-  assignedTo.initials.push(currentUser.tasks.assignedTo[index].initials[idx]);
-  assignedTo.colorCodes.push(currentUser.tasks.assignedTo[index].colorCodes[idx]);
-  assignedTo.textColors.push(currentUser.tasks.assignedTo[index].textColors[idx]);
-  assignedTo.userNames.push(currentUser.tasks.assignedTo[index].userNames[idx]);
-  assignedTo.userMails.push(currentUser.tasks.assignedTo[index].userMails[idx]);
 }
 
 function setSelectedUsersToTrue(index) {

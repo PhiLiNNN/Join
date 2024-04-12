@@ -23,6 +23,7 @@ async function initAddTask() {
   if (!isUserLoggedIn) window.location.assign("./error_page.html");
   currentUser = JSON.parse(localStorage.getItem("currentUser"));
   console.log(currentUser);
+  clearAllSelectedUsers();
   renderAssignedToContacts();
   setCurrentDate();
   addSubtaskByEnter();
@@ -137,7 +138,6 @@ function selectedAssignedToUser(event, index) {
   const contact = currentUser.contacts.find((contact) => contact.name === spanElemnt.innerHTML);
   event.currentTarget.classList.toggle("selected-contact-at");
   if (event.currentTarget.classList.contains("selected-contact-at")) {
-    console.log("jaa:>> at");
     svgElement.innerHTML = templateSvgCheckboxConfirmedHTML();
     pushSelectedUser(event);
     contact.selected = true;
@@ -147,7 +147,6 @@ function selectedAssignedToUser(event, index) {
     contact.selected = false;
   }
   renderAddedContacts();
-  console.log("currentUser.tasks at:>> ", currentUser.tasks);
 }
 
 function getUserInfo(event) {
@@ -371,6 +370,7 @@ function createTask() {
   pushZeros(subtaskList.tasks.length);
   updateTasks(titleInput, textareaInput, dateInput, categoryInput);
   clearAllSelectedUsers();
+  renderAssignedToContacts();
   save();
   sendUserToBoard();
 }
@@ -425,6 +425,7 @@ function clearAll() {
   clearAllLists();
   clearAllErrMsg();
   clearAllSelectedUsers();
+  renderAssignedToContacts();
   renderAddedContacts();
   renderSubtasks();
   togglePrioImg("medium-default-id");
@@ -464,5 +465,4 @@ function clearAllSelectedUsers() {
   currentUser.contacts.forEach((contact) => {
     contact.selected = false;
   });
-  renderAssignedToContacts();
 }

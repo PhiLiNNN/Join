@@ -351,6 +351,7 @@ function createTask() {
   pushZeros(subtaskList.tasks.length);
   updateTasks(titleInput, textareaInput, dateInput, categoryInput);
   clearAllSelectedUsers();
+  renderAssignedToContacts();
   save();
   sendUserToBoard();
 }
@@ -405,6 +406,7 @@ function clearAll() {
   clearAllLists();
   clearAllErrMsg();
   clearAllSelectedUsers();
+  renderAssignedToContacts();
   renderAddedContacts();
   renderSubtasks();
   togglePrioImg("medium-default-id");
@@ -446,5 +448,4 @@ function clearAllSelectedUsers() {
   currentUser.contacts.forEach((contact) => {
     contact.selected = false;
   });
-  renderAssignedToContacts();
 }
