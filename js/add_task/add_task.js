@@ -460,7 +460,7 @@ function clearAllErrMsg() {
   toggleVisibility("category-container-id", !false, "error-border");
 }
 
-async function clearAllSelectedUsers() {
+function clearAllSelectedUsers() {
   currentUser.contacts.forEach((contact) => {
     contact.selected = false;
   });

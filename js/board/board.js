@@ -469,6 +469,7 @@ function openAddTaskOverlay(section) {
   currentUser = JSON.parse(localStorage.getItem("currentUser"));
   cardSection = section;
   toggleAtCard();
+  clearAllSelectedBoardUsers();
   renderAssignedToContacts();
   setCurrentDate();
   addSubtaskByEnter();
@@ -478,7 +479,11 @@ function openAddTaskOverlay(section) {
   filterAssignedToContacts();
   console.log("openAddTaskOverlay :>> ", currentUser.tasks);
 }
-
+function clearAllSelectedBoardUsers() {
+  currentUser.contacts.forEach((contact) => {
+    contact.selected = false;
+  });
+}
 // function cloneCurrentUser(obj) {
 //   return JSON.parse(JSON.stringify(obj));
 // }
@@ -486,10 +491,10 @@ function openAddTaskOverlay(section) {
 function editBoardCard(index) {
   // currentUserClone = cloneCurrentUser(currentUser);
   toggleAtCard();
-  // setSelectedUsersToTrue(index);
-  // renderAssignedToContacts();
-  // setRightCheckBox();
-  // renderAddedContacts();
+  setSelectedUsersToTrue(index);
+  renderAssignedToContacts();
+  setRightCheckBox();
+  renderAddedContactsToEdit(index);
   //hier wird verdoppeklt oder geleert wenn ich die arrays leere
   setCurrentDate();
   addSubtaskByEnter();
@@ -502,47 +507,48 @@ function editBoardCard(index) {
   setInputValue("category-input-id", currentUser.tasks.categories[index]);
 }
 
-// function renderAddedContactsToEdit(index) {
-//   console.log("hier in board");
-//   let addedContactsElement = document.getElementById("added-contacts-id");
-//   addedContactsElement.innerHTML = "";
-//   currentUser.tasks.assignedTo[index].colorCodes.forEach((colorCode, idx) => {
-//     pushCurrentSelected(index, idx);
-//     if (idx > 4) return;
-//     addedContactsElement.innerHTML += templateaddedContactsHTML(
-//       idx,
-//       colorCode,
-//       currentUser.tasks.assignedTo[index].initials[idx],
-//       currentUser.tasks.assignedTo[index].textColors[idx]
-//     );
-//   });
-// }
+function renderAddedContactsToEdit(index) {
+  console.log("hier in board");
+  let addedContactsElement = document.getElementById("added-contacts-id");
+  addedContactsElement.innerHTML = "";
+  currentUser.tasks.assignedTo[index].colorCodes.forEach((colorCode, idx) => {
+    pushCurrentSelected(index, idx);
+    if (idx > 4) return;
+    addedContactsElement.innerHTML += templateaddedContactsHTML(
+      idx,
+      colorCode,
+      currentUser.tasks.assignedTo[index].initials[idx],
+      currentUser.tasks.assignedTo[index].textColors[idx]
+    );
+  });
+}
 
-// function pushCurrentSelected(index, idx) {
-//   console.log("currentUser.tasks :>> ", currentUser.tasks);
-//   assignedTo.initials.push(currentUser.tasks.assignedTo[index].initials[idx]);
-//   assignedTo.colorCodes.push(currentUser.tasks.assignedTo[index].colorCodes[idx]);
-//   assignedTo.textColors.push(currentUser.tasks.assignedTo[index].textColors[idx]);
-//   assignedTo.userNames.push(currentUser.tasks.assignedTo[index].userNames[idx]);
-//   assignedTo.userMails.push(currentUser.tasks.assignedTo[index].userMails[idx]);
-// }
+function pushCurrentSelected(index, idx) {
+  // clearAllLists();
+  console.log("currentUser.tasks :>> ", currentUser.tasks);
+  assignedTo.initials.push(currentUser.tasks.assignedTo[index].initials[idx]);
+  assignedTo.colorCodes.push(currentUser.tasks.assignedTo[index].colorCodes[idx]);
+  assignedTo.textColors.push(currentUser.tasks.assignedTo[index].textColors[idx]);
+  assignedTo.userNames.push(currentUser.tasks.assignedTo[index].userNames[idx]);
+  assignedTo.userMails.push(currentUser.tasks.assignedTo[index].userMails[idx]);
+}
 
-// function setSelectedUsersToTrue(index) {
-//   currentUser.tasks.assignedTo[index].userMails.forEach((mail) => {
-//     currentUser.contacts.find((contact) => {
-//       if (contact.email === mail) contact.selected = true;
-//     });
-//   });
-// }
+function setSelectedUsersToTrue(index) {
+  currentUser.tasks.assignedTo[index].userMails.forEach((mail) => {
+    currentUser.contacts.find((contact) => {
+      if (contact.email === mail) contact.selected = true;
+    });
+  });
+}
 
-// function setRightCheckBox() {
-//   currentUser.contacts.forEach((contact, idx) => {
-//     if (contact.selected === true) {
-//       let svgElement = document.querySelector(`#assigned-to-box-${idx} svg`);
-//       svgElement.innerHTML = templateSvgCheckboxConfirmedHTML();
-//     }
-//   });
-// }
+function setRightCheckBox() {
+  currentUser.contacts.forEach((contact, idx) => {
+    if (contact.selected === true) {
+      let svgElement = document.querySelector(`#assigned-to-box-${idx} svg`);
+      svgElement.innerHTML = templateSvgCheckboxConfirmedHTML();
+    }
+  });
+}
 
 function setInputValue(elementId, value) {
   const element = (document.getElementById(elementId).value = value);
