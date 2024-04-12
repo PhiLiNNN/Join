@@ -294,7 +294,7 @@ function clearSearchInput() {
 
 function closeAddTaskOverlay() {
   closeOverlay();
-  clearAll();
+  // clearAllLists();
   // Object.assign(currentUser, currentUserClone);
   // save();
 }
