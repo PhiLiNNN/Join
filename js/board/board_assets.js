@@ -100,7 +100,7 @@ function templateCardInfoHTML(idx, bgColor, prio, date) {
                     <span id="board-info-no-users-assigned-id" class="board-info-prop board-info-big-size">Assigned To:</span>
                     <div id="board-info-assignedTo-id" class="board-info-assignedTo"></div>
                 </div> 
-                <div id="no-subtaks-id"  class="board-info-margin">
+                <div id="no-subtasks-id"  class="board-info-margin">
                     <span  class="board-info-prop board-info-big-size">Subtasks</span>
                     <div id="board-info-subtasks-id" class="board-info-subtasks"></div>
                 </div> 

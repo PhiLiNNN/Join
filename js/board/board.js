@@ -15,6 +15,9 @@ let awaitHeight;
 let doneHeight;
 let allDragElements;
 let cardSection;
+let currentUser;
+// let currentUserClone;
+// let assignedToClone;
 
 function initBoard() {
   const isUserLoggedIn = checkUserLogIn();
@@ -190,8 +193,6 @@ function setNewHoverContainerHeight(event) {
   });
 }
 
-function toggleContainerHeight() {}
-
 function getDragContainerIds() {
   let toDoEl = document.getElementById("toDo-hover-id");
   let inProgressEl = document.getElementById("inProgress-hover-id");
@@ -292,6 +293,13 @@ function clearSearchInput() {
 }
 
 function closeAddTaskOverlay() {
+  closeOverlay();
+  clearAll();
+  // Object.assign(currentUser, currentUserClone);
+  // save();
+}
+
+function closeOverlay() {
   toggleVisibility("at-section-id", true, "card-visible");
   setTimeout(() => {
     setTimeout(() => {
@@ -299,17 +307,6 @@ function closeAddTaskOverlay() {
     }, 900);
     toggleVisibility("board-at-id", false);
   }, 300);
-}
-
-function openAddTaskOverlay(section) {
-  cardSection = section;
-  toggleAtCard();
-  renderAssignedToContacts();
-  setCurrentDate();
-  addSubtaskByEnter();
-  addSubtaskVisibilityListener();
-  closeAssignedToMenu();
-  closeCategoryMenu();
 }
 
 function toggleAtCard() {
@@ -335,20 +332,6 @@ function prepareCardInfoInpurts(index) {
   return {bgColor, prio, date};
 }
 
-function openCardInfo(index) {
-  let element = document.getElementById("board-card-info-id");
-  element.innerHTML = "";
-  const {bgColor, prio, date} = prepareCardInfoInpurts(index);
-  element.innerHTML = templateCardInfoHTML(index, bgColor, prio, date);
-  renderInfoAssignedTo(index);
-  renderInfoSubtasks(index);
-  toggleScrollbar("hidden");
-  toggleVisibility("board-card-info-id", true);
-  setTimeout(() => {
-    toggleVisibility("card-info-section-id", false, "card-visible");
-  }, 30);
-}
-
 function renderInfoAssignedTo(index) {
   let element = document.getElementById("board-info-assignedTo-id");
   let emptyEl = document.getElementById("board-info-no-users-assigned-id");
@@ -369,10 +352,11 @@ function renderInfoAssignedTo(index) {
 function renderInfoSubtasks(index) {
   let element = document.getElementById("board-info-subtasks-id");
   if (currentUser.tasks.subtasks[index].tasks.length === 0)
-    toggleVisibility("no-subtaks-id", false);
+    toggleVisibility("no-subtasks-id", false);
   else {
     currentUser.tasks.subtasks[index].tasks.forEach((task, idx) => {
       const isChecked = currentUser.tasks.subtasks[index].done[idx];
+      console.log("isChecked :>> ", isChecked);
       element.innerHTML += templateInfoSubtasksHTML(task, isChecked, idx, index);
     });
   }
@@ -409,17 +393,14 @@ function deleteBoardCard(index) {
   currentUser.tasks.subtasks.splice(index, 1);
   currentUser.tasks.dates.splice(index, 1);
   currentUser.tasks.titles.splice(index, 1);
-  save();
   closeCardInfo();
-  generateCardHTML();
-  checkIfSectionIsEmpty();
   getHoverContainerGeometrie();
-  setDragEventListeners();
 }
 
 function createBoardTask() {
   const {titleInput, textareaInput, dateInput, categoryInput} = getAddTaskInputs();
   const atBoolArr = [false, false, false, false, false, false];
+  console.log("createBoardTask :>> ", currentUser.tasks);
   validateInput(titleInput, atBoolArr, 0, 3);
   validateInput(dateInput, atBoolArr, 1, 4);
   validateInput(categoryInput, atBoolArr, 2, 5);
@@ -435,6 +416,8 @@ function createBoardTask() {
   save();
   generateCardHTML();
   sendUserBack();
+
+  console.log("createBoardTask :>> ", currentUser.tasks);
 }
 
 function sendUserBack() {
@@ -444,7 +427,7 @@ function sendUserBack() {
   setTimeout(() => {
     toggleVisibility("at-success-msg-id", false, "slide-sm");
     setTimeout(() => {
-      closeAddTaskOverlay();
+      closeOverlay();
       checkIfSectionIsEmpty();
       getHoverContainerGeometrie();
       setDragEventListeners();
@@ -452,7 +435,39 @@ function sendUserBack() {
   }, 200);
 }
 
-function editBoardCard(index) {
+function openCardInfo(index) {
+  let element = document.getElementById("board-card-info-id");
+  element.innerHTML = "";
+  const {bgColor, prio, date} = prepareCardInfoInpurts(index);
+  element.innerHTML = templateCardInfoHTML(index, bgColor, prio, date);
+  renderInfoAssignedTo(index);
+  renderInfoSubtasks(index);
+  toggleScrollbar("hidden");
+  toggleVisibility("board-card-info-id", true);
+  setTimeout(() => {
+    toggleVisibility("card-info-section-id", false, "card-visible");
+  }, 30);
+  console.log("openCardInfo :>> ", currentUser.tasks);
+}
+// function initBoard() {
+//   const isUserLoggedIn = checkUserLogIn();
+//   if (!isUserLoggedIn) window.location.assign("./error_page.html");
+//   currentUser = JSON.parse(localStorage.getItem("currentUser"));
+//   console.log("currentUser :>> ", currentUser);
+//   toggleVisibility("board-menu-id", false, "highlight-menu");
+//   toggleVisibility("board-body-id", true);
+//   loadHeaderInitials();
+//   generateCardHTML();
+//   getHoverContainerGeometrie();
+//   setDragEventListeners();
+//   checkIfSectionIsEmpty();
+//   truncateTextIfTooLong(".description-block");
+//   truncateTextIfTooLong(".title-block", 31);
+// }
+function openAddTaskOverlay(section) {
+  clearAllLists();
+  currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  cardSection = section;
   toggleAtCard();
   renderAssignedToContacts();
   setCurrentDate();
@@ -460,8 +475,74 @@ function editBoardCard(index) {
   addSubtaskVisibilityListener();
   closeAssignedToMenu();
   closeCategoryMenu();
-  setInputValue("title-input-id", currentUser.tasks.titles[index]);
+  filterAssignedToContacts();
+  console.log("openAddTaskOverlay :>> ", currentUser.tasks);
 }
+
+// function cloneCurrentUser(obj) {
+//   return JSON.parse(JSON.stringify(obj));
+// }
+
+function editBoardCard(index) {
+  // currentUserClone = cloneCurrentUser(currentUser);
+  toggleAtCard();
+  // setSelectedUsersToTrue(index);
+  // renderAssignedToContacts();
+  // setRightCheckBox();
+  // renderAddedContacts();
+  //hier wird verdoppeklt oder geleert wenn ich die arrays leere
+  setCurrentDate();
+  addSubtaskByEnter();
+  addSubtaskVisibilityListener();
+  filterAssignedToContacts();
+  closeAssignedToMenu();
+  closeCategoryMenu();
+  setInputValue("title-input-id", currentUser.tasks.titles[index]);
+  setInputValue("textarea-input-id", currentUser.tasks.descriptions[index]);
+  setInputValue("category-input-id", currentUser.tasks.categories[index]);
+}
+
+// function renderAddedContactsToEdit(index) {
+//   console.log("hier in board");
+//   let addedContactsElement = document.getElementById("added-contacts-id");
+//   addedContactsElement.innerHTML = "";
+//   currentUser.tasks.assignedTo[index].colorCodes.forEach((colorCode, idx) => {
+//     pushCurrentSelected(index, idx);
+//     if (idx > 4) return;
+//     addedContactsElement.innerHTML += templateaddedContactsHTML(
+//       idx,
+//       colorCode,
+//       currentUser.tasks.assignedTo[index].initials[idx],
+//       currentUser.tasks.assignedTo[index].textColors[idx]
+//     );
+//   });
+// }
+
+// function pushCurrentSelected(index, idx) {
+//   console.log("currentUser.tasks :>> ", currentUser.tasks);
+//   assignedTo.initials.push(currentUser.tasks.assignedTo[index].initials[idx]);
+//   assignedTo.colorCodes.push(currentUser.tasks.assignedTo[index].colorCodes[idx]);
+//   assignedTo.textColors.push(currentUser.tasks.assignedTo[index].textColors[idx]);
+//   assignedTo.userNames.push(currentUser.tasks.assignedTo[index].userNames[idx]);
+//   assignedTo.userMails.push(currentUser.tasks.assignedTo[index].userMails[idx]);
+// }
+
+// function setSelectedUsersToTrue(index) {
+//   currentUser.tasks.assignedTo[index].userMails.forEach((mail) => {
+//     currentUser.contacts.find((contact) => {
+//       if (contact.email === mail) contact.selected = true;
+//     });
+//   });
+// }
+
+// function setRightCheckBox() {
+//   currentUser.contacts.forEach((contact, idx) => {
+//     if (contact.selected === true) {
+//       let svgElement = document.querySelector(`#assigned-to-box-${idx} svg`);
+//       svgElement.innerHTML = templateSvgCheckboxConfirmedHTML();
+//     }
+//   });
+// }
 
 function setInputValue(elementId, value) {
   const element = (document.getElementById(elementId).value = value);

@@ -1,4 +1,3 @@
-let currentUser;
 let isUserLoggedIn;
 let currentIndex = -1;
 let assignedTo = {
@@ -17,23 +16,6 @@ let prio = ["urgent", "medium", "low"];
 let prioIndex = 1;
 let isFilterActive = false;
 let clickEventListener;
-
-async function initAddTask() {
-  isUserLoggedIn = checkUserLogIn();
-  if (!isUserLoggedIn) window.location.assign("./error_page.html");
-  currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  console.log(currentUser);
-  renderAssignedToContacts();
-  setCurrentDate();
-  addSubtaskByEnter();
-  addSubtaskVisibilityListener();
-  closeAssignedToMenu();
-  closeCategoryMenu();
-  filterAssignedToContacts();
-  toggleVisibility("add-task-menu-id", false, "highlight-menu");
-  toggleVisibility("at-body-id", true);
-  loadHeaderInitials();
-}
 
 function filterAssignedToContacts() {
   document.getElementById("assignedto-input-id").addEventListener("input", function (event) {
@@ -137,7 +119,6 @@ function selectedAssignedToUser(event, index) {
   const contact = currentUser.contacts.find((contact) => contact.name === spanElemnt.innerHTML);
   event.currentTarget.classList.toggle("selected-contact-at");
   if (event.currentTarget.classList.contains("selected-contact-at")) {
-    console.log("jaa:>> at");
     svgElement.innerHTML = templateSvgCheckboxConfirmedHTML();
     pushSelectedUser(event);
     contact.selected = true;
@@ -147,7 +128,6 @@ function selectedAssignedToUser(event, index) {
     contact.selected = false;
   }
   renderAddedContacts();
-  console.log("currentUser.tasks at:>> ", currentUser.tasks);
 }
 
 function getUserInfo(event) {
@@ -449,6 +429,8 @@ function clearAllLists() {
   assignedTo.colorCodes.splice(0, assignedTo.colorCodes.length);
   assignedTo.initials.splice(0, assignedTo.initials.length);
   assignedTo.textColors.splice(0, assignedTo.textColors.length);
+  subtaskList.tasks.splice(0, subtaskList.tasks.length);
+  subtaskList.done.splice(0, subtaskList.done.length);
 }
 
 function clearAllErrMsg() {
