@@ -16,8 +16,7 @@ let doneHeight;
 let allDragElements;
 let cardSection;
 let currentUser;
-// let currentUserClone;
-// let assignedToClone;
+let properDraggEl = false;
 
 function initBoard() {
   const isUserLoggedIn = checkUserLogIn();
@@ -152,28 +151,37 @@ function allowDrop(event) {
 }
 
 function setDragEventListeners() {
+  console.log("11111");
   allDragElements = document.querySelectorAll(".board-card");
   allDragElements.forEach((el) => {
-    el.addEventListener("drag", (event) => {
-      checkAndToggleVisibility(event, toDoLeftBorder, toDoTopBorder, toDotHeight, "toDo-hover-id");
-      checkAndToggleVisibility(
-        event,
-        inProgressLeftBorder,
-        inProgressTopBorder,
-        inProgressHeight,
-        "inProgress-hover-id"
-      );
-      checkAndToggleVisibility(
-        event,
-        awaitLeftBorder,
-        awaitTopBorder,
-        awaitHeight,
-        "awaitFeedback-hover-id"
-      );
-      checkAndToggleVisibility(event, doneLeftBorder, doneTopBorder, doneHeight, "done-hover-id");
-    });
+    el.addEventListener("drag", handleDrag);
   });
 }
+
+function handleDrag(event) {
+  checkAndToggleVisibility(event, toDoLeftBorder, toDoTopBorder, toDotHeight, "toDo-hover-id");
+  checkAndToggleVisibility(
+    event,
+    inProgressLeftBorder,
+    inProgressTopBorder,
+    inProgressHeight,
+    "inProgress-hover-id"
+  );
+  checkAndToggleVisibility(
+    event,
+    awaitLeftBorder,
+    awaitTopBorder,
+    awaitHeight,
+    "awaitFeedback-hover-id"
+  );
+  checkAndToggleVisibility(event, doneLeftBorder, doneTopBorder, doneHeight, "done-hover-id");
+}
+
+// function removeDragEventListeners() {
+//   allDragElements.forEach((el) => {
+//     el.removeEventListener("drag", handleDrag);
+//   });
+// }
 
 function checkAndToggleVisibility(event, leftBorder, topBorder, elementHeight, elementId) {
   const withinHorizontalRange =
@@ -223,6 +231,7 @@ function getHoverContainerGeometrie() {
 }
 
 function startDragging(event, title, index) {
+  properDraggEl = true;
   setNewHoverContainerHeight(event);
   currentCard = index;
   currentDraggedElement = title;
@@ -279,11 +288,11 @@ function resetNewHoverContainerHeight() {
 
 document.getElementById("search-desktop-id").addEventListener("input", filterToDos);
 document.getElementById("search-mobile-id").addEventListener("input", filterToDos);
-document.addEventListener("dragend", () => {
+document.addEventListener("dragend", (e) => {
   resetNewHoverContainerHeight();
-  toggleVisibility(`draggedCard${currentCard}-id`, true, "board-card-tilt");
+  if (properDraggEl) toggleVisibility(`draggedCard${currentCard}-id`, true, "board-card-tilt");
+  properDraggEl = false;
 });
-//Big Card Overlay
 
 //add Task Overlay
 
@@ -366,6 +375,7 @@ function toggleSubtaskCheckbox(index, cardIndex) {
     : (currentUser.tasks.subtasks[cardIndex].done[index] = true);
   element.innerHTML = isChecked ? templateNotCheckedSubtaskHTML() : templateCheckedSubtaskHTML();
   element.setAttribute("data-checked", isChecked ? "false" : "true");
+  localStorage.setItem("currentUser", JSON.stringify(currentUser));
 }
 
 function closeCardInfo() {
@@ -433,6 +443,7 @@ function openCardInfo(index) {
   element.innerHTML = "";
   const {bgColor, prio, date} = prepareCardInfoInpurts(index);
   element.innerHTML = templateCardInfoHTML(index, bgColor, prio, date);
+
   renderInfoAssignedTo(index);
   renderInfoSubtasks(index);
   toggleScrollbar("hidden");
@@ -470,6 +481,10 @@ function pusAllAssignedUser(index) {
     assignedTo.userNames.push(name);
     assignedTo.userMails.push(currentUser.tasks.assignedTo[index].userMails[idx]);
   });
+  currentUser.tasks.subtasks[index].tasks.forEach((task, idx) => {
+    subtaskList.tasks.push(task);
+    subtaskList.done.push(currentUser.tasks.subtasks[index].done[idx]);
+  });
 }
 
 function editBoardCard(index) {
@@ -482,21 +497,24 @@ function editBoardCard(index) {
   setSelectedUsersToTrue(index);
   renderAssignedToContacts();
   setRightCheckBox();
-  renderAddedContactsToEdit(index);
+  setInputs(index);
   setCurrentDate();
   addSubtaskByEnter();
   addSubtaskVisibilityListener();
   filterAssignedToContacts();
   closeAssignedToMenu();
   closeCategoryMenu();
-  setInputs();
+  console.log("currentUser editBoardCard:>> ", currentUser);
 }
 
-function setInputs() {
+function setInputs(index) {
   setInputValue("title-input-id", currentUser.tasks.titles[index]);
   setInputValue("textarea-input-id", currentUser.tasks.descriptions[index]);
   setInputValue("category-input-id", currentUser.tasks.categories[index]);
   setInputValue("date-input-id", currentUser.tasks.dates[index]);
+  renderAddedContactsToEdit(index);
+  renderSubtasks();
+  togglePrioImg(`${currentUser.tasks.prios[index]}-default-id`);
 }
 
 function closeEditTaskOverlay() {
