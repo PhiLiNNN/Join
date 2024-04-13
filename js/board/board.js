@@ -489,11 +489,16 @@ function editBoardCard(index) {
   filterAssignedToContacts();
   closeAssignedToMenu();
   closeCategoryMenu();
+  setInputs();
+}
+
+function setInputs() {
   setInputValue("title-input-id", currentUser.tasks.titles[index]);
   setInputValue("textarea-input-id", currentUser.tasks.descriptions[index]);
   setInputValue("category-input-id", currentUser.tasks.categories[index]);
   setInputValue("date-input-id", currentUser.tasks.dates[index]);
 }
+
 function closeEditTaskOverlay() {
   currentUser = JSON.parse(localStorage.getItem("currentUser"));
   toggleVisibility("close-edit-at-id", false);
