@@ -208,7 +208,7 @@ function setFavicon() {
   const link = document.querySelector("link[rel*='icon']") || document.createElement("link");
   link.type = "image/x-icon";
   link.rel = "shortcut icon";
-  if (prefersDarkMode) link.href = "favicon_dark_mode.svg";
-  else link.href = "favicon_white_mode.svg";
+  if (prefersDarkMode) link.href = "../assets/fav/favicon_dark_mode.svg";
+  else link.href = "../assets/fav/favicon_white_mode.svg";
   document.getElementsByTagName("head")[0].appendChild(link);
 }
