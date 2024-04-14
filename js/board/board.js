@@ -523,7 +523,6 @@ function editBoardCard() {
   renderInfoAssignedTo(currentCard);
   renderInfoSubtasks(currentCard);
   closeOverlay();
-  console.log("currentUser:>> ", currentUser);
 }
 
 function setNewCardInputs(index) {
@@ -555,8 +554,6 @@ function openCardInfo(index) {
   setTimeout(() => {
     toggleVisibility("card-info-section-id", false, "card-visible");
   }, 30);
-
-  console.log("currentUser: openCardInfo>> ", currentUser);
 }
 
 function updateTasks(titleInput, textareaInput, dateInput, categoryInput, section = "toDo") {
