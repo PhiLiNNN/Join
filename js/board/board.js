@@ -526,7 +526,8 @@ function editBoardCard() {
 function setNewCardInputs(index) {
   const bgColor = getCategoryBgColor(currentUser.tasks.categories[index]);
   const date = dateFormatter(currentUser.tasks.dates[index]);
-  document.getElementById("board-info-category-id").style.backgroundColor = bgColor;
+  document.getElementById("board-info-category-bg-id").style.backgroundColor = bgColor;
+  document.getElementById("board-info-category-id").innerHTML = currentUser.tasks.categories[index];
   document.getElementById("board-title-id").innerHTML = currentUser.tasks.titles[index];
   document.getElementById("board-description-id").innerHTML = currentUser.tasks.descriptions[index];
   document.getElementById("board-prio-cat-id").innerHTML =
