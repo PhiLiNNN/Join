@@ -2,6 +2,7 @@ let isUserLoggedIn;
 let currentUser;
 
 async function initSummary() {
+  setFavicon();
   isUserLoggedIn = checkUserLogIn();
   if (!isUserLoggedIn) window.location.assign("./error_page.html");
   currentUser = JSON.parse(localStorage.getItem("currentUser"));

@@ -2,6 +2,7 @@ let currentUser;
 let isUserLoggedIn;
 
 function legalsInit(event) {
+  setFavicon();
   const isUserLoggedIn = checkUserLogIn();
   const header = document.getElementById("header-id");
   const footer = document.getElementById("footer-id");
@@ -20,6 +21,7 @@ function legalsInit(event) {
 }
 
 async function helpInit() {
+  setFavicon();
   await includeHTML();
   currentUser = JSON.parse(localStorage.getItem("currentUser"));
   loadHeaderInitials();

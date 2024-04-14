@@ -9,6 +9,7 @@ let nameCheck;
 let emailCheck;
 
 function contactsInit() {
+  setFavicon();
   isUserLoggedIn = checkUserLogIn();
   if (!isUserLoggedIn) window.location.assign("./error_page.html");
   currentUser = JSON.parse(localStorage.getItem("currentUser"));

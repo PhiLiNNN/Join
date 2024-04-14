@@ -19,6 +19,7 @@ let isFilterActive = false;
 let clickEventListener;
 
 async function initAddTask() {
+  setFavicon();
   isUserLoggedIn = checkUserLogIn();
   if (!isUserLoggedIn) window.location.assign("./error_page.html");
   currentUser = JSON.parse(localStorage.getItem("currentUser"));

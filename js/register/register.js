@@ -9,6 +9,7 @@ let password,
 
 // pw: tEst1!
 async function init() {
+  setFavicon();
   localStorage.clear();
   showLoader();
   try {

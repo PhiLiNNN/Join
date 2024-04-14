@@ -16,9 +16,12 @@ let doneHeight;
 let allDragElements;
 let cardSection;
 let currentUser;
-let properDraggEl = false;
+let validDragEl = false;
+
+// Favicon entsprechend dem bevorzugten Farbmodus des Benutzers setzen
 
 function initBoard() {
+  setFavicon();
   const isUserLoggedIn = checkUserLogIn();
   if (!isUserLoggedIn) window.location.assign("./error_page.html");
   currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -151,7 +154,6 @@ function allowDrop(event) {
 }
 
 function setDragEventListeners() {
-  console.log("11111");
   allDragElements = document.querySelectorAll(".board-card");
   allDragElements.forEach((el) => {
     el.addEventListener("drag", handleDrag);
@@ -231,7 +233,7 @@ function getHoverContainerGeometrie() {
 }
 
 function startDragging(event, title, index) {
-  properDraggEl = true;
+  validDragEl = true;
   setNewHoverContainerHeight(event);
   currentCard = index;
   currentDraggedElement = title;
@@ -290,8 +292,8 @@ document.getElementById("search-desktop-id").addEventListener("input", filterToD
 document.getElementById("search-mobile-id").addEventListener("input", filterToDos);
 document.addEventListener("dragend", (e) => {
   resetNewHoverContainerHeight();
-  if (properDraggEl) toggleVisibility(`draggedCard${currentCard}-id`, true, "board-card-tilt");
-  properDraggEl = false;
+  if (validDragEl) toggleVisibility(`draggedCard${currentCard}-id`, true, "board-card-tilt");
+  validDragEl = false;
 });
 
 //add Task Overlay

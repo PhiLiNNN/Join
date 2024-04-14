@@ -1,6 +1,8 @@
 const STORAGE_TOKEN = "VORXWOHN4ATC5QT3Z5TB4EP1VRUAGMHB44HR2ZKT";
 const STORAGE_URL = "https://remote-storage.developerakademie.org/item";
 
+const prefersDarkMode =
+  window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
 /**
  * Push request to backend.
  * Either it is fulfilled successfully (resolved) or it fails (rejected).
@@ -200,4 +202,13 @@ function sortContactsBySurname(a, b) {
   if (emailA < emailB) return -1;
   if (emailA > emailB) return 1;
   return 0;
+}
+
+function setFavicon() {
+  const link = document.querySelector("link[rel*='icon']") || document.createElement("link");
+  link.type = "image/x-icon";
+  link.rel = "shortcut icon";
+  if (prefersDarkMode) link.href = "favicon_dark_mode.svg";
+  else link.href = "favicon_white_mode.svg";
+  document.getElementsByTagName("head")[0].appendChild(link);
 }
