@@ -217,6 +217,7 @@ function deleteOrAddTaskMenu(isDelete) {
   else addNewTaskMenu();
   toggleVisibility("subtask-del-and-confirm-id", false);
   toggleVisibility("subtast-add-button-id", true);
+  console.log("deleteOrAddTaskMenu :>> ", subtaskList);
 }
 
 function addSubtaskByEnter() {
@@ -231,6 +232,7 @@ function addSubtaskByEnter() {
 function addNewTaskMenu() {
   const inputElement = document.getElementById("subtask-input-id");
   subtaskList.tasks.push(inputElement.value);
+  subtaskList.done.push(false);
   inputElement.value = "";
   renderSubtasks();
 }
@@ -271,7 +273,7 @@ function toggleReadBorderInSubtasks(index, listElement) {
 
 function disableFiledElements(bool) {
   const inputElement = document.getElementById("subtask-input-id");
-  const createTaskElement = document.getElementById("ad-add-btn");
+  const createTaskElement = document.getElementById("at-add-btn");
   inputElement.disabled = bool;
   createTaskElement.disabled = bool;
   showSubtasksError(bool);
@@ -321,11 +323,14 @@ function saveEditSubtask(index) {
   const element = document.getElementById(`editable-span-id${index}`);
   subtaskList.tasks[index] = element.innerText;
   renderSubtasks();
+  console.log("saveEditSubtask :>> ", subtaskList);
 }
 
 function deleteSubtask(index) {
   subtaskList.tasks.splice(index, 1);
+  subtaskList.done.splice(index, 1);
   renderSubtasks();
+  console.log("deleteSubtask :>> ", subtaskList);
 }
 
 function getAddTaskInputs() {
@@ -339,27 +344,24 @@ function getAddTaskInputs() {
 function createTask() {
   const {titleInput, textareaInput, dateInput, categoryInput} = getAddTaskInputs();
   const atBoolArr = [false, false, false, false, false, false];
-  validateInput(titleInput, atBoolArr, 0, 3);
-  validateInput(dateInput, atBoolArr, 1, 4);
-  validateInput(categoryInput, atBoolArr, 2, 5);
+  validateInputs(titleInput, dateInput, categoryInput, atBoolArr);
   if (handlerAddTaskValidation(atBoolArr)) {
     handlerAddTaskValidation(atBoolArr);
     toggleVisibility("rotate-err-arrow-id", true);
     return;
   }
   toggleVisibility("rotate-err-arrow-id", false);
-  pushZeros(subtaskList.tasks.length);
-  updateTasks(titleInput, textareaInput, dateInput, categoryInput);
+  pushTasks(titleInput, textareaInput, dateInput, categoryInput);
   clearAllSelectedUsers();
   renderAssignedToContacts();
   save();
   sendUserToBoard();
 }
 
-function pushZeros(listLength) {
-  for (let i = 0; i < listLength; i++) {
-    subtaskList.done.push(false);
-  }
+function validateInputs(titleInput, dateInput, categoryInput, atBoolArr) {
+  validateInput(titleInput, atBoolArr, 0, 3);
+  validateInput(dateInput, atBoolArr, 1, 4);
+  validateInput(categoryInput, atBoolArr, 2, 5);
 }
 
 function sendUserToBoard() {
@@ -374,7 +376,7 @@ function sendUserToBoard() {
   }, 200);
 }
 
-function updateTasks(titleInput, textareaInput, dateInput, categoryInput, section = "toDo") {
+function pushTasks(titleInput, textareaInput, dateInput, categoryInput, section = "toDo") {
   currentUser.tasks.titles.push(titleInput);
   currentUser.tasks.descriptions.push(textareaInput);
   currentUser.tasks.dates.push(dateInput);

@@ -26,6 +26,7 @@
   font-weight: 500;
   color: var(--mockup-color);
   font-size: 47px;
+  margin-bottom: 16px;
 }
 
 .user-highlight {

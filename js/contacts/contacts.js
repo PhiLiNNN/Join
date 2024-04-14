@@ -124,16 +124,16 @@ function closeAddNewContact() {
   contactsElement.style.overflow = "auto";
   toggleVisibility("ac-card-content-id", true, "card-visible");
   setTimeout(() => {
-    toggleVisibility("ad-overlay-id", false);
+    toggleVisibility("at-overlay-id", false);
     toggleScrollbar("auto");
   }, 300);
 }
 
 function openAddContactMenu() {
   toggleScrollbar("hidden");
-  const element = document.getElementById("ad-overlay-id");
+  const element = document.getElementById("at-overlay-id");
   element.innerHTML = templateAddContactHTML();
-  toggleVisibility("ad-overlay-id", true);
+  toggleVisibility("at-overlay-id", true);
   setTimeout(() => {
     toggleVisibility("ac-card-content-id", false, "card-visible");
   }, 30);
@@ -144,7 +144,7 @@ function closeAddNewContact() {
   contactsElement.style.overflow = "auto";
   toggleVisibility("ac-card-content-id", true, "card-visible");
   setTimeout(() => {
-    toggleVisibility("ad-overlay-id", false);
+    toggleVisibility("at-overlay-id", false);
     toggleScrollbar("auto");
   }, 300);
 }

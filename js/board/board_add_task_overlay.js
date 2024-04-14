@@ -232,7 +232,7 @@ function templateAddTaskHTML() {
         </div>
         <div class="bottom-btns-container">
           <button
-            id="ad-clear-btn"
+            id="at-clear-btn"
             class="white-btn width-small hide-clear-btn"
             onclick="clearAll()">
             Clear
@@ -250,8 +250,12 @@ function templateAddTaskHTML() {
                 stroke-linejoin="round" />
             </svg>
           </button>
-          <button id="ad-add-btn" class="filled-btn" onclick="createBoardTask()">
+          <button id="at-add-btn" class="filled-btn" onclick="createBoardTask()">
             Create Task
+            <img src="./assets/img/check.png" alt="" />
+          </button>
+          <button id="at-ok-btn" class="filled-btn very-width-small d-none" onclick="editBoardCard()">
+            ok
             <img src="./assets/img/check.png" alt="" />
           </button>
         </div>

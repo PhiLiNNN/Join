@@ -227,6 +227,11 @@ input:-webkit-autofill:active {
   gap: 4px;
 }
 
+.very-width-small {
+  width: 89px !important;
+  gap: 4px;
+}
+
 .width-big {
   width: 104px !important;
 }

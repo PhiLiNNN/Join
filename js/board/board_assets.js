@@ -73,26 +73,26 @@ function templateCardInfoHTML(idx, bgColor, prio, date) {
                     <path d="M6.9998 8.36587L2.0998 13.2659C1.91647 13.4492 1.68314 13.5409 1.3998 13.5409C1.11647 13.5409 0.883138 13.4492 0.699805 13.2659C0.516471 13.0825 0.424805 12.8492 0.424805 12.5659C0.424805 12.2825 0.516471 12.0492 0.699805 11.8659L5.5998 6.96587L0.699805 2.06587C0.516471 1.88254 0.424805 1.6492 0.424805 1.36587C0.424805 1.08254 0.516471 0.849202 0.699805 0.665869C0.883138 0.482536 1.11647 0.390869 1.3998 0.390869C1.68314 0.390869 1.91647 0.482536 2.0998 0.665869L6.9998 5.56587L11.8998 0.665869C12.0831 0.482536 12.3165 0.390869 12.5998 0.390869C12.8831 0.390869 13.1165 0.482536 13.2998 0.665869C13.4831 0.849202 13.5748 1.08254 13.5748 1.36587C13.5748 1.6492 13.4831 1.88254 13.2998 2.06587L8.3998 6.96587L13.2998 11.8659C13.4831 12.0492 13.5748 12.2825 13.5748 12.5659C13.5748 12.8492 13.4831 13.0825 13.2998 13.2659C13.1165 13.4492 12.8831 13.5409 12.5998 13.5409C12.3165 13.5409 12.0831 13.4492 11.8998 13.2659L6.9998 8.36587Z" fill="white"></path>
                 </svg>
             </div>
-            <div style="background-color: ${bgColor};" class="board-info-category">
+            <div id="board-info-category-id" style="background-color: ${bgColor};" class="board-info-category">
                 <span >${currentUser.tasks.categories[idx]}</span>
             </div>
             <div id="board-content-container-id" class="board-content-container">
                 <div class="board-info-title">
-                    <span>${currentUser.tasks.titles[idx]}</span>
+                    <span id="board-title-id">${currentUser.tasks.titles[idx]}</span>
                 </div>  
                 <div class="board-info-description board-info-margin">
-                    <span>${currentUser.tasks.descriptions[idx]}</span>
+                    <span id="board-description-id">${currentUser.tasks.descriptions[idx]}</span>
                 </div>  
                 <div class="board-info-table board-info-margin ">
                     <div class="board-info-date-content">
                         <span class="board-info-prop">Due date:</span>
-                        <span>${date}</span>
+                        <span id="board-date-id" >${date}</span>
                     </div>
                     <div class="board-info-prio-container">
                         <span class="board-info-prop prio-margin">Priority:</span>
                         <div class="board-info-prio-content">
-                             <span> ${firstLetterUpperCasePrio}</span>
-                            <img src="./assets/img/board_${prio}.png" alt="Medium">
+                             <span id="board-prio-cat-id"> ${firstLetterUpperCasePrio}</span>
+                            <img id="board-prio-img-id" src="./assets/img/board_${prio}.png" alt="Medium">
                         </div>
                     </div>
                 </div>
@@ -113,7 +113,7 @@ function templateCardInfoHTML(idx, bgColor, prio, date) {
                     <span class="desktop-edit-span-large">Delete</span>
                 </div>
                 <div  class="board-info-line" ></div>
-                <div class="board-info-menu" onclick="editBoardCard('${idx}')">
+                <div class="board-info-menu" onclick="openEditBoardCard('${idx}')">
                      <svg width="24" height="24" viewBox="0 0 19 19" fill="none"  xmlns="http://www.w3.org/2000/svg" >
                         <path d="M2.00098 17H3.40098L12.026 8.375L10.626 6.975L2.00098 15.6V17ZM16.301 6.925L12.051 2.725L13.451 1.325C13.8343 0.941667 14.3051 0.75 14.8635 0.75C15.4218 0.75 15.8926 0.941667 16.276 1.325L17.676 2.725C18.0593 3.10833 18.2593 3.57083 18.276 4.1125C18.2926 4.65417 18.1093 5.11667 17.726 5.5L16.301 6.925ZM14.851 8.4L4.25098 19H0.000976562V14.75L10.601 4.15L14.851 8.4Z"  fill="#2A3647"/>
                     </svg>

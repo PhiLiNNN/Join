@@ -16,9 +16,8 @@ let doneHeight;
 let allDragElements;
 let cardSection;
 let currentUser;
+let currentSubtasksLength;
 let validDragEl = false;
-
-// Favicon entsprechend dem bevorzugten Farbmodus des Benutzers setzen
 
 function initBoard() {
   setFavicon();
@@ -179,12 +178,6 @@ function handleDrag(event) {
   checkAndToggleVisibility(event, doneLeftBorder, doneTopBorder, doneHeight, "done-hover-id");
 }
 
-// function removeDragEventListeners() {
-//   allDragElements.forEach((el) => {
-//     el.removeEventListener("drag", handleDrag);
-//   });
-// }
-
 function checkAndToggleVisibility(event, leftBorder, topBorder, elementHeight, elementId) {
   const withinHorizontalRange =
     event.clientX >= leftBorder && event.clientX <= leftBorder + elementWidth;
@@ -307,6 +300,7 @@ function closeAddTaskOverlay() {
   closeOverlay();
 }
 
+//#region closeAdd Task Overlay
 function closeOverlay() {
   toggleVisibility("at-section-id", true, "card-visible");
   setTimeout(() => {
@@ -333,7 +327,7 @@ function dateFormatter(date) {
   return dateArr[2] + "/" + dateArr[1] + "/" + dateArr[0];
 }
 
-function prepareCardInfoInpurts(index) {
+function prepareCardInfoInputs(index) {
   const bgColor = getCategoryBgColor(currentUser.tasks.categories[index]);
   const prio = currentUser.tasks.prios[index];
   const date = dateFormatter(currentUser.tasks.dates[index]);
@@ -342,6 +336,7 @@ function prepareCardInfoInpurts(index) {
 
 function renderInfoAssignedTo(index) {
   let element = document.getElementById("board-info-assignedTo-id");
+  element.innerHTML = "";
   let emptyEl = document.getElementById("board-info-no-users-assigned-id");
   if (currentUser.tasks.assignedTo[index].userNames.length === 0)
     emptyEl.innerHTML = `Assigned To: <span style="color: black;"> No contacts assigned </span>`;
@@ -359,6 +354,7 @@ function renderInfoAssignedTo(index) {
 
 function renderInfoSubtasks(index) {
   let element = document.getElementById("board-info-subtasks-id");
+  element.innerHTML = "";
   if (currentUser.tasks.subtasks[index].tasks.length === 0)
     toggleVisibility("no-subtasks-id", false);
   else {
@@ -408,17 +404,14 @@ function deleteBoardCard(index) {
 function createBoardTask() {
   const {titleInput, textareaInput, dateInput, categoryInput} = getAddTaskInputs();
   const atBoolArr = [false, false, false, false, false, false];
-  validateInput(titleInput, atBoolArr, 0, 3);
-  validateInput(dateInput, atBoolArr, 1, 4);
-  validateInput(categoryInput, atBoolArr, 2, 5);
+  validateInputs(titleInput, dateInput, categoryInput, atBoolArr);
   if (handlerAddTaskValidation(atBoolArr)) {
     handlerAddTaskValidation(atBoolArr);
     toggleVisibility("rotate-err-arrow-id", true);
     return;
   }
   toggleVisibility("rotate-err-arrow-id", false);
-  pushZeros(subtaskList.tasks.length);
-  updateTasks(titleInput, textareaInput, dateInput, categoryInput, cardSection);
+  pushTasks(titleInput, textareaInput, dateInput, categoryInput, cardSection);
   clearAllSelectedUsers();
   save();
   generateCardHTML();
@@ -440,19 +433,11 @@ function sendUserBack() {
   }, 200);
 }
 
-function openCardInfo(index) {
+function renderCardContent(index) {
   let element = document.getElementById("board-card-info-id");
   element.innerHTML = "";
-  const {bgColor, prio, date} = prepareCardInfoInpurts(index);
+  const {bgColor, prio, date} = prepareCardInfoInputs(index);
   element.innerHTML = templateCardInfoHTML(index, bgColor, prio, date);
-
-  renderInfoAssignedTo(index);
-  renderInfoSubtasks(index);
-  toggleScrollbar("hidden");
-  toggleVisibility("board-card-info-id", true);
-  setTimeout(() => {
-    toggleVisibility("card-info-section-id", false, "card-visible");
-  }, 30);
 }
 
 function openAddTaskOverlay(section) {
@@ -489,27 +474,96 @@ function pusAllAssignedUser(index) {
   });
 }
 
-function editBoardCard(index) {
+function openEditBoardCard(index) {
+  currentSubtasksLength = currentUser.tasks.subtasks[index].tasks.length;
   currentUser = JSON.parse(localStorage.getItem("currentUser"));
   clearAllLists();
   pusAllAssignedUser(index);
   toggleAtCard();
-  toggleVisibility("close-edit-at-id", true);
-  toggleVisibility("close-board-at-id", false);
+  handlerEditCardVisibilities();
   setSelectedUsersToTrue(index);
   renderAssignedToContacts();
   setRightCheckBox();
-  setInputs(index);
+  setEditCardInputs(index);
   setCurrentDate();
   addSubtaskByEnter();
   addSubtaskVisibilityListener();
   filterAssignedToContacts();
   closeAssignedToMenu();
   closeCategoryMenu();
-  console.log("currentUser editBoardCard:>> ", currentUser);
 }
 
-function setInputs(index) {
+function handlerEditCardVisibilities() {
+  toggleVisibility("close-edit-at-id", true);
+  toggleVisibility("close-board-at-id", false);
+  toggleVisibility("at-add-btn", false);
+  toggleVisibility("at-ok-btn", true);
+}
+
+//#region editBoardCard
+
+function editBoardCard() {
+  currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const {titleInput, textareaInput, dateInput, categoryInput} = getAddTaskInputs();
+  const atBoolArr = [false, false, false, false, false, false];
+  validateInputs(titleInput, dateInput, categoryInput, atBoolArr);
+  if (handlerAddTaskValidation(atBoolArr)) {
+    handlerAddTaskValidation(atBoolArr);
+    toggleVisibility("rotate-err-arrow-id", true);
+    return;
+  }
+  toggleVisibility("rotate-err-arrow-id", false);
+  clearAllSelectedUsers();
+  renderAssignedToContacts();
+  updateTasks(titleInput, textareaInput, dateInput, categoryInput);
+  save();
+  setNewCardInputs(currentCard);
+  renderInfoAssignedTo(currentCard);
+  renderInfoSubtasks(currentCard);
+  closeOverlay();
+}
+
+function setNewCardInputs(index) {
+  const bgColor = getCategoryBgColor(currentUser.tasks.categories[index]);
+  const date = dateFormatter(currentUser.tasks.dates[index]);
+  document.getElementById("board-info-category-id").style.backgroundColor = bgColor;
+  document.getElementById("board-title-id").innerHTML = currentUser.tasks.titles[index];
+  document.getElementById("board-description-id").innerHTML = currentUser.tasks.descriptions[index];
+  document.getElementById("board-prio-cat-id").innerHTML =
+    currentUser.tasks.prios[index].charAt(0).toUpperCase() +
+    currentUser.tasks.prios[index].slice(1);
+  document.getElementById(
+    "board-prio-img-id"
+  ).src = `./assets/img/board_${currentUser.tasks.prios[index]}.png`;
+  document.getElementById("board-date-id").innerHTML = date;
+}
+
+//#region openCardInfo
+function openCardInfo(index) {
+  currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  currentCard = index;
+  renderCardContent(index);
+  renderInfoAssignedTo(index);
+  renderInfoSubtasks(index);
+  toggleScrollbar("hidden");
+  toggleVisibility("board-card-info-id", true);
+  setTimeout(() => {
+    toggleVisibility("card-info-section-id", false, "card-visible");
+  }, 30);
+}
+
+function updateTasks(titleInput, textareaInput, dateInput, categoryInput, section = "toDo") {
+  currentUser.tasks.titles[currentCard] = titleInput;
+  currentUser.tasks.descriptions[currentCard] = textareaInput;
+  currentUser.tasks.dates[currentCard] = dateInput;
+  currentUser.tasks.assignedTo[currentCard] = assignedTo;
+  currentUser.tasks.prios[currentCard] = prio[prioIndex];
+  currentUser.tasks.categories[currentCard] = categoryInput;
+  currentUser.tasks.subtasks[currentCard] = subtaskList;
+  currentUser.tasks.board[currentCard] = section;
+}
+
+function setEditCardInputs(index) {
   setInputValue("title-input-id", currentUser.tasks.titles[index]);
   setInputValue("textarea-input-id", currentUser.tasks.descriptions[index]);
   setInputValue("category-input-id", currentUser.tasks.categories[index]);
@@ -527,6 +581,7 @@ function closeEditTaskOverlay() {
   clearAllSelectedUsers();
   closeOverlay();
 }
+
 function renderAddedContactsToEdit(index) {
   let addedContactsElement = document.getElementById("added-contacts-id");
   addedContactsElement.innerHTML = "";
