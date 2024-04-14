@@ -25,7 +25,8 @@ function templateAddTaskHTML() {
                 id="title-input-id"
                 type="text"
                 placeholder="Enter a title"
-                autocomplete="off" />
+                autocomplete="off" 
+                maxlength="100"/>
             </div>
           </div>
           <div class="at-description">

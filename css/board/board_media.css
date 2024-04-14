@@ -28,7 +28,7 @@
   }
   .drag-container,
   .drag-area {
-    height: 215px;
+    height: 245px;
   }
   .noTaskMsg-container {
     width: 100%;
@@ -161,7 +161,7 @@
   }
   .drag-container,
   .drag-area {
-    height: 215px;
+    height: 245px;
   }
   .board-search-desktop {
     display: none;

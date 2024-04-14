@@ -85,6 +85,7 @@
   }
   .at-prio-img {
     justify-content: space-between;
+    gap: 0px;
   }
   .at-section {
     width: 100%;
@@ -107,6 +108,7 @@
   .content-bottom-and-rigth {
     width: 100%;
   }
+
   .vertical-bar-container {
     height: 545px;
     display: flex;

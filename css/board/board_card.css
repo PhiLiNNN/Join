@@ -77,6 +77,7 @@
   background-color: #f0f0f0;
   border-radius: 16px;
   overflow: hidden;
+  flex: 1;
 }
 .board-circle-style {
   display: flex;
