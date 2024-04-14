@@ -338,6 +338,7 @@ function renderInfoAssignedTo(index) {
   let element = document.getElementById("board-info-assignedTo-id");
   element.innerHTML = "";
   let emptyEl = document.getElementById("board-info-no-users-assigned-id");
+  emptyEl.innerHTML = "";
   if (currentUser.tasks.assignedTo[index].userNames.length === 0)
     emptyEl.innerHTML = `Assigned To: <span style="color: black;"> No contacts assigned </span>`;
   else {
@@ -358,6 +359,7 @@ function renderInfoSubtasks(index) {
   if (currentUser.tasks.subtasks[index].tasks.length === 0)
     toggleVisibility("no-subtasks-id", false);
   else {
+    toggleVisibility("no-subtasks-id", true);
     currentUser.tasks.subtasks[index].tasks.forEach((task, idx) => {
       const isChecked = currentUser.tasks.subtasks[index].done[idx];
       element.innerHTML += templateInfoSubtasksHTML(task, isChecked, idx, index);
@@ -515,12 +517,13 @@ function editBoardCard() {
   toggleVisibility("rotate-err-arrow-id", false);
   clearAllSelectedUsers();
   renderAssignedToContacts();
-  updateTasks(titleInput, textareaInput, dateInput, categoryInput);
+  updateTasks(titleInput, textareaInput, dateInput, categoryInput, cardSection);
   save();
   setNewCardInputs(currentCard);
   renderInfoAssignedTo(currentCard);
   renderInfoSubtasks(currentCard);
   closeOverlay();
+  console.log("currentUser:>> ", currentUser);
 }
 
 function setNewCardInputs(index) {
@@ -543,6 +546,7 @@ function setNewCardInputs(index) {
 function openCardInfo(index) {
   currentUser = JSON.parse(localStorage.getItem("currentUser"));
   currentCard = index;
+  cardSection = currentUser.tasks.board[index];
   renderCardContent(index);
   renderInfoAssignedTo(index);
   renderInfoSubtasks(index);
@@ -551,6 +555,8 @@ function openCardInfo(index) {
   setTimeout(() => {
     toggleVisibility("card-info-section-id", false, "card-visible");
   }, 30);
+
+  console.log("currentUser: openCardInfo>> ", currentUser);
 }
 
 function updateTasks(titleInput, textareaInput, dateInput, categoryInput, section = "toDo") {
