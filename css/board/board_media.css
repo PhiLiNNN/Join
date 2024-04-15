@@ -63,6 +63,7 @@
   }
   .board-headline-right {
     margin-left: 32px;
+    margin-right: 30px;
     gap: 32px;
   }
 }

@@ -109,6 +109,7 @@
 }
 
 .middle-section {
+  position: relative;
   cursor: pointer;
   transition: width 200ms ease-in-out, height 200ms ease-in-out, font-size 300ms ease-in-out,
     transform 200ms ease-in-out;
@@ -194,6 +195,54 @@
   padding: 28px 24px 28px 24px;
 }
 
+.expire-tooltip {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+}
+
+.tooltip-summary {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-right: 4px;
+  transition: all 300ms ease-in-out;
+}
+
+.tooltip-summary svg {
+  height: 18px;
+  width: 18px;
+  background: white;
+}
+
+.tooltip-summary svg path {
+  fill: var(--err-msg-color);
+}
+
+.tooltip-summary .summary-tooltiptext {
+  visibility: hidden;
+  width: 205px;
+
+  color: #fff;
+  text-align: left;
+  border-radius: 20px 20px 0px 20px;
+  padding: 12px;
+  font-weight: 100;
+  position: absolute;
+  z-index: 1000;
+  bottom: 120%;
+  right: 50%;
+  margin-left: -60px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.tooltip-summary:hover .summary-tooltiptext {
+  visibility: visible;
+  background-color: var(--err-msg-color);
+}
+.tooltip-summary:hover .summary-tooltiptext ul li {
+  background-color: var(--err-msg-color);
+}
 .d-none {
   display: none;
 }
