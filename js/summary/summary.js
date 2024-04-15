@@ -42,12 +42,9 @@ function checkDayTime(hours) {
   if (hours <= 4) {
     greeting = "Good night"; // bis 05:00 Uhr
     addHours = 4 - hours;
-  } else if (hours <= 10) {
-    greeting = "Good morning"; // bis 11:00 Uhr
-    addHours = 10 - hours;
-  } else if (hours <= 12) {
-    greeting = "Good noon"; // bis 13:00 Uhr
-    addHours = 12 - hours;
+  } else if (hours <= 11) {
+    greeting = "Good morning"; // bis 12:00 Uhr
+    addHours = 11 - hours;
   } else if (hours <= 17) {
     greeting = "Good afternoon"; // bis 18:00 Uhr
     addHours = 17 - hours;
@@ -65,6 +62,23 @@ function templateGreetingsHTML(greeting, user) {
       <span class="user-highlight">${
         user.toLowerCase() !== "guest user" ? `<span>${user}</span>` : ""
       }</span>
+    </div>
+  `;
+}
+function expireToolTipHTML(expiredDates, expireToday) {
+  return /*html*/ `
+    <div class="tooltip-summary">
+       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+          <!--!Font Awsome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+         <path
+           d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" />
+       </svg>
+      <div class="summary-tooltiptext">
+      <ul>
+        <li>${expiredDates} task(s) have expired</li>
+        <li>${expireToday} task(s) expire today</li>
+      </ul>
+      </div>
     </div>
   `;
 }
@@ -124,9 +138,15 @@ function calculateSummaryAmounts() {
     urgentAmount
   );
   if (noUpcommingUrgents(urgentAmount)) return;
-  let nearestDate = getNearestUrgent();
+  let {nearestDate, expiredDates, expireToday} = getNearestUrgent();
   console.log("nearestDate :>> ", nearestDate);
   setNearestDate(nearestDate);
+  renderExpireDeadlines(expiredDates, expireToday);
+}
+
+function renderExpireDeadlines(expiredDates, expireToday) {
+  let element = document.getElementById("expire-tooltip-id");
+  element.innerHTML = expireToolTipHTML(expiredDates, expireToday);
 }
 
 function noUpcommingUrgents(urgentAmount) {
@@ -189,17 +209,20 @@ function getCurrentDate() {
 
 function checkForClosesDate(dateListMs, currentTimeInMilliseconds) {
   let dates = [];
+  expiredDates = 0;
+  expireToday = 0;
   let timePastSinceTwoOclock = checkIfDateIsInPast();
   dateListMs.forEach((date) => {
     dates.push(date + timePastSinceTwoOclock - currentTimeInMilliseconds);
   });
+  position = dates.indexOf(Math.min(...dates.map((date) => Math.abs(date))));
+  expiredDates = dates.filter((date) => date < 0).length;
+  expireToday = dates.filter((date) => date === 0).length;
+  let nearestDate = new Date(dateListMs[position]);
+  console.log("expiredDates :>> ", expiredDates);
+  console.log("expireToday :>> ", expireToday);
   console.log("dates :>> ", dates);
-  console.log("dateListMs :>> ", dateListMs);
-  console.log("currentTimeInMilliseconds :>> ", currentTimeInMilliseconds);
-
-  nearestDate = dates.indexOf(Math.min(...dates));
-
-  return new Date(dateListMs[nearestDate]);
+  return {nearestDate, expiredDates, expireToday};
 }
 
 function checkIfDateIsInPast() {
