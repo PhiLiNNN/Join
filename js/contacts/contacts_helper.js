@@ -82,6 +82,7 @@ function validateContactEmail(email, boolArr) {
     boolArr[5] = boolArr[10] = true;
   else if (currentUser.contacts.some((contact) => contact.email === email))
     boolArr[6] = boolArr[10] = true;
+  else if (email.includes(" ")) boolArr[5] = boolArr[10] = true;
 }
 
 function validateContactName(name, boolArr) {

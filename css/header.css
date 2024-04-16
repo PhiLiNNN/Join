@@ -34,7 +34,6 @@
   padding: 20px 16px;
 }
 .header-info {
-  left: calc(232px + 110px);
   position: absolute;
   font-size: 22px;
   transition: left 300ms ease-in-out;
@@ -120,10 +119,14 @@
   .header-profil:hover {
     background: rgba(12, 46, 98, 0.12);
   }
-}
-@media (max-width: 860px) {
   .header-info {
-    left: calc(232px + 16px);
+    left: calc(232px + 48px);
+  }
+}
+
+@media (min-width: 1341px) {
+  .header-info {
+    left: calc(232px + 110px);
   }
 }
 

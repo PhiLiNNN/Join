@@ -27,6 +27,7 @@
   background: none;
   outline: none;
   word-wrap: break-word;
+  overflow-x: auto;
 }
 .card-info-section {
   padding: 40px;

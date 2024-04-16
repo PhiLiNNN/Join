@@ -331,10 +331,6 @@ function disableAllSubtasksExcept(index) {
 function makeElementEditableWithMaxLength(element, maxLength) {
   element.setAttribute("contentEditable", "true");
   element.focus();
-  element.addEventListener("input", function () {
-    const maxLength = 30;
-    if (this.innerText.length > maxLength) this.innerText = this.innerText.slice(0, maxLength);
-  });
 }
 
 function saveEditSubtask(index) {

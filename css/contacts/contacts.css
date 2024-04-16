@@ -91,8 +91,8 @@
   border-radius: 50%;
   width: 46px;
   height: 46px;
+  min-width: 46px;
   border: 2px solid white;
-  margin: 0 24px 0 0px;
   transition: all 300ms ease-in-out;
 }
 
@@ -101,6 +101,10 @@
   flex-direction: column;
   gap: 5px;
   font-size: 20px;
+  word-wrap: break-word;
+  overflow-x: auto;
+  width: 100%;
+  padding-left: 24px;
   transition: all 300ms ease-in-out;
 }
 

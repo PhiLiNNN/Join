@@ -81,8 +81,10 @@ function validateName(name, boolArr) {
 
 function validateRegisterEmail(email, boolArr) {
   const containsNumberOrSpecialChar = /[0-9!#$%^&*(),?":{}|<>]/.test(email);
+
   if (email.trim() === "") boolArr[3] = boolArr[11] = true;
   else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) boolArr[4] = boolArr[11] = true;
+  else if (email.includes(" ")) boolArr[4] = boolArr[11] = true;
   else if (email in users) boolArr[5] = boolArr[11] = true;
   else if (containsNumberOrSpecialChar) boolArr[4] = boolArr[11] = true;
 }
