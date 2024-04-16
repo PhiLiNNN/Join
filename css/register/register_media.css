@@ -1,9 +1,3 @@
-@media (max-width: 1156px) {
-  .content {
-    margin-top: 260px;
-  }
-}
-
 @media (min-width: 761px) {
   .change-color {
     fill: var(--mockup-color);
@@ -120,6 +114,16 @@
   }
 }
 
+@media (max-width: 650px) {
+  .remember-me-checkbox-container {
+    left: 8%;
+  }
+}
+@media (max-width: 576px) {
+  .remember-me-checkbox-container {
+    left: 2%;
+  }
+}
 @media (max-width: 500px) {
   .content {
     margin-top: 200px;

@@ -217,7 +217,6 @@ function deleteOrAddTaskMenu(isDelete) {
   else addNewTaskMenu();
   toggleVisibility("subtask-del-and-confirm-id", false);
   toggleVisibility("subtast-add-button-id", true);
-  console.log("deleteOrAddTaskMenu :>> ", subtaskList);
 }
 
 function addSubtaskByEnter() {
@@ -323,14 +322,12 @@ function saveEditSubtask(index) {
   const element = document.getElementById(`editable-span-id${index}`);
   subtaskList.tasks[index] = element.innerText;
   renderSubtasks();
-  console.log("saveEditSubtask :>> ", subtaskList);
 }
 
 function deleteSubtask(index) {
   subtaskList.tasks.splice(index, 1);
   subtaskList.done.splice(index, 1);
   renderSubtasks();
-  console.log("deleteSubtask :>> ", subtaskList);
 }
 
 function getAddTaskInputs() {

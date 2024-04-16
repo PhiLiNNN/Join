@@ -83,6 +83,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  width: clamp(288px, 100%, 652px);
   transition: all 300ms ease-in-out;
 }
 
@@ -126,10 +127,15 @@
   display: flex;
   align-items: center;
   justify-content: start;
-  margin-left: 20px;
   height: 24px;
+  width: 100%;
+  max-width: 500px;
 }
-
+.remember-me-checkbox-container {
+  position: relative;
+  left: 15%;
+  transition: all 300ms ease-in-out;
+}
 .pp-checkbox-container {
   gap: 8px;
 }

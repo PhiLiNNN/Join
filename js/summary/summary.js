@@ -6,7 +6,6 @@ async function initSummary() {
   isUserLoggedIn = checkUserLogIn();
   if (!isUserLoggedIn) window.location.assign("./error_page.html");
   currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  console.log("currentUser :>> ", currentUser);
   toggleVisibility("summary-menu-id", false, "highlight-menu");
   toggleVisibility("summary-body-id", true);
   loadHeaderInitials();
@@ -139,7 +138,6 @@ function calculateSummaryAmounts() {
   );
   if (noUpcommingUrgents(urgentAmount)) return;
   let {nearestDate, expiredDates, expireToday} = getNearestUrgent();
-  console.log("nearestDate :>> ", nearestDate);
   setNearestDate(nearestDate);
   renderExpireDeadlines(expiredDates, expireToday);
 }
@@ -219,9 +217,6 @@ function checkForClosesDate(dateListMs, currentTimeInMilliseconds) {
   expiredDates = dates.filter((date) => date < 0).length;
   expireToday = dates.filter((date) => date === 0).length;
   let nearestDate = new Date(dateListMs[position]);
-  console.log("expiredDates :>> ", expiredDates);
-  console.log("expireToday :>> ", expireToday);
-  console.log("dates :>> ", dates);
   return {nearestDate, expiredDates, expireToday};
 }
 

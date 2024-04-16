@@ -244,6 +244,7 @@ input {
 .textarea-style {
   position: relative;
   width: 100%;
+  max-width: 500px;
   border-radius: 10px;
   border: 1px solid var(--placeholder-color);
   height: 48px;

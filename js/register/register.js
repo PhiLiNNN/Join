@@ -20,7 +20,6 @@ async function init() {
     hideLoader();
   }
 
-  console.log(users);
   // await setItem("users", JSON.stringify({})); //  funktion zum clearen des Backends
   addPasswordVisibilityListener(
     "login-pw-border-id",

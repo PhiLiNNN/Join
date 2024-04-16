@@ -24,7 +24,6 @@ function initBoard() {
   const isUserLoggedIn = checkUserLogIn();
   if (!isUserLoggedIn) window.location.assign("./error_page.html");
   currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  console.log("currentUser :>> ", currentUser);
   toggleVisibility("board-menu-id", false, "highlight-menu");
   toggleVisibility("board-body-id", true);
   loadHeaderInitials();
