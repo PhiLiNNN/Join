@@ -74,7 +74,7 @@
   top: 77px;
   right: 44px;
   border-radius: 20px 0px 20px 20px;
-  height: 158px;
+  height: 258px;
   gap: 16px;
   width: 150px;
   max-height: 0;
@@ -85,7 +85,6 @@
 
 .logout-dropdown.active {
   opacity: 1;
-  max-height: 158px;
 }
 
 .logout-dropdown a {
@@ -100,6 +99,12 @@
 }
 
 @media (min-width: 761px) {
+  .logout-dropdown.active {
+    max-height: 160px;
+  }
+  .mobile-visibility {
+    display: none;
+  }
   .logout-dropdown {
     top: 96px;
     right: 16px;
@@ -123,6 +128,9 @@
 }
 
 @media (max-width: 760px) {
+  .logout-dropdown.active {
+    max-height: 214px;
+  }
   .header-info,
   .header-menu-container img {
     display: none;
