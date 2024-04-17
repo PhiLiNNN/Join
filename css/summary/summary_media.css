@@ -259,7 +259,8 @@
     box-shadow: 0 0 14px #2a364739;
     padding: 32px;
     border-radius: 24px;
-    gap: 73px;
+    gap: 32px;
+    width: auto;
   }
   .summary-column > div:first-child {
     order: 2;

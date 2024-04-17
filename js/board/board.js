@@ -30,7 +30,6 @@ function initBoard() {
   generateCardHTML();
   getHoverContainerGeometrie();
   setDragEventListeners();
-  checkIfSectionIsEmpty();
   truncateTextIfTooLong(".description-block");
   truncateTextIfTooLong(".title-block", 31);
   toggleScrollbar("hidden");
@@ -77,6 +76,7 @@ function generateCardHTML(search) {
       awaitFeedback: awaitFedEl,
       done: doneEl,
     };
+    checkIfSectionIsEmpty();
     if (taskElements.hasOwnProperty(task)) addTaskToList(index, taskElements[task]);
   });
 }
@@ -251,7 +251,6 @@ function moveTo(section) {
   save();
   clearSearchInput();
   getHoverContainerGeometrie();
-  checkIfSectionIsEmpty();
   setDragEventListeners();
 }
 
@@ -383,7 +382,6 @@ function closeCardInfo() {
   generateCardHTML();
   checkIfSectionIsEmpty();
   setDragEventListeners();
-  console.log("object :>> ", document.body.style.overflow);
 }
 
 function deleteBoardCard(index) {
@@ -414,7 +412,6 @@ function createBoardTask() {
   save();
   generateCardHTML();
   sendUserBack();
-  checkIfSectionIsEmpty();
   getHoverContainerGeometrie();
   setDragEventListeners();
 }

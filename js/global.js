@@ -208,8 +208,8 @@ function sortContactsBySurname(a, b) {
 
 function setFavicon() {
   const link = document.querySelector("link[rel*='icon']");
-  if (prefersDarkMode) link.href = "../assets/fav/favicon_dark_mode.svg";
-  else link.href = "../assets/fav/favicon_white_mode.svg";
+  if (prefersDarkMode) link.href = "./assets/fav/favicon_dark_mode.svg";
+  else link.href = "./assets/fav/favicon_white_mode.svg";
 }
 
 function redirectToSummary(bool) {

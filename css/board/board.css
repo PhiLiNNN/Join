@@ -23,6 +23,7 @@
 .board-search-mobile {
   height: 48px;
   width: 100%;
+  position: relative;
 }
 .add-task {
   background-color: #d1d1d1;

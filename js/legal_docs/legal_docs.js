@@ -143,3 +143,7 @@ function showLegals(page) {
   if (page === "policy") window.location.assign("./privacy_policy.html");
   else if (page === "legal") window.location.assign("./legal_notice.html");
 }
+
+function redirectToSummary(bool) {
+  window.location.href = "./summary.html";
+}
