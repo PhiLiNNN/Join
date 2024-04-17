@@ -133,7 +133,7 @@ function templateAddTaskHTML() {
                 placeholder="Add new subtask"
                 autocomplete="off" />
               <div
-                id="subtast-add-button-id"
+                id="subtask-add-button-id"
                 class="cursor plus-btn"
                 onclick="toggleAddNewTaskMenu()">
                 <svg

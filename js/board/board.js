@@ -33,6 +33,7 @@ function initBoard() {
   checkIfSectionIsEmpty();
   truncateTextIfTooLong(".description-block");
   truncateTextIfTooLong(".title-block", 31);
+  toggleScrollbar("hidden");
 }
 
 function truncateTextIfTooLong(querrySelec, maxHeight) {
@@ -303,9 +304,6 @@ function closeAddTaskOverlay() {
 function closeOverlay() {
   toggleVisibility("at-section-id", true, "card-visible");
   setTimeout(() => {
-    setTimeout(() => {
-      toggleScrollbar("auto");
-    }, 900);
     toggleVisibility("board-at-id", false);
   }, 300);
 }
@@ -314,7 +312,6 @@ function toggleAtCard() {
   let element = document.getElementById("board-at-id");
   element.innerHTML = "";
   element.innerHTML = templateAddTaskHTML();
-  toggleScrollbar("hidden");
   toggleVisibility("board-at-id", true);
   setTimeout(() => {
     toggleVisibility("at-section-id", false, "card-visible");
@@ -381,12 +378,12 @@ function closeCardInfo() {
   toggleVisibility("card-info-section-id", true, "card-visible");
   setTimeout(() => {
     toggleVisibility("board-card-info-id", false);
-    toggleScrollbar("auto");
   }, 300);
   save();
   generateCardHTML();
   checkIfSectionIsEmpty();
   setDragEventListeners();
+  console.log("object :>> ", document.body.style.overflow);
 }
 
 function deleteBoardCard(index) {
@@ -423,7 +420,6 @@ function createBoardTask() {
 }
 
 function sendUserBack() {
-  toggleScrollbar("hidden");
   toggleVisibility("at-success-msg-id", true);
   toggleVisibility("trans-bg-id", true);
   setTimeout(() => {
@@ -548,7 +544,6 @@ function openCardInfo(index) {
   renderCardContent(index);
   renderInfoAssignedTo(index);
   renderInfoSubtasks(index);
-  toggleScrollbar("hidden");
   toggleVisibility("board-card-info-id", true);
   setTimeout(() => {
     toggleVisibility("card-info-section-id", false, "card-visible");

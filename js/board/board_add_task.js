@@ -199,7 +199,7 @@ function addSubtaskVisibilityListener() {
   const inputElement = document.getElementById("subtask-input-id");
   inputElement.addEventListener("input", function (event) {
     const inputNotEmpty = isValueNotEmpty(event.target.value);
-    toggleVisibility("subtast-add-button-id", !inputNotEmpty);
+    toggleVisibility("subtask-add-button-id", !inputNotEmpty);
     toggleVisibility("subtask-del-and-confirm-id", true);
     if (!inputNotEmpty) toggleVisibility("subtask-del-and-confirm-id", false);
   });
@@ -216,7 +216,7 @@ function deleteOrAddTaskMenu(isDelete) {
   if (isDelete) inputElement.value = "";
   else addNewTaskMenu();
   toggleVisibility("subtask-del-and-confirm-id", false);
-  toggleVisibility("subtast-add-button-id", true);
+  toggleVisibility("subtask-add-button-id", true);
 }
 
 function addSubtaskByEnter() {
@@ -255,7 +255,7 @@ function toggleReadBorderInSubtasks(index, listElement) {
       disableFiledElements(true);
       document.getElementById("subtask-input-id").value = "";
       toggleVisibility("subtask-del-and-confirm-id", false);
-      toggleVisibility("subtast-add-button-id", true);
+      toggleVisibility("subtask-add-button-id", true);
       toggleVisibility(`substask-content-id${currentIndex}`, false, "red-line-highlight");
     } else if (isClickOnSaveOrDelete) {
       disableFiledElements(false);
@@ -298,7 +298,7 @@ function handleFirstSubtaskEdit(index, listElement) {
   const element = document.getElementById(`editable-span-id${index}`);
   toggleVisibility(`subtask-edited-container-id${index}`, true);
   toggleVisibility(`subtask-default-container-id${index}`, false);
-  makeElementEditableWithMaxLength(element, 30);
+  makeElementEditableWithMaxLength(element);
   listElement.classList.toggle("blue-line-highlight");
 }
 
@@ -309,18 +309,17 @@ function disableAllSubtasksExcept(index) {
   }
 }
 
-function makeElementEditableWithMaxLength(element, maxLength) {
+function makeElementEditableWithMaxLength(element) {
   element.setAttribute("contentEditable", "true");
   element.focus();
-  element.addEventListener("input", function () {
-    const maxLength = 30;
-    if (this.innerText.length > maxLength) this.innerText = this.innerText.slice(0, maxLength);
-  });
 }
 
 function saveEditSubtask(index) {
   const element = document.getElementById(`editable-span-id${index}`);
-  subtaskList.tasks[index] = element.innerText;
+  console.log(element.innerText);
+  if (element.innerText === "")
+    subtaskList.tasks[index] = "Ups, this was almost an empty subtask. saved! :)";
+  else subtaskList.tasks[index] = element.innerText;
   renderSubtasks();
 }
 
@@ -410,7 +409,7 @@ function clearAll() {
   renderSubtasks();
   togglePrioImg("medium-default-id");
   toggleVisibility("subtask-del-and-confirm-id", false);
-  toggleVisibility("subtast-add-button-id", true);
+  toggleVisibility("subtask-add-button-id", true);
   toggleVisibility("rotate-err-arrow-id", false);
   disableFiledElements(false);
   localStorage.setItem("currentUser", JSON.stringify(currentUser));
