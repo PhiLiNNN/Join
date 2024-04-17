@@ -74,10 +74,12 @@ function templateAddContactHTML() {
                             <span id="ac-empty-phone-id" class="ac-err-msg d-none">This field is required!</span>
                             <span id="ac-invalid-phone-id" class="ac-err-msg d-none">Min. 3 digits required!</span>
                         </div> 
+                        <div id="ac-color-border-id" class="color-container">
+                            <span class="color-span"> Add a personal color:</span>
+                            <input id="ac-color-input-id"  class="color-style"  type="color" value="#43da86" maxlength="50"/>
+                        </div> 
                     </div>
-                    
                     <div class="ac-btn-container">
-                        <input id="ac-color-input-id"  class="color-style"  type="color" value="#43da86" maxlength="50"/>
                         <button class="ac-btn-white" onclick="closeAddNewContact()">
                             <span>Cancel</span>
                             <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -190,10 +192,14 @@ function templateEditContactHTML() {
                             <span id="ec-empty-phone-id" class="ac-err-msg d-none">This field is required!</span>
                             <span id="ec-invalid-phone-id" class="ac-err-msg d-none">Min. 3 digits required!</span>
                         </div> 
+                         <div id="ac-color-border-id" class="color-container">
+                            <span  class="color-span"> Edit your personal color:</span>
+                            <input id="ec-color-input-id"  class="color-style" type="color" value=${savedBg} maxlength="50"/>
+                        </div> 
                     </div>
                     
                     <div class="ac-btn-container">
-                        <input id="ec-color-input-id"  class="color-style"  type="color" value=${savedBg} maxlength="50"/>
+                        
                         <button class="ec-btn-white" onclick="deleteContact()"> 
                             <span>Delete</span>
                         </button> 

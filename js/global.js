@@ -211,3 +211,7 @@ function setFavicon() {
   if (prefersDarkMode) link.href = "../assets/fav/favicon_dark_mode.svg";
   else link.href = "../assets/fav/favicon_white_mode.svg";
 }
+
+function redirectToSummary(bool) {
+  window.location.href = "./summary.html";
+}

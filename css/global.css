@@ -254,6 +254,22 @@ input {
   padding: 12px 21px;
 }
 
+.color-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 20px;
+  width: 100%;
+  max-width: 500px;
+  padding-left: 21px;
+  color: var(--placeholder-color);
+}
+.color-span {
+  flex: 1;
+  word-wrap: break-word;
+  overflow-x: auto;
+}
 .input_global input {
   font-size: 18px;
   line-height: 24px;

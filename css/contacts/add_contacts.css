@@ -220,7 +220,7 @@
   width: 100%;
   display: flex;
   align-items: center;
-  margin-top: 32px;
+  margin-top: 16px;
   justify-content: center;
   gap: 12px;
 }
@@ -481,6 +481,7 @@
 
 @media (max-width: 1340px) {
   .footer-right {
+    margin-top: 48px;
     margin-inline: 100px;
   }
   .card-header {
@@ -656,8 +657,11 @@
   .card-footer {
     height: 70%;
   }
+  .footer-right {
+    margin-top: 0;
+  }
 }
-@media (max-height: 429px) and (max-width: 1340px) {
+@media (max-height: 537px) and (max-width: 1340px) {
   .card-footer {
     overflow-y: auto;
     display: block;
@@ -676,7 +680,7 @@
   .ac-card-circle-mobile {
     height: 45px;
     width: 45px;
-    top: 60%;
+    top: 70%;
     left: 90%;
     right: 0;
     font-size: 16px;
@@ -702,9 +706,14 @@
     bottom: 95px;
     right: 24px;
   }
+  .card-footer {
+    padding-inline: 0;
+    padding-right: 72px;
+    justify-content: start;
+  }
 }
 
-@media (max-height: 370px) and (min-width: 1341px) {
+@media (max-height: 408px) and (min-width: 1341px) {
   .card-footer {
     padding-inline: 0;
     padding-right: 72px;

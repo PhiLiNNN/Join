@@ -249,6 +249,7 @@
     display: none;
   }
 }
+
 @media (max-width: 400px) and (max-height: 850px) {
   .low-height-class svg {
     width: 41px;
@@ -258,7 +259,11 @@
     top: 0px;
     left: 16px;
   }
+  .signup-container {
+    right: 16px;
+  }
 }
+
 @media (max-width: 760px) and (max-height: 753px) {
   .signin-container,
   .login-container {
@@ -268,8 +273,9 @@
   .legal-information-container {
     margin: 8px;
   }
-  .login-btns-container {
-    margin-top: 8px;
+  .login-btns-container,
+  .legal-information-container {
+    margin-top: 32px;
   }
   .login-container .low-height-class,
   .signin-container .low-height-class {
@@ -296,10 +302,22 @@
     left: 90%;
   }
 }
+
+@media (max-width: 760px) and (max-height: 574px) {
+  .login-btns-container,
+  .legal-information-container {
+    margin-top: 8px;
+  }
+}
+
 @media (max-width: 760px) and (max-height: 499px) {
   .login-fields-gap {
     margin: 16px 0 16px 0;
     gap: 6px;
+  }
+  .content {
+    margin-top: 50px;
+    margin-bottom: 0;
   }
   .logo svg {
     top: calc(50% - 60px);
@@ -321,6 +339,6 @@
     display: block;
   }
   .signup-container {
-    top: -90px;
+    top: -30px;
   }
 }
