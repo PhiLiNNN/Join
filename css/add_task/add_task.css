@@ -1,4 +1,4 @@
-::-webkit-datetime-edit {
+input[type="date"] {
   color: var(--placeholder-color);
 }
 input#session-date {

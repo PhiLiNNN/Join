@@ -30,7 +30,7 @@ function initBoard() {
   generateCardHTML();
   getHoverContainerGeometrie();
   setDragEventListeners();
-  truncateTextIfTooLong(".description-block");
+  truncateTextIfTooLong(".description-block", 31);
   truncateTextIfTooLong(".title-block", 31);
   toggleScrollbar("hidden");
 }
@@ -382,6 +382,8 @@ function closeCardInfo() {
   generateCardHTML();
   checkIfSectionIsEmpty();
   setDragEventListeners();
+  truncateTextIfTooLong(".description-block", 31);
+  truncateTextIfTooLong(".title-block", 31);
 }
 
 function deleteBoardCard(index) {
@@ -395,6 +397,8 @@ function deleteBoardCard(index) {
   currentUser.tasks.titles.splice(index, 1);
   closeCardInfo();
   getHoverContainerGeometrie();
+  truncateTextIfTooLong(".description-block", 31);
+  truncateTextIfTooLong(".title-block", 31);
 }
 
 function createBoardTask() {
@@ -414,6 +418,8 @@ function createBoardTask() {
   sendUserBack();
   getHoverContainerGeometrie();
   setDragEventListeners();
+  truncateTextIfTooLong(".description-block", 31);
+  truncateTextIfTooLong(".title-block", 31);
 }
 
 function sendUserBack() {
@@ -563,9 +569,15 @@ function setEditCardInputs(index) {
   setInputValue("textarea-input-id", currentUser.tasks.descriptions[index]);
   setInputValue("category-input-id", currentUser.tasks.categories[index]);
   setInputValue("date-input-id", currentUser.tasks.dates[index]);
+  setDateInputColor();
   renderAddedContactsToEdit(index);
   renderSubtasks();
   togglePrioImg(`${currentUser.tasks.prios[index]}-default-id`);
+}
+
+function setDateInputColor() {
+  let element = document.getElementById("date-input-id");
+  element.style.color = "black";
 }
 
 function closeEditTaskOverlay() {

@@ -74,6 +74,7 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
+  margin-right: 12px;
 }
 .color-style::-webkit-color-swatch {
   border-radius: 50%;

@@ -316,7 +316,6 @@ function makeElementEditableWithMaxLength(element) {
 
 function saveEditSubtask(index) {
   const element = document.getElementById(`editable-span-id${index}`);
-  console.log(element.innerText);
   if (element.innerText === "")
     subtaskList.tasks[index] = "Ups, this was almost an empty subtask. saved! :)";
   else subtaskList.tasks[index] = element.innerText;
@@ -446,4 +445,10 @@ function clearAllSelectedUsers() {
   currentUser.contacts.forEach((contact) => {
     contact.selected = false;
   });
+}
+
+function changeInputColor() {
+  const dateInput = document.getElementById("date-input-id");
+  dateInput.style.removeProperty("-webkit-datetime-edit");
+  dateInput.style.color = "black";
 }

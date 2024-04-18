@@ -91,7 +91,7 @@
   }
   .board-plus-btn {
     position: absolute;
-    right: 16px;
+    right: 20px;
   }
   .noTaskMsg-container {
     width: 230px;
@@ -130,7 +130,7 @@
   }
   .board-box h2 {
     font-size: 24px;
-    margin-left: 16px;
+    margin-left: 8px;
   }
 }
 @media (min-width: 1475px) {
@@ -142,7 +142,7 @@
     width: 270px;
   }
   .board-plus-btn {
-    right: 0px;
+    right: 16px;
   }
 }
 @media (max-width: 760px) {

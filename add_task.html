@@ -138,7 +138,7 @@
               <input
                 id="subtask-input-id"
                 type="text"
-                maxlength="50"
+                maxlength="80"
                 placeholder="Add new subtask"
                 autocomplete="off" />
               <div
@@ -216,7 +216,12 @@
               <span id="empty-date-id" class="inApp-err-msg d-none">This field is required!</span>
             </div>
             <div id="at-date-border-id" class="input_global due_date_at">
-              <input id="date-input-id" type="date" max="2025-12-31" min="2024-02-27" />
+              <input
+                id="date-input-id"
+                type="date"
+                max="2025-12-31"
+                min="2024-02-27"
+                onchange="changeInputColor()" />
               <img class="event-style" src="./assets/img/event.png" />
             </div>
           </div>
