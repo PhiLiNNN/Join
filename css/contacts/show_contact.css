@@ -1,6 +1,6 @@
 .show-overlay {
   position: absolute;
-  top: 99px;
+  top: 96px;
   bottom: 80px;
   left: 0;
   right: 0;
@@ -179,7 +179,7 @@
     font-size: 47px;
   }
 }
-@media (max-width: 761px) {
+@media (max-width: 760px) {
   .show-overlay {
     background: white;
   }
@@ -249,7 +249,7 @@
     margin: 16px 0 16px 16px;
   }
   .show-overlay {
-    max-height: 479px;
+    max-height: none;
     padding-bottom: 8px;
     overflow-y: auto;
   }

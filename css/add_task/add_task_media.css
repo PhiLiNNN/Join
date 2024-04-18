@@ -8,7 +8,7 @@
     margin-top: 32px;
   }
   .content-container {
-    max-height: calc(100vh - 300px);
+    max-height: calc(100vh - 320px);
     padding: 0 32px 16px 32px;
     margin: 232px 0 0 calc(232px);
   }
@@ -164,6 +164,9 @@
 }
 
 @media (max-width: 760px) {
+  .content-container {
+    max-height: calc(100vh - 380px);
+  }
   .at-label-style,
   .at-prio {
     margin-top: 32px;
@@ -356,7 +359,7 @@
 @media (max-width: 760px) and (max-height: 900px) {
   .content-container {
     margin: 180px 0px 0px 0;
-    max-height: calc(100vh - 310px);
+    max-height: calc(100vh - 350px);
   }
 }
 
