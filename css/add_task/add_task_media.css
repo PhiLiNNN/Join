@@ -128,8 +128,12 @@
     line-height: 73.2px;
   }
   .content-bottom-container {
-    margin: 0px 80px 0 calc(232px + 64px);
+    margin: 0px 64px 0 calc(232px + 64px);
     max-width: 1920px;
+    box-shadow: 0 0 14px #2a364739;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    height: 64px;
   }
   .editable-span {
     max-width: 25vw;
@@ -308,10 +312,9 @@
   }
   .content-container {
     margin: 162px 70px 0px calc(232px + 64px);
-    max-height: calc(100vh - 214px);
+    max-height: calc(100vh - 230px);
   }
   .content-bottom-container {
-    height: auto;
     padding-bottom: 4px;
   }
 }
@@ -337,8 +340,13 @@
 }
 @media (max-width: 1340px) and (max-height: 400px) {
   .content-bottom-container {
+    background: transparent;
     height: auto;
     padding-bottom: 4px;
+  }
+  .content-container {
+    margin: 160px 0px 0px calc(232px);
+    max-height: calc(100vh - 250px);
   }
 }
 @media (max-width: 760px) and (max-height: 900px) {
@@ -364,9 +372,10 @@
   }
   .content-container {
     margin: 100px 0px 0px 0;
-    max-height: calc(100vh - 234px);
+    max-height: calc(100vh - 240px);
   }
   .content-bottom-container {
+    background: transparent;
     height: auto;
     padding-bottom: 4px;
   }
