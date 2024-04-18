@@ -259,6 +259,7 @@
     box-shadow: 0 0 14px #2a364739;
     padding: 32px;
     border-radius: 24px;
+    background: white;
     gap: 32px;
     width: auto;
   }
@@ -517,7 +518,12 @@
   .hover-middle,
   .hover-left {
     width: 295px;
-    height: 150px;
+    height: 110px;
+  }
+  .top-hover-container,
+  .top,
+  .bottom-hover-container {
+    height: 110px;
   }
   .top-hover-container,
   .top-right,
@@ -545,7 +551,11 @@
   .hover-right:active {
     transform: translate(-5%, 0%) scale(1.03);
   }
+  .expire-tooltip {
+    top: 8px;
+  }
 }
+
 @media (max-width: 328px) {
   .middle-hover-container,
   .middle-section {
@@ -557,6 +567,9 @@
   }
   .summary-content {
     gap: 64px;
+  }
+  .expire-tooltip {
+    top: 0px;
   }
 }
 
@@ -576,21 +589,25 @@
 }
 @media (max-width: 760px) and (max-height: 933px) {
   .summary-wrapper {
-    margin: 116px 16px 0 16px;
-    height: calc(100vh - 200px);
+    margin: 100px 16px 0 16px;
+    height: calc(100vh - 170px);
     overflow-y: auto;
   }
   .summary-content {
     gap: 16px;
+    padding-bottom: 16px;
   }
 }
 @media (min-width: 1341px) and (max-height: 890px) {
   .summary-wrapper {
-    margin: 108px 0 0 calc(232px + 56px);
-    height: calc(100vh - 110px);
+    margin: 100px 0 0 calc(232px + 56px);
+    height: calc(100vh - 103px);
   }
   .summary-content {
     margin-bottom: 16px;
+  }
+  .summary-column {
+    background: transparent;
   }
 }
 @media (min-width: 1341px) and (max-height: 822px) {
@@ -684,5 +701,8 @@
   .top-right,
   .bottom-hover-container {
     height: 100px;
+  }
+  .expire-tooltip {
+    top: 2px;
   }
 }

@@ -188,7 +188,7 @@
 .middle-section,
 .tasks-info,
 .top {
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 14px #2a364739;
 }
 
 .middle-section {
