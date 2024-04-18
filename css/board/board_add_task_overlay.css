@@ -175,6 +175,8 @@
     background: white;
     width: 100%;
     padding: 16px;
+    margin-top: 16px;
+    height: calc(100vh - 178px);
   }
   .board-at-wrapper {
     height: 100vh;
@@ -195,6 +197,7 @@
 @media (max-width: 481px) {
   .board-at-section {
     margin-inline: 0px;
+    border-radius: 0;
   }
   .board-at-headline {
     font-size: 43px;
@@ -208,6 +211,7 @@
   .board-at-section {
     margin-inline: 0px;
     border-radius: 0;
+    margin-top: 0px;
     height: 100vh;
   }
   .board-at-wrapper {

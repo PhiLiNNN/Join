@@ -248,7 +248,7 @@ function moveTo(section) {
   generateCardHTML();
   truncateTextIfTooLong(".description-block", 50);
   truncateTextIfTooLong(".title-block", 29);
-  save();
+  saveWithoutLoaderAnimation();
   clearSearchInput();
   getHoverContainerGeometrie();
   setDragEventListeners();

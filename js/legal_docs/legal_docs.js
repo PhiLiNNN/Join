@@ -96,25 +96,25 @@ function templateFooterHTML(isVisible) {
             <div class="menu-content" style="${visibilityStyle}" >
                 <div class="footer-icon-box">
                     <a href="./summary.html" class="footer-link">
-                        <img src="./assets/img/summary_Icons.png" alt="Summary" class="footer-icon"> 
+                        <img src="./assets/svg/summary.svg" alt="Summary" class="footer-icon"> 
                         Summary
                     </a>
                 </div>
                 <div class="footer-icon-box">
                     <a href="./board.html" class="footer-link">
-                        <img src="./assets/img/Board_Icons.png" alt="Board" class="footer-icon">
+                        <img src="./assets/svg/board.svg" alt="Board" class="footer-icon">
                         Board
                     </a>
                 </div>
                 <div class="footer-icon-box">
                     <a href="./add_task.html" class="footer-link">
-                        <img src="./assets/img/Add_Tasks_Icon.png" alt="Add Tasks" class="footer-icon">
+                        <img src="./assets/svg/add_tasks.svg" alt="Add Tasks" class="footer-icon">
                         Add Tasks
                     </a>
                 </div>
                 <div class="footer-icon-box">
                     <a href="./contacts.html" class="footer-link">
-                        <img src="./assets/img/Contacts_Icons.png" alt="Contacts" class="footer-icon">
+                        <img src="./assets/svg/contacts.svg" alt="Contacts" class="footer-icon">
                         Contacts
                     </a>
                     </div>

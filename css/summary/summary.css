@@ -223,7 +223,6 @@
 .tooltip-summary .summary-tooltiptext {
   visibility: hidden;
   width: 205px;
-
   color: #fff;
   text-align: left;
   border-radius: 20px 20px 0px 20px;
@@ -236,6 +235,11 @@
   margin-left: -60px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+.summary-tooltiptext ul {
+  list-style-type: none;
+}
+
 .tooltip-summary:hover .summary-tooltiptext {
   visibility: visible;
   background-color: var(--err-msg-color);

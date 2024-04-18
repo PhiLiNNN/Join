@@ -266,7 +266,7 @@ function templateAddTaskHTML() {
     </section>   
     <div id="at-success-msg-id" class="success-msg-popup d-none">
         <span>Task added to board</span>
-        <img src="./assets/img/Board_Icons.png" alt="" />
+        <img src="./assets/svg/board.svg" alt="" />
       </div>
   </div>    
   `;
