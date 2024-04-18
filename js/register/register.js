@@ -6,8 +6,13 @@ let visibilityOn, visibilityOnConfirm;
 let inputType = (inputTypeConfirm = "password");
 let password,
   confirmPassword = false;
-
 // pw: tEst1!
+
+/**
+ * Initializes the application by setting up various aspects such as loading user data,
+ * setting up password visibility toggling, and other initialization tasks.
+ * @returns {Promise<void>} A Promise that resolves when initialization is complete.
+ */
 async function init() {
   setFavicon();
   localStorage.clear();
@@ -19,7 +24,6 @@ async function init() {
   } finally {
     hideLoader();
   }
-  console.log("users :>> ", users);
   // await setItem("users", JSON.stringify({})); //  funktion zum clearen des Backends
   addPasswordVisibilityListener(
     "login-pw-border-id",
@@ -31,6 +35,11 @@ async function init() {
   );
 }
 
+/**
+ * Registers a new user if the registration validation check passes and the privacy policy checkbox is confirmed.
+ * If successful, displays a success message, closes the sign-up form, and resets inputType to "password".
+ * @returns {Promise<void>} A Promise that resolves once the registration process is complete.
+ */
 async function register() {
   if (!(registerValidationCheck() && ppCheckboxConfirmed)) return;
   await addNewUser();
@@ -39,6 +48,10 @@ async function register() {
   inputType = "password";
 }
 
+/**
+ * Adds a new user to the backend by sending user data.
+ * @returns {Promise<void>} A Promise that resolves once the new user is successfully added to the backend.
+ */
 async function addNewUser() {
   const newUser = generateNewUserObject();
   showLoader();
@@ -51,6 +64,10 @@ async function addNewUser() {
   }
 }
 
+/**
+ * Generates a new user object using the values entered in the registration form.
+ * @returns {Object} A new user object containing user details, contacts, and tasks.
+ */
 function generateNewUserObject() {
   const userName = document.getElementById("add-name-id").value;
   const userEMail = document.getElementById("add-email-id").value;
@@ -75,10 +92,18 @@ function generateNewUserObject() {
   };
 }
 
+/**
+ * Validates the checkbox clicked event and toggles the visibility of privacy policy error messages.
+ */
 function validateCheckBoxClicked() {
   toggleVisibility("pp-id", ppCheckboxConfirmed, "err-msg-color");
 }
 
+/**
+ * Handles field validation for the registration form.
+ * @param {boolean[]} boolArr - An array of boolean values indicating validation results for different input fields and there borders.
+ * @returns {boolean} Returns true if all fields pass validation, otherwise false.
+ */
 function handlerFieldValidationRegister(boolArr) {
   toggleVisibility("empty-add-name-id", boolArr[0]);
   toggleVisibility("invalid-add-name-id", boolArr[1]);
@@ -99,6 +124,10 @@ function handlerFieldValidationRegister(boolArr) {
   return !boolArr.some(Boolean);
 }
 
+/**
+ * Validates the registration form fields and checkbox.
+ * @returns {boolean} Returns true if all fields pass validation, otherwise false.
+ */
 function registerValidationCheck() {
   const name = document.getElementById("add-name-id").value;
   const email = document.getElementById("add-email-id").value;
@@ -106,22 +135,22 @@ function registerValidationCheck() {
   const confirmPassword = document.getElementById("add-confirm-pw-id").value;
   const checkBox = document.getElementById("privacy-check-id");
   const boolArr = [
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
+    false, // empty-add-name-id
+    false, // invalid-add-name-id
+    false, // no-special-chars-id
+    false, // empty-add-email-id
+    false, // invalid-add-email-id
+    false, // existing-add-email-id
+    false, // empty-add-pw-id
+    false, // invalid-add-pw-id
+    false, // empty-confirm-pw-id
+    false, // invalid-confirm-pw-id
+    false, // add-name-border-id
+    false, // add-email-border-id
+    false, // add-pw-border-id
+    false, // add-confirm-pw-border-id
+    false, // hyphens-add-name-id
+    false, // spaces-add-name-id
   ];
   validateName(name, boolArr);
   validateRegisterEmail(email.toLowerCase(), boolArr);
@@ -131,6 +160,9 @@ function registerValidationCheck() {
   return handlerFieldValidationRegister(boolArr);
 }
 
+/**
+ * Toggles the visibility of the success message.
+ */
 function toggleSuccessesMsg() {
   toggleVisibility("success-msg-id", true);
   setTimeout(() => {
@@ -144,23 +176,27 @@ function toggleSuccessesMsg() {
   }, 2000);
 }
 
+/**
+ * Resets the input fields in the registration form and clears validation states.
+ */
 function resetRegisterInputs() {
   const boolArr = [
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
+    false, // empty-add-name-id
+    false, // invalid-add-name-id
+    false, // no-special-chars-id
+    false, // empty-add-email-id
+    false, // invalid-add-email-id
+    false, // existing-add-email-id
+    false, // empty-add-pw-id
+    false, // invalid-add-pw-id
+    false, // empty-confirm-pw-id
+    false, // invalid-confirm-pw-id
+    false, // add-name-border-id
+    false, // add-email-border-id
+    false, // add-pw-border-id
+    false, // add-confirm-pw-border-id
+    false, // hyphens-add-name-id
+    false, // spaces-add-name-id
   ];
   handlerFieldValidationLogin(boolArr);
   document.getElementById("add-name-id").value = "";
@@ -169,8 +205,19 @@ function resetRegisterInputs() {
   document.getElementById("add-confirm-pw-id").value = "";
 }
 
+/**
+ * Resets the input fields in the login form and clears validation states.
+ */
 function resetLoginInputs() {
-  const boolArr = [false, false, false, false, false, false, false];
+  const boolArr = [
+    false, // empty-login-user-e-mail-id
+    false, // invalid-login-user-e-mail-id
+    false, // empty-login-user-password-id
+    false, // invalid-login-user-password-id
+    false, // existing-login-user-e-mail-id
+    false, // existing-login-user-password-id
+    false, // pw-border-id
+  ];
   handlerFieldValidationLogin(boolArr);
   document.getElementById("login-user-e-mail-id").value = "";
   document.getElementById("login-user-password-id").value = "";
@@ -178,6 +225,9 @@ function resetLoginInputs() {
   pwInput.src = "./assets/img/lock.png";
 }
 
+/**
+ * Displays the sign-up popup and initializes its elements.
+ */
 function signUp() {
   inputType = "password";
   resetLoginInputs();
@@ -204,6 +254,9 @@ function signUp() {
   );
 }
 
+/**
+ * Closes the sign-up popup and resets related elements and states.
+ */
 function closeSignUp() {
   document.getElementById("login-user-password-id").type = "password";
   toggleVisibility("lock-id", true);
@@ -217,6 +270,10 @@ function closeSignUp() {
   inputType = "password";
 }
 
+/**
+ * Attempts to log in the user after validating the login credentials.
+ * If successful, sets the current user in localStorage and redirects to the summary page.
+ */
 async function login() {
   if (loginValidationCheck()) {
     const loggedInUser = loadCurrentUser();
@@ -225,6 +282,10 @@ async function login() {
   }
 }
 
+/**
+ * Handles the validation of login input fields and toggles visibility of error messages.
+ * @param {boolean[]} boolArr - Array indicating validation status for each field.
+ */
 function handlerFieldValidationLogin(boolArr) {
   toggleVisibility("empty-email-id", boolArr[0]);
   toggleVisibility("this-is-no-email-id", boolArr[1]);
@@ -235,6 +296,10 @@ function handlerFieldValidationLogin(boolArr) {
   toggleVisibility("login-pw-border-id", !boolArr[6], "error-border");
 }
 
+/**
+ * Validates login credentials and handles related error messages.
+ * @returns {boolean} - Indicates whether the login input fields are valid or not.
+ */
 function loginValidationCheck() {
   const loginUserEmail = document.getElementById("login-user-e-mail-id").value;
   const lowerCaseEmail = loginUserEmail.toLowerCase();
@@ -257,6 +322,10 @@ function loginValidationCheck() {
   return !boolArr.some(Boolean);
 }
 
+/**
+ * Toggles the state of the privacy policy checkbox and updates its appearance.
+ * @param {Event} event - The event object triggered by the checkbox click.
+ */
 function toggleCheckbox(event) {
   const loginCheckbox = document.getElementById("uncheckbox-id");
   const ppCheckbox = document.getElementById("privacy-checkbox-id");
@@ -274,6 +343,15 @@ function toggleCheckbox(event) {
   }
 }
 
+/**
+ * Adds an input event listener to toggle password visibility and update related images.
+ * @param {string} elementId - The ID of the input element to listen to.
+ * @param {string} lockImgId - The ID of the lock image element.
+ * @param {string} visibilityOffImgId - The ID of the visibility off image element.
+ * @param {string} visibilityOnImgId - The ID of the visibility on image element.
+ * @param {boolean} password - Indicates whether the input is a password field.
+ * @param {boolean} confirmPassword - Indicates whether the input is a confirm password field.
+ */
 function addPasswordVisibilityListener(
   elementId,
   lockImgId,
@@ -298,11 +376,25 @@ function addPasswordVisibilityListener(
   });
 }
 
+/**
+ * Toggles the visibility of password-related images based on the specified parameters.
+ * @param {string} visibilityOnImg - The ID of the visibility on image element.
+ * @param {string} visibilityOffImg - The ID of the visibility off image element.
+ * @param {boolean} visibilityOn - Indicates whether the visibility is set to on.
+ * @param {boolean} visibilityOff - Indicates whether the visibility is set to off.
+ */
 function setRightImg(visibilityOnImg, visibilityOffImg, visbilityOn, visibilityOff) {
   toggleVisibility(visibilityOnImg, visbilityOn);
   toggleVisibility(visibilityOffImg, visibilityOff);
 }
 
+/**
+ * Toggles the visibility of password input fields and updates related elements.
+ * @param {object} event - The event object triggered by the input field.
+ * @param {string} ImgId - The ID of the image element.
+ * @param {string} whichform - Indicates whether the password is for password or confirmation.
+ * @param {number} value - The value to determine the visibility of the password.
+ */
 function togglePasswordVisibility(event, ImgId, whichform, value) {
   if ((whichform === "password" || whichform === "registerPw") && value === 1) visibilityOn = true;
   else if ((whichform === "password" || whichform === "registerPw") && value === -1)
@@ -317,11 +409,21 @@ function togglePasswordVisibility(event, ImgId, whichform, value) {
   if (whichform === "confirmPw") updatePasswordInput("confirmPw", inputTypeConfirm);
 }
 
+/**
+ * Updates the type of password input field based on the specified form.
+ * @param {string} whichform - Indicates the form for which the password input type needs to be updated.
+ * @param {string} inputType - The type of input (e.g., "password" or "text").
+ */
 function updatePasswordInput(whichform, inputType) {
   const passwordInput = getPasswordInput(whichform);
   passwordInput.type = inputType;
 }
 
+/**
+ * Retrieves the password input element based on the specified form.
+ * @param {string} whichform - Indicates the form for which the password input element needs to be retrieved.
+ * @returns {HTMLElement} - The password input element.
+ */
 function getPasswordInput(whichform) {
   const formMap = {
     password: "login-user-password-id",
@@ -332,11 +434,18 @@ function getPasswordInput(whichform) {
   return document.getElementById(elementId);
 }
 
+/**
+ * Loads the current user based on the email entered during login.
+ * @returns {object} - The user object corresponding to the logged-in user.
+ */
 function loadCurrentUser() {
   const loginUserEmail = document.getElementById("login-user-e-mail-id").value;
   return users[loginUserEmail.toLowerCase()];
 }
 
+/**
+ * Performs a guest login by pre-filling the login form with guest credentials and logging in automatically.
+ */
 function guestLogin() {
   const guestEmail = "guest@login.de";
   const guestPassword = "Guest!login1";

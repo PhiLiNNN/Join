@@ -372,3 +372,20 @@ function setFavicon() {
 function redirectToSummary() {
   window.location.href = "./summary.html";
 }
+
+/**
+ * Asynchronously includes HTML content from external files into elements with the "w3-include-html" attribute.
+ */
+async function includeHTML() {
+  let include = document.querySelectorAll("[w3-include-html]");
+  for (let i = 0; i < include.length; i++) {
+    const element = include[i];
+    let file = element.getAttribute("w3-include-html");
+    let resp = await fetch(file);
+    if (resp.ok) {
+      include[i].innerHTML = await resp.text();
+    } else {
+      include[i].innerHTML = "Page not found";
+    }
+  }
+}

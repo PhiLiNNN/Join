@@ -1,3 +1,7 @@
+/**
+ * Generates the HTML for a sign-up popup.
+ * @returns {string} The generated HTML for the sign-up popup.
+ */
 function templateSignUpPopup() {
   return /*html*/ `
       <div class="low-height-class">
@@ -107,6 +111,17 @@ function templateSignUpPopup() {
   `;
 }
 
+/**
+ * Generates the HTML for an assigned user container element.
+ * @param {string} contact - The name of the assigned user.
+ * @param {number} index - The index of the assigned user.
+ * @param {string} iconColor - The color of the user icon.
+ * @param {string} initials - The initials of the assigned user.
+ * @param {string} textColor - The text color of the assigned user.
+ * @param {boolean} isSelected - Indicates whether the user is selected or not.
+ * @param {string} email - The email address of the assigned user.
+ * @returns {string} The generated HTML for the assigned user container element.
+ */
 function templateAssignedToContainerHTML(
   contact,
   index,
@@ -142,6 +157,10 @@ function templateSvgCheckboxConfirmedHTML() {
   `;
 }
 
+/**
+ * Generates the SVG for a confirmed checkbox.
+ * @returns {string} The generated SVG for a confirmed checkbox.
+ */
 function templateSvgDefaultCheckboxHTML() {
   return /*html*/ `
       <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -150,6 +169,10 @@ function templateSvgDefaultCheckboxHTML() {
   `;
 }
 
+/**
+ * Generates the SVG for an unconfirmed checkbox.
+ * @returns {string} The generated SVG for an unconfirmed checkbox.
+ */
 function templateaddedContactsHTML(index, iconColor, initials, textColor) {
   if (index === 4) {
     iconColor = "#2a3647";
@@ -165,6 +188,14 @@ function templateaddedContactsHTML(index, iconColor, initials, textColor) {
 `;
 }
 
+/**
+ * Generates the HTML for added contacts.
+ * @param {number} index - The index of the added contact.
+ * @param {string} iconColor - The color of the contact icon.
+ * @param {string} initials - The initials of the added contact.
+ * @param {string} textColor - The text color of the added contact.
+ * @returns {string} The generated HTML for the added contact.
+ */
 function templateSubtaskHTML(index, subtask) {
   return /*html*/ `
     <li id="substask-content-id${index}">
