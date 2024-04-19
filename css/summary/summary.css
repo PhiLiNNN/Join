@@ -243,13 +243,24 @@
   list-style-type: none;
 }
 
-.tooltip-summary:hover .summary-tooltiptext {
-  visibility: visible;
-  background-color: var(--err-msg-color);
-}
-.tooltip-summary:hover .summary-tooltiptext ul li {
-  background-color: var(--err-msg-color);
-}
 .d-none {
   display: none;
+}
+@media (min-width: 761px) {
+  .tooltip-summary:hover .summary-tooltiptext {
+    visibility: visible;
+    background-color: var(--err-msg-color);
+  }
+  .tooltip-summary:hover .summary-tooltiptext ul li {
+    background-color: var(--err-msg-color);
+  }
+}
+@media (max-width: 760px) {
+  .tooltip-summary:active .summary-tooltiptext {
+    visibility: visible;
+    background-color: var(--err-msg-color);
+  }
+  .tooltip-summary:active .summary-tooltiptext ul li {
+    background-color: var(--err-msg-color);
+  }
 }

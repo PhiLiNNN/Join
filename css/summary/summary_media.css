@@ -284,6 +284,7 @@
 }
 @media (max-width: 760px) {
   .summary-greeting-overlay {
+    z-index: 1000;
     position: absolute;
     display: flex;
     justify-content: center;

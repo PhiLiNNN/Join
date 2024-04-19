@@ -493,10 +493,6 @@
 }
 
 @media (max-width: 1100px) {
-  .card-content {
-    left: 0px;
-    right: 0px;
-  }
   .input_ac {
     width: 100%;
   }
@@ -575,8 +571,8 @@
     border-radius: 0px;
     top: 0px;
     bottom: 80px;
-    left: 0px;
-    right: 0px;
+    left: 8px;
+    right: 8px;
     height: 100vh;
   }
 }
@@ -597,7 +593,7 @@
   }
 }
 
-@media (max-height: 830px) {
+@media (max-height: 800px) and (min-width: 761px) {
   .card-content {
     border-radius: 0px;
     top: 0px;
@@ -607,7 +603,29 @@
     height: 100vh;
   }
 }
-
+@media (max-height: 800px) and (max-width: 760px) {
+  .card-content {
+    border-radius: 0px;
+    top: 44px;
+    bottom: 44px;
+    border-radius: 20px;
+    height: calc(100vh - 88px);
+  }
+}
+@media (max-height: 800px) and (max-width: 725px) {
+  .card-header {
+    height: 35%;
+  }
+  .card-footer {
+    height: 75%;
+  }
+  .footer-right {
+    margin-top: 0;
+  }
+  .input_global {
+    height: 41px;
+  }
+}
 @media (max-height: 648px) and (max-width: 1340px) {
   .ec-header,
   .ac-header {
@@ -661,6 +679,19 @@
     margin-top: 0;
   }
 }
+@media (max-height: 600px) and (max-width: 760px) {
+  .card-content {
+    border-radius: 0px;
+    top: 0px;
+    bottom: 00px;
+    left: 0px;
+    right: 0px;
+    height: auto;
+  }
+  .footer-right {
+    margin-top: 0;
+  }
+}
 @media (max-height: 537px) and (max-width: 1340px) {
   .card-footer {
     overflow-y: auto;
@@ -688,6 +719,19 @@
   .ac-card-circle-mobile img {
     width: 20px;
   }
+  .card-content {
+    border-radius: 0px;
+    top: 0px;
+    bottom: 00px;
+    left: 0px;
+    right: 0px;
+    height: auto;
+  }
+}
+@media (max-height: 399px) and (max-width: 445px) {
+  .ac-card-circle-mobile {
+    top: 65%;
+  }
 }
 @media (max-height: 600px) and (min-width: 1341px) {
   .header-content-wrapper {
@@ -707,8 +751,6 @@
     right: 24px;
   }
   .card-footer {
-    padding-inline: 0;
-    padding-right: 72px;
     justify-content: start;
   }
 }

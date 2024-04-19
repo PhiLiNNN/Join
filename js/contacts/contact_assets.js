@@ -132,7 +132,6 @@ function templateEditContactHTML() {
                     <path d="M91.3188 118.593V104.76H94.046L96.9776 110.461C97.7323 111.952 98.4038 113.483 98.9889 115.049C98.8355 113.337 98.7673 111.368 98.7673 109.177V104.76H101.017V118.593H98.4775L95.5118 112.772C94.7266 111.243 94.0267 109.671 93.4153 108.064C93.4153 109.776 93.5346 111.711 93.5346 114.09V118.576L91.3188 118.593Z" fill="white"/>
                 </svg>
                 <span class="ec-header">Edit Contact</span>
-                <span class="ec-text">Tasks are better with a team!</span>
                 <div class="ac-bottom-line"></div>
             </div>
             <div class="close-ac-card-mobile" onclick="closeEditContact()">
