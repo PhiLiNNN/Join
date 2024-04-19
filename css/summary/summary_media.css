@@ -276,6 +276,12 @@
   }
 }
 
+@media (max-width: 950px) {
+  .tooltip-summary .summary-tooltiptext {
+    border-radius: 20px 20px 20px 0px;
+    left: 400%;
+  }
+}
 @media (max-width: 760px) {
   .summary-greeting-overlay {
     position: absolute;
@@ -551,9 +557,6 @@
   .hover-right:active {
     transform: translate(-5%, 0%) scale(1.03);
   }
-  .expire-tooltip {
-    top: 8px;
-  }
 }
 
 @media (max-width: 328px) {
@@ -567,9 +570,6 @@
   }
   .summary-content {
     gap: 64px;
-  }
-  .expire-tooltip {
-    top: 0px;
   }
 }
 
@@ -701,8 +701,5 @@
   .top-right,
   .bottom-hover-container {
     height: 100px;
-  }
-  .expire-tooltip {
-    top: 2px;
   }
 }

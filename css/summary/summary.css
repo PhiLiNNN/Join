@@ -197,8 +197,9 @@
 
 .expire-tooltip {
   position: absolute;
-  right: 16px;
-  top: 16px;
+  right: 8px;
+  top: 8px;
+  z-index: 1;
 }
 
 .tooltip-summary {
@@ -213,7 +214,7 @@
 .tooltip-summary svg {
   height: 18px;
   width: 18px;
-  background: white;
+  background: transparent;
 }
 
 .tooltip-summary svg path {
@@ -235,7 +236,9 @@
   margin-left: -60px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
+.bottom-hover-container {
+  position: relative;
+}
 .summary-tooltiptext ul {
   list-style-type: none;
 }
