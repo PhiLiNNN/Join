@@ -282,16 +282,17 @@
     left: 400%;
   }
 }
+
 @media (max-width: 760px) {
   .summary-greeting-overlay {
-    z-index: 1000;
+    z-index: 989;
     position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    top: 0;
-    bottom: 0;
+    top: 88px;
+    bottom: 88px;
     left: 0;
     right: 0;
     background: white;
@@ -301,7 +302,6 @@
   .greetings-content span {
     text-align: center;
   }
-
   @keyframes animateGreeting {
     0% {
       visibility: visible;

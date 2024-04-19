@@ -268,3 +268,19 @@
     font-size: 38px;
   }
 }
+
+@media (max-width: 760px) {
+  .legal-notice-content,
+  .policy-notice-content,
+  .help-content {
+    margin: 96px 0px 0 16px;
+    padding-block: 48px;
+    padding-right: 16px;
+    overflow-y: auto;
+    max-height: calc(100vh - 96px);
+  }
+}
+
+.d-none {
+  display: none;
+}

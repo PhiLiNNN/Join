@@ -293,11 +293,3 @@ function deleteContact() {
   updateBackend(currentUser);
   renderAllContacts();
 }
-
-function formatPhoneNumber(input) {
-  // Prüfe, ob die Eingabe bereits mit '+49' beginnt
-  if (!input.value.startsWith("+49")) {
-    // Wenn nicht, füge '+49' am Anfang hinzu
-    input.value = "+49" + input.value;
-  }
-}

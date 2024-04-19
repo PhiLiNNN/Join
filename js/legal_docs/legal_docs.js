@@ -1,6 +1,10 @@
 let currentUser;
 let isUserLoggedIn;
 
+/**
+ * Initializes the legal section based on the user's login status and event.
+ * @param {Event} event - The event object.
+ */
 function legalsInit(event) {
   setFavicon();
   const isUserLoggedIn = checkUserLogIn();
@@ -10,16 +14,46 @@ function legalsInit(event) {
   const footerHTML = isUserLoggedIn ? templateFooterHTML(false) : templateFooterHTML(true);
   header.innerHTML = headerHTML;
   footer.innerHTML = footerHTML;
-  if (isUserLoggedIn) {
-    currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    if (event.target.activeElement.id === "policy-id")
-      toggleVisibility("policy-menu-id", false, "highlight-menu");
-    else if (event.target.activeElement.id === "legal-id")
-      toggleVisibility("legal-menu-id", false, "highlight-menu");
-    loadHeaderInitials();
-  }
+  if (isUserLoggedIn) handleLoggedInUser(event);
+  else handleLoggedOutUser();
 }
 
+/**
+ * Handles actions for a logged-in user.
+ * @param {Event} event - The event object.
+ */
+function handleLoggedInUser() {
+  currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const activeElementId = event.target.activeElement.id;
+  if (activeElementId === "policy-id") toggleVisibility("policy-menu-id", false, "highlight-menu");
+  else if (activeElementId === "legal-id")
+    toggleVisibility("legal-menu-id", false, "highlight-menu");
+  loadHeaderInitials();
+}
+
+/**
+ * Handles actions for a logged-out user.
+ */
+function handleLoggedOutUser() {
+  if (window.innerWidth < 761) toggleVisibility("footer-id", false);
+  else toggleVisibility("footer-id", true);
+  handlerFooterVisibility();
+}
+
+/**
+ * Handles the visibility of the footer based on the window resize event.
+ */
+function handlerFooterVisibility() {
+  window.addEventListener("resize", function () {
+    if (window.innerWidth < 761) toggleVisibility("footer-id", false);
+    else toggleVisibility("footer-id", true);
+  });
+}
+
+/**
+ * Initializes the help page by setting the favicon, including HTML files, loading the current user data from local storage,
+ * and updating the header initials.
+ */
 async function helpInit() {
   setFavicon();
   await includeHTML();
@@ -27,6 +61,11 @@ async function helpInit() {
   loadHeaderInitials();
 }
 
+/**
+ * Generates the HTML content for the header based on its visibility.
+ * @param {boolean} isVisible - Indicates whether the header is visible.
+ * @returns {string} The HTML content for the header.
+ */
 function templateHeaderHTML(isVisible) {
   const visibilityStyle = isVisible ? "visibility: hidden;" : "visibility: visible;";
   const onClickAttribute = isVisible ? "" : 'onclick="redirectToSummary()"';
@@ -48,10 +87,10 @@ function templateHeaderHTML(isVisible) {
           </a>
           <div id="header-initials-id" class="header-profil" onclick="togglelogoutContainer()"></div>
           <div id="logout-id" class="logout-dropdown">
-              <a href="./privacy_policy.html" >Privacy Policy</a>
-              <a  href="./legal_notice.html">Legal Notice</a>
-              
-              <a href="./index.html">Log out</a>
+            <a class="mobile-visibility" href="./help.html">Help</a>
+            <a href="./privacy_policy.html" >Privacy Policy</a>
+            <a  href="./legal_notice.html">Legal Notice</a>
+            <a href="./index.html">Log out</a>
           </div>
         </div>
         </div>
@@ -59,91 +98,97 @@ function templateHeaderHTML(isVisible) {
   `;
 }
 
+/**
+ * Generates the HTML content for the footer based on whether it should be visible or hidden.
+ * @param {boolean} isVisible - Indicates whether the footer should be visible.
+ * @returns {string} The HTML content for the footer.
+ */
 function templateFooterHTML(isVisible) {
-  const visibilityStyle = isVisible ? "visibility: hidden;" : "visibility: visible;";
+  const visibilityStyle = isVisible ? "display: none;" : "display: flex;";
   const onClickAttribute = isVisible ? "" : 'onclick="redirectToSummary()"';
   const cursorClass = isVisible ? "" : "cursor";
   return /*html*/ `
     <div class="footer-wrapper">
-        <div class="desktop-logo ${cursorClass}">
-                  <svg  ${onClickAttribute}
-        width="101"
-        height="122"
-        viewBox="0 0 101 122"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg">
-        <path class="change-color" d="M71.6725 0H49.5146V25.4923H71.6725V0Z" fill="white" />
-        <path
-          class="change-color"
-          d="M49.5142 46.2251H71.6721V82.1779C71.7733 90.8292 69.3112 99.3153 64.5986 106.557C59.9455 113.594 50.963 121.966 34.3446 121.966C16.2434 121.966 5.69286 113.406 0 108.715L13.9765 91.4743C19.533 96.0112 24.885 99.7435 34.4299 99.7435C41.6567 99.7435 44.5372 96.7988 46.2247 94.2307C48.5186 90.6637 49.7052 86.4923 49.6335 82.2464L49.5142 46.2251Z"
-          fill="white" />
-        <path d="M38.2135 30.1318H16.0557V52.3884H38.2135V30.1318Z" fill="#29ABE2" />
-        <path
-          class="change-color"
-          d="M83.2795 111.522C83.2795 116.265 80.8762 118.815 77.5184 118.815C74.1607 118.815 71.9619 115.785 71.9619 111.762C71.9619 107.739 74.2288 104.554 77.7059 104.554C81.183 104.554 83.2795 107.687 83.2795 111.522ZM74.5356 111.711C74.5356 114.57 75.6776 116.675 77.6377 116.675C79.5978 116.675 80.7057 114.45 80.7057 111.539C80.7057 108.988 79.6831 106.592 77.6377 106.592C75.5924 106.592 74.5356 108.903 74.5356 111.711Z"
-          fill="white" />
-        <path
-          class="change-color"
-          d="M87.6771 104.76V118.593H85.2227V104.76H87.6771Z"
-          fill="white" />
-        <path
-          class="change-color"
-          d="M90.3359 118.593V104.76H93.0631L95.9947 110.461C96.7494 111.952 97.4209 113.483 98.006 115.049C97.8526 113.337 97.7844 111.368 97.7844 109.177V104.76H100.034V118.593H97.4946L94.5289 112.772C93.7437 111.243 93.0438 109.671 92.4324 108.064C92.4324 109.776 92.5517 111.711 92.5517 114.09V118.576L90.3359 118.593Z"
-          fill="white" />
-      </svg>
-        </div>
-        <div  class="menu-wrapper">
-            <div class="menu-content" style="${visibilityStyle}" >
-                <div class="footer-icon-box">
-                    <a href="./summary.html" class="footer-link">
-                        <img src="./assets/svg/summary.svg" alt="Summary" class="footer-icon"> 
-                        Summary
-                    </a>
-                </div>
-                <div class="footer-icon-box">
-                    <a href="./board.html" class="footer-link">
-                        <img src="./assets/svg/board.svg" alt="Board" class="footer-icon">
-                        Board
-                    </a>
-                </div>
-                <div class="footer-icon-box">
-                    <a href="./add_task.html" class="footer-link">
-                        <img src="./assets/svg/add_tasks.svg" alt="Add Tasks" class="footer-icon">
-                        Add Tasks
-                    </a>
-                </div>
-                <div class="footer-icon-box">
-                    <a href="./contacts.html" class="footer-link">
-                        <img src="./assets/svg/contacts.svg" alt="Contacts" class="footer-icon">
-                        Contacts
-                    </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-       
-        <div class="desktop-data-box">
-          <div id="policy-menu-id" class="desktop-data-content" showLegals="legals('policy')">
-            <a  href="./privacy_policy.html" class="desktop-data-link">Privacy Policy</a>
+      <div class="desktop-logo ${cursorClass}">
+        <svg ${onClickAttribute}
+          width="101"
+          height="122"
+          viewBox="0 0 101 122"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path class="change-color" d="M71.6725 0H49.5146V25.4923H71.6725V0Z" fill="white"/>
+          <path
+            class="change-color"
+            d="M49.5142 46.2251H71.6721V82.1779C71.7733 90.8292 69.3112 99.3153 64.5986 106.557C59.9455 113.594 50.963 121.966 34.3446 121.966C16.2434 121.966 5.69286 113.406 0 108.715L13.9765 91.4743C19.533 96.0112 24.885 99.7435 34.4299 99.7435C41.6567 99.7435 44.5372 96.7988 46.2247 94.2307C48.5186 90.6637 49.7052 86.4923 49.6335 82.2464L49.5142 46.2251Z"
+            fill="white"/>
+          <path d="M38.2135 30.1318H16.0557V52.3884H38.2135V30.1318Z" fill="#29ABE2"/>
+          <path
+            class="change-color"
+            d="M83.2795 111.522C83.2795 116.265 80.8762 118.815 77.5184 118.815C74.1607 118.815 71.9619 115.785 71.9619 111.762C71.9619 107.739 74.2288 104.554 77.7059 104.554C81.183 104.554 83.2795 107.687 83.2795 111.522ZM74.5356 111.711C74.5356 114.57 75.6776 116.675 77.6377 116.675C79.5978 116.675 80.7057 114.45 80.7057 111.539C80.7057 108.988 79.6831 106.592 77.6377 106.592C75.5924 106.592 74.5356 108.903 74.5356 111.711Z"
+            fill="white"/>
+          <path
+            class="change-color"
+            d="M87.6771 104.76V118.593H85.2227V104.76H87.6771Z"
+            fill="white"/>
+          <path
+            class="change-color"
+            d="M90.3359 118.593V104.76H93.0631L95.9947 110.461C96.7494 111.952 97.4209 113.483 98.006 115.049C97.8526 113.337 97.7844 111.368 97.7844 109.177V104.76H100.034V118.593H97.4946L94.5289 112.772C93.7437 111.243 93.0438 109.671 92.4324 108.064C92.4324 109.776 92.5517 111.711 92.5517 114.09V118.576L90.3359 118.593Z"
+            fill="white"/>
+        </svg>
+      </div>
+      <div class="menu-wrapper" style="${visibilityStyle}">
+        <div class="menu-content"  >
+          <div class="footer-icon-box">
+            <a href="./summary.html" class="footer-link">
+              <img src="./assets/svg/summary.svg" alt="Summary" class="footer-icon"> 
+              Summary
+            </a>
           </div>
-          <div id="legal-menu-id"class="desktop-data-content" showLegals="legals('legal')">
-            <a  href="./legal_notice.html" class="desktop-data-link">Legal notice</a>
+          <div class="footer-icon-box">
+            <a href="./board.html" class="footer-link">
+              <img src="./assets/svg/board.svg" alt="Board" class="footer-icon">
+              Board
+            </a>
+          </div>
+          <div class="footer-icon-box">
+            <a href="./add_task.html" class="footer-link">
+              <img src="./assets/svg/add_tasks.svg" alt="Add Tasks" class="footer-icon">
+              Add Tasks
+            </a>
+          </div>
+          <div class="footer-icon-box">
+            <a href="./contacts.html" class="footer-link">
+              <img src="./assets/svg/contacts.svg" alt="Contacts" class="footer-icon">
+              Contacts
+            </a>
           </div>
         </div>
-        
+      </div>
+    </div>    
+    <div class="desktop-data-box">
+      <div id="policy-menu-id" class="desktop-data-content" showLegals="legals('policy')">
+        <a href="./privacy_policy.html" class="desktop-data-link">Privacy Policy</a>
+      </div>
+      <div id="legal-menu-id"class=" desktop-data-content" showLegals="legals('legal')">
+        <a href="./legal_notice.html" class="desktop-data-link">Legal notice</a>
+      </div>
+    </div> 
     </div>
   `;
 }
 
+/**
+ * Navigates the browser back to the previous page in the session history.
+ */
 function goBack() {
   window.history.back();
 }
 
+/**
+ * Redirects the user to the specified legal page based on the parameter.
+ * @param {string} page - The legal page to redirect to ("policy" or "legal").
+ */
 function showLegals(page) {
   if (page === "policy") window.location.assign("./privacy_policy.html");
   else if (page === "legal") window.location.assign("./legal_notice.html");
-}
-
-function redirectToSummary(bool) {
-  window.location.href = "./summary.html";
 }
