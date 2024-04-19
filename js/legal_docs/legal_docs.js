@@ -38,6 +38,15 @@ function handleLoggedOutUser() {
   if (window.innerWidth < 761) toggleVisibility("footer-id", false);
   else toggleVisibility("footer-id", true);
   handlerFooterVisibility();
+  setNewMaxHeights();
+}
+
+/**
+ * Sets new max heights for legal notice, policy notice.
+ */
+function setNewMaxHeights() {
+  document.querySelector(".legal-notice-content").style.maxHeight = "calc(100vh - 96px)";
+  document.querySelector(".policy-notice-content").style.maxHeight = "calc(100vh - 96px)";
 }
 
 /**
@@ -80,21 +89,20 @@ function templateHeaderHTML(isVisible) {
         <path d="M87.6768 104.76V118.593H85.2224V104.76H87.6768Z" fill="#2A3647"/>
         <path d="M90.3358 118.593V104.76H93.0629L95.9946 110.461C96.7493 111.952 97.4207 113.483 98.0058 115.049C97.8524 113.337 97.7843 111.368 97.7843 109.177V104.76H100.034V118.593H97.4945L94.5288 112.772C93.7436 111.243 93.0437 109.671 92.4323 108.064C92.4323 109.776 92.5516 111.711 92.5516 114.09V118.576L90.3358 118.593Z" fill="#2A3647"/>
       </svg>
-        <span class="header-info">Kanban Project Management Tool</span>
-        <div class="header-menu-container" style="${visibilityStyle}">
-          <a href="./help.html">
-          <img  class="header-logo" src="./assets/img/help.png" alt="join logo" />
-          </a>
-          <div id="header-initials-id" class="header-profil" onclick="togglelogoutContainer()"></div>
-          <div id="logout-id" class="logout-dropdown">
-            <a class="mobile-visibility" href="./help.html">Help</a>
-            <a href="./privacy_policy.html" >Privacy Policy</a>
-            <a  href="./legal_notice.html">Legal Notice</a>
-            <a href="./index.html">Log out</a>
-          </div>
-        </div>
+      <span class="header-info">Kanban Project Management Tool</span>
+      <div class="header-menu-container" style="${visibilityStyle}">
+        <a href="./help.html">
+        <img  class="header-logo" src="./assets/img/help.png" alt="join logo" />
+        </a>
+        <div id="header-initials-id" class="header-profil" onclick="togglelogoutContainer()"></div>
+        <div id="logout-id" class="logout-dropdown">
+          <a class="mobile-visibility" href="./help.html">Help</a>
+          <a href="./privacy_policy.html" >Privacy Policy</a>
+          <a  href="./legal_notice.html">Legal Notice</a>
+          <a href="./index.html">Log out</a>
         </div>
       </div>
+    </div>
   `;
 }
 
