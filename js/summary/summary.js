@@ -191,8 +191,6 @@ function calculateSummaryAmounts() {
     doneAmount,
     urgentAmount
   );
-  console.log("urgentAmount :>> ", urgentAmount);
-  // if (noUpcommingUrgents(urgentAmount)) return;
   let {nearestDate, expiredDates, expireToday} = getNearestUrgent();
   renderNearestDate(nearestDate);
   renderExpireDeadlines(expiredDates, expireToday);
