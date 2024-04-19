@@ -224,7 +224,7 @@
     padding: 32px;
     left: calc(232px + 455px);
     max-height: 500px;
-    transform: translateX(100%);
+    transform: translateX(130%);
   }
   .open-contacts-header {
     display: none;
