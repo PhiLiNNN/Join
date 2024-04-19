@@ -134,24 +134,7 @@ function registerValidationCheck() {
   const password = document.getElementById("add-pw-id").value;
   const confirmPassword = document.getElementById("add-confirm-pw-id").value;
   const checkBox = document.getElementById("privacy-check-id");
-  const boolArr = [
-    false, // empty-add-name-id
-    false, // invalid-add-name-id
-    false, // no-special-chars-id
-    false, // empty-add-email-id
-    false, // invalid-add-email-id
-    false, // existing-add-email-id
-    false, // empty-add-pw-id
-    false, // invalid-add-pw-id
-    false, // empty-confirm-pw-id
-    false, // invalid-confirm-pw-id
-    false, // add-name-border-id
-    false, // add-email-border-id
-    false, // add-pw-border-id
-    false, // add-confirm-pw-border-id
-    false, // hyphens-add-name-id
-    false, // spaces-add-name-id
-  ];
+  const boolArr = Array(16).fill(false);
   validateName(name, boolArr);
   validateRegisterEmail(email.toLowerCase(), boolArr);
   validatePassword(password, boolArr);
@@ -180,24 +163,7 @@ function toggleSuccessesMsg() {
  * Resets the input fields in the registration form and clears validation states.
  */
 function resetRegisterInputs() {
-  const boolArr = [
-    false, // empty-add-name-id
-    false, // invalid-add-name-id
-    false, // no-special-chars-id
-    false, // empty-add-email-id
-    false, // invalid-add-email-id
-    false, // existing-add-email-id
-    false, // empty-add-pw-id
-    false, // invalid-add-pw-id
-    false, // empty-confirm-pw-id
-    false, // invalid-confirm-pw-id
-    false, // add-name-border-id
-    false, // add-email-border-id
-    false, // add-pw-border-id
-    false, // add-confirm-pw-border-id
-    false, // hyphens-add-name-id
-    false, // spaces-add-name-id
-  ];
+  const boolArr = Array(16).fill(false);
   handlerFieldValidationLogin(boolArr);
   document.getElementById("add-name-id").value = "";
   document.getElementById("add-email-id").value = "";
@@ -209,15 +175,7 @@ function resetRegisterInputs() {
  * Resets the input fields in the login form and clears validation states.
  */
 function resetLoginInputs() {
-  const boolArr = [
-    false, // empty-login-user-e-mail-id
-    false, // invalid-login-user-e-mail-id
-    false, // empty-login-user-password-id
-    false, // invalid-login-user-password-id
-    false, // existing-login-user-e-mail-id
-    false, // existing-login-user-password-id
-    false, // pw-border-id
-  ];
+  const boolArr = Array(7).fill(false);
   handlerFieldValidationLogin(boolArr);
   document.getElementById("login-user-e-mail-id").value = "";
   document.getElementById("login-user-password-id").value = "";

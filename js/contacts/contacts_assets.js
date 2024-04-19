@@ -1,3 +1,6 @@
+/**
+ * Pushes all unique initial letters of contacts' names to the array "allLetters", ensuring they are sorted alphabetically.
+ */
 function pushAllNeededLetters() {
   currentUser.contacts.forEach((contact) => {
     if (allLetters.includes(contact.name[0].toUpperCase())) return;
@@ -6,6 +9,11 @@ function pushAllNeededLetters() {
   allLetters.sort();
 }
 
+/**
+ * Retrieves user inputs from input fields based on the given prefix string.
+ * @param {string} string - The prefix string used to identify input fields (e.g., "add-contact: 'ec'" for "add contact: 'ac'").
+ * @returns {Object} An object containing user inputs for name, email, phone, color code, and text color code.
+ */
 function getUserInputs(string) {
   const nameInputEl = document.getElementById(`${string}-name-input-id`).value;
   const mailInputEl = document.getElementById(`${string}-mail-input-id`).value;
@@ -15,6 +23,11 @@ function getUserInputs(string) {
   return {nameInputEl, mailInputEl, phoneInputEl, colorCode, textColorCode};
 }
 
+/**
+ * Sets the valid name initials to uppercase.
+ * @param {string} name - The name to process and capitalize initials.
+ * @returns {string} The processed name with valid initials capitalized.
+ */
 function setValidNameInitialsToUpperCase(name) {
   const words = name.trim().split(/\s+/);
   const capitalizedWords = words.map((word) => {
@@ -28,31 +41,28 @@ function setValidNameInitialsToUpperCase(name) {
   return capitalizedWords.join(" ");
 }
 
+/**
+ * Performs validation checks for the contact fields.
+ * @param {string} string - The prefix string to identify the contact fields.
+ * @returns {boolean} Returns true if all fields pass validation; otherwise, false.
+ */
 function contactsValidationCheck(string) {
   const nameInputEl = document.getElementById(`${string}-name-input-id`).value;
   const mailInputEl = document.getElementById(`${string}-mail-input-id`).value;
   const phoneInputEl = document.getElementById(`${string}-phone-input-id`).value;
-  const boolArr = [
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-  ];
+  const boolArr = Array(13).fill(false);
   validateContactName(nameInputEl, boolArr);
   validateContactEmail(mailInputEl.toLowerCase(), boolArr);
   validateContactPhone(phoneInputEl, boolArr);
   return handlerFieldValidationContact(string, boolArr);
 }
 
+/**
+ * Handles field validation for the contact form.
+ * @param {string} string - The prefix string to identify the contact fields.
+ * @param {boolean[]} boolArr - An array containing validation flags (error  messages and red border of the input  fields).
+ * @returns {boolean} Returns true if all fields pass validation; otherwise, false.
+ */
 function handlerFieldValidationContact(string, boolArr) {
   toggleVisibility(`${string}-empty-name-id`, boolArr[0]);
   toggleVisibility(`${string}-invalid-name-id`, boolArr[1]);
@@ -70,11 +80,21 @@ function handlerFieldValidationContact(string, boolArr) {
   return !boolArr.some(Boolean);
 }
 
+/**
+ * Validates the phone number entered in the contact form.
+ * @param {string} number - The phone number to validate.
+ * @param {boolean[]} boolArr - An array containing validation flags.
+ */
 function validateContactPhone(number, boolArr) {
   if (number.trim() === "") boolArr[7] = boolArr[11] = true;
   else if (number.length < 3) boolArr[8] = boolArr[11] = true;
 }
 
+/**
+ * Validates the email entered in the contact form.
+ * @param {string} email - The email address to validate.
+ * @param {boolean[]} boolArr - An array containing validation flags.
+ */
 function validateContactEmail(email, boolArr) {
   if (email === emailCheck) return;
   if (email.trim() === "") boolArr[4] = boolArr[10] = true;
@@ -85,6 +105,11 @@ function validateContactEmail(email, boolArr) {
   else if (email.includes(" ")) boolArr[5] = boolArr[10] = true;
 }
 
+/**
+ * Validates the name entered in the contact form.
+ * @param {string} name - The name to validate.
+ * @param {boolean[]} boolArr - An array containing validation flags.
+ */
 function validateContactName(name, boolArr) {
   const specialCharRegex = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/0123456789]/;
   const checkForDoubleHyphen = name.split("-").length - 1;
