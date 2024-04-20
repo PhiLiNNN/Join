@@ -107,6 +107,7 @@ input:-webkit-autofill:active {
     transform: rotate(1turn);
   }
 }
+
 .tooltip {
   position: relative;
   display: flex;
@@ -123,7 +124,7 @@ input:-webkit-autofill:active {
 
 .tooltip .tooltiptext {
   visibility: hidden;
-  width: 320px;
+  width: 305px;
   background-color: var(--mockup-color);
   color: #fff;
   text-align: left;
@@ -136,6 +137,10 @@ input:-webkit-autofill:active {
   right: 50%;
   margin-left: -60px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tooltip .tooltiptext-pw {
+  width: 275px;
 }
 
 .tooltiptext ul {
@@ -342,6 +347,9 @@ textarea::placeholder {
     width: 270px;
     font-size: 14px;
   }
+  .tooltip .tooltiptext-pw {
+    width: 245px;
+  }
 }
 @media (min-width: 761px) {
   .filled-btn:hover {
@@ -402,6 +410,9 @@ textarea::placeholder {
     width: 200px;
     font-size: 10px;
     right: 10%;
+  }
+  .tooltip .tooltiptext-pw {
+    width: 180px;
   }
 }
 
