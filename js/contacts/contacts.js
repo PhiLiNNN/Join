@@ -59,7 +59,7 @@ function renderAllContacts() {
 function addNewContact() {
   const {nameInputEl, mailInputEl, phoneInputEl, colorCode, textColorCode} = getUserInputs("ac");
   if (!contactsValidationCheck("ac")) return;
-  initializedName = setValidNameInitialsToUpperCase(nameInputEl);
+  initializedName = setValidNameInItialsToUpperCase(nameInputEl);
   const newCon = {
     name: initializedName,
     email: mailInputEl,
@@ -325,7 +325,7 @@ function saveEditContact() {
   const {nameInputEl, mailInputEl, phoneInputEl, colorCode, textColorCode} = getUserInputs("ec");
   if (!contactsValidationCheck("ec")) return;
   const initials = getFirstLettersOfName(nameInputEl);
-  initializedName = setValidNameInitialsToUpperCase(nameInputEl);
+  initializedName = setValidNameInItialsToUpperCase(nameInputEl);
   const element = document.getElementById("show-overlay-id");
   element.innerHTML = templateShowContact(
     initializedName,

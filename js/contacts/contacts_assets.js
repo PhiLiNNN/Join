@@ -28,7 +28,7 @@ function getUserInputs(string) {
  * @param {string} name - The name to process and capitalize initials.
  * @returns {string} The processed name with valid initials capitalized.
  */
-function setValidNameInitialsToUpperCase(name) {
+function setValidNameInItialsToUpperCase(name) {
   const words = name.trim().split(/\s+/);
   const capitalizedWords = words.map((word) => {
     if (word.includes("-")) {

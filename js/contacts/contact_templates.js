@@ -1,5 +1,9 @@
 let savedName, savedEmail, savedPhone, savedIndex, savedBg, savedTextColor, savedInitials;
 
+/**
+ * Generates HTML content for adding a new contact.
+ * @returns {string} The HTML content for the add contact form.
+ */
 function templateAddContactHTML() {
   return /*html*/ `
     <div id="ac-card-content-id" class="card-content">
@@ -97,6 +101,11 @@ function templateAddContactHTML() {
   `;
 }
 
+/**
+ * Generates HTML content for displaying the letters and its associated contacts.
+ * @param {string} letter - The letter to display.
+ * @returns {string} The HTML content for the letter and its contacts.
+ */
 function templateCreateLettersHTML(letter) {
   return /*html*/ `
     <div class="letter-style"> ${letter}</div>
@@ -104,6 +113,17 @@ function templateCreateLettersHTML(letter) {
   `;
 }
 
+/**
+ * Generates HTML content for displaying a contact.
+ * @param {string} name - The name of the contact.
+ * @param {string} email - The email of the contact.
+ * @param {string} phone - The phone number of the contact.
+ * @param {string} bgColor - The background color of the contact circle.
+ * @param {string} txtColor - The text color of the contact circle.
+ * @param {string} initials - The initials of the contact.
+ * @param {number} index - The index of the contact.
+ * @returns {string} The HTML content for the contact.
+ */
 function templateCreateContactsHTML(name, email, phone, bgColor, txtColor, initials, index) {
   return /*html*/ `
     <div  id="contact-${index}-id" class="contact-style" onclick="openContact('${name}','${email}',
@@ -118,6 +138,10 @@ function templateCreateContactsHTML(name, email, phone, bgColor, txtColor, initi
   `;
 }
 
+/**
+ * Generates HTML content for editing a contact.
+ * @returns {string} The HTML content for editing a contact.
+ */
 function templateEditContactHTML() {
   return /*html*/ `
     <div id="edit-card-content-id" class="card-content">
@@ -269,6 +293,10 @@ function templateShowContact(name, email, phone, index, bgColor, txtColor, initi
     `;
 }
 
+/**
+ * Generates HTML content for the edit contact menu.
+ * @returns {string} The HTML content for the edit contact menu.
+ */
 function templateEditContactMenu() {
   return /*html*/ `
         <div class="ec-menu-content">
