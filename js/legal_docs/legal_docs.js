@@ -42,7 +42,7 @@ function handleLoggedOutUser(page) {
 }
 
 /**
- * Sets new max heights for legal notice, policy notice.
+ * Sets new max heights for legal notice or policy notice.
  */
 function setNewMaxHeights(page) {
   document.querySelector(`.${page}-notice-content`).style.maxHeight = "calc(100vh - 96px)";
