@@ -1,9 +1,11 @@
-let rmCheckboxConfirmed = (ppCheckboxConfirmed = false);
+let rmCheckboxConfirmed = false;
+let ppCheckboxConfirmed = false;
 let users = {};
 let newUserArray = [];
 let emptyInput = true;
 let visibilityOn, visibilityOnConfirm;
-let inputType = (inputTypeConfirm = "password");
+let inputType = "password";
+let inputTypeConfirm = "password";
 let password,
   confirmPassword = false;
 // pw: tEst1!
@@ -184,16 +186,22 @@ function resetLoginInputs() {
 }
 
 /**
+ * Resets the previous password input types and visibility states for registration.
+ */
+function resetPrevRegisterPwImgAndTypes() {
+  inputType = "password";
+  inputTypeConfirm = "password";
+  visibilityOn = false;
+  visibilityOnConfirm = false;
+}
+
+/**
  * Displays the sign-up popup and initializes its elements.
  */
 function signUp() {
-  inputType = "password";
+  resetPrevRegisterPwImgAndTypes();
   resetLoginInputs();
-  toggleVisibility("sign-up-popup-id", true);
-  toggleVisibility("signup-container-id", false);
-  toggleVisibility("login-id", false);
-  let signUpPopupElement = document.getElementById("sign-up-popup-id");
-  signUpPopupElement.innerHTML += templateSignUpPopup();
+  renderSignUpOverlay();
   addPasswordVisibilityListener(
     "add-pw-border-id",
     "register-lock-id",
@@ -210,6 +218,17 @@ function signUp() {
     (password = false),
     (confirmPassword = true)
   );
+}
+
+/**
+ * Renders the sign-up overlay by appending the sign-up popup HTML to the specified element.
+ */
+function renderSignUpOverlay() {
+  let signUpPopupElement = document.getElementById("sign-up-popup-id");
+  signUpPopupElement.innerHTML += templateSignUpPopup();
+  toggleVisibility("sign-up-popup-id", true);
+  toggleVisibility("signup-container-id", false);
+  toggleVisibility("login-id", false);
 }
 
 /**
@@ -291,13 +310,13 @@ function toggleCheckbox(event) {
   if (event.target.id === "uncheckbox-id") {
     rmCheckboxConfirmed = !rmCheckboxConfirmed;
     loginCheckbox.src = rmCheckboxConfirmed
-      ? "./assets/img/checkbox_confirmed.svg"
-      : "./assets/img/checkbox.svg";
+      ? "./assets/svg/checkbox_confirmed.svg"
+      : "./assets/svg/checkbox.svg";
     ppCheckboxConfirmed = false;
   } else if (event.target.id === "privacy-checkbox-id") {
     ppCheckbox.src = ppCheckboxConfirmed
-      ? "./assets/img/checkbox_confirmed.svg"
-      : "./assets/img/checkbox.svg";
+      ? "./assets/svg/checkbox_confirmed.svg"
+      : "./assets/scg/checkbox.svg";
   }
 }
 

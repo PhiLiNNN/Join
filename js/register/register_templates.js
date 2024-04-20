@@ -102,7 +102,7 @@ function templateSignUpPopup() {
       </div>
       <div class="signin-flex-container">
         <div class="pp-checkbox-container cursor">
-          <img id="privacy-checkbox-id" src="./assets/img/checkbox.svg" alt="privacy checkbox" onclick="toggleCheckbox(event)">
+          <img id="privacy-checkbox-id" src="./assets/svg/checkbox.svg" alt="privacy checkbox" onclick="toggleCheckbox(event)">
           <p id="pp-id">I accept the <a onclick="showLegals('policy')">Privacy Policy</a></p>
         </div>
         <button class="filled-btn width-small" onclick="register()">Sign in</button>
