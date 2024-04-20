@@ -5,7 +5,7 @@ let isUserLoggedIn;
  * Initializes the legal section based on the user's login status and event.
  * @param {Event} event - The event object.
  */
-function legalsInit(event) {
+function legalsInit(event, page) {
   setFavicon();
   const isUserLoggedIn = checkUserLogIn();
   const header = document.getElementById("header-id");
@@ -15,7 +15,7 @@ function legalsInit(event) {
   header.innerHTML = headerHTML;
   footer.innerHTML = footerHTML;
   if (isUserLoggedIn) handleLoggedInUser(event);
-  else handleLoggedOutUser();
+  else handleLoggedOutUser(page);
 }
 
 /**
@@ -34,19 +34,18 @@ function handleLoggedInUser() {
 /**
  * Handles actions for a logged-out user.
  */
-function handleLoggedOutUser() {
+function handleLoggedOutUser(page) {
   if (window.innerWidth < 761) toggleVisibility("footer-id", false);
   else toggleVisibility("footer-id", true);
+  setNewMaxHeights(page);
   handlerFooterVisibility();
-  setNewMaxHeights();
 }
 
 /**
  * Sets new max heights for legal notice, policy notice.
  */
-function setNewMaxHeights() {
-  document.querySelector(".legal-notice-content").style.maxHeight = "calc(100vh - 96px)";
-  document.querySelector(".policy-notice-content").style.maxHeight = "calc(100vh - 96px)";
+function setNewMaxHeights(page) {
+  document.querySelector(`.${page}-notice-content`).style.maxHeight = "calc(100vh - 96px)";
 }
 
 /**
@@ -54,8 +53,9 @@ function setNewMaxHeights() {
  */
 function handlerFooterVisibility() {
   window.addEventListener("resize", function () {
-    if (window.innerWidth < 761) toggleVisibility("footer-id", false);
-    else toggleVisibility("footer-id", true);
+    if (window.innerWidth < 761) {
+      toggleVisibility("footer-id", false);
+    } else toggleVisibility("footer-id", true);
   });
 }
 

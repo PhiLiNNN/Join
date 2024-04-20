@@ -263,32 +263,62 @@ function renderSubtasks() {
   });
 }
 
+/**
+ * Toggles the red border in the subtasks list when clicking outside or on save/delete buttons.
+ * @param {number} index - The index of the subtask being edited.
+ * @param {HTMLElement} listElement - The HTML element representing the subtasks list.
+ */
 function toggleReadBorderInSubtasks(index, listElement) {
   const saveElement = document.getElementById(`save-edit-subtask-id${index}`);
   const deleteElement = document.getElementById(`delete-edit-subtask-id${index}`);
   function handleClick(event) {
     const isClickOutsideList = !listElement.contains(event.target);
-    const isClickOnSaveOrDelete =
-      saveElement.contains(event.target) || deleteElement.contains(event.target);
-    if (isClickOutsideList) {
-      disableFiledElements(true);
-      document.getElementById("subtask-input-id").value = "";
-      toggleVisibility("subtask-del-and-confirm-id", false);
-      toggleVisibility("subtask-add-button-id", true);
-      toggleVisibility(`substask-content-id${currentIndex}`, false, "red-line-highlight");
-    } else if (isClickOnSaveOrDelete) {
-      disableFiledElements(false);
-      toggleVisibility(`substask-content-id${currentIndex}`, true, "red-line-highlight");
-      document.removeEventListener("click", handleClick);
-    } else {
-      disableFiledElements(false);
-      toggleVisibility(`substask-content-id${currentIndex}`, true, "red-line-highlight");
-    }
+    const isClickOnSave = saveElement.contains(event.target);
+    const isClickOnDelete = deleteElement.contains(event.target);
+    if (isClickOutsideList) setIsClickedOutsideLogic();
+    else if (isClickOnSave) setIsClickOnSaveLogic(handleClick);
+    else if (isClickOnDelete) setIsClickOnDeleteLogic(handleClick);
+    else setAllUserInputsCorrectLogic();
   }
   clickEventListener = handleClick;
   document.addEventListener("click", clickEventListener);
 }
 
+/**
+ * Handles the logic when all user inputs are correct.
+ */
+function setAllUserInputsCorrectLogic() {
+  disableFiledElements(false);
+  toggleVisibility(`substask-content-id${currentIndex}`, true, "red-line-highlight");
+}
+
+/**
+ * Handles the logic when the delete action is clicked.
+ */
+function setIsClickOnDeleteLogic(handleClick) {
+  disableFiledElements(false);
+  document.removeEventListener("click", handleClick);
+}
+
+/**
+ * Handles the logic when the save action is clicked.
+ */
+function setIsClickOnSaveLogic(handleClick) {
+  disableFiledElements(false);
+  toggleVisibility(`substask-content-id${currentIndex}`, true, "red-line-highlight");
+  document.removeEventListener("click", handleClick);
+}
+
+/**
+ * Handles the logic when a click event occurs outside the list of subtasks.
+ */
+function setIsClickedOutsideLogic() {
+  disableFiledElements(true);
+  document.getElementById("subtask-input-id").value = "";
+  toggleVisibility("subtask-del-and-confirm-id", false);
+  toggleVisibility("subtask-add-button-id", true);
+  toggleVisibility(`substask-content-id${currentIndex}`, false, "red-line-highlight");
+}
 function disableFiledElements(bool) {
   const inputElement = document.getElementById("subtask-input-id");
   const createTaskElement = document.getElementById("at-add-btn");
