@@ -1,3 +1,7 @@
+/**
+ * Generates HTML template for adding a new task.
+ * @returns {string} - HTML template for adding a new task.
+ */
 function templateAddTaskHTML() {
   return /*html*/ `
   <div class="board-at-wrapper">
@@ -92,7 +96,7 @@ function templateAddTaskHTML() {
                 id="rotate-arrow-id"
                 class="rotate-arrow"
                 src="./assets/svg/arrow_drop_down.svg"
-                onclick="openAssignedbyArrow()" />
+                onclick="openAssignedByArrow()" />
             </div>
             <div id="assigned-to-contacts-id" class="at-dropdown"></div>
             <div id="added-contacts-id" class="added-contacts"></div>

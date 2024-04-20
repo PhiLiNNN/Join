@@ -108,7 +108,7 @@ function toggleAssignedToSection(bool) {
   toggleVisibility("at-label-id", bool, "shrink-font-size");
 }
 
-function openAssignedbyArrow() {
+function openAssignedByArrow() {
   renderAssignedToContacts();
   document.getElementById("assignedto-input-id").placeholder = "Select contacts to assign";
   toggleSection("assigned-to-contacts-id", "active");
@@ -317,7 +317,7 @@ function handleFirstSubtaskEdit(index, listElement) {
   const element = document.getElementById(`editable-span-id${index}`);
   toggleVisibility(`subtask-edited-container-id${index}`, true);
   toggleVisibility(`subtask-default-container-id${index}`, false);
-  makeElementEditableWithMaxLength(element);
+  makeElementEditable(element);
   listElement.classList.toggle("blue-line-highlight");
 }
 
@@ -328,7 +328,7 @@ function disableAllSubtasksExcept(index) {
   }
 }
 
-function makeElementEditableWithMaxLength(element) {
+function makeElementEditable(element) {
   element.setAttribute("contentEditable", "true");
   element.focus();
 }

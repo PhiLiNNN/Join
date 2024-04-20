@@ -1,3 +1,12 @@
+/**
+ * Generates HTML for a task card based on the provided data.
+ * @param {number} index - The index of the task.
+ * @param {string} prio - The priority of the task.
+ * @param {string} bgColor - The background color of the task category.
+ * @param {number} tasksDone - The number of subtasks completed.
+ * @param {number} progress - The progress percentage of subtasks completed.
+ * @returns {string} - The HTML code for the task card.
+ */
 function generateTaskHTML(index, prio, bgColor, tasksDone, progress) {
   let value;
   if (!progress) value = "none";
@@ -14,8 +23,6 @@ function generateTaskHTML(index, prio, bgColor, tasksDone, progress) {
             <div class="description-block">
                 <span >${currentUser.tasks.descriptions[index]}</span>
             </div>
-
-    
             <div class="subtasks-block" style="display: ${value}">
 
               <div class="progress-bar">
@@ -47,6 +54,15 @@ function generateTaskHTML(index, prio, bgColor, tasksDone, progress) {
     </div>`;
 }
 
+/**
+ * Generates the HTML template for the assigned-to contacts on the board.
+ * @param {number} idx - The index of the assigned-to contact.
+ * @param {string} iconColor - The background color of the circle icon.
+ * @param {string} initials - The initials to be displayed in the circle icon.
+ * @param {string} textColor - The color of the text inside the circle icon.
+ * @param {number} index - The index of the current task.
+ * @returns {string} The HTML template for the assigned-to contact.
+ */
 function templateBoardAssignedToHTML(idx, iconColor, initials, textColor, index) {
   if (idx === 4) {
     iconColor = "#2a3647";
@@ -62,6 +78,14 @@ function templateBoardAssignedToHTML(idx, iconColor, initials, textColor, index)
 `;
 }
 
+/**
+ * Generates HTML template for the card info section.
+ * @param {number} idx - The index of the card.
+ * @param {string} bgColor - The background color of the category.
+ * @param {string} prio - The priority of the task.
+ * @param {string} date - The due date of the task.
+ * @returns {string} The HTML template for the card info section.
+ */
 function templateCardInfoHTML(idx, bgColor, prio, date) {
   let firstLetterUpperCasePrio =
     currentUser.tasks.prios[idx].charAt(0).toUpperCase() + currentUser.tasks.prios[idx].slice(1);
@@ -124,6 +148,15 @@ function templateCardInfoHTML(idx, bgColor, prio, date) {
     </div>
     `;
 }
+
+/**
+ * Generates HTML template for the assigned to information.
+ * @param {string} iconColor - The color of the circle icon.
+ * @param {string} initials - The initials of the assigned contact.
+ * @param {string} contact - The name of the assigned contact.
+ * @param {string} textColor - The color of the text.
+ * @returns {string} The HTML template for the assigned to information.
+ */
 function templateInfoAssignedToHTML(iconColor, initials, contact, textColor) {
   return /*html*/ `
   <div class="board-info-assignedTo-content">
@@ -140,16 +173,25 @@ function templateInfoAssignedToHTML(iconColor, initials, contact, textColor) {
   </div>
 `;
 }
+
+/**
+ * Generates HTML template for subtask information.
+ * @param {string} task - The subtask description.
+ * @param {boolean} isChecked - Indicates if the subtask is checked or not.
+ * @param {number} index - The index of the subtask.
+ * @param {number} cardIndex - The index of the card containing the subtask.
+ * @returns {string} The HTML template for the subtask information.
+ */
 function templateInfoSubtasksHTML(task, isChecked, index, cardIndex) {
   if (!isChecked) {
     hmtlCode = `
     <rect x="1" y="1.96582" width="16" height="16" rx="3" stroke="#2A3647" stroke-width="2"/>
-`;
+    `;
   } else {
     hmtlCode = `
     <path d="M17 8V14C17 15.6569 15.6569 17 14 17H4C2.34315 17 1 15.6569 1 14V4C1 2.34315 2.34315 1 4 1H12" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
     <path d="M5 9L9 13L17 1.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-`;
+    `;
   }
   return /*html*/ `
   <div class="board-info-task" onclick="toggleSubtaskCheckbox('${index}', '${cardIndex}')" >
@@ -165,6 +207,10 @@ function templateInfoSubtasksHTML(task, isChecked, index, cardIndex) {
 `;
 }
 
+/**
+ * Generates HTML template for checked subtask.
+ * @returns {string} The HTML template for the checked subtask.
+ */
 function templateCheckedSubtaskHTML() {
   return /*html*/ `
     <path d="M17 8V14C17 15.6569 15.6569 17 14 17H4C2.34315 17 1 15.6569 1 14V4C1 2.34315 2.34315 1 4 1H12" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
@@ -172,12 +218,21 @@ function templateCheckedSubtaskHTML() {
 `;
 }
 
+/**
+ * Generates HTML template for unchecked subtask.
+ * @returns {string} The HTML template for the unchecked subtask.
+ */
 function templateNotCheckedSubtaskHTML() {
   return /*html*/ `
     <rect x="1" y="1.96582" width="16" height="16" rx="3" stroke="#2A3647" stroke-width="2"/>
 `;
 }
 
+/**
+ * Generates HTML template for empty board message.
+ * @param {string} section - The section of the board.
+ * @returns {string} The HTML template for the empty board message.
+ */
 function emptyBoardMsgToHTML(section) {
   let feedback = "";
   if (section === "done") feedback = "done";
