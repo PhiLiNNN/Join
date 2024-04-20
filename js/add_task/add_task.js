@@ -18,6 +18,13 @@ let prioIndex = 1;
 let isFilterActive = false;
 let clickEventListener;
 
+/**
+ * Initializes the add task functionality.
+ * Sets favicon, checks user login status, renders assigned contacts, sets current date for date picker,
+ * adds event listener for adding subtasks by pressing enter key, adds visibility listener for subtasks (add  subtask image),
+ * closes assigned to dropdown menu, closes category menu, filters assigned to contacts,
+ * highlights add task menu on footer/sidebar navigation, displays the whole body-add tasks content, and loads header initials.
+ */
 async function initAddTask() {
   setFavicon();
   isUserLoggedIn = checkUserLogIn();
@@ -36,6 +43,9 @@ async function initAddTask() {
   loadHeaderInitials();
 }
 
+/**
+ * Adds an event listener to the assigned to input element to filter contacts by name.
+ */
 function filterAssignedToContacts() {
   document.getElementById("assignedto-input-id").addEventListener("input", function (event) {
     const searchTerm = event.target.value;
@@ -47,11 +57,19 @@ function filterAssignedToContacts() {
   });
 }
 
+/**
+ * Renders the assigned to contacts in the assigned to dropdown menu.
+ * @param {Array} [contacts=currentUser.contacts] - The array of contacts to render. Defaults to currentUser.contacts.
+ */
 function renderAssignedToContacts(contacts = currentUser.contacts) {
   contacts.sort(sortContactsBySurname);
   iterateOverContacts(contacts);
 }
 
+/**
+ * Iterates over the provided contacts array and renders each contact in the assigned to dropdown menu.
+ * @param {Array} contacts - The array of contacts to iterate over and render.
+ */
 function iterateOverContacts(contacts) {
   const assignedToContainer = document.getElementById("assigned-to-contacts-id");
   assignedToContainer.innerHTML = "";
@@ -72,19 +90,9 @@ function iterateOverContacts(contacts) {
   });
 }
 
-function formatWithLeadingZero(value) {
-  return value < 10 ? `0${value}` : value;
-}
-
-function setCurrentDate() {
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = formatWithLeadingZero(now.getMonth() + 1);
-  const day = formatWithLeadingZero(now.getDate());
-  let element = document.getElementById("date-input-id");
-  element.min = `${year}-${month}-${day}`;
-}
-
+/**
+ * Closes the assigned-todropdown menu when a click event occurs outside of the menu or the input field.
+ */
 function closeAssignedToMenu() {
   document.addEventListener("click", function (event) {
     const clickInsideInput = event.target.closest("#assignedto-container-id");
@@ -101,6 +109,10 @@ function closeAssignedToMenu() {
   });
 }
 
+/**
+ * Toggles the visibility of the assigned-to drop down menu.
+ * @param {boolean} bool - A boolean value indicating whether to show or hide the assigned-to section.
+ */
 function toggleAssignedToSection(bool) {
   document.getElementById("assignedto-input-id").placeholder = "An: ";
   toggleVisibility("assigned-to-contacts-id", bool, "active");
@@ -108,6 +120,9 @@ function toggleAssignedToSection(bool) {
   toggleVisibility("at-label-id", bool, "shrink-font-size");
 }
 
+/**
+ * Opens the assigned-by onclick on the arrow image.
+ */
 function openAssignedByArrow() {
   renderAssignedToContacts();
   document.getElementById("assignedto-input-id").placeholder = "Select contacts to assign";
@@ -117,6 +132,9 @@ function openAssignedByArrow() {
   document.getElementById("assignedto-input-id").value = "";
 }
 
+/**
+ * Renders the added contacts in the assigned-to down menu.
+ */
 function renderAddedContacts() {
   let addedContactsElement = document.getElementById("added-contacts-id");
   addedContactsElement.innerHTML = "";
@@ -131,6 +149,11 @@ function renderAddedContacts() {
   });
 }
 
+/**
+ * Handles the selection of an assigned-to user.
+ * @param {Event} event - The event object.
+ * @param {number} index - The index of the user.
+ */
 function selectedAssignedToUser(event, index) {
   userIndex = index;
   const svgElement = event.currentTarget.querySelector("svg");
@@ -149,16 +172,10 @@ function selectedAssignedToUser(event, index) {
   renderAddedContacts();
 }
 
-function getUserInfo(event) {
-  const circleStyleElement = event.currentTarget.querySelector(".circle-style");
-  const userName = document.getElementById(`contact-id${userIndex}`).innerHTML;
-  const userMail = document.getElementById(`at-user-mail-id${userIndex}`).innerHTML;
-  const assignedContact = circleStyleElement.innerText;
-  const backgroundColorValue = window.getComputedStyle(circleStyleElement).backgroundColor;
-  const textColor = window.getComputedStyle(circleStyleElement).color;
-  return {assignedContact, backgroundColorValue, textColor, userName, userMail};
-}
-
+/**
+ * Adds the selected user to the assignedTo list.
+ * @param {Event} event - The event object.
+ */
 function pushSelectedUser(event) {
   const {assignedContact, backgroundColorValue, textColor, userName, userMail} = getUserInfo(event);
   if (assignedTo.userMails.includes(userMail)) return;
@@ -169,6 +186,10 @@ function pushSelectedUser(event) {
   assignedTo.userMails.push(userMail);
 }
 
+/**
+ * Deletes the selected user from the assignedTo list.
+ * @param {Event} event - The event object.
+ */
 function deleteSelectedUser(event) {
   const userMail = document.getElementById(`at-user-mail-id${userIndex}`).innerHTML;
   const index = assignedTo.userMails.indexOf(userMail);
@@ -179,6 +200,10 @@ function deleteSelectedUser(event) {
   assignedTo.userMails.splice(index, 1);
 }
 
+/**
+ * Toggles the priority image based on the clicked ID.
+ * @param {string} clickedId - The ID of the clicked element.
+ */
 function togglePrioImg(clickedId) {
   const imageIds = ["urgent-default-id", "medium-default-id", "low-default-id"];
   imageIds.forEach((id, index) => {
@@ -190,6 +215,9 @@ function togglePrioImg(clickedId) {
   });
 }
 
+/**
+ * Closes the category menu if a click event occurs outside of it.
+ */
 function closeCategoryMenu() {
   document.addEventListener("click", function (event) {
     const clickInsideInput = event.target.closest("#category-container-id");
@@ -200,11 +228,18 @@ function closeCategoryMenu() {
   });
 }
 
+/**
+ * Toggles the visibility of the category container.
+ */
 function toggleCategoryContainer() {
   toggleSection("rotate-arrow-category-id", "upsidedown");
   toggleSection("category-id", "active");
 }
 
+/**
+ * Selects a category and updates the input value accordingly.
+ * @param {HTMLElement} clickedElement - The clicked category element.
+ */
 function selectCategory(clickedElement) {
   const element = document.getElementById("category-input-id");
   const allItems = document.querySelectorAll(".category-dropdown ul li");
@@ -214,6 +249,9 @@ function selectCategory(clickedElement) {
   toggleCategoryContainer(true);
 }
 
+/**
+ * Adds a listener to the subtask input element to toggle visibility of add and delete buttons.
+ */
 function addSubtaskVisibilityListener() {
   const inputElement = document.getElementById("subtask-input-id");
   inputElement.addEventListener("input", function (event) {
@@ -224,12 +262,19 @@ function addSubtaskVisibilityListener() {
   });
 }
 
+/**
+ * Toggles the visibility of the add new task menu.
+ */
 function toggleAddNewTaskMenu() {
   addSubtaskVisibilityListener();
   const inputElement = document.getElementById("subtask-input-id");
   inputElement.focus();
 }
 
+/**
+ * Deletes or adds a task menu based on the provided parameter.
+ * @param {boolean} isDelete - Indicates whether to delete the task menu.
+ */
 function deleteOrAddTaskMenu(isDelete) {
   const inputElement = document.getElementById("subtask-input-id");
   if (isDelete) inputElement.value = "";
@@ -238,6 +283,9 @@ function deleteOrAddTaskMenu(isDelete) {
   toggleVisibility("subtask-add-button-id", true);
 }
 
+/**
+ * Adds a subtask when the Enter key is pressed.
+ */
 function addSubtaskByEnter() {
   const inputElement = document.getElementById("subtask-input-id");
   inputElement.addEventListener("keydown", (event) => {
@@ -247,6 +295,9 @@ function addSubtaskByEnter() {
   });
 }
 
+/**
+ * Adds a new task to the subtask list and renders the updated list.
+ */
 function addNewTaskMenu() {
   const inputElement = document.getElementById("subtask-input-id");
   subtaskList.tasks.push(inputElement.value);
@@ -255,6 +306,9 @@ function addNewTaskMenu() {
   renderSubtasks();
 }
 
+/**
+ * Renders the subtasks in the UI.
+ */
 function renderSubtasks() {
   let element = document.getElementById("add-task-list-id");
   element.innerHTML = "";
@@ -264,77 +318,9 @@ function renderSubtasks() {
 }
 
 /**
- * Toggles the red border in the subtasks list when clicking outside or on save/delete buttons.
+ * Initiates the editing of a subtask.
  * @param {number} index - The index of the subtask being edited.
- * @param {HTMLElement} listElement - The HTML element representing the subtasks list.
  */
-function toggleReadBorderInSubtasks(index, listElement) {
-  const saveElement = document.getElementById(`save-edit-subtask-id${index}`);
-  const deleteElement = document.getElementById(`delete-edit-subtask-id${index}`);
-  function handleClick(event) {
-    const isClickOutsideList = !listElement.contains(event.target);
-    const isClickOnSave = saveElement.contains(event.target);
-    const isClickOnDelete = deleteElement.contains(event.target);
-    if (isClickOutsideList) setIsClickedOutsideLogic();
-    else if (isClickOnSave) setIsClickOnSaveLogic(handleClick);
-    else if (isClickOnDelete) setIsClickOnDeleteLogic(handleClick);
-    else setAllUserInputsCorrectLogic();
-  }
-  clickEventListener = handleClick;
-  document.addEventListener("click", clickEventListener);
-}
-
-/**
- * Handles the logic when all user inputs are correct.
- */
-function setAllUserInputsCorrectLogic() {
-  disableFiledElements(false);
-  toggleVisibility(`substask-content-id${currentIndex}`, true, "red-line-highlight");
-}
-
-/**
- * Handles the logic when the delete action is clicked.
- */
-function setIsClickOnDeleteLogic(handleClick) {
-  disableFiledElements(false);
-  document.removeEventListener("click", handleClick);
-}
-
-/**
- * Handles the logic when the save action is clicked.
- */
-function setIsClickOnSaveLogic(handleClick) {
-  disableFiledElements(false);
-  toggleVisibility(`substask-content-id${currentIndex}`, true, "red-line-highlight");
-  document.removeEventListener("click", handleClick);
-}
-
-/**
- * Handles the logic when a click event occurs outside the list of subtasks.
- */
-function setIsClickedOutsideLogic() {
-  disableFiledElements(true);
-  document.getElementById("subtask-input-id").value = "";
-  toggleVisibility("subtask-del-and-confirm-id", false);
-  toggleVisibility("subtask-add-button-id", true);
-  toggleVisibility(`substask-content-id${currentIndex}`, false, "red-line-highlight");
-}
-function disableFiledElements(bool) {
-  const inputElement = document.getElementById("subtask-input-id");
-  const createTaskElement = document.getElementById("at-add-btn");
-  inputElement.disabled = bool;
-  createTaskElement.disabled = bool;
-  showSubtasksError(bool);
-}
-
-function showSubtasksError(bool) {
-  if (bool) {
-    toggleVisibility("subtask-err-msg-id", true);
-    const targetElement = document.getElementById("subtask-err-msg-id");
-    targetElement.scrollIntoView({behavior: "smooth", block: "start"});
-  } else toggleVisibility("subtask-err-msg-id", false);
-}
-
 function editSubtask(index) {
   currentIndex = index;
   const listElement = document.getElementById(`substask-content-id${index}`);
@@ -342,27 +328,10 @@ function editSubtask(index) {
   handleFirstSubtaskEdit(index, listElement);
 }
 
-function handleFirstSubtaskEdit(index, listElement) {
-  disableAllSubtasksExcept(index);
-  const element = document.getElementById(`editable-span-id${index}`);
-  toggleVisibility(`subtask-edited-container-id${index}`, true);
-  toggleVisibility(`subtask-default-container-id${index}`, false);
-  makeElementEditable(element);
-  listElement.classList.toggle("blue-line-highlight");
-}
-
-function disableAllSubtasksExcept(index) {
-  const totalNumberOfSubtasks = document.querySelectorAll('[id^="substask-content-id"]').length;
-  for (let i = 0; i < totalNumberOfSubtasks; i++) {
-    if (i !== index) toggleVisibility(`substask-content-id${i}`, false, "disabled-svg");
-  }
-}
-
-function makeElementEditable(element) {
-  element.setAttribute("contentEditable", "true");
-  element.focus();
-}
-
+/**
+ * Saves the edited subtask content.
+ * @param {number} index - The index of the subtask being edited.
+ */
 function saveEditSubtask(index) {
   const element = document.getElementById(`editable-span-id${index}`);
   if (element.innerText === "")
@@ -371,20 +340,19 @@ function saveEditSubtask(index) {
   renderSubtasks();
 }
 
+/**
+ * Deletes a subtask from the list.
+ * @param {number} index - The index of the subtask to delete.
+ */
 function deleteSubtask(index) {
   subtaskList.tasks.splice(index, 1);
   subtaskList.done.splice(index, 1);
   renderSubtasks();
 }
 
-function getAddTaskInputs() {
-  const titleInput = document.getElementById("title-input-id").value;
-  const textareaInput = document.getElementById("textarea-input-id").value;
-  const dateInput = document.getElementById("date-input-id").value;
-  const categoryInput = document.getElementById("category-input-id").value;
-  return {titleInput, textareaInput, dateInput, categoryInput};
-}
-
+/**
+ * Creates a new task based on the input values and sends the user to the board page.
+ */
 function createTask() {
   const {titleInput, textareaInput, dateInput, categoryInput} = getAddTaskInputs();
   const atBoolArr = [false, false, false, false, false, false];
@@ -400,102 +368,4 @@ function createTask() {
   renderAssignedToContacts();
   save();
   sendUserToBoard();
-}
-
-function validateInputs(titleInput, dateInput, categoryInput, atBoolArr) {
-  validateInput(titleInput, atBoolArr, 0, 3);
-  validateInput(dateInput, atBoolArr, 1, 4);
-  validateInput(categoryInput, atBoolArr, 2, 5);
-}
-
-function sendUserToBoard() {
-  toggleScrollbar("hidden");
-  toggleVisibility("at-success-msg-id", true);
-  toggleVisibility("trans-bg-id", true);
-  setTimeout(() => {
-    toggleVisibility("at-success-msg-id", false, "slide-sm");
-    setTimeout(() => {
-      window.location.assign("./board.html");
-    }, 900);
-  }, 200);
-}
-
-function pushTasks(titleInput, textareaInput, dateInput, categoryInput, section = "toDo") {
-  currentUser.tasks.titles.push(titleInput);
-  currentUser.tasks.descriptions.push(textareaInput);
-  currentUser.tasks.dates.push(dateInput);
-  currentUser.tasks.assignedTo.push(assignedTo);
-  currentUser.tasks.prios.push(prio[prioIndex]);
-  currentUser.tasks.categories.push(categoryInput);
-  currentUser.tasks.subtasks.push(subtaskList);
-  currentUser.tasks.board.push(section);
-}
-
-function validateInput(input, atBoolArr, index1, index2) {
-  if (input.trim() === "") atBoolArr[index1] = atBoolArr[index2] = true;
-}
-
-function handlerAddTaskValidation(atBoolArr) {
-  toggleVisibility("empty-title-id", atBoolArr[0]);
-  toggleVisibility("empty-date-id", atBoolArr[1]);
-  toggleVisibility("empty-category-id", atBoolArr[2]);
-  toggleVisibility("at-title-border-id", !atBoolArr[3], "error-border");
-  toggleVisibility("at-date-border-id", !atBoolArr[4], "error-border");
-  toggleVisibility("category-container-id", !atBoolArr[5], "error-border");
-  return atBoolArr.some(Boolean);
-}
-
-function clearAll() {
-  document.removeEventListener("click", clickEventListener);
-  clickEventListener = null;
-  clearAllInputs();
-  clearAllLists();
-  clearAllErrMsg();
-  clearAllSelectedUsers();
-  renderAssignedToContacts();
-  renderAddedContacts();
-  renderSubtasks();
-  togglePrioImg("medium-default-id");
-  toggleVisibility("subtask-del-and-confirm-id", false);
-  toggleVisibility("subtask-add-button-id", true);
-  toggleVisibility("rotate-err-arrow-id", false);
-  disableFiledElements(false);
-  localStorage.setItem("currentUser", JSON.stringify(currentUser));
-}
-function clearAllInputs() {
-  document.getElementById("title-input-id").value = "";
-  document.getElementById("textarea-input-id").value = "";
-  document.getElementById("subtask-input-id").value = "";
-  document.getElementById("date-input-id").value = "";
-  document.getElementById("category-input-id").value = "";
-}
-
-function clearAllLists() {
-  subtaskList.tasks.splice(0, subtaskList.tasks.length);
-  assignedTo.userNames.splice(0, assignedTo.userNames.length);
-  assignedTo.userMails.splice(0, assignedTo.userMails.length);
-  assignedTo.colorCodes.splice(0, assignedTo.colorCodes.length);
-  assignedTo.initials.splice(0, assignedTo.initials.length);
-  assignedTo.textColors.splice(0, assignedTo.textColors.length);
-}
-
-function clearAllErrMsg() {
-  toggleVisibility("empty-title-id", false);
-  toggleVisibility("empty-date-id", false);
-  toggleVisibility("empty-category-id", false);
-  toggleVisibility("at-title-border-id", !false, "error-border");
-  toggleVisibility("at-date-border-id", !false, "error-border");
-  toggleVisibility("category-container-id", !false, "error-border");
-}
-
-function clearAllSelectedUsers() {
-  currentUser.contacts.forEach((contact) => {
-    contact.selected = false;
-  });
-}
-
-function changeInputColor() {
-  const dateInput = document.getElementById("date-input-id");
-  dateInput.style.removeProperty("-webkit-datetime-edit");
-  dateInput.style.color = "black";
 }
