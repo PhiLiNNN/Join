@@ -235,3 +235,8 @@
     font-size: 48px;
   }
 }
+@media (max-width: 760px) and (max-height: 800px) {
+  .ac-err-msg {
+    top: 40px;
+  }
+}

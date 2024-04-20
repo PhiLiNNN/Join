@@ -313,7 +313,10 @@
 @media (max-width: 760px) and (max-height: 499px) {
   .login-fields-gap {
     margin: 16px 0 16px 0;
-    gap: 6px;
+    gap: 20px;
+  }
+  .err-msg {
+    top: 50px;
   }
   .content {
     margin-top: 50px;
