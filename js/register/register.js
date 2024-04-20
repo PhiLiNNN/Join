@@ -316,7 +316,7 @@ function toggleCheckbox(event) {
   } else if (event.target.id === "privacy-checkbox-id") {
     ppCheckbox.src = ppCheckboxConfirmed
       ? "./assets/svg/checkbox_confirmed.svg"
-      : "./assets/scg/checkbox.svg";
+      : "./assets/svg/checkbox.svg";
   }
 }
 
