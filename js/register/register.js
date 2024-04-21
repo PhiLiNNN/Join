@@ -17,7 +17,8 @@ let password,
  */
 async function init() {
   setFavicon();
-  localStorage.clear();
+
+  localStorage.removeItem("currentUser");
   showLoader();
   try {
     users = await loadUsersFromBackend("users");
@@ -26,6 +27,8 @@ async function init() {
   } finally {
     hideLoader();
   }
+  rememberMeCheck();
+  console.log("users :>> ", users);
   // await setItem("users", JSON.stringify({})); //  funktion zum clearen des Backends
   addPasswordVisibilityListener(
     "login-pw-border-id",
@@ -35,6 +38,20 @@ async function init() {
     (password = true),
     (confirmPassword = false)
   );
+}
+
+function rememberMeCheck() {
+  const userEmailString = localStorage.getItem("userEmail");
+  if (userEmailString) {
+    const userEmailObject = JSON.parse(userEmailString);
+    userMail = userEmailObject.email;
+    document.getElementById("login-user-e-mail-id").value = users[userMail].userEMail;
+    document.getElementById("login-user-password-id").value = users[userMail].userPassword;
+    toggleVisibility("login-pw-visibility-off-id", true);
+    toggleVisibility("lock-id", false);
+    rmCheckboxConfirmed = true;
+    document.getElementById("uncheckbox-id").src = "./assets/svg/checkbox_confirmed.svg";
+  }
 }
 
 /**
@@ -245,6 +262,14 @@ function closeSignUp() {
   document.getElementById("sign-up-popup-id").innerHTML = "";
   ppCheckboxConfirmed = false;
   inputType = "password";
+  rememberMeCheck();
+}
+
+function saveLoginData(loggedInUser) {
+  if (rmCheckboxConfirmed && loggedInUser.userEMail !== "guest@login.de") {
+    const userEmail = {email: loggedInUser.userEMail};
+    localStorage.setItem("userEmail", JSON.stringify(userEmail));
+  } else localStorage.removeItem("userEmail");
 }
 
 /**
@@ -254,6 +279,7 @@ function closeSignUp() {
 async function login() {
   if (loginValidationCheck()) {
     const loggedInUser = loadCurrentUser();
+    saveLoginData(loggedInUser);
     localStorage.setItem("currentUser", JSON.stringify(loggedInUser));
     window.location.assign(`./summary.html`);
   }
