@@ -212,7 +212,6 @@ function isInsideRect(touchobj, ID) {
  * @param {string} section - The section to move the card to (e.g., "toDo", "inProgress", "awaitFeedback", "done").
  */
 function moveTo(section) {
-  console.log(section);
   resetDragInputs();
   resetNewHoverContainerHeight();
   updateTaskStatus(section);
@@ -470,47 +469,4 @@ function openMenu(index, title) {
 
 function closeMenu(index) {
   toggleVisibility(`move-to-container${index}-id`, false);
-}
-
-function moveToToDo(index) {
-  console.log(index);
-  if (index >= 0 && index < currentUser.tasks.board.length) {
-    console.log("dddddd");
-    currentUser.tasks.board[index] = "toDo";
-    saveWithoutLoaderAnimation();
-    generateCardHTML();
-  }
-}
-
-function moveToInProgress(index) {
-  if (index >= 0 && index < currentUser.tasks.board.length) {
-    currentUser.tasks.board[index] = "inProgress";
-    saveWithoutLoaderAnimation();
-    console.log("Die Aufgabe wurde erfolgreich in den Status 'In Progress' verschoben.");
-    generateCardHTML();
-  } else {
-    console.error("Ungültiger Index.");
-  }
-}
-
-function moveToAwaitFeedback(index) {
-  if (index >= 0 && index < currentUser.tasks.board.length) {
-    currentUser.tasks.board[index] = "awaitFeedback";
-    saveWithoutLoaderAnimation();
-    console.log("Die Aufgabe wurde erfolgreich in den Status 'Await Feedback' verschoben.");
-    generateCardHTML();
-  } else {
-    console.error("Ungültiger Index.");
-  }
-}
-
-function moveToDone(index) {
-  if (index >= 0 && index < currentUser.tasks.board.length) {
-    currentUser.tasks.board[index] = "done";
-    saveWithoutLoaderAnimation();
-    console.log("Die Aufgabe wurde erfolgreich in den Status 'done' verschoben.");
-    generateCardHTML();
-  } else {
-    console.error("Ungültiger Index.");
-  }
 }
