@@ -93,24 +93,6 @@ function addTaskToList(index, element) {
 }
 
 /**
- * Prevents the default behavior of an element when dragged over.
- * @param {Event} event - The dragover event.
- */
-function allowDrop(event) {
-  event.preventDefault();
-}
-
-/**
- * Sets up drag event listeners for all draggable elements.
- */
-function setDragEventListeners() {
-  allDragElements = document.querySelectorAll(".board-card");
-  allDragElements.forEach((el) => {
-    el.addEventListener("drag", handleDrag);
-  });
-}
-
-/**
  * Handles the drag event by checking if the dragged element is within the boundaries of the target drop zones and toggles visibility accordingly.
  * @param {Event} event - The drag event.
  */
@@ -146,6 +128,83 @@ function startDragging(event, title, index) {
   currentDraggedElement = title;
   getHoverContainerGeometrie();
   toggleVisibility(`draggedCard${index}-id`, false, "board-card-tilt");
+}
+
+/**
+ * Handles the start of a touch event for dragging a board card.
+ * @param {TouchEvent} event - The touch event object.
+ * @param {string} title - The title of the card being dragged.
+ * @param {number} index - The index of the card being dragged.
+ */
+function startTouchEvent(event, title, index) {
+  validDragEl = true;
+  const handleTouchStart = (event) => {
+    const outermostParent = findOutermostParentWithClass(event.target, "drag-container");
+    setNewHoverContainerHeightMobile(outermostParent);
+  };
+  handleTouchStart(event);
+  currentCard = index;
+  currentDraggedElement = title;
+  getHoverContainerGeometrie();
+  toggleVisibility(`draggedCard${index}-id`, false, "board-card-tilt");
+}
+
+/**
+ * Prevents the default behavior of an element when dragged over.
+ * @param {Event} event - The dragover event.
+ */
+function allowDrop(event) {
+  event.preventDefault();
+}
+
+function findOutermostParentWithClass(element, className) {
+  let parent = element.parentNode;
+  while (parent) {
+    if (parent.classList.contains(className)) {
+      return parent;
+    }
+    parent = parent.parentNode;
+  }
+  return null; // Wenn kein passendes Element gefunden wurde
+}
+/**
+ * Sets up drag event listeners for all draggable elements.
+ */
+function setDragEventListeners() {
+  const allDragElements = document.querySelectorAll(".board-card");
+  allDragElements.forEach((el) => {
+    el.addEventListener("drag", handleDrag);
+    el.addEventListener("touchmove", function (eve) {
+      eve.preventDefault();
+      const touchobj = eve.touches[0];
+      handleDrag(touchobj);
+    });
+    el.addEventListener("touchend", function (eve) {
+      const touchobj = eve.changedTouches[0];
+      if (isInsideRect(touchobj, "toDo")) moveTo("toDo");
+      else if (isInsideRect(touchobj, "inProgress")) moveTo("inProgress");
+      else if (isInsideRect(touchobj, "awaitFeedback")) moveTo("awaitFeedback");
+      else if (isInsideRect(touchobj, "done")) moveTo("done");
+      else toggleVisibility(`draggedCard${currentCard}-id`, true, "board-card-tilt");
+    });
+  });
+}
+
+/**
+ * Checks if the touch event occurred inside a specified rectangle.
+ * @param {TouchEvent} touchobj - The touch event object.
+ * @param {string} ID - The ID of the target rectangle element.
+ * @returns {boolean} True if the touch event occurred inside the specified rectangle, otherwise false.
+ */
+function isInsideRect(touchobj, ID) {
+  const element = document.getElementById(`${ID}-hover-id`);
+  rect = element.getBoundingClientRect();
+  return (
+    touchobj.clientX > rect.left &&
+    touchobj.clientX < rect.right &&
+    touchobj.clientY > rect.top &&
+    touchobj.clientY < rect.bottom
+  );
 }
 
 /**

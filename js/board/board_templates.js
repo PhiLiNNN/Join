@@ -12,7 +12,7 @@ function generateTaskHTML(index, prio, bgColor, tasksDone, progress) {
   if (!progress) value = "none";
   else value = "";
   return /*html*/ `
-    <div id="draggedCard${index}-id" draggable="true" onclick="openCardInfo('${index}')" ondragstart="startDragging(event,'${currentUser.tasks.titles[index]}', '${index}')" class="board-card">
+    <div id="draggedCard${index}-id" draggable="true" ontouchstart="startTouchEvent(event,'${currentUser.tasks.titles[index]}', '${index}')" onclick="openCardInfo('${index}')" ondragstart="startDragging(event,'${currentUser.tasks.titles[index]}', '${index}')" class="board-card">
         <div class="category-container">
             <span style="background-color: ${bgColor};" class="category-block">${currentUser.tasks.categories[index]}</span>
         </div>

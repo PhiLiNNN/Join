@@ -264,6 +264,18 @@ function setNewHoverContainerHeight(event) {
 }
 
 /**
+ * Sets the minimum height for the hover containers based on the height of the parent container.
+ * @param {Event} event - The event triggering the function.
+ */
+function setNewHoverContainerHeightMobile(parentContainer) {
+  let containerHeight = parentContainer.offsetHeight - 50;
+  ["toDo-id", "inProgress-id", "awaitFeedback-id", "done-id"].forEach((id) => {
+    let element = document.getElementById(id);
+    element.style.minHeight = containerHeight + "px";
+  });
+}
+
+/**
  * Truncates text content of elements if it exceeds a specified maximum height.
  * @param {string} querySelector - The CSS query selector for the elements whose text content needs truncation (description and title).
  * @param {number} maxHeight - The maximum height (in pixels) beyond which text should be truncated.
