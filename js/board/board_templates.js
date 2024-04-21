@@ -13,7 +13,7 @@ function generateTaskHTML(index, prio, bgColor, tasksDone, progress) {
   else value = "";
   return /*html*/ `
   <div class="card">
-    <div id="draggedCard${index}-id" draggable="true" onclick="openCardInfo('${index}')" ondragstart="startDragging(event,'${currentUser.tasks.titles[index]}', '${index}')" class="board-card">
+    <div id="draggedCard${index}-id" draggable="true" ontouchstart="startTouchEvent(event,'${currentUser.tasks.titles[index]}', '${index}')"  onclick="openCardInfo('${index}')" ondragstart="startDragging(event,'${currentUser.tasks.titles[index]}', '${index}')" class="board-card">
         <div class="category-container">
             <span style="background-color: ${bgColor};" class="category-block">${currentUser.tasks.categories[index]}</span>
         </div>
@@ -53,16 +53,16 @@ function generateTaskHTML(index, prio, bgColor, tasksDone, progress) {
             </div>
         </div>
     </div>
-        <button class="move-to-button" onclick="openMenu()">
+        <button class="move-to-button" onclick="openMenu('${index}', '${currentUser.tasks.titles[index]}')">
             <div>
                ... 
             </div>
         </button>
-        <div class="move-to-container">
+        <div id="move-to-container${index}-id" class="move-to-container d-none">
             <div class="move-to-menu">
             <div class="move-to-headline">
                 <span>Move to</span> 
-                <button onclick="closeMenu()" class="move-to-button2"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <button onclick="closeMenu('${index}')" class="move-to-button2"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <mask id="mask0_166979_2247" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="4" y="4" width="24" height="24">
                 <rect x="4" y="4" width="24" height="24" fill="#D9D9D9"/>
                 </mask>
@@ -72,10 +72,10 @@ function generateTaskHTML(index, prio, bgColor, tasksDone, progress) {
                 </svg>
             </div>
             <ul>
-                <li onclick="moveToToDo(0)">To do</li>
-                <li onclick="moveToInProgress(0)">In Progress</li>
-                <li onclick="moveToAwaitFeedback(0)">Await Feedback</li>
-                <li onclick="moveToDone(0)">Done</li>
+                <li onclick="moveTo('toDo')">To do</li>
+                <li onclick="moveTo('inProgress')">In Progress</li>
+                <li onclick="moveTo('awaitFeedback')">Await Feedback</li>
+                <li onclick="moveTo('done')">Done</li>
             </ul>
         </div>
         </div>

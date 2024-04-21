@@ -165,7 +165,7 @@ function findOutermostParentWithClass(element, className) {
     }
     parent = parent.parentNode;
   }
-  return null; // Wenn kein passendes Element gefunden wurde
+  return null;
 }
 /**
  * Sets up drag event listeners for all draggable elements.
@@ -212,6 +212,7 @@ function isInsideRect(touchobj, ID) {
  * @param {string} section - The section to move the card to (e.g., "toDo", "inProgress", "awaitFeedback", "done").
  */
 function moveTo(section) {
+  console.log(section);
   resetDragInputs();
   resetNewHoverContainerHeight();
   updateTaskStatus(section);
@@ -462,22 +463,22 @@ function closeEditTaskOverlay() {
   closeOverlay();
 }
 
-function openMenu() {
-  document.querySelector('.move-to-container').style.display = 'block';
+function openMenu(index, title) {
+  currentDraggedElement = title;
+  toggleVisibility(`move-to-container${index}-id`, true);
 }
 
-function closeMenu() {
-  document.querySelector('.move-to-container').style.display = 'none';
+function closeMenu(index) {
+  toggleVisibility(`move-to-container${index}-id`, false);
 }
 
 function moveToToDo(index) {
+  console.log(index);
   if (index >= 0 && index < currentUser.tasks.board.length) {
+    console.log("dddddd");
     currentUser.tasks.board[index] = "toDo";
     saveWithoutLoaderAnimation();
-    console.log("Die Aufgabe wurde erfolgreich in den Status 'To Do' verschoben.");
     generateCardHTML();
-  } else {
-    console.error("Ungültiger Index.");
   }
 }
 

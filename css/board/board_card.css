@@ -219,10 +219,6 @@
   display: none;
 }
 
-.move-to-container {
-  display: none;
-}
-
 @media (min-width: 761px) {
   .task-container,
   .priority-block {
@@ -234,7 +230,6 @@
   .board-card {
     padding: 16px;
   }
-  
 }
 @media (min-width: 1341px) {
   .task-container,
@@ -272,7 +267,7 @@
   }
   .move-to-headline {
     padding: 12.5px;
-    background-color:  var(--white-grey);
+    background-color: var(--white-grey);
     display: flex;
     justify-content: space-between;
   }
@@ -313,6 +308,4 @@
   .move-to-menu ul li:hover {
     background-color: var(--focus-color-btn);
   }
-
-
 }
