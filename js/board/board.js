@@ -402,3 +402,55 @@ function closeEditTaskOverlay() {
   clearAllSelectedUsers();
   closeOverlay();
 }
+
+function openMenu() {
+  document.querySelector('.move-to-container').style.display = 'block';
+}
+
+function closeMenu() {
+  document.querySelector('.move-to-container').style.display = 'none';
+}
+
+function moveToToDo(index) {
+  if (index >= 0 && index < currentUser.tasks.board.length) {
+    currentUser.tasks.board[index] = "toDo";
+    saveWithoutLoaderAnimation();
+    console.log("Die Aufgabe wurde erfolgreich in den Status 'To Do' verschoben.");
+    generateCardHTML();
+  } else {
+    console.error("Ungültiger Index.");
+  }
+}
+
+function moveToInProgress(index) {
+  if (index >= 0 && index < currentUser.tasks.board.length) {
+    currentUser.tasks.board[index] = "inProgress";
+    saveWithoutLoaderAnimation();
+    console.log("Die Aufgabe wurde erfolgreich in den Status 'In Progress' verschoben.");
+    generateCardHTML();
+  } else {
+    console.error("Ungültiger Index.");
+  }
+}
+
+function moveToAwaitFeedback(index) {
+  if (index >= 0 && index < currentUser.tasks.board.length) {
+    currentUser.tasks.board[index] = "awaitFeedback";
+    saveWithoutLoaderAnimation();
+    console.log("Die Aufgabe wurde erfolgreich in den Status 'Await Feedback' verschoben.");
+    generateCardHTML();
+  } else {
+    console.error("Ungültiger Index.");
+  }
+}
+
+function moveToDone(index) {
+  if (index >= 0 && index < currentUser.tasks.board.length) {
+    currentUser.tasks.board[index] = "done";
+    saveWithoutLoaderAnimation();
+    console.log("Die Aufgabe wurde erfolgreich in den Status 'done' verschoben.");
+    generateCardHTML();
+  } else {
+    console.error("Ungültiger Index.");
+  }
+}

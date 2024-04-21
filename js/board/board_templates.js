@@ -12,6 +12,7 @@ function generateTaskHTML(index, prio, bgColor, tasksDone, progress) {
   if (!progress) value = "none";
   else value = "";
   return /*html*/ `
+  <div class="card">
     <div id="draggedCard${index}-id" draggable="true" onclick="openCardInfo('${index}')" ondragstart="startDragging(event,'${currentUser.tasks.titles[index]}', '${index}')" class="board-card">
         <div class="category-container">
             <span style="background-color: ${bgColor};" class="category-block">${currentUser.tasks.categories[index]}</span>
@@ -51,7 +52,34 @@ function generateTaskHTML(index, prio, bgColor, tasksDone, progress) {
                 <div class="little-subtask">1/2 Subtasks</div>
             </div>
         </div>
-    </div>`;
+    </div>
+        <button class="move-to-button" onclick="openMenu()">
+            <div>
+               ... 
+            </div>
+        </button>
+        <div class="move-to-container">
+            <div class="move-to-menu">
+            <div class="move-to-headline">
+                <span>Move to</span> 
+                <button onclick="closeMenu()" class="move-to-button2"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <mask id="mask0_166979_2247" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="4" y="4" width="24" height="24">
+                <rect x="4" y="4" width="24" height="24" fill="#D9D9D9"/>
+                </mask>
+                <g mask="url(#mask0_166979_2247)">
+                <path d="M16 17.4L11.1 22.3C10.9167 22.4834 10.6834 22.575 10.4 22.575C10.1167 22.575 9.88338 22.4834 9.70005 22.3C9.51672 22.1167 9.42505 21.8834 9.42505 21.6C9.42505 21.3167 9.51672 21.0834 9.70005 20.9L14.6 16L9.70005 11.1C9.51672 10.9167 9.42505 10.6834 9.42505 10.4C9.42505 10.1167 9.51672 9.88338 9.70005 9.70005C9.88338 9.51672 10.1167 9.42505 10.4 9.42505C10.6834 9.42505 10.9167 9.51672 11.1 9.70005L16 14.6L20.9 9.70005C21.0834 9.51672 21.3167 9.42505 21.6 9.42505C21.8834 9.42505 22.1167 9.51672 22.3 9.70005C22.4834 9.88338 22.575 10.1167 22.575 10.4C22.575 10.6834 22.4834 10.9167 22.3 11.1L17.4 16L22.3 20.9C22.4834 21.0834 22.575 21.3167 22.575 21.6C22.575 21.8834 22.4834 22.1167 22.3 22.3C22.1167 22.4834 21.8834 22.575 21.6 22.575C21.3167 22.575 21.0834 22.4834 20.9 22.3L16 17.4Z" fill="#2A3647"/>
+                </g>
+                </svg>
+            </div>
+            <ul>
+                <li onclick="moveToToDo(0)">To do</li>
+                <li onclick="moveToInProgress(0)">In Progress</li>
+                <li onclick="moveToAwaitFeedback(0)">Await Feedback</li>
+                <li onclick="moveToDone(0)">Done</li>
+            </ul>
+        </div>
+        </div>
+   </div>`;
 }
 
 /**
