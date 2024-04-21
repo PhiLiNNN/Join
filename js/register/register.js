@@ -28,7 +28,6 @@ async function init() {
     hideLoader();
   }
   rememberMeCheck();
-  console.log("users :>> ", users);
   // await setItem("users", JSON.stringify({})); //  funktion zum clearen des Backends
   addPasswordVisibilityListener(
     "login-pw-border-id",
@@ -40,6 +39,12 @@ async function init() {
   );
 }
 
+/**
+ * Checks if the "Remember Me" option is enabled and fills the login form with stored user email and password.
+ * If the "Remember Me" option is enabled, this function retrieves the user's email from local storage,
+ * fills the login form with the stored email and password, and updates the visibility of the password visibility icon.
+ * If the "Remember Me" option is not enabled, this function does nothing.
+ */
 function rememberMeCheck() {
   const userEmailString = localStorage.getItem("userEmail");
   if (userEmailString) {

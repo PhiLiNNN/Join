@@ -6,7 +6,7 @@
   transition: all 100ms ease-in-out;
 }
 
-*/ .summary-column {
+.summary-column {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -85,6 +85,7 @@
   justify-content: center;
   align-items: center;
   gap: 18px;
+  background: white;
 }
 
 .middle-box {
@@ -110,6 +111,7 @@
 
 .middle-section {
   position: relative;
+  background: white;
   cursor: pointer;
   transition: width 200ms ease-in-out, height 200ms ease-in-out, font-size 300ms ease-in-out,
     transform 200ms ease-in-out;
@@ -121,6 +123,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: white;
   font-size: 47px;
   border-radius: 20px;
   font-weight: 600;
