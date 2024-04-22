@@ -773,3 +773,22 @@
     width: auto;
   }
 }
+
+@media (max-width: 760px) and (max-height: 454px) {
+  .greetings-content {
+    font-size: 38px;
+  }
+  .user-highlight {
+    font-size: 54px;
+  }
+}
+
+@media (max-width: 760px) and (max-height: 360px) {
+  .greetings-content {
+    margin-top: 16px;
+    font-size: 24px;
+  }
+  .user-highlight {
+    font-size: 30px;
+  }
+}

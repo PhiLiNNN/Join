@@ -206,6 +206,14 @@
     right: 126px;
   }
 }
+
+@media (min-width: 1675px) {
+  .legal-back-arrow {
+    right: auto;
+    left: 1510px;
+  }
+}
+
 @media (max-width: 761px) {
   .legal-back-arrow:active {
     background: var(--placeholder-color);

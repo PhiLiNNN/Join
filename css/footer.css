@@ -199,3 +199,55 @@
     font-size: 14px;
   }
 }
+
+@media (min-width: 761px) and (max-height: 700px) {
+  .desktop-logo {
+    margin-bottom: 48px;
+  }
+  .desktop-data-box {
+    padding-bottom: 16px;
+  }
+}
+
+@media (min-width: 761px) and (max-height: 555px) {
+  .desktop-data-box {
+    display: none;
+  }
+}
+
+@media (min-width: 761px) and (max-height: 470px) {
+  .footer-link {
+    font-size: 14px;
+  }
+  .footer-icon {
+    height: 24px;
+    width: 24px;
+  }
+  .desktop-logo svg {
+    height: 100px;
+  }
+  .desktop-logo {
+    padding: 32px 66px 0px 66px;
+  }
+  .menu-content {
+    gap: 4px;
+  }
+  .menu-wrapper {
+    height: calc(100vh - 175px);
+  }
+}
+
+@media (min-width: 761px) and (max-height: 364px) {
+  .desktop-logo svg {
+    height: 80px;
+  }
+  .desktop-logo {
+    margin-bottom: 0px;
+  }
+  .desktop-logo {
+    padding: 16px 66px 0px 66px;
+  }
+  .menu-wrapper {
+    height: calc(100vh - 125px);
+  }
+}
