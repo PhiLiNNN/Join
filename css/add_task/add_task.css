@@ -189,7 +189,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .added-contacts {
   position: relative;
   display: flex;
-  margin: 8px 0 0 8px;
+  margin: 8px 0 0 12px;
   z-index: 0;
 }
 

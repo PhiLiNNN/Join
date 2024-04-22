@@ -111,13 +111,14 @@
   }
 
   .vertical-bar-container {
-    height: 545px;
+    margin-top: 39px;
+    height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
   }
   .vertical-bar {
-    height: 350px;
+    height: 425px;
     background-color: var(--placeholder-color);
     border-radius: 1px;
     width: 1px;

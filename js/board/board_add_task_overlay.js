@@ -18,73 +18,35 @@ function templateAddTaskHTML() {
       </div>
       <h1 class="board-at-headline">Add Task</h1>
       <div class="content-container-board">
-        <div class="content-top-and-left">
-          <div class="at-title">
-            <div class="at-label-style">
-              Title<span class="required">*</span>
-              <span id="empty-title-id" class="inApp-err-msg d-none">This field is required!</span>
-            </div>
-            <div id="at-title-border-id" class="input_global input_at cursor">
-              <input
-                id="title-input-id"
-                type="text"
-                placeholder="Enter a title"
-                autocomplete="off" 
-                maxlength="100"/>
-            </div>
-          </div>
-          <div class="at-description">
-            <div class="at-label-style">Description</div>
-            <textarea
-              id="textarea-input-id"
-              class="textarea-style"
-              placeholder="Enter a description"
-              maxlength="500"></textarea>
-          </div>
-          <div class="at-Category">
-            <div class="at-label-style">
-              Category<span class="required">*</span>
-              <span id="empty-category-id" class="inApp-err-msg d-none"
-                >This field is required!</span
-              >
-            </div>
-            <div
-              id="category-container-id"
-              class="input_global input_at cursor"
-              onclick="toggleCategoryContainer()">
-              <input
-                id="category-input-id"
-                class="cursor"
-                type="text"
-                placeholder="Select task category"
-                readonly />
-              <img
-                id="rotate-arrow-category-id"
-                class="rotate-arrow"
-                src="./assets/svg/arrow_drop_down.svg" />
-            </div>
-            <div id="category-id" class="category-dropdown">
-              <ul>
-                <li onclick="selectCategory(this)">Technical Task</li>
-                <li onclick="selectCategory(this)">User Story</li>
-                <li onclick="selectCategory(this)">Bug</li>
-                <li onclick="selectCategory(this)">Feature Request</li>
-                <li onclick="selectCategory(this)">Enhancement</li>
-                <li onclick="selectCategory(this)">Documentation</li>
-                <li onclick="selectCategory(this)">Testing</li>
-                <li onclick="selectCategory(this)">Infrastructure</li>
-                <li onclick="selectCategory(this)">Design</li>
-                <li onclick="selectCategory(this)">Research</li>
-                <li onclick="selectCategory(this)">Other</li>
-              </ul>
-            </div>
-          </div>
-        </div>
         <div class="vertical-bar-container">
           <div class="vertical-bar"></div>
         </div>
         <div class="content-bottom-and-rigth">
-          <div>
+  
+          <div class="content-top-and-left">
+            <div class="at-title">
+              <div class="at-label-style">
+                Title<span class="required">*</span>
+                <span id="empty-title-id" class="inApp-err-msg d-none">This field is required!</span>
+              </div>
+              <div id="at-title-border-id" class="input_global input_at cursor">
+                <input
+                  id="title-input-id"
+                  type="text"
+                  placeholder="Enter a title"
+                  autocomplete="off" 
+                  maxlength="100"/>
+              </div>
+            </div>
+            <div class="at-description">
+              <div class="at-label-style">Description</div>
+              <textarea
+                id="textarea-input-id"
+                class="textarea-style"
+                placeholder="Enter a description"
+                maxlength="500"></textarea>
+            </div>
+                      <div>
             <div id="at-label-id" class="at-label-style">Assigned to</div>
             <div id="assignedto-container-id" class="input_global input_at cursor">
               <input
@@ -100,6 +62,18 @@ function templateAddTaskHTML() {
             </div>
             <div id="assigned-to-contacts-id" class="at-dropdown"></div>
             <div id="added-contacts-id" class="added-contacts"></div>
+          </div>
+          <div class="at-date">
+            <div class="at-label-style">
+              Due date<span class="required">*</span>
+              <span id="empty-date-id" class="inApp-err-msg d-none">This field is required!</span>
+            </div>
+            <div id="at-date-border-id" class="input_global due_date_at">
+              <input id="date-input-id" type="date" max="2025-12-31" min="2024-02-27" onchange="changeInputColor()" />
+              <img
+                class="event-style"
+                src="./assets/img/event.png" />
+            </div>
           </div>
           <div class="at-prio">
             <div class="at-label-style">Prio</div>
@@ -122,6 +96,45 @@ function templateAddTaskHTML() {
                 src="./assets/img/low_default.png"
                 alt=""
                 onclick="togglePrioImg('low-default-id')" />
+            </div>
+          </div>
+            <div class="at-Category">
+              <div class="at-label-style">
+                Category<span class="required">*</span>
+                <span id="empty-category-id" class="inApp-err-msg d-none"
+                  >This field is required!</span
+                >
+              </div>
+              <div
+                id="category-container-id"
+                class="input_global input_at cursor"
+                onclick="toggleCategoryContainer()">
+                <input
+                  id="category-input-id"
+                  class="cursor"
+                  type="text"
+                  placeholder="Select task category"
+                  readonly />
+                <img
+                  id="rotate-arrow-category-id"
+                  class="rotate-arrow"
+                  src="./assets/svg/arrow_drop_down.svg" />
+              </div>
+              <div id="category-id" class="category-dropdown">
+                <ul>
+                  <li onclick="selectCategory(this)">Technical Task</li>
+                  <li onclick="selectCategory(this)">User Story</li>
+                  <li onclick="selectCategory(this)">Bug</li>
+                  <li onclick="selectCategory(this)">Feature Request</li>
+                  <li onclick="selectCategory(this)">Enhancement</li>
+                  <li onclick="selectCategory(this)">Documentation</li>
+                  <li onclick="selectCategory(this)">Testing</li>
+                  <li onclick="selectCategory(this)">Infrastructure</li>
+                  <li onclick="selectCategory(this)">Design</li>
+                  <li onclick="selectCategory(this)">Research</li>
+                  <li onclick="selectCategory(this)">Other</li>
+                </ul>
+              </div>
             </div>
           </div>
           <div class="at-subtasks">
@@ -203,18 +216,6 @@ function templateAddTaskHTML() {
             </div>
             <div class="subtask-list">
               <ul id="add-task-list-id"></ul>
-            </div>
-          </div>
-          <div class="at-date">
-            <div class="at-label-style">
-              Due date<span class="required">*</span>
-              <span id="empty-date-id" class="inApp-err-msg d-none">This field is required!</span>
-            </div>
-            <div id="at-date-border-id" class="input_global due_date_at">
-              <input id="date-input-id" type="date" max="2025-12-31" min="2024-02-27" onchange="changeInputColor()" />
-              <img
-                class="event-style"
-                src="./assets/img/event.png" />
             </div>
           </div>
         </div>

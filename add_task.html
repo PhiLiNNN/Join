@@ -44,6 +44,67 @@
               placeholder="Enter a description"
               maxlength="500"></textarea>
           </div>
+          <div>
+            <div id="at-label-id" class="at-label-style at-asignedTo">Assigned to</div>
+            <div id="assignedto-container-id" class="input_global input_at cursor">
+              <input
+                id="assignedto-input-id"
+                type="text"
+                placeholder="Select contacts to assign"
+                onclick="toggleAssignedToSection(false)"
+                autocomplete="off" />
+              <img
+                id="rotate-arrow-id"
+                class="rotate-arrow"
+                src="./assets/svg/arrow_drop_down.svg"
+                onclick="openAssignedByArrow()" />
+            </div>
+            <div id="assigned-to-contacts-id" class="at-dropdown"></div>
+            <div id="added-contacts-id" class="added-contacts"></div>
+          </div>
+        </div>
+        <div class="vertical-bar-container">
+          <div class="vertical-bar"></div>
+        </div>
+        <div class="content-bottom-and-rigth">
+          <div class="at-date">
+            <div class="at-label-style">
+              Due date<span class="required">*</span>
+              <span id="empty-date-id" class="inApp-err-msg d-none">This field is required!</span>
+            </div>
+            <div id="at-date-border-id" class="input_global due_date_at">
+              <input
+                id="date-input-id"
+                type="date"
+                max="2025-12-31"
+                min="2024-02-27"
+                onchange="changeInputColor()" />
+              <img class="event-style" src="./assets/img/event.png" />
+            </div>
+          </div>
+          <div class="at-prio">
+            <div class="at-label-style">Prio</div>
+            <div class="at-prio-img">
+              <img
+                id="urgent-default-id"
+                class="at-prio-img-red"
+                src="./assets/img/urgent_default.png"
+                alt=""
+                onclick="togglePrioImg('urgent-default-id')" />
+              <img
+                id="medium-default-id"
+                class="at-prio-img-yellow"
+                src="./assets/img/medium_highlighted.png"
+                alt=""
+                onclick="togglePrioImg('medium-default-id')" />
+              <img
+                id="low-default-id"
+                class="at-prio-img-green"
+                src="./assets/img/low_default.png"
+                alt=""
+                onclick="togglePrioImg('low-default-id')" />
+            </div>
+          </div>
           <div class="at-Category">
             <div class="at-label-style">
               Category<span class="required">*</span>
@@ -82,53 +143,6 @@
               </ul>
             </div>
           </div>
-        </div>
-        <div class="vertical-bar-container">
-          <div class="vertical-bar"></div>
-        </div>
-        <div class="content-bottom-and-rigth">
-          <div>
-            <div id="at-label-id" class="at-label-style at-asignedTo">Assigned to</div>
-            <div id="assignedto-container-id" class="input_global input_at cursor">
-              <input
-                id="assignedto-input-id"
-                type="text"
-                placeholder="Select contacts to assign"
-                onclick="toggleAssignedToSection(false)"
-                autocomplete="off" />
-              <img
-                id="rotate-arrow-id"
-                class="rotate-arrow"
-                src="./assets/svg/arrow_drop_down.svg"
-                onclick="openAssignedByArrow()" />
-            </div>
-            <div id="assigned-to-contacts-id" class="at-dropdown"></div>
-            <div id="added-contacts-id" class="added-contacts"></div>
-          </div>
-          <div class="at-prio">
-            <div class="at-label-style">Prio</div>
-            <div class="at-prio-img">
-              <img
-                id="urgent-default-id"
-                class="at-prio-img-red"
-                src="./assets/img/urgent_default.png"
-                alt=""
-                onclick="togglePrioImg('urgent-default-id')" />
-              <img
-                id="medium-default-id"
-                class="at-prio-img-yellow"
-                src="./assets/img/medium_highlighted.png"
-                alt=""
-                onclick="togglePrioImg('medium-default-id')" />
-              <img
-                id="low-default-id"
-                class="at-prio-img-green"
-                src="./assets/img/low_default.png"
-                alt=""
-                onclick="togglePrioImg('low-default-id')" />
-            </div>
-          </div>
-
           <div class="at-subtasks">
             <span id="subtask-err-msg-id" class="subtask-err-msg d-none"
               >Finish all subtasks first.
@@ -208,21 +222,6 @@
             </div>
             <div class="subtask-list">
               <ul id="add-task-list-id"></ul>
-            </div>
-          </div>
-          <div class="at-date">
-            <div class="at-label-style">
-              Due date<span class="required">*</span>
-              <span id="empty-date-id" class="inApp-err-msg d-none">This field is required!</span>
-            </div>
-            <div id="at-date-border-id" class="input_global due_date_at">
-              <input
-                id="date-input-id"
-                type="date"
-                max="2025-12-31"
-                min="2024-02-27"
-                onchange="changeInputColor()" />
-              <img class="event-style" src="./assets/img/event.png" />
             </div>
           </div>
         </div>
