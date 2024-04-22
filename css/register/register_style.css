@@ -24,12 +24,12 @@
   width: 200px;
   height: 200px;
   animation: animateLogo 1500ms forwards;
-  animation-delay: 300ms;
+  animation-delay: 200ms;
 }
 .change-color {
   fill: white;
   animation: changeColor 3s forwards;
-  animation-delay: 300ms;
+  animation-delay: 200ms;
 }
 .container {
   position: relative;
@@ -47,7 +47,7 @@
   margin-top: 205px;
   margin-bottom: 32px;
   max-width: 800px;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .form-header {
@@ -62,7 +62,7 @@
   font-weight: 700;
   font-size: 47px;
   line-height: 56.4px;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .line {
@@ -71,7 +71,7 @@
   height: 3px;
   width: 88px;
   border-radius: 10px;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .login-container,
@@ -84,7 +84,7 @@
   flex-direction: column;
   width: 100%;
   width: clamp(288px, 100%, 652px);
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .login-fields-container {
@@ -108,7 +108,7 @@
   width: 100%;
   gap: 32px;
   margin: 32px 0 40px 0;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .login-email {
@@ -134,7 +134,7 @@
 .remember-me-checkbox-container {
   position: relative;
   left: 15%;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 .pp-checkbox-container {
   gap: 8px;
@@ -187,12 +187,12 @@
   justify-content: center;
   gap: 35px;
   margin-top: 57.5px;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .signup-container span {
   font-size: 20px;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .legal-information-container {
@@ -218,11 +218,11 @@
   cursor: pointer;
   padding: 4px;
   border-radius: 50%;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 .login-container .low-height-class,
 .sign-container .low-height-class {
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 .d-none,
 .low-height-class {

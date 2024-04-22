@@ -11,7 +11,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .summary-greeting {
@@ -46,7 +46,7 @@
 .summary-title h1 {
   text-wrap: nowrap;
   font-weight: bold;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .summary-title span {
@@ -54,7 +54,7 @@
   color: var(--mockup-color);
   text-wrap: wrap;
   text-align: center;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .separator-mobile {
@@ -63,7 +63,7 @@
   margin-top: 16px;
   border-radius: 10px;
   background-color: var(--mockup-highlight);
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .summary-row {
@@ -105,7 +105,7 @@
 .top {
   cursor: pointer;
   padding: 38px 19px 38px 19px;
-  transition: width 200ms ease-in-out, height 200ms ease-in-out, font-size 300ms ease-in-out,
+  transition: width 200ms ease-in-out, height 200ms ease-in-out, font-size 200ms ease-in-out,
     transform 200ms ease-in-out;
 }
 
@@ -113,7 +113,7 @@
   position: relative;
   background: white;
   cursor: pointer;
-  transition: width 200ms ease-in-out, height 200ms ease-in-out, font-size 300ms ease-in-out,
+  transition: width 200ms ease-in-out, height 200ms ease-in-out, font-size 200ms ease-in-out,
     transform 200ms ease-in-out;
 }
 
@@ -128,7 +128,7 @@
   border-radius: 20px;
   font-weight: 600;
   padding: 25px 0 25px 0;
-  transition: width 200ms ease-in-out, height 200ms ease-in-out, font-size 300ms ease-in-out,
+  transition: width 200ms ease-in-out, height 200ms ease-in-out, font-size 200ms ease-in-out,
     transform 200ms ease-in-out;
 }
 
@@ -136,7 +136,7 @@
   font-size: 22px;
   font-weight: 400;
   color: var(--mockup-color);
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
   text-align: center;
 }
 
@@ -151,14 +151,14 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  transition: font-size 300ms ease-in-out;
+  transition: font-size 200ms ease-in-out;
 }
 
 .summary-change-content span:last-child {
   font-size: 22px;
   font-weight: 400;
   color: var(--mockup-color);
-  transition: font-size 300ms ease-in-out;
+  transition: font-size 200ms ease-in-out;
 }
 
 .separator2 {
@@ -167,7 +167,7 @@
   border-radius: 10px;
   background-color: var(--placeholder-color);
   margin: 21px 0 21px 0;
-  transition: height 300ms ease-in-out;
+  transition: height 200ms ease-in-out;
 }
 
 .summary-info {
@@ -179,13 +179,13 @@
   font-size: 20px;
   font-weight: 700;
   gap: 8px;
-  transition: font-size 300ms ease-in-out;
+  transition: font-size 200ms ease-in-out;
 }
 
 .summary-info span:last-child {
   font-size: 18px;
   font-weight: 400;
-  transition: font-size 300ms ease-in-out;
+  transition: font-size 200ms ease-in-out;
 }
 
 .middle-section,
@@ -211,7 +211,7 @@
   align-items: center;
   cursor: pointer;
   margin-right: 4px;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .tooltip-summary svg {

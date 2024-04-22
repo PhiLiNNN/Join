@@ -9,7 +9,7 @@
   justify-content: space-between;
   flex-direction: column;
   z-index: 990;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
   overflow: auto;
 }
 
@@ -17,7 +17,7 @@
   height: 122px;
   padding: 64px 66px 114px 66px;
   margin-bottom: 114px;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .menu-wrapper {
@@ -33,9 +33,9 @@
   align-items: center;
   gap: 15px;
   width: 100%;
-  transition: display 300ms ease-in-out, flex-direction 300ms ease-in-out,
-    justify-content 300ms ease-in-out, align-items 300ms ease-in-out, gap 300ms ease-in-out,
-    width 300ms ease-in-out;
+  transition: display 200ms ease-in-out, flex-direction 200ms ease-in-out,
+    justify-content 200ms ease-in-out, align-items 200ms ease-in-out, gap 200ms ease-in-out,
+    width 200ms ease-in-out;
 }
 
 .footer-icon-box {
@@ -45,8 +45,8 @@
   width: 100%;
   height: 46px;
   padding-left: 50px;
-  transition: width 300ms ease-in-out, height 300ms ease-in-out, padding-left 300ms ease-in-out,
-    align-items 300ms ease-in-out;
+  transition: width 200ms ease-in-out, height 200ms ease-in-out, padding-left 200ms ease-in-out,
+    align-items 200ms ease-in-out;
 }
 
 .highlight-menu {
@@ -71,8 +71,8 @@
   font-size: 18px;
   font-weight: 400;
   cursor: pointer;
-  transition: font-size 300ms ease-in-out, height 300ms ease-in-out, width 300ms ease-in-out,
-    gap 300ms ease-in-out, flex-direction 300ms ease-in-out;
+  transition: font-size 200ms ease-in-out, height 200ms ease-in-out, width 200ms ease-in-out,
+    gap 200ms ease-in-out, flex-direction 200ms ease-in-out;
 }
 
 .desktop-data-box {
@@ -95,7 +95,7 @@
 .desktop-data-link {
   padding-block: 8px;
   color: #a8a8a8;
-  transition: transform 0.3s ease-in-out;
+  transition: transform 200ms ease-in-out;
 }
 
 @media (min-width: 761px) {

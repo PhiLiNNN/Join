@@ -8,7 +8,7 @@
   z-index: 989;
   max-width: 1440px;
   overflow: hidden;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 .show-overlay.show-card-visible {
   transform: translateX(0%);
@@ -21,7 +21,7 @@
   align-items: start;
   justify-content: start;
   margin: 45px 0 48px 16px;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 .open-contacts-arrow {
   position: absolute;
@@ -39,11 +39,11 @@
   text-wrap: wrap;
   font-weight: bold;
   font-size: 64px;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 .open-contacts-header span {
   font-size: 24px;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 .horizontal-bar {
   margin-top: 16px;
@@ -103,7 +103,7 @@
 }
 .contact-name {
   margin-left: 34px;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 .contact-name span {
   text-wrap: wrap;
@@ -117,8 +117,9 @@
   width: 80px;
   height: 80px;
   font-size: 27px;
-  border: 2px solid white;
-  transition: all 300ms ease-in-out;
+  outline: 4px #fff solid;
+  box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.125);
+  transition: all 200ms ease-in-out;
 }
 
 .contact-info {
@@ -131,7 +132,7 @@
 .contact-info h2 {
   font-size: 24px;
   font-weight: 400;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .contact-method {
@@ -140,7 +141,7 @@
   gap: 21px;
   font-size: 20px;
   word-wrap: break-word;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .contact-method span {
@@ -222,9 +223,10 @@
     right: 16px;
     bottom: 16px;
     padding: 32px;
-    left: calc(232px + 455px);
+    left: calc(232px + 465px);
     max-height: 500px;
-    transform: translateX(130%);
+    max-width: 800px;
+    transform: translateX(250%);
   }
   .open-contacts-header {
     display: none;
@@ -240,7 +242,7 @@
 
 @media (min-width: 2500px) {
   .show-overlay {
-    transform: translateY(200%);
+    transform: translateY(250%);
   }
 }
 

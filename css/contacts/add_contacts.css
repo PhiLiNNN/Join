@@ -9,7 +9,7 @@
   height: 56px;
   padding: 12px;
   cursor: pointer;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 .ec-circle {
   transition: none;
@@ -44,7 +44,7 @@
   right: 16px;
   overflow: hidden;
   transform: translateY(100%);
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .card-content.card-visible {
@@ -72,13 +72,13 @@
   text-wrap: wrap;
   font-weight: 700;
   font-size: 64px;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .ec-text,
 .ac-text {
   font-size: 24px;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .ac-bottom-line {
@@ -87,7 +87,7 @@
   border-radius: 3px;
   background: var(--mockup-highlight);
   margin-top: 16px;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .ac-card-circle-mobile,
@@ -100,7 +100,7 @@
   font-size: 47px;
   font-weight: 500;
   background: #d1d1d1;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .ac-card-circle-mobile {
@@ -118,7 +118,7 @@
   align-items: center;
   height: 360px;
   margin: 0 0px 0 97px;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .footer-grid {
@@ -133,7 +133,7 @@
   align-items: center;
   width: 100%;
   height: 422px;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .ac-card-circle img {
@@ -153,7 +153,7 @@
   right: 32px;
   border-radius: 50%;
   cursor: pointer;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .close-ac-card-mobile {
@@ -172,7 +172,7 @@
   height: calc(100vh - 352px - 160px);
   background: white;
   padding-inline: 32px;
-  transition: padding-inline 300ms ease-in-out;
+  transition: padding-inline 200ms ease-in-out;
 }
 
 .ac-btn-fill,
@@ -188,7 +188,7 @@
   height: 50px;
   cursor: pointer;
   font-weight: 700;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
   outline: none;
   border: 1px solid var(--mockup-color);
 }
@@ -240,7 +240,7 @@
 
 .input_ac input {
   font-size: 20px !important;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
   cursor: pointer;
 }
 
@@ -261,7 +261,7 @@
   box-shadow: -4px 6px 6px 0px #2a364739;
   z-index: 998;
   transform: translateX(150%);
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 .ec-menu-container.ec-menu-visible {
   transform: translateX(0%);
@@ -454,7 +454,7 @@
   }
   .card-content {
     transform: translateY(0);
-    transform: translateX(100%);
+    transform: translateX(250%);
   }
   .card-content.card-visible {
     transform: translateX(0);
@@ -570,7 +570,7 @@
 }
 @media (min-width: 2500px) {
   .card-content {
-    transform: translateY(100%);
+    transform: translateY(250%);
   }
   .card-content.card-visible {
     transform: translatex(0);

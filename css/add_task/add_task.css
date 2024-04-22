@@ -32,10 +32,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   color: var(--err-msg-color);
   top: 4px;
   left: 108px;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 .bottom-btns-container {
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 .content-container {
   position: sticky;
@@ -44,14 +44,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   margin: 210px 0 0 0;
   padding: 0 16px 16px 16px;
   z-index: 100;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .section-title {
   position: absolute;
   font-size: 54px;
   font-weight: bold;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .input_at {
@@ -67,7 +67,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .input_at input,
 .textarea-style {
   font-size: 20px !important;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
   cursor: pointer;
 }
 .textarea-style {
@@ -79,7 +79,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   height: 12px;
   cursor: pointer;
   transform: rotate(0deg);
-  transition: transform 300ms ease;
+  transition: transform 200ms ease;
 }
 
 .at-asignedTo {
@@ -101,7 +101,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   max-height: 0;
   opacity: 0;
   overflow: hidden;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .at-dropdown.active {
@@ -113,7 +113,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .at-label-style {
   margin-bottom: 8px;
   font-size: 22px;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .required {
@@ -133,7 +133,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   right: 0;
   bottom: 80px;
   z-index: 1000;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .circle-style {
@@ -142,10 +142,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   align-items: center;
   width: 42px;
   height: 42px;
-  border: 2px solid white;
+  outline: 2px solid white;
   border-radius: 50%;
   font-size: 16px;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .assigned-to-box {
@@ -164,7 +164,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   gap: 16px;
   align-items: center;
   font-size: 22px;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .assigned-to-user span {
@@ -209,7 +209,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   cursor: pointer;
   border-radius: 10px;
   box-shadow: 0 0px 14px #2a364739;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .at-prio-img-green:active {
@@ -231,7 +231,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   max-height: 0;
   opacity: 0;
   overflow: hidden;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
   z-index: 1;
 }
 
@@ -249,7 +249,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   cursor: pointer;
   margin: 4px;
   border-radius: 10px;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .category-dropdown ul li.selected-contact-at {
@@ -287,7 +287,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   position: relative;
   border-radius: 10px;
   cursor: pointer;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .subtask-list ul li.blue-line-highlight::after {
@@ -335,7 +335,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   font-size: 22px;
   outline: none;
   word-wrap: break-word;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
   margin-right: 8px;
 }
 
@@ -363,7 +363,7 @@ li:hover .hidden-Edit_menu {
 
 .rotate-err-arrow {
   transform: rotate(90deg);
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .rotate-err-arrow path {

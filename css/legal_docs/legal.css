@@ -3,7 +3,7 @@
 .help-content * {
   word-wrap: break-word;
   font-size: 20px;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 .policy-notice-content a,
 .help-content a {
@@ -46,7 +46,7 @@
   font-size: 54px;
   font-weight: 700;
   margin-bottom: 32px;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .legal-imprint h2,
@@ -63,7 +63,7 @@
   font-size: 34px;
   font-weight: 700;
   margin-bottom: 16px;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .privacy-information h2,
@@ -146,7 +146,7 @@
 .help-list h3 {
   font-size: 22px;
   font-weight: 700;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .legal-sub-scope {
@@ -163,7 +163,7 @@
   right: 37px;
   border-radius: 50%;
   padding: 4px;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 @media (min-width: 761px) {

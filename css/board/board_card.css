@@ -90,7 +90,7 @@
   align-items: center;
   width: 32px;
   height: 32px;
-  border: 2px solid white;
+  outline: 1px solid white;
   border-radius: 50%;
   font-size: 12px;
 }
