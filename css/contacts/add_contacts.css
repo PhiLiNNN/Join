@@ -532,16 +532,19 @@
     color: var(--focus-color-btn);
     transition: none;
   }
+  .header-content-wrapper {
+    margin-left: 32px;
+  }
 }
 
-@media (max-width: 457px) {
+@media (max-width: 500px) {
   .ec-header,
   .ac-header {
-    font-size: 41px;
+    font-size: 56px;
   }
   .ec-text,
   .ac-text {
-    font-size: 16px;
+    font-size: 20px;
   }
   .ac-bottom-line {
     width: 78px;
@@ -550,7 +553,8 @@
     height: 40px;
     width: 160px;
   }
-  .ac-btn-fill span {
+  .ac-btn-fill span,
+  .color-span {
     font-size: 16px;
   }
   .ec-btn-fill {
@@ -566,6 +570,24 @@
 @media (max-width: 444px) {
   .close-ac-card-mobile {
     right: 8px;
+  }
+  .ec-header,
+  .ac-header {
+    font-size: 50px;
+  }
+  .ec-text,
+  .ac-text {
+    font-size: 18px;
+  }
+}
+@media (max-width: 402px) {
+  .ec-header,
+  .ac-header {
+    font-size: 36px;
+  }
+  .ec-text,
+  .ac-text {
+    font-size: 14px;
   }
 }
 @media (min-width: 2500px) {

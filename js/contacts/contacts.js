@@ -198,6 +198,7 @@ function openAddContactMenu() {
   toggleVisibility("at-overlay-id", true);
   setTimeout(() => {
     toggleVisibility("ac-card-content-id", false, "card-visible");
+    closeAddContactByEventListener();
   }, 30);
 }
 
@@ -268,28 +269,6 @@ function openEditContactMenu() {
 }
 
 /**
- * Attaches click event listeners to toggle the edit contact menu visibility.
- * @param {HTMLElement} element - The HTML element of the edit contact menu.
- */
-function handlerClickEventsToToggleMenu(element) {
-  const circleElement = document.getElementById("edit-contact-id");
-  const imgElement = document.querySelector("#edit-contact-id img");
-  document.addEventListener("click", function (event) {
-    if (
-      event.target !== element &&
-      !element.contains(event.target) &&
-      event.target !== circleElement &&
-      event.target !== imgElement
-    ) {
-      toggleVisibility("ec-menu-id", true, "ec-menu-visible");
-      setTimeout(() => {
-        toggleVisibility("ec-menu-id", false);
-      }, 300);
-    }
-  });
-}
-
-/**
  * Opens the edit contact menu and initializes its content.
  */
 function editContact() {
@@ -299,6 +278,7 @@ function editContact() {
   toggleVisibility("edit-overlay-id", true);
   setTimeout(() => {
     toggleVisibility("edit-card-content-id", false, "card-visible");
+    closeEditContactByEventListener();
   }, 30);
   const nameInputEl = document.getElementById(`ec-name-input-id`).value;
   const mailInputEl = document.getElementById(`ec-mail-input-id`).value;

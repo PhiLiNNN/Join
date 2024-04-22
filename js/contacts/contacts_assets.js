@@ -126,3 +126,63 @@ function validateContactName(name, boolArr) {
   )
     boolArr[1] = boolArr[10] = true;
 }
+
+/**
+ * Attaches click event listeners to toggle the edit contact menu visibility.
+ * @param {HTMLElement} element - The HTML element of the edit contact menu.
+ */
+function handlerClickEventsToToggleMenu(element) {
+  const circleElement = document.getElementById("edit-contact-id");
+  const imgElement = document.querySelector("#edit-contact-id img");
+  document.addEventListener("click", function (event) {
+    if (
+      event.target !== element &&
+      !element.contains(event.target) &&
+      event.target !== circleElement &&
+      event.target !== imgElement
+    ) {
+      toggleVisibility("ec-menu-id", true, "ec-menu-visible");
+      setTimeout(() => {
+        toggleVisibility("ec-menu-id", false);
+      }, 300);
+    }
+  });
+}
+
+/**
+ * Closes the "Add New Contact" form when clicked outside of the form or on the close button and the menu buttons.
+ * Removes the event listener once the form is closed.
+ */
+function closeAddContactByEventListener() {
+  const clickHandler = (event) => {
+    const addContactOverlay = document.getElementById("ac-card-content-id");
+    const closeButtonDesktop = event.target.closest("#close-ac-card-mobile-id");
+    const closeButtonMobile = event.target.closest("#close-ac-card-desktop-id");
+    const addContactMenu = event.target.closest("#ac-btn-container-id");
+    if (!addContactOverlay.contains(event.target)) {
+      closeAddNewContact();
+      document.removeEventListener("click", clickHandler);
+    } else if (closeButtonDesktop || addContactMenu || closeButtonMobile)
+      document.removeEventListener("click", clickHandler);
+  };
+  document.addEventListener("click", clickHandler);
+}
+
+/**
+ * Closes the "Edit Contact" form when clicked outside of the form or on the close button and the menu buttons.
+ * Removes the event listener once the form is closed.
+ */
+function closeEditContactByEventListener() {
+  const clickHandler = (event) => {
+    const addContactOverlay = document.getElementById("edit-card-content-id");
+    const closeButtonDesktop = event.target.closest("#close-ec-card-mobile-id");
+    const closeButtonMobile = event.target.closest("#close-ec-card-desktop-id");
+    const addContactMenu = event.target.closest("#ec-btn-container-id");
+    if (!addContactOverlay.contains(event.target)) {
+      closeEditContact();
+      document.removeEventListener("click", clickHandler);
+    } else if (closeButtonDesktop || addContactMenu || closeButtonMobile)
+      document.removeEventListener("click", clickHandler);
+  };
+  document.addEventListener("click", clickHandler);
+}

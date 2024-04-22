@@ -212,24 +212,6 @@ function clearAllSelectedBoardUsers() {
 }
 
 /**
- * Adds event listeners to the search input fields for both desktop and mobile views.
- * Whenever there is an input event, the filterToDos function is called to filter tasks based on the search query.
- */
-document.getElementById("search-desktop-id").addEventListener("input", filterToDos);
-document.getElementById("search-mobile-id").addEventListener("input", filterToDos);
-
-/**
- * Adds a dragend event listener to the document.
- * When a drag operation ends, it resets the height of hover containers and toggles the visibility of the dragged card.
- * If the drag operation is valid, it restores the tilt effect to the dragged card.
- */
-document.addEventListener("dragend", () => {
-  resetNewHoverContainerHeight();
-  if (validDragEl) toggleVisibility(`draggedCard${currentCard}-id`, true, "board-card-tilt");
-  validDragEl = false;
-});
-
-/**
  * Clears the search input fields for both desktop and mobile.
  */
 function clearSearchInput() {

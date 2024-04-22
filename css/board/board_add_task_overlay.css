@@ -58,6 +58,9 @@
 }
 
 @media (min-width: 761px) {
+  .required-msg {
+    font-size: 18px;
+  }
   .content-container-board {
     max-height: calc(100vh - 280px);
   }
@@ -134,6 +137,9 @@
   }
 }
 @media (max-width: 760px) {
+  .required-msg {
+    font-size: 16px !important;
+  }
   .content-container-board {
     max-height: calc(100vh - 250px);
   }
@@ -195,11 +201,33 @@
     max-height: calc(100vh - 300px);
   }
 }
+
 @media (max-width: 466px) {
   .content-bottom-container-board {
     height: 50px;
   }
 }
+
+@media (max-width: 396px) {
+  .at-prio-img-red,
+  .at-prio-img-yellow,
+  .at-prio-img-green {
+    width: 80px !important;
+  }
+}
+
+@media (max-width: 377px) {
+  .required-msg {
+    font-size: 14px !important;
+  }
+}
+
+@media (max-width: 356px) {
+  .required-msg {
+    font-size: 12px !important;
+  }
+}
+
 @media (max-width: 343px) {
   .board-at-section {
     margin-inline: 0px;

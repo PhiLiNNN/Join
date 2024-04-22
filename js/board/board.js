@@ -167,28 +167,6 @@ function findOutermostParentWithClass(element, className) {
   }
   return null;
 }
-/**
- * Sets up drag event listeners for all draggable elements.
- */
-function setDragEventListeners() {
-  const allDragElements = document.querySelectorAll(".board-card");
-  allDragElements.forEach((el) => {
-    el.addEventListener("drag", handleDrag);
-    el.addEventListener("touchmove", function (eve) {
-      eve.preventDefault();
-      const touchobj = eve.touches[0];
-      handleDrag(touchobj);
-    });
-    el.addEventListener("touchend", function (eve) {
-      const touchobj = eve.changedTouches[0];
-      if (isInsideRect(touchobj, "toDo")) moveTo("toDo");
-      else if (isInsideRect(touchobj, "inProgress")) moveTo("inProgress");
-      else if (isInsideRect(touchobj, "awaitFeedback")) moveTo("awaitFeedback");
-      else if (isInsideRect(touchobj, "done")) moveTo("done");
-      else toggleVisibility(`draggedCard${currentCard}-id`, true, "board-card-tilt");
-    });
-  });
-}
 
 /**
  * Checks if the touch event occurred inside a specified rectangle.
@@ -251,40 +229,6 @@ function closeOverlay() {
   setTimeout(() => {
     toggleVisibility("board-at-id", false);
   }, 300);
-}
-
-function closeCardInfoByEventListener() {
-  const clickHandler = (event) => {
-    const cardInfoSection = document.getElementById("card-info-section-id");
-    const closeButton = event.target.closest("#close-board-info-at-id");
-    const boardMenu = event.target.closest("#board-info-menu-container-id");
-    if (!cardInfoSection.contains(event.target)) {
-      console.log("tttttt");
-      closeCardInfo();
-      document.removeEventListener("click", clickHandler);
-    } else if (closeButton || boardMenu) {
-      console.log("tttttt");
-      document.removeEventListener("click", clickHandler);
-    }
-  };
-  document.addEventListener("click", clickHandler);
-}
-
-function closeEditCardInfoByEventListener() {
-  const clickHandler = (event) => {
-    const cardInfoSection = document.getElementById("at-section-id");
-    const closeButton = event.target.closest("#close-edit-at-id");
-    const editMButton = event.target.closest("#at-ok-btn");
-    if (!cardInfoSection.contains(event.target)) {
-      closeOverlay();
-      closeCardInfo();
-      document.removeEventListener("click", clickHandler);
-    } else if (closeButton || editMButton) {
-      console.log("tttttt");
-      document.removeEventListener("click", clickHandler);
-    }
-  };
-  document.addEventListener("click", clickHandler);
 }
 
 /**
@@ -383,6 +327,9 @@ function openAddTaskOverlay(section) {
     closeAssignedToMenu();
     closeCategoryMenu();
     filterAssignedToContacts();
+    setTimeout(() => {
+      closeAddTaskOverlayByEventListener();
+    }, 300);
   }
 }
 

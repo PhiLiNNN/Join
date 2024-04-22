@@ -299,6 +299,7 @@ input {
   flex: 1;
   word-wrap: break-word;
   overflow-x: auto;
+  transition: all 200ms ease-in-out;
 }
 .input_global input {
   font-size: 18px;

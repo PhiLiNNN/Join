@@ -109,7 +109,6 @@
     background: var(--focus-color-btn);
   }
   .desktop-data-content:hover .desktop-data-link {
-    transform: scaleX(1.2);
     color: white;
   }
   .highlight-menu:hover {
