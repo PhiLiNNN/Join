@@ -184,7 +184,8 @@
     max-height: calc(100vh - 96px);
   }
   .legal-style,
-  .policy-style {
+  .policy-style,
+  .help-style {
     justify-content: start;
   }
   .legal-back-arrow {
