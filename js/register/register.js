@@ -26,6 +26,7 @@ async function init() {
     hideLoader();
   }
   rememberMeCheck();
+  console.log("users :>> ", users);
   // await setItem("users", JSON.stringify({})); //  funktion zum clearen des Backends
   addPasswordVisibilityListener(
     "login-pw-border-id",

@@ -193,7 +193,7 @@ function calculateSummaryAmounts() {
   );
   let {nearestDate, expiredDates, expireToday} = getNearestUrgent();
   renderNearestDate(nearestDate);
-  renderExpireDeadlines(expiredDates, expireToday);
+  if (expiredDates !== 0 || expireToday !== 0) renderExpireDeadlines(expiredDates, expireToday);
 }
 
 /**
