@@ -35,25 +35,11 @@ function initBoard() {
   toggleVisibility("board-body-id", true);
   loadHeaderInitials();
   generateCardHTML();
-  getHoverContainerGeometrie();
+  getHoverContainerGeometry();
   setDragEventListeners();
   truncateTextIfTooLong(".description-block", 31);
   truncateTextIfTooLong(".title-block", 31);
   toggleScrollbar("hidden");
-}
-
-/**
- * Clears the inner HTML content of the specified board elements.
- * @param {HTMLElement} toDoEl - The element representing the "To Do" column.
- * @param {HTMLElement} inProgEl - The element representing the "In Progress" column.
- * @param {HTMLElement} awaitFedEl - The element representing the "Awaiting Feedback" column.
- * @param {HTMLElement} doneEl - The element representing the "Done" column.
- */
-function clearElementInnerHTML(toDoEl, inProgEl, awaitFedEl, doneEl) {
-  toDoEl.innerHTML = "";
-  inProgEl.innerHTML = "";
-  awaitFedEl.innerHTML = "";
-  doneEl.innerHTML = "";
 }
 
 /**
@@ -126,7 +112,7 @@ function startDragging(event, title, index) {
   setNewHoverContainerHeight(event);
   currentCard = index;
   currentDraggedElement = title;
-  getHoverContainerGeometrie();
+  getHoverContainerGeometry();
   toggleVisibility(`draggedCard${index}-id`, false, "board-card-tilt");
 }
 
@@ -145,7 +131,7 @@ function startTouchEvent(event, title, index) {
   handleTouchStart(event);
   currentCard = index;
   currentDraggedElement = title;
-  getHoverContainerGeometrie();
+  getHoverContainerGeometry();
   toggleVisibility(`draggedCard${index}-id`, false, "board-card-tilt");
 }
 
@@ -169,23 +155,6 @@ function findOutermostParentWithClass(element, className) {
 }
 
 /**
- * Checks if the touch event occurred inside a specified rectangle.
- * @param {TouchEvent} touchobj - The touch event object.
- * @param {string} ID - The ID of the target rectangle element.
- * @returns {boolean} True if the touch event occurred inside the specified rectangle, otherwise false.
- */
-function isInsideRect(touchobj, ID) {
-  const element = document.getElementById(`${ID}-hover-id`);
-  rect = element.getBoundingClientRect();
-  return (
-    touchobj.clientX > rect.left &&
-    touchobj.clientX < rect.right &&
-    touchobj.clientY > rect.top &&
-    touchobj.clientY < rect.bottom
-  );
-}
-
-/**
  * Moves the dragged card to the specified section.
  * @param {string} section - The section to move the card to (e.g., "toDo", "inProgress", "awaitFeedback", "done").
  */
@@ -198,7 +167,7 @@ function moveTo(section) {
   truncateTextIfTooLong(".title-block", 29);
   saveWithoutLoaderAnimation();
   clearSearchInput();
-  getHoverContainerGeometrie();
+  getHoverContainerGeometry();
   setDragEventListeners();
 }
 
@@ -279,7 +248,7 @@ function deleteBoardCard(index) {
   currentUser.tasks.dates.splice(index, 1);
   currentUser.tasks.titles.splice(index, 1);
   closeCardInfo();
-  getHoverContainerGeometrie();
+  getHoverContainerGeometry();
   truncateTextIfTooLong(".description-block", 31);
   truncateTextIfTooLong(".title-block", 31);
 }
@@ -302,7 +271,7 @@ function createBoardTask() {
   save();
   generateCardHTML();
   sendUserBack();
-  getHoverContainerGeometrie();
+  getHoverContainerGeometry();
   setDragEventListeners();
   truncateTextIfTooLong(".description-block", 31);
   truncateTextIfTooLong(".title-block", 31);
@@ -448,13 +417,4 @@ function closeEditTaskOverlay() {
   clearAllLists();
   clearAllSelectedUsers();
   closeOverlay();
-}
-
-function openMenu(index, title) {
-  currentDraggedElement = title;
-  toggleVisibility(`move-to-container${index}-id`, true);
-}
-
-function closeMenu(index) {
-  toggleVisibility(`move-to-container${index}-id`, false);
 }

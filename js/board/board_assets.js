@@ -133,7 +133,7 @@ function resetNewHoverContainerHeight() {
 /**
  * Retrieves the geometry information of the hover containers.
  */
-function getHoverContainerGeometrie() {
+function getHoverContainerGeometry() {
   let {toDoEl, inProgressEl, awaitEl, doneEl} = getDragContainerIds();
   let toDoRect = toDoEl.getBoundingClientRect();
   let inProgressRect = inProgressEl.getBoundingClientRect();
@@ -348,4 +348,53 @@ function getBoardElements() {
   let awaitFedEl = document.getElementById("awaitFeedback-id");
   let doneEl = document.getElementById("done-id");
   return {toDoEl, inProgEl, awaitFedEl, doneEl};
+}
+
+/**
+ * Opens the menu for moving a task to a different container.
+ * @param {number} index - The index of the menu container.
+ * @param {string} title - The title of the task being moved.
+ */
+function openMenu(index, title) {
+  currentDraggedElement = title;
+  toggleVisibility(`move-to-container${index}-id`, true);
+}
+
+/**
+ * Closes the menu for moving a task to a different container.
+ * @param {number} index - The index of the menu container.
+ */
+function closeMenu(index) {
+  toggleVisibility(`move-to-container${index}-id`, false);
+}
+
+/**
+ * Checks if the touch event occurred inside a specified rectangle.
+ * @param {TouchEvent} touchobj - The touch event object.
+ * @param {string} ID - The ID of the target rectangle element.
+ * @returns {boolean} True if the touch event occurred inside the specified rectangle, otherwise false.
+ */
+function isInsideRect(touchobj, ID) {
+  const element = document.getElementById(`${ID}-hover-id`);
+  rect = element.getBoundingClientRect();
+  return (
+    touchobj.clientX > rect.left &&
+    touchobj.clientX < rect.right &&
+    touchobj.clientY > rect.top &&
+    touchobj.clientY < rect.bottom
+  );
+}
+
+/**
+ * Clears the inner HTML content of the specified board elements.
+ * @param {HTMLElement} toDoEl - The element representing the "To Do" column.
+ * @param {HTMLElement} inProgEl - The element representing the "In Progress" column.
+ * @param {HTMLElement} awaitFedEl - The element representing the "Awaiting Feedback" column.
+ * @param {HTMLElement} doneEl - The element representing the "Done" column.
+ */
+function clearElementInnerHTML(toDoEl, inProgEl, awaitFedEl, doneEl) {
+  toDoEl.innerHTML = "";
+  inProgEl.innerHTML = "";
+  awaitFedEl.innerHTML = "";
+  doneEl.innerHTML = "";
 }
