@@ -230,6 +230,23 @@
   .board-card {
     padding: 16px;
   }
+  .move-to-button {
+    display: none;
+  }
+  .move-to-headline {
+    display: none;
+  }
+  .move-to-button2 {
+   display: none;
+  }
+  .move-to-menu {
+    display: none;
+  }
+  .move-to-menu ul {
+    display: none;
+  }
+  .move-to-menu ul li {
+    display: none;}
 }
 @media (min-width: 1341px) {
   .task-container,
