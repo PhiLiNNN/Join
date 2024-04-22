@@ -168,22 +168,21 @@
     height: 166px;
   }
   .top-section {
-    width: 490px;
     gap: 16px;
   }
   .top {
-    width: 220px;
+    width: 235px;
     height: 150px;
   }
   .top-hover-container {
-    width: 223px;
     height: 166px;
   }
-  .bottom-hover-container {
-    width: 124px;
-  }
   .bottom-section {
-    width: 490px;
+    width: auto;
+    gap: 16px;
+  }
+  .tasks-info {
+    width: 152.66px;
   }
   .summary-column {
     box-shadow: 0 0 14px #2a364739;
@@ -601,7 +600,7 @@
   }
 }
 
-@media (min-width: 853px) and (max-height: 919px) {
+@media (min-width: 853px) and (max-height: 900px) {
   .summary-column {
     box-shadow: none;
     border-radius: 0;

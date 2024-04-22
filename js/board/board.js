@@ -253,6 +253,40 @@ function closeOverlay() {
   }, 300);
 }
 
+function closeCardInfoByEventListener() {
+  const clickHandler = (event) => {
+    const cardInfoSection = document.getElementById("card-info-section-id");
+    const closeButton = event.target.closest("#close-board-info-at-id");
+    const boardMenu = event.target.closest("#board-info-menu-container-id");
+    if (!cardInfoSection.contains(event.target)) {
+      console.log("tttttt");
+      closeCardInfo();
+      document.removeEventListener("click", clickHandler);
+    } else if (closeButton || boardMenu) {
+      console.log("tttttt");
+      document.removeEventListener("click", clickHandler);
+    }
+  };
+  document.addEventListener("click", clickHandler);
+}
+
+function closeEditCardInfoByEventListener() {
+  const clickHandler = (event) => {
+    const cardInfoSection = document.getElementById("at-section-id");
+    const closeButton = event.target.closest("#close-edit-at-id");
+    const editMButton = event.target.closest("#at-ok-btn");
+    if (!cardInfoSection.contains(event.target)) {
+      closeOverlay();
+      closeCardInfo();
+      document.removeEventListener("click", clickHandler);
+    } else if (closeButton || editMButton) {
+      console.log("tttttt");
+      document.removeEventListener("click", clickHandler);
+    }
+  };
+  document.addEventListener("click", clickHandler);
+}
+
 /**
  * Closes the card information overlay.
  */
@@ -267,6 +301,24 @@ function closeCardInfo() {
   setDragEventListeners();
   truncateTextIfTooLong(".description-block", 31);
   truncateTextIfTooLong(".title-block", 31);
+}
+
+/**
+ * Opens the card information section for a specific board card.
+ * @param {number} index - The index of the board card.
+ */
+function openCardInfo(index) {
+  currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  currentCard = index;
+  cardSection = currentUser.tasks.board[index];
+  renderCardContent(index);
+  renderInfoAssignedTo(index);
+  renderInfoSubtasks(index);
+  toggleVisibility("board-card-info-id", true);
+  setTimeout(() => {
+    toggleVisibility("card-info-section-id", false, "card-visible");
+    closeCardInfoByEventListener();
+  }, 30);
 }
 
 /**
@@ -313,22 +365,25 @@ function createBoardTask() {
 }
 
 /**
- * Opens the add task overlay for a specific section of the board.
+ * Opens the add task overlay for a specific section of the board. Or  redirect the user to add task if on a mobile device.
  * @param {string} section - The section of the board where the task is to be added.
  */
 function openAddTaskOverlay(section) {
-  clearAllLists();
-  currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  cardSection = section;
-  toggleAtCard();
-  clearAllSelectedBoardUsers();
-  renderAssignedToContacts();
-  setCurrentDate();
-  addSubtaskByEnter();
-  addSubtaskVisibilityListener();
-  closeAssignedToMenu();
-  closeCategoryMenu();
-  filterAssignedToContacts();
+  if (window.innerWidth < 760) window.location.href = "./add_task.html";
+  else {
+    clearAllLists();
+    currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    cardSection = section;
+    clearAllSelectedBoardUsers();
+    toggleAtCard();
+    renderAssignedToContacts();
+    setCurrentDate();
+    addSubtaskByEnter();
+    addSubtaskVisibilityListener();
+    closeAssignedToMenu();
+    closeCategoryMenu();
+    filterAssignedToContacts();
+  }
 }
 
 /**
@@ -352,6 +407,9 @@ function openEditBoardCard(index) {
   filterAssignedToContacts();
   closeAssignedToMenu();
   closeCategoryMenu();
+  setTimeout(() => {
+    closeEditCardInfoByEventListener();
+  }, 300);
 }
 
 /**
@@ -396,23 +454,6 @@ function setNewCardInputs(index) {
     "board-prio-img-id"
   ).src = `./assets/img/board_${currentUser.tasks.prios[index]}.png`;
   document.getElementById("board-date-id").innerHTML = date;
-}
-
-/**
- * Opens the card information section for a specific board card.
- * @param {number} index - The index of the board card.
- */
-function openCardInfo(index) {
-  currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  currentCard = index;
-  cardSection = currentUser.tasks.board[index];
-  renderCardContent(index);
-  renderInfoAssignedTo(index);
-  renderInfoSubtasks(index);
-  toggleVisibility("board-card-info-id", true);
-  setTimeout(() => {
-    toggleVisibility("card-info-section-id", false, "card-visible");
-  }, 30);
 }
 
 /**

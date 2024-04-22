@@ -91,7 +91,6 @@ function toggleAssignedToSection(bool) {
   document.getElementById("assignedto-input-id").placeholder = "An: ";
   toggleVisibility("assigned-to-contacts-id", bool, "active");
   toggleVisibility("rotate-arrow-id", bool, "upsidedown");
-  toggleVisibility("at-label-id", bool, "shrink-font-size");
 }
 
 /**
@@ -102,7 +101,6 @@ function openAssignedByArrow() {
   document.getElementById("assignedto-input-id").placeholder = "Select contacts to assign";
   toggleSection("assigned-to-contacts-id", "active");
   toggleSection("rotate-arrow-id", "upsidedown");
-  toggleSection("at-label-id", "shrink-font-size");
   document.getElementById("assignedto-input-id").value = "";
 }
 

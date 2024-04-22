@@ -237,7 +237,7 @@
   bottom: 120%;
   right: 50%;
   margin-left: -60px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 14px #2a364739;
 }
 .bottom-hover-container {
   position: relative;

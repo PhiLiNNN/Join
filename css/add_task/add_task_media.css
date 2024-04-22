@@ -103,7 +103,7 @@
     align-items: start;
     gap: 32px;
     background: white;
-    max-width: 1920px;
+    max-width: 1110px;
   }
   .content-top-and-left,
   .content-bottom-and-rigth {
@@ -135,6 +135,7 @@
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     height: 64px;
+    max-width: 1110px;
   }
   .editable-span {
     max-width: 25vw;

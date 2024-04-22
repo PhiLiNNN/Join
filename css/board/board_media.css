@@ -79,6 +79,7 @@
     margin-top: 8px;
     padding: 24px;
     gap: 0px;
+    max-width: 1440px;
   }
   .board-wrapper {
     margin: 180px 0 0 calc(232px + 50px);
@@ -139,7 +140,7 @@
   }
   .drag-area,
   .drag-container {
-    width: 270px;
+    width: 280px;
   }
   .board-plus-btn {
     right: 16px;

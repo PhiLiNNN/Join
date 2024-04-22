@@ -111,7 +111,7 @@
 .conatcs-menu {
   display: none;
   overflow: hidden;
-  box-shadow: -4px 0px 4px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: -4px 0px 4px 0px #2a364739;
 }
 
 .show-contacts-header {

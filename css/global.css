@@ -160,7 +160,7 @@ input:-webkit-autofill:active {
   bottom: 120%;
   right: 50%;
   margin-left: -60px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px #2a364739;
 }
 
 .tooltip .tooltiptext-pw {
@@ -379,7 +379,7 @@ textarea::placeholder {
   .filled-btn:hover {
     background-color: var(--mockup-highlight);
     border: 2px solid var(--mockup-highlight);
-    box-shadow: 0 6px 5px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 6px 5px #2a364739;
   }
   .filled-btn:active {
     background: var(--focus-color-btn);
@@ -388,7 +388,7 @@ textarea::placeholder {
   .white-btn:hover {
     border: 2px solid var(--mockup-highlight);
     color: var(--mockup-highlight);
-    box-shadow: 0 6px 5px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 6px 5px #2a364739;
   }
   .white-btn:active {
     border: 2px solid var(--focus-color-btn);
