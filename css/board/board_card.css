@@ -89,6 +89,9 @@
 .board-left-indent {
   margin-left: -10px;
 }
+.cursor-default {
+  cursor: auto !important;
+}
 .date-prio-block {
   display: none;
 }

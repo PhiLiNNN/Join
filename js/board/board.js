@@ -401,6 +401,7 @@ function setEditCardInputs(index) {
   setInputValue("category-input-id", currentUser.tasks.categories[index]);
   setInputValue("date-input-id", currentUser.tasks.dates[index]);
   setDateInputColor();
+  disableCategoryField();
   renderAddedContactsToEdit(index);
   renderSubtasks();
   togglePrioImg(`${currentUser.tasks.prios[index]}-default-id`);

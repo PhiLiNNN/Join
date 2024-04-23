@@ -4,7 +4,19 @@
  * @param {string} value - The value to set for the input element.
  */
 function setInputValue(elementId, value) {
-  const element = (document.getElementById(elementId).value = value);
+  document.getElementById(elementId).value = value;
+}
+
+function disableCategory() {
+  document.getElementById("category-input-id").disabled = true;
+}
+
+function disableCategoryField() {
+  disableCategory();
+  toggleVisibility("rotate-arrow-category-id", false);
+  document.getElementById("category-container-id").classList.remove("cursor");
+  toggleVisibility("category-container-id", false, "cursor-default");
+  toggleVisibility("category-input-id", false, "cursor-default");
 }
 
 /**
