@@ -313,10 +313,7 @@ function checkForClosesDates(AllDatesListMs, currentTimeInMs, urgentDatesListMs)
     timePastSinceTwoOclock,
     currentTimeInMs
   );
-  const nearestDate =
-    urgentDatesListMs.length > 0
-      ? new Date(urgentDatesListMs[allUrgents.findIndex((date) => date >= 0)])
-      : -1;
+  const nearestDate = urgentDatesListMs.length > 0 ? new Date(Math.min(...urgentDatesListMs)) : -1;
   const expiredDates = allDates.filter((date) => date < 0).length;
   const expireToday = allDates.filter((date) => date === 0).length;
   return {nearestDate, expiredDates, expireToday};

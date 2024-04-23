@@ -26,7 +26,6 @@ async function init() {
     hideLoader();
   }
   rememberMeCheck();
-  console.log("users :>> ", users);
   // await setItem("users", JSON.stringify({})); //  funktion zum clearen des Backends
   addPasswordVisibilityListener(
     "login-pw-border-id",
@@ -58,7 +57,6 @@ async function register() {
 async function addNewUser() {
   const newUser = generateNewUserObject();
   createRegisteredUserData(newUser);
-  console.log("newUser :>> ", newUser);
   showLoader();
   try {
     await addNewUserToBackend(newUser);

@@ -158,14 +158,14 @@ function findOutermostParentWithClass(element, className) {
  * Moves the dragged card to the specified section.
  * @param {string} section - The section to move the card to (e.g., "toDo", "inProgress", "awaitFeedback", "done").
  */
-function moveTo(section) {
+async function moveTo(section) {
   resetDragInputs();
   resetNewHoverContainerHeight();
   updateTaskStatus(section);
   generateCardHTML();
   truncateTextIfTooLong(".description-block", 50);
   truncateTextIfTooLong(".title-block", 29);
-  saveWithoutLoaderAnimation();
+  await saveWithoutLoaderAnimation();
   clearSearchInput();
   getHoverContainerGeometry();
   setDragEventListeners();
