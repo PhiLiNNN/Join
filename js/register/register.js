@@ -26,7 +26,7 @@ async function init() {
     hideLoader();
   }
   rememberMeCheck();
-  // console.log("users :>> ", users);
+  console.log("users :>> ", users);
   // await setItem("users", JSON.stringify({})); //  funktion zum clearen des Backends
   addPasswordVisibilityListener(
     "login-pw-border-id",
@@ -57,6 +57,8 @@ async function register() {
  */
 async function addNewUser() {
   const newUser = generateNewUserObject();
+  createRegisteredUserData(newUser);
+  console.log("newUser :>> ", newUser);
   showLoader();
   try {
     await addNewUserToBackend(newUser);
@@ -65,6 +67,24 @@ async function addNewUser() {
   } finally {
     hideLoader();
   }
+}
+
+/**
+ * Creates registered user data by extracting input values and initializing contact data.
+ * @param {Object} newUser - The new user object to which the data will be added.
+ */
+function createRegisteredUserData(newUser) {
+  let name = document.getElementById("add-name-id").value;
+  let mailInputEl = document.getElementById("add-email-id").value;
+  const initializedName = setValidNameInItialsToUpperCase(name);
+  const newCon = {
+    name: initializedName,
+    email: mailInputEl.toLowerCase(),
+    phone: "",
+    colorCode: "#43da86",
+    textColorCode: "black",
+  };
+  newUser.contacts.push(newCon);
 }
 
 /**

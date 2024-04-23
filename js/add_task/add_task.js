@@ -155,8 +155,8 @@ function renderAddedContacts() {
 function selectedAssignedToUser(event, index) {
   userIndex = index;
   const svgElement = event.currentTarget.querySelector("svg");
-  const spanElemnt = document.getElementById(`contact-id${index}`);
-  const contact = currentUser.contacts.find((contact) => contact.name === spanElemnt.innerHTML);
+  const spanElement = document.getElementById(`contact-id${index}`);
+  const contact = currentUser.contacts.find((contact) => contact.name === spanElement.innerHTML);
   event.currentTarget.classList.toggle("selected-contact-at");
   if (event.currentTarget.classList.contains("selected-contact-at")) {
     svgElement.innerHTML = templateSvgCheckboxConfirmedHTML();

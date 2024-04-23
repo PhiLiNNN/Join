@@ -29,7 +29,7 @@ function generateTaskHTML(index, prio, bgColor, tasksDone, progress) {
               <div class="progress-bar">
                 <div class="progress" style="width: ${progress}%"></div> 
               </div>
-              <span >${tasksDone}/${currentUser.tasks.subtasks[index].tasks.length}Subtasks</span>
+              <span class="subtask-status">${tasksDone}/${currentUser.tasks.subtasks[index].tasks.length}Subtasks</span>
             </div>
             <div class="priority-block">   
                 <div id="board-assignedTo-id${index}"  class="board-added-contacts"></div>

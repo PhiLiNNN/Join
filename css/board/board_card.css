@@ -76,6 +76,7 @@
   overflow: hidden;
   flex: 1;
 }
+
 .board-circle-style {
   display: flex;
   justify-content: center;
@@ -194,6 +195,9 @@
   display: none;
 }
 @media (min-width: 761px) {
+  .subtasks-block:hover .subtask-status {
+    visibility: visible;
+  }
   .task-container,
   .priority-block {
     margin-top: 8px;

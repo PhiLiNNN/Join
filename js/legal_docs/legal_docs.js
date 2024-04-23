@@ -94,7 +94,7 @@ function templateHeaderHTML(isVisible) {
         <a href="./help.html">
         <img  class="header-logo" src="./assets/img/help.png" alt="join logo" />
         </a>
-        <div id="header-initials-id" class="header-profil" onclick="togglelogoutContainer()"></div>
+        <div id="header-initials-id" class="header-profil" onclick="toggleLogoutContainer()"></div>
         <div id="logout-id" class="logout-dropdown">
           <a class="mobile-visibility" href="./help.html">Help</a>
           <a href="./privacy_policy.html" >Privacy Policy</a>

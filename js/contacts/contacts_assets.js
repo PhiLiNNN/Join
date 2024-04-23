@@ -24,24 +24,6 @@ function getUserInputs(string) {
 }
 
 /**
- * Sets the valid name initials to uppercase.
- * @param {string} name - The name to process and capitalize initials.
- * @returns {string} The processed name with valid initials capitalized.
- */
-function setValidNameInItialsToUpperCase(name) {
-  const words = name.trim().split(/\s+/);
-  const capitalizedWords = words.map((word) => {
-    if (word.includes("-")) {
-      const parts = word.split("-");
-      return parts
-        .map((part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
-        .join("-");
-    } else return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-  });
-  return capitalizedWords.join(" ");
-}
-
-/**
  * Performs validation checks for the contact fields.
  * @param {string} string - The prefix string to identify the contact fields.
  * @returns {boolean} Returns true if all fields pass validation; otherwise, false.
