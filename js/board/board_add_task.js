@@ -68,6 +68,7 @@ function iterateOverContacts(contacts) {
  * Closes the assigned-todropdown menu when a click event occurs outside of the menu or the input field.
  */
 function closeAssignedToMenu() {
+  console.log("cliiick");
   document.addEventListener("click", function (event) {
     const clickInsideInput = event.target.closest("#assignedto-container-id");
     const clickInsideDropdown = event.target.closest("#assigned-to-contacts-id");

@@ -5,7 +5,6 @@
   flex-direction: column;
   transition: all 100ms ease-in-out;
 }
-
 .summary-column {
   display: flex;
   justify-content: center;
@@ -13,12 +12,10 @@
   flex-direction: column;
   transition: all 200ms ease-in-out;
 }
-
 .summary-greeting {
   font-size: 36px;
   display: none;
 }
-
 .greetings-content {
   display: flex;
   flex-direction: column;
@@ -28,13 +25,11 @@
   font-size: 47px;
   margin-bottom: 16px;
 }
-
 .user-highlight {
   font-weight: 700;
   color: var(--mockup-highlight);
   font-size: 64px;
 }
-
 .summary-overview {
   display: flex;
   flex-direction: column;
@@ -42,13 +37,11 @@
   justify-content: center;
   gap: 28px;
 }
-
 .summary-title h1 {
   text-wrap: nowrap;
   font-weight: bold;
   transition: all 200ms ease-in-out;
 }
-
 .summary-title span {
   font-size: 22px;
   color: var(--mockup-color);
@@ -56,7 +49,6 @@
   text-align: center;
   transition: all 200ms ease-in-out;
 }
-
 .separator-mobile {
   width: 90px;
   height: 3px;
@@ -65,20 +57,17 @@
   background-color: var(--mockup-highlight);
   transition: all 200ms ease-in-out;
 }
-
 .summary-row {
   border-radius: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
 .hover-left span,
 .hover-middle span,
 .hover-right span {
   transition: all 100ms ease-in-out;
 }
-
 .box-1 {
   border-radius: 20px;
   display: flex;
@@ -87,7 +76,6 @@
   gap: 18px;
   background: white;
 }
-
 .middle-box {
   border-radius: 20px;
   display: flex;
@@ -95,20 +83,17 @@
   align-items: center;
   gap: 18px;
 }
-
 .box-1 svg,
 .middle-box svg {
   width: 60px;
   height: 60px;
 }
-
 .top {
   cursor: pointer;
   padding: 38px 19px 38px 19px;
   transition: width 200ms ease-in-out, height 200ms ease-in-out, font-size 200ms ease-in-out,
     transform 200ms ease-in-out;
 }
-
 .middle-section {
   position: relative;
   background: white;
@@ -116,7 +101,6 @@
   transition: width 200ms ease-in-out, height 200ms ease-in-out, font-size 200ms ease-in-out,
     transform 200ms ease-in-out;
 }
-
 .tasks-info {
   cursor: pointer;
   display: flex;
@@ -131,7 +115,6 @@
   transition: width 200ms ease-in-out, height 200ms ease-in-out, font-size 200ms ease-in-out,
     transform 200ms ease-in-out;
 }
-
 .tasks-info span:last-child {
   font-size: 22px;
   font-weight: 400;
@@ -139,12 +122,10 @@
   transition: all 200ms ease-in-out;
   text-align: center;
 }
-
 .summary-icon {
   height: 40px;
   margin-right: 10px;
 }
-
 .summary-change-content {
   font-size: 47px;
   font-weight: 600;
@@ -153,14 +134,12 @@
   flex-direction: column;
   transition: font-size 200ms ease-in-out;
 }
-
 .summary-change-content span:last-child {
   font-size: 22px;
   font-weight: 400;
   color: var(--mockup-color);
   transition: font-size 200ms ease-in-out;
 }
-
 .separator2 {
   height: 102px;
   width: 3px;
@@ -169,7 +148,6 @@
   margin: 21px 0 21px 0;
   transition: height 200ms ease-in-out;
 }
-
 .summary-info {
   color: var(--mockup-color);
   display: flex;
@@ -181,30 +159,25 @@
   gap: 8px;
   transition: font-size 200ms ease-in-out;
 }
-
 .summary-info span:last-child {
   font-size: 18px;
   font-weight: 400;
   transition: font-size 200ms ease-in-out;
 }
-
 .middle-section,
 .tasks-info,
 .top {
   box-shadow: 0 0 14px #2a364739;
 }
-
 .middle-section {
   padding: 28px 24px 28px 24px;
 }
-
 .expire-tooltip {
   position: absolute;
   right: 8px;
   top: 8px;
   z-index: 1;
 }
-
 .tooltip-summary {
   position: relative;
   display: flex;
@@ -213,17 +186,14 @@
   margin-right: 4px;
   transition: all 200ms ease-in-out;
 }
-
 .tooltip-summary svg {
   height: 18px;
   width: 18px;
   background: transparent;
 }
-
 .tooltip-summary svg path {
   fill: var(--err-msg-color);
 }
-
 .tooltip-summary .summary-tooltiptext {
   visibility: hidden;
   width: 205px;
@@ -245,7 +215,6 @@
 .summary-tooltiptext ul {
   list-style-type: none;
 }
-
 .d-none {
   display: none;
 }

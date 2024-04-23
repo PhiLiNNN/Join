@@ -32,7 +32,6 @@
   .at-prio-img img:hover {
     transform: scale(1.05);
   }
-
   .assigned-to-box.selected-contact-at:hover,
   .category-dropdown ul li.selected-contact-at:hover {
     background: var(--focus-color-btn);
@@ -53,7 +52,6 @@
   .assigned-to-box:active svg rect {
     stroke: white;
   }
-
   .assigned-to-box.selected-contact-at:active,
   .category-dropdown ul li.selected-contact-at:active {
     background: #11305f;
@@ -62,7 +60,6 @@
     max-width: 42vw;
   }
 }
-
 @media (min-width: 954px) {
   .at-prio-img {
     justify-content: center;
@@ -72,7 +69,6 @@
     max-width: 53vw;
   }
 }
-
 @media (min-width: 1341px) {
   .board-at-headline {
     left: 74px;
@@ -109,7 +105,6 @@
   .content-bottom-and-rigth {
     width: 100%;
   }
-
   .vertical-bar-container {
     margin-top: 39px;
     height: auto;
@@ -142,13 +137,11 @@
     max-width: 25vw;
   }
 }
-
 @media (max-width: 1013px) {
   .assigned-to-user span {
     max-width: 40vw;
   }
 }
-
 @media (max-width: 824px) {
   .required-msg {
     font-size: 16px;
@@ -164,7 +157,6 @@
     gap: 2px;
   }
 }
-
 @media (max-width: 760px) {
   .content-container {
     max-height: calc(100vh - 380px);
@@ -177,7 +169,6 @@
     left: 16px;
     top: 144px;
   }
-
   .editable-span {
     max-width: 66vw;
   }
@@ -205,13 +196,11 @@
     height: 14px;
   }
 }
-
 @media (max-width: 500px) {
   .editable-span {
     max-width: 50vw;
   }
 }
-
 @media (max-width: 466px) {
   .at-label-style,
   .at-prio {
@@ -271,14 +260,12 @@
     max-height: calc(100vh - 340px);
   }
 }
-
 @media (max-width: 418px) {
   .editable-span {
     max-width: 40vw;
     margin-right: 12px;
   }
 }
-
 @media (max-width: 344px) {
   .assigned-to-box {
     padding: 6px 7px;
@@ -293,14 +280,12 @@
     font-size: 12px;
   }
 }
-
 @media (min-width: 2500px) {
   .success-msg-popup {
     top: calc(50%);
     left: 1180px;
   }
 }
-
 @media (min-width: 1341px) and (max-height: 900px) {
   .section-title {
     top: 116px;
@@ -339,7 +324,6 @@
     max-height: calc(100vh - 290px);
   }
 }
-
 @media (max-width: 1340px) and (max-height: 573px) {
   .section-title {
     font-size: 47px;
@@ -367,7 +351,6 @@
     max-height: calc(100vh - 340px);
   }
 }
-
 @media (max-width: 760px) and (max-height: 573px) {
   .section-title {
     font-size: 47px;

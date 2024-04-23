@@ -12,20 +12,17 @@
   transition: all 200ms ease-in-out;
   overflow: auto;
 }
-
 .desktop-logo {
   height: 122px;
   padding: 64px 66px 114px 66px;
   margin-bottom: 114px;
   transition: all 200ms ease-in-out;
 }
-
 .menu-wrapper {
   width: 100%;
   display: flex;
   justify-content: center;
 }
-
 .menu-content {
   display: flex;
   flex-direction: column;
@@ -37,7 +34,6 @@
     justify-content 200ms ease-in-out, align-items 200ms ease-in-out, gap 200ms ease-in-out,
     width 200ms ease-in-out;
 }
-
 .footer-icon-box {
   display: flex;
   flex-direction: column;
@@ -48,7 +44,6 @@
   transition: width 200ms ease-in-out, height 200ms ease-in-out, padding-left 200ms ease-in-out,
     align-items 200ms ease-in-out;
 }
-
 .highlight-menu {
   background: var(--focus-color-btn);
 }
@@ -61,7 +56,6 @@
   width: 30px;
   color: #a8a8a8;
 }
-
 .footer-link {
   display: flex;
   align-items: center;
@@ -74,7 +68,6 @@
   transition: font-size 200ms ease-in-out, height 200ms ease-in-out, width 200ms ease-in-out,
     gap 200ms ease-in-out, flex-direction 200ms ease-in-out;
 }
-
 .desktop-data-box {
   display: flex;
   justify-content: center;
@@ -82,7 +75,6 @@
   flex-direction: column;
   padding: 0 0 64px 0;
 }
-
 .desktop-data-content {
   width: 100%;
   display: flex;
@@ -91,13 +83,11 @@
   cursor: pointer;
   margin-block: 2px;
 }
-
 .desktop-data-link {
   padding-block: 8px;
   color: #a8a8a8;
   transition: transform 200ms ease-in-out;
 }
-
 @media (min-width: 761px) {
   .footer-icon-box:hover {
     background-color: var(--focus-color-btn);
@@ -114,7 +104,6 @@
   .highlight-menu:hover {
     background-color: #11305f;
   }
-
   .footer-icon-box:active {
     background-color: var(--mockup-highlight);
   }
@@ -122,7 +111,6 @@
     background: var(--mockup-highlight);
   }
 }
-
 @media (max-width: 760px) {
   .footer {
     height: 80px;
@@ -186,7 +174,6 @@
     background: var(--mockup-highlight);
   }
 }
-
 @media (max-width: 400px) {
   .menu-content {
     gap: 0;
@@ -199,7 +186,6 @@
     font-size: 14px;
   }
 }
-
 @media (min-width: 761px) and (max-height: 700px) {
   .desktop-logo {
     margin-bottom: 48px;
@@ -208,13 +194,11 @@
     padding-bottom: 16px;
   }
 }
-
 @media (min-width: 761px) and (max-height: 555px) {
   .desktop-data-box {
     display: none;
   }
 }
-
 @media (min-width: 761px) and (max-height: 470px) {
   .footer-link {
     font-size: 14px;
@@ -236,7 +220,6 @@
     height: calc(100vh - 175px);
   }
 }
-
 @media (min-width: 761px) and (max-height: 364px) {
   .desktop-logo svg {
     height: 80px;

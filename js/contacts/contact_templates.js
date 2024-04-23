@@ -6,7 +6,7 @@ let savedName, savedEmail, savedPhone, savedIndex, savedBg, savedTextColor, save
  */
 function templateAddContactHTML() {
   return /*html*/ `
-    <div id="ac-card-content-id" class="card-content">
+    <div id="ac-card-content-id" class="card-content" onclick="stopPropagation(event)">
         <div  class="card-header">
             <div class="header-content-wrapper">
                 <svg width="102" height="122" viewBox="0 0 102 122" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -144,7 +144,7 @@ function templateCreateContactsHTML(name, email, phone, bgColor, txtColor, initi
  */
 function templateEditContactHTML() {
   return /*html*/ `
-    <div id="edit-card-content-id" class="card-content">
+    <div id="edit-card-content-id" class="card-content" onclick="stopPropagation(event)">
         <div  class="card-header">
             <div class="header-content-wrapper">
                 <svg width="102" height="122" viewBox="0 0 102 122" fill="none" xmlns="http://www.w3.org/2000/svg">

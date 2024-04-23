@@ -230,7 +230,7 @@ function openCardInfo(index) {
   toggleVisibility("board-card-info-id", true);
   setTimeout(() => {
     toggleVisibility("card-info-section-id", false, "card-visible");
-    closeCardInfoByEventListener();
+    // closeCardInfoByEventListener();
   }, 30);
 }
 
@@ -297,7 +297,7 @@ function openAddTaskOverlay(section) {
     closeCategoryMenu();
     filterAssignedToContacts();
     setTimeout(() => {
-      closeAddTaskOverlayByEventListener();
+      closeEditCardInfoByEventListener();
     }, 300);
   }
 }

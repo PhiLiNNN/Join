@@ -15,14 +15,12 @@
   transition: none;
   z-index: 990;
 }
-
 .ac-circle span {
   display: none;
   font-weight: 700;
   color: white;
   font-size: 22px;
 }
-
 .ac-overlay {
   position: absolute;
   top: 0;
@@ -33,7 +31,6 @@
   height: 100vh;
   background: #2f2f2f8d;
 }
-
 .card-content {
   z-index: 900;
   border-radius: 30px;
@@ -46,18 +43,15 @@
   transform: translateY(100%);
   transition: all 200ms ease-in-out;
 }
-
 .card-content.card-visible {
   transform: translateY(0);
   transform: translateX(0);
 }
-
 .card-header {
   position: relative;
   height: 352px;
   background: var(--mockup-color);
 }
-
 .header-content-wrapper {
   display: flex;
   flex-direction: column;
@@ -66,7 +60,6 @@
   margin-left: 48px;
   color: white;
 }
-
 .ec-header,
 .ac-header {
   text-wrap: wrap;
@@ -74,13 +67,11 @@
   font-size: 64px;
   transition: all 200ms ease-in-out;
 }
-
 .ec-text,
 .ac-text {
   font-size: 24px;
   transition: all 200ms ease-in-out;
 }
-
 .ac-bottom-line {
   height: 3px;
   width: 120px;
@@ -89,7 +80,6 @@
   margin-top: 16px;
   transition: all 200ms ease-in-out;
 }
-
 .ac-card-circle-mobile,
 .ac-card-circle-desktop {
   z-index: 999;
@@ -102,15 +92,14 @@
   background: #d1d1d1;
   transition: all 200ms ease-in-out;
 }
-
 .ac-card-circle-mobile {
   position: absolute;
   bottom: -60px;
   left: 50%;
-  border: 3px solid white;
+  outline: 3px solid white;
+  box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.125);
   transform: translateX(-50%);
 }
-
 .ac-card-circle-wrapper {
   display: flex;
   flex-direction: column;
@@ -120,12 +109,10 @@
   margin: 0 0px 0 97px;
   transition: all 200ms ease-in-out;
 }
-
 .footer-grid {
   width: 100%;
   display: flex;
 }
-
 .footer-right {
   display: flex;
   flex-direction: column;
@@ -135,12 +122,10 @@
   height: 422px;
   transition: all 200ms ease-in-out;
 }
-
 .ac-card-circle img {
   height: 43px;
   width: 43px;
 }
-
 .close-ac-card-mobile,
 .close-ac-card-desktop {
   position: absolute;
@@ -155,15 +140,12 @@
   cursor: pointer;
   transition: all 200ms ease-in-out;
 }
-
 .close-ac-card-mobile {
   background: var(--mockup-color);
 }
-
 .close-ac-card-desktop svg path {
   fill: var(--mockup-color);
 }
-
 .card-footer {
   display: flex;
   justify-content: center;
@@ -174,7 +156,6 @@
   padding-inline: 32px;
   transition: padding-inline 200ms ease-in-out;
 }
-
 .ac-btn-fill,
 .ac-btn-white,
 .ec-btn-fill,
@@ -192,7 +173,6 @@
   outline: none;
   border: 1px solid var(--mockup-color);
 }
-
 .ac-btn-fill {
   background: var(--mockup-color);
   color: white;
@@ -203,19 +183,16 @@
   color: white;
   width: 111px;
 }
-
 .ac-btn-white {
   background: white;
   color: var(--mockup-color);
   width: 126px;
 }
-
 .ec-btn-white {
   background: white;
   color: var(--mockup-color);
   width: 113px;
 }
-
 .ac-btn-container {
   width: 100%;
   display: flex;
@@ -224,7 +201,6 @@
   justify-content: center;
   gap: 12px;
 }
-
 .card-inputs {
   width: 100%;
   display: flex;
@@ -233,24 +209,20 @@
   justify-content: start;
   gap: 16px;
 }
-
 .input_ac {
   padding: 10px 21px !important;
 }
-
 .input_ac input {
   font-size: 20px !important;
   transition: all 200ms ease-in-out;
   cursor: pointer;
 }
-
 .ac-card-circle-wrapper,
 .header-content-wrapper svg,
 .close-ac-card-desktop,
 .ac-btn-white {
   display: none;
 }
-
 .ec-menu-container {
   position: fixed;
   background: white;
@@ -266,7 +238,6 @@
 .ec-menu-container.ec-menu-visible {
   transform: translateX(0%);
 }
-
 .ec-menu-content {
   height: 100px;
   width: 116px;
@@ -276,7 +247,6 @@
   gap: 16px;
   color: var(--mockup-color);
 }
-
 .ec-menu {
   cursor: pointer;
   display: flex;
@@ -305,7 +275,6 @@
   .ac-circle span {
     display: flex;
   }
-
   .ac-btn-fill:hover,
   .ec-btn-fill:hover {
     background: var(--mockup-highlight);
@@ -316,7 +285,6 @@
   .ec-circle:hover {
     background: var(--mockup-highlight);
   }
-
   .ac-btn-white:hover,
   .ec-btn-white:hover {
     border: 2px solid var(--mockup-highlight);
@@ -333,7 +301,6 @@
     background: var(--focus-color-btn);
     border: 2px solid var(--focus-color-btn);
   }
-
   .ac-btn-white:active,
   .ec-btn-white:active {
     border: 2px solid var(--focus-color-btn);
@@ -445,7 +412,6 @@
   .close-ac-card-desktop:hover {
     background: var(--placeholder-color);
   }
-
   .close-ac-card-desktop:active {
     background: var(--focus-color-btn);
   }
@@ -478,7 +444,6 @@
     width: 100% !important;
   }
 }
-
 @media (max-width: 1340px) {
   .footer-right {
     margin-top: 48px;
@@ -491,13 +456,11 @@
     height: 60%;
   }
 }
-
 @media (max-width: 1100px) {
   .input_ac {
     width: 100%;
   }
 }
-
 @media (max-width: 760px) {
   .ac-card-circle-mobile {
     height: 120px;
@@ -536,7 +499,6 @@
     margin-left: 32px;
   }
 }
-
 @media (max-width: 500px) {
   .ec-header,
   .ac-header {
@@ -566,7 +528,6 @@
     width: 80px;
   }
 }
-
 @media (max-width: 444px) {
   .close-ac-card-mobile {
     right: 8px;
@@ -606,7 +567,6 @@
     transform: translate(calc(0), 300%) !important;
   }
 }
-
 @media (max-height: 800px) and (min-width: 761px) {
   .card-content {
     border-radius: 0px;
@@ -752,13 +712,11 @@
     margin-top: 0;
   }
 }
-
 @media (max-height: 410px) and (max-width: 1340px) {
   .ec-circle {
     bottom: 40px;
   }
 }
-
 @media (max-height: 410px) and (max-width: 760px) {
   .ec-circle {
     bottom: 95px;
@@ -768,7 +726,6 @@
     justify-content: start;
   }
 }
-
 @media (max-height: 408px) and (min-width: 1341px) {
   .card-footer {
     padding-inline: 0;

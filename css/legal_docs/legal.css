@@ -14,7 +14,6 @@
 .help-content p {
   text-wrap: wrap;
 }
-
 .legal-style span,
 .policy-style span,
 .legal-info a,
@@ -29,7 +28,6 @@
   display: flex;
   justify-content: center;
 }
-
 .legal-notice-content,
 .policy-notice-content,
 .help-content {
@@ -39,7 +37,6 @@
   overflow-y: auto;
   max-height: calc(100vh - 176px);
 }
-
 .legal-header h1,
 .privacy-policy h1,
 .help-content h1 {
@@ -48,7 +45,6 @@
   margin-bottom: 32px;
   transition: all 200ms ease-in-out;
 }
-
 .legal-imprint h2,
 .privacy-rights h2,
 .privacy-collection h2,
@@ -65,19 +61,16 @@
   margin-bottom: 16px;
   transition: all 200ms ease-in-out;
 }
-
 .privacy-information h2,
 .privacy-questions h2,
 .help-howtoUse h2,
 .help-enjoy h2 {
   margin-top: 24px;
 }
-
 .help-list,
 .help-remember p:last-child {
   margin-top: 16px;
 }
-
 .privacy-policy,
 .help-list ol li {
   margin-bottom: 16px;
@@ -85,7 +78,6 @@
 .help-welcome {
   margin-bottom: 24px;
 }
-
 .privacy-rights ul li,
 .privacy-collection ul li {
   margin-left: 34px;
@@ -97,11 +89,9 @@
   padding-left: 16px;
   list-style-position: outside;
 }
-
 .legal-imprint ul li {
   list-style-position: inside;
 }
-
 .legal-imprint,
 .legal-info,
 .legal-acceptance,
@@ -125,7 +115,6 @@
 .help-list {
   margin-bottom: 24px;
 }
-
 .legal-info h3,
 .legal-acceptance h3,
 .legal-scope h3,
@@ -148,11 +137,9 @@
   font-weight: 700;
   transition: all 200ms ease-in-out;
 }
-
 .legal-sub-scope {
   margin-top: 16px;
 }
-
 .legal-back-arrow {
   position: fixed;
   display: flex;
@@ -165,7 +152,6 @@
   padding: 4px;
   transition: all 200ms ease-in-out;
 }
-
 @media (min-width: 761px) {
   .legal-back-arrow:hover {
     background: var(--mockup-color);
@@ -207,20 +193,17 @@
     right: 126px;
   }
 }
-
 @media (min-width: 1675px) {
   .legal-back-arrow {
     right: auto;
     left: 1510px;
   }
 }
-
 @media (max-width: 761px) {
   .legal-back-arrow:active {
     background: var(--placeholder-color);
   }
 }
-
 @media (max-width: 466px) {
   .legal-notice-content *,
   .policy-notice-content *,
@@ -271,13 +254,11 @@
     right: 16px;
   }
 }
-
 @media (max-width: 335px) {
   .privacy-policy h1 {
     font-size: 38px;
   }
 }
-
 .d-none {
   display: none;
 }

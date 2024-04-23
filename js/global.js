@@ -389,3 +389,7 @@ async function includeHTML() {
     }
   }
 }
+
+function stopPropagation(event) {
+  event.stopPropagation();
+}

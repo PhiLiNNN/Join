@@ -5,7 +5,6 @@ input#session-date {
   display: inline-block;
   position: relative;
 }
-
 input[type="date"]::-webkit-calendar-picker-indicator {
   background: transparent;
   bottom: 0;
@@ -18,7 +17,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   top: 0;
   width: auto;
 }
-
 .event-style {
   margin-right: 2px;
 }
@@ -46,24 +44,20 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   z-index: 100;
   transition: all 200ms ease-in-out;
 }
-
 .section-title {
   position: absolute;
   font-size: 54px;
   font-weight: bold;
   transition: all 200ms ease-in-out;
 }
-
 .input_at {
   max-width: none !important;
   padding: 10px 21px !important;
 }
-
 .due_date_at {
   padding: 10px 15px 10px 21px !important;
   max-width: none !important;
 }
-
 .input_at input,
 .textarea-style {
   font-size: 20px !important;
@@ -73,7 +67,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .textarea-style {
   max-width: none;
 }
-
 .rotate-arrow {
   width: 12px;
   height: 12px;
@@ -81,19 +74,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   transform: rotate(0deg);
   transition: transform 200ms ease;
 }
-
 .at-asignedTo {
   color: var(--mockup-color);
 }
-
 .plus-btn {
-  margin-right: -5px;
+  margin: 3px -2px 0 0;
 }
-
 .rotate-arrow.upsidedown {
   transform: rotate(180deg);
 }
-
 .at-dropdown {
   position: relative;
   background: #2a36471e;
@@ -103,23 +92,19 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   overflow: hidden;
   transition: all 200ms ease-in-out;
 }
-
 .at-dropdown.active {
   overflow-y: auto;
   opacity: 1;
   max-height: 200px;
 }
-
 .at-label-style {
   margin-bottom: 8px;
   font-size: 22px;
   transition: all 200ms ease-in-out;
 }
-
 .required {
   color: #ff8190;
 }
-
 .content-bottom-container {
   display: flex;
   align-items: center;
@@ -135,7 +120,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   z-index: 1000;
   transition: all 200ms ease-in-out;
 }
-
 .circle-style {
   display: flex;
   justify-content: center;
@@ -147,7 +131,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   font-size: 16px;
   transition: all 200ms ease-in-out;
 }
-
 .assigned-to-box {
   display: flex;
   justify-content: space-between;
@@ -157,7 +140,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   padding: 16px 7px;
   border-radius: 10px;
 }
-
 .assigned-to-user {
   display: flex;
   justify-content: start;
@@ -166,43 +148,35 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   font-size: 22px;
   transition: all 200ms ease-in-out;
 }
-
 .assigned-to-user span {
   max-width: 50vw;
   overflow-x: auto;
 }
-
 .assigned-to-box svg {
   margin-right: 52px;
 }
-
 .assigned-to-box.selected-contact-at {
   background: var(--mockup-color);
   border-radius: 10px;
   color: white;
 }
-
 .assigned-to-box.selected-contact-at svg path {
   stroke: white;
 }
-
 .added-contacts {
   position: relative;
   display: flex;
   margin: 8px 0 0 12px;
   z-index: 0;
 }
-
 .left-indent {
   margin-left: -10px;
 }
-
 .at-prio-img {
   margin-top: 18px;
   display: flex;
   justify-content: space-between;
 }
-
 .at-prio-img img {
   height: 45px;
   width: 130px;
@@ -211,19 +185,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   box-shadow: 0 0px 14px #2a364739;
   transition: all 200ms ease-in-out;
 }
-
 .at-prio-img-green:active {
   box-shadow: 0 0px 5px #7ae229;
 }
-
 .at-prio-img-yellow:active {
   box-shadow: 0 0px 5px #ffa800;
 }
-
 .at-prio-img-red:active {
   box-shadow: 0 0px 5px #ff3d00;
 }
-
 .category-dropdown {
   position: relative;
   background: #2a36471e;
@@ -234,14 +204,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   transition: all 200ms ease-in-out;
   z-index: 1;
 }
-
 .category-dropdown.active {
   opacity: 1;
   overflow-y: auto;
   height: auto;
   max-height: 300px;
 }
-
 .category-dropdown ul li {
   list-style: none;
   padding: 12px 16px;
@@ -251,33 +219,28 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   border-radius: 10px;
   transition: all 200ms ease-in-out;
 }
-
 .category-dropdown ul li.selected-contact-at {
   background: var(--mockup-color);
   border-radius: 10px;
   color: white;
 }
-
 .subtasks-decision-img {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 4px;
 }
-
 .vertical-line {
   height: 24px;
   width: 1px;
   border-radius: 1px;
   background: var(--placeholder-color);
 }
-
 .subtask-list {
   overflow-y: auto;
   margin-block: 8px;
   max-height: 160px;
 }
-
 .subtask-list ul li {
   position: relative;
   display: flex;
@@ -289,7 +252,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   cursor: pointer;
   transition: all 200ms ease-in-out;
 }
-
 .subtask-list ul li.blue-line-highlight::after {
   content: "";
   position: absolute;
@@ -299,7 +261,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   height: 1px;
   background-color: var(--mockup-highlight);
 }
-
 .subtask-list ul li.red-line-highlight::after {
   content: "";
   position: absolute;
@@ -309,17 +270,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   height: 1px;
   background-color: var(--err-msg-color);
 }
-
 .disabled-svg {
   pointer-events: none;
   opacity: 0.5;
 }
-
 .subtask-list ul li::before {
   content: "\2022";
   margin-right: 10px;
 }
-
 .subtask-svg {
   display: flex;
   align-items: center;
@@ -327,7 +285,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   gap: 8px;
   cursor: pointer;
 }
-
 .editable-span {
   width: 100%;
   border: none;
@@ -338,11 +295,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   transition: all 200ms ease-in-out;
   margin-right: 8px;
 }
-
 .hide-clear-btn {
   display: none;
 }
-
 .hidden-Edit_menu {
   display: none;
   align-items: center;
@@ -350,26 +305,21 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   gap: 8px;
   cursor: pointer;
 }
-
 li:hover .hidden-Edit_menu {
   display: flex;
 }
-
 .err-msg-flex {
   display: flex;
   align-items: center;
   gap: 4px;
 }
-
 .rotate-err-arrow {
   transform: rotate(90deg);
   transition: all 200ms ease-in-out;
 }
-
 .rotate-err-arrow path {
   fill: var(--err-msg-color);
 }
-
 .d-none {
   display: none;
 }

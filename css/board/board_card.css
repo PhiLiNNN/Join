@@ -1,7 +1,6 @@
 .card {
   position: relative;
 }
-
 .board-card {
   cursor: pointer;
   background-color: var(--white-color);
@@ -12,27 +11,22 @@
   margin-right: 24px;
   box-shadow: 0 0 14px #2a364739;
 }
-
 .board-card-tilt {
   transform: rotate(5deg);
 }
-
 .category-block {
   color: var(--white-color);
   text-align: center;
   padding: 4px 16px 4px 16px;
   border-radius: 8px;
 }
-
 .x-button-board {
   display: none;
 }
-
 .task-container,
 .priority-block {
   margin-top: 24px;
 }
-
 .title-block {
   margin-bottom: 8px;
   color: var(--mockup-color);
@@ -41,7 +35,6 @@
   max-height: 40px;
   word-wrap: break-word;
 }
-
 .description-block {
   max-height: 40px;
   overflow: hidden;
@@ -49,38 +42,32 @@
   color: #a8a8a8;
   word-wrap: break-word;
 }
-
 .subtasks-block,
 .priority-block {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
 .subtasks-block {
   gap: 11px;
   font-size: 12px;
   color: black;
 }
-
 .progress {
   height: 100%;
   background-color: #4589ff;
 }
-
 .board-added-contacts {
   position: relative;
   display: flex;
   margin-left: 8px;
   z-index: 0;
 }
-
 .board-assignedTo-prio {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
 .progress-bar {
   width: 128px;
   height: 8px;
@@ -89,7 +76,6 @@
   overflow: hidden;
   flex: 1;
 }
-
 .board-circle-style {
   display: flex;
   justify-content: center;
@@ -100,35 +86,28 @@
   border-radius: 50%;
   font-size: 12px;
 }
-
 .board-left-indent {
   margin-left: -10px;
 }
-
 .date-prio-block {
   display: none;
 }
-
 .static-block {
   color: #42526e;
   padding-right: 25px;
 }
-
 .static-block div {
   margin-bottom: 16px;
 }
-
 .changeing-block div {
   margin-bottom: 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
 .assignedTo {
   display: none;
 }
-
 .assignedTo-box {
   position: absolute;
   bottom: 16px;
@@ -139,18 +118,15 @@
   justify-content: flex-start;
   align-items: center;
 }
-
 .assignedTo-pic {
   width: 32px;
   height: 32px;
   border-radius: 45px;
   margin-right: 16px;
 }
-
 .assignedTo-text {
   display: none;
 }
-
 .little-card-subtasks {
   display: flex;
   justify-content: flex-start;
@@ -158,11 +134,9 @@
   flex-direction: row;
   display: none;
 }
-
 .relativ {
   position: relative;
 }
-
 .gray {
   width: 128px;
   height: 8px;
@@ -171,7 +145,6 @@
   position: absolute;
   left: 16px;
 }
-
 .blue {
   width: 64px;
   height: 8px;
@@ -179,22 +152,18 @@
   background-color: #4589ff;
   position: absolute;
 }
-
 .little-subtask {
   position: relative;
   font-size: 12px;
   margin-left: 150px;
 }
-
 .subtask {
   display: none;
 }
-
 .subtask-box {
   margin-top: 8px;
   padding: 4px 0 4px 16px;
 }
-
 .delete-edit {
   display: flex;
   justify-content: flex-end;
@@ -203,29 +172,24 @@
   gap: 8px;
   display: none;
 }
-
 .delete-edit-box {
   display: flex;
   align-items: center;
   gap: 8px;
 }
-
 .delete-edit image {
   height: 24px;
   width: 24px;
 }
-
 .seperator {
   height: 24px;
   width: 1px;
   background-color: #d1d1d1;
 }
-
 .move-to-button {
   cursor: pointer;
   display: none;
 }
-
 @media (min-width: 761px) {
   .task-container,
   .priority-block {
@@ -241,7 +205,6 @@
     display: none;
   }
 }
-
 @media (min-width: 1341px) {
   .task-container,
   .priority-block {
@@ -254,7 +217,6 @@
     padding: 16px;
   }
 }
-
 @media (max-width: 760px) {
   .task-container,
   .priority-block {

@@ -40,53 +40,20 @@ document.addEventListener("dragend", () => {
 });
 
 /**
- * Closes the "Add Task formular" overlay when clicked outside of the overlay or on the close or add button.
- * Removes the event listener once the overlay is closed.
- */
-function closeAddTaskOverlayByEventListener() {
-  const clickHandler = (event) => {
-    const cardInfoSection = document.getElementById("at-section-id");
-    const closeButton = event.target.closest("#close-board-at-id");
-    const addMButton = event.target.closest("#at-add-btn");
-    if (!cardInfoSection.contains(event.target)) {
-      closeAddTaskOverlay();
-      document.removeEventListener("click", clickHandler);
-    } else if (closeButton || addMButton) document.removeEventListener("click", clickHandler);
-  };
-  document.addEventListener("click", clickHandler);
-}
-
-/**
- * Closes the "Card Info" section when clicked outside of the section or on the close or menu buttons.
- * Removes the event listener once the section is closed.
- */
-function closeCardInfoByEventListener() {
-  const clickHandler = (event) => {
-    const cardInfoSection = document.getElementById("card-info-section-id");
-    const closeButton = event.target.closest("#close-board-info-at-id");
-    const boardMenu = event.target.closest("#board-info-menu-container-id");
-    if (!cardInfoSection.contains(event.target)) {
-      closeCardInfo();
-      document.removeEventListener("click", clickHandler);
-    } else if (closeButton || boardMenu) document.removeEventListener("click", clickHandler);
-  };
-  document.addEventListener("click", clickHandler);
-}
-
-/**
  * Closes the "Edit Card Info" overlay when clicked outside of the overlay or on the close and menu buttons.
  * Removes the event listener once the overlay is closed.
  */
 function closeEditCardInfoByEventListener() {
   const clickHandler = (event) => {
     const cardInfoSection = document.getElementById("at-section-id");
-    const closeButton = event.target.closest("#close-edit-at-id");
+    const closeButtonFilled = event.target.closest("#close-edit-at-id");
+    const closeButtonBlank = event.target.closest("#close-board-at-id");
     const editMButton = event.target.closest("#at-ok-btn");
     if (!cardInfoSection.contains(event.target)) {
       closeOverlay();
-      closeCardInfo();
       document.removeEventListener("click", clickHandler);
-    } else if (closeButton || editMButton) document.removeEventListener("click", clickHandler);
+    } else if (closeButtonFilled || editMButton || closeButtonBlank)
+      document.removeEventListener("click", clickHandler);
   };
   document.addEventListener("click", clickHandler);
 }

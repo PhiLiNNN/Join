@@ -198,7 +198,6 @@ function openAddContactMenu() {
   toggleVisibility("at-overlay-id", true);
   setTimeout(() => {
     toggleVisibility("ac-card-content-id", false, "card-visible");
-    closeAddContactByEventListener();
   }, 30);
 }
 
@@ -278,7 +277,6 @@ function editContact() {
   toggleVisibility("edit-overlay-id", true);
   setTimeout(() => {
     toggleVisibility("edit-card-content-id", false, "card-visible");
-    closeEditContactByEventListener();
   }, 30);
   const nameInputEl = document.getElementById(`ec-name-input-id`).value;
   const mailInputEl = document.getElementById(`ec-mail-input-id`).value;
