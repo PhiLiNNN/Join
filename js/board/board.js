@@ -18,6 +18,8 @@ let cardSection;
 let currentUser;
 let currentSubtasksLength;
 let validDragEl = false;
+let descriptions = [];
+let titles = [];
 
 /**
  * Initializes the board by setting up various functionalities and loading data.
@@ -46,23 +48,28 @@ function initBoard() {
  * Generates HTML cards for tasks and displays them in the appropriate columns on the task management board.
  * @param {string} [search] - Optional. A string to filter tasks by title or description.
  */
-function generateCardHTML(search) {
+function generateCardHTML() {
   let {toDoEl, inProgEl, awaitFedEl, doneEl} = getBoardElements();
   clearElementInnerHTML(toDoEl, inProgEl, awaitFedEl, doneEl);
+  checkIfSectionIsEmpty();
   if (currentUser.tasks.board.length === 0) return;
   currentUser.tasks.board.forEach((task, index) => {
-    let taskTitle = currentUser.tasks.titles[index].toLowerCase();
-    let taskDescription = currentUser.tasks.descriptions[index].toLowerCase();
-    if (search && !(taskTitle.includes(search) || taskDescription.includes(search))) return;
+    fillDescriptionAndTitlesListsForSearchFunction(index);
     const taskElements = {
       toDo: toDoEl,
       inProgress: inProgEl,
       awaitFeedback: awaitFedEl,
       done: doneEl,
     };
-    checkIfSectionIsEmpty();
     if (taskElements.hasOwnProperty(task)) addTaskToList(index, taskElements[task]);
   });
+}
+
+function fillDescriptionAndTitlesListsForSearchFunction(index) {
+  descriptions.push(currentUser.tasks.descriptions[index].toLowerCase());
+  titles.push(currentUser.tasks.titles[index].toLowerCase());
+  descriptions = [...new Set(descriptions)];
+  titles = [...new Set(titles)];
 }
 
 /**
@@ -172,14 +179,71 @@ async function moveTo(section) {
 }
 
 /**
- * Filters the "To Do" tasks based on the search input value.
+ * Filters the all tasks based on the search input value.
  */
 function filterToDos() {
   const searchInputElement = window.innerWidth < 761 ? "search-mobile-id" : "search-desktop-id";
-  const search = document.getElementById(searchInputElement).value.toLowerCase();
-  generateCardHTML(search);
+  const searchInput = document.getElementById(searchInputElement).value.toLowerCase();
+  const uniqueList = getUniqueIndices(searchInput);
+  noTasksFoundFeedback(uniqueList);
+  renderFilteredCards(uniqueList);
+  checkIfSectionIsEmpty();
+  getHoverContainerGeometry();
+  setDragEventListeners();
   truncateTextIfTooLong(".description-block", 50);
   truncateTextIfTooLong(".title-block", 29);
+}
+
+function noTasksFoundFeedback(uniqueList) {
+  if (uniqueList.length === 0) {
+    setTimeout(() => {
+      toggleVisibility("search-desktop-err-id", false);
+      toggleVisibility("search-mobile-err-id", false);
+    }, 1000);
+    toggleVisibility("search-desktop-err-id", true);
+    toggleVisibility("search-mobile-err-id", true);
+  }
+}
+
+function getUniqueIndices(input) {
+  return (uniqueList = [
+    ...new Set([
+      ...descriptions
+        .map((description, index) => ({description, index}))
+        .filter(({description}) => description.toLowerCase().includes(input))
+        .map(({index}) => index),
+      ...titles
+        .map((title, index) => ({title, index}))
+        .filter(({title}) => title.toLowerCase().includes(input))
+        .map(({index}) => index),
+    ]),
+  ]);
+}
+
+function renderFilteredCards(list) {
+  let {toDoEl, inProgEl, awaitFedEl, doneEl} = getBoardElements();
+  const taskElements = {
+    toDo: toDoEl,
+    inProgress: inProgEl,
+    awaitFeedback: awaitFedEl,
+    done: doneEl,
+  };
+  clearSectionInnerHTML(toDoEl, inProgEl, awaitFedEl, doneEl);
+  list.forEach((item) => {
+    const task = currentUser.tasks.board[item];
+    const prio = currentUser.tasks.prios[item];
+    const bgColor = getCategoryBgColor(currentUser.tasks.categories[item]);
+    const {tasksDone, progress} = updateSubtaskStatusBar(item);
+    taskElements[task].innerHTML += generateTaskHTML(item, prio, bgColor, tasksDone, progress);
+    renderBoardAssignedTo(item);
+  });
+}
+
+function clearSectionInnerHTML(toDoEl, inProgEl, awaitFedEl, doneEl) {
+  toDoEl.innerHTML = "";
+  inProgEl.innerHTML = "";
+  awaitFedEl.innerHTML = "";
+  doneEl.innerHTML = "";
 }
 
 /**

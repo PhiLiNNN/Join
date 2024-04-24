@@ -283,7 +283,8 @@ input {
   height: 140px;
   padding: 18px 21px;
 }
-.textarea-style:focus-within {
+.textarea-style:focus-within,
+.input_global:focus-within {
   border-color: var(--mockup-highlight);
 }
 .error-border {
@@ -293,9 +294,6 @@ input::placeholder,
 textarea::placeholder {
   color: var(--placeholder-color);
   transition: font-size 200ms ease-in-out;
-}
-.input_global:focus-within {
-  border-color: var(--mockup-highlight);
 }
 .err-msg-color {
   color: var(--err-msg-color);

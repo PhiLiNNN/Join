@@ -33,13 +33,14 @@
         <div class="board-headline">
           <h1>Board</h1>
           <div class="board-headline-right">
-            <div class="input_global board-search-desktop">
+            <div id="board-search-desktop-err-id" class="input_global board-search-desktop">
               <input
                 id="search-desktop-id"
                 type="search"
                 placeholder="Find Task"
                 autocomplete="on"
                 oninput="filterToDos()" />
+                <span id="search-desktop-err-id" class="err-msg d-none">No tasks found!</span>
               <div class="add-task"></div>
               <div class="magnifier-container">
                 <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -73,6 +74,7 @@
             placeholder="Find Task"
             autocomplete="on"
             oninput="filterToDos()" />
+            <span id="search-mobile-err-id" class="err-msg d-none">No tasks found!</span>
           <div class="add-task"></div>
           <div class="magnifier-container">
             <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
