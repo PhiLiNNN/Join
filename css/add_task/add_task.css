@@ -278,7 +278,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   content: "\2022";
   margin-right: 10px;
 }
-.subtask-svg {
+.subtask-svg,
+.subtask-svg-hidden {
   display: flex;
   align-items: center;
   margin-left: auto;

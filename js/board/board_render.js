@@ -88,3 +88,26 @@ function renderCardContent(index) {
   const {bgColor, prio, date} = prepareCardInfoInputs(index);
   element.innerHTML = templateCardInfoHTML(index, bgColor, prio, date);
 }
+
+/**
+ * Renders filtered task cards on the board based on the provided list of indices.
+ * @param {number[]} list - The list of indices of tasks to render.
+ */
+function renderFilteredCards(list) {
+  let {toDoEl, inProgEl, awaitFedEl, doneEl} = getBoardElements();
+  const taskElements = {
+    toDo: toDoEl,
+    inProgress: inProgEl,
+    awaitFeedback: awaitFedEl,
+    done: doneEl,
+  };
+  clearElementInnerHTML(toDoEl, inProgEl, awaitFedEl, doneEl);
+  list.forEach((item) => {
+    const task = currentUser.tasks.board[item];
+    const prio = currentUser.tasks.prios[item];
+    const bgColor = getCategoryBgColor(currentUser.tasks.categories[item]);
+    const {tasksDone, progress} = updateSubtaskStatusBar(item);
+    taskElements[task].innerHTML += generateTaskHTML(item, prio, bgColor, tasksDone, progress);
+    renderBoardAssignedTo(item);
+  });
+}

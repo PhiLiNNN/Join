@@ -67,6 +67,9 @@
   }
 }
 @media (min-width: 1341px) {
+  .err-msg {
+    top: 49px;
+  }
   .board-content-wrapper {
     display: flex;
     justify-content: space-between;
