@@ -262,6 +262,8 @@ function closeOverlay() {
   setTimeout(() => {
     toggleVisibility("board-at-id", false);
   }, 300);
+  clearSearchInput();
+  generateCardHTML();
 }
 
 /**
@@ -278,6 +280,7 @@ function closeCardInfo() {
   setDragEventListeners();
   truncateTextIfTooLong(".description-block", 31);
   truncateTextIfTooLong(".title-block", 31);
+  clearSearchInput();
 }
 
 /**
@@ -294,7 +297,6 @@ function openCardInfo(index) {
   toggleVisibility("board-card-info-id", true);
   setTimeout(() => {
     toggleVisibility("card-info-section-id", false, "card-visible");
-    // closeCardInfoByEventListener();
   }, 30);
 }
 
