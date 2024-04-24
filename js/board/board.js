@@ -65,6 +65,11 @@ function generateCardHTML() {
   });
 }
 
+/**
+ * Fills the descriptions and titles lists with the lowercase values of task descriptions and titles.
+ * Removes duplicates from the lists.
+ * @param {number} index - The index of the task to retrieve descriptions and titles from.
+ */
 function fillDescriptionAndTitlesListsForSearchFunction(index) {
   descriptions.push(currentUser.tasks.descriptions[index].toLowerCase());
   titles.push(currentUser.tasks.titles[index].toLowerCase());
