@@ -82,6 +82,8 @@ function rememberMeCheck() {
   if (userEmailString) {
     const userEmailObject = JSON.parse(userEmailString);
     userMail = userEmailObject.email;
+    console.log("userMail :>> ", userMail);
+    console.log("userEmailString :>> ", userEmailString);
     document.getElementById("login-user-e-mail-id").value = users[userMail].userEMail;
     document.getElementById("login-user-password-id").value = users[userMail].userPassword;
     toggleVisibility("login-pw-visibility-off-id", true);
