@@ -16,7 +16,7 @@ let password,
  */
 async function init() {
   setFavicon();
-  // localStorage.removeItem("currentUser");
+  localStorage.removeItem("currentUser");
   showLoader();
   try {
     users = await loadUsersFromBackend("users");
