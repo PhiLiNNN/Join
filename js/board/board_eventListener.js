@@ -49,8 +49,9 @@ function closeEditCardInfoByEventListener() {
     const closeButtonFilled = event.target.closest("#close-edit-at-id");
     const closeButtonBlank = event.target.closest("#close-board-at-id");
     const subtaksEditMenu = event.target.closest(".subtask-svg-hidden");
+    const deleteButton = event.target.closest("#delete-button-id");
     const editMButton = event.target.closest("#at-ok-btn");
-    if (!cardInfoSection.contains(event.target) && !subtaksEditMenu) {
+    if (!cardInfoSection.contains(event.target) && !subtaksEditMenu && !deleteButton) {
       closeOverlay();
       document.removeEventListener("click", clickHandler);
     } else if (closeButtonFilled || editMButton || closeButtonBlank)
