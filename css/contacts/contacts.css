@@ -131,6 +131,7 @@
   .all-contacts {
     width: calc(100vw - 232px);
     padding-top: 78px;
+    overflow: hidden;
   }
   .contact-style:hover {
     background: var(--placeholder-color);
@@ -149,6 +150,8 @@
   }
   .all-contacts-content {
     margin: 24px;
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
   }
   .letter-style {
     padding: 17px 0px 17px 36px;
