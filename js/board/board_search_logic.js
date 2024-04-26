@@ -24,8 +24,8 @@ function filterToDos() {
   checkIfSectionIsEmpty();
   getHoverContainerGeometry();
   setDragEventListeners();
-  truncateTextIfTooLong(".description-block", 50);
-  truncateTextIfTooLong(".title-block", 50);
+  truncateTextIfTooLong(".description-block", 40);
+  truncateTextIfTooLong(".title-block", 40);
 }
 
 /**
