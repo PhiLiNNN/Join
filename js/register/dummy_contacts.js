@@ -412,7 +412,7 @@ function dummy_obj(userName, userEMail, userPassword, userPasswordConfirm) {
         "2024-05-03",
         "2024-04-22",
       ],
-      board: ["done", "done", "toDo", "inProgress", "inProgress", "toDo", "awaitFeedback"],
+      board: ["done", "toDo", "toDo", "done", "inProgress", "toDo", "awaitFeedback"],
     },
   };
 }
