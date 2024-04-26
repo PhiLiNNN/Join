@@ -107,6 +107,10 @@
     justify-content: center !important;
     gap: 16px !important;
   }
+  .content-bottom-container-board {
+    padding-left: 32px;
+    padding-right: 52px;
+  }
 }
 @media (min-width: 1341px) {
   .at-prio-img {
@@ -132,6 +136,10 @@
     max-width: 1920px;
     height: calc(100vh - 390px);
     padding: 4px;
+  }
+  .content-bottom-container-board {
+    padding-left: 32px;
+    padding-right: 40px;
   }
 }
 @media (min-width: 2500px) {
@@ -192,6 +200,34 @@
   .close-board-at:active svg path,
   .close-edit-at:active svg path {
     fill: white;
+  }
+  .content-bottom-container-board {
+    padding-left: 16px;
+    padding-right: 34px;
+  }
+}
+@media (min-height: 1245px) and (min-width: 761px) {
+  .board-at-section {
+    max-height: 1500px;
+  }
+  .content-container-board {
+    height: auto;
+  }
+}
+@media (min-height: 1245px) and (min-width: 1341px) {
+  .board-at-section {
+    max-height: 950px;
+  }
+  .content-container-board {
+    height: auto;
+  }
+}
+@media (min-height: 1245px) and (max-width: 760px) {
+  .board-at-section {
+    max-height: 1500px;
+  }
+  .content-container-board {
+    height: auto;
   }
 }
 @media (max-width: 481px) {
@@ -300,7 +336,7 @@
     top: 12px;
   }
   .content-bottom-container-board {
-    padding-left: 30px;
+    padding-left: 32px;
     padding-right: 40px;
   }
 }
