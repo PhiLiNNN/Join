@@ -26,8 +26,6 @@ async function init() {
     hideLoader();
   }
   rememberMeCheck();
-  console.log("users :>> ", users);
-
   addPasswordVisibilityListener(
     "login-pw-border-id",
     "lock-id",

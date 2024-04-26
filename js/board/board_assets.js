@@ -17,6 +17,8 @@ function disableCategoryField() {
   document.getElementById("category-container-id").classList.remove("cursor");
   toggleVisibility("category-container-id", false, "cursor-default");
   toggleVisibility("category-input-id", false, "cursor-default");
+  let container = document.getElementById("category-container-id");
+  container.removeAttribute("onclick");
 }
 
 /**

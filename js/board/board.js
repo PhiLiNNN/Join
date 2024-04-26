@@ -318,6 +318,7 @@ function openEditBoardCard(index) {
   handlerEditCardVisibilities();
   setSelectedUsersToTrue(index);
   renderAssignedToContacts();
+  toggleVisibility("at-clear-btn", false);
   setRightCheckBox();
   setEditCardInputs(index);
   setCurrentDate();

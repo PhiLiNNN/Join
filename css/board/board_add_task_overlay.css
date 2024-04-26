@@ -54,6 +54,7 @@
   transition: all 200ms ease-in-out;
   z-index: 101;
 }
+
 @media (min-width: 761px) {
   .required-msg {
     font-size: 18px;
