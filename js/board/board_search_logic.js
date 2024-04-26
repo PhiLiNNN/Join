@@ -25,7 +25,7 @@ function filterToDos() {
   getHoverContainerGeometry();
   setDragEventListeners();
   truncateTextIfTooLong(".description-block", 50);
-  truncateTextIfTooLong(".title-block", 29);
+  truncateTextIfTooLong(".title-block", 50);
 }
 
 /**

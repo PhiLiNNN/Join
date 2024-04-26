@@ -39,8 +39,8 @@ function initBoard() {
   generateCardHTML();
   getHoverContainerGeometry();
   setDragEventListeners();
-  truncateTextIfTooLong(".description-block", 50);
-  truncateTextIfTooLong(".title-block", 31);
+  truncateTextIfTooLong(".description-block", 40);
+  truncateTextIfTooLong(".title-block", 40);
   toggleScrollbar("hidden");
 }
 
@@ -175,8 +175,8 @@ async function moveTo(section) {
   resetNewHoverContainerHeight();
   updateTaskStatus(section);
   generateCardHTML();
-  truncateTextIfTooLong(".description-block", 50);
-  truncateTextIfTooLong(".title-block", 31);
+  truncateTextIfTooLong(".description-block", 40);
+  truncateTextIfTooLong(".title-block", 40);
   await saveWithoutLoaderAnimation();
   clearSearchInput();
   getHoverContainerGeometry();
@@ -215,8 +215,8 @@ function closeCardInfo() {
   generateCardHTML();
   checkIfSectionIsEmpty();
   setDragEventListeners();
-  truncateTextIfTooLong(".description-block", 50);
-  truncateTextIfTooLong(".title-block", 31);
+  truncateTextIfTooLong(".description-block", 40);
+  truncateTextIfTooLong(".title-block", 40);
   clearSearchInput();
 }
 
@@ -252,8 +252,8 @@ function deleteBoardCard(index) {
   currentUser.tasks.titles.splice(index, 1);
   closeCardInfo();
   getHoverContainerGeometry();
-  truncateTextIfTooLong(".description-block", 50);
-  truncateTextIfTooLong(".title-block", 31);
+  truncateTextIfTooLong(".description-block", 40);
+  truncateTextIfTooLong(".title-block", 40);
 }
 
 /**
@@ -276,8 +276,8 @@ function createBoardTask() {
   sendUserBack();
   getHoverContainerGeometry();
   setDragEventListeners();
-  truncateTextIfTooLong(".description-block", 50);
-  truncateTextIfTooLong(".title-block", 31);
+  truncateTextIfTooLong(".description-block", 40);
+  truncateTextIfTooLong(".title-block", 40);
 }
 
 /**
