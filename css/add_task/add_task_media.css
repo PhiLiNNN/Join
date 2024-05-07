@@ -91,8 +91,9 @@
   }
   .content-container {
     position: static;
+
     margin: 264px 70px 0px calc(232px + 64px);
-    max-height: calc(100vh - 354px);
+    max-height: calc(100vh - 424px);
     box-shadow: 0 0 14px #2a364739;
     border-radius: 24px;
     display: flex;
