@@ -91,6 +91,7 @@ function templateHeaderInitialsMenu(initials) {
  */
 async function loadUsersFromBackend(key) {
   const result = await getItem(key);
+  let test = JSON.parse(result) || {};
   return JSON.parse(result) || {};
 }
 
