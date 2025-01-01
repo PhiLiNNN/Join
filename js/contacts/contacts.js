@@ -326,7 +326,7 @@ async function saveContact() {
     toggleVisibility(`contact-${savedContactId}-id`, false, "selected-contact");
   }
 
-  closeEditContact();
+  // closeEditContact();
 }
 
 /**
@@ -352,7 +352,6 @@ async function deleteContact() {
  * @throws Will log an error to the console if the operation fails.
  */
 async function updateContact(body) {
-  console.log("body :>> ", body);
   try {
     const url = `${CONTACTS_API_URL}${savedContactId}/`;
     const response = await fetch(url, {

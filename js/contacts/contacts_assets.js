@@ -29,10 +29,11 @@ function getUserInputs(string) {
  * @returns {boolean} Returns true if all fields pass validation; otherwise, false.
  */
 async function contactsValidationCheck(string, contactId = null) {
+  const TOTAL_VALIDATION_FLAGS = 14;
   const nameInputEl = document.getElementById(`${string}-name-input-id`).value;
   const mailInputEl = document.getElementById(`${string}-mail-input-id`).value;
   const phoneInputEl = document.getElementById(`${string}-phone-input-id`).value;
-  const boolArr = Array(13).fill(false);
+  const boolArr = Array(TOTAL_VALIDATION_FLAGS).fill(false);
   validateContactName(nameInputEl, boolArr);
   await validateContactEmail(mailInputEl.toLowerCase(), boolArr, contactId);
   validateContactPhone(phoneInputEl, boolArr);

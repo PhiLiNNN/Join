@@ -265,14 +265,10 @@ function toggleCheckbox(event) {
   ppCheckboxConfirmed = !ppCheckboxConfirmed;
   if (event.target.id === "uncheckbox-id") {
     rmCheckboxConfirmed = !rmCheckboxConfirmed;
-    loginCheckbox.src = rmCheckboxConfirmed
-      ? "./assets/svg/checkbox_confirmed.svg"
-      : "./assets/svg/checkbox.svg";
+    loginCheckbox.src = rmCheckboxConfirmed ? "./assets/svg/checkbox_confirmed.svg" : "./assets/svg/checkbox.svg";
     ppCheckboxConfirmed = false;
   } else if (event.target.id === "privacy-checkbox-id") {
-    ppCheckbox.src = ppCheckboxConfirmed
-      ? "./assets/svg/checkbox_confirmed.svg"
-      : "./assets/svg/checkbox.svg";
+    ppCheckbox.src = ppCheckboxConfirmed ? "./assets/svg/checkbox_confirmed.svg" : "./assets/svg/checkbox.svg";
   }
 }
 
@@ -297,12 +293,9 @@ function addPasswordVisibilityListener(
   inputElement.addEventListener("input", function (event) {
     const passwordNotEmpty = isValueNotEmpty(event.target.value);
     toggleVisibility(lockImgId, !passwordNotEmpty);
-    if (inputType === "text" && password)
-      setRightImg(visibilityOnImg, visibilityOffImg, true, false);
-    else if (inputType === "password" && password)
-      setRightImg(visibilityOnImg, visibilityOffImg, false, true);
-    if (inputTypeConfirm === "text" && confirmPassword)
-      setRightImg(visibilityOnImg, visibilityOffImg, true, false);
+    if (inputType === "text" && password) setRightImg(visibilityOnImg, visibilityOffImg, true, false);
+    else if (inputType === "password" && password) setRightImg(visibilityOnImg, visibilityOffImg, false, true);
+    if (inputTypeConfirm === "text" && confirmPassword) setRightImg(visibilityOnImg, visibilityOffImg, true, false);
     else if (inputTypeConfirm === "password" && confirmPassword)
       setRightImg(visibilityOnImg, visibilityOffImg, false, true);
     if (!passwordNotEmpty) setRightImg(visibilityOnImg, visibilityOffImg, false, false);
@@ -330,8 +323,7 @@ function setRightImg(visibilityOnImg, visibilityOffImg, visbilityOn, visibilityO
  */
 function togglePasswordVisibility(event, ImgId, whichform, value) {
   if ((whichform === "password" || whichform === "registerPw") && value === 1) visibilityOn = true;
-  else if ((whichform === "password" || whichform === "registerPw") && value === -1)
-    visibilityOn = false;
+  else if ((whichform === "password" || whichform === "registerPw") && value === -1) visibilityOn = false;
   else if (whichform === "confirmPw" && value === 1) visibilityOnConfirm = true;
   else if (whichform === "confirmPw" && value === -1) visibilityOnConfirm = false;
   toggleVisibility(event.target.id, false);
