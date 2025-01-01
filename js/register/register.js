@@ -20,6 +20,7 @@ async function init() {
   showLoader();
   try {
     users = await loadUsersFromBackend("users");
+    console.log(users);
   } catch (error) {
     console.error("Error updating current user :", error);
   } finally {

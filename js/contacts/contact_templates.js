@@ -1,4 +1,4 @@
-let savedName, savedEmail, savedPhone, savedIndex, savedBg, savedTextColor, savedInitials;
+let savedName, savedEmail, savedPhone, savedContactId, savedBg, savedTextColor, savedInitials;
 
 /**
  * Generates HTML content for adding a new contact.
@@ -121,13 +121,13 @@ function templateCreateLettersHTML(letter) {
  * @param {string} bgColor - The background color of the contact circle.
  * @param {string} txtColor - The text color of the contact circle.
  * @param {string} initials - The initials of the contact.
- * @param {number} index - The index of the contact.
+ * @param {number} contactID - The id of the contact.
  * @returns {string} The HTML content for the contact.
  */
-function templateCreateContactsHTML(name, email, phone, bgColor, txtColor, initials, index) {
+function templateCreateContactsHTML(name, email, phone, bgColor, txtColor, initials, contactID) {
   return /*html*/ `
-    <div  id="contact-${index}-id" class="contact-style" onclick="openContact('${name}','${email}',
-                                                                                '${phone}','${index}','${bgColor}',
+    <div  id="contact-${contactID}-id" class="contact-style" onclick="openContact('${name}','${email}',
+                                                                                '${phone}','${contactID}','${bgColor}',
                                                                                 '${txtColor}','${initials}')">
         <div class="contact-circle" style="background-color: ${bgColor}; color: ${txtColor};">${initials}</div>
         <div class="contact-content">
@@ -223,10 +223,10 @@ function templateEditContactHTML() {
                     
                     <div id="ec-btn-container-id" class="ac-btn-container">
                         
-                        <button class="ec-btn-white" onclick="deleteContact()"> 
+                        <button class="ec-btn-white" onclick="handleDeleteContact(savedContactId)"> 
                             <span>Delete</span>
                         </button> 
-                        <button class="ec-btn-fill" onclick="saveEditContact()"> 
+                        <button class="ec-btn-fill" onclick="saveContact()"> 
                             <span>Save</span>
                             <img src="./assets/img/check.png" alt="">
                         </button> 
@@ -244,10 +244,10 @@ function templateShowContact(name, email, phone, index, bgColor, txtColor, initi
   savedBg = bgColor;
   savedTextColor = txtColor;
   savedInitials = initials;
-  savedIndex = index;
+  savedContactId = index;
   return /*html*/ `
     <div class="open-contacts-header">
-        <div class="open-contacts-arrow" onclick="closeContact()">
+        <div class="open-contacts-arrow" onclick="closeContact(savedContactId)">
           <svg width="25" height="24" viewBox="0 0 25 23" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M6.00972 9.88554H23.1871C24.0362 9.88554 24.7246 10.5739 24.7246 11.4231C24.7246 12.2722 24.0362 12.9606 23.1871 12.9606H6.00972L13.17 20.1209C13.7704 20.7213 13.7704 21.6946 13.17 22.295C12.5697 22.8954 11.5963 22.8954 10.996 22.295L1.53824 12.8373C0.757188 12.0562 0.757188 10.7899 1.53824 10.0089L10.996 0.55115C11.5963 -0.0492049 12.5697 -0.0492048 13.17 0.55115C13.7704 1.1515 13.7704 2.12487 13.17 2.72523L6.00972 9.88554Z" fill="#29ABE2"/>
           </svg>
@@ -270,7 +270,7 @@ function templateShowContact(name, email, phone, index, bgColor, txtColor, initi
                     </svg>
                     <span class="desktop-edit-span-small">Edit</span>
                 </div>
-                <div  class="desktop-menu" onclick="deleteContact()">
+                <div  class="desktop-menu" onclick="handleDeleteContact(savedContactId)">
                     <svg width="24" height="24" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M3.00098 18C2.45098 18 1.98014 17.8042 1.58848 17.4125C1.19681 17.0208 1.00098 16.55 1.00098 16V3C0.717643 3 0.480143 2.90417 0.288477 2.7125C0.0968099 2.52083 0.000976562 2.28333 0.000976562 2C0.000976562 1.71667 0.0968099 1.47917 0.288477 1.2875C0.480143 1.09583 0.717643 1 1.00098 1H5.00098C5.00098 0.716667 5.09681 0.479167 5.28848 0.2875C5.48014 0.0958333 5.71764 0 6.00098 0H10.001C10.2843 0 10.5218 0.0958333 10.7135 0.2875C10.9051 0.479167 11.001 0.716667 11.001 1H15.001C15.2843 1 15.5218 1.09583 15.7135 1.2875C15.9051 1.47917 16.001 1.71667 16.001 2C16.001 2.28333 15.9051 2.52083 15.7135 2.7125C15.5218 2.90417 15.2843 3 15.001 3V16C15.001 16.55 14.8051 17.0208 14.4135 17.4125C14.0218 17.8042 13.551 18 13.001 18H3.00098ZM3.00098 3V16H13.001V3H3.00098ZM5.00098 13C5.00098 13.2833 5.09681 13.5208 5.28848 13.7125C5.48014 13.9042 5.71764 14 6.00098 14C6.28431 14 6.52181 13.9042 6.71348 13.7125C6.90514 13.5208 7.00098 13.2833 7.00098 13V6C7.00098 5.71667 6.90514 5.47917 6.71348 5.2875C6.52181 5.09583 6.28431 5 6.00098 5C5.71764 5 5.48014 5.09583 5.28848 5.2875C5.09681 5.47917 5.00098 5.71667 5.00098 6V13ZM9.00098 13C9.00098 13.2833 9.09681 13.5208 9.28848 13.7125C9.48014 13.9042 9.71764 14 10.001 14C10.2843 14 10.5218 13.9042 10.7135 13.7125C10.9051 13.5208 11.001 13.2833 11.001 13V6C11.001 5.71667 10.9051 5.47917 10.7135 5.2875C10.5218 5.09583 10.2843 5 10.001 5C9.71764 5 9.48014 5.09583 9.28848 5.2875C9.09681 5.47917 9.00098 5.71667 9.00098 6V13Z" fill="#2A3647"/>
                     </svg>
@@ -315,7 +315,7 @@ function templateEditContactMenu() {
             </svg>
             <span>Edit</span>
           </div>
-          <div class="ec-menu" onclick="deleteContact()">
+          <div class="ec-menu" onclick="handleDeleteContact(savedContactId)">
             <svg
               width="16"
               height="18"

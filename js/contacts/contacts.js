@@ -1,4 +1,3 @@
-let currentUser;
 let isUserLoggedIn;
 let currentActive = -1;
 let currentContact = -1;
@@ -7,6 +6,7 @@ let editContactMenuOpen = false;
 let allLetters = [];
 let nameCheck;
 let emailCheck;
+let contacts;
 
 /**
  * Initializes the contacts page.
@@ -15,28 +15,29 @@ let emailCheck;
  * Otherwise, it retrieves the current user data,
  * renders all contacts, and sets up the visibility of page elements.
  */
-function contactsInit() {
+async function contactsInit() {
   setFavicon();
   isUserLoggedIn = checkUserLogIn();
   if (!isUserLoggedIn) window.location.assign("./error_page.html");
-  currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  renderAllContacts();
+  // currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const contacts = await getAllContacts();
+  renderAllContacts(contacts);
   toggleVisibility("contacts-menu-id", false, "highlight-menu");
   toggleVisibility("contacts-body-id", true);
-  loadHeaderInitials();
+  // loadHeaderInitials();
 }
 
 /**
  * Renders all contacts on the page.
  */
-function renderAllContacts() {
-  pushAllNeededLetters();
+function renderAllContacts(contacts) {
+  pushAllNeededLetters(contacts);
   let element = document.getElementById("all-contacts-content-id");
   element.innerHTML = "";
   allLetters.forEach((letter) => {
     element.innerHTML += templateCreateLettersHTML(letter);
     let letterElement = document.getElementById(`letter-${letter}-id`);
-    currentUser.contacts.forEach((contact, index) => {
+    contacts.forEach((contact) => {
       if (letter === contact.name[0].toUpperCase()) {
         const initials = getFirstLettersOfName(contact.name);
         letterElement.innerHTML += templateCreateContactsHTML(
@@ -46,41 +47,53 @@ function renderAllContacts() {
           contact.colorCode,
           contact.textColorCode,
           initials,
-          index
+          contact.id
         );
       }
     });
   });
 }
 
-/**
- * Adds a new contact to the user's contacts list.
- */
-function addNewContact() {
-  const {nameInputEl, mailInputEl, phoneInputEl, colorCode, textColorCode} = getUserInputs("ac");
-  if (!contactsValidationCheck("ac")) return;
-  initializedName = setValidNameInItialsToUpperCase(nameInputEl);
-  const newCon = {
+async function addNewContact() {
+  const userInput = getUserInputs("ac");
+  const validContact = prepareContact(userInput);
+  if (!(await contactsValidationCheck("ac"))) return;
+  const createdContact = await addNewContactToBackend(validContact);
+  await updateUIAfterContactAdd(createdContact);
+  closeAddNewContact();
+  sendSuccessMsg();
+}
+
+async function addNewContactToBackend(contact) {
+  return await setItem(contact);
+}
+
+function prepareContact({nameInputEl, mailInputEl, phoneInputEl, colorCode, textColorCode}) {
+  const initializedName = setValidNameInItialsToUpperCase(nameInputEl);
+  return {
     name: initializedName,
     email: mailInputEl,
     phone: phoneInputEl,
     colorCode: colorCode,
     textColorCode: textColorCode,
   };
-  currentUser.contacts.push(newCon);
-  localStorage.setItem("currentUser", JSON.stringify(currentUser));
-  updateBackend(currentUser);
-  renderAllContacts();
-  highlightActiveContact(currentUser.contacts.length - 1);
-  handleScreenMode(newCon);
-  closeAddNewContact();
-  sendSuccsessMsg();
+}
+
+async function updateUIAfterContactAdd(newContact) {
+  try {
+    const contacts = await getAllContacts();
+    renderAllContacts(contacts);
+    highlightActiveContact(newContact.id);
+    handleScreenMode(newContact);
+  } catch (error) {
+    console.error("Error updating contacts UI:", error);
+  }
 }
 
 /**
  * Displays a success message after adding a new contact.
  */
-function sendSuccsessMsg() {
+function sendSuccessMsg() {
   toggleScrollbar("hidden");
   toggleVisibility("contacts-success-msg-id", true);
   setTimeout(() => {
@@ -100,16 +113,9 @@ function sendSuccsessMsg() {
  */
 function handleScreenMode(newCon) {
   const initials = getFirstLettersOfName(newCon.name);
+
   if (window.innerWidth < 1340) {
-    openContact(
-      newCon.name,
-      newCon.email,
-      newCon.phone,
-      currentUser.contacts.length - 1,
-      newCon.colorCode,
-      newCon.textColorCode,
-      initials
-    );
+    openContact(newCon.name, newCon.email, newCon.phone, newCon.id, newCon.colorCode, newCon.textColorCode, initials);
   } else {
     const element = document.getElementById("show-overlay-id");
     showDesktopOverlay(
@@ -117,7 +123,7 @@ function handleScreenMode(newCon) {
       newCon.name,
       newCon.email,
       newCon.phone,
-      currentUser.contacts.length - 1,
+      newCon.id,
       newCon.colorCode,
       newCon.textColorCode,
       initials
@@ -135,16 +141,15 @@ function handleScreenMode(newCon) {
  * @param {string} txtColor - The text color of the contact.
  * @param {string} initials - The initials of the contact.
  */
-function openContact(name, email, phone, index, bgColor, txtColor, initials) {
-  highlightActiveContact(index);
+function openContact(name, email, phone, contactID, bgColor, txtColor, initials) {
+  highlightActiveContact(contactID);
   toggleScrollbar("hidden");
   let viewportWidth = window.innerWidth;
   const element = document.getElementById("show-overlay-id");
   toggleVisibility("edit-contact-id", true);
-  if (viewportWidth < 1340)
-    showContactOverlay(element, name, email, phone, index, bgColor, txtColor, initials);
-  else showDesktopOverlay(element, name, email, phone, index, bgColor, txtColor, initials);
-  currentContact = index;
+  if (viewportWidth < 1340) showContactOverlay(element, name, email, phone, contactID, bgColor, txtColor, initials);
+  else showDesktopOverlay(element, name, email, phone, contactID, bgColor, txtColor, initials);
+  currentContact = contactID;
 }
 
 /**
@@ -180,11 +185,12 @@ function closeAddNewContact() {
 /**
  * Closes the contact overlay and hides the edit contact menu.
  */
-function closeContact() {
+function closeContact(contactId) {
   editContactMenuOpen = false;
   const element = document.getElementById("show-overlay-id");
   element.classList.toggle("d-none");
-  toggleVisibility(`contact-${savedIndex}-id`, false, "selected-contact");
+  const elementId = document.getElementById(`contact-${contactId}-id`);
+  if (elementId) toggleVisibility(`contact-${contactId}-id`, false, "selected-contact");
   toggleVisibility("edit-contact-id", false);
 }
 
@@ -207,13 +213,13 @@ function openAddContactMenu() {
  * @param {string} name - The name of the contact.
  * @param {string} email - The email of the contact.
  * @param {string} phone - The phone number of the contact.
- * @param {number} index - The index of the contact.
+ * @param {number} contactId - The index of the contact.
  * @param {string} bgColor - The background color of the contact.
  * @param {string} txtColor - The text color of the contact.
  * @param {string} initials - The initials of the contact.
  */
-function showContactOverlay(element, name, email, phone, index, bgColor, txtColor, initials) {
-  element.innerHTML = templateShowContact(name, email, phone, index, bgColor, txtColor, initials);
+function showContactOverlay(element, name, email, phone, contactId, bgColor, txtColor, initials) {
+  element.innerHTML = templateShowContact(name, email, phone, contactId, bgColor, txtColor, initials);
   element.classList.toggle("d-none");
 }
 
@@ -223,26 +229,18 @@ function showContactOverlay(element, name, email, phone, index, bgColor, txtColo
  * @param {string} name - The name of the contact.
  * @param {string} email - The email of the contact.
  * @param {string} phone - The phone number of the contact.
- * @param {number} index - The index of the contact.
+ * @param {number} contactId - The index of the contact.
  * @param {string} bgColor - The background color of the contact.
  * @param {string} txtColor - The text color of the contact.
  * @param {string} initials - The initials of the contact.
  */
-function showDesktopOverlay(element, name, email, phone, index, bgColor, txtColor, initials) {
+function showDesktopOverlay(element, name, email, phone, contactId, bgColor, txtColor, initials) {
   toggleVisibility("show-overlay-id", true);
-  const clickedElement = document.getElementById(`contact-${index}-id`);
+  const clickedElement = document.getElementById(`contact-${contactId}-id`);
   if (clickedElement.classList.contains("selected-contact")) {
     toggleVisibility("show-overlay-id", true, "show-card-visible");
     setTimeout(() => {
-      element.innerHTML = templateShowContact(
-        name,
-        email,
-        phone,
-        index,
-        bgColor,
-        txtColor,
-        initials
-      );
+      element.innerHTML = templateShowContact(name, email, phone, contactId, bgColor, txtColor, initials);
       toggleVisibility("show-overlay-id", false, "show-card-visible");
     }, 300);
   } else {
@@ -299,9 +297,9 @@ function closeEditContact() {
  * Saves the edited contact details, updates the contact data, renders all contacts, highlightS the selected contact,
  * updates the backend, local storage and closes the edit contact menu.
  */
-function saveEditContact() {
+async function saveContact() {
   const {nameInputEl, mailInputEl, phoneInputEl, colorCode, textColorCode} = getUserInputs("ec");
-  if (!contactsValidationCheck("ec")) return;
+  if (!(await contactsValidationCheck("ec", savedContactId))) return;
   const initials = getFirstLettersOfName(nameInputEl);
   initializedName = setValidNameInItialsToUpperCase(nameInputEl);
   const element = document.getElementById("show-overlay-id");
@@ -309,52 +307,107 @@ function saveEditContact() {
     initializedName,
     mailInputEl,
     phoneInputEl,
-    savedIndex,
+    savedContactId,
     colorCode,
     textColorCode,
     initials
   );
-  const newContact = {
+  const updatedContact = {
     name: initializedName,
     email: mailInputEl,
     phone: phoneInputEl,
     colorCode: colorCode,
     textColorCode: textColorCode,
   };
-  updateContactData(newContact);
-  renderAllContacts();
-  toggleVisibility(`contact-${savedIndex}-id`, false, "selected-contact");
-  updateBackend(currentUser);
+  const success = await updateContact(updatedContact);
+  if (success) {
+    const contacts = await getAllContacts();
+    renderAllContacts(contacts);
+    toggleVisibility(`contact-${savedContactId}-id`, false, "selected-contact");
+  }
+
   closeEditContact();
 }
 
 /**
- * Updates the contact data with the new contact details, saves it to local storage, and resets the array containing the initial letters of contacts' names.
- * @param {Object} newContact - The updated contact details.
+ * Deletes a contact by its ID.
+ * @returns {boolean} - Returns `true` if the deletion was successful, otherwise `false`.
+ * @throws Will log an error to the console if the operation fails.
  */
-function updateContactData(newContact) {
-  currentUser.contacts[savedIndex] = newContact;
-  localStorage.setItem("currentUser", JSON.stringify(currentUser));
-  allLetters = [];
+async function deleteContact() {
+  try {
+    const url = `${CONTACTS_API_URL}${savedContactId}/`;
+    const response = await fetch(url, {method: "DELETE"});
+    if (!response.ok) throw new Error(`Fehler beim Löschen des Kontakts: ${response.status}`);
+    return true;
+  } catch (error) {
+    console.error("Fehler beim Löschen des Kontakts:", error);
+    return false;
+  }
 }
 
 /**
- * Deletes the selected user, updates the backend, local storage and closes the Overlay.
+ * Updates a contact by its ID.
+ * @returns {boolean} - Returns `true` if the update was successful, otherwise `false`.
+ * @throws Will log an error to the console if the operation fails.
  */
-function deleteContact() {
+async function updateContact(body) {
+  console.log("body :>> ", body);
+  try {
+    const url = `${CONTACTS_API_URL}${savedContactId}/`;
+    const response = await fetch(url, {
+      method: "PUT",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(body),
+    });
+    if (!response.ok) throw new Error(`Fehler beim Updaten des Kontakts: ${response.status}`);
+    return true;
+  } catch (error) {
+    console.error("Fehler beim Updaten des Kontakts:", error);
+    return false;
+  }
+}
+
+/**
+ * Updates the UI after a change (e.g., a contact is deleted).
+ * Fetches the latest contact list and re-renders the UI.
+ * Logs an error to the console if the update fails.
+ */
+async function updateContactsUI(contactId) {
+  try {
+    const contacts = await getAllContacts();
+    allLetters = [];
+    renderAllContacts(contacts);
+    resetContactUIState(contactId);
+  } catch (error) {
+    console.error("Fehler beim Aktualisieren der Kontakte:", error);
+  }
+}
+
+/**
+ * Resets the contact UI to its initial state.
+ * Hides overlays, clears contact-specific states, and resets visibility flags.
+ */
+function resetContactUIState(contactId) {
   toggleVisibility("show-overlay-id", true, "show-card-visible");
-  currentUser.contacts.splice(savedIndex, 1);
-  localStorage.setItem("currentUser", JSON.stringify(currentUser));
-  allLetters = [];
   currentActive = -1;
   if (editContactOpen) closeEditContact();
   if (editContactMenuOpen) {
     toggleVisibility("ec-menu-id", true, "ec-menu-visible");
-    setTimeout(() => {
-      toggleVisibility("ec-menu-id", false);
-    }, 300);
+    setTimeout(() => toggleVisibility("ec-menu-id", false), 300);
   }
-  closeContact();
-  updateBackend(currentUser);
-  renderAllContacts();
+
+  closeContact(contactId);
+}
+
+/**
+ * Handler for deleting a contact.
+ * Coordinates the deletion process and UI updates.
+ * @param {number} contactId - The ID of the contact to delete.
+ * Displays an alert if the deletion fails.
+ */
+async function handleDeleteContact(contactId) {
+  const success = await deleteContact(contactId);
+  if (success) await updateContactsUI(contactId);
+  else console.log("Der Kontakt konnte nicht gelöscht werden.");
 }

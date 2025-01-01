@@ -1,12 +1,20 @@
-const STORAGE_TOKEN = "VORXWOHN4ATC5QT3Z5TB4EP1VRUAGMHB44HR2ZKT";
-const STORAGE_URL = "https://remote-storage.developerakademie.org/item";
+// const STORAGE_TOKEN = "VORXWOHN4ATC5QT3Z5TB4EP1VRUAGMHB44HR2ZKT";
+// const STORAGE_URLOLD = "https://remote-storage.developerakademie.org/item";
+const prefersDarkMode = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
 
-/**
- * Indicates whether the user prefers dark mode.
- * @type {boolean}
- */
-const prefersDarkMode =
-  window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+// /**
+//  * Sets an item in the storage.
+//  * @param {string} key - The key of the item to set.
+//  * @param {Object} value - The value to set for the specified key.
+//  * @returns {Promise} - A Promise that resolves with the result of the fetch operation.
+//  */
+// async function setItemOld(key, value) {
+//   const payload = {key, value, token: STORAGE_URLOLD};
+//   return fetch(STORAGE_URLOLD, {
+//     method: "POST",
+//     body: JSON.stringify(payload),
+//   }).then((res) => res.json());
+// }
 
 /**
  * Sets an item in the storage.
@@ -14,12 +22,24 @@ const prefersDarkMode =
  * @param {Object} value - The value to set for the specified key.
  * @returns {Promise} - A Promise that resolves with the result of the fetch operation.
  */
-async function setItem(key, value) {
-  const payload = {key, value, token: STORAGE_TOKEN};
-  return fetch(STORAGE_URL, {
+async function setItem(item) {
+  return fetch(CONTACTS_API_URL, {
     method: "POST",
-    body: JSON.stringify(payload),
-  }).then((res) => res.json());
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(item),
+  })
+    .then((res) => {
+      if (!res.ok) throw new Error(`Fehler: ${res.status} ${res.statusText}`);
+      return res.json();
+    })
+    .then((data) => {
+      console.log("Kontakt erfolgreich hinzugefügt:", data);
+      return data;
+    })
+    .catch((error) => {
+      console.error("Fehler beim Hinzufügen des Kontakts:", error);
+      throw error;
+    });
 }
 
 /**
@@ -27,11 +47,33 @@ async function setItem(key, value) {
  * @param {string} key - The key of the item to retrieve.
  * @returns {Promise} - A Promise that resolves with the value of the retrieved item.
  */
-async function getItem(key) {
-  const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
-  return fetch(url)
-    .then((res) => res.json())
-    .then((res) => res.data.value);
+// async function getItemOld(key) {
+//   const url = `${STORAGE_URLOLD}?key=${key}&token=${STORAGE_TOKEN}`;
+//   return fetch(url)
+//     .then((res) => res.json())
+//     .then((res) => res.data.value);
+// }
+
+/**
+ * Gets all contacts from the API.
+ * @returns {Promise} - A Promise that resolves with the list of all contacts.
+ */
+async function getAllContacts() {
+  return fetch(CONTACTS_API_URL)
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error(`Fehler: ${res.status} ${res.statusText}`);
+      }
+      return res.json();
+    })
+    .then((data) => {
+      console.log("Alle Kontakte abgerufen:", data);
+      return data;
+    })
+    .catch((error) => {
+      console.error("Fehler beim Abrufen der Kontakte:", error);
+      throw error;
+    });
 }
 
 /**
@@ -90,7 +132,7 @@ function templateHeaderInitialsMenu(initials) {
  * @returns {Promise<Object>} - A Promise that resolves with the users data retrieved from the backend storage, or an empty object if no data is found.
  */
 async function loadUsersFromBackend(key) {
-  const result = await getItem(key);
+  const result = await getItemOld(key);
   let test = JSON.parse(result) || {};
   return JSON.parse(result) || {};
 }
@@ -209,8 +251,7 @@ function validatePassword(password, boolArr) {
   const hasSpecialChar = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/]/.test(password);
   const hasDigit = /[0123456789]/.test(password);
   if (password.trim() === "") boolArr[6] = boolArr[12] = true;
-  else if (!hasUpperCase || !hasSpecialChar || !hasDigit || password.length < 6)
-    boolArr[7] = boolArr[12] = true;
+  else if (!hasUpperCase || !hasSpecialChar || !hasDigit || password.length < 6) boolArr[7] = boolArr[12] = true;
 }
 
 /**
@@ -233,9 +274,7 @@ function validateConfirmPassword(password, confirmPassword, boolArr) {
  * @returns {boolean} - True if the email is valid, otherwise false.
  */
 function validateLoginEmail(email) {
-  return (
-    email !== "" && email.includes("@") && email.indexOf("@") !== 0 && email.split("@").pop() !== ""
-  );
+  return email !== "" && email.includes("@") && email.indexOf("@") !== 0 && email.split("@").pop() !== "";
 }
 
 /**
@@ -409,9 +448,7 @@ function setValidNameInItialsToUpperCase(name) {
   const capitalizedWords = words.map((word) => {
     if (word.includes("-")) {
       const parts = word.split("-");
-      return parts
-        .map((part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
-        .join("-");
+      return parts.map((part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()).join("-");
     } else return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
   });
   return capitalizedWords.join(" ");

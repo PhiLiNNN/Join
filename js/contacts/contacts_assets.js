@@ -1,8 +1,8 @@
 /**
  * Pushes all unique initial letters of contacts' names to the array "allLetters", ensuring they are sorted alphabetically.
  */
-function pushAllNeededLetters() {
-  currentUser.contacts.forEach((contact) => {
+async function pushAllNeededLetters(contacts) {
+  contacts.forEach((contact) => {
     if (allLetters.includes(contact.name[0].toUpperCase())) return;
     allLetters.push(contact.name[0].toUpperCase());
   });
@@ -28,13 +28,13 @@ function getUserInputs(string) {
  * @param {string} string - The prefix string to identify the contact fields.
  * @returns {boolean} Returns true if all fields pass validation; otherwise, false.
  */
-function contactsValidationCheck(string) {
+async function contactsValidationCheck(string, contactId = null) {
   const nameInputEl = document.getElementById(`${string}-name-input-id`).value;
   const mailInputEl = document.getElementById(`${string}-mail-input-id`).value;
   const phoneInputEl = document.getElementById(`${string}-phone-input-id`).value;
   const boolArr = Array(13).fill(false);
   validateContactName(nameInputEl, boolArr);
-  validateContactEmail(mailInputEl.toLowerCase(), boolArr);
+  await validateContactEmail(mailInputEl.toLowerCase(), boolArr, contactId);
   validateContactPhone(phoneInputEl, boolArr);
   return handlerFieldValidationContact(string, boolArr);
 }
@@ -77,14 +77,35 @@ function validateContactPhone(number, boolArr) {
  * @param {string} email - The email address to validate.
  * @param {boolean[]} boolArr - An array containing validation flags.
  */
-function validateContactEmail(email, boolArr) {
-  if (email === emailCheck) return;
+async function validateContactEmail(email, boolArr, currentId) {
+  const emailExists = await checkEmailExistence(email);
   if (email.trim() === "") boolArr[4] = boolArr[10] = true;
   else if (!email.includes("@") || email.indexOf("@") === 0 || email.split("@").pop() === "")
     boolArr[5] = boolArr[10] = true;
-  else if (currentUser.contacts.some((contact) => contact.email === email))
-    boolArr[6] = boolArr[10] = true;
   else if (email.includes(" ")) boolArr[5] = boolArr[10] = true;
+  if (emailExists) boolArr[6] = boolArr[10] = true;
+  if (currentId !== null) {
+    const existingContact = await getContactById(currentId);
+    if (existingContact && existingContact.email === email) boolArr[6] = boolArr[10] = false; 
+  }
+}
+
+/**
+ * Checks whether an email already exists in the database.
+ * @param {string} email - The email to check.
+ * @returns {boolean} - True if the email exists, false otherwise.
+ */
+async function checkEmailExistence(email) {
+  const response = await fetch(`${CONTACTS_EMAIL_API_URL}?email=${email}`);
+  const data = await response.json();
+  if (data.doesExist) return true;
+  else return false;
+}
+
+async function getContactById(contactId) {
+  const response = await fetch(`${CONTACTS_API_URL}${contactId}/`);
+  const data = await response.json();
+  return data;
 }
 
 /**
