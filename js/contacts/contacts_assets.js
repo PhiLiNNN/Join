@@ -59,6 +59,7 @@ function handlerFieldValidationContact(string, boolArr) {
   toggleVisibility(`${string}-mail-border-id`, !boolArr[10], "error-border");
   toggleVisibility(`${string}-phone-border-id`, !boolArr[11], "error-border");
   toggleVisibility(`${string}-spaces-name-id`, boolArr[12]);
+  toggleVisibility(`${string}-no-special-chars-email-id`, boolArr[13]);
   return !boolArr.some(Boolean);
 }
 
@@ -76,9 +77,12 @@ function validateContactPhone(number, boolArr) {
  * Validates the email entered in the contact form.
  * @param {string} email - The email address to validate.
  * @param {boolean[]} boolArr - An array containing validation flags.
+ * @param {number|null} currentId - The ID of the contact to update. Use `null` for new contacts.
  */
 async function validateContactEmail(email, boolArr, currentId) {
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const emailExists = await checkEmailExistence(email);
+  if (!emailRegex.test(email)) boolArr[10] = boolArr[13] = true;
   if (email.trim() === "") boolArr[4] = boolArr[10] = true;
   else if (!email.includes("@") || email.indexOf("@") === 0 || email.split("@").pop() === "")
     boolArr[5] = boolArr[10] = true;
@@ -86,7 +90,7 @@ async function validateContactEmail(email, boolArr, currentId) {
   if (emailExists) boolArr[6] = boolArr[10] = true;
   if (currentId !== null) {
     const existingContact = await getContactById(currentId);
-    if (existingContact && existingContact.email === email) boolArr[6] = boolArr[10] = false; 
+    if (existingContact && existingContact.email === email) boolArr[6] = boolArr[10] = false;
   }
 }
 
