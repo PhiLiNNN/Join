@@ -69,9 +69,8 @@ function templateAddContactHTML() {
                         <input id="ac-mail-input-id"  type="text" placeholder="Email" autocomplete="on" maxlength="50">
                             <img src="./assets/img/mail.png" alt="">
                             <span id="ac-empty-email-id" class="ac-err-msg d-none">This field is required!</span>
-                            <span id="ac-invalid-email-id" class="ac-err-msg d-none">Enter a valid email (e.g., user@example.com)!</span>
+                            <span id="ac-invalid-email-id" class="ac-err-msg d-none"> Enter a valid email (e.g., user@example.com)! </span>
                             <span id="ac-existing-email-id" class="ac-err-msg d-none">This email is already in your contacts!</span>
-                            <span id="ac-no-special-chars-email-id" class="ac-err-msg d-none">No special characters are allowed.</span>
                         </div> 
                         <div id="ac-phone-border-id" class="input_global input_ac cursor">
                         <input id="ac-phone-input-id" type="tel" placeholder="Phone" autocomplete="on" oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="20">
@@ -207,9 +206,9 @@ function templateEditContactHTML() {
                             <input id="ec-mail-input-id"  type="text" placeholder="Email" autocomplete="on"  value="${savedEmail}" maxlength="50">
                             <img src="./assets/img/mail.png" alt="">
                             <span id="ec-empty-email-id" class="ac-err-msg d-none">This field is required!</span>
-                            <span id="ec-invalid-email-id" class="ac-err-msg d-none">Enter a valid email (e.g., user@example.com)!</span>
+                            <span id="ec-invalid-email-id" class="ac-err-msg d-none"> Enter a valid email (e.g., user@example.com)! </span>
                             <span id="ec-existing-email-id" class="ac-err-msg d-none">This email is already in your contacts!</span>
-                            <span id="ec-no-special-chars-email-id" class="ac-err-msg d-none">No special characters are allowed.</span>
+                            
                         </div> 
                         <div id="ec-phone-border-id" class="input_global input_ac cursor">
                             <input id="ec-phone-input-id"  type="tel" placeholder="Phone" autocomplete="on"  oninput="this.value = this.value.replace(/[^0-9]/g, '')" value="${savedPhone}"  maxlength="20">

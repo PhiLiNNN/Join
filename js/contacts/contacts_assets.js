@@ -29,7 +29,7 @@ function getUserInputs(string) {
  * @returns {boolean} Returns true if all fields pass validation; otherwise, false.
  */
 async function contactsValidationCheck(string, contactId = null) {
-  const TOTAL_VALIDATION_FLAGS = 14;
+  const TOTAL_VALIDATION_FLAGS = 13;
   const nameInputEl = document.getElementById(`${string}-name-input-id`).value;
   const mailInputEl = document.getElementById(`${string}-mail-input-id`).value;
   const phoneInputEl = document.getElementById(`${string}-phone-input-id`).value;
@@ -60,7 +60,6 @@ function handlerFieldValidationContact(string, boolArr) {
   toggleVisibility(`${string}-mail-border-id`, !boolArr[10], "error-border");
   toggleVisibility(`${string}-phone-border-id`, !boolArr[11], "error-border");
   toggleVisibility(`${string}-spaces-name-id`, boolArr[12]);
-  toggleVisibility(`${string}-no-special-chars-email-id`, boolArr[13]);
   return !boolArr.some(Boolean);
 }
 
@@ -83,11 +82,8 @@ function validateContactPhone(number, boolArr) {
 async function validateContactEmail(email, boolArr, currentId) {
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const emailExists = await checkEmailExistence(email);
-  if (!emailRegex.test(email)) boolArr[10] = boolArr[13] = true;
+  if (!emailRegex.test(email)) boolArr[10] = boolArr[5] = true;
   if (email.trim() === "") boolArr[4] = boolArr[10] = true;
-  else if (!email.includes("@") || email.indexOf("@") === 0 || email.split("@").pop() === "") {
-    boolArr[5] = boolArr[10] = true;
-  }
   if (emailExists) boolArr[6] = boolArr[10] = true;
   if (currentId !== null) {
     const existingContact = await getContactById(currentId);
