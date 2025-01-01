@@ -326,7 +326,7 @@ async function saveContact() {
     toggleVisibility(`contact-${savedContactId}-id`, false, "selected-contact");
   }
 
-  // closeEditContact();
+  closeEditContact();
 }
 
 /**

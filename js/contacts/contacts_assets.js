@@ -85,9 +85,9 @@ async function validateContactEmail(email, boolArr, currentId) {
   const emailExists = await checkEmailExistence(email);
   if (!emailRegex.test(email)) boolArr[10] = boolArr[13] = true;
   if (email.trim() === "") boolArr[4] = boolArr[10] = true;
-  else if (!email.includes("@") || email.indexOf("@") === 0 || email.split("@").pop() === "")
+  else if (!email.includes("@") || email.indexOf("@") === 0 || email.split("@").pop() === "") {
     boolArr[5] = boolArr[10] = true;
-  else if (email.includes(" ")) boolArr[5] = boolArr[10] = true;
+  }
   if (emailExists) boolArr[6] = boolArr[10] = true;
   if (currentId !== null) {
     const existingContact = await getContactById(currentId);
