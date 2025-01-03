@@ -17,10 +17,10 @@ let contacts;
  */
 async function contactsInit() {
   setFavicon();
-  isUserLoggedIn = checkUserLogIn();
+  isUserLoggedIn = checkUserLogInOLD();
   if (!isUserLoggedIn) window.location.assign("./error_page.html");
   // currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  const contacts = await getAllContacts();
+  const contacts = await getItem(CONTACTS_API_URL);
   renderAllContacts(contacts);
   toggleVisibility("contacts-menu-id", false, "highlight-menu");
   toggleVisibility("contacts-body-id", true);
@@ -58,14 +58,10 @@ async function addNewContact() {
   const userInput = getUserInputs("ac");
   const validContact = prepareContact(userInput);
   if (!(await contactsValidationCheck("ac"))) return;
-  const createdContact = await addNewContactToBackend(validContact);
+  const createdContact = await setItem(validContact, CONTACTS_API_URL);
   await updateUIAfterContactAdd(createdContact);
   closeAddNewContact();
   sendSuccessMsg();
-}
-
-async function addNewContactToBackend(contact) {
-  return await setItem(contact);
 }
 
 function prepareContact({nameInputEl, mailInputEl, phoneInputEl, colorCode, textColorCode}) {
@@ -81,7 +77,7 @@ function prepareContact({nameInputEl, mailInputEl, phoneInputEl, colorCode, text
 
 async function updateUIAfterContactAdd(newContact) {
   try {
-    const contacts = await getAllContacts();
+    const contacts = await getItem(CONTACTS_API_URL);
     renderAllContacts(contacts);
     highlightActiveContact(newContact.id);
     handleScreenMode(newContact);
@@ -321,7 +317,7 @@ async function saveContact() {
   };
   const success = await updateContact(updatedContact);
   if (success) {
-    const contacts = await getAllContacts();
+    const contacts = await getItem(CONTACTS_API_URL);
     renderAllContacts(contacts);
     toggleVisibility(`contact-${savedContactId}-id`, false, "selected-contact");
   }
@@ -374,7 +370,7 @@ async function updateContact(body) {
  */
 async function updateContactsUI(contactId) {
   try {
-    const contacts = await getAllContacts();
+    const contacts = await getItem(CONTACTS_API_URL);
     allLetters = [];
     renderAllContacts(contacts);
     resetContactUIState(contactId);

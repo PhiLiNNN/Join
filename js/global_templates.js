@@ -1,7 +1,7 @@
 /**
  * Generates the HTML for an assigned user container element.
  * @param {string} contact - The name of the assigned user.
- * @param {number} index - The index of the assigned user.
+ * @param {number} id - The index of the assigned user.
  * @param {string} iconColor - The color of the user icon.
  * @param {string} initials - The initials of the assigned user.
  * @param {string} textColor - The text color of the assigned user.
@@ -9,24 +9,16 @@
  * @param {string} email - The email address of the assigned user.
  * @returns {string} The generated HTML for the assigned user container element.
  */
-function templateAssignedToContainerHTML(
-  contact,
-  index,
-  iconColor,
-  initials,
-  textColor,
-  isSelected,
-  email
-) {
+function templateAssignedToContainerHTML(contact, iconColor, initials, textColor, isSelected, email, id) {
   const setSelectedContact = isSelected ? "selected-contact-at" : "";
   return /*html*/ `
-    <div id="assigned-to-box-${index}" class="assigned-to-box ${setSelectedContact}"  onclick="selectedAssignedToUser(event, ${index})">
+    <div id="assigned-to-box-${id}" class="assigned-to-box ${setSelectedContact}"  onclick="selectedAssignedToUser(event, ${id})">
       <div class="assigned-to-user">
         <div class="circle-style" style="background-color: ${iconColor}; color: ${textColor};">
           <span> ${initials}</span>
-          <span id="at-user-mail-id${index}" style="display: none;">${email}</span>
+          <span id="at-user-mail-id${id}" style="display: none;">${email}</span>
         </div>
-        <span id="contact-id${index}" >${contact}</span>
+        <span id="contact-id${id}" >${contact}</span>
       </div>
       <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect x="1" y="1.96582" width="16" height="16" rx="3" stroke="#2A3647" stroke-width="2"/>

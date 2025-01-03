@@ -7,8 +7,8 @@ let currentUser;
  */
 async function initSummary() {
   setFavicon();
-  isUserLoggedIn = checkUserLogIn();
-  if (!isUserLoggedIn) window.location.assign("./error_page.html");
+  //isUserLoggedIn = checkUserLogIn();
+  //if (!isUserLoggedIn) window.location.assign("./error_page.html");
   currentUser = JSON.parse(localStorage.getItem("currentUser"));
   toggleVisibility("summary-menu-id", false, "highlight-menu");
   toggleVisibility("summary-body-id", true);

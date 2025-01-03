@@ -30,8 +30,8 @@ let titles = [];
  */
 function initBoard() {
   setFavicon();
-  const isUserLoggedIn = checkUserLogIn();
-  if (!isUserLoggedIn) window.location.assign("./error_page.html");
+  //const isUserLoggedIn = checkUserLogIn();
+  // if (!isUserLoggedIn) window.location.assign("./error_page.html");
   currentUser = JSON.parse(localStorage.getItem("currentUser"));
   toggleVisibility("board-menu-id", false, "highlight-menu");
   toggleVisibility("board-body-id", true);

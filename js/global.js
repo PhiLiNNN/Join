@@ -22,8 +22,8 @@ const prefersDarkMode = window.matchMedia && window.matchMedia("(prefers-color-s
  * @param {Object} value - The value to set for the specified key.
  * @returns {Promise} - A Promise that resolves with the result of the fetch operation.
  */
-async function setItem(item) {
-  return fetch(CONTACTS_API_URL, {
+async function setItem(item, API_key) {
+  return fetch(API_key, {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify(item),
@@ -33,11 +33,9 @@ async function setItem(item) {
       return res.json();
     })
     .then((data) => {
-      console.log("Kontakt erfolgreich hinzugefügt:", data);
       return data;
     })
     .catch((error) => {
-      console.error("Fehler beim Hinzufügen des Kontakts:", error);
       throw error;
     });
 }
@@ -58,8 +56,8 @@ async function setItem(item) {
  * Gets all contacts from the API.
  * @returns {Promise} - A Promise that resolves with the list of all contacts.
  */
-async function getAllContacts() {
-  return fetch(CONTACTS_API_URL)
+async function getItem(API_key) {
+  return fetch(API_key)
     .then((res) => {
       if (!res.ok) {
         throw new Error(`Fehler: ${res.status} ${res.statusText}`);
@@ -80,7 +78,8 @@ async function getAllContacts() {
  * Checks if a user is logged in.
  * @returns {boolean} - Returns true if a user is logged in, otherwise false.
  */
-function checkUserLogIn() {
+function checkUserLogInOLD() {
+  return true;
   if (localStorage.getItem("currentUser")) return true;
   else return false;
 }
@@ -90,9 +89,9 @@ function checkUserLogIn() {
  * @param {string} userName - The username of the current user.
  * @returns {void}
  */
-function loadHeaderInitials() {
+function loadHeaderInitials(dummyCurrentUser) {
   const element = document.getElementById("header-initials-id");
-  const initials = getFirstLettersOfName(currentUser.userName);
+  const initials = getFirstLettersOfName(dummyCurrentUser);
   element.innerHTML = templateHeaderInitialsMenu(initials);
 }
 
@@ -154,7 +153,7 @@ async function addNewUserToBackend(user) {
   }
 }
 
-/**
+/** OLD
  * Saves the current user data to the local storage and updates the backend.
  */
 function save() {
@@ -162,36 +161,36 @@ function save() {
   updateBackend(currentUser);
 }
 
-/**
+/**OLD
  * Updates the backend with the data of the current user.
  * @param {Object} currentUser - The current user object to be updated in the backend.
  * @returns {Promise<void>} - A Promise that resolves after the current user data has been successfully updated in the backend.
  *                            If an error occurs during the process, the Promise will be rejected with an error.
  */
-async function updateBackend(currentUser) {
-  showLoader();
-  try {
-    await updateCurrentUser(currentUser);
-  } catch (error) {
-    console.error("Error updating current user :", error);
-  } finally {
-    hideLoader();
-  }
-}
+// async function updateBackend(currentUser) {
+//   showLoader();
+//   try {
+//     await updateCurrentUser(currentUser);
+//   } catch (error) {
+//     console.error("Error updating current user :", error);
+//   } finally {
+//     hideLoader();
+//   }
+// }
 
-/**
+/**OLD
  * Saves the current user data to the local storage and updates the backend without displaying loader animation.
  * @returns {Promise<void>} - A Promise that resolves after the current user data has been successfully saved to the local storage and updated in the backend.
  *                            If an error occurs during the process, the Promise will be rejected with an error.
  */
-async function saveWithoutLoaderAnimation() {
-  localStorage.setItem("currentUser", JSON.stringify(currentUser));
-  try {
-    await updateCurrentUser(currentUser);
-  } catch (error) {
-    console.error("Error updating current user :", error);
-  }
-}
+// async function saveWithoutLoaderAnimation() {
+//   localStorage.setItem("currentUser", JSON.stringify(currentUser));
+//   try {
+//     await updateCurrentUser(currentUser);
+//   } catch (error) {
+//     console.error("Error updating current user :", error);
+//   }
+// }
 
 /**
  * Validates a name based on various criteria and updates a boolean array accordingly.
@@ -313,15 +312,15 @@ function showLoader() {
   toggleVisibility("loader-id", true, "loader-hidden");
 }
 
-/**
+/**OLD
  * Updates the current user data in the backend.
  * @param {Object} currentUser - The current user object to be updated in the backend.
  */
-async function updateCurrentUser(currentUser) {
-  const existingUsers = await loadUsersFromBackend("users");
-  existingUsers[currentUser.userEMail] = currentUser;
-  await setItem("users", JSON.stringify(existingUsers));
-}
+// async function updateCurrentUser(currentUser) {
+//   const existingUsers = await loadUsersFromBackend("users");
+//   existingUsers[currentUser.userEMail] = currentUser;
+//   await setItem("users", JSON.stringify(existingUsers));
+// }
 
 /**
  * Hides the loader animation by toggling its visibility.

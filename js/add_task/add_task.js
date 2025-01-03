@@ -1,4 +1,3 @@
-let currentUser;
 let isUserLoggedIn;
 let currentIndex = -1;
 let assignedTo = {
@@ -12,12 +11,23 @@ let subtaskList = {
   tasks: [],
   done: [],
 };
-let userIndex;
 let prio = ["urgent", "medium", "low"];
 let prioIndex = 1;
 let isFilterActive = false;
 let clickEventListener;
 
+let tasks = {
+  title: "",
+  description: "",
+  due_date: "",
+  category: "",
+  board: "",
+  priority: "",
+  assigned_to: [],
+  subtasks: [],
+};
+let contacts;
+let dummyCurrentUser;
 /**
  * Initializes the add task functionality.
  * Sets favicon, checks user login status, renders assigned contacts, sets current date for date picker,
@@ -26,12 +36,14 @@ let clickEventListener;
  * highlights add task menu on footer/sidebar navigation, displays the whole body-add tasks content, and loads header initials.
  */
 async function initAddTask() {
+  dummyCurrentUser = "Philipp Wendschuch";
   setFavicon();
-  isUserLoggedIn = checkUserLogIn();
+  isUserLoggedIn = checkUserLogInOLD();
   if (!isUserLoggedIn) window.location.assign("./error_page.html");
-  currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  contacts = await getItem(CONTACTS_API_URL);
+  console.log("contacts :>> ", contacts);
   clearAllSelectedUsers();
-  renderAssignedToContacts();
+  renderAssignedToContacts(contacts);
   setCurrentDate();
   addSubtaskByEnter();
   addSubtaskVisibilityListener();
@@ -40,7 +52,7 @@ async function initAddTask() {
   filterAssignedToContacts();
   toggleVisibility("add-task-menu-id", false, "highlight-menu");
   toggleVisibility("at-body-id", true);
-  loadHeaderInitials();
+  loadHeaderInitials(dummyCurrentUser);
 }
 
 /**
@@ -50,7 +62,7 @@ function filterAssignedToContacts() {
   document.getElementById("assignedto-input-id").addEventListener("input", function (event) {
     const searchTerm = event.target.value;
     isFilterActive = searchTerm.trim() !== "";
-    const filteredContacts = currentUser.contacts.filter((contact) =>
+    const filteredContacts = contacts.filter((contact) =>
       contact.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
     iterateOverContacts(filteredContacts);
@@ -59,9 +71,9 @@ function filterAssignedToContacts() {
 
 /**
  * Renders the assigned to contacts in the assigned to dropdown menu.
- * @param {Array} [contacts=currentUser.contacts] - The array of contacts to render. Defaults to currentUser.contacts.
+ * @param {Array} [contacts] - The array of contacts to render.
  */
-function renderAssignedToContacts(contacts = currentUser.contacts) {
+function renderAssignedToContacts(contacts) {
   contacts.sort(sortContactsBySurname);
   iterateOverContacts(contacts);
 }
@@ -74,18 +86,18 @@ function iterateOverContacts(contacts) {
   const assignedToContainer = document.getElementById("assigned-to-contacts-id");
   assignedToContainer.innerHTML = "";
   contacts.forEach((contact, index) => {
-    if (contact.name === currentUser.userName) contact.name = contact.name + " (you)";
+    if (contact.name === dummyCurrentUser) contact.name = contact.name + " (you)";
     const initials = getFirstLettersOfName(contact.name);
     textColor = isColorLight(contact.colorCode) ? "white" : "black";
     const isSelected = contacts[index].selected;
     assignedToContainer.innerHTML += templateAssignedToContainerHTML(
       contact.name,
-      index,
       contact.colorCode,
       initials,
       textColor,
       isSelected,
-      contact.email
+      contact.email,
+      contact.id
     );
   });
 }
@@ -102,7 +114,7 @@ function closeAssignedToMenu() {
       document.getElementById("assignedto-input-id").value = "";
       document.getElementById("assignedto-input-id").placeholder = "Select contacts to assign";
       if (isFilterActive) {
-        renderAssignedToContacts();
+        renderAssignedToContacts(contacts);
         isFilterActive = false;
       }
     }
@@ -123,7 +135,7 @@ function toggleAssignedToSection(bool) {
  * Opens the assigned-by onclick on the arrow image.
  */
 function openAssignedByArrow() {
-  renderAssignedToContacts();
+  renderAssignedToContacts(contacts);
   document.getElementById("assignedto-input-id").placeholder = "Select contacts to assign";
   toggleSection("assigned-to-contacts-id", "active");
   toggleSection("rotate-arrow-id", "upsidedown");
@@ -152,19 +164,18 @@ function renderAddedContacts() {
  * @param {Event} event - The event object.
  * @param {number} index - The index of the user.
  */
-function selectedAssignedToUser(event, index) {
-  userIndex = index;
+function selectedAssignedToUser(event, contactID) {
   const svgElement = event.currentTarget.querySelector("svg");
-  const spanElement = document.getElementById(`contact-id${index}`);
-  const contact = currentUser.contacts.find((contact) => contact.name === spanElement.innerHTML);
+  const spanElement = document.getElementById(`contact-id${contactID}`);
+  const contact = contacts.find((contact) => contact.name === spanElement.innerHTML);
   event.currentTarget.classList.toggle("selected-contact-at");
   if (event.currentTarget.classList.contains("selected-contact-at")) {
     svgElement.innerHTML = templateSvgCheckboxConfirmedHTML();
-    pushSelectedUser(event);
+    pushSelectedUser(contactID);
     contact.selected = true;
   } else {
     svgElement.innerHTML = templateSvgDefaultCheckboxHTML();
-    deleteSelectedUser(event);
+    deleteSelectedUser(contactID);
     contact.selected = false;
   }
   renderAddedContacts();
@@ -174,8 +185,8 @@ function selectedAssignedToUser(event, index) {
  * Adds the selected user to the assignedTo list.
  * @param {Event} event - The event object.
  */
-function pushSelectedUser(event) {
-  const {assignedContact, backgroundColorValue, textColor, userName, userMail} = getUserInfo(event);
+function pushSelectedUser(contactID) {
+  const {assignedContact, backgroundColorValue, textColor, userName, userMail} = getUserInfo(contactID);
   if (assignedTo.userMails.includes(userMail)) return;
   assignedTo.initials.push(assignedContact);
   assignedTo.colorCodes.push(backgroundColorValue);
@@ -188,8 +199,8 @@ function pushSelectedUser(event) {
  * Deletes the selected user from the assignedTo list.
  * @param {Event} event - The event object.
  */
-function deleteSelectedUser(event) {
-  const userMail = document.getElementById(`at-user-mail-id${userIndex}`).innerHTML;
+function deleteSelectedUser(contactID) {
+  const userMail = document.getElementById(`at-user-mail-id${contactID}`).innerHTML;
   const index = assignedTo.userMails.indexOf(userMail);
   assignedTo.initials.splice(index, 1);
   assignedTo.colorCodes.splice(index, 1);
@@ -332,8 +343,7 @@ function editSubtask(index) {
  */
 function saveEditSubtask(index) {
   const element = document.getElementById(`editable-span-id${index}`);
-  if (element.innerText === "")
-    subtaskList.tasks[index] = "Ups, this was almost an empty subtask. saved! :)";
+  if (element.innerText === "") subtaskList.tasks[index] = "Ups, this was almost an empty subtask. saved! :)";
   else subtaskList.tasks[index] = element.innerText;
   renderSubtasks();
 }
@@ -362,8 +372,9 @@ function createTask() {
   }
   toggleVisibility("rotate-err-arrow-id", false);
   pushTasks(titleInput, textareaInput, dateInput, categoryInput);
+  console.log("tasks :>> ", tasks);
   clearAllSelectedUsers();
-  renderAssignedToContacts();
-  save();
-  sendUserToBoard();
+  renderAssignedToContacts(contacts);
+  //save();
+  //sendUserToBoard();
 }

@@ -24,10 +24,10 @@ function setCurrentDate() {
  * @param {Event} event - The event object.
  * @returns {Object} Information about the selected user.
  */
-function getUserInfo(event) {
+function getUserInfo(contactID) {
   const circleStyleElement = event.currentTarget.querySelector(".circle-style");
-  const userName = document.getElementById(`contact-id${userIndex}`).innerHTML;
-  const userMail = document.getElementById(`at-user-mail-id${userIndex}`).innerHTML;
+  const userName = document.getElementById(`contact-id${contactID}`).innerHTML;
+  const userMail = document.getElementById(`at-user-mail-id${contactID}`).innerHTML;
   const assignedContact = circleStyleElement.innerText;
   const backgroundColorValue = window.getComputedStyle(circleStyleElement).backgroundColor;
   const textColor = window.getComputedStyle(circleStyleElement).color;
@@ -208,14 +208,14 @@ function sendUserToBoard() {
  * @param {string} section - The section to which the task belongs.
  */
 function pushTasks(titleInput, textareaInput, dateInput, categoryInput, section = "toDo") {
-  currentUser.tasks.titles.push(titleInput);
-  currentUser.tasks.descriptions.push(textareaInput);
-  currentUser.tasks.dates.push(dateInput);
-  currentUser.tasks.assignedTo.push(assignedTo);
-  currentUser.tasks.prios.push(prio[prioIndex]);
-  currentUser.tasks.categories.push(categoryInput);
-  currentUser.tasks.subtasks.push(subtaskList);
-  currentUser.tasks.board.push(section);
+  tasks.title = titleInput;
+  tasks.descriptions = textareaInput;
+  tasks.dates = dateInput;
+  tasks.assigned_to.push(assignedTo);
+  tasks.priority = prio[prioIndex];
+  tasks.category = categoryInput;
+  tasks.subtasks.push(subtaskList);
+  tasks.board = section;
 }
 
 /**
@@ -293,7 +293,7 @@ function clearAllErrMsg() {
  * Clears the selected state for all users.
  */
 function clearAllSelectedUsers() {
-  currentUser.contacts.forEach((contact) => {
+  contacts.forEach((contact) => {
     contact.selected = false;
   });
 }
