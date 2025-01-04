@@ -18,7 +18,7 @@ function templateAssignedToContainerHTML(contact, iconColor, initials, textColor
           <span> ${initials}</span>
           <span id="at-user-mail-id${id}" style="display: none;">${email}</span>
         </div>
-        <span id="contact-id${id}" >${contact}</span>
+        <span id="${id}" >${contact}</span>
       </div>
       <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect x="1" y="1.96582" width="16" height="16" rx="3" stroke="#2A3647" stroke-width="2"/>
@@ -55,7 +55,7 @@ function templateSvgDefaultCheckboxHTML() {
 function templateaddedContactsHTML(index, iconColor, initials, textColor) {
   if (index === 4) {
     iconColor = "#2a3647";
-    initials = `+${assignedTo.colorCodes.length - 4}`;
+    initials = `+${assignedContacts.length - 4}`;
     textColor = "rgb(255, 255, 255)";
   }
   return /*html*/ `
@@ -77,7 +77,7 @@ function templateaddedContactsHTML(index, iconColor, initials, textColor) {
  */
 function templateSubtaskHTML(index, subtask) {
   return /*html*/ `
-    <li id="substask-content-id${index}">
+    <li id="subtask-content-id${index}">
       <span id="editable-span-id${index}"  class="editable-span" contenteditable="false">
         ${subtask}
       </span>

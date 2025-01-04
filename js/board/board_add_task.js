@@ -305,7 +305,7 @@ function deleteSubtask(index) {
  */
 function editSubtask(index) {
   currentIndex = index;
-  const listElement = document.getElementById(`substask-content-id${index}`);
+  const listElement = document.getElementById(`subtask-content-id${index}`);
   toggleReadBorderInSubtasks(index, listElement);
   handleFirstSubtaskEdit(index, listElement);
 }

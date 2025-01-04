@@ -1,22 +1,16 @@
 let isUserLoggedIn;
 let currentIndex = -1;
-let assignedTo = {
-  initials: [],
-  colorCodes: [],
-  textColors: [],
-  userNames: [],
-  userMails: [],
-};
-let subtaskList = {
-  tasks: [],
-  done: [],
+let assignedContacts = [];
+let subtasks = {
+  items: [],
+  completed: [],
 };
 let prio = ["urgent", "medium", "low"];
 let prioIndex = 1;
 let isFilterActive = false;
 let clickEventListener;
 
-let tasks = {
+let task = {
   title: "",
   description: "",
   due_date: "",
@@ -87,15 +81,12 @@ function iterateOverContacts(contacts) {
   assignedToContainer.innerHTML = "";
   contacts.forEach((contact, index) => {
     if (contact.name === dummyCurrentUser) contact.name = contact.name + " (you)";
-    const initials = getFirstLettersOfName(contact.name);
-    textColor = isColorLight(contact.colorCode) ? "white" : "black";
-    const isSelected = contacts[index].selected;
     assignedToContainer.innerHTML += templateAssignedToContainerHTML(
       contact.name,
       contact.colorCode,
-      initials,
-      textColor,
-      isSelected,
+      contact.initials,
+      contact.textColorCode,
+      contact.selected,
       contact.email,
       contact.id
     );
@@ -146,67 +137,41 @@ function openAssignedByArrow() {
  * Renders the added contacts in the assigned-to down menu.
  */
 function renderAddedContacts() {
-  let addedContactsElement = document.getElementById("added-contacts-id");
+  const addedContactsElement = document.getElementById("added-contacts-id");
   addedContactsElement.innerHTML = "";
-  assignedTo.colorCodes.forEach((colorCode, index) => {
-    if (index > 4) return;
+  assignedContacts.slice(0, 5).forEach((assignedContact, index) => {
+    const contactForRendering = contacts.find((contact) => contact.id === assignedContact);
+    if (!contactForRendering) return;
     addedContactsElement.innerHTML += templateaddedContactsHTML(
       index,
-      colorCode,
-      assignedTo.initials[index],
-      assignedTo.textColors[index]
+      contactForRendering.colorCode,
+      contactForRendering.initials,
+      contactForRendering.textColorCode
     );
   });
 }
 
 /**
- * Handles the selection of an assigned-to user.
+ * Handles the selection of an assigned-to contact.
  * @param {Event} event - The event object.
- * @param {number} index - The index of the user.
+ * @param {contactID} ID - The ID of the contact.
  */
 function selectedAssignedToUser(event, contactID) {
   const svgElement = event.currentTarget.querySelector("svg");
-  const spanElement = document.getElementById(`contact-id${contactID}`);
+  const spanElement = document.getElementById(contactID);
   const contact = contacts.find((contact) => contact.name === spanElement.innerHTML);
   event.currentTarget.classList.toggle("selected-contact-at");
   if (event.currentTarget.classList.contains("selected-contact-at")) {
     svgElement.innerHTML = templateSvgCheckboxConfirmedHTML();
-    pushSelectedUser(contactID);
+    assignedContacts.push(contactID);
     contact.selected = true;
   } else {
     svgElement.innerHTML = templateSvgDefaultCheckboxHTML();
-    deleteSelectedUser(contactID);
+    const index = assignedContacts.indexOf(contactID);
+    assignedContacts.splice(index, 1);
     contact.selected = false;
   }
   renderAddedContacts();
-}
-
-/**
- * Adds the selected user to the assignedTo list.
- * @param {Event} event - The event object.
- */
-function pushSelectedUser(contactID) {
-  const {assignedContact, backgroundColorValue, textColor, userName, userMail} = getUserInfo(contactID);
-  if (assignedTo.userMails.includes(userMail)) return;
-  assignedTo.initials.push(assignedContact);
-  assignedTo.colorCodes.push(backgroundColorValue);
-  assignedTo.textColors.push(textColor);
-  assignedTo.userNames.push(userName);
-  assignedTo.userMails.push(userMail);
-}
-
-/**
- * Deletes the selected user from the assignedTo list.
- * @param {Event} event - The event object.
- */
-function deleteSelectedUser(contactID) {
-  const userMail = document.getElementById(`at-user-mail-id${contactID}`).innerHTML;
-  const index = assignedTo.userMails.indexOf(userMail);
-  assignedTo.initials.splice(index, 1);
-  assignedTo.colorCodes.splice(index, 1);
-  assignedTo.textColors.splice(index, 1);
-  assignedTo.userNames.splice(index, 1);
-  assignedTo.userMails.splice(index, 1);
 }
 
 /**
@@ -308,10 +273,10 @@ function addSubtaskByEnter() {
  * Adds a new task to the subtask list and renders the updated list.
  */
 function addNewTaskMenu() {
-  const inputElement = document.getElementById("subtask-input-id");
-  subtaskList.tasks.push(inputElement.value);
-  subtaskList.done.push(false);
-  inputElement.value = "";
+  const subtask = document.getElementById("subtask-input-id");
+  subtasks.items.push(subtask.value);
+  subtasks.completed.push(false);
+  subtask.value = "";
   renderSubtasks();
 }
 
@@ -321,7 +286,7 @@ function addNewTaskMenu() {
 function renderSubtasks() {
   let element = document.getElementById("add-task-list-id");
   element.innerHTML = "";
-  subtaskList.tasks.forEach((subtask, index) => {
+  subtasks.items.forEach((subtask, index) => {
     element.innerHTML += templateSubtaskHTML(index, subtask);
   });
 }
@@ -332,7 +297,7 @@ function renderSubtasks() {
  */
 function editSubtask(index) {
   currentIndex = index;
-  const listElement = document.getElementById(`substask-content-id${index}`);
+  const listElement = document.getElementById(`subtask-content-id${index}`);
   toggleReadBorderInSubtasks(index, listElement);
   handleFirstSubtaskEdit(index, listElement);
 }
@@ -343,8 +308,8 @@ function editSubtask(index) {
  */
 function saveEditSubtask(index) {
   const element = document.getElementById(`editable-span-id${index}`);
-  if (element.innerText === "") subtaskList.tasks[index] = "Ups, this was almost an empty subtask. saved! :)";
-  else subtaskList.tasks[index] = element.innerText;
+  if (element.innerText === "") subtask.tasks[index] = "Ups, this was almost an empty subtask. saved! :)";
+  else subtasks.items[index] = element.innerText;
   renderSubtasks();
 }
 
@@ -353,8 +318,8 @@ function saveEditSubtask(index) {
  * @param {number} index - The index of the subtask to delete.
  */
 function deleteSubtask(index) {
-  subtaskList.tasks.splice(index, 1);
-  subtaskList.done.splice(index, 1);
+  subtasks.items.splice(index, 1);
+  subtasks.completed.splice(index, 1);
   renderSubtasks();
 }
 
@@ -372,7 +337,9 @@ function createTask() {
   }
   toggleVisibility("rotate-err-arrow-id", false);
   pushTasks(titleInput, textareaInput, dateInput, categoryInput);
-  console.log("tasks :>> ", tasks);
+  console.log("task :>> ", task);
+  setItem(task, TASKS_API_URL);
+
   clearAllSelectedUsers();
   renderAssignedToContacts(contacts);
   //save();

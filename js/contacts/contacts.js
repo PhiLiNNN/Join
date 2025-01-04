@@ -39,14 +39,13 @@ function renderAllContacts(contacts) {
     let letterElement = document.getElementById(`letter-${letter}-id`);
     contacts.forEach((contact) => {
       if (letter === contact.name[0].toUpperCase()) {
-        const initials = getFirstLettersOfName(contact.name);
         letterElement.innerHTML += templateCreateContactsHTML(
           contact.name,
           contact.email.toLowerCase(),
           contact.phone,
           contact.colorCode,
           contact.textColorCode,
-          initials,
+          contact.initials,
           contact.id
         );
       }
@@ -66,12 +65,14 @@ async function addNewContact() {
 
 function prepareContact({nameInputEl, mailInputEl, phoneInputEl, colorCode, textColorCode}) {
   const initializedName = setValidNameInItialsToUpperCase(nameInputEl);
+  const initials = getFirstLettersOfName(initializedName);
   return {
     name: initializedName,
     email: mailInputEl,
     phone: phoneInputEl,
     colorCode: colorCode,
     textColorCode: textColorCode,
+    initials: initials,
   };
 }
 
@@ -314,53 +315,17 @@ async function saveContact() {
     phone: phoneInputEl,
     colorCode: colorCode,
     textColorCode: textColorCode,
+    initials: initials,
   };
   const success = await updateContact(updatedContact);
   if (success) {
     const contacts = await getItem(CONTACTS_API_URL);
+    allLetters = [];
     renderAllContacts(contacts);
     toggleVisibility(`contact-${savedContactId}-id`, false, "selected-contact");
   }
 
   closeEditContact();
-}
-
-/**
- * Deletes a contact by its ID.
- * @returns {boolean} - Returns `true` if the deletion was successful, otherwise `false`.
- * @throws Will log an error to the console if the operation fails.
- */
-async function deleteContact() {
-  try {
-    const url = `${CONTACTS_API_URL}${savedContactId}/`;
-    const response = await fetch(url, {method: "DELETE"});
-    if (!response.ok) throw new Error(`Fehler beim Löschen des Kontakts: ${response.status}`);
-    return true;
-  } catch (error) {
-    console.error("Fehler beim Löschen des Kontakts:", error);
-    return false;
-  }
-}
-
-/**
- * Updates a contact by its ID.
- * @returns {boolean} - Returns `true` if the update was successful, otherwise `false`.
- * @throws Will log an error to the console if the operation fails.
- */
-async function updateContact(body) {
-  try {
-    const url = `${CONTACTS_API_URL}${savedContactId}/`;
-    const response = await fetch(url, {
-      method: "PUT",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify(body),
-    });
-    if (!response.ok) throw new Error(`Fehler beim Updaten des Kontakts: ${response.status}`);
-    return true;
-  } catch (error) {
-    console.error("Fehler beim Updaten des Kontakts:", error);
-    return false;
-  }
 }
 
 /**

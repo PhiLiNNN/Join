@@ -25,12 +25,13 @@ function setCurrentDate() {
  * @returns {Object} Information about the selected user.
  */
 function getUserInfo(contactID) {
-  const circleStyleElement = event.currentTarget.querySelector(".circle-style");
-  const userName = document.getElementById(`contact-id${contactID}`).innerHTML;
-  const userMail = document.getElementById(`at-user-mail-id${contactID}`).innerHTML;
-  const assignedContact = circleStyleElement.innerText;
-  const backgroundColorValue = window.getComputedStyle(circleStyleElement).backgroundColor;
-  const textColor = window.getComputedStyle(circleStyleElement).color;
+  // const circleStyleElement = event.currentTarget.querySelector(".circle-style");
+  const userName = document.getElementById(contactID).innerHTML;
+  // const userMail = document.getElementById(`at-user-mail-id${contactID}`).innerHTML;
+  // const assignedContact = circleStyleElement.innerText;
+  // const backgroundColorValue = window.getComputedStyle(circleStyleElement).backgroundColor;
+  // const textColor = window.getComputedStyle(circleStyleElement).color;
+  return userName;
   return {assignedContact, backgroundColorValue, textColor, userName, userMail};
 }
 
@@ -60,7 +61,7 @@ function toggleReadBorderInSubtasks(index, listElement) {
  */
 function setAllUserInputsCorrectLogic() {
   disableFiledElements(false);
-  toggleVisibility(`substask-content-id${currentIndex}`, true, "red-line-highlight");
+  toggleVisibility(`subtask-content-id${currentIndex}`, true, "red-line-highlight");
 }
 
 /**
@@ -76,7 +77,7 @@ function setIsClickOnDeleteLogic(handleClick) {
  */
 function setIsClickOnSaveLogic(handleClick) {
   disableFiledElements(false);
-  toggleVisibility(`substask-content-id${currentIndex}`, true, "red-line-highlight");
+  toggleVisibility(`subtask-content-id${currentIndex}`, true, "red-line-highlight");
   document.removeEventListener("click", handleClick);
 }
 
@@ -88,7 +89,7 @@ function setIsClickedOutsideLogic() {
   document.getElementById("subtask-input-id").value = "";
   toggleVisibility("subtask-del-and-confirm-id", false);
   toggleVisibility("subtask-add-button-id", true);
-  toggleVisibility(`substask-content-id${currentIndex}`, false, "red-line-highlight");
+  toggleVisibility(`subtask-content-id${currentIndex}`, false, "red-line-highlight");
 }
 
 /**
@@ -134,9 +135,9 @@ function handleFirstSubtaskEdit(index, listElement) {
  * @param {number} index - The index of the subtask being edited.
  */
 function disableAllSubtasksExcept(index) {
-  const totalNumberOfSubtasks = document.querySelectorAll('[id^="substask-content-id"]').length;
+  const totalNumberOfSubtasks = document.querySelectorAll('[id^="subtask-content-id"]').length;
   for (let i = 0; i < totalNumberOfSubtasks; i++) {
-    if (i !== index) toggleVisibility(`substask-content-id${i}`, false, "disabled-svg");
+    if (i !== index) toggleVisibility(`subtask-content-id${i}`, false, "disabled-svg");
   }
 }
 
@@ -208,14 +209,14 @@ function sendUserToBoard() {
  * @param {string} section - The section to which the task belongs.
  */
 function pushTasks(titleInput, textareaInput, dateInput, categoryInput, section = "toDo") {
-  tasks.title = titleInput;
-  tasks.descriptions = textareaInput;
-  tasks.dates = dateInput;
-  tasks.assigned_to.push(assignedTo);
-  tasks.priority = prio[prioIndex];
-  tasks.category = categoryInput;
-  tasks.subtasks.push(subtaskList);
-  tasks.board = section;
+  task.title = titleInput;
+  task.description = textareaInput;
+  task.date = dateInput;
+  task.assigned_to.push(assignedContacts);
+  task.priority = prio[prioIndex];
+  task.category = categoryInput;
+  task.subtasks.push(subtasks);
+  task.board = section;
 }
 
 /**
@@ -269,7 +270,7 @@ function clearAllInputs() {
  * Clears all lists containing task details.
  */
 function clearAllLists() {
-  subtaskList.tasks.splice(0, subtaskList.tasks.length);
+  subtask.tasks.splice(0, subtask.tasks.length);
   assignedTo.userNames.splice(0, assignedTo.userNames.length);
   assignedTo.userMails.splice(0, assignedTo.userMails.length);
   assignedTo.colorCodes.splice(0, assignedTo.colorCodes.length);

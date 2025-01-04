@@ -57,9 +57,9 @@ function makeElementEditable(element) {
  * @param {number} index - The index of the subtask being edited.
  */
 function disableAllSubtasksExcept(index) {
-  const totalNumberOfSubtasks = document.querySelectorAll('[id^="substask-content-id"]').length;
+  const totalNumberOfSubtasks = document.querySelectorAll('[id^="subtask-content-id"]').length;
   for (let i = 0; i < totalNumberOfSubtasks; i++) {
-    if (i !== index) toggleVisibility(`substask-content-id${i}`, false, "disabled-svg");
+    if (i !== index) toggleVisibility(`subtask-content-id${i}`, false, "disabled-svg");
   }
 }
 
@@ -127,7 +127,7 @@ function toggleReadBorderInSubtasks(index, listElement) {
  */
 function setAllUserInputsCorrectLogic() {
   disableFiledElements(false);
-  toggleVisibility(`substask-content-id${currentIndex}`, true, "red-line-highlight");
+  toggleVisibility(`subtask-content-id${currentIndex}`, true, "red-line-highlight");
 }
 
 /**
@@ -143,7 +143,7 @@ function setIsClickOnDeleteLogic(handleClick) {
  */
 function setIsClickOnSaveLogic(handleClick) {
   disableFiledElements(false);
-  toggleVisibility(`substask-content-id${currentIndex}`, true, "red-line-highlight");
+  toggleVisibility(`subtask-content-id${currentIndex}`, true, "red-line-highlight");
   document.removeEventListener("click", handleClick);
 }
 
@@ -155,7 +155,7 @@ function setIsClickedOutsideLogic() {
   document.getElementById("subtask-input-id").value = "";
   toggleVisibility("subtask-del-and-confirm-id", false);
   toggleVisibility("subtask-add-button-id", true);
-  toggleVisibility(`substask-content-id${currentIndex}`, false, "red-line-highlight");
+  toggleVisibility(`subtask-content-id${currentIndex}`, false, "red-line-highlight");
 }
 
 /**
@@ -245,14 +245,14 @@ function clearAllInputs() {
  * Clears all lists containing task details.
  */
 function clearAllLists() {
-  subtaskList.tasks.splice(0, subtaskList.tasks.length);
+  subtasks.items.splice(0, subtasks.items.length);
   assignedTo.userNames.splice(0, assignedTo.userNames.length);
   assignedTo.userMails.splice(0, assignedTo.userMails.length);
   assignedTo.colorCodes.splice(0, assignedTo.colorCodes.length);
   assignedTo.initials.splice(0, assignedTo.initials.length);
   assignedTo.textColors.splice(0, assignedTo.textColors.length);
-  subtaskList.tasks.splice(0, subtaskList.tasks.length);
-  subtaskList.done.splice(0, subtaskList.done.length);
+  subtasks.items.splice(0, subtasks.items.length);
+  subtasks.completed.splice(0, subtasks.completed.length);
 }
 
 /**

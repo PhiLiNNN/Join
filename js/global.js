@@ -75,6 +75,46 @@ async function getItem(API_key) {
 }
 
 /**
+ * Updates a contact by its ID.
+ * @returns {boolean} - Returns `true` if the update was successful, otherwise `false`.
+ * @throws Will log an error to the console if the operation fails.
+ */
+async function updateContact(body) {
+  try {
+    const url = `${CONTACTS_API_URL}${savedContactId}/`;
+    const response = await fetch(url, {
+      method: "PUT",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(body),
+    });
+    if (!response.ok) throw new Error(`Fehler beim Updaten des Kontakts: ${response.status}`);
+    return true;
+  } catch (error) {
+    console.error("Fehler beim Updaten des Kontakts:", error);
+    return false;
+  }
+}
+
+
+/**
+ * Deletes a contact by its ID.
+ * @returns {boolean} - Returns `true` if the deletion was successful, otherwise `false`.
+ * @throws Will log an error to the console if the operation fails.
+ */
+async function deleteContact() {
+  try {
+    const url = `${CONTACTS_API_URL}${savedContactId}/`;
+    const response = await fetch(url, {method: "DELETE"});
+    if (!response.ok) throw new Error(`Fehler beim Löschen des Kontakts: ${response.status}`);
+    return true;
+  } catch (error) {
+    console.error("Fehler beim Löschen des Kontakts:", error);
+    return false;
+  }
+}
+
+
+/**
  * Checks if a user is logged in.
  * @returns {boolean} - Returns true if a user is logged in, otherwise false.
  */
