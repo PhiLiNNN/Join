@@ -163,12 +163,12 @@ function selectedAssignedToUser(event, contactID) {
   event.currentTarget.classList.toggle("selected-contact-at");
   if (event.currentTarget.classList.contains("selected-contact-at")) {
     svgElement.innerHTML = templateSvgCheckboxConfirmedHTML();
-    assignedContacts.push(contactID);
+    task.assigned_to.push(contactID);
     contact.selected = true;
   } else {
     svgElement.innerHTML = templateSvgDefaultCheckboxHTML();
     const index = assignedContacts.indexOf(contactID);
-    assignedContacts.splice(index, 1);
+    task.assigned_to.splice(contactID);
     contact.selected = false;
   }
   renderAddedContacts();
@@ -337,11 +337,8 @@ function createTask() {
   }
   toggleVisibility("rotate-err-arrow-id", false);
   pushTasks(titleInput, textareaInput, dateInput, categoryInput);
-  console.log("task :>> ", task);
   setItem(task, TASKS_API_URL);
-
   clearAllSelectedUsers();
   renderAssignedToContacts(contacts);
-  //save();
-  //sendUserToBoard();
+  sendUserToBoard();
 }

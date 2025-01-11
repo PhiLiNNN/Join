@@ -211,8 +211,7 @@ function sendUserToBoard() {
 function pushTasks(titleInput, textareaInput, dateInput, categoryInput, section = "toDo") {
   task.title = titleInput;
   task.description = textareaInput;
-  task.date = dateInput;
-  task.assigned_to.push(assignedContacts);
+  task.due_date = dateInput;
   task.priority = prio[prioIndex];
   task.category = categoryInput;
   task.subtasks.push(subtasks);

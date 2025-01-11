@@ -28,14 +28,17 @@ let titles = [];
  * board elements, generates card HTML, sets event listeners for drag and drop functionality,
  * truncates text if it's too long (more than two lines fpr title and description), and hides the scrollbar.
  */
-function initBoard() {
+async function initBoard() {
+  dummyCurrentUser = "Philipp Wendschuch";
   setFavicon();
   //const isUserLoggedIn = checkUserLogIn();
   // if (!isUserLoggedIn) window.location.assign("./error_page.html");
+  tasks = await getItem(TASKS_API_URL);
+  console.log("tasks :>> ", tasks);
   currentUser = JSON.parse(localStorage.getItem("currentUser"));
   toggleVisibility("board-menu-id", false, "highlight-menu");
   toggleVisibility("board-body-id", true);
-  loadHeaderInitials();
+  loadHeaderInitials(dummyCurrentUser);
   generateCardHTML();
   getHoverContainerGeometry();
   setDragEventListeners();
