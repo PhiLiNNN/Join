@@ -1,5 +1,10 @@
-const STORAGE_TOKEN = "VORXWOHN4ATC5QT3Z5TB4EP1VRUAGMHB44HR2ZKT";
-const STORAGE_URL = "https://remote-storage.developerakademie.org/item";
+// Firebase Realtime Database. Migrated from the retired Developer Akademie
+// remote-storage service (its TLS cert expired, so browsers blocked it). The
+// generic key/value interface is unchanged — setItem(key, value) / getItem(key)
+// round-trip the value with its original type — so the rest of the app is
+// untouched. Each key maps to a top-level RTDB node: <url>/<key>.json
+const FIREBASE_DB_URL =
+  "https://join-4d1ac-default-rtdb.europe-west1.firebasedatabase.app";
 
 /**
  * Indicates whether the user prefers dark mode.
@@ -15,10 +20,10 @@ const prefersDarkMode =
  * @returns {Promise} - A Promise that resolves with the result of the fetch operation.
  */
 async function setItem(key, value) {
-  const payload = {key, value, token: STORAGE_TOKEN};
-  return fetch(STORAGE_URL, {
-    method: "POST",
-    body: JSON.stringify(payload),
+  return fetch(`${FIREBASE_DB_URL}/${key}.json`, {
+    method: "PUT",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(value),
   }).then((res) => res.json());
 }
 
@@ -28,10 +33,7 @@ async function setItem(key, value) {
  * @returns {Promise} - A Promise that resolves with the value of the retrieved item.
  */
 async function getItem(key) {
-  const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
-  return fetch(url)
-    .then((res) => res.json())
-    .then((res) => res.data.value);
+  return fetch(`${FIREBASE_DB_URL}/${key}.json`).then((res) => res.json());
 }
 
 /**
